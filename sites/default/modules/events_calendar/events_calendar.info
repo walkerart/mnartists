@@ -1,8 +1,10 @@
 name = Events Calendar
 core = 7.x
 package = MNArtists
+php = 5.2.4
 version = 7.x-1.0
 project = events_calendar
+dependencies[] = artist_community
 dependencies[] = node
 dependencies[] = text
 features[features_api][] = api:1

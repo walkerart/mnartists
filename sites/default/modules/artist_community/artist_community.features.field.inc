@@ -179,6 +179,7 @@ function artist_community_field_default_fields() {
       'module' => 'image',
       'settings' => array(
         'default_image' => 0,
+        'profile2_private' => FALSE,
         'uri_scheme' => 'public',
       ),
       'translatable' => '0',
@@ -496,7 +497,9 @@ function artist_community_field_default_fields() {
       'indexes' => array(),
       'locked' => '0',
       'module' => 'url',
-      'settings' => array(),
+      'settings' => array(
+        'profile2_private' => 0,
+      ),
       'translatable' => '0',
       'type' => 'url',
     ),
@@ -789,6 +792,7 @@ function artist_community_field_default_fields() {
       'module' => 'image',
       'settings' => array(
         'default_image' => 0,
+        'profile2_private' => FALSE,
         'uri_scheme' => 'public',
       ),
       'translatable' => '0',
@@ -1548,6 +1552,7 @@ function artist_community_field_default_fields() {
       'module' => 'image',
       'settings' => array(
         'default_image' => 0,
+        'profile2_private' => FALSE,
         'uri_scheme' => 'public',
       ),
       'translatable' => '0',

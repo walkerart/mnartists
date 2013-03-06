@@ -319,6 +319,7 @@ function events_calendar_field_default_fields() {
       'module' => 'image',
       'settings' => array(
         'default_image' => 0,
+        'profile2_private' => FALSE,
         'uri_scheme' => 'public',
       ),
       'translatable' => '0',
@@ -394,6 +395,7 @@ function events_calendar_field_default_fields() {
         'comment_allowed_values_type' => 'custom',
         'extension_size' => '6',
         'number_size' => '15',
+        'profile2_private' => 1,
       ),
       'translatable' => '0',
       'type' => 'phone',
@@ -871,7 +873,9 @@ function events_calendar_field_default_fields() {
       'indexes' => array(),
       'locked' => '0',
       'module' => 'url',
-      'settings' => array(),
+      'settings' => array(
+        'profile2_private' => 0,
+      ),
       'translatable' => '0',
       'type' => 'url',
     ),
@@ -1105,6 +1109,7 @@ function events_calendar_field_default_fields() {
       'module' => 'image',
       'settings' => array(
         'default_image' => 0,
+        'profile2_private' => FALSE,
         'uri_scheme' => 'public',
       ),
       'translatable' => '0',
@@ -1185,6 +1190,7 @@ function events_calendar_field_default_fields() {
       'module' => 'text',
       'settings' => array(
         'max_length' => '255',
+        'profile2_private' => 1,
       ),
       'translatable' => '0',
       'type' => 'text',
@@ -1254,6 +1260,7 @@ function events_calendar_field_default_fields() {
       'module' => 'text',
       'settings' => array(
         'max_length' => '255',
+        'profile2_private' => 1,
       ),
       'translatable' => '0',
       'type' => 'text',
@@ -1323,6 +1330,7 @@ function events_calendar_field_default_fields() {
       'module' => 'text',
       'settings' => array(
         'max_length' => '255',
+        'profile2_private' => FALSE,
       ),
       'translatable' => '0',
       'type' => 'text',
@@ -1392,6 +1400,7 @@ function events_calendar_field_default_fields() {
       'module' => 'image',
       'settings' => array(
         'default_image' => 0,
+        'profile2_private' => FALSE,
         'uri_scheme' => 'public',
       ),
       'translatable' => '0',
@@ -1467,6 +1476,7 @@ function events_calendar_field_default_fields() {
         'comment_allowed_values_type' => 'custom',
         'extension_size' => '6',
         'number_size' => '15',
+        'profile2_private' => 1,
       ),
       'translatable' => '0',
       'type' => 'phone',
@@ -1915,6 +1925,7 @@ function events_calendar_field_default_fields() {
           'WY' => 'Wyoming',
         ),
         'allowed_values_function' => '',
+        'profile2_private' => 1,
       ),
       'translatable' => '0',
       'type' => 'list_text',
@@ -2039,7 +2050,9 @@ function events_calendar_field_default_fields() {
       'indexes' => array(),
       'locked' => '0',
       'module' => 'url',
-      'settings' => array(),
+      'settings' => array(
+        'profile2_private' => 0,
+      ),
       'translatable' => '0',
       'type' => 'url',
     ),
@@ -2099,7 +2112,9 @@ function events_calendar_field_default_fields() {
       'indexes' => array(),
       'locked' => '0',
       'module' => 'number',
-      'settings' => array(),
+      'settings' => array(
+        'profile2_private' => 1,
+      ),
       'translatable' => '0',
       'type' => 'number_integer',
     ),
