@@ -1764,7 +1764,7 @@ function mnartist_profiles_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '0',
+        'weight' => '3',
       ),
     ),
   );
@@ -1971,7 +1971,7 @@ function mnartist_profiles_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '1',
+        'weight' => '4',
       ),
     ),
   );
@@ -2276,7 +2276,7 @@ function mnartist_profiles_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => '4',
+        'weight' => '7',
       ),
     ),
   );
@@ -2340,7 +2340,7 @@ function mnartist_profiles_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '7',
+        'weight' => '12',
       ),
     ),
   );
@@ -2398,7 +2398,7 @@ function mnartist_profiles_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_buttons',
-        'weight' => '3',
+        'weight' => '8',
       ),
     ),
   );
@@ -2721,7 +2721,7 @@ function mnartist_profiles_field_default_fields() {
           'use_tel_input' => 1,
         ),
         'type' => 'phone',
-        'weight' => '5',
+        'weight' => '10',
       ),
     ),
   );
@@ -2844,7 +2844,7 @@ function mnartist_profiles_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_buttons',
-        'weight' => '4',
+        'weight' => '9',
       ),
     ),
   );
@@ -2951,7 +2951,7 @@ function mnartist_profiles_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => '2',
+        'weight' => '5',
       ),
     ),
   );
@@ -3015,7 +3015,7 @@ function mnartist_profiles_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '6',
+        'weight' => '11',
       ),
     ),
   );
@@ -3073,7 +3073,7 @@ function mnartist_profiles_field_default_fields() {
         'module' => 'number',
         'settings' => array(),
         'type' => 'number',
-        'weight' => '3',
+        'weight' => '6',
       ),
     ),
   );
