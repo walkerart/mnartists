@@ -1764,7 +1764,70 @@ function mnartist_profiles_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '3',
+        'weight' => '4',
+      ),
+    ),
+  );
+
+  // Exported field: 'profile2-main-field_bio'.
+  $fields['profile2-main-field_bio'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_bio',
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'text',
+      'settings' => array(
+        'profile2_private' => 0,
+      ),
+      'translatable' => '0',
+      'type' => 'text_long',
+    ),
+    'field_instance' => array(
+      'bundle' => 'main',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 13,
+        ),
+      ),
+      'entity_type' => 'profile2',
+      'field_name' => 'field_bio',
+      'label' => 'Bio',
+      'required' => 0,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'rows' => '5',
+        ),
+        'type' => 'text_textarea',
+        'weight' => '1',
       ),
     ),
   );
@@ -1843,7 +1906,7 @@ function mnartist_profiles_field_default_fields() {
           'year_range' => '-70:+0',
         ),
         'type' => 'date_select',
-        'weight' => '2',
+        'weight' => '3',
       ),
     ),
   );
@@ -1907,7 +1970,7 @@ function mnartist_profiles_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '1',
+        'weight' => '2',
       ),
     ),
   );
@@ -1971,7 +2034,7 @@ function mnartist_profiles_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '4',
+        'weight' => '5',
       ),
     ),
   );
@@ -2276,7 +2339,7 @@ function mnartist_profiles_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => '7',
+        'weight' => '8',
       ),
     ),
   );
@@ -2340,7 +2403,7 @@ function mnartist_profiles_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '12',
+        'weight' => '13',
       ),
     ),
   );
@@ -2398,7 +2461,7 @@ function mnartist_profiles_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_buttons',
-        'weight' => '8',
+        'weight' => '9',
       ),
     ),
   );
@@ -2721,7 +2784,7 @@ function mnartist_profiles_field_default_fields() {
           'use_tel_input' => 1,
         ),
         'type' => 'phone',
-        'weight' => '10',
+        'weight' => '11',
       ),
     ),
   );
@@ -2844,7 +2907,7 @@ function mnartist_profiles_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_buttons',
-        'weight' => '9',
+        'weight' => '10',
       ),
     ),
   );
@@ -2951,7 +3014,7 @@ function mnartist_profiles_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => '5',
+        'weight' => '6',
       ),
     ),
   );
@@ -3015,7 +3078,7 @@ function mnartist_profiles_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '11',
+        'weight' => '12',
       ),
     ),
   );
@@ -3073,7 +3136,7 @@ function mnartist_profiles_field_default_fields() {
         'module' => 'number',
         'settings' => array(),
         'type' => 'number',
-        'weight' => '6',
+        'weight' => '7',
       ),
     ),
   );
@@ -3129,7 +3192,7 @@ function mnartist_profiles_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'url_external',
-        'weight' => '7',
+        'weight' => '4',
       ),
     ),
   );
@@ -3192,7 +3255,7 @@ function mnartist_profiles_field_default_fields() {
           'rows' => '5',
         ),
         'type' => 'text_textarea',
-        'weight' => '3',
+        'weight' => '2',
       ),
     ),
   );
@@ -3256,7 +3319,7 @@ function mnartist_profiles_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '2',
+        'weight' => '1',
       ),
     ),
   );
@@ -3269,23 +3332,32 @@ function mnartist_profiles_field_default_fields() {
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_organization_type',
-      'foreign keys' => array(),
+      'foreign keys' => array(
+        'tid' => array(
+          'columns' => array(
+            'tid' => 'tid',
+          ),
+          'table' => 'taxonomy_term_data',
+        ),
+      ),
       'indexes' => array(
-        'value' => array(
-          0 => 'value',
+        'tid' => array(
+          0 => 'tid',
         ),
       ),
       'locked' => '0',
-      'module' => 'list',
+      'module' => 'taxonomy',
       'settings' => array(
         'allowed_values' => array(
-          'TODO' => 'TODO',
+          0 => array(
+            'vocabulary' => 'organization_type',
+            'parent' => '0',
+          ),
         ),
-        'allowed_values_function' => '',
         'profile2_private' => 0,
       ),
       'translatable' => '0',
-      'type' => 'list_text',
+      'type' => 'taxonomy_term_reference',
     ),
     'field_instance' => array(
       'bundle' => 'organization',
@@ -3295,10 +3367,10 @@ function mnartist_profiles_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'list',
+          'module' => 'taxonomy',
           'settings' => array(),
-          'type' => 'list_default',
-          'weight' => 0,
+          'type' => 'taxonomy_term_reference_link',
+          'weight' => 5,
         ),
       ),
       'entity_type' => 'profile2',
@@ -3313,7 +3385,7 @@ function mnartist_profiles_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => '1',
+        'weight' => 0,
       ),
     ),
   );
@@ -3369,7 +3441,7 @@ function mnartist_profiles_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'url_external',
-        'weight' => '5',
+        'weight' => '3',
       ),
     ),
   );
@@ -4076,6 +4148,7 @@ function mnartist_profiles_field_default_fields() {
   t('Award Name');
   t('Award Organization');
   t('Awards');
+  t('Bio');
   t('Biography');
   t('Birthdate');
   t('Birthplace');
