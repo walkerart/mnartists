@@ -4,4 +4,87 @@
  * Code for the MNArtist Profiles feature.
  */
 
+define('ARTIST_ROLE', 4);
+define('ORG_ROLE', 5);
+
 include_once 'mnartist_profiles.features.inc';
+
+function mnartist_profiles_form_user_register_form_alter(&$form, &$form_state, $form_id) {
+    $form['account_type'] = array(
+        '#type'     => 'select',
+        '#title'    => t('Registration Type'),
+        '#options'  => array(
+            'public'    => t('Public'),
+            'artist'    => t('Artist'),
+            'org'       => t('Organization'),
+        ),
+        '#required' => TRUE,
+        '#weight'   => 100,
+    );
+
+    $form['#submit'][] = 'mnartist_profiles_form_user_register_submit';
+}
+
+function mnartist_profiles_form_user_register_submit(&$form, &$form_state) {
+    global $user;
+
+    // Determine what type of account the user registered
+    switch($form_state['values']['account_type']) {
+        case 'public':
+            $goto = 'main';
+            break;
+        case 'artist':
+            $rid = ARTIST_ROLE;
+            $goto = 'main';
+            break;
+        case 'org':
+            $rid = ORG_ROLE;
+            $goto = 'organization';
+            break;
+    }
+
+    // If an rid is assigned, assign that role to the user
+    if (isset($rid)) {
+        $query = db_insert('users_roles')->fields(array('uid', 'rid'));
+        $query->values(array(
+            'uid' => $user->uid,
+            'rid' => $rid,
+        ));
+        $query->execute();
+    }
+
+    // Redirect to the users profile edit page
+    drupal_goto('user/' . $user->uid . '/edit/' . $goto); 
+}
+
+function mnartist_profiles_preprocess_user_profile(&$vars) {
+
+    unset($vars['user_profile']['summary']);
+
+    $view = views_get_view('artist_artworks');
+    $view->dom_id = 'artist-artworks';
+    $view->args[] = arg(1);
+    $view->execute();
+
+    $vars['user_profile']['artist_artworks'] = array(
+        '#markup' => $view->render('block_1'),
+        '#weight' => -9,
+    );
+}
+
+/**********************************
+ * Utility functions
+ */
+function _get_role($user = NULL) {
+    if (!$user) {
+        global $user;
+    } 
+
+    if ($user->roles[ARTIST_ROLE]) {
+        return 'artist';
+    } else if ($user->roles[ORG_ROLE]) {
+        return 'org';
+    } else {
+        return 'public';
+    }
+}

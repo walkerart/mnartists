@@ -5,6 +5,13 @@
  */
 
 /**
+ * Implements hook_views_api().
+ */
+function mnartist_profiles_views_api() {
+  return array("api" => "3.0");
+}
+
+/**
  * Implements hook_default_profile2_type().
  */
 function mnartist_profiles_default_profile2_type() {
@@ -15,7 +22,7 @@ function mnartist_profiles_default_profile2_type() {
     "type" : "main",
     "label" : "Main profile",
     "weight" : "0",
-    "data" : { "registration" : true, "use_page" : true },
+    "data" : { "registration" : 0 },
     "rdf_mapping" : []
   }');
   $items['organization'] = entity_import('profile2_type', '{
