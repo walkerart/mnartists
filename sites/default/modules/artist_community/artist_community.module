@@ -5,3 +5,81 @@
  */
 
 include_once 'artist_community.features.inc';
+
+/**
+ * Implements hook_node_view()
+ */
+function artist_community_node_view($node, $view_mode, $langcode) {
+    if ($view_mode == 'full') {
+        switch($node->type) {
+            case 'community':
+                $node->content['artworks'] = array(
+                    '#title' => t('Artworks'),
+                    '#markup' => _community_artworks_view($node),
+                    '#weight' => 0,
+                );
+                break;
+        }
+    }
+}
+
+
+/**
+ * Implements hook_form_FORM_ID_alter()
+ */
+function artist_community_form_artwork_node_form_alter(&$form, &$form_state) {
+    // Find the communities associated with each term
+    $query = db_select('node', 'n');
+    $query->leftJoin('field_data_field_medium', 'm', 'n.nid = m.entity_id'); 
+    $result = $query->fields('n', array('nid', 'title'))
+        ->fields('m')
+        ->condition('type', 'community')
+        ->orderBy('title')
+        ->execute();
+
+    // Build a nested array to provide grouped select options
+    while ($row = $result->fetchAssoc()) {
+       $rows[$row['title']][$row['field_medium_tid']] = $form['field_medium']['und']['#options'][$row['field_medium_tid']];
+    }
+
+    $form['field_medium']['und']['#options'] = $rows;
+
+    $form['#submit'][] = 'artist_community_artwork_form_submit';
+}
+
+function artist_community_artwork_form_submit(&$form, &$form_state) {
+    global $user;
+    $user = user_load($user->uid);
+    $values = array('entity' => $user);
+
+    foreach($form_state['values']['field_medium']['und'] as $field) {
+        $gid = gid_by_tid($field['tid']);
+        // Add artwork to the group
+        $form_state['values']['og_group_ref']['und'][]['target_id'] = $gid; 
+        // Add user to the group
+        og_group('node', $gid, $values);
+    }
+}
+
+/**
+ * Given a taxonomy term id, return the community nid related to the term
+ */
+function gid_by_tid($tid) {
+    $result = db_select('field_data_field_medium', 'm')
+        ->fields('m', array('entity_id'))
+        ->condition('field_medium_tid', $tid)
+        ->execute()
+        ->fetchAssoc();
+    return $result['entity_id'];
+}
+
+/**
+ * Add content to community view
+ */
+function _community_artworks_view($node) {
+    $view = views_get_view('community_artworks');
+    $view->dom_id = 'community-artworks';
+    $view->args[] = $node->nid;
+    $view->execute();
+    return $view->render();
+}

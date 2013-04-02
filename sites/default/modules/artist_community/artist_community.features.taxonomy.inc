@@ -13,9 +13,9 @@ function artist_community_taxonomy_default_vocabularies() {
       'name' => 'Article Category',
       'machine_name' => 'article_category',
       'description' => '',
-      'hierarchy' => '0',
+      'hierarchy' => 0,
       'module' => 'taxonomy',
-      'weight' => '0',
+      'weight' => 0,
       'rdf_mapping' => array(
         'rdftype' => array(
           0 => 'skos:ConceptScheme',
@@ -36,9 +36,9 @@ function artist_community_taxonomy_default_vocabularies() {
       'name' => 'Blog Category',
       'machine_name' => 'blog_category',
       'description' => '',
-      'hierarchy' => '0',
+      'hierarchy' => 0,
       'module' => 'taxonomy',
-      'weight' => '0',
+      'weight' => 0,
       'rdf_mapping' => array(
         'rdftype' => array(
           0 => 'skos:ConceptScheme',
@@ -59,9 +59,9 @@ function artist_community_taxonomy_default_vocabularies() {
       'name' => 'Medium',
       'machine_name' => 'medium',
       'description' => '',
-      'hierarchy' => '0',
+      'hierarchy' => 0,
       'module' => 'taxonomy',
-      'weight' => '0',
+      'weight' => 0,
       'rdf_mapping' => array(
         'rdftype' => array(
           0 => 'skos:ConceptScheme',
@@ -82,9 +82,9 @@ function artist_community_taxonomy_default_vocabularies() {
       'name' => 'Tags',
       'machine_name' => 'tags',
       'description' => 'Use tags to group articles on similar topics into categories.',
-      'hierarchy' => '0',
+      'hierarchy' => 0,
       'module' => 'taxonomy',
-      'weight' => '0',
+      'weight' => 0,
       'rdf_mapping' => array(
         'rdftype' => array(
           0 => 'skos:ConceptScheme',
