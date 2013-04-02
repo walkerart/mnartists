@@ -26,8 +26,7 @@ function media_media_browser_plugin_info() {
         }
         $info["{$view->name}--{$display->id}"] = array(
           'title' => $title,
-          // @TODO make this configurable.
-          'weight' => $view_weight++,
+          'weight' => $view_weight++, // @TODO make this configurable.
           'class' => 'MediaBrowserView',
           'view_name' => $view->name,
           'view_display_id' => $display->id,
@@ -128,7 +127,7 @@ function media_query_media_browser_alter($query) {
   }
 
   // @todo This is possibly redundant since it's already filtered in the view.
-  $query->condition($alias . '.status', FILE_STATUS_PERMANENT);
+  $query->condition($alias. '.status', FILE_STATUS_PERMANENT);
 
   foreach (array_keys(media_get_hidden_stream_wrappers()) as $name) {
     $query->condition($alias . '.uri', db_like($name . '://') . '%', 'NOT LIKE');

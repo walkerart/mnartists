@@ -58,18 +58,10 @@ function media_field_formatter_view($entity_type, $entity, $field, $instance, $l
   $element = array();
 
   if ($display['type'] == 'media_large_icon') {
-    // Add height/width variable according to media_thumbnail image style
-    // so that the output in media browser is consistent.
-    // @todo is this the correct place to put this?
-    $style = image_style_load('media_thumbnail');
     foreach ($items as $delta => $item) {
       $element[$delta] = array(
         '#theme' => 'media_formatter_large_icon',
         '#file' => (object) $item,
-        '#attributes' => array(
-          'width' => $style['effects'][0]['data']['width'],
-          'height' => $style['effects'][0]['data']['height'],
-        ),
       );
     }
   }
@@ -150,9 +142,7 @@ function media_field_widget_form(&$form, &$form_state, $field, $instance, $langc
   }
 
   $element += array(
-    // @todo This should be a fieldset, but throws a warning about
-    // element_children.
-    '#type' => 'media',
+    '#type' => 'media', // Would like to make this a fieldset, but throws some weird warning about element_children... not sure what it is about yet.
     '#collapsed' => TRUE,
     '#default_value' => $current_value,
     '#required' => $instance['required'],
@@ -188,8 +178,6 @@ function media_field_widget_form(&$form, &$form_state, $field, $instance, $langc
 }
 
 /**
- * Widget value.
- *
  * @todo Is this function ever called? If not, remove it. The Field API now
  *   supports automatic serialization / unserialization, so this should no
  *   longer be needed. After verifying with a module that uses the 'data'
