@@ -13,9 +13,9 @@ function mnartist_profiles_taxonomy_default_vocabularies() {
       'name' => 'Organization Type',
       'machine_name' => 'organization_type',
       'description' => '',
-      'hierarchy' => '0',
+      'hierarchy' => 0,
       'module' => 'taxonomy',
-      'weight' => '0',
+      'weight' => 0,
       'rdf_mapping' => array(
         'rdftype' => array(
           0 => 'skos:ConceptScheme',

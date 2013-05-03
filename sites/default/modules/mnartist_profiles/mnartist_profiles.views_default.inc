@@ -121,12 +121,10 @@ function mnartist_profiles_views_default_views() {
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
-  $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
   $handler->display->display_options['path'] = 'artist/artworks';
 
   /* Display: Slideshow */
   $handler = $view->new_display('block', 'Slideshow', 'block_1');
-  $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
   $export['artist_artworks'] = $view;
 
   $view = new view();
@@ -203,7 +201,6 @@ function mnartist_profiles_views_default_views() {
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
-  $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
   $handler->display->display_options['path'] = 'artists';
   $handler->display->display_options['menu']['type'] = 'normal';
   $handler->display->display_options['menu']['title'] = 'Browse Artists';

@@ -13,9 +13,9 @@ function events_calendar_taxonomy_default_vocabularies() {
       'name' => 'Event Categories',
       'machine_name' => 'event_categories',
       'description' => '',
-      'hierarchy' => '0',
+      'hierarchy' => 0,
       'module' => 'taxonomy',
-      'weight' => '0',
+      'weight' => 0,
       'rdf_mapping' => array(
         'rdftype' => array(
           0 => 'skos:ConceptScheme',
@@ -36,9 +36,9 @@ function events_calendar_taxonomy_default_vocabularies() {
       'name' => 'Venue Type',
       'machine_name' => 'venue_type',
       'description' => '',
-      'hierarchy' => '0',
+      'hierarchy' => 0,
       'module' => 'taxonomy',
-      'weight' => '0',
+      'weight' => 0,
       'rdf_mapping' => array(
         'rdftype' => array(
           0 => 'skos:ConceptScheme',

@@ -1,4 +1,8 @@
 <?php
+
+define('NODE_INDEX', 'default_node_index');
+define('USER_INDEX', 'users');
+
 /**
  * @file
  * Code for the Artist Community feature.
@@ -7,22 +11,161 @@
 include_once 'artist_community.features.inc';
 
 /**
- * Implements hook_node_view()
+ * Implements hook_menu()
  */
-function artist_community_node_view($node, $view_mode, $langcode) {
-    if ($view_mode == 'full') {
-        switch($node->type) {
-            case 'community':
-                $node->content['artworks'] = array(
-                    '#title' => t('Artworks'),
-                    '#markup' => _community_artworks_view($node),
-                    '#weight' => 0,
-                );
-                break;
-        }
-    }
+function artist_community_menu() {
+    $items['community'] = array(
+        'title'             => t('Community'),
+        'page callback'     => 'artist_community_search_page',
+        'access arguments'  => array('access content'),
+        'file'              => 'artist_community.pages.inc',
+    );
+
+    return $items;
 }
 
+/**
+ * Implements hook_theme()
+ */
+function artist_community_theme() {
+    return array(
+        'artist_community_artist_profile' => array(
+            'variables' => array(
+                'user' => array(),
+            ),
+            'file' => 'artist_community.templates.inc',
+            'template' => 'templates/artist-profile',
+        ),
+    );
+}
+
+/**
+ * Implements hook_block_info()
+ */
+function artist_community_block_info() {
+    $blocks['community'] = array(
+        'info' => t('Artist Community - Communities'),
+        'cache' => DRUPAL_NO_CACHE,
+    );
+
+    $blocks['content'] = array(
+        'info' => t('Artist Community - Content'),
+        'cache' => DRUPAL_NO_CACHE,
+    );
+
+    return $blocks;
+}
+
+function artist_community_block_view($delta = '') {
+    switch($delta) {
+        case 'community':
+            $block['subject'] = t('Communities');
+            $block['content'] = _community_block_community();
+            break;
+        case 'content':
+            $block['subject'] = t('Content');
+            $block['content'] = _community_block_content();
+            break;
+    }
+
+    return $block;
+}
+
+/**
+ * @return
+ * returns a rendered menu for content
+ */
+function _community_block_community() {
+    $items[] = l('All Communities', 'community');
+
+    // render community menu;
+    $results = db_select('node', 'n')
+        ->fields('n', array('nid', 'title'))
+        ->condition('type', 'community')
+        ->execute()
+        ->fetchAll(); 
+
+    foreach($results as $result) {
+        $sub_items = array();
+
+        // build the top level link
+        $list = l($result->title, 'community', array(
+            'query' => array(
+                'community' => $result->nid,
+            ),
+            'attributes' => array(
+                'class' => (isset($_GET['community']) && $result->nid == $_GET['community']) 
+                    ? array('active-trail') : array(),
+            )
+        ));
+
+        if ($node = node_load($result->nid)) {
+            // build sub menu items from the medium taxonomy
+            foreach($node->field_medium['und'] as $tid) {
+                $term = taxonomy_term_load($tid['tid']);
+                // TODO: allow multiple terms to be selected
+                $sub_items[] = l($term->name, 'community', array(
+                    'query' => array(
+                        'community' => $result->nid,
+                        'tid' => $term->tid,
+                    )
+                ));
+            }   
+
+            if (isset($sub_items)) {
+                $list .= theme('item_list', array('items' => $sub_items));
+            }   
+
+        }
+
+        $items[] = $list;
+    }
+
+    return theme('item_list', array(
+        'items' => $items,
+        'attributes' => array('class' => 'artist-community-menu'),
+    ));
+}
+
+/**
+ * @return
+ * returns a rendered menu for content types
+ */
+function _community_block_content() {
+    // render content menu;
+    $menu_items = array(
+        'all'           => t('All Content'),
+        'article'       => t('Articles'),
+        'artists'       => t('Artists'),
+        'artwork'       => t('Artworks'),
+        'event'         => t('Events'),
+        'opportunity'   => t('Opportunities'),
+        'organizations' => t('Organizations'),
+    );
+
+    foreach($menu_items as $key => $title) {
+        if (isset($_GET['community'])) {
+            $query['community'] = $_GET['community'];
+        }
+        $query['content'] = $key;
+        $items[] = l($title, 'community', array('query' => $query));
+    }
+
+    return theme('item_list', array(
+        'items' => $items,
+        'attributes' => array('class' => 'community-content-menu'),
+    ));
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter()
+ */
+function artist_community_form_user_profile_form_alter(&$form, &$form_state) {
+    // Hide featured artists from non admins
+    if (!user_access('administer users')) {
+        unset($form['field_featured_artist']);
+    }
+}
 
 /**
  * Implements hook_form_FORM_ID_alter()
@@ -43,6 +186,7 @@ function artist_community_form_artwork_node_form_alter(&$form, &$form_state) {
     }
 
     $form['field_medium']['und']['#options'] = $rows;
+    unset($form['og_group_ref']);
 
     $form['#submit'][] = 'artist_community_artwork_form_submit';
 }
@@ -73,13 +217,20 @@ function gid_by_tid($tid) {
     return $result['entity_id'];
 }
 
-/**
- * Add content to community view
- */
-function _community_artworks_view($node) {
-    $view = views_get_view('community_artworks');
-    $view->dom_id = 'community-artworks';
-    $view->args[] = $node->nid;
-    $view->execute();
-    return $view->render();
+function artist_community_execute_query($index, $conditions = array()) {
+        // Initialize the solr query
+    $options = array(
+        'search id' => 'artist_community:' . $index,
+        'parse mode' => 'terms',
+    );  
+    $query = search_api_query($index, $options);
+    $index = $query->getIndex();
+
+    foreach($conditions as $key => $val) {
+        $query->condition($key, $val);
+    }
+
+    $results = $query->execute();
+
+    return $index->loadItems(array_keys($results['results']));
 }

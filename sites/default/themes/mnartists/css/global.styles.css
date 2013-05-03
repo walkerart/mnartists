@@ -493,6 +493,14 @@ a:focus {
   margin-bottom: 0;
 }
 
+ul.artist-community-menu div.item-list {
+    display: none;
+}
+
+ul.artist-community-menu a.active-trail + div.item-list {
+    display: block;
+}
+
 
 /* =============================================================================
  *   Superfish
@@ -1752,3 +1760,5 @@ tr.error {}
     float: left;
     margin-right: 10px;
 }
+
+
