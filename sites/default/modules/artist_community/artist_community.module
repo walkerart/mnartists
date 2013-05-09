@@ -43,6 +43,7 @@ function artist_community_theme() {
  * Implements hook_block_info()
  */
 function artist_community_block_info() {
+
     $blocks['community'] = array(
         'info' => t('Artist Community - Communities'),
         'cache' => DRUPAL_NO_CACHE,
@@ -89,35 +90,11 @@ function _community_block_community() {
         $sub_items = array();
 
         // build the top level link
-        $list = l($result->title, 'community', array(
-            'query' => array(
-                'community' => $result->nid,
-            ),
-            'attributes' => array(
-                'class' => (isset($_GET['community']) && $result->nid == $_GET['community']) 
+        $attributes = array(
+            'class' => (isset($_GET['og'][$result->nid])) 
                     ? array('active-trail') : array(),
-            )
-        ));
-
-        if ($node = node_load($result->nid)) {
-            // build sub menu items from the medium taxonomy
-            foreach($node->field_medium['und'] as $tid) {
-                $term = taxonomy_term_load($tid['tid']);
-                // TODO: allow multiple terms to be selected
-                $sub_items[] = l($term->name, 'community', array(
-                    'query' => array(
-                        'community' => $result->nid,
-                        'tid' => $term->tid,
-                    )
-                ));
-            }   
-
-            if (isset($sub_items)) {
-                $list .= theme('item_list', array('items' => $sub_items));
-            }   
-
-        }
-
+        );
+        $list = url_query_master($result->title, 'community', 'og', $result->nid, $attributes);
         $items[] = $list;
     }
 
@@ -144,11 +121,7 @@ function _community_block_content() {
     );
 
     foreach($menu_items as $key => $title) {
-        if (isset($_GET['community'])) {
-            $query['community'] = $_GET['community'];
-        }
-        $query['content'] = $key;
-        $items[] = l($title, 'community', array('query' => $query));
+        $items[] = url_query_master($title, 'community', 'content', $key);
     }
 
     return theme('item_list', array(
@@ -217,20 +190,118 @@ function gid_by_tid($tid) {
     return $result['entity_id'];
 }
 
-function artist_community_execute_query($index, $conditions = array()) {
+function artist_community_execute_query($index, $filters = array()) {
         // Initialize the solr query
     $options = array(
         'search id' => 'artist_community:' . $index,
         'parse mode' => 'terms',
     );  
     $query = search_api_query($index, $options);
-    $index = $query->getIndex();
 
-    foreach($conditions as $key => $val) {
-        $query->condition($key, $val);
+    // Add filters
+    foreach($filters as $filter) {
+        $query->filter($filter);
     }
 
+    $index = $query->getIndex();
     $results = $query->execute();
 
     return $index->loadItems(array_keys($results['results']));
+}
+
+/**
+ * Search an array for a key.  Append it if it doesnt exist.
+ * remove it if it does
+ */
+function array_mashinator(&$array, $needle) {
+    if (empty($array) || !in_array($needle, $array)) { 
+        $array[] = $needle;
+    } else {
+        // The needle exists in our query so remove it from the array 
+        $key = array_search($needle, $array);
+        unset($array[$key]);
+        $array = array_values($array);
+    }   
+}
+
+/**
+ * Create links that accomodate our fabulious queries
+ * @param $text
+ *  The text to be displayed in the link
+ * @param $path
+ *  the url the link should link to
+ * @param $key
+ *  The key that the value should be linked to in the query
+ * @param $val
+ *  The value of the key
+ * @param $attributes
+ *  an array of attributes as defined by l()
+ *
+ * @return
+ *  returns an html link
+ */
+function url_query_master($text, $path, $key, $val, $attributes = null) {
+    $query = array();
+
+    if (isset($_GET['og'])) {
+        $query['og'] = $_GET['og'];
+    }
+
+    if (isset($_GET['content'])) {
+        $query['content'] = $_GET['content'];
+    }
+
+    if ($key == 'og') {
+        if ($node = node_load($val)) {
+            if (isset($_GET['og'][$val])) $attributes['class'][] = 'selected';
+            /**
+             * If the value is set then unset it so we can toggle
+             * between states.  If it isnt set it as true since this
+             * is the root menu item.
+             */
+            if (isset($query['og'][$val])) {
+                unset($query['og'][$val]);
+            } else {
+                $query['og'][$val] = TRUE;
+            }
+
+            $output = l($text, $path, array('query' => $query, 'attributes' => $attributes));
+
+            $attributes = array();
+
+            // build sub menu items from the medium taxonomy
+            foreach($node->field_medium['und'] as $tid) {
+
+                // Reset the query so that the community values are included
+                if (isset($_GET['og'][$val])) {
+                    $query['og'][$val] = $_GET['og'][$val];
+                }
+
+                // if the query is true convert it to an array
+                if ($query['og'][$val] == 1) {
+                    $query['og'][$val] = array();
+                }
+
+                $term = taxonomy_term_load($tid['tid']);
+        
+                array_mashinator($query['og'][$val], $tid['tid']);
+
+                // Build a sub menu of taxonomy terms
+                $sub_items[] = l($term->name, 'community', array(
+                    'query' => $query,
+                    'attributes' => $attributes,
+                ));
+            }   
+
+            if (isset($sub_items)) {
+                $output .= theme('item_list', array('items' => $sub_items));
+            }   
+
+        }
+    } else if ($key == 'content') {
+        array_mashinator($query['content'], $val);
+        $output = l($text, $path, array('query' => $query, 'attributes' => $attributes));
+    }
+
+    return $output;
 }

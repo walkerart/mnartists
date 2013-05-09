@@ -5,7 +5,7 @@
 
     <div class="username">
         <a href="<?php print $url; ?>">
-            <?php print $user->name; ?>
+            <?php print $name; ?>
         </a>
     </div>
 </div>
