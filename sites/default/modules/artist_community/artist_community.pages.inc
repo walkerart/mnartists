@@ -11,10 +11,16 @@ function artist_community_search_page() {
 
     // Handle Organic groups and taxonomies
     if (isset($_GET['og'])) {
+        $filter = new SearchApiQueryFilter;
+        $filter->setConjunction('OR');
+
+        $user_filter = new SearchApiQueryFilter;
+        $user_filter->setConjunction('OR');
+
         foreach($_GET['og'] as $og_id => $terms) {
-            $filter = new SearchApiQueryFilter;
             $filter->condition('og_group_ref', $og_id);
 
+            // Add taxonomy filters for a specific taxonomy
             if (is_array($terms)) {
                 $sub_filter = new SearchApiQueryFilter;
                 foreach($terms as $term) {
@@ -23,35 +29,25 @@ function artist_community_search_page() {
 
                 $filter->filter($sub_filter);
             }
-            $filters[] = $filter;
 
             // Add user index filters
-            $filter = new SearchApiQueryFilter;
-            $filter->condition('og_user_node', $og_id);
-
-            $user_filters[] = $filter;
+            $user_filter->condition('og_user_node', $og_id);
 
         }
+
+        $filters[] = $filter;
+        $user_filters[] = $user_filter;
     }
 
     // Handle content and users
     if (isset($_GET['content'])) {
-        $user_filter = new SearchApiQueryFilter;
-        $user_filter->setConjunction('OR');
-
         $filter = new SearchApiQueryFilter;
         $filter->setConjunction('OR');
 
-        foreach($_GET['content'] as $type) {
-            // If all is selected reset everything and exit the loop
-            if ($type == 'all') {
-                $has_content    = TRUE;
-                $has_user       = TRUE;
-                $filters        = array();
-                $user_filters   = array();
-                break;
-            }
+        $user_filter = new SearchApiQueryFilter;
+        $user_filter->setConjunction('OR');
 
+        foreach($_GET['content'] as $type) {
             switch($type) {
                 case 'article':
                 case 'artwork':
