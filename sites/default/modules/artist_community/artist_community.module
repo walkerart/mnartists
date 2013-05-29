@@ -29,6 +29,12 @@ function artist_community_menu() {
  */
 function artist_community_theme() {
     return array(
+        'artist_community_page' => array(
+            'variables' => array(
+                'content' => array(),
+            ),
+            'template' => 'templates/artist-community-page',
+        ),
         'artist_community_artist_profile' => array(
             'variables' => array(
                 'user' => array(),
@@ -240,7 +246,7 @@ function array_mashinator(&$array, $needle) {
  * @return
  *  returns an html link
  */
-function url_query_master($text, $path, $key, $val, $attributes = null) {
+function url_query_master($text, $path, $key, $val, $attributes = array()) {
     $query = array();
 
     if (isset($_GET['og'])) {
