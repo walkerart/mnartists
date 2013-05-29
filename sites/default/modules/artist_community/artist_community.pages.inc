@@ -4,6 +4,7 @@ function artist_community_search_page() {
     ctools_add_js('community', 'artist_community');
 
     $filters        = array();
+    $user_filters   = array();
     $has_content    = FALSE;
     $has_user       = FALSE;
     $output         = '';
