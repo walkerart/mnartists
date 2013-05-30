@@ -1,16 +1,5 @@
-/**
- * @file
- * Default CSS rules for the phone element.
- */
+/* prevent input fields from being set to a percentage, such as 95% */
+div.form-item input.phone-field-textfield {
+  width: auto;
+}
 
-/* Make phone elements be side by side, not stacked. */
-.form-type-phone .form-item {
-  float: left; /* LTR */
-}
-.phone-label-before .form-type-phone .form-item label {
-  display: inline;
-}
-.phone-label-before .form-type-phone .form-item input,
-.phone-label-before .form-type-phone .form-item select {
-  margin-right: 1em;
-}
