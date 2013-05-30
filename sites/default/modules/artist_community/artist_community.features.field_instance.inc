@@ -256,11 +256,8 @@ function artist_community_field_default_field_instances() {
       ),
       'teaser' => array(
         'label' => 'hidden',
-        'module' => 'text',
-        'settings' => array(
-          'trim_length' => 600,
-        ),
-        'type' => 'text_summary_or_trimmed',
+        'settings' => array(),
+        'type' => 'hidden',
         'weight' => 0,
       ),
     ),
@@ -483,9 +480,13 @@ function artist_community_field_default_field_instances() {
         'weight' => 2,
       ),
       'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
+        'label' => 'hidden',
+        'module' => 'image',
+        'settings' => array(
+          'image_link' => 'content',
+          'image_style' => 'square_thumbnail',
+        ),
+        'type' => 'image',
         'weight' => 0,
       ),
     ),
@@ -1068,9 +1069,8 @@ function artist_community_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'taxonomy',
         'settings' => array(),
-        'type' => 'taxonomy_term_reference_link',
+        'type' => 'hidden',
         'weight' => 2,
       ),
       'teaser' => array(
@@ -1111,7 +1111,7 @@ function artist_community_field_default_field_instances() {
     'description' => 'Determine if this is an OG group.',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'og_ui',
         'settings' => array(
           'field_name' => FALSE,
@@ -1179,9 +1179,9 @@ function artist_community_field_default_field_instances() {
     'entity_type' => 'user',
     'field_name' => 'field_featured_artist',
     'label' => 'Featured Artist',
-    'required' => 1,
+    'required' => 0,
     'settings' => array(
-      'user_register_form' => 1,
+      'user_register_form' => 0,
     ),
     'widget' => array(
       'active' => 1,
