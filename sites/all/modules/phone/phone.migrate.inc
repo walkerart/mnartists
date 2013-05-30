@@ -10,7 +10,7 @@
  * @code
  * $this->addFieldMapping('field_my_phone', 'source_number');
  * $this->addFieldMapping('field_my_phone:countrycode', 'source_countrycode');
- * $this->addFieldMapping('field_my_phone:comment', 'source_comment');
+ * $this->addFieldMapping('field_my_phone:numbertype', 'source_numbertype');
  * $this->addFieldMapping('field_my_phone:extension', 'source_extension');
  * @endcode
  *
@@ -19,7 +19,7 @@
  * @code
  * $phone_args = array(
  *   'countrycode' => array('source_field' => 'source_countrycode'),
- *   'comment' => array('source_field' => 'source_comment'),
+ *   'numbertype' => array('source_field' => 'source_numbertype'),
  *   'extension' => array('source_field' => 'source_extension'),
  * );
  * $this->addFieldMapping('field_my_phone', 'source_number')
@@ -53,8 +53,8 @@ class MigratePhoneFieldHandler extends MigrateFieldHandler {
    *
    * @param string $countrycode
    *   The countrycode for a number.
-   * @param string $comment
-   *   The comment for a number.
+   * @param string $numbertype
+   *   The number type for a number.
    * @param string $extension
    *   The extension for a number.
    * @param string $language
@@ -63,9 +63,9 @@ class MigratePhoneFieldHandler extends MigrateFieldHandler {
    * @return array
    *   An array of all the arguments.
    */
-  static function arguments($countrycode = NULL, $comment = NULL, $extension = NULL, $language = NULL) {
+  static function arguments($countrycode = NULL, $numbertype = NULL, $extension = NULL, $language = NULL) {
     $arguments = array();
-    foreach (array('countrycode', 'comment', 'extension', 'language') as $field) {
+    foreach (array('countrycode', 'numbertype', 'extension', 'language') as $field) {
       if (isset($$field)) {
         $arguments[$field] = $$field;
       }
@@ -91,7 +91,7 @@ class MigratePhoneFieldHandler extends MigrateFieldHandler {
   public function fields($type, $parent_field, $migration = NULL) {
     $fields = array(
       'countrycode' => t('Subfield: The phone countrycode attribute'),
-      'comment' => t('Subfield: The phone comment'),
+      'numbertype' => t('Subfield: The phone number type'),
       'extension' => t('Subfield: The phone extension'),
       'language' => t('Subfield: Language for the field'),
     );
@@ -137,12 +137,12 @@ class MigratePhoneFieldHandler extends MigrateFieldHandler {
           $item['countrycode'] = $arguments['countrycode'];
         }
       }
-      if (isset($arguments['comment'])) {
-        if (is_array($arguments['comment'])) {
-          $item['comment'] = $arguments['comment'][$delta];
+      if (isset($arguments['numbertype'])) {
+        if (is_array($arguments['numbertype'])) {
+          $item['numbertype'] = $arguments['numbertype'][$delta];
         }
         else {
-          $item['comment'] = $arguments['comment'];
+          $item['numbertype'] = $arguments['numbertype'];
         }
       }
       if (isset($arguments['extension'])) {

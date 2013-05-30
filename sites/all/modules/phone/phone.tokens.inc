@@ -4,7 +4,7 @@
  * @file
  * Provides token integration for the phone module.
  *
- * Code shamelessly based on same code form the name module.
+ * Implementation shamelessly based on code from the name module.
  * http://drupal.org/project/name
  */
 
@@ -41,13 +41,13 @@ function phone_token_info($type = 'all') {
     'name' => t('Component: Number'),
     'description' => t('The un-altered number as entered.'),
   );
-  $tokens['component-commentlabel'] = array(
-    'name' => t('Component: Comment Label'),
-    'description' => t('The comment for this number.'),
+  $tokens['component-numbertypelabel'] = array(
+    'name' => t('Component: Number type Label'),
+    'description' => t('The number type of this number.'),
   );
-  $tokens['component-comment'] = array(
-    'name' => t('Component: Comment'),
-    'description' => t('The comment id for the comment on this number.'),
+  $tokens['component-numbertype'] = array(
+    'name' => t('Component: Number type'),
+    'description' => t('The number type id of the number type for this number.'),
   );
 
   // Create some formatted tokens that include useful options.
@@ -81,8 +81,8 @@ function phone_token_info($type = 'all') {
     ),
   );
 
-  foreach (phone_token_types_chained(NULL, TRUE) as $entity_type => $tokens) {
-    $token_info['tokens'][$entity_type] = $tokens;
+  foreach (phone_token_types_chained(NULL, TRUE) as $token_type => $tokens) {
+    $token_info['tokens'][$token_type] = $tokens;
   }
 
   return $token_info;
@@ -96,7 +96,7 @@ function phone_tokens($type, $tokens, array $data = array(), array $options = ar
   $replacements = array();
 
   // This handles the field tokens.
-  if (isset($data[$type]) && $known_tokens = phone_token_types_chained($type)) {
+  if (isset($data[$type]) && phone_token_types_chained($type)) {
     foreach ($tokens as $name => $original) {
       if (strpos($name, 'phone-') === 0) {
         /*
@@ -211,14 +211,14 @@ function phone_tokens($type, $tokens, array $data = array(), array $options = ar
                   }
                   break;
 
-                case 'commentlabel':
-                  if (isset($item['comment'])) {
+                case 'numbertypelabel':
+                  if (isset($item['numbertype'])) {
                     $entity_info = entity_get_info($type);
                     $key = $entity_info['bundle keys']['bundle'];
                     $instance = field_info_instance($type, $field['field_name'], $data[$type]->$key);
-                    $allowed_values = phone_comment_allowed_values($field, $instance, $type, $data[$type]);
-                    if (isset($allowed_values[$item['comment']])) {
-                      $formatted[] = $allowed_values[$item['comment']];
+                    $allowed_values = phone_numbertype_allowed_values($field, $instance);
+                    if (isset($allowed_values[$item['numbertype']])) {
+                      $formatted[] = $allowed_values[$item['numbertype']];
                     }
                   }
                   break;
@@ -264,8 +264,7 @@ function phone_token_types_chained($type = NULL, $reset = FALSE) {
     if (!$reset && $cache = cache_get("phone_token_types_chained:$langcode", 'cache')) {
       $types = $cache->data;
     }
-
-    if (!$types) {
+    else {
       $types = array();
       foreach (field_info_fields() as $field_name => $info) {
         if ($info['type'] == 'phone') {
@@ -284,7 +283,11 @@ function phone_token_types_chained($type = NULL, $reset = FALSE) {
             else {
               $description = t('Phone field in the default format. Also known as %labels', array('%labels' => implode(', ', $labels)));
             }
-            $types[$entity_type]['phone-' . $clean] = array(
+
+            // Make sure we get the correct token type.
+            $entity_info = entity_get_info($entity_type);
+            $token_type = isset($entity_info['token type']) ? $entity_info['token type'] : $entity_type;
+            $types[$token_type]['phone-' . $clean] = array(
               'name' => check_plain($label),
               'description' => $description,
               'type' => 'phone',

@@ -43,7 +43,7 @@ function _phone_devel_generate($object, $field, $instance, $bundle) {
     'GB' => array(7),
   );
 
-  $settings = $instance['widget']['settings'];
+  $settings = $instance['settings'];
   $extension = '';
   if ($settings['enable_extension']) {
     // 50/50 that we actually add an extension.
@@ -52,10 +52,10 @@ function _phone_devel_generate($object, $field, $instance, $bundle) {
     }
   }
 
-  $comment = '';
-  if ($settings['enable_comment']) {
-    $allowed_values = phone_comment_allowed_values($field, $instance) + array('' => '');
-    $comment = array_rand($allowed_values);
+  $numbertype = '';
+  if ($field['settings']['enable_numbertype']) {
+    $allowed_values = phone_numbertype_allowed_values($field, $instance);
+    $numbertype = array_rand($allowed_values);
   }
 
   if (!$settings['country_options']['all_country_codes']) {
@@ -75,5 +75,5 @@ function _phone_devel_generate($object, $field, $instance, $bundle) {
   }
 
   $item = array_rand($numbers);
-  return $numbers[$item] + array('extension' => $extension, 'comment' => $comment);
+  return $numbers[$item] + array('extension' => $extension, 'numbertype' => $numbertype);
 }
