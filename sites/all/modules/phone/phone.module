@@ -112,7 +112,7 @@ function phone_field_instance_settings_form($field, $instance) {
     '#default_value' => $settings['phone_country_code'],
   );
 
-  if ($field['settings']['country'] == 'int') {
+  if (isset($field['settings']['country']) && $field['settings']['country'] == 'int') {
     $form['phone_int_help'] = array(
       '#type' => 'markup',
       '#value' => t('International phone numbers are in the form +XX YYYYYYY where XX is a country code and YYYYYYY is the local number. This field type is based off of the <a href="http://www.itu.int/rec/T-REC-E.123/en">E.123 specification</a>.'),
@@ -129,7 +129,7 @@ function phone_field_instance_settings_form($field, $instance) {
     );
   }
 
-  if ($field['settings']['country'] == 'ca') {
+  if (isset($field['settings']['country']) && $field['settings']['country'] == 'ca') {
     $form['ca_phone_separator'] = array(
       '#type' => 'textfield',
       '#title' => t('Separator'),
@@ -226,6 +226,11 @@ function phone_field_widget_info() {
  * Implements hook_field_widget_form().
  */
 function phone_field_widget_form(&$form, &$form_state, $field, $instance, $langcode, $items, $delta, $element) {
+  $maxlength = (isset($field['settings']['country']) ? 
+    ($field['settings']['country'] == 'int' ?
+      (isset($instance['settings']['phone_int_max_length']) ? 
+        $instance['settings']['phone_int_max_length']
+    : NULL) : NULL) : NULL);
   $element += array(
     '#type' => 'textfield',
     '#title' => $element['#title'],
@@ -233,11 +238,7 @@ function phone_field_widget_form(&$form, &$form_state, $field, $instance, $langc
     '#default_value' => isset($items[$delta]['value']) ? $items[$delta]['value'] : '',
     '#required' => $element['#required'],
     '#size' => 17,
-    '#maxlength' => (
-      $field['settings']['country'] == 'int' ?
-        (isset($instance['settings']['phone_int_max_length']) ? $instance['settings']['phone_int_max_length'] : NULL)
-        : NULL
-    ),
+    '#maxlength' => $maxlength,
   );
   return array('value' => $element);
 }
