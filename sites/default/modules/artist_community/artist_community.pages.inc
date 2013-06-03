@@ -6,6 +6,7 @@ function artist_community_search_page() {
     $filters        = array();
     $user_filters   = array();
     $has_content    = FALSE;
+    $content        = array();
     $has_user       = FALSE;
     $output         = '';
 
@@ -78,7 +79,8 @@ function artist_community_search_page() {
     if ($has_content) {
         $items = artist_community_execute_query(NODE_INDEX, $filters);
         foreach($items as $item) {
-            $content[$item->type][] = render(node_view($item, 'teaser'));
+            $content_node = node_view($item, 'teaser');
+            $content[$item->type][] = render($content_node);
         }
     }
 
