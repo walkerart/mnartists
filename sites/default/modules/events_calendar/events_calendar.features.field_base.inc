@@ -211,6 +211,7 @@ function events_calendar_field_default_field_bases() {
           'program' => 'program',
         ),
       ),
+      'profile2_private' => FALSE,
       'target_type' => 'node',
     ),
     'translatable' => 0,

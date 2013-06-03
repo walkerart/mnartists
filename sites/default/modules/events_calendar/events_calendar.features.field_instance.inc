@@ -112,9 +112,16 @@ function events_calendar_field_default_field_instances() {
         'weight' => 3,
       ),
       'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
+        'label' => 'inline',
+        'module' => 'date',
+        'settings' => array(
+          'format_type' => 'long',
+          'fromto' => 'both',
+          'multiple_from' => '',
+          'multiple_number' => '',
+          'multiple_to' => '',
+        ),
+        'type' => 'date_default',
         'weight' => 0,
       ),
     ),
@@ -254,7 +261,7 @@ function events_calendar_field_default_field_instances() {
           ),
           'full_hcard' => FALSE,
         ),
-        'type' => 'phone_international',
+        'type' => 'phone',
         'weight' => 5,
       ),
       'teaser' => array(
@@ -269,6 +276,11 @@ function events_calendar_field_default_field_instances() {
     'label' => 'Phone',
     'required' => 0,
     'settings' => array(
+      'ca_phone_parentheses' => 1,
+      'ca_phone_separator' => '-',
+      'phone_country_code' => 0,
+      'phone_default_country_code' => 1,
+      'phone_int_max_length' => 15,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -534,7 +546,7 @@ function events_calendar_field_default_field_instances() {
         'enable_extension' => 0,
         'use_tel_input' => 1,
       ),
-      'type' => 'phone',
+      'type' => 'phone_textfield',
       'weight' => 6,
     ),
   );
@@ -563,6 +575,8 @@ function events_calendar_field_default_field_instances() {
       ),
     ),
     'entity_type' => 'node',
+    'entityconnect_unload_add' => 1,
+    'entityconnect_unload_edit' => 1,
     'field_name' => 'field_programs',
     'label' => 'Programs',
     'required' => 0,
@@ -731,9 +745,11 @@ function events_calendar_field_default_field_instances() {
       ),
     ),
     'entity_type' => 'node',
+    'entityconnect_unload_add' => 1,
+    'entityconnect_unload_edit' => 1,
     'field_name' => 'og_group_ref',
     'label' => 'Groups audience',
-    'required' => FALSE,
+    'required' => 0,
     'settings' => array(
       'behaviors' => array(
         'og_widget' => array(
@@ -761,6 +777,7 @@ function events_calendar_field_default_field_instances() {
       ),
     ),
     'widget' => array(
+      'active' => 0,
       'module' => 'og',
       'settings' => array(),
       'type' => 'og_complex',
@@ -1051,7 +1068,7 @@ function events_calendar_field_default_field_instances() {
           ),
           'full_hcard' => FALSE,
         ),
-        'type' => 'phone_international',
+        'type' => 'phone',
         'weight' => 2,
       ),
       'teaser' => array(
@@ -1066,6 +1083,11 @@ function events_calendar_field_default_field_instances() {
     'label' => 'Phone',
     'required' => 0,
     'settings' => array(
+      'ca_phone_parentheses' => 1,
+      'ca_phone_separator' => '-',
+      'phone_country_code' => 0,
+      'phone_default_country_code' => 1,
+      'phone_int_max_length' => 15,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -1331,7 +1353,7 @@ function events_calendar_field_default_field_instances() {
         'enable_extension' => 0,
         'use_tel_input' => 1,
       ),
-      'type' => 'phone',
+      'type' => 'phone_textfield',
       'weight' => 2,
     ),
   );
