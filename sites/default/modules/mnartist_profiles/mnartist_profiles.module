@@ -9,6 +9,9 @@ define('ORG_ROLE', 5);
 
 include_once 'mnartist_profiles.features.inc';
 
+/**
+ * Form alter to prepopulate the user registration form with role types
+ */
 function mnartist_profiles_form_user_register_form_alter(&$form, &$form_state, $form_id) {
     $form['account_type'] = array(
         '#type'     => 'select',
