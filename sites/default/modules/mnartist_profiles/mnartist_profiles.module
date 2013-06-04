@@ -60,19 +60,77 @@ function mnartist_profiles_form_user_register_submit(&$form, &$form_state) {
     drupal_goto('user/' . $user->uid . '/edit/' . $goto); 
 }
 
-function mnartist_profiles_preprocess_user_profile(&$vars) {
+/**
+ * Implementes hook_field_extra_fields()
+ */
+function mnartist_profiles_field_extra_fields() {
+    $extra['user']['user'] = array(
+        'display' => array(
+            'mnartist_profiles_artworks' => array(
+                'label' => t('MNArtist Profiles: Artist Artworks'),
+                'description' => 'Slideshow displaying a users artworks',
+                'weight' => 100,
+            ),
+            'mnartist_profiles_collections' => array(
+                'label' => t('MNArtist Profiles: Collections'),
+                'description' => 'A list of collections by content type',
+                'weight' => 100,
+            ),
+        ),
+    );
 
-    unset($vars['user_profile']['summary']);
+    return $extra;
+}
 
+/**
+ * Implements hook_user_view()
+ */
+function mnartist_profiles_user_view($account, $view_mode, $langcode) {
+    // Show an artists artworks
     $view = views_get_view('artist_artworks');
     $view->dom_id = 'artist-artworks';
     $view->args[] = arg(1);
     $view->execute();
 
-    $vars['user_profile']['artist_artworks'] = array(
+    $account->content['mnartist_profiles_artworks'] = array(
+        '#type' => 'user_profile_item',
+        '#title' => t('Artworks'),
         '#markup' => $view->render('block_1'),
-        '#weight' => -9,
     );
+
+    // Build an artists collections by node type
+    $types = node_type_get_types();
+    $content = '';
+    $account->content['mnartist_profiles_collections'] = array(
+        '#type' => 'user_profile_category',
+        '#title' => t('Collections'),
+    );
+
+    foreach($types as $type) {
+
+        $view = views_get_view('collections');
+        $view->dom_id = 'artist-collections-' . $type->type;
+        $view->args[] = arg(1);
+        $view->args[] = $type->type;
+        $view->execute();
+
+        if (!$view->total_rows) continue;
+
+        $content = '<h3>' . $type->name . '</h3>';
+        $content .= $view->render();
+        $account->content['mnartist_profiles_collections'][$type->type] = array(
+            '#type' => 'user_profile_item',
+            '#title' => $type->name,
+            '#markup' => $view->render(),
+        );
+
+    }  
+
+}
+
+function mnartist_profiles_preprocess_user_profile(&$vars) {
+    // hide the summary view
+    unset($vars['user_profile']['summary']);
 }
 
 /**********************************
