@@ -6,6 +6,49 @@
 // file is in charge of importing all the other partials needed for the theme.
 //
 
+$main_color: #222;
+$main_bg: #f9f9f9;
+$secondary_color: #d4d4d4;
+$secondary_bg: #d4d4d4 url(http://www.walkerart.org/static/img/bg_gray.jpg);
+$inverse_color: #f9f9f9;
+$inverse_bg: #222;
+$divider_color: #a3a3a3;
+$divider_color_dark: #9d9d9d;
+$divider_bg: url(http://www.walkerart.org/static/img/line_dotted.png);
+
+$highlight: #f9f5bf;
+$secondary_highlight: #e4e0af;
+
+$design_color: #e93abe;
+$design_color_dark: $design_color;
+$design_bg: desaturate(lighten($design_color, 32%), 60%);
+
+$education_color: #e30000;
+$education_color_dark: $education_color;
+$education_bg: desaturate(lighten($education_color, 42%), 60%);
+
+$film_color: #d7d700;
+$film_color_dark: saturate(darken($film_color, 10%), 50%);
+$film_bg: desaturate(lighten($film_color, 45%), 50%);
+
+$new_media_color: #00e300;
+$new_media_color_dark: saturate(darken($new_media_color, 4%), 50%);;
+$new_media_bg: desaturate(lighten($new_media_color, 45%), 70%);
+
+$performing_arts_color: #00d7d7;
+$performing_arts_color_dark: saturate(darken($performing_arts_color, 8%), 50%);
+$performing_arts_bg: desaturate(lighten($performing_arts_color, 45%), 50%);
+
+$visual_arts_color: #0000f4;
+$visual_arts_color_dark: $visual_arts_color;
+$visual_arts_bg: desaturate(lighten($visual_arts_color, 42%), 60%);
+
+$sans_regular_font: 'Apercu Regular', Arial, Helvetica, sans-serif;
+$sans_bold_font: 'Apercu Bold', Arial, Helvetica, sans-serif;
+$sans_italic_font: 'Apercu Italic', Arial, Helvetica, sans-serif;
+$sans_bold_italic_font: 'Apercu Bold Italic', Arial, Helvetica, sans-serif;
+$serif_font: 'adobe-text-pro', 'Times New Roman', Times, serif;
+
 
 //
 // Legacy IE support
@@ -38,3 +81,90 @@ $legacy-support-for-ie7: true;
 // Import custom partial - mixins and variables defined for your theme
 //
 @import 'custom';
+
+
+//
+// Mixins //
+//
+@mixin quiet_type {
+    font-family: $sans_regular_font;
+    font-weight: normal;
+    font-size: 9px;
+    line-height: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+@mixin feature_type {
+    font-family: $serif_font;
+    font-size: 16px;
+    line-height: 16px;
+    font-weight: bold;
+    text-align: center;
+    -webkit-font-smoothing: subpixel-antialiased;
+}
+
+@mixin no_break {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@mixin rounded {
+    -webkit-border-radius: 1px;
+    -moz-border-radius: 1px;
+    border-radius: 1px;
+}
+
+@mixin not_rounded {
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+}
+
+@mixin program_coloring($color, $bg) {
+    background: $bg;
+    color: $color;
+
+    * {
+        color: $color;
+    }
+    
+    .alternate,
+    .date_connector {
+        border-color: $color !important;
+    }
+}
+
+@mixin program($color) {
+    border-color: $color !important;
+    color: $color !important;
+}
+
+@mixin program_tiles($color, $bg) {
+    background: $bg !important;
+    color: $color !important;
+    border-color: $color !important;
+
+    h1,
+    h3,
+    .date,
+    .date_connector,
+    .overflowed {
+        background: $bg !important;
+        color: $color !important;
+        border-color: $color !important;
+    }
+}
+
+@mixin program_highlighted($color) {
+    *,
+    span,
+    h1 {
+        color: $color !important;
+    }
+    
+    .program {
+        display: block;
+    }
+}

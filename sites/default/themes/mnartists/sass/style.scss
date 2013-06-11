@@ -1,0 +1,5217 @@
+/* @import "reset"; */
+@import "base"; 
+
+// UPDATE FILE 2
+
+/* @group Global */
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 1024px) {
+    * {
+        -webkit-text-size-adjust: none;
+    }
+}
+
+@media screen and (max-width: 1010px) {
+    #extras,
+    #branding {
+        display: none !important;
+    }
+}
+
+html {
+    background: $main_bg;
+    color: $main_color;
+}
+
+body {
+    font-family: $sans_regular_font;
+    font-size: 12px;
+    line-height: 16px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    text-rendering: optimizeLegibility;
+}
+
+#container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 100%;
+}
+
+a {
+    color: $main_color;
+    text-decoration: none;
+    
+    &:hover {
+        color: #a3a3a3;
+    }
+}
+
+strong {
+    font-family: $sans_bold_font;
+    font-weight: bold;
+}
+
+em,
+cite {
+    font-family: $sans_italic_font;
+    font-style: italic;
+}
+
+strong em,
+em strong {
+    font-family: $sans_bold_italic_font;
+}
+
+sup {
+    vertical-align: super;
+    line-height: 0;
+}
+
+hr {
+    margin: 0 0 9px;
+    border: none;
+    height: 1px;
+    background: $divider_bg;
+    
+    &.spaced {
+        margin-top: 10px;
+    }
+    
+    article & {
+        margin: 10px -5px;
+    }
+}
+
+.more {
+    @include quiet_type;
+    margin-left: 2px;
+    border-left: 1px dotted $divider_color;
+    -webkit-font-smoothing: subpixel-antialiased;
+    
+    a {
+        margin-left: 2px;
+        padding: 1px 3px;
+        font-size: 9px !important;
+        line-height: 12px !important;
+        background-image: none !important;
+        text-decoration: none !important;
+    }
+}
+
+#branding {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 1000;
+    width: 20px;
+    
+    &.day_0,
+    &.day_4 {
+        background-image: url(http://cdn.walkerartcenter.org/static/img/branding_stripe_1.png);
+    }
+    
+    &.day_1,
+    &.day_5 {
+        background-image: url(http://cdn.walkerartcenter.org/static/img/branding_stripe_2.png);
+    }
+    
+    &.day_2,
+    &.day_6 {
+        background-image: url(http://cdn.walkerartcenter.org/static/img/branding_stripe_3.png);
+    }
+    
+    &.day_3 {
+        background-image: url(http://cdn.walkerartcenter.org/static/img/branding_stripe_4.png);
+    }
+}
+
+.video_overlay {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 220px;
+    height: 142px;
+    background: url(http://cdn.walkerartcenter.org/static/img/video_play_small.png) center center no-repeat;
+    
+    .feature_large & {
+        width: 340px;
+        height: 220px;
+    }
+    
+    a:hover & {
+        background-image: url(http://cdn.walkerartcenter.org/static/img/video_play_small_hover.png);
+    }
+}
+
+/* @end */
+
+/* @group Browser Warning */
+
+.browser_warning {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 8000;
+    background: #ff8000;
+    color: #fff;
+    text-align: center;
+    padding: 4px;
+    border-bottom: 1px solid #ee7700;
+    
+    a {
+        color: #fff;
+        text-decoration: underline;
+    }
+}
+
+/* @end */
+
+/* @group Inline Editing */
+
+.editable textarea {
+    font-size: 10px;
+    line-height: 12px;
+}
+
+.active_edit {
+    background: #ffef9c !important;
+    cursor: pointer;
+    overflow: hidden;
+    
+    > form {
+        background-color: transparent;
+    }
+}
+
+/* @end */
+
+/* @group Programs */
+
+.program {
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 998;
+    padding: 0 1px 0 2px;
+    border: 1px solid #a3a3a3;
+    color: #a3a3a3;
+    @include quiet_type;
+    line-height: 11px;
+    text-align: right;
+    @include rounded;
+    
+    &.inset {
+        top: 4px;
+        right: 4px;
+    }
+    
+    &.inset_vertical {
+        top: 4px;
+    }
+    
+    &.inset_horizontal {
+        right: 4px;
+    }
+    
+    .design & {
+        @include program($design_color);
+    }
+    
+    .education & {
+        @include program($education_color);
+    }
+    
+    .film & {
+        @include program($film_color);
+    }
+    
+    .new_media & {
+        @include program($new_media_color);
+    }
+    
+    .performing_arts & {
+        @include program($performing_arts_color);
+    }
+    
+    .visual_arts & {
+        @include program($visual_arts_color);
+    }
+}
+
+.programs .program {
+    color: #a3a3a3 !important;
+}
+
+.design.highlighted {
+    @include program_highlighted($design_color);
+    
+    &.tile {
+        @include program($design_color_dark);
+
+        a.contents {
+            @include program_tiles($design_color_dark, $design_bg);
+        }
+    }
+}
+
+.education.highlighted {
+    @include program_highlighted($education_color);
+
+    &.tile {
+        @include program($education_color_dark);
+
+        a.contents {
+            @include program_tiles($education_color_dark, $education_bg);
+        }
+    }
+}
+
+.film.highlighted {
+    @include program_highlighted($film_color);
+
+    &.tile {
+        @include program($film_color_dark);
+
+        a.contents {
+            @include program_tiles($film_color_dark, $film_bg);
+        }
+    }
+}
+
+.new_media.highlighted {
+    @include program_highlighted($new_media_color);
+
+    &.tile {
+        @include program($new_media_color_dark);
+
+        a.contents {
+            @include program_tiles($new_media_color_dark, $new_media_bg);
+        }
+    }
+}
+
+.performing_arts.highlighted {
+    @include program_highlighted($performing_arts_color);
+
+    &.tile {
+        @include program($performing_arts_color_dark);
+
+        a.contents {
+            @include program_tiles($performing_arts_color_dark, $performing_arts_bg);
+        }
+    }
+}
+
+.visual_arts.highlighted {
+    @include program_highlighted($visual_arts_color);
+
+    &.tile {
+        @include program($visual_arts_color_dark);
+
+        a.contents {
+            @include program_tiles($visual_arts_color_dark, $visual_arts_bg);
+        }
+    }
+}
+
+/* @end */
+
+/* @group Layout */
+
+.spacing_top {
+    margin-top: 10px !important;
+}
+
+.spacing_bottom {
+    margin-bottom: 10px !important;
+}
+
+.padding_top {
+    padding-top: 10px !important;
+}
+
+.padding_bottom {
+    padding-bottom: 10px !important;
+}
+
+.first {
+    margin-top: 0 !important;
+    border-top: none !important;
+}
+
+.last {
+    margin-bottom: 0 !important;
+    border-bottom: none !important
+}
+
+.centered {
+    text-align: center;
+}
+
+img {
+    margin-bottom: 8px;
+}
+
+.col_container {
+    width: 100%;
+}
+
+.col_container:after {
+    content: "";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+.container_16 {
+    .col_0 {
+        background: $divider_bg 0 0 repeat-y;
+    }
+    
+    > .col_0 {
+        background: $divider_bg 10px 0 repeat-y;
+    }
+    
+    .col_2 {
+        background: $divider_bg 110px 0 repeat-y;
+    }
+    
+    > .col_2 {
+        background: $divider_bg 120px 0 repeat-y;
+    }
+    
+    .col_4 {
+        background: $divider_bg 230px 0 repeat-y;
+    }
+    
+    > .col_4 {
+        background: $divider_bg 240px 0 repeat-y;
+    }
+
+    .col_6 {
+        background: $divider_bg 350px 0 repeat-y;
+    }
+    
+    > .col_6 {
+        background: $divider_bg 360px 0 repeat-y;
+    }
+
+    .col_8 {
+        background: $divider_bg 470px 0 repeat-y;
+    }
+    
+    > .col_8 {
+        background: $divider_bg 480px 0 repeat-y;
+    }
+
+    .col_9 {
+        background: $divider_bg 530px 0 repeat-y;
+    }
+    
+    > .col_9 {
+        background: $divider_bg 540px 0 repeat-y;
+    }
+    
+    .col_10 {
+        background: $divider_bg 590px 0 repeat-y;
+    }
+    
+    > .col_10 {
+        background: $divider_bg 600px 0 repeat-y;
+    }
+
+    .col_12 {
+        background: $divider_bg 710px 0 repeat-y;
+    }
+    
+    > .col_12 {
+        background: $divider_bg 720px 0 repeat-y;
+    }
+
+    .col_2_2 {
+        background: $divider_bg 110px 0 repeat-y, $divider_bg 230px 0 repeat-y;
+    }
+
+    > .col_2_2 {
+        background: $divider_bg 120px 0 repeat-y, $divider_bg 240px 0 repeat-y;
+    }
+
+    .col_2_4 {
+        background: $divider_bg 110px 0 repeat-y, $divider_bg 350px 0 repeat-y;
+    }
+    
+    > .col_2_4 {
+        background: $divider_bg 120px 0 repeat-y, $divider_bg 360px 0 repeat-y;
+    }
+
+    .col_4_2 {
+        background: $divider_bg 230px 0 repeat-y, $divider_bg 350px 0 repeat-y;
+    }
+    
+    > .col_4_2 {
+        background: $divider_bg 240px 0 repeat-y, $divider_bg 360px 0 repeat-y;
+    }
+
+    .col_4_4 {
+        background: $divider_bg 230px 0 repeat-y, $divider_bg 470px 0 repeat-y;
+    }
+    
+    > .col_4_4 {
+        background: $divider_bg 240px 0 repeat-y, $divider_bg 480px 0 repeat-y;
+    }
+
+    .col_4_6 {
+        background: $divider_bg 230px 0 repeat-y, $divider_bg 590px 0 repeat-y;
+    }
+    
+    > .col_4_6 {
+        background: $divider_bg 240px 0 repeat-y, $divider_bg 600px 0 repeat-y;
+    }
+
+    .col_4_8 {
+        background: $divider_bg 230px 0 repeat-y, $divider_bg 710px 0 repeat-y;
+    }
+    
+    > .col_4_8 {
+        background: $divider_bg 240px 0 repeat-y, $divider_bg 720px 0 repeat-y;
+    }
+
+    .col_8_2 {
+        background: $divider_bg 470px 0 repeat-y, $divider_bg 590px 0 repeat-y;
+    }
+    
+    > .col_8_2 {
+        background: $divider_bg 480px 0 repeat-y, $divider_bg 600px 0 repeat-y;
+    }
+
+    .col_2_2_2 {
+        background: $divider_bg 110px 0 repeat-y, $divider_bg 230px 0 repeat-y, $divider_bg 350px 0 repeat-y;
+    }
+    
+    > .col_2_2_2 {
+        background: $divider_bg 120px 0 repeat-y, $divider_bg 240px 0 repeat-y, $divider_bg 360px 0 repeat-y;
+    }
+
+    .col_2_2_6 {
+        background: $divider_bg 110px 0 repeat-y, $divider_bg 230px 0 repeat-y, $divider_bg 590px 0 repeat-y;
+    }
+    
+    > .col_2_2_6 {
+        background: $divider_bg 120px 0 repeat-y, $divider_bg 240px 0 repeat-y, $divider_bg 600px 0 repeat-y;
+    }
+
+    .col_3_3_3 {
+        background: $divider_bg 170px 0 repeat-y, $divider_bg 350px 0 repeat-y, $divider_bg 530px 0 repeat-y;
+    }
+    
+    > .col_3_3_3 {
+        background: $divider_bg 180px 0 repeat-y, $divider_bg 360px 0 repeat-y, $divider_bg 540px 0 repeat-y;
+    }
+
+    .col_4_4_4 {
+        background: $divider_bg 230px 0 repeat-y, $divider_bg 470px 0 repeat-y, $divider_bg 710px 0 repeat-y;
+    }
+    
+    > .col_4_4_4 {
+        background: $divider_bg 240px 0 repeat-y, $divider_bg 480px 0 repeat-y, $divider_bg 720px 0 repeat-y;
+    }
+}
+
+.container_12 {
+    .col_3 {
+        background: $divider_bg 230px 0 repeat-y;
+    }
+    
+    > .col_3 {
+        background: $divider_bg 240px 0 repeat-y;
+    }
+    
+    .col_4_4 {
+        background: $divider_bg 310px 0 repeat-y, $divider_bg 630px 0 repeat-y;
+    }
+    
+    > .col_4_4 {
+        background: $divider_bg 320px 0 repeat-y, $divider_bg 640px 0 repeat-y;
+    }
+    
+    .col_6 {
+        background: $divider_bg 470px 0 repeat-y;
+    }
+    
+    > .col_6 {
+        background: $divider_bg 480px 0 repeat-y;
+    }
+    
+    .col_8 {
+        background: $divider_bg 630px 0 repeat-y;
+    }
+    
+    > .col_8 {
+        background: $divider_bg 640px 0 repeat-y;
+    }
+}
+
+/* @end */
+
+/* @group Headings */
+
+h1 {
+    margin: 11px 0 9px;
+    padding: 0 4px;
+    font-family: $sans_bold_font;
+    font-weight: bold;
+    font-size: 19px;
+    line-height: 24px;
+    -webkit-font-smoothing: antialiased;
+    
+    &.spaced {
+        margin-top: 20px;
+    }
+    
+    em {
+        font-family: $sans_bold_italic_font;
+    }
+
+    &.section_title,
+    .section_title,
+    .quiet {
+        font-family: $sans_regular_font;
+        font-weight: normal;
+        
+        em {
+            font-family: $sans_italic_font;
+        }
+    }
+
+    &.underline {
+        border-bottom: 1px dotted $divider_color;
+        padding-bottom: 9px;
+        margin-bottom: 9px;
+    }
+    
+    &.quiet {
+        font-size: 16px;
+        line-height: 19px;
+        -webkit-font-smoothing: subpixel-antialiased;
+    }
+
+    a:hover {
+        background: transparent;
+    }
+
+    &.intro {
+        margin-bottom: 20px;
+        
+        a {
+            padding-bottom: 3px;
+            background: url(http://cdn.walkerartcenter.org/static/img/a_sprite.png) 0 -76px repeat-x;
+            
+            &:hover {
+                background-position: 0 -176px;
+            }
+        }
+    }
+    
+    .breadcrumb {
+        padding-right: 22px;
+        background: url(http://cdn.walkerartcenter.org/static/img/content_sprite.png) right -26px no-repeat !important;
+    }
+}
+
+h2 {
+    position: relative;
+    clear: both;
+    height: 15px;
+    padding: 4px 5px 0;
+    margin: 9px 0;
+    background: $secondary_bg;
+    @include quiet_type;
+    @include no_break;
+    @include rounded;
+    
+    .date,
+    .count {
+        position: absolute;
+        display: block;
+        right: 4px;
+        top: 4px;
+        width: 200px;
+        text-align: right;
+    }
+    
+    &.alternate .date,
+    &.alternate .count {
+        right: 3px;
+        top: 3px;
+    }
+        
+    .view_all {
+        position: absolute;
+        display: block;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        padding: 4px 16px 0 0;
+        background: url(http://cdn.walkerartcenter.org/static/img/content_sprite.png) right -145px no-repeat;
+        color: #999;
+        font-family: $sans_regular_font;
+        font-weight: normal;
+        text-align: right;
+    }
+    
+    a {
+        display: block;
+        font-family: $sans_bold_font;
+        font-weight: bold;
+
+        .view_all {
+            color: #999;
+        }
+        
+        &:hover {
+            color: $main_color;
+            
+            .view_all {
+                color: $main_color;
+                background-position: right -29px;
+            }
+        }
+    }
+    
+    .pager_container {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 200px;
+        padding: 0 6px 0 8px;
+
+        a {
+            display: block;
+            float: left;
+            width: 15px;
+            height: 19px;
+            background-repeat: no-repeat;
+            background-image: url(http://cdn.walkerartcenter.org/static/img/pager_inverse.png);
+            background-position: 6px -1px;
+            
+            &:hover {
+                background-position: 6px -22px;
+                background-color: transparent;
+            }
+
+            &.active_slide {
+                cursor: default;
+                background-position: 6px -43px !important;
+            }
+        }
+    }
+    
+    &.inverse {
+        background: $inverse_bg;
+        color: $inverse_color;
+
+        a {
+            color: $inverse_color;
+
+            .view_all {
+                color: #999;
+            }
+        
+            &:hover .view_all {
+                color: $inverse_color;
+                background-position: right -261px;
+            }
+        }
+        
+        .pager_container {
+            background: url(http://cdn.walkerartcenter.org/static/img/pager_container_bg.png);
+
+            a {
+                background-image: url(http://cdn.walkerartcenter.org/static/img/pager.png);
+            
+                &.video_pager {
+                    background-image: url(http://cdn.walkerartcenter.org/static/img/pager_video.png);
+                }
+            }
+        }
+    }
+    
+    &.alternate {
+        background: none;
+        padding: 3px 4px 0;
+        border-top: 1px dotted $divider_color;
+        @include not_rounded;
+
+        .pager_container {
+            background: none;
+
+            a {
+                background-image: url(http://cdn.walkerartcenter.org/static/img/pager_inverse.png);
+            }
+        }
+    }
+    
+    .oldie & {
+        padding-top: 4px;
+        height: 15px;
+    }
+}
+
+h3,
+h4,
+h5,
+h6 {
+    margin: 0 5px 8px;
+    font-family: $sans_bold_font;
+    font-weight: bold;
+    
+    em {
+        font-family: $sans_bold_italic_font;
+    }
+}
+
+/* @end */
+
+/* @group Button */
+
+.button_container {
+    padding-top: 4px;
+    text-align: center;
+    
+    a {
+        display: inline-block;
+        padding: 0 1px 0 2px;
+        border: 1px solid #a3a3a3;
+        color: #a3a3a3;
+        @include quiet_type;
+        line-height: 11px;
+        text-align: center;
+        @include rounded;
+    
+        &:hover {
+            color: $main_color;
+            border-color: $main_color;
+        }
+    }
+}
+
+/* @end */
+
+/* @group Interface */
+
+.loading {
+    opacity: .35;
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=35)";
+    filter: alpha(opacity=35);
+}
+
+.aux {
+    color: #a3a3a3;
+}
+
+.label {
+    color: #a3a3a3;
+    @include quiet_type;
+}
+
+aside {
+    position: relative;
+    padding: 3px 0 12px;
+}
+
+.sponsor {
+    display: inline-block;
+    float: left;
+    margin-right: 5px;
+    
+    &:hover {
+        background: transparent;
+    }
+}
+
+dl {
+    overflow: hidden;
+    padding: 0 5px 10px;
+    margin-bottom: 9px;
+    border-bottom: 1px dotted $divider_color;
+
+    dt {
+        display: block;
+        clear: both;
+        float: left;
+        width: 42px;
+        padding-top: 3px;
+        color: #a3a3a3;
+        @include quiet_type;
+    }
+
+    dd {
+        display: block;
+        float: left;
+        width: 168px;
+        padding-bottom: 6px;
+        
+        &:last-child {
+            padding-bottom: 0;
+        }
+        
+        &.wide {
+            width: 408px;
+        }
+    }
+    
+    &.wide {
+        
+        dt {
+            width: 84px;
+        }
+        
+        dd {
+            width: 126px;
+            
+            &.wide {
+                width: 366px;
+            }
+        }
+    }
+}
+
+/* @end */
+
+/* @group Text */
+
+.text {
+    padding-bottom: 10px;
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    hyphens: auto;
+
+    & *:last-child {
+        margin-bottom: 0;
+        padding-bottom: 0;
+        border-bottom: none;
+    }
+    
+    &.last {
+        padding-bottom: 0;
+    }
+    
+    .quiet,
+    &.quiet {
+        font-size: 10px;
+        line-height: 12px;
+    }
+    
+    .align_right {
+        text-align: right;
+    }
+
+    p,
+    ul,
+    ol {
+        margin: 0 5px 8px;
+    }
+
+    ul li {
+        margin: 0 0 6px 13px;
+        list-style: disc url(http://cdn.walkerartcenter.org/static/img/bullet.png) outside;
+    }
+    
+    .condensed li,
+    &.condensed li {
+        margin: 0 0 0 12px;
+        list-style: none;
+        text-indent: -12px;
+        -webkit-hyphens: none;
+        -moz-hyphens: none;
+        hyphens: none;
+    }
+    
+    .no-csscolumns &.col_1,
+    .no-csscolumns &.col_2,
+    .no-csscolumns &.col_3,
+    .no-csscolumns &.col_4,
+    .no-csscolumns &.col_5,
+    .no-csscolumns &.col_6,
+    .no-csscolumns &.col_7,
+    .no-csscolumns &.col_8,
+    .no-csscolumns &.col_9,
+    .no-csscolumns &.col_10,
+    .no-csscolumns &.col_11,
+    .no-csscolumns &.col_12,
+    .no-csscolumns &.col_13,
+    .no-csscolumns &.col_14,
+    .no-csscolumns &.col_15,
+    .no-csscolumns &.col_16 {
+        background: none !important;
+    }
+    
+    .text_col_2,
+    .text_col_3,
+    .text_col_4 {
+        margin-right: -6px;
+        padding-right: 6px;
+        -moz-column-gap: 20px;
+        -webkit-column-gap: 20px;
+        column-gap: 20px;
+    }
+    
+    .text_col_2 {
+        -moz-column-count: 2;
+        -webkit-column-count: 2;
+        column-count: 2;
+    }
+    
+    .text_col_3 {
+        -moz-column-count: 3;
+        -webkit-column-count: 3;
+        column-count: 3;
+    }
+    
+    .text_col_4 {
+        -moz-column-count: 4;
+        -webkit-column-count: 4;
+        column-count: 4;
+    }
+    
+    li {
+        position: relative;
+        
+        .count {
+            position: absolute;
+            display: block;
+            right: 0;
+            top: 0;
+            width: 200px;
+            text-align: right;
+        }
+    }
+
+    a {
+        text-decoration: underline;
+    }
+    
+    img {
+        vertical-align: middle;
+    }
+    
+    &.article_text {
+        margin-top: 3px;
+    }
+
+    &.context {
+        margin-bottom: 9px;
+        padding-bottom: 10px;
+        border-bottom: 1px dotted $divider_color;
+        -webkit-hyphens: none;
+        -moz-hyphens: none;
+        hyphens: none;
+        
+        a {
+            font-family: $sans_bold_font;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        a em,
+        em a {
+            font-family: $sans_bold_italic_font;
+            font-weight: bold;
+        }
+    }
+    
+    table {
+        width: 100%;
+        
+        * {
+            vertical-align: top;
+        }
+        
+        th,
+        .important {
+            font-family: $sans_bold_font;
+            font-weight: bold;
+            
+            em {
+                font-family: $sans_bold_italic_font;
+            }
+        }
+        
+        tr {
+            border-bottom: 1px solid #d4d4d4;
+            
+            &.spacing_top td {
+                padding-top: 12px !important;
+            }
+        }
+        
+        td, th {
+            padding: 3px 4px 4px !important;
+
+            &.indented {
+                padding-left: 24px !important;
+            }
+        }
+        
+        .figure {
+            text-align: right;
+        }
+        
+        .benefit {
+            width: 150px;
+        }
+        
+        .side {
+            border-right: 1px dotted $divider_color;
+            
+            &:last-child {
+                border: 0;
+            }
+        }
+    }
+}
+
+#main .author {
+    margin: 0 5px 9px;
+    @include quiet_type;
+    @include no_break;
+    
+    &.centered {
+        text-align: center;
+    }
+}
+
+article {
+    padding-bottom: 9px;
+    margin: 0 5px;
+    font-family: $serif_font;
+    font-size: 15px;
+    line-height: 22px;
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    hyphens: auto;
+
+    p {
+        text-indent: 24px;
+    
+        &:first-child {
+            text-indent: 0;
+        }
+    }
+
+    em {
+        font-family: $serif_font;
+        line-height: 1px;
+    }
+    
+    strong,
+    strong a,
+    a strong {
+        font-family: $sans_bold_font;
+        font-weight: bold;
+        font-size: 14px;
+        line-height: 1px;
+    }
+    
+    strong em,
+    em strong,
+    strong a em,
+    strong em a,
+    a strong em,
+    a em strong,
+    em strong a,
+    em a strong {
+        font-family: $sans_bold_italic_font;
+        font-weight: bold;
+        font-style: italic;
+        font-size: 14px;
+        line-height: 1px;
+    }
+
+    a {
+        padding-bottom: 1px;
+        font-family: $sans_regular_font;
+        font-size: 14px;
+        line-height: 1px;
+        background: url(http://cdn.walkerartcenter.org/static/img/a_sprite.png) 0 -82px repeat-x;
+    
+        &:hover {
+            background-position: 0 -182px;
+        }
+        
+        &.img_link {
+            display: block;
+            background: none !important;
+        }
+    }
+
+    a em,
+    em a {
+        font-family: $sans_italic_font;
+    }
+    
+    .image {
+        float: right;
+        margin: 0 -245px 8px 0;
+        
+        .caption {
+            margin: 0 5px;
+            font-family: $sans_regular_font;
+            font-size: 12px;
+            line-height: 16px;
+        }
+    }
+
+    hgroup {
+        margin: 0 0 12px 19px;
+        
+        h1, h2, h3, h4, h5, h6 {
+            color: $main_color;
+
+            a {
+                color: $main_color;
+                background: url(http://cdn.walkerartcenter.org/static/img/a_sprite.png) 0 -81px repeat-x;
+
+                &:hover {
+                    color: #a3a3a3;
+                    background: url(http://cdn.walkerartcenter.org/static/img/a_sprite.png) 0 -181px repeat-x;
+                }
+            }
+        }
+
+        h2,
+        h3 {
+            height: auto;
+            margin: 0 5px 8px;
+            padding-right: 120px;
+            font-family: $serif_font;
+            font-size: 15px;
+            line-height: 22px;
+            font-weight: normal;
+            font-style: italic;
+            text-align: left;
+            text-indent: 0;
+            text-transform: none;
+            letter-spacing: 0;
+            background: transparent;
+        
+            a {
+                margin: 0 1px 0 2px;
+                font-family: $sans_regular_font;
+                font-weight: normal;
+                font-style: normal;
+            }
+        }
+    }
+
+    blockquote {
+        padding: 0 24px;
+        margin: 12px 0;
+        text-indent: 0;
+        text-align: left;
+        
+        &:first-child {
+            margin-top: 0;
+        }
+        
+        h1, h2, h3, h4, h5, h6, p, li {
+            margin-bottom: 8px;
+            text-indent: 0;
+        }
+    
+        em {
+            font-style: italic;
+        }
+    }
+    
+    hr + p,
+    pre + p,
+    blockquote + p {
+        text-indent: 0;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        height: auto;
+        margin: 22px 0 6px;
+        background: none;
+        color: #a3a3a3;
+        text-transform: none;
+        letter-spacing: 0;
+        padding: 0;
+        font-family: $sans_bold_font;
+        font-weight: bold;
+        font-size: 15px;
+        line-height: 18px;
+        overflow: visible;
+        text-overflow: clip;
+        white-space: normal;
+        -webkit-font-smoothing: subpixel-antialiased !important;
+        
+        &:first-child {
+            margin-top: 2px;
+        }
+        
+        & + p {
+            text-indent: 0;
+        }
+        
+        em {
+            font-family: $sans_bold_italic_font;
+        }
+        
+        a {
+            color: #a3a3a3;
+            background: url(http://cdn.walkerartcenter.org/static/img/a_sprite.png) 0 -79px repeat-x;
+            font-family: $sans_bold_font;
+            font-size: 15px;
+            line-height: 18px;
+            
+            &:hover {
+                color: $main_color;
+                background: url(http://cdn.walkerartcenter.org/static/img/a_sprite.png) 0 -179px repeat-x;
+            }
+        }
+    }
+    
+    h1 {
+        color: $main_color;
+        
+        a {
+            color: $main_color;
+            background: url(http://cdn.walkerartcenter.org/static/img/a_sprite.png) 0 -79px repeat-x;
+            
+            &:hover {
+                color: #a3a3a3;
+                background: url(http://cdn.walkerartcenter.org/static/img/a_sprite.png) 0 -179px repeat-x;
+            }
+        }
+    }
+    
+    ul {
+        margin: 8px 0;
+        
+        li {
+            margin: 0 0 4px 24px;
+            list-style: disc url(http://cdn.walkerartcenter.org/static/img/bullet.png) outside;
+        }
+
+        &:first-child {
+            margin-top: 0;
+        }
+    }
+    
+    ol {
+        margin: 8px 0;
+        
+        li {
+            margin: 0 0 4px 24px;
+            list-style: decimal;
+        }
+        
+        &:first-child {
+            margin-top: 0;
+        }
+    }
+    
+    .col_container {
+        width: auto;
+        margin: 0 -5px;
+    }
+    
+    pre {
+        width: 426px;
+        padding: 6px 10px 7px;
+        margin: 8px 0;
+        border: 2px solid #333;
+        overflow: scroll;
+        font-family: Courier, 'Courier New', monospace;
+        font-size: 13px;
+        line-height: 18px;
+        @include rounded;
+    }
+    
+    .aux {
+        margin-top: 8px;
+        color: $main_color;
+        
+        p {
+            font-family: $sans_regular_font;
+            font-size: 12px;
+            line-height: 16px;
+            text-indent: 0 !important;
+            margin-bottom: 8px;
+            
+            a {
+                font-family: $sans_regular_font;
+                font-size: 12px;
+                line-height: 16px;
+                text-decoration: underline;
+                background: none;
+            }
+            
+            strong,
+            strong a,
+            a strong {
+                font-family: $sans_bold_font;
+                font-weight: bold;
+                font-size: 12px;
+                line-height: 16px;
+            }
+    
+            strong em,
+            em strong,
+            strong a em,
+            strong em a,
+            a strong em,
+            a em strong,
+            em strong a,
+            em a strong {
+                font-family: $sans_bold_italic_font;
+                font-weight: bold;
+                font-style: italic;
+                font-size: 12px;
+                line-height: 16px;
+            }
+
+            a em,
+            em a {
+                font-family: $sans_italic_font;
+            }
+        }
+    }
+}
+
+aside .pull_quote {
+    margin: 0px 0 30px;
+    padding: 0px 4px 0;
+    border-top: 1px dotted $divider_color;
+    font-size: 19px;
+    line-height: 24px;
+    text-indent: -7px;
+    -webkit-font-smoothing: antialiased;
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    hyphens: auto;
+}
+
+a.note {
+    display: block;
+    margin-bottom: 20px;
+    color: #dc8100;
+    border: 2px solid #dc8100;
+    padding: 6px 10px 8px;
+    text-decoration: none !important;
+    @include rounded;
+    
+    h1 {
+        margin-top: 0;
+        margin-bottom: 6px;
+    }
+    
+    &:hover {
+        color: $inverse_color;
+        background: #dc8100;
+    }
+}
+
+/* @end */
+
+/* @group Media Thumbnails */
+
+.thumbnail {
+    margin-bottom: 10px;
+    
+    .image_thumbnail_link {
+        position: relative;
+        display: block;
+        outline: none !important;
+        
+        img {
+            margin-bottom: 4px;
+        }
+    }
+    
+    h3 {
+        margin-bottom: 8px;
+    }
+    
+    .credit {
+        margin-top: 2px;
+        font-size: 10px;
+        line-height: 12px;
+    }
+}
+
+/* @end */
+
+/* @group Sidebar */
+
+.sidebar {
+    padding-bottom: 12px;
+
+    nav {
+        padding-top: 8px;
+        border-top: 1px dotted $divider_color;
+
+        ul {
+            clear: both;
+            margin: 0 0 6px;
+            padding-bottom: 7px;
+            border-bottom: 1px dotted $divider_color;
+            
+            &:last-child {
+                margin-bottom: 0;
+                padding-bottom: 0;
+                border-bottom: none;
+            }
+            
+            li {
+                margin: 0 6px;
+                list-style: none;
+                
+                a {
+                    position: relative;
+                    display: block;
+                    margin: 0 -6px;
+                    padding: 2px 30px 2px 5px;
+                    
+                    &:hover {
+                        background-color: $highlight;
+                        color: $main_color;
+                    }
+                }
+                
+                &.static a,
+                &.link a {
+                    font-family: $sans_bold_font;
+                    font-weight: bold;
+                    padding-right: 5px;
+                    
+                    em {
+                        font-family: $sans_bold_italic_font;
+                    }
+                }
+                
+                &.active > a {
+                    cursor: default;
+                    background-color: $highlight;
+                }
+                
+                .count {
+                    position: absolute;
+                    display: block;
+                    top: 2px;
+                    right: 5px;
+                    width: 30px;
+                    color: #a3a3a3;
+                    text-align: right;
+                }
+            }
+            
+            ul {
+                margin: 4px 0 4px 8px !important;
+                border-left: 1px dotted $divider_color;
+            }
+            
+            ul li {
+                margin: 0 0 0 10px;
+            }
+        }
+    }
+}
+
+/* @end */
+
+/* @group Features */
+
+.feature {
+    position: relative;
+    
+    .placeholder * {
+        color: #999;
+    }
+    
+    .feature_link {
+        display: block;
+        
+        &.placeholder * {
+            color: #999;
+        }
+        
+        h1 {
+            width: 200px;
+            margin: 0 auto 10px;
+            padding: 0;
+            @include feature_type;
+            -webkit-font-smoothing: subpixel-antialiased;
+
+            em {
+                font-family: $serif_font;
+                font-style: italic;
+            }
+
+            img {
+                margin: 0 -4px 0 1px;
+                vertical-align: baseline;
+                line-height: 1px;
+            }
+        }
+
+        h3 {
+            margin: 12px 0 3px 1px;
+            @include quiet_type;
+            text-align: center;
+            @include no_break;
+        }
+    }
+    
+    p {
+        margin-bottom: 0;
+        font-size: 13px;
+        font-family: $serif_font;
+        text-indent: 12px;
+        
+        &:first-child {
+            text-indent: 0;
+        }
+    
+        em,
+        cite {
+            font-family: $serif_font;
+        }
+        
+        a {
+            font-family: $sans_regular_font;
+            font-size: 12px;
+        }
+        
+        strong,
+        strong a,
+        a strong {
+            font-family: $sans_bold_font;
+            font-size: 12px;
+        }
+        
+        strong em,
+        em strong,
+        strong cite,
+        cite strong {
+            font-family: $sans_bold_italic_font;
+        }
+        
+        em a,
+        a em,
+        cite a,
+        a cite {
+            font-family: $sans_italic_font;
+        }
+    }
+}
+
+.design .feature_link:hover,
+.design .feature_link:hover h1,
+.design .more a:hover {
+    color: $design_color !important;
+}
+
+.education .feature_link:hover,
+.education .feature_link:hover h1,
+.education .more a:hover {
+    color: $education_color !important;
+}
+
+.film .feature_link:hover,
+.film .feature_link:hover h1,
+.film .more a:hover {
+    color: $film_color !important;
+}
+
+.new_media .feature_link:hover,
+.new_media .feature_link:hover h1,
+.new_media .more a:hover {
+    color: $new_media_color !important;
+}
+
+.performing_arts .feature_link:hover,
+.performing_arts .feature_link:hover h1,
+.performing_arts .more a:hover {
+    color: $performing_arts_color !important;
+}
+
+.visual_arts .feature_link:hover,
+.visual_arts .feature_link:hover h1,
+.visual_arts .more a:hover {
+    color: $visual_arts_color !important;
+}
+
+.design .placeholder.feature_link:hover h1,
+.education .placeholder.feature_link:hover h1,
+.film .placeholder.feature_link:hover h1,
+.new_media .placeholder.feature_link:hover h1,
+.performing_arts .placeholder.feature_link:hover h1,
+.visual_arts .placeholder.feature_link:hover h1 {
+    color: #999 !important;
+}
+
+/* @end */
+
+/* @group Meta Information */
+
+#meta {
+    > dl:last-child {
+        border-bottom: none;
+    }
+
+    dt.buy {
+        height: 12px;
+        background: url(http://cdn.walkerartcenter.org/static/img/meta_tickets.png) 22px 2px no-repeat;
+    }
+
+    dd.buy a {
+        font-family: $sans_bold_font;
+        font-weight: bold;
+    }
+
+    a {
+        padding: 0 2px;
+        margin: 0 -2px;
+    }
+    
+    .show_more,
+    .hide_more {
+        margin: -9px 0 10px;
+        padding: 4px 5px 0;
+    }
+    
+    .instance .alert {
+        color: #e30000;
+    }
+}
+
+/* @end */
+
+/* @group Show/Hide More */
+
+.show_more,
+.hide_more {
+    display: block;
+    width: auto;
+    height: 16px;
+    margin: -9px 0 10px;
+    padding: 4px 5px 0;
+    @include quiet_type;
+    font-family: $sans_bold_font;
+    font-weight: bold;
+}
+
+.show_more {
+    background: url(http://cdn.walkerartcenter.org/static/img/content_sprite.png) right -58px no-repeat;
+    
+    &:hover {
+        background: $highlight url(http://cdn.walkerartcenter.org/static/img/content_sprite.png) right -58px no-repeat !important;
+        color: $main_color;
+    }
+}
+
+.hide_more {
+    display: none;
+    background: url(http://cdn.walkerartcenter.org/static/img/content_sprite.png) right -87px no-repeat;
+    
+    &:hover {
+        background: $highlight url(http://cdn.walkerartcenter.org/static/img/content_sprite.png) right -87px no-repeat !important;
+        color: $main_color;
+    }
+}
+
+.more_content {
+    display: none;
+}
+
+/* @end */
+
+/* @group Forms */
+
+form {
+    position: relative;
+    
+    > div {
+        margin-bottom: 6px;
+        
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    label {
+        display: inline-block;
+        padding: 1px 5px;
+        color: #a3a3a3;
+        @include quiet_type;
+    }
+
+    input,
+    textarea,
+    select {
+        padding: 2px 2px;
+        background: $main_bg;
+        border: 0;
+        @include rounded;
+    }
+    
+    textarea {
+        height: 64px;
+    }
+
+    input:focus {
+        outline: none;
+    }
+
+    input[type=checkbox],
+    input[type=text],
+    input[type=password],
+    textarea {
+        background: rgba(0, 0, 0, 0.02);
+        border-bottom: 1px solid #fff;
+        -webkit-box-shadow: inset 0px 1px 2px rgba(0, 0, 0, 0.4);
+        -moz-box-shadow: inset 0px 1px 2px rgba(0, 0, 0, 0.4);
+        box-shadow: inset 0px 1px 2px rgba(0, 0, 0, 0.4);
+    }
+    
+    .grid_4 & input[type=text],
+    .grid_4 & input[type=password],
+    .grid_4 & textarea {
+        width: 216px;
+    }
+
+    .no-boxshadow .grid_4 & input[type=text],
+    .no-boxshadow .grid_4 & input[type=password],
+    .no-boxshadow .grid_4 & textarea {
+        width: 127px;
+        border: 1px solid $divider_color;
+    }
+
+    .grid_6 & input[type=text],
+    .grid_6 & input[type=password],
+    .grid_6 & textarea {
+        width: 336px;
+    }
+
+    .no-boxshadow .grid_6 & input[type=text],
+    .no-boxshadow .grid_6 & input[type=password],
+    .no-boxshadow .grid_6 & textarea {
+        width: 334px;
+        border: 1px solid $divider_color;
+    }
+
+    input[type=checkbox] {
+        float: left;
+        width: 19px;
+        height: 19px;
+    }
+
+    input[type=checkbox]:checked {
+        background: rgba(0, 0, 0, 0.02) url(http://cdn.walkerartcenter.org/static/img/check.png) center center no-repeat;
+    }
+
+    .no-boxshadow & input[type=checkbox] {
+        border: 1px solid #bbb;
+    }
+
+    input[type=text]:focus,
+    input[type=password]:focus {
+        background: $highlight;
+    }
+
+    input[type=submit] {
+        float: right;
+        height: 19px;
+        padding: 1px 5px 0;
+        border: 1px solid $main_color;
+        @include quiet_type;
+        font-family: $sans_bold_font;
+        font-weight: bold;
+        @include no_break;
+        @include rounded;
+        cursor: pointer;
+        
+        &:hover {
+            background: $main_color;
+            color: $inverse_color;
+        }
+    }
+
+    .required_label {
+        color: #f90000;
+    }
+}
+
+/* @end */
+
+/* @group Cycle Arrows */
+
+.arrows {
+    display: none;
+
+    a {
+        position: absolute;
+        width: 19px;
+        height: 19px;
+        z-index: 950;
+        @include rounded;
+        
+        &.previous {
+            left: 0;
+            background: #d4d4d4 url(http://cdn.walkerartcenter.org/static/img/content_sprite.png) 0 0 no-repeat;
+            
+            &:active {
+                background-position: -2px 0;
+            }
+        }
+        
+        &.next {
+            right: 0;
+            background: #d4d4d4 url(http://cdn.walkerartcenter.org/static/img/content_sprite.png) 0 -29px no-repeat;
+        
+            &:active {
+                background-position: 2px -29px;
+            }
+        }
+    }
+}
+
+/* @end */
+
+/* @group Dateline */
+
+.date_container {
+    position: relative;
+    width: auto;
+    height: 15px;
+    margin: 0 5px 6px;
+    overflow: hidden;
+
+    .date {
+        position: absolute;
+        bottom: 0;
+        z-index: 504;
+        @include quiet_type;
+        background: #f9f9f9;
+        @include no_break;
+    }
+
+    .start_date {
+        left: 1px;
+        padding-right: 2px;
+    }
+
+    .end_date {
+        right: 1px;
+        padding-left: 3px;
+    }
+
+    .date_connector {
+        position: absolute;
+        bottom: 5px;
+        left: 10px;
+        right: 10px;
+        z-index: 503;
+        border-top: 1px dotted #a3a3a3;
+    }
+}
+
+/* @end */
+
+/* @group Sharing */
+
+.ical {
+    display: block;
+    height: 18px;
+    padding: 0 5px 0 26px;
+    background: url(http://cdn.walkerartcenter.org/static/img/ical.png) 2px top no-repeat;
+    
+    h2 & {
+        position: absolute;
+        top: 3px;
+        right: 1px;
+        padding: 1px 18px 0 0;
+        background-position: right -2px;
+        font-family: $sans_regular_font;
+        font-weight: normal;
+    }
+    
+    h2.inverse & {
+        display: none;
+    }
+}
+
+/* @end */
+
+/* @group Graphic Identity Rotator */
+
+.graphic_rotator {
+    overflow: hidden;
+    margin-bottom: 10px;
+    
+    .graphic_pager > div {
+        height: 99px;
+        overflow: hidden;
+        margin-bottom: 19px;
+    }
+}
+
+/* @end */
+
+/* @group Results List */
+
+.results_container {
+    > div {
+        position: relative;
+        
+        a.contents {
+            display: block;
+            overflow: hidden;
+            padding-bottom: 30px;
+            
+            .thumb {
+                position: relative;
+                margin-left: -2px;
+                height: 70px;
+
+                div {
+                    position: absolute;
+                    width: 86px;
+                    height: 57px;
+                    text-align: center;
+                }
+
+                div.image_single {
+                    position: absolute;
+                    width: 90px;
+                    height: 60px;
+                    top: 7px;
+                    left: 7px;
+                    text-align: center;
+                }
+
+                div img {
+                    -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+                    -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+                    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+                    @include rounded;
+                }
+
+                .image1 {
+                    left: 0;
+                    top: 1px;
+                    z-index: 500;
+                }
+
+                .image2 {
+                    left: 19px;
+                    top: 7px;
+                    z-index: 501;
+                }
+
+                .image3 {
+                    left: 9px;
+                    top: 13px;
+                    z-index: 502;
+                }
+            }
+            
+            h1, h3 {
+                margin: 0 0 6px;
+                padding: 0 5px;
+                font-family: $sans_regular_font;
+                font-weight: normal;
+                font-size: 16px;
+                line-height: 17px;
+                -webkit-font-smoothing: subpixel-antialiased;
+                
+                em {
+                    font-family: $sans_italic_font;
+                }
+            }
+        
+            h1 span {
+                background: url(http://cdn.walkerartcenter.org/static/img/a_sprite.png) 0 -81px repeat-x;
+                padding-bottom: 1px;
+            }
+            
+            &:hover h1 span {
+                background: url(http://cdn.walkerartcenter.org/static/img/a_sprite.png) 0 -181px repeat-x;
+            }
+        
+            h3, h4, .date {
+                color: #a3a3a3;
+            }
+            
+            h4 {
+                margin-top: 3px;
+                @include quiet_type;
+            }
+            
+            .date_container {
+                position: relative;
+                width: auto;
+                height: 15px;
+                margin: 0 5px 6px;
+                overflow: hidden;
+
+                .grid_8 > & {
+                    height: 12px;
+                }
+
+                .date {
+                    position: absolute;
+                    bottom: 0;
+                    z-index: 504;
+                    @include quiet_type;
+                    background: #f9f9f9;
+                    @include no_break;
+                }
+
+                .start_date {
+                    left: 1px;
+                    padding-right: 2px;
+                }
+
+                .end_date {
+                    right: 1px;
+                    padding-left: 3px;
+                }
+
+                .date_connector {
+                    position: absolute;
+                    bottom: 5px;
+                    left: 10px;
+                    right: 10px;
+                    z-index: 503;
+                    border-top: 1px dotted #a3a3a3;
+                }
+            }
+        
+            .text {
+                margin-top: 2px;
+                padding: 0 5px;
+            }
+        }
+
+        &.design a.contents:hover {
+            h1, h2, h3, h4, .date_container {
+                @include program_coloring($design_color, transparent);
+            }
+            
+            h1 span {
+                background: url(http://cdn.walkerartcenter.org/static/img/a_sprite.png) 0 -381px repeat-x;
+            }
+        }
+
+        &.education a.contents:hover {
+            h1, h2, h3, h4, .date_container {
+                @include program_coloring($education_color, transparent);
+            }
+            
+            h1 span {
+                background: url(http://cdn.walkerartcenter.org/static/img/a_sprite.png) 0 -481px repeat-x;
+            }
+        }
+
+        &.film a.contents:hover {
+            h1, h2, h3, h4, .date_container {
+                @include program_coloring($film_color, transparent);
+            }
+            
+            h1 span {
+                background: url(http://cdn.walkerartcenter.org/static/img/a_sprite.png) 0 -581px repeat-x;
+            }
+        }
+
+        &.new_media a.contents:hover {
+            h1, h2, h3, h4, .date_container {
+                @include program_coloring($new_media_color, transparent);
+            }
+            
+            h1 span {
+                background: url(http://cdn.walkerartcenter.org/static/img/a_sprite.png) 0 -681px repeat-x;
+            }
+        }
+
+        &.performing_arts a.contents:hover {
+            h1, h2, h3, h4, .date_container {
+                @include program_coloring($performing_arts_color, transparent);
+            }
+            
+            h1 span {
+                background: url(http://cdn.walkerartcenter.org/static/img/a_sprite.png) 0 -781px repeat-x;
+            }
+        }
+
+        &.visual_arts a.contents:hover {
+            h1, h2, h3, h4, .date_container {
+                @include program_coloring($visual_arts_color, transparent);
+            }
+            
+            h1 span {
+                background: url(http://cdn.walkerartcenter.org/static/img/a_sprite.png) 0 -881px repeat-x;
+            }
+        }
+        
+        a.contents:hover .text {
+            color: $main_color;
+        }
+    }
+}
+
+/* @end */
+
+/* @group Tiles */
+
+.grid_4 > .tile_container {
+    background: url(http://cdn.walkerartcenter.org/static/img/tile_wrapper_col_4_bg.png) 0 19px no-repeat;
+}
+
+.grid_8 > .tile_container {
+    background: url(http://cdn.walkerartcenter.org/static/img/tile_wrapper_col_8_bg.png) 0 19px no-repeat;
+}
+
+.grid_12 > .tile_container {
+    background: url(http://cdn.walkerartcenter.org/static/img/tile_wrapper_col_12_bg.png) 0 19px no-repeat;
+}
+
+.grid_16 > .tile_container {
+    background: url(http://cdn.walkerartcenter.org/static/img/tile_wrapper_col_16_bg.png) 0 19px no-repeat;
+}
+
+.tile_container,
+.tile_wall_container {
+    position: relative;
+    clear: both;
+    min-height: 280px;
+    margin-bottom: 10px;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+    
+    h2 {
+        background: $inverse_bg;
+        color: $inverse_color;
+    }
+
+    .tile_group_container {
+        display: none;
+    }
+    
+    .tile_group {
+        overflow: hidden;
+    }
+    
+    .tile {
+        position: relative;
+
+        a.contents {
+            position: relative;
+            display: block;
+            height: 225px;
+            padding: 6px;
+            background: $secondary_bg;
+            text-shadow: 0 1px 0 rgba(255, 255, 255, 0.1);
+            @include rounded;
+
+            .thumb {
+                position: relative;
+                height: 139px;
+
+                div {
+                    position: absolute;
+                    width: 171px;
+                    height: 114px;
+                    text-align: center;
+                }
+
+                div.image_single {
+                    position: absolute;
+                    width: 180px;
+                    height: 120px;
+                    top: 14px;
+                    left: 14px;
+                    text-align: center;
+                }
+
+                div img {
+                    -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+                    -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+                    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+                    @include rounded;
+                }
+
+                .image1 {
+                    left: 0;
+                    top: 2px;
+                    z-index: 500;
+                }
+
+                .image2 {
+                    left: 37px;
+                    top: 14px;
+                    z-index: 501;
+                }
+
+                .image3 {
+                    left: 18px;
+                    top: 26px;
+                    z-index: 502;
+                }
+            }
+
+            .icon {
+                height: 139px;
+                background: url(http://cdn.walkerartcenter.org/static/img/no_image.png) center center no-repeat;
+            }
+
+            .count {
+                padding: 30px 12px 0 0;
+                height: 109px;
+                color: #f9f9f9;
+                font-family: $sans_bold_font;
+                font-size: 72px;
+                line-height: 72px;
+                font-weight: bold;
+                text-align: center;
+                letter-spacing: -5px;
+                -webkit-font-smoothing: antialiased;
+            }
+        
+            h3,
+            .date {
+                @include quiet_type;
+                text-align: center;
+            }
+            
+            hgroup {
+                margin: 0 4px;
+                max-height: 81px;
+                overflow: hidden;
+                
+                &.overflowed {
+                    border-bottom: 1px dotted #333;
+                }
+            
+                h3 {
+                    margin: 8px 0 3px 1px;
+                }
+            
+                h1 {
+                    margin: 0 11px;
+                    padding-bottom: 1px; /* fixes cut-off descender */
+                    @include feature_type;
+                    -webkit-font-smoothing: subpixel-antialiased;
+                    
+                    em {
+                        font-family: $serif_font;
+                    }
+                }
+            }
+
+            .date {
+                position: absolute;
+                bottom: 6px;
+                z-index: 504;
+                background: #d4d4d4;
+                @include no_break;
+            }
+            
+            .start_date {
+                left: 7px;
+                padding-right: 2px;
+            }
+            
+            .end_date {
+                right: 6px;
+                padding-left: 3px;
+            }
+            
+            .date_connector {
+                position: absolute;
+                bottom: 11px;
+                left: 10px;
+                right: 10px;
+                z-index: 503;
+                border-top: 1px dotted #333;
+            }
+        }
+        
+        a.contents:hover,
+        a.contents:hover .date {
+            background: #e4e0af;
+            color: $main_color;
+        }
+        
+        &.design a.contents:hover {
+            @include program_tiles($design_color_dark, $design_bg);
+        }
+        
+        &.education a.contents:hover {
+            @include program_tiles($education_color_dark, $education_bg);
+        }
+        
+        &.film a.contents:hover {
+            @include program_tiles($film_color_dark, $film_bg);
+        }
+        
+        &.new_media a.contents:hover {
+            @include program_tiles($new_media_color_dark, $new_media_bg);
+        }
+        
+        &.performing_arts a.contents:hover {
+            @include program_tiles($performing_arts_color_dark, $performing_arts_bg);
+        }
+    
+        &.visual_arts a.contents:hover {
+            @include program_tiles($visual_arts_color_dark, $visual_arts_bg);
+        }
+        
+        &.design .program {
+            @include program($design_color_dark);
+        }
+
+        &.education .program {
+            @include program($education_color_dark);
+        }
+
+        &.film .program {
+            @include program($film_color_dark);
+        }
+
+        &.new_media .program {
+            @include program($new_media_color_dark);
+        }
+
+        &.performing_arts .program {
+            @include program($performing_arts_color_dark);
+        }
+
+        &.visual_arts .program {
+            @include program($visual_arts_color_dark);
+        }
+        
+    }
+
+    .social_meta {
+        visibility: hidden;
+        width: 220px;
+        overflow: hidden;
+
+        span {
+            display: block;
+            float: left;
+            height: 13px;
+            padding: 5px 6px 0 19px;
+            @include quiet_type;
+
+            &.comments {
+                background: url(http://cdn.walkerartcenter.org/static/img/content_sprite.png) 0 -463px no-repeat;
+            }
+
+            &.likes {
+                background: url(http://cdn.walkerartcenter.org/static/img/content_sprite.png) 0 -434px no-repeat;
+            }
+        }
+    }
+    
+    .has_meta .social_meta {
+        visibility: visible;
+    }
+
+    .tile_arrows {
+        position: absolute;
+        top: 29px;
+        left: 0;
+        width: 100%;
+        height: 233px;
+        overflow: hidden;
+        @include rounded;
+
+        a {
+            display: none;
+            position: absolute;
+            top: 107px;
+            z-index: 994;
+            width: 53px;
+            height: 19px;
+            color: $inverse_color;
+            font-size: 10px;
+            line-height: 12px;
+            overflow: hidden;
+            @include rounded;
+
+            .count {
+                display: block;
+                width: 32px;
+                padding-top: 4px;
+                text-align: center;
+                
+                span {
+                    color: #a3a3a3;
+                }
+                
+                .oldie & {
+                    padding-top: 5px;
+                }
+            }
+
+            &.previous {
+                left: -34px;
+                background: #222 url(http://cdn.walkerartcenter.org/static/img/content_sprite.png) right -232px no-repeat;
+                
+                &.previous .count {
+                    text-align: right;
+                }
+                
+                &:active {
+                    background-position: 32px -232px;
+                }
+            }
+
+            &.next {
+                right: -34px;
+                background: #222 url(http://cdn.walkerartcenter.org/static/img/content_sprite.png) 0 -261px no-repeat;
+                
+                .count {
+                    text-align: left;
+                    float: right;
+                }
+                
+                &:active {
+                    background-position: 2px -261px;
+                }
+            }
+        }
+    }
+}
+
+.tile_wall_container .tile_group {
+    margin-bottom: 10px;
+    
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+/* @end */
+
+/* @group Pagination */
+
+.pagination {
+    clear: both;
+    padding: 9px 5px;
+    margin-top: 10px;
+    border-top: 1px dotted $divider_color;
+    overflow: hidden;
+    text-align: center;
+    
+    li {
+        display: inline;
+        margin: 0 2px;
+        
+        &.number {
+            span,
+            a {
+                display: inline-block;
+                width: 22px;
+                height: 20px;
+                padding-top: 2px;
+                text-align: center;
+                text-decoration: none;
+                border: 1px solid $divider_color;
+                -webkit-border-radius: 22px;
+                -moz-border-radius: 22px;
+                border-radius: 22px;
+            }
+            
+            a:hover {
+                width: 20px;
+                height: 19px;
+                padding-top: 1px;
+                border: 2px solid $inverse_bg;
+                background: transparent;
+                color: $main_color;
+            }
+        }
+        
+        &.active {
+            span,
+            a {
+                background-color: $inverse_bg;
+                color: #f9f9f9;
+                border: 1px solid $inverse_bg;
+                -webkit-font-smoothing: antialiased;
+            }
+        }
+        
+        &.forth {
+            font-family: $sans_bold_font;
+            font-weight: bold;
+            
+            a {
+                padding-left: 5px;
+                padding-right: 5px;
+                margin-left: 6px;
+                margin-right: 6px;
+            }
+        }
+    }
+}
+
+/* @end */
+
+/* @group Vertical Features/List */
+
+.vertical_features,
+.vertical_list {
+    margin: -9px 0 0;
+    overflow: hidden;
+    
+    li {
+        position: relative;
+        margin: 0;
+        list-style: none;
+        
+        .program {
+            top: 9px;
+            background: $main_bg;
+        }
+
+        a.contents {
+            display: block;
+            clear: both;
+            overflow: hidden;
+            border-bottom: 1px dotted $divider_color;
+            padding: 10px 5px 9px !important;
+        }
+        
+        a.contents:hover * {
+            color: #a3a3a3;
+        }
+        
+        &.design a.contents:hover {
+            @include program_coloring($design_color, #f9f9f9);
+        }
+        
+        &.education a.contents:hover {
+            @include program_coloring($education_color, #f9f9f9);
+        }
+        
+        &.film a.contents:hover {
+            @include program_coloring($film_color, #f9f9f9);
+        }
+        
+        &.new_media a.contents:hover {
+            @include program_coloring($new_media_color, #f9f9f9);
+        }
+        
+        &.performing_arts a.contents:hover {
+            @include program_coloring($performing_arts_color, #f9f9f9);
+        }
+    
+        &.visual_arts a.contents:hover {
+            @include program_coloring($visual_arts_color, #f9f9f9);
+        }
+
+        &:last-child a.contents {
+            border-bottom: none;
+        }
+
+        .thumb {
+            float: left;
+            margin: -2px 8px 0 0;
+            width: 34px;
+            height: 34px;
+            background-position: center center;
+            -webkit-border-radius: 18px;
+            -moz-border-radius: 18px;
+            border-radius: 18px;
+        }
+
+        hgroup {
+            float: left;
+            width: 168px;
+            
+            .grid_8 > & {
+                width: 220px;
+            }
+            
+            h3 {
+                color: #a3a3a3;
+                margin: 0 0 2px;
+                @include quiet_type;
+            }
+            
+            h1 {
+                margin: 0;
+                padding: 0;
+                font-weight: bold;
+                font-size: 12px;
+                line-height: 16px;
+                -webkit-font-smoothing: subpixel-antialiased;
+                
+                em {
+                    font-family: $sans_bold_italic_font;
+                }
+            }
+        }
+        
+        .date_container {
+            position: relative;
+            float: right;
+            width: 168px;
+            height: 15px;
+            margin: 0 0 1px;
+            overflow: hidden;
+            
+            .grid_8 > & {
+                height: 12px;
+            }
+        }
+    }
+    
+    .show_more,
+    .hide_more {
+        margin: 0 0 10px !important;
+    }
+}
+
+.vertical_list {
+    hgroup {
+        width: 210px !important;
+    
+        .grid_8 > & {
+            width: 262px !important;
+        }
+    }
+    
+    .date_container {
+        width: 210px !important;
+    }
+}
+
+/* @end */
+
+/* @group Link List */
+
+.link_list {
+    overflow: hidden;
+    
+    li {
+        position: relative;
+        margin: 0;
+        list-style: none;
+
+        a {
+            display: block;
+            clear: both;
+            overflow: hidden;
+            padding: 0 5px 9px;
+            
+            .title {
+                font-family: $sans_bold_font;
+                font-weight: bold;
+
+                em {
+                    font-family: $sans_bold_italic_font;
+                }
+            }
+        }
+        
+        &:last-child a {
+            border-bottom: none;
+        }
+    }
+
+    .show_more,
+    .hide_more {
+        width: 450px;
+        margin: 0 0 10px !important;
+        border-top: 1px dotted $divider_color;
+    }
+}
+
+/* @end */
+
+/* @group Program Accordion */
+
+.program_accordion {
+    display: none;
+    
+    h2 {
+        margin: 3px 0 0;
+        outline: 0 !important;
+        
+        a:hover {
+            color: $main_color;
+        }
+        
+        .view_all {
+            position: absolute;
+            display: none;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            padding: 4px 16px 0 0;
+            background: url(http://cdn.walkerartcenter.org/static/img/content_sprite.png) right -145px no-repeat;
+            color: #999;
+            font-family: $sans_regular_font;
+            font-weight: normal;
+            text-align: right;
+        }
+        
+        &.ui-state-active {
+            background: $inverse_bg;
+            color: $inverse_color;
+
+            a {
+                display: block;
+                color: $inverse_color !important;
+
+                .view_all {
+                    display: block;
+                    color: #999 !important;
+                }
+
+                &.active,
+                &:hover {
+                    color: $inverse_color !important;
+                    
+                    .view_all {
+                        color: $inverse_color !important;
+                        background-position: right -261px;
+                    }
+                }
+            }
+        }
+    }
+    
+    .feature {
+        .program {
+            top: 15px;
+            right: 15px;
+            color: $inverse_color !important;
+            border-color: $inverse_color !important;
+        }
+        
+        a {
+            .thumbnail {
+                position: relative;
+                width: 220px;
+                height: 147px;
+        
+                .overlay {
+                    display: block;
+                    position: absolute;
+                    padding: 6px 20px;
+                    top: 10px;
+                    bottom: 10px;
+                    left: 10px;
+                    right: 10px;
+                    background: rgba(34, 34, 34, 0.65);
+                    @include rounded;
+                    
+                    .hgroup_outer_container {
+                        display: table;
+                        width: 100%;
+                        height: 100%;
+                        
+                        .hgroup_inner_container {
+                            display: table-cell;
+                            vertical-align: middle;
+                            
+                            hgroup {
+                                h3 {
+                                    margin-top: 0;
+                                    color: $inverse_color !important;
+                                }
+
+                                h1 {
+                                    margin-bottom: 2px;
+                                    width: auto;
+                                    color: $inverse_color !important;
+                                }
+                            }
+                        }
+                    }
+                    
+                    .date {
+                        position: absolute;
+                        bottom: 6px;
+                        z-index: 504;
+                        color: $inverse_color !important;
+                        @include quiet_type;
+                        text-align: center;
+                        @include no_break;
+                    }
+
+                    .start_date {
+                        left: 7px;
+                        padding-right: 2px;
+                    }
+
+                    .end_date {
+                        right: 6px;
+                        padding-left: 3px;
+                    }
+
+                    .date_connector {
+                        position: absolute;
+                        bottom: 11px;
+                        left: 50px;
+                        right: 52px;
+                        z-index: 503;
+                        border-top: 1px dotted $inverse_color;
+                    }
+                }
+            }
+        }
+        
+        &.design .overlay {
+            background: transparentize($design_color_dark, 0.25) !important;
+            
+            .no-rgba & {
+                background: $design_color_dark !important;
+            }
+        }
+        
+        &.education .overlay {
+            background: transparentize($education_color_dark, 0.25) !important;
+            
+            .no-rgba & {
+                background: $education_color_dark !important;
+            }
+        }
+        
+        &.film .overlay {
+            background: transparentize($film_color_dark, 0.25) !important;
+            
+            .no-rgba & {
+                background: $film_color_dark !important;
+            }
+        }
+        
+        &.new_media .overlay {
+            background: transparentize($new_media_color_dark, 0.25) !important;
+            
+            .no-rgba & {
+                background: $new_media_color_dark !important;
+            }
+        }
+        
+        &.performing_arts .overlay {
+            background: transparentize($performing_arts_color_dark, 0.25) !important;
+            
+            .no-rgba & {
+                background: $performing_arts_color_dark !important;
+            }
+        }
+        
+        &.visual_arts .overlay {
+            background: transparentize($visual_arts_color_dark, 0.25) !important;
+            
+            .no-rgba & {
+                background: $visual_arts_color_dark !important;
+            }
+        }
+    }
+}
+
+/* @end */
+
+/* @group Toggling */
+
+.toggle {
+    display: inline;
+    clear: none !important;
+
+    li {
+        display: inline;
+        list-style: none;
+        margin: 0 6px 0 1px !important;
+
+        a {
+            display: inline !important;
+            padding: 0 0 3px 0 !important;
+            margin: 0 !important;
+            color: #888;
+            outline: 0;
+            word-spacing: -1px;
+        
+            &.active {
+                background: url(http://cdn.walkerartcenter.org/static/img/content_sprite.png) center -352px no-repeat;
+                color: $main_color;
+                cursor: default;
+                
+                .inverse & {
+                    color: $inverse_color;
+                }
+            }
+        
+            &:hover {
+                background-color: transparent !important;
+                color: $main_color;
+                
+                .inverse & {
+                    color: $inverse_color;
+                }
+            }
+        }
+    }
+}
+
+.toggled {
+    .toggle_content {
+        display: none;
+    }
+
+    .active {
+        display: block;
+    }
+}
+
+/* @end */
+
+/* @group Related */
+
+#related {
+    position: fixed;
+    z-index: 9999;
+    right: -220px;
+    bottom: 60px;
+    width: 220px;
+    background: $main_bg;
+    -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.36);
+    -moz-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.36);
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.36);
+    @include rounded;
+    
+    h2 {
+        margin-top: 0;
+        background: $inverse_bg;
+        color: $inverse_color;
+    }
+
+    #related_visibility {
+        position: absolute;
+        display: block;
+        top: 0;
+        right: 0;
+        width: 19px;
+        height: 19px;
+        background: url(http://cdn.walkerartcenter.org/static/img/content_sprite.png) 0 -580px no-repeat;
+    }
+}
+
+/* @end */
+
+/* @group Pointer */
+
+.pointer {
+    position: absolute;
+    opacity: 0;
+    z-index: 999998;
+    padding: 1px 4px 2px 5px;
+    background: $inverse_bg;
+    color: $inverse_color;
+    @include quiet_type;
+    @include rounded;
+        
+    .tip {
+        position: absolute;
+        top: -5px;
+        left: 0;
+        right: 0;
+        height: 5px;
+        background: url(http://cdn.walkerartcenter.org/static/img/pointer_up.png) top center no-repeat;
+    }
+}
+
+/* @end */
+
+/* @group Sponsor Logos */
+
+.sponsor_logos li {
+    display: block;
+    float: left;
+    margin: 0 5px 0 4px;
+    
+    a:hover {
+        opacity: 0.36;
+    }
+}
+
+/* @end */
+
+/* @group Landing Page Nav */
+
+.landing_nav {
+    width: 100%;
+    margin: 10px 0 0;
+    overflow: hidden;
+    clear: both;
+    
+    li {
+        margin: 0;
+        list-style: none;
+        
+        a {
+            position: relative;
+            height: 60px;
+            
+            &:hover .title span {
+                color: #a3a3a3;
+                background: url(http://cdn.walkerartcenter.org/static/img/a_sprite.png) 0 -181px repeat-x;
+            }
+            
+            .count {
+                margin: 3px 6px 0;
+                @include quiet_type;
+            }
+            
+            .title {
+                margin: 0 5px;
+                font-size: 16px;
+                line-height: 17px;
+                
+                span {
+                    background: url(http://cdn.walkerartcenter.org/static/img/a_sprite.png) 0 -81px repeat-x;
+                }
+            }
+        }
+    }
+}
+
+/* @end */
+
+/* @group Media Gallery */
+
+.media {
+    padding: 0 5px;
+    position: relative;
+    
+    h2 {
+        margin: 0 -5px 10px;
+        background: $inverse_bg;
+        color: $inverse_color;
+    }
+
+    .rotator {
+        display: none;
+    }
+
+    .rotated {
+        position: relative;
+        width: 690px;
+        height: 345px;
+        text-align: center;
+        
+        a {
+            position: relative;
+            display: block;
+            
+            .video_overlay {
+                display: block;
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: url(http://cdn.walkerartcenter.org/static/img/video_play_large.png) center center no-repeat;
+            }
+            
+            &:hover {
+                background: none;
+                
+                .video_overlay {
+                    background-image: url(http://cdn.walkerartcenter.org/static/img/video_play_large_hover.png);
+                }
+            }
+            
+            &:focus {
+                outline: 0;
+            }
+        }
+    }
+
+    .media_arrows {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 700px;
+        height: 345px;
+        overflow: hidden;
+        @include rounded;
+
+        a {
+            position: absolute;
+            display: none;
+            top: 162px;
+            z-index: 997;
+            width: 53px;
+            height: 19px;
+            font-size: 10px;
+            line-height: 12px;
+            overflow: hidden;
+            @include rounded;
+            
+            .count {
+                display: block;
+                width: 32px;
+                padding-top: 4px;
+                color: $main_color;
+                text-align: center;
+                
+                .oldie & {
+                    padding-top: 5px;
+                }
+                
+                span {
+                    color: #a3a3a3;
+                }
+            }
+            
+            &.previous {
+                left: -34px;
+                background: #d4d4d4 url(http://cdn.walkerartcenter.org/static/img/content_sprite.png) right 0 no-repeat;
+                
+                .count {
+                    text-align: right;
+                }
+                
+                &:active {
+                    background-position: 32px 0;
+                }
+            }
+            
+            &.next {
+                right: -34px;
+                background: #d4d4d4 url(http://cdn.walkerartcenter.org/static/img/content_sprite.png) 0 -29px no-repeat;
+            
+                .count {
+                    text-align: left;
+                    float: right;
+                }
+            
+                &:active {
+                    background-position: 2px -29px;
+                }
+            }
+        }
+    }
+
+    .attribute {
+        display: none;
+    }
+
+    h1 {
+        position: absolute;
+        display: none;
+        top: 8px;
+        left: 0;
+        z-index: 996;
+        width: 300px;
+        margin: 0;
+        font-family: $serif_font;
+        font-weight: bold;
+        font-size: 29px;
+        line-height: 25px;
+        -webkit-font-smoothing: subpixel-antialiased;
+        
+        .line {
+            display: inline-block;
+            float: left;
+            clear: left;
+            padding: 2px 6px 6px 0;
+            margin-bottom: -2px;
+            background: #f9f9f9 url(http://cdn.walkerartcenter.org/static/img/header_line_bg.png) bottom right;
+            @include no_break;
+            @include rounded;
+            text-align: center;
+        }
+    }
+}
+
+/* @end */
+
+/* @group Showcase */
+
+.showcase {
+    position: relative;
+    padding-bottom: 4px;
+    overflow: hidden;
+    
+    .homepage & .highlights_container {
+        background: url(http://cdn.walkerartcenter.org/static/img/loading_spinner.gif) center 210px no-repeat;
+    }
+    
+    .highlights {
+        display: none;
+        
+        h1 {
+            @include no_break;
+            text-align: center;
+            
+            em {
+                font-family: $sans_bold_italic_font;
+                font-style: italic;
+            }
+        }
+    
+        .highlight {
+            position: relative;
+            width: 460px;
+            
+            .date_container {
+                position: relative;
+                width: auto;
+                height: 15px;
+                margin: 0 2px 0 4px;
+                overflow: hidden;
+
+                .grid_8 > & {
+                    height: 12px;
+                }
+
+                .date {
+                    position: absolute;
+                    bottom: 0;
+                    z-index: 504;
+                    @include quiet_type;
+                    background: #f9f9f9;
+                    @include no_break;
+                }
+
+                .start_date {
+                    left: 1px;
+                    padding-right: 2px;
+                }
+
+                .end_date {
+                    right: 1px;
+                    padding-left: 3px;
+                }
+
+                .date_connector {
+                    position: absolute;
+                    bottom: 5px;
+                    left: 10px;
+                    right: 10px;
+                    z-index: 503;
+                    border-top: 1px dotted #333;
+                }
+            }
+
+            .divider {
+                margin: 0 5px;
+            }
+            
+            &.design a:hover {
+                @include program_coloring($design_color, #f9f9f9);
+            }
+
+            &.education a:hover {
+                @include program_coloring($education_color, #f9f9f9);
+            }
+
+            &.film a:hover {
+                @include program_coloring($film_color, #f9f9f9);
+            }
+
+            &.new_media a:hover {
+                @include program_coloring($new_media_color, #f9f9f9);
+            }
+
+            &.performing_arts a:hover {
+                @include program_coloring($performing_arts_color, #f9f9f9);
+            }
+
+            &.visual_arts a:hover {
+                @include program_coloring($visual_arts_color, #f9f9f9);
+            }
+        }
+    }
+    
+    .grid_4 {
+        float: right;
+    }
+    
+    .showcase_pager {
+        h1 {
+            margin: 0 auto 2px;
+            padding: 0;
+            @include feature_type;
+            -webkit-font-smoothing: subpixel-antialiased;
+            
+            em {
+                font-family: $serif_font;
+            }
+        }
+        
+        h3 {
+            margin: 2px 0 3px 1px;
+            padding: 0;
+            @include quiet_type;
+            text-align: center;
+            @include no_break;
+        }
+        
+        li {
+            border-bottom: 1px dotted $divider_color;
+            
+            &:last-child {
+                border-bottom: none;
+            }
+            
+            a {
+                display: block;
+                margin: -1px 0 -1px -10px;
+                padding: 8px 16px 8px 24px;
+                color: #a3a3a3;
+                @include feature_type;
+                text-shadow: 0 1px 0 rgba(255, 255, 255, 0.1);
+            }
+            
+            a:hover {
+                background: url(http://cdn.walkerartcenter.org/static/img/showcase_pager_sprite.png) 5px center no-repeat;
+            }
+            
+            &.design a:hover {
+                color: $design_color_dark !important;
+                background-position: -230px center;
+            }
+            
+            &.education a:hover {
+                color: $education_color_dark !important;
+                background-position: -465px center;
+            }
+            
+            &.film a:hover {
+                color: $film_color_dark !important;
+                background-position: -700px center;
+            }
+            
+            &.new_media a:hover {
+                color: $new_media_color_dark !important;
+                background-position: -935px center;
+            }
+            
+            &.performing_arts a:hover {
+                color: $performing_arts_color_dark !important;
+                background-position: -1170px center;
+            }
+            
+            &.visual_arts a:hover {
+                color: $visual_arts_color_dark !important;
+                background-position: -1405px center;
+            }
+        }
+
+        li.active_slide a {
+            color: $main_color;
+            background: url(http://cdn.walkerartcenter.org/static/img/showcase_pager_sprite.png) 5px center no-repeat;
+        }
+    }
+    
+    .homepage & {
+        padding-bottom: 0;
+        
+        .showcase_pager {
+            border-top: 1px dotted $divider_color;
+        }
+        
+        .highlight .info {
+            text-align: left;
+            font-family: $serif_font;
+            font-size: 15px;
+            line-height: 20px;
+            
+            em {
+                font-family: $serif_font;
+            }
+            
+            > p a {
+                padding-bottom: 1px;
+                font-family: $sans_regular_font;
+                font-size: 14px;
+                line-height: 1px;
+                background: url(http://cdn.walkerartcenter.org/static/img/a_sprite.png) -78px 0 repeat-x;
+                text-decoration: none;
+
+                &:hover {
+                    color: #a3a3a3;
+                    background: url(http://cdn.walkerartcenter.org/static/img/a_sprite.png) -178px 0 repeat-x;
+                }
+
+                &.img_link {
+                    display: block;
+                    background: none !important;
+                }
+            }
+            
+            > p .more a {
+                padding-bottom: 0;
+                @include quiet_type;
+                background: none;
+            }
+
+            a em,
+            em a {
+                font-family: $sans_italic_font;
+            }
+            
+            .context {
+                margin-top: 10px;
+                padding-top: 8px;
+                border-top: 1px dotted $divider_color;
+                font-family: $sans_regular_font;
+                font-size: 12px;
+                line-height: 16px;
+                -webkit-hyphens: none;
+                -moz-hyphens: none;
+                hyphens: none;
+
+                em {
+                    font-family: $sans_italic_font;
+                    font-style: italic;
+                }
+
+                a {
+                    font-family: $sans_bold_font;
+                    font-weight: bold;
+                    text-decoration: none;
+
+                    em {
+                        font-family: $sans_bold_italic_font;
+                        font-style: italic;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.feature_showcase {
+    display: none;
+}
+
+/* @end */
+
+/* @group Slideshow */
+
+.slideshow {
+    position: relative;
+    min-height: 400px;
+    padding: 28px 0 4px;
+    margin-bottom: 20px;
+    border-bottom: 1px dotted $divider_color;
+    background: url(http://cdn.walkerartcenter.org/static/img/loading.gif) center center no-repeat;
+    
+    .slides {
+        display: none;
+        width: 940px;
+        padding-bottom: 15px;
+        text-align: center;
+        
+        h3 {
+            margin-bottom: 2px;
+        }
+        
+        article {
+            text-align: left;
+        }
+    }
+    
+    .media_status {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 19px;
+        background: $secondary_bg;
+        overflow: hidden;
+        @include rounded;
+    
+        .pager_container {
+            margin: 0 auto;
+            padding-right: 7px;
+            width: 200px;
+            background: $secondary_bg;
+
+            a {
+                display: block;
+                float: left;
+                width: 15px;
+                height: 19px;
+                background-repeat: no-repeat;
+                background-image: url(http://cdn.walkerartcenter.org/static/img/pager_inverse.png);
+                background-position: 6px -1px;
+                
+                &:hover {
+                    background-position: 6px -22px;
+                    background-color: transparent;
+                }
+
+                &.active_slide {
+                    cursor: default;
+                    background-position: 6px -43px !important;
+                }
+            }
+        }
+    }
+    
+    .numbered_arrows a {
+        display: block !important;
+    }
+    
+    .media_arrows a {
+        position: absolute;
+        display: block;
+        top: 0;
+        z-index: 997;
+        width: 53px;
+        height: 19px;
+        font-size: 10px;
+        line-height: 12px;
+        overflow: hidden;
+        @include rounded;
+            
+        .count {
+            display: block;
+            width: 32px;
+            padding-top: 4px;
+            color: $main_color;
+            text-align: center;
+                
+            .oldie & {
+                padding-top: 5px;
+            }
+                
+            span {
+                color: #a3a3a3;
+            }
+        }
+            
+        &.previous {
+            left: -34px;
+            background: #d4d4d4 url(http://cdn.walkerartcenter.org/static/img/content_sprite.png) right 0 no-repeat;
+                
+            .count {
+                text-align: right;
+            }
+                
+            &:active {
+                background-position: 32px 0;
+            }
+        }
+            
+        &.next {
+            right: -34px;
+            background: #d4d4d4 url(http://cdn.walkerartcenter.org/static/img/content_sprite.png) 0 -29px no-repeat;
+            
+            .count {
+                text-align: left;
+                float: right;
+            }
+            
+            &:active {
+                background-position: 2px -29px;
+            }
+        }
+    }
+}
+
+/* @end */
+
+/* @group Cloud */
+
+.cloud {
+    clear: both;
+    margin: 16px 20px 24px;
+    text-align: center;
+    
+    li {
+        position: relative;
+        display: inline;
+        padding: 0;
+        margin-right: 10px;
+        
+        a {
+            font-size: 23px;
+            line-height: 29px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            -webkit-font-smoothing: antialiased;
+            
+            img {
+                margin: 0 0 -2px 7px;
+                vertical-align: baseline;
+            }
+        
+            &:hover {
+                background: transparent;
+            }
+        }
+        
+        &.design a:hover {
+            @include program_coloring($design_color, #f9f9f9);
+        }
+
+        &.education a:hover {
+            @include program_coloring($education_color, #f9f9f9);
+        }
+
+        &.film a:hover {
+            @include program_coloring($film_color, #f9f9f9);
+        }
+
+        &.new_media a:hover {
+            @include program_coloring($new_media_color, #f9f9f9);
+        }
+
+        &.performing_arts a:hover {
+            @include program_coloring($performing_arts_color, #f9f9f9);
+        }
+
+        &.visual_arts a:hover {
+            @include program_coloring($visual_arts_color, #f9f9f9);
+        }
+    }
+}
+
+/* @end */
+
+/* @group Twitter */
+
+.twitter {
+    padding-bottom: 10px;
+    
+    .tweet {
+        border: 4px solid #d4d4d4;
+        border-bottom: none;
+        padding: 5px 8px 8px;
+        font-family: $sans_bold_font;
+        font-weight: bold;
+        @include rounded;
+        
+    }
+    
+    a {
+        text-decoration: none;
+    }
+
+    ul li {
+        margin: 0;
+        list-style: none;
+    }
+    
+    .info {
+        margin-top: -1px;
+        min-height: 13px;
+        padding: 9px 0 0 47px;
+        background: url(http://cdn.walkerartcenter.org/static/img/twitter_bg.png) no-repeat;
+        
+        .label a {
+            padding-left: 1px;
+            color: #a3a3a3;
+        }
+    }
+}
+
+/* @end */
+
+/* @group Administration */
+
+$admin_light_green: #d5f2cd;
+
+#admin {
+    display: none;
+    position: fixed;
+    z-index: 5000;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 0 5px;
+    border-top: 1px solid #6a9a6c;
+    background-color: #ade6af;
+    color: #6a9a6c;
+    @include quiet_type;
+
+    a {
+        color: #6a9a6c;
+    }
+
+    li a,
+    input[type="submit"] {
+        display: inline-block;
+        width: auto;
+        float: left;
+        padding: 2px 5px 1px;
+
+        &:hover {
+            background-color: $admin_light_green;
+        }
+    }
+    
+    input[type="submit"] {
+        height: auto;
+        border: none;
+        background-color: #6a9a6c;
+        color: #ade6af;
+        
+        &:hover {
+            background-color: #6a9a6c;
+        }
+    }
+}
+
+.active_edit p {
+    background-color: $admin_light_green;
+}
+
+.admin_edit {
+    display: none;
+    position: absolute !important;
+    top: 5px !important;
+    left: 5px !important;
+    width: auto !important;
+    height: auto !important;
+    background-color: #ade6af !important;
+    color: #6a9a6c !important;
+    z-index: 997 !important;
+    padding: 1px 2px 2px 3px !important;
+    margin: 0 !important;
+    font-size: 9px !important;
+    line-height: 10px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+    @include rounded;
+    
+    &:hover {
+        background-color: #6a9a6c !important;
+        color: #ade6af !important;
+    }
+}
+
+/* @end */
+
+/* @group Media View */
+
+.media_container {
+    width: 960px;
+    margin: 30px auto;
+    text-align: center;
+    
+    > img,
+    > div {
+        margin: 0 auto;
+    }
+
+    h1 {
+        padding: 12px 320px 0;
+        font-family: $serif_font;
+        font-size: 16px;
+        line-height: 20px;
+        font-weight: bold;
+        -webkit-font-smoothing: subpixel-antialiased;
+        
+        em {
+            font-family: $serif_font;
+        }
+    }
+}
+
+/* @end */
+
+/* @group Homepage */
+
+.homepage {
+    .header_image {
+        display: block;
+        height: 30px;
+        margin-bottom: 10px;
+        overflow: hidden;
+    }
+    
+    .promos {
+        line-height: 0 !important;
+    }
+    
+    .accordion_showcase_container,
+    .channel_container,
+    .shop_container,
+    .archives_container,
+    .artspeaks_container,
+    .garden_container,
+    .series_container {
+        position: relative;
+        overflow: hidden;
+        
+        .feature {
+            width: 220px;
+        }
+        
+        .accordion_showcase,
+        .garden {
+            height: 147px;
+        }
+        
+        .channel,
+        .archives,
+        .artspeaks {
+            min-height: 348px;
+        }
+        
+        .shop {
+            min-height: 203px;
+        }
+        
+        .arrows a {
+            top: 63px;
+        }
+        
+        &:hover .arrows {
+            display: block;
+        }
+    }
+    
+    .shop_container {
+        .arrows a {
+            top: 50px;
+        }
+    }
+    
+    .artspeaks_container,
+    .channel_container {
+        margin-top: 19px;
+        
+        .arrows a {
+            top: 101px;
+        }
+    }
+    
+    .mnartists {
+        margin-top: 9px;
+        overflow: hidden;
+    }
+    
+    .series_container {
+        .arrows a {
+            top: 90px;
+        }
+    }
+    
+    .archives_container {
+        .arrows a {
+            top: 101px;
+        }
+    }
+    
+    .quoted a:hover img {
+        opacity: 0.36;
+    }
+    
+    .article_list {
+        margin: -4px 0 6px;
+        
+        li {
+            border-top: 1px dotted $divider_color;
+            
+            &:first-child {
+                border-top: none;
+            }
+            
+            a {
+                display: block;
+                padding: 4px 3px 7px 5px;
+            }
+        }
+
+        &.design a:hover {
+            @include program_coloring($design_color, #f9f9f9);
+        }
+
+        &.education a:hover {
+            @include program_coloring($education_color, #f9f9f9);
+        }
+
+        &.film a:hover {
+            @include program_coloring($film_color, #f9f9f9);
+        }
+
+        &.new_media a:hover {
+            @include program_coloring($new_media_color, #f9f9f9);
+        }
+
+        &.performing_arts a:hover {
+            @include program_coloring($performing_arts_color, #f9f9f9);
+        }
+
+        &.visual_arts a:hover {
+            @include program_coloring($visual_arts_color, #f9f9f9);
+        }
+    }
+}
+
+/* @end */
+
+/* @group Page: Directions */
+
+#large_map {
+    width: 698px;
+    height: 398px;
+    border: 1px solid $divider_color;
+    margin-bottom: 10px;
+    line-height: 16px;
+
+    p {
+        margin: 0;
+    }
+
+    a {
+        text-decoration: underline;
+    }
+}
+
+/* @end */
+
+/* @group Page: Calendar */
+
+.sidebar #date_picker {
+    width: 210px;
+    height: 17px;
+    margin-bottom: 10px;
+    padding: 1px 5px;
+    border: none;
+    background-color: #d4d4d4;
+    background: url(http://cdn.walkerartcenter.org/static/img/content_sprite.png) right -58px no-repeat, url(http://cdn.walkerartcenter.org/static/img/bg_gray.jpg);
+    @include quiet_type;
+    @include rounded;
+    outline: none;
+    
+    .oldie & {
+        padding-top: 5px;
+        height: 15px;
+    }
+    
+    &:hover {
+        background: $secondary_highlight url(http://cdn.walkerartcenter.org/static/img/content_sprite.png) right -58px no-repeat;
+        cursor: pointer;
+    }
+    
+    &:focus {
+        background: $highlight url(http://cdn.walkerartcenter.org/static/img/content_sprite.png) right -58px no-repeat;
+        cursor: text;
+    }
+}
+
+.ui-datepicker {
+    display: none;
+    width: 210px;
+    padding: 5px;
+    background-color: $inverse_bg;
+    color: #a3a3a3;
+    -webkit-font-smoothing: antialiased;
+    
+    .inverted & {
+        padding-top: 0;
+        background-color: transparent;
+        color: $main_color;
+        -webkit-font-smoothing: subpixel-antialiased;
+    }
+    
+    a {
+        color: #f9f9f9;
+        
+        .inverted & {
+            color: $main_color;
+        }
+    }
+    
+    .ui-datepicker-header {
+        position: relative;
+        padding-bottom: 3px;
+        margin-bottom: 3px;
+        border-bottom: 1px solid #666;
+        
+        .inverted & {
+            position: relative;
+            clear: both;
+            height: 16px;
+            border-bottom: none;
+            padding: 4px 5px 0;
+            margin: 0 -5px 9px;
+            background: $secondary_bg;
+            @include quiet_type;
+            @include no_break;
+            @include rounded;
+        }
+    }
+    
+    .ui-datepicker-prev,
+    .ui-datepicker-next {
+        position: absolute;
+        width: 21px;
+        height: 15px;
+        top: 0;
+        text-indent: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        cursor: pointer;
+        
+        .inverted & {
+            height: 19px;
+        }
+    }
+    
+    .ui-datepicker-prev {
+        left: 0;
+        background: url(http://cdn.walkerartcenter.org/static/img/content_sprite.png) 0 -232px no-repeat;
+        
+        .inverted & {
+            background: url(http://cdn.walkerartcenter.org/static/img/content_sprite.png) 0 0 no-repeat;
+        }
+    }
+    
+    .ui-datepicker-next {
+        right: 0;
+        background: url(http://cdn.walkerartcenter.org/static/img/content_sprite.png) right -261px no-repeat;
+        
+        .inverted & {
+            background: url(http://cdn.walkerartcenter.org/static/img/content_sprite.png) right -29px no-repeat;
+        }
+    }
+    
+    .ui-datepicker-title {
+        margin: 0 auto;
+        font-family: $sans_bold_font;
+        font-weight: bold;
+        text-align: center;
+        
+        &:hover {
+            cursor: pointer;
+            color: #888;
+        }
+    }
+    
+    table {
+        border-collapse: collapse;
+        margin: 0 auto;
+        
+        th,
+        td {
+            padding: 0 3px 6px;
+            border: 0;
+            text-align: center;
+        }
+        
+        td span,
+        td a {
+            display: block;
+            width: 22px;
+            height: 19px;
+            padding-top: 3px;
+            text-align: center;
+            text-decoration: none;
+            border: 1px solid #ccc;
+            -webkit-border-radius: 22px;
+            -moz-border-radius: 22px;
+            border-radius: 22px;
+        }
+        
+        .inverted & td span,
+        .inverted & td a {
+            border: 1px solid #bbb;
+        }
+        
+        td a:hover {
+            width: 20px;
+            height: 19px;
+            padding-top: 1px;
+            border: 2px solid #f9f9f9;
+            
+            .inverted & {
+                border: 2px solid $main_color;
+            }
+        }
+    }
+    
+    .ui-datepicker-current-day a,
+    .ui-state-active {
+        background-color: #f9f9f9;
+        color: $main_color;
+        border: 1px solid #f9f9f9;
+        cursor: default;
+    }
+    
+    .inverted & .ui-datepicker-current-day a,
+    .inverted & .ui-state-active {
+        background-color: $main_color;
+        color: #f9f9f9;
+        border: 1px solid #222;
+        -webkit-font-smoothing: antialiased;
+    }
+}
+
+.week {
+    border-top: 1px dotted $divider_color;
+    margin-top: 10px 0 16px;
+    padding-top: 16px;
+    color: #a3a3a3;
+    
+    .days > li > * {
+        padding: 0 5px;
+    }
+
+    .title,
+    .day {
+        color: $main_color;
+        font-size: 16px;
+        word-spacing: -1px;
+    }
+    
+    .day {
+        padding-bottom: 8px !important;
+        border-bottom: 1px dotted $divider_color;
+    }
+    
+    .special {
+        display: block;
+        padding: 6px 0 0 !important;
+        line-height: 0;
+    }
+
+    .time {
+        margin-right: 1px;
+        color: #a3a3a3;
+        @include quiet_type;
+    }
+
+    .events li a,
+    .events li p {
+        display: block;
+        border-bottom: 1px dotted $divider_color;
+        margin: 0 -5px;
+        padding: 5px 1px 6px 5px;
+    }
+    
+    .events li:last-child a,
+    .events li:last-child p {
+        border-bottom: none;
+    }
+    
+    .design a:hover {
+        @include program_coloring($design_color, #f9f9f9);
+    }
+    
+    .education a:hover {
+        @include program_coloring($education_color, #f9f9f9);
+    }
+    
+    .film a:hover {
+        @include program_coloring($film_color, #f9f9f9);
+    }
+    
+    .new_media a:hover {
+        @include program_coloring($new_media_color, #f9f9f9);
+    }
+    
+    .performing_arts a:hover {
+        @include program_coloring($performing_arts_color, #f9f9f9);
+    }
+
+    .visual_arts a:hover {
+        @include program_coloring($visual_arts_color, #f9f9f9);
+    }
+    
+    .show_more,
+    .hide_more {
+        width: 90px;
+        margin: 0 -5px 10px !important;
+    }
+    
+    .hide_more {
+        display: none;
+    }
+}
+
+.timeline {
+    .months {
+        overflow: hidden;
+        color: #a3a3a3;
+        @include quiet_type;
+
+        .month span {
+            margin: 0 5px;
+        }
+    }
+
+    .exhibitions {
+        clear: both;
+        padding: 9px 0 9px;
+        border-bottom: 1px dotted $divider_color;
+
+        .exhibition {
+            a {
+                display: block;
+                position: relative;
+                padding: 2px 55px 1px 4px;
+                margin-top: 1px;
+                background: $secondary_bg;
+                @include rounded;
+                @include no_break;
+            }
+            
+            &.design a:hover {
+                @include program_coloring($design_color_dark, $design_bg);
+            }
+
+            &.education a:hover {
+                @include program_coloring($education_color_dark, $education_bg);
+            }
+
+            &.film a:hover {
+                @include program_coloring($film_color_dark, $film_bg);
+            }
+
+            &.new_media a:hover {
+                @include program_coloring($new_media_color_dark, $new_media_bg);
+            }
+
+            &.performing_arts a:hover {
+                @include program_coloring($performing_arts_color_dark, $performing_arts_bg);
+            }
+
+            &.visual_arts a:hover {
+                @include program_coloring($visual_arts_color_dark, $visual_arts_bg);
+            }
+        }
+
+        .exhibition .date {
+            display: block;
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            @include quiet_type;
+            @include no_break;
+        }
+    }
+
+    .starts_1 {
+        margin-left: 60px;
+    }
+
+    .starts_2 {
+        margin-left: 120px;
+    }
+
+    .starts_3 {
+        margin-left: 180px;
+    }
+
+    .starts_4 {
+        margin-left: 240px;
+    }
+
+    .starts_5 {
+        margin-left: 300px;
+    }
+
+    .starts_6 {
+        margin-left: 360px;
+    }
+
+    .starts_7 {
+        margin-left: 420px;
+    }
+
+    .starts_8 {
+        margin-left: 480px;
+    }
+
+    .starts_9 {
+        margin-left: 540px;
+    }
+
+    .starts_10 {
+        margin-left: 600px;
+    }
+
+    .starts_11 {
+        margin-left: 660px;
+    }
+
+    .starts_12 {
+        margin-left: 660px;
+    }
+
+    .ends_12 {
+        margin-right: 0;
+    }
+
+    .ends_11 {
+        margin-right: 0;
+    }
+
+    .ends_10 {
+        margin-right: 60px;
+    }
+
+    .ends_9 {
+        margin-right: 120px;
+    }
+
+    .ends_8 {
+        margin-right: 180px;
+    }
+
+    .ends_7 {
+        margin-right: 240px;
+    }
+
+    .ends_6 {
+        margin-right: 300px;
+    }
+
+    .ends_5 {
+        margin-right: 360px;
+    }
+
+    .ends_4 {
+        margin-right: 420px;
+    }
+
+    .ends_3 {
+        margin-right: 480px;
+    }
+
+    .ends_2 {
+        margin-right: 540px;
+    }
+
+    .ends_1 {
+        margin-right: 600px;
+    }
+    
+    .ends_0 {
+        margin-right: 660px;
+    }
+    
+    .ends_0 .date,
+    .ends_1 .date,
+    .ends_2 .date,
+    .starts_10 .date,
+    .starts_11 .date,
+    .starts_12 .date {
+        display: none !important;
+    }
+    
+    .ends_0 a,
+    .ends_1 a,
+    .ends_2 a,
+    .starts_10 a,
+    .starts_11 a,
+    .starts_12 a {
+        padding-right: 3px !important;
+    }
+}
+
+/* @end */
+
+/* @group Accessibility */
+
+.accessibility {
+    h1 {
+        padding-left: 28px !important;
+        background-position: 3px 4px;
+        background-repeat: no-repeat;
+    }
+
+    p {
+        margin-left: 28px;
+    }
+    
+    .note h1,
+    .note p {
+        margin-left: 0 !important;
+        padding-left: 0 !important;
+    }
+
+    #listening {
+        background-image: url(http://cdn.walkerartcenter.org/static/img/accessibility_listening.png);
+    }
+
+    #sign_language {
+        background-image: url(http://cdn.walkerartcenter.org/static/img/accessibility_sign_language.png);
+    }
+
+    #mobility {
+        background-image: url(http://cdn.walkerartcenter.org/static/img/accessibility_mobility.png);
+    }
+
+    #braille {
+        background-image: url(http://cdn.walkerartcenter.org/static/img/accessibility_braille.png);
+    }
+
+    #audio {
+        background-image: url(http://cdn.walkerartcenter.org/static/img/accessibility_audio.png);
+    }
+}
+
+/* @end */
+
+/* @group Tours */
+
+.art_on_call {
+    padding: 13px 12px 8px;
+    background-color: #f0ed34;
+    text-align: center;
+    @include rounded;
+    
+    h1 {
+        margin: 0 10px 9px;
+        padding-top: 45px;
+        background: url(http://cdn.walkerartcenter.org/static/img/art_on_call.png) center 0 no-repeat;
+    }
+}
+
+/* @end */
+
+/* @group Dining */
+
+#gather {
+    background-color: #ede8f1;
+    color: #6e408e;
+    margin: 0 0 0 1px;
+    padding: 0 10px 10px 9px;
+
+    dt {
+        color: #ad94bf;
+    }
+    
+    a,
+    dd {
+        color: #6e408e;
+    }
+
+    h1 {
+        height: 44px;
+        margin: 0;
+        padding: 0;
+        background: url(http://cdn.walkerartcenter.org/static/img/gather_logo_small.png) 5px 11px no-repeat;
+        text-indent: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
+    h2 {
+        background: #6e408e;
+        color: #ede8f1;
+        
+        .toggle li a {
+            color: #baa5c9;
+
+            &.active {
+                background: url(http://cdn.walkerartcenter.org/static/img/gather_toggle_active.png) center bottom no-repeat;
+                color: #ede8f1;
+            }
+
+            &:hover {
+                color: #ede8f1;
+            }
+        }
+    }
+}
+
+/* @end */
+
+/* @group Footer */
+
+#footer_container {
+    position: absolute;
+    clear: both;
+    bottom: 0;
+    width: 100%;
+    height: 216px;
+    padding: 10px 0;
+    background: $secondary_bg;
+
+    footer {
+        text-shadow: 0 1px 0 rgba(255, 255, 255, 0.1);
+
+        #footer_nav_container {
+            overflow: hidden;
+            background-image: url(http://cdn.walkerartcenter.org/static/img/line_grid_3.png);
+        }
+
+        #footer_teaser {
+            position: relative;
+            height: 141px;
+            background: url(http://cdn.walkerartcenter.org/static/img/header_footer_sprite.png) 0 -801px no-repeat;
+            text-indent: 100%;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        nav {
+            min-height: 130px;
+            padding-top: 37px;
+            background-image: url(http://cdn.walkerartcenter.org/static/img/header_footer_sprite.png);
+            background-repeat: no-repeat;
+            
+            &#footer_about { background-position: -220px -801px; }
+            &#footer_programs { background-position: -440px -801px; }
+            &#footer_network { background-position: -660px -801px; }
+
+            li {
+                margin: 0 5px;
+                
+                a {
+                    display: block;
+                    margin: 0 -5px;
+                    padding: 2px 5px;
+                }
+            }
+        }
+
+        a:hover {
+            background-color: $secondary_highlight;
+            color: $main_color;
+        }
+
+        .social_media {
+            margin-top: 10px;
+            
+            li {
+                margin: 0;
+                
+                a {
+                    display: block;
+                    float: left;
+                    width: 18px;
+                    height: 18px;
+                    margin: 0;
+                    padding: 0 0 0 5px;
+                    background-image: url(http://cdn.walkerartcenter.org/static/img/header_footer_sprite.png);
+                    background-repeat: no-repeat;
+                    text-indent: 100%;
+                    white-space: nowrap;
+                    overflow: hidden;
+                
+                    &.facebook {
+                        background-position: 5px -1004px;
+                    
+                        &:hover {
+                            background-position: 5px -1024px;
+                        }
+                    }
+                
+                    &.twitter {
+                        background-position: -23px -1004px;
+                    
+                        &:hover {
+                            background-position: -23px -1024px;
+                        }
+                    }
+                
+                    &.flickr {
+                        background-position: -51px -1004px;
+                    
+                        &:hover {
+                            background-position: -51px -1024px;
+                        }
+                    }
+                
+                    &.youtube {
+                        background-position: -79px -1004px;
+                    
+                        &:hover {
+                            background-position: -79px -1024px;
+                        }
+                    }
+                
+                    &.rss {
+                        background-position: -107px -1004px;
+                    
+                        &:hover {
+                            background-position: -107px -1024px;
+                        }
+                    }
+                
+                    &:hover {
+                        background-color: transparent;
+                    }
+                }
+            }
+            
+        }
+
+        .aux {
+            clear: both;
+            padding: 7px 5px;
+            margin: 10px 10px 24px;
+            border-top: 1px dotted $divider_color_dark;
+            color: $main_color;
+            @include quiet_type;
+            
+            a {
+                margin: 0 -3px;
+                padding: 1px 3px;
+            }
+
+            div {
+                float: left;
+                white-space: nowrap; /* Firefox bug fix */
+            }
+
+            .contact {
+                float: right;
+                
+                div {
+                    margin-left: 16px;
+                }
+                
+                .cta {
+                    font-family: $sans_bold_font;
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+}
+
+/* @end */
+
+/* @group Sidebar Pull Quotes and Footnotes */
+
+aside .pull_quote,
+span .pull_quote {
+    border: none;
+}
+
+.inline_wrapper {
+    .pullquote {
+        display: none;
+    }
+    .footnote{
+        display: block;
+    }
+}
+
+aside.footnote_position,
+aside.pull_quote_position {
+    display: none;
+}
+
+.sidebar_pullquote p {
+    margin: 0 0 0;
+    padding: 0 4px 0;
+    font-size: 19px;
+    line-height: 24px;
+    text-indent: -7px;
+    -webkit-font-smoothing: antialiased;
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    hyphens: auto;
+}
+
+.sidebar_footnote {
+    .notenumber {
+        float: left;
+        width: 5%;
+        margin: 0;
+        padding: 0 3px 0 0;
+        font-size: 100%;
+        font-family: $sans_bold_font;
+        font-weight: bold;
+    }
+    .notebody {
+        width: 90%;
+        float: left;
+        font-size: 10px;
+        line-height: 12px;
+    }
+}
+
+.footnote_position {
+    position: relative;
+    top: -5px;
+}
+
+.footnote_link {
+    text-decoration:none;
+    background:none;
+    font-size: 70%;
+    font-family: $sans_bold_font;
+    font-weight: bold;
+}
+
+/* @end */
+
+/* @group Lightbox */
+
+/*
+    ColorBox Core Style:
+    The following CSS is consistent between example themes and should not be altered.
+*/
+#colorbox, #cboxOverlay, #cboxWrapper{position:absolute; top:0; left:0; z-index:9999; overflow:hidden;}
+#cboxOverlay{position:fixed; width:100%; height:100%;}
+#cboxMiddleLeft, #cboxBottomLeft{clear:left;}
+#cboxContent{position:relative;}
+#cboxLoadedContent{overflow:auto;}
+#cboxTitle{margin:0;}
+#cboxLoadingOverlay, #cboxLoadingGraphic{position:absolute; top:0; left:0; width:100%; height:100%;}
+#cboxPrevious, #cboxNext, #cboxClose, #cboxSlideshow{cursor:pointer;}
+.cboxPhoto{float:left; margin:auto; border:0; display:block; max-width:none;}
+.cboxIframe{width:100%; height:100%; display:block; border:0;}
+#colorbox, #cboxContent, #cboxLoadedContent{box-sizing:content-box; -moz-box-sizing:content-box; -webkit-box-sizing:content-box;}
+
+/* 
+    User Style:
+    Change the following styles to modify the appearance of ColorBox.   They are
+    ordered & tabbed in a way that represents the nesting of the generated HTML.
+*/
+
+#cboxOverlay {
+    background-color: $main_color;
+}
+
+#colorbox {
+    position: fixed;
+    margin-top: -20px;
+}
+
+#colorbox,
+#cboxOverlay,
+#cboxWrapper {
+    overflow: visible;
+}
+
+#cboxLoadingOverlay {
+    background: url(http://cdn.walkerartcenter.org/static/img/loading.gif) center center no-repeat;
+}
+
+#cboxLoadedContent {
+    background: $main_bg;
+    -webkit-box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.6);
+    -moz-box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.6);
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.6);
+}
+
+#cboxTitle {
+    margin: 10px 0;
+    width: 100%;
+    color: $inverse_color;
+    text-align: center;
+    
+    .title {
+        margin-bottom: 6px;
+        @include feature_type;
+
+        em {
+            font-family: $serif_font;
+        }
+        
+        a {
+            color: $inverse_color;
+        }
+    }
+    
+    .body a,
+    .credit a {
+        color: $inverse_color;
+        text-decoration: underline;
+    }
+    
+    a:hover {
+        color: $highlight;
+    }
+}
+
+#cboxClose {
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+#cboxPrevious {
+    left: -22px;
+    background: #222 url(http://cdn.walkerartcenter.org/static/img/content_sprite.png) 0 -232px no-repeat;
+    
+    &:hover {
+        background: $main_bg url(http://cdn.walkerartcenter.org/static/img/content_sprite.png) 0 0 no-repeat;
+    }
+}
+
+#cboxNext {
+    right: -22px;
+    background: #222 url(http://cdn.walkerartcenter.org/static/img/content_sprite.png) 0 -261px no-repeat;
+    
+    &:hover {
+        background-color: $main_bg;
+        background: $main_bg url(http://cdn.walkerartcenter.org/static/img/content_sprite.png) 0 -29px no-repeat;
+    }
+}
+
+#cboxPrevious, #cboxNext {
+    position: absolute;
+    top: 49%;
+    width: 19px;
+    height: 19px;
+    color: $inverse_color;
+    font-size: 10px;
+    line-height: 12px;
+    overflow: hidden;
+    @include rounded;
+}
+
+#cboxCurrent {
+    display: none !important;
+}
+
+/* @end */
+
+/* @group Non-semantic Helper Classes */
+
+.clear {
+    line-height: 1px;
+    clear: both;
+}
+
+.shadowed {
+    -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+    -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+.clearfix:before,
+.clearfix:after {
+    content: "";
+    display: table;
+
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+/* @end */
+
+/* @group Print */
+
+@media print {
+    * {
+        background: transparent !important;
+        color: black !important;
+        text-shadow: none !important;
+        filter: none !important;
+        -ms-filter: none !important;
+    }
+    
+    #extras,
+    #header_container,
+    #promoted,
+    .sidebar,
+    #related,
+    #footer_container,
+    #branding {
+        display: none;
+    }
+    
+    #main {
+        margin: 0 !important;
+    }
+    
+    pre, blockquote {
+        page-break-inside: avoid;
+    }
+    
+    thead {
+        display: table-header-group;
+    }
+    
+    tr, img {
+        page-break-inside: avoid;
+    }
+    
+    img {
+        max-width: 100% !important;
+    }
+    
+    @page {
+        margin: 0.5cm;
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+        page-break-after: avoid;
+    }
+}
+
+div.jp-progress-container {
+    /* for mobile */
+    width:119px;
+}
+
+div.jp-audio div.jp-type-single div.jp-progress {
+    /* for mobile */
+    width:117px; 
+}
+
+/* @end */
+
+/* @group Retina Graphics */
+
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+only screen and (-o-min-device-pixel-ratio: 3/2),
+only screen and (min--moz-device-pixel-ratio: 1.5),
+only screen and (min-device-pixel-ratio: 1.5) {
+        
+    h1 .breadcrumb,
+    h2 .view_all,
+    .show_more,
+    .show_more:hover,
+    .hide_more,
+    .hide_more:hover,
+    .arrows a.previous,
+    .arrows a.next,
+    .tile_container .social_meta span.comments,
+    .tile_container .social_meta span.likes,
+    .tile_wall_container .social_meta span.comments,
+    .tile_wall_container .social_meta span.likes,
+    .tile_container .tile_arrows a.previous,
+    .tile_container .tile_arrows a.next,
+    .tile_wall_container .tile_arrows a.previous,
+    .tile_wall_container .tile_arrows a.next,
+    .program_accordion h2 .view_all,
+    .toggle li a.active,
+    #related #related_visibility,
+    .media .media_arrows a.previous,
+    .media .media_arrows a.next, 
+    .slideshow .media_arrows a.previous,
+    .slideshow .media_arrows a.next,
+    .sidebar #date_picker,
+    .sidebar #date_picker:hover,
+    .sidebar #date_picker:focus,
+    .ui-datepicker .ui-datepicker-prev,
+    .inverted .ui-datepicker .ui-datepicker-prev,
+    .ui-datepicker .ui-datepicker-next,
+    .inverted .ui-datepicker .ui-datepicker-next,
+    #cboxPrevious,
+    #cboxPrevious:hover,
+    #cboxNext,
+    #cboxNext:hover {
+        background-image: url(http://cdn.walkerartcenter.org/static/img/content_sprite@2x.png);
+        -moz-background-size: 19px 609px;
+        -ie-background-size: 19px 609px;
+        -o-background-size: 19px 609px;
+        -webkit-background-size: 19px 609px;
+        background-size: 19px 609px;
+    }
+    
+    h1 .breadcrumb {
+        background-image: url(http://cdn.walkerartcenter.org/static/img/content_sprite@2x.png) !important;
+    }
+    
+    h2 .pager_container a {
+        background-image: url(http://cdn.walkerartcenter.org/static/img/pager_inverse@2x.png);
+        -moz-background-size: 9px 63px;
+        -ie-background-size: 9px 63px;
+        -o-background-size: 9px 63px;
+        -webkit-background-size: 9px 63px;
+        background-size: 9px 63px;
+    }
+    
+    h2.inverse .pager_container a,
+    .slideshow .media_status .pager_container a {
+        background-image: url(http://cdn.walkerartcenter.org/static/img/pager@2x.png);
+        -moz-background-size: 9px 63px;
+        -ie-background-size: 9px 63px;
+        -o-background-size: 9px 63px;
+        -webkit-background-size: 9px 63px;
+        background-size: 9px 63px;
+    }
+    
+    h2 .pager_container a.video_pager {
+        background-image: url(http://cdn.walkerartcenter.org/static/img/pager_video@2x.png);
+        -moz-background-size: 9px 63px;
+        -ie-background-size: 9px 63px;
+        -o-background-size: 9px 63px;
+        -webkit-background-size: 9px 63px;
+        background-size: 9px 63px;
+    }
+    
+    h2.alternate .pager_container a,
+    .slideshow .media_status .pager_container a {
+        background-image: url(http://cdn.walkerartcenter.org/static/img/pager_inverse@2x.png);
+        -moz-background-size: 9px 63px;
+        -ie-background-size: 9px 63px;
+        -o-background-size: 9px 63px;
+        -webkit-background-size: 9px 63px;
+        background-size: 9px 63px;
+    }
+    
+    .video_overlay {
+        background-image: url(http://cdn.walkerartcenter.org/static/img/video_play_small@2x.png);
+        -moz-background-size: 36px 36px;
+        -ie-background-size: 36px 36px;
+        -o-background-size: 36px 36px;
+        -webkit-background-size: 36px 36px;
+        background-size: 36px 36px;
+    }
+    
+    a:hover .video_overlay {
+        background-image: url(http://cdn.walkerartcenter.org/static/img/video_play_small_hover@2x.png);
+        -moz-background-size: 36px 36px;
+        -ie-background-size: 36px 36px;
+        -o-background-size: 36px 36px;
+        -webkit-background-size: 36px 36px;
+        background-size: 36px 36px;
+    }
+    
+    .media h2 .rotated a .video_overlay {
+        background-image: url(http://cdn.walkerartcenter.org/static/img/video_play_large@2x.png);
+        -moz-background-size: 64px 64px;
+        -ie-background-size: 64px 64px;
+        -o-background-size: 64px 64px;
+        -webkit-background-size: 64px 64px;
+        background-size: 64px 64px;
+    }
+    
+    .media h2 .rotated a:hover .video_overlay {
+        background-image: url(http://cdn.walkerartcenter.org/static/img/video_play_large_hover@2x.png);
+        -moz-background-size: 64px 64px;
+        -ie-background-size: 64px 64px;
+        -o-background-size: 64px 64px;
+        -webkit-background-size: 64px 64px;
+        background-size: 64px 64px;
+    }
+    
+    .twitter .info {
+        background-image: url(http://cdn.walkerartcenter.org/static/img/twitter_bg@2x.png);
+        -moz-background-size: 220px 22px;
+        -ie-background-size: 220px 22px;
+        -o-background-size: 220px 22px;
+        -webkit-background-size: 220px 22px;
+        background-size: 220px 22px;
+    }
+    
+    #meta dt.buy {
+        background-image: url(http://cdn.walkerartcenter.org/static/img/meta_tickets@2x.png);
+        -moz-background-size: 14px 10px;
+        -ie-background-size: 14px 10px;
+        -o-background-size: 14px 10px;
+        -webkit-background-size: 14px 10px;
+        background-size: 14px 10px;
+    }
+    
+    h1.intro a,
+    article a,
+    article hgroup h1 a,
+    article hgroup h2 a,
+    article hgroup h3 a,
+    article hgroup h4 a,
+    article hgroup h5 a,
+    article hgroup h6 a,
+    article hgroup h1 a:hover,
+    article hgroup h2 a:hover,
+    article hgroup h3 a:hover,
+    article hgroup h4 a:hover,
+    article hgroup h5 a:hover,
+    article hgroup h6 a:hover,
+    article h1 a,
+    article h2 a,
+    article h3 a,
+    article h4 a,
+    article h5 a,
+    article h6 a,
+    article h1 a:hover,
+    article h2 a:hover,
+    article h3 a:hover,
+    article h4 a:hover,
+    article h5 a:hover,
+    article h6 a:hover,
+    .results_container > div a.contents h1 span,
+    .results_container > div a.contents:hover h1 span,
+    .landing_nav li a:hover .title span,
+    .landing_nav li a .title span,
+    .homepage .showcase .highlight .info > p a,
+    .homepage .showcase .highlight .info > p a:hover {
+        background-image: url(http://cdn.walkerartcenter.org/static/img/a_sprite@2x.png);
+        -moz-background-size: 1px 900px;
+        -ie-background-size: 1px 900px;
+        -o-background-size: 1px 900px;
+        -webkit-background-size: 1px 900px;
+        background-size: 1px 900px;
+    }
+    
+    #branding.day_0,
+    #branding.day_4 {
+        background-image: url(http://cdn.walkerartcenter.org/static/img/branding_stripe_1@2x.png);
+        -moz-background-size: 20px 1553px;
+        -ie-background-size: 20px 1553px;
+        -o-background-size: 20px 1553px;
+        -webkit-background-size: 20px 1553px;
+        background-size: 20px 1553px;
+    }
+    
+    #branding.day_1,
+    #branding.day_5 {
+        background-image: url(http://cdn.walkerartcenter.org/static/img/branding_stripe_2@2x.png);
+        -moz-background-size: 20px 1549px;
+        -ie-background-size: 20px 1549px;
+        -o-background-size: 20px 1549px;
+        -webkit-background-size: 20px 1549px;
+        background-size: 20px 1549px;
+    }
+    
+    #branding.day_2,
+    #branding.day_6 {
+        background-image: url(http://cdn.walkerartcenter.org/static/img/branding_stripe_3@2x.png);
+        -moz-background-size: 20px 1549px;
+        -ie-background-size: 20px 1549px;
+        -o-background-size: 20px 1549px;
+        -webkit-background-size: 20px 1549px;
+        background-size: 20px 1549px;
+    }
+    
+    #branding.day_3 {
+        background-image: url(http://cdn.walkerartcenter.org/static/img/branding_stripe_4@2x.png);
+        -moz-background-size: 20px 1551px;
+        -ie-background-size: 20px 1551px;
+        -o-background-size: 20px 1551px;
+        -webkit-background-size: 20px 1551px;
+        background-size: 20px 1551px;
+    }
+    
+    #footer_container footer #footer_teaser,
+    #footer_container footer nav,
+    #footer_container footer .social_media li a {
+        background-image: url(http://cdn.walkerartcenter.org/static/img/header_footer_sprite@2x.png);
+        -moz-background-size: 1100px 1072px;
+        -ie-background-size: 1100px 1072px;
+        -o-background-size: 1100px 1072px;
+        -webkit-background-size: 1100px 1072px;
+        background-size: 1100px 1072px;
+    }
+    
+}
+
+/* @end */
+

@@ -1,0 +1,902 @@
+@import "style";
+@import "base";
+
+/* @group Global  */
+
+html,
+body {
+    height: 100%;
+}
+
+/* @group Extras */
+
+#extras {
+    position: fixed;
+    top: 214px;
+    left: 13px;
+    z-index: 9998;
+    color: #a3a3a3;
+    
+    a {
+        padding: 0 1px 0 2px;
+        color: #a3a3a3;
+    }
+    
+    > ul {
+        margin-bottom: 12px;
+        
+        > li {
+            margin-bottom: 3px;
+        }
+    }
+    
+    .programs {
+        padding-top: 20px;
+        background: url(http://www.walkerart.org/static/img/program_eye.png) 1px 0 no-repeat;
+        
+        li {
+            a {
+                display: block;
+                position: relative;
+                border-width: 0;
+                text-align: left;
+            
+                &:hover {
+                    width: auto;
+                    margin: -1px;
+                    border-width: 1px;
+                }
+            }
+        
+            &.design .program:hover {
+                @include program($design_color);
+            }
+
+            &.education .program:hover {
+                @include program($education_color);
+            }
+
+            &.film .program:hover {
+                @include program($film_color);
+            }
+
+            &.new_media .program:hover {
+                @include program($new_media_color);
+            }
+
+            &.performing_arts .program:hover {
+                @include program($performing_arts_color);
+            }
+
+            &.visual_arts .program:hover {
+                @include program($visual_arts_color);
+            }
+        }
+    }
+}
+
+/* @end */
+
+/* @group Promoted */
+
+#promoted {
+    background-image: url(http://www.walkerart.org/static/img/line_grid_3.png);
+    height: 89px;
+    
+    > div {
+        position: relative;
+        
+        .program {
+            top: 9px;
+            background: $main_bg;
+        }
+
+        a.contents {
+            display: block;
+            height: 73px;
+            padding: 8px 5px;
+        
+            &:active {
+                background-color: $highlight;
+            }
+        
+            .thumb {
+                background-position: center center;
+                height: 72px;
+                width: 72px;
+                float: left;
+                margin-right: 12px;
+                -webkit-border-radius: 36px;
+                -moz-border-radius: 36px;
+                border-radius: 36px;
+            }
+
+            hgroup {
+                float: left;
+                width: 126px;
+                padding-top: 2px;
+            
+                h2 {
+                    height: auto;
+                    padding: 0;
+                    margin: 0 0 2px;
+                    background: none;
+                    color: #a3a3a3;
+                    @include quiet_type;
+                }
+                
+                h1 {
+                    margin: 0;
+                    padding: 0;
+                    font-family: $sans_regular_font;
+                    font-weight: normal;
+                    font-size: 12px;
+                    line-height: 16px;
+                    -webkit-font-smoothing: subpixel-antialiased;
+                    
+                    em {
+                        font-family: $sans_italic_font;
+                    }
+                }
+
+                img {
+                    margin-top: 1px;
+                }
+            }
+        }
+        
+        &.design a.contents:hover {
+            @include program_coloring($design_color, #f9f9f9);
+        }
+        
+        &.education a.contents:hover {
+            @include program_coloring($education_color, #f9f9f9);
+        }
+        
+        &.film a.contents:hover {
+            @include program_coloring($film_color, #f9f9f9);
+        }
+        
+        &.new_media a.contents:hover {
+            @include program_coloring($new_media_color, #f9f9f9);
+        }
+        
+        &.performing_arts a.contents:hover {
+            @include program_coloring($performing_arts_color, #f9f9f9);
+        }
+    
+        &.visual_arts a.contents:hover {
+            @include program_coloring($visual_arts_color, #f9f9f9);
+        }
+    }
+}
+
+/* @end */
+
+/* @group Header */
+
+#header_container {
+    position: absolute;
+    top: 93px;
+    left: 0;
+    z-index: 999;
+    width: 100%;
+
+    .fixed_header & {
+        position: fixed;
+        top: 0;
+        left: 0;
+    }
+
+    header {
+        position: relative;
+        padding-top: 6px;
+        margin: 0 auto;
+        width: 940px;
+        height: 59px;
+        border-bottom: 1px dotted $divider_color;
+        background: $main_bg;
+
+        > h1 {
+            margin: 0;
+            padding: 0;
+            
+            a {
+                display: block;
+                float: left;
+                width: 213px;
+                height: 38px;
+                margin: 7px 29px 0 3px;
+                background: url(http://www.walkerart.org/static/img/header_footer_sprite.png) no-repeat;
+                text-indent: 100%;
+                white-space: nowrap;
+                overflow: hidden;
+            }
+        }
+
+        .weather {
+            position: absolute;
+            top: 13px;
+            left: 240px;
+            width: 700px;
+            color: #a3a3a3;
+            line-height: 12px;
+            
+            span {
+                display: block;
+                float: left;
+                height: 13px;
+                padding: 0 5px;
+            }
+            
+            .conditions {
+                margin-left: 8px;
+                padding-left: 19px;
+            }
+            
+            .conditions_0, .conditions_1, .conditions_2, .conditions_3, .conditions_4, .conditions_37, .conditions_38, .conditions_39, .conditions_45, .conditions_47 {
+                background: url(http://www.walkerart.org/static/img/header_footer_sprite.png) 0 -740px no-repeat; //storm
+            }
+            
+            .conditions_5, .conditions_6, .conditions_7, .conditions_8, .conditions_9, .conditions_10, .conditions_11, .conditions_12, .conditions_17, .conditions_18, .conditions_35, .conditions_40 {
+                background: url(http://www.walkerart.org/static/img/header_footer_sprite.png) 0 -704px no-repeat; //rain
+            }
+            
+            .conditions_13, .conditions_14, .conditions_15, .conditions_16, .conditions_41, .conditions_42, .conditions_43, .conditions_46 {
+                background: url(http://www.walkerart.org/static/img/header_footer_sprite.png) 0 -722px no-repeat; //snow
+            }
+            
+            .conditions_19, .conditions_25, .conditions_26, .conditions_27, .conditions_28, .conditions_29, .conditions_30, .conditions_44 {
+                background: url(http://www.walkerart.org/static/img/header_footer_sprite.png) 0 -668px no-repeat; //clouds
+            }
+            
+            .conditions_20, .conditions_21, .conditions_22, .conditions_23, .conditions_24 {
+                background: url(http://www.walkerart.org/static/img/header_footer_sprite.png) 0 -686px no-repeat; //fog
+            }
+            
+            .conditions_31, .conditions_32, .conditions_33, .conditions_34, .conditions_36 {
+                background: url(http://www.walkerart.org/static/img/header_footer_sprite.png) 0 -758px no-repeat; //sun
+            }
+            
+            .attribution {
+                display: none;
+                padding-top: 1px;
+                @include quiet_type;
+                line-height: 10px;
+                
+                a {
+                    color: #a3a3a3;
+                    
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* @end */
+
+/* @group Navigation */
+
+header > nav {
+    position: absolute;
+    top: 27px;
+    left: 245px;
+    width: 690px;
+
+    ul li.top_level_nav {
+        float: left;
+    }
+
+    ul li a.top_level_nav {
+        display: block;
+        height: 32px;
+        text-indent: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
+    li#visit {
+        background: url(http://www.walkerart.org/static/img/header_footer_sprite.png) -243px 10px no-repeat;
+        
+        > a {
+            width: 88px; /* +23 */
+        }
+        
+        &.inactive {
+            background-position: -243px -32px;
+        }
+        
+        &.active {
+            background-position: -243px -72px;
+        }
+    }
+
+    li#exhibitions_events {
+        background: url(http://www.walkerart.org/static/img/header_footer_sprite.png) -338px 10px no-repeat;
+        
+        > a {
+            width: 245px; /* +23 */
+        }
+
+        &.inactive {
+            background-position: -338px -32px;
+        }
+
+        &.active {
+            background-position: -338px -72px;
+        }
+    }
+
+    li#media {
+        background: url(http://www.walkerart.org/static/img/header_footer_sprite.png) -590px 10px no-repeat;
+
+        > a {
+            width: 97px; /* +22 */
+        }
+
+        &.inactive {
+            background-position: -590px -32px;
+        }
+
+        &.active {
+            background-position: -590px -72px;
+        }
+    }
+
+    li#collections {
+        background: url(http://www.walkerart.org/static/img/header_footer_sprite.png) -695px 10px no-repeat;
+        
+        > a {
+            width: 162px; /* +22 */
+        }
+
+        &.inactive {
+            background-position: -695px -32px;
+        }
+
+        &.active {
+            background-position: -695px -72px;
+        }
+    }
+
+    li#join {
+        background: url(http://www.walkerart.org/static/img/header_footer_sprite.png) -865px 10px no-repeat;
+        
+        > a {
+            width: 82px; /* +22 */
+        }
+
+        &.inactive {
+            background-position: -865px -32px;
+        }
+
+        &.active {
+            background-position: -865px -72px;
+        }
+    }
+}
+
+.subnav {
+    display: none;
+    position: absolute;
+    top: 32px;
+    left: -15px;
+    width: 720px;
+    height: 258px;
+    padding-top: 10px;
+    z-index: 100;
+    color: #999;
+    background: #222 url(http://www.walkerart.org/static/img/header_footer_sprite.png) 240px -370px no-repeat;
+    @include rounded;
+    -webkit-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.6);
+    -moz-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.6);
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.6);
+
+    #media &,
+    #collections &,
+    #join & {
+        background-position: 480px -370px;
+    }
+
+    nav {
+        min-height: 248px;
+        
+        > ul > li {
+            clear: both;
+            
+            > a {
+                display: block;
+                height: 26px;
+                text-indent: 100%;
+                white-space: nowrap;
+                overflow: hidden;
+                background-repeat: no-repeat;
+                @include rounded;
+
+                &:hover {
+                    background-color: #555;
+                }
+
+                &:active {
+                    background-color: #777;
+                }
+
+                #visit & {
+                    background-image: url(http://www.walkerart.org/static/img/header_footer_sprite.png);
+                    
+                    &.nav_1 {
+                        background-position: 0 -126px;
+                    }
+                    
+                    &.nav_2 {
+                        background-position: 0 -152px;
+                    }
+
+                    &.nav_3 {
+                        background-position: 0 -178px;
+                    }
+
+                    &.nav_4 {
+                        background-position: 0 -204px;
+                    }
+
+                    &.nav_5 {
+                        background-position: 0 -230px;
+                    }
+
+                    &.nav_6 {
+                        height: 42px;
+                        background-position: 0 -256px;
+                    }
+
+                    &.nav_7 {
+                        background-position: 0 -298px;
+                    }
+                }
+                
+                #exhibitions_events & {
+                    background-image: url(http://www.walkerart.org/static/img/header_footer_sprite.png);
+                    
+                    &.nav_1 {
+                        background-position: -220px -126px;
+                    }
+                    
+                    &.nav_2 {
+                        height: 42px;
+                        background-position: -220px -152px;
+                    }
+                    
+                    &.nav_3 {
+                        background-position: -220px -194px;
+                    }
+                    
+                    &.nav_4 {
+                        background-position: -220px -220px;
+                    }
+                    
+                    &.nav_5 {
+                        height: 42px;
+                        background-position: -220px -246px;
+                    }
+                }
+                
+                #media & {
+                    background-image: url(http://www.walkerart.org/static/img/header_footer_sprite.png);
+                    
+                    &.nav_1 {
+                        height: 42px;
+                        background-position: -440px -126px;
+                    }
+                    
+                    &.nav_2 {
+                        background-position: -440px -168px;
+                    }
+                    
+                    &.nav_3 {
+                        background-position: -440px -194px;
+                    }
+                    
+                    &.nav_4 {
+                        background-position: -440px -220px;
+                    }
+                }
+                
+                #collections & {
+                    background-image: url(http://www.walkerart.org/static/img/header_footer_sprite.png);
+                    
+                    &.nav_1 {
+                        background-position: -660px -126px;
+                    }
+                    
+                    &.nav_2 {
+                        background-position: -660px -152px;
+                    }
+
+                    &.nav_3 {
+                        height: 42px;
+                        background-position: -660px -178px;
+                    }
+                }
+                
+                #join & {
+                    background-image: url(http://www.walkerart.org/static/img/header_footer_sprite.png);
+                    
+                    &.nav_1 {
+                        background-position: -880px -126px;
+                    }
+                    
+                    &.nav_2 {
+                        background-position: -880px -152px;
+                    }
+                    
+                    &.nav_3 {
+                        background-position: -880px -178px;
+                    }
+                }
+            }
+        }
+        
+        ul ul {
+            overflow: hidden;
+            margin-bottom: 4px;
+            
+            li {
+                float: left;
+                clear: none;
+                width: 110px;
+                
+                a {
+                    display: block;
+                    color: #999;
+                    padding: 1px 6px 3px;
+                    font-family: $sans_regular_font;
+                    text-transform: none;
+                    font-size: 12px;
+                    @include no_break;
+                    -webkit-font-smoothing: subpixel-antialiased;
+                    
+                    &:hover {
+                        background-color: transparent;
+                        color: $inverse_color;
+                    }
+                }
+            }
+        }
+    }
+    
+    .aux {
+        padding: 0;
+        
+        p {
+            padding: 0 5px;
+        }
+        
+        h2 {
+            position: relative;
+            clear: both;
+            height: 15px;
+            padding: 4px 5px 0;
+            margin: 9px 0;
+            background: #999;
+            @include quiet_type;
+            color: $inverse_bg;
+            @include no_break;
+            @include rounded;
+
+            a {
+                font-family: $sans_bold_font;
+                font-weight: bold;
+            }
+        }
+
+        a {
+            color: #999;
+            
+            &:hover {
+                color: $inverse_color;
+            }
+        }
+
+        .aux_column {
+            float: left;
+            width: 204px;
+            margin-right: 20px;
+            padding: 0 8px;
+        }
+
+        .last {
+            margin-right: 0;
+        }
+    }
+    
+    .premier_partners {
+        display: block;
+        width: 460px;
+        height: 51px;
+        background: url(../img/premier_partners_inverse.png) no-repeat;
+    }
+}
+
+/* @end */
+
+/* @group Navigation: Sections */
+
+#visit .subnav .aux #map {
+    clear: both;
+    width: 460px;
+    height: 200px;
+    margin-bottom: 12px;
+    color: #111;
+    -webkit-font-smoothing: subpixel-antialiased;
+    
+    span,
+    a {
+        background-color: transparent;
+        @include quiet_type;
+        color: #111 !important;
+    }
+    
+    a {
+        text-decoration: underline;
+    }
+}
+
+#exhibitions_events .subnav .aux,
+#media .subnav .aux,
+#collections .subnav .aux {
+    text-align: center;
+    -webkit-font-smoothing: subpixel-antialiased;
+    
+    .nav_promo {
+        display: block;
+        position: relative;
+        width: 460px;
+        height: 247px;
+        margin-bottom: 12px;
+        @include rounded;
+        
+        hgroup {
+            display: block;
+            position: absolute;
+            bottom: 9px;
+            left: 9px;
+            right: 9px;
+            padding-bottom: 10px;
+            color: $inverse_color;
+            background: rgba(34, 34, 34, 0.65);
+            @include rounded;
+            
+            .no-rgba & {
+                background: $inverse_bg;
+            }
+            
+            em {
+                font-family: $serif_font;
+            }
+        }
+        
+        &:hover hgroup {
+            background: rgba(34, 34, 34, 0.85);
+        }
+    }
+    
+    h3 {
+        margin: 10px 0 3px 1px;
+        @include quiet_type;
+        overflow: hidden;
+        @include no_break;
+    }
+
+    h1 {
+        margin: 0 12px;
+        padding-bottom: 1px; /* fixes cut-off descender */
+        @include feature_type;
+        -webkit-font-smoothing: subpixel-antialiased;
+    }
+}
+
+#join .subnav .aux .nav_promo {
+    width: 460px;
+    height: 158px;
+    margin-bottom: 10px;
+    background: url(http://www.walkerart.org/static/img/nav_join_image.jpg) no-repeat;
+    @include rounded;
+}
+
+/* @end */
+
+/* @group Search */
+
+#search {
+    position: absolute;
+    right: 0;
+    width: 18px;
+    height: 30px;
+    margin-right: 0;
+    overflow: hidden;
+    background: url(http://www.walkerart.org/static/img/header_footer_sprite.png) -955px 9px no-repeat;
+    cursor: pointer;
+
+    &.inactive {
+        background-position: -955px -33px;
+    }
+
+    &.active {
+        background-position: -955px -73px;
+    }
+
+    &.expanded {
+        border-bottom: 2px solid $main_color;
+        background-color: #f9f9f9 !important;
+    }
+
+    input {
+        width: 660px;
+        margin-left: 20px;
+        padding: 4px 4px 0;
+        border: none;
+        color: $main_color;
+        background-color: transparent;
+        font-size: 22px;
+        line-height: 22px;
+        -webkit-font-smoothing: antialiased;
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+        
+        &:focus {
+            outline: none;
+        }
+    }
+}
+
+#results_container {
+    position: absolute;
+    top: 59px;
+    left: 240px;
+}
+
+.ui-autocomplete {
+    width: 690px;
+    padding: 0 5px 5px;
+    background: $main_bg;
+    
+    li a {
+        position: relative;
+        display: block;
+        width: 534px;
+        padding: 5px 148px 5px 8px;
+        border-bottom: 1px dotted $divider_color;
+        background: $main_bg;
+        font-size: 21px;
+        line-height: 26px;
+        -webkit-font-smoothing: antialiased;
+        cursor: pointer;
+        @include no_break;
+        
+        &:hover,
+        &.ui-state-hover {
+            background: $highlight;
+            color: $main_color;
+        }
+    }
+}
+
+/* @end */
+
+/* @group Layout */
+
+#main {
+    position: relative;
+    width: 100%;
+    margin: 70px 0 246px;
+    padding-top: 9px;
+    
+    .simple & {
+        margin: 10px 0;
+        padding-top: 0;
+    }
+}
+
+/* @end */
+
+/* @group Announcement */
+
+#announcement {
+    display: block;
+    width: 932px;
+    margin: -9px auto 9px;
+    padding: 1px 4px 4px;
+    color: $inverse_color !important;
+    font-size: 16px;
+    line-height: 17px;
+    text-align: center;
+    @include rounded;
+    -webkit-box-shadow: inset 0 1px 2px 1px rgba(0, 0, 0, 0.15);
+    box-shadow: inset 0 1px 2px 1px rgba(0, 0, 0, 0.15);
+    background: #eaa941;
+    background: -moz-linear-gradient(top, #E28E06 0%, #dc8100 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#E28E06), color-stop(100%,#dc8100));
+    background: -webkit-linear-gradient(top, #E28E06 0%,#dc8100 100%);
+    background: -o-linear-gradient(top, #E28E06 0%,#dc8100 100%);
+    background: -ms-linear-gradient(top, #E28E06 0%,#dc8100 100%);
+    background: linear-gradient(top, #E28E06 0%,#dc8100 100%);
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.15);
+    -webkit-font-smoothing: antialiased;
+    
+    a {
+        display: block;
+        color: $inverse_color !important;
+    }
+}
+
+/* @end */
+
+/* @group Retina Graphics */
+
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+only screen and (-o-min-device-pixel-ratio: 3/2),
+only screen and (min--moz-device-pixel-ratio: 1.5),
+only screen and (min-device-pixel-ratio: 1.5) {
+        
+    #header_container header > h1 a,
+    .conditions,
+    header > nav li#visit,
+    header > nav li#exhibitions_events,
+    header > nav li#media,
+    header > nav li#collections,
+    header > nav li#join,
+    .subnav,
+    #visit .subnav nav > ul > li > a,
+    #exhibitions_events .subnav nav > ul > li > a,
+    #media .subnav nav > ul > li > a,
+    #collections .subnav nav > ul > li > a,
+    #join .subnav nav > ul > li > a,
+    #search,
+    #footer_container footer #footer_teaser,
+    #footer_container footer nav,
+    #footer_container footer .social_media li a {
+        background-image: url(http://www.walkerart.org/static/img/header_footer_sprite@2x.png);
+        -moz-background-size: 1100px 1072px;
+        -ie-background-size: 1100px 1072px;
+        -o-background-size: 1100px 1072px;
+        -webkit-background-size: 1100px 1072px;
+        background-size: 1100px 1072px;
+    }
+    
+    .conditions {
+        background-image: url(http://www.walkerart.org/static/img/header_footer_sprite@2x.png) !important;
+    }
+    
+    #promoted .thumb {
+        -moz-background-size: 72px 72px;
+        -ie-background-size: 72px 72px;
+        -o-background-size: 72px 72px;
+        -webkit-background-size: 72px 72px;
+        background-size: 72px 72px;
+    }
+    
+    #extras .programs {
+        background-image: url(http://www.walkerart.org/static/img/program_eye@2x.png);
+        -moz-background-size: 15px 10px;
+        -ie-background-size: 15px 10px;
+        -o-background-size: 15px 10px;
+        -webkit-background-size: 15px 10px;
+        background-size: 15px 10px;
+    }
+    
+    .subnav .premier_partners {
+        background-image: url(http://www.walkerart.org/static/img/premier_partners_inverse@2x.png);
+        -moz-background-size: 460px 51px;
+        -ie-background-size: 460px 51px;
+        -o-background-size: 460px 51px;
+        -webkit-background-size: 460px 51px;
+        background-size: 460px 51px;
+    }
+    
+}
+
+/* @end */
