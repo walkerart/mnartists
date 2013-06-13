@@ -226,6 +226,10 @@
 		<li><a href="#">MN Artists</a></li>
 		<li class="user-tab"><a href="#">Login</a></li>
 	</ul>
+	<p class="site-description">
+		Make your own MN Artists homepage by filtering communities and content.
+	</p>
+		
 	<!-- region: Menu -->
     <?php print render($page['menu']); ?>
 </div>
