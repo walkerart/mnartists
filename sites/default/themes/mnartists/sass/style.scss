@@ -4814,29 +4814,31 @@ body.admin-menu #menu {
 	.block {
 		margin-bottom:0px;
 	}
-}
-ul.mega-tabs {
-	width:100%;
-	position:relative;
-	
-	li {
-		width:50%;
-		display:inline-block;
-		float:left;
+	ul.mega-tabs {
+		width:100%;
+		position:relative;
 		
-		a {
-			display:block;
+		li {
+			width:50%;
+			display:inline-block;
+			float:left;
+			
+			a {
+				display:block;
+			}
+		}
+		li.user-tab {
+			background:#333;
+			border-bottom-left-radius:5px;
+			
+			a {
+				color:#e5e5e5;
+				line-height:1.4em;
+			}
 		}
 	}
-	li.user-tab {
-		background:#333;
-		border-bottom-left-radius:5px;
-		
-		a {
-			color:#e5e5e5;
-		}
-	}
 }
+
 
 /* @end */
 
