@@ -136,10 +136,19 @@ hr {
 	left:0;
 	top:0;
 	width:200px;
-	background:$menu_bg;
 	min-height:100%;
 	height:auto;
 	padding-top:40px;
+}
+#menu:before {
+	position:absolute;
+	left:0;
+	top:0;
+	bottom:0;
+	width:200px;
+	background:$menu_bg;
+	position:fixed;
+	min-height:100%;
 }
 #menu ul {
 	margin:0;
