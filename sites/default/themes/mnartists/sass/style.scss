@@ -4777,39 +4777,13 @@ aside.pull_quote_position {
 	width:200px;
 	min-height:100%;
 	height:auto;
-	ul.mega-tabs {
-		width:100%;
-		position:relative;
-		
-		li {
-			width:50%;
-			display:inline-block;
-			float:left;
-			
-			a {
-				display:block;
-				line-height:2.4em;
-				font-weight:bold;
-				padding:0;
-				text-align:center;
-			}
-		}
-		li.user-tab {
-			background:#333;
-			border-bottom-left-radius:5px;
-			
-			a {
-				color:#e5e5e5;
-				
-			}
-		}
-	}
 }
 #menu ul {
 	margin:0;
 	padding:0;
 	list-style:none;
 	li {
+		margin:0;
 		
 		a {
 			display:block;
@@ -4826,6 +4800,34 @@ aside.pull_quote_position {
 	}
 	
 }
+#menu ul.mega-tabs {
+	width:100%;
+	position:relative;
+	
+	li {
+		width:50%;
+		display:inline-block;
+		float:left;
+		
+		a {
+			display:block;
+			line-height:2.4em;
+			font-weight:bold;
+			padding:0;
+			text-align:center;
+		}
+	}
+	li.user-tab {
+		background:#333;
+		border-bottom-left-radius:5px;
+		
+		a {
+			color:#e5e5e5;
+			
+		}
+	}
+}
+
 body.admin-menu #menu {
 	top:20px;
 }
