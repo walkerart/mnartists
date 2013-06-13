@@ -15,7 +15,7 @@ $(document).ready(function(){
         if( obj.is(':visible') ){tree.toggle();}
       });
       $(window).resize(function(){
-        if ( $(window).width() <= 570 ){tree.attr('style','');};
+        if ( $(window).width() <= 570 ){tree.attr('style','display:block');};
       });
     });
   };
