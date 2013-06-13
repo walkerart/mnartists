@@ -222,6 +222,10 @@
 
 </div> <!-- end page -->
 <div id="menu">
+	<ul class="mega-tabs">
+		<li><a href="#">MN Artists</a></li>
+		<li><a href="#">MN Artists</a></li>
+	</ul>
 	<!-- region: Menu -->
     <?php print render($page['menu']); ?>
 </div>
