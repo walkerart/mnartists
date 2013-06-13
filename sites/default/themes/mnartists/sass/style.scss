@@ -4777,43 +4777,6 @@ aside.pull_quote_position {
 	width:200px;
 	min-height:100%;
 	height:auto;
-}
-body.admin-menu #menu {
-	top:20px;
-}
-#menu:before {
-	position:absolute;
-	left:0;
-	top:0;
-	bottom:0;
-	width:200px;
-	background:$menu_bg;
-	position:fixed;
-	min-height:100%;
-	content:"";
-}
-#menu ul {
-	margin:0;
-	padding:0;
-	list-style:none;
-	li {
-		
-		a {
-			display:block;
-			margin:0;
-			padding:5px;
-			line-height:1em;
-			text-transform:uppercase;
-			font-size:12px;
-			color:#666;
-		}
-		li {
-			
-		}
-	}
-	.block {
-		margin-bottom:0px;
-	}
 	ul.mega-tabs {
 		width:100%;
 		position:relative;
@@ -4837,6 +4800,41 @@ body.admin-menu #menu {
 			}
 		}
 	}
+}
+#menu ul {
+	margin:0;
+	padding:0;
+	list-style:none;
+	li {
+		
+		a {
+			display:block;
+			margin:0;
+			padding:5px;
+			line-height:1em;
+			text-transform:uppercase;
+			font-size:12px;
+			color:#666;
+		}
+	}
+	.block {
+		margin-bottom:0px;
+	}
+	
+}
+body.admin-menu #menu {
+	top:20px;
+}
+#menu:before {
+	position:absolute;
+	left:0;
+	top:0;
+	bottom:0;
+	width:200px;
+	background:$menu_bg;
+	position:fixed;
+	min-height:100%;
+	content:"";
 }
 
 
