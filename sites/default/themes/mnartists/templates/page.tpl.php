@@ -224,7 +224,7 @@
 <div id="menu">
 	<ul class="mega-tabs">
 		<li><a href="#">MN Artists</a></li>
-		<li><a href="#">MN Artists</a></li>
+		<li class="user-tab"><a href="#">Login</a></li>
 	</ul>
 	<!-- region: Menu -->
     <?php print render($page['menu']); ?>
