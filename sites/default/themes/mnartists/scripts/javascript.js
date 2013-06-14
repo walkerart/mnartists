@@ -1,7 +1,4 @@
 /* DOCUMENT READY STUFF */
 $(document).ready(function(){
-	
+	try{Typekit.load();}catch(e){}
 });
-
-
-try{Typekit.load();}catch(e){}
