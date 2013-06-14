@@ -92,3 +92,9 @@ function mnartists_preprocess_block(&$vars) {
 function mnartists_process_block(&$vars) {
 }
 // */
+
+
+function hook_preprocess_page(&$vars) {
+	drupal_add_css('http://f.fontdeck.com/s/css/XlZhgFnikEdtiJMXs9Dy8eVyw+M/DOMAIN_NAME/5135.css', array('group' => CSS_THEME, 'type' => 'external'));
+	drupal_add_js('http://use.typekit.net/crg4gtx.js', 'external');
+}
