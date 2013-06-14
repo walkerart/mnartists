@@ -94,7 +94,6 @@
   <?php print render($page['leaderboard']); ?>
 
   <header<?php print $header_attributes; ?>>
-	  <a href="#menu" id="toggle">Menu</a>
     <?php if ($site_logo || $site_name || $site_slogan): ?>
       <!-- start: Branding -->
       <div<?php print $branding_attributes; ?>>
@@ -222,6 +221,7 @@
 
 </div> <!-- end page -->
 <div id="menu">
+	<a href="#" class="menu-trigger">menu</a>
 	<div class="menu-content">
 		<ul class="mega-tabs">
 			<li><a href="#">MN Artists</a></li>
