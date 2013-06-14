@@ -61,9 +61,7 @@
 <?php print $head; ?>
 <title><?php print $head_title; ?></title>
 <?php print $styles; ?>
-<link rel="stylesheet" href="http://f.fontdeck.com/s/css/XlZhgFnikEdtiJMXs9Dy8eVyw+M/imalab.us/5135.css" type="text/css" />
 <?php print $scripts; ?>
-<script type="text/javascript" src="http://use.typekit.net/crg4gtx.js"></script>
 <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
 <?php print $polyfills; ?>
 </head>
