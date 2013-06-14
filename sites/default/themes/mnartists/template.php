@@ -92,5 +92,3 @@ function mnartists_preprocess_block(&$vars) {
 function mnartists_process_block(&$vars) {
 }
 // */
-
-
