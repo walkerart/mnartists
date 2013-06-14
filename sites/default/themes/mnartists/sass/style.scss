@@ -4854,11 +4854,15 @@ p.site-description {
 .menu-content {
 	display:block;
 }
-
+.menu-trigger { 
+	display: none;
+	position:relative;
+}
 @media only screen and (max-width: 560px) {
-  
+  .menu-trigger { display: block; }
+  .menu-content { display:none; }
   #admin-menu { display:none; }
-  
+  #menu:before { display:none; }
   body { padding-left: 0px; }
 }
 
