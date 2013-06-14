@@ -234,3 +234,6 @@
 	    <?php print render($page['menu']); ?>
 	</div>
 </div>
+<script>
+    var navigation = responsiveNav("#menu");
+</script>
