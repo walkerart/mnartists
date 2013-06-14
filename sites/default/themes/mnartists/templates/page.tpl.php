@@ -222,7 +222,6 @@
 
 </div> <!-- end page -->
 <div id="menu">
-	<a href="#" class="menu-trigger">menu</a>
 	<div class="menu-content">
 		<ul class="mega-tabs">
 			<li><a href="#">MN Artists</a></li>
