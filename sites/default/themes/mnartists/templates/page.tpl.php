@@ -94,7 +94,7 @@
   <?php print render($page['leaderboard']); ?>
 
   <header<?php print $header_attributes; ?>>
-
+	  <a href="#menu" id="toggle">Menu</a>
     <?php if ($site_logo || $site_name || $site_slogan): ?>
       <!-- start: Branding -->
       <div<?php print $branding_attributes; ?>>
@@ -231,8 +231,7 @@
 		<p class="site-description">
 			Make your own MN Artists homepage by filtering communities and content.
 		</p>
-		
-	<!-- region: Menu -->
-    <?php print render($page['menu']); ?>
+		<!-- region: Menu -->
+	    <?php print render($page['menu']); ?>
 	</div>
 </div>
