@@ -103,9 +103,9 @@
             <?php print $site_logo; ?>
           </div>
         <?php endif; ?>
-
+        <!--
         <?php if ($site_name || $site_slogan): ?>
-          <!-- start: Site name and Slogan hgroup -->
+          
           <hgroup<?php print $hgroup_attributes; ?>>
 
             <?php if ($site_name): ?>
@@ -116,9 +116,9 @@
               <h2<?php print $site_slogan_attributes; ?>><?php print $site_slogan; ?></h2>
             <?php endif; ?>
 
-          </hgroup><!-- /end #name-and-slogan -->
+          </hgroup>
         <?php endif; ?>
-
+        	-->
       </div><!-- /end #branding -->
     <?php endif; ?>
 
