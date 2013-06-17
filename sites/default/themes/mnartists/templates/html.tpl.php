@@ -62,8 +62,6 @@
 <title><?php print $head_title; ?></title>
 <?php print $styles; ?>
 <?php print $scripts; ?>
-<script type="text/javascript" src="http://use.typekit.net/crg4gtx.js"></script>
-<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
 
 <?php print $polyfills; ?>
 </head>
