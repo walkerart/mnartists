@@ -104,6 +104,7 @@
 hide($content['comments']);
 hide($content['links']);
 ?>
+<p class="label-type">Event Type</p>
 <article id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
 	<p>drupal</p>
   <?php print render($title_prefix); ?>
