@@ -10,7 +10,7 @@ $plugin = array(
   'regions' => array(
     'left' => t('Left side'),
     'right' => t('Right side'),
-    'inset-left' => t('Inset Left side'),
-    'inset-right' => t('Inset Right side')
+    'inset_left' => t('Inset Left side'),
+    'inset_right' => t('Inset Right side')
   ),
 );

@@ -19,10 +19,10 @@
     <div class="inside"><?php print $content['left']; ?></div>
     
     <div class="panel-panel panel-col-first inset-left">
-    	<div class="inside"><?php print $content['inset-left']; ?></div>
+    	<div class="inside"><?php print $content['inset_left']; ?></div>
     </div>
     <div class="panel-panel panel-col-last inset-right">
-    	<div class="inside"><?php print $content['inset-right']; ?></div>
+    	<div class="inside"><?php print $content['inset_right']; ?></div>
     </div>
   </div>
 
