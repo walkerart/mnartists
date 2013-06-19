@@ -2,11 +2,11 @@
 
 // Plugin definition
 $plugin = array(
-  'title' => t('Layout F Event'),
+  'title' => t('Layout G Artwork'),
   'category' => t('MN Artists Layouts'),
-  'icon' => 'layout_f.png',
-  'theme' => 'layout_f',
-  'css' => 'layout_f.css',
+  'icon' => 'layout_g.png',
+  'theme' => 'layout_g',
+  'css' => 'layout_g.css',
   'regions' => array(
     'artwork' => t('Artwork'),
     'inset_left' => t('Inset Left side'),
