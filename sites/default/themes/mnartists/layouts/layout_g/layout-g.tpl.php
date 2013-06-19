@@ -14,8 +14,8 @@
  *   - $content['right']: Content in the right column.
  */
 ?>
-<div class="panel-display panel-2col clearfix event-content" <?php if (!empty($css_id)) { print "id=\"$css_id\""; } ?>>
-  <div class="panel-panel panel-col-first">
+<div class="panel-display panel-1col clearfix event-content" <?php if (!empty($css_id)) { print "id=\"$css_id\""; } ?>>
+  <div class="panel-panel panel-col">
     <div class="inset-wrapper">
     	<div class="inside event-content-top">
     		<?php print $content['artwork']; ?>
@@ -28,9 +28,5 @@
 	    </div>
 	    <div class="clear"></div>
     </div>
-  </div>
-
-  <div class="panel-panel panel-col-last">
-    <div class="inside"><?php print $content['right']; ?></div>
   </div>
 </div>
