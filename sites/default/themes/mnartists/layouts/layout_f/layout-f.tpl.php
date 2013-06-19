@@ -19,7 +19,7 @@
     <div class="inside">
     	<?php print $content['left']; ?>
     </div>
-    <div class="2col-wrapper">
+    <div class="inset-wrapper">
 	    <div class="panel-panel panel-col-first inset-left">
 	    	<div class="inside"><?php print $content['inset_left']; ?></div>
 	    </div>
