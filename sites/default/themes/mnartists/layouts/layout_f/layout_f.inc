@@ -2,7 +2,7 @@
 
 // Plugin definition
 $plugin = array(
-  'title' => t('Layout F'),
+  'title' => t('Layout F Event'),
   'category' => t('MN Artists Layouts'),
   'icon' => 'layout_f.png',
   'theme' => 'layout_f',
