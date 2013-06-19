@@ -5340,7 +5340,7 @@ only screen and (min-device-pixel-ratio: 1.5) {
 
 /* node general */
 h1.node-title {
-	font-size:18px;
+	font-size:22px;
 	a {
 		color: $red_color;
 	}
@@ -5369,7 +5369,11 @@ h1.node-title {
 
 /* event page */
 .event-date {
-	
+	padding-top:10px;
+	.pane-node-field-date {
+		display:block;
+		text-align:center;
+	}
 }
 .event-content {
 	
@@ -5405,5 +5409,8 @@ h1.node-title {
 		.field-type-taxonomy-term-reference {
 			margin:0;
 		}
+	}
+	.block-content {
+		background:none;
 	}
 }
