@@ -26,6 +26,7 @@
 	    <div class="panel-panel panel-col-last inset-right">
 	    	<div class="inside"><?php print $content['inset_right']; ?></div>
 	    </div>
+	    <div class="clear"></div>
     </div>
   </div>
 
