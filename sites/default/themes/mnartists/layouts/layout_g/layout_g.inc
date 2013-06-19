@@ -10,6 +10,7 @@ $plugin = array(
   'regions' => array(
     'artwork' => t('Artwork'),
     'inset_left' => t('Inset Left side'),
+    'inset_middle' => t('Inset Middle'),
     'inset_right' => t('Inset Right side')
   ),
 );

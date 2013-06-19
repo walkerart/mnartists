@@ -20,10 +20,13 @@
     	<div class="inside event-content-top">
     		<?php print $content['artwork']; ?>
     	</div>
-	    <div class="panel-panel panel-col-first inset-left">
+	    <div class="panel-panel panel-col-first inset-left one-third">
 	    	<div class="inside event-date"><?php print $content['inset_left']; ?></div>
 	    </div>
-	    <div class="panel-panel panel-col-last inset-right">
+	    <div class="panel-panel panel-col inset-middle one-third">
+	    	<div class="inside"><?php print $content['inset_middle']; ?></div>
+	    </div>
+	    <div class="panel-panel panel-col-last inset-right one-third">
 	    	<div class="inside"><?php print $content['inset_right']; ?></div>
 	    </div>
 	    <div class="clear"></div>
