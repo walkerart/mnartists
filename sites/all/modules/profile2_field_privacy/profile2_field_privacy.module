@@ -98,12 +98,22 @@ function profile2_field_privacy_field_delete_instance($instance) {
  *   TRUE if the field value should be kept private.
  */
 function _profile2_field_privacy_value($fid, $pid) {
-    return (bool) db_select('profile2_field_privacy_value', 'ufpv')
+    $count = db_select('profile2_field_privacy_value', 'ufpv')
+        ->fields('ufpv', array('private'))
+        ->condition('pid', $pid)
+        ->execute();
+    if($count->rowCount() > 0)
+    {
+        return (bool) db_select('profile2_field_privacy_value', 'ufpv')
         ->fields('ufpv', array('private'))
         ->condition('fid', $fid)
         ->condition('pid', $pid)
         ->execute()
         ->fetchField();
+    } else {
+        return 1;
+    }
+
 }
 
 /**
@@ -167,29 +177,32 @@ function profile2_field_privacy_field_access($op, $field, $entity_type, $entity,
     //krumo($entity_type);
     if ($entity_type == 'profile2') {
         switch ($op) {
-        case 'view':
-            $instance = field_info_instance('profile2', $field['field_name'], $entity->type);
-            if ($instance['settings']['profile2_field_privacy']) {
-                // Grant access if this permission is granted to the viewer.
-                if (user_access('access private fields')) {
-                    return TRUE;
+            case 'view':
+                if(is_object($entity))
+                {
+                    $instance = field_info_instance('profile2', $field['field_name'], $entity->type);
+                    if ($instance['settings']['profile2_field_privacy']) {
+                        // Grant access if this permission is granted to the viewer.
+                        if (user_access('View Private Fields')) {
+                            return TRUE;
+                        }
+                        // If the to-be-displayed field's owner have not submitted the user
+                        // add/edit form with the profile2_field_privacy checkbox on it, then s/he
+                        // will not have any data related to this field, so her/his $entity
+                        // user object is not populated here. In other words, her/his field
+                        // should be available to the public, so grant access.
+                        if (!is_object($entity)) {
+                            return TRUE;
+                        }
+                        // If the field is to be kept private, only grant access if the viewer
+                        // has the same uid as the $user being viewed.
+                        if (_profile2_field_privacy_value($field['id'], $entity->pid)) {
+                            return (bool) ($entity->uid == $account->uid);
+                        }
+                        // If the field is not to be kept private, grant access.
+                        return TRUE;
+                    }
                 }
-                // If the to-be-displayed field's owner have not submitted the user
-                // add/edit form with the profile2_field_privacy checkbox on it, then s/he
-                // will not have any data related to this field, so her/his $entity
-                // user object is not populated here. In other words, her/his field
-                // should be available to the public, so grant access.
-                if (!is_object($entity)) {
-                    return TRUE;
-                }
-                // If the field is to be kept private, only grant access if the viewer
-                // has the same uid as the $user being viewed.
-                if (_profile2_field_privacy_value($field['id'], $entity->pid)) {
-                    return (bool) ($entity->uid == $account->uid);
-                }
-                // If the field is not to be kept private, grant access.
-                return TRUE;
-            }
             break;
         }
     }
