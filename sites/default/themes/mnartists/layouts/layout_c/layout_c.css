@@ -35,3 +35,22 @@
 .panel-2col .panel-separator {
   margin: 0 0 1em 0;
 }
+
+
+
+/* insets */
+.panel-2col .panel-col-last .panel-col-first.inset-left{ 
+  float: left; 
+  width: 75%; 
+}
+* html .panel-2col .panel-col-last .panel-col-first.inset-left{
+  width: 74.9%;
+}
+
+.panel-2col .panel-col-last .panel-col-last.inset-right{ 
+  float: left; 
+  width: 25%;
+}
+* html .panel-2col .panel-col-last .panel-col-last.inset-right{
+  width: 24.9%;
+}

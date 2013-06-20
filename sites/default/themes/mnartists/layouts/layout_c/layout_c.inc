@@ -9,6 +9,8 @@ $plugin = array(
   'css' => 'layout_c.css',
   'regions' => array(
     'left' => t('Left side'),
-    'right' => t('Right side')
+    'right' => t('Right side'),
+    'inset_left' => t('Inset Left side'),
+    'inset_right' => t('Inset Right side')
   ),
 );
