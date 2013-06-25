@@ -630,7 +630,8 @@ h1 {
         background: url(http://cdn.walkerartcenter.org/static/img/content_sprite.png) right -26px no-repeat !important;
     }
 }
-h2.pane-title {
+h2.pane-title,
+.panel-pane .block-inner .block-content section h2 {
 	padding:0 0 5px 0;
 	background:none;
 }
@@ -5436,12 +5437,12 @@ p.site-description {
 }
 
 .event-date .date-display-single {
-	font-size:30px;
+	font-size:40px;
 	font-family:$sans_bold_font;
 	
 	.month {
 		text-transform:uppercase;
-		font-size:18px;
+		font-size:20px;
 		display:block;
 		text-align:center;
 	}
