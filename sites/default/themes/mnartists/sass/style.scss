@@ -5457,15 +5457,22 @@ p.site-description {
 .event-sidebar {
 	
 	.view-promoted-event {
-		display:table;
-		.field-content span {
-			display:table-cell;
+	
+		.field-content {
+			display:table;
+			
+			span {
+				display:table-cell;
+				vertical-align:middle;
+					
+					span {
+						display:inline;
+					}
+			}
+			span.promoted-date {
+				width:25%;
+			}
 		}
-		.field-content span.promoted-date {
-			width:25%;
-		}
-		.field-content span span {
-			display:inline;
-		}
+		
 	}
 }
