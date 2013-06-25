@@ -5466,17 +5466,18 @@ p.site-description {
 				display:table-cell;
 				vertical-align:middle;
 					
-					span {
-						display:inline;
-					}
+				span {
+					display:inline;
+				}
 			}
 			
 			span.promoted-date {
-				width:30%;
+				width:35%;
 				text-align:center;
 				
 				.date-display-single {
 					padding:10px;
+					display:block;
 					
 					.month {
 						display:block;
@@ -5486,7 +5487,20 @@ p.site-description {
 				}
 				
 			}
+			
+			.views-field-body {
+				padding:10px;
+			}
 		}
 		
+	}
+	
+	.view-my-events {
+		padding:10px;
+		
+		.view-footer a {
+			font-family:$sans_bold_font;
+			text-decoration:underline;
+		}
 	}
 }
