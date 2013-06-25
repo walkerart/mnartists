@@ -30,7 +30,7 @@
     </div>
   </div>
 
-  <div class="panel-panel panel-col-last">
+  <div class="panel-panel panel-col-last event-sidebar sidebar">
     <div class="inside"><?php print $content['right']; ?></div>
   </div>
 </div>
