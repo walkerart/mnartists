@@ -5273,66 +5273,6 @@ only screen and (min-device-pixel-ratio: 1.5) {
 }
 
 
-/* event page */
-.event-date {
-	padding-top:10px;
-	.pane-node-field-date {
-		display:block;
-		text-align:center;
-	}
-}
-.event-content {
-	
-}
-.event-content-top .field-name-field-category ul {
-	margin:0;padding:0;
-	list-style:none;
-	background:none;
-	
-	li {
-	
-		a {
-			padding:0 0 5px 0;
-			background:none;
-			position: relative;
-		    clear: both;
-		    height: 15px;
-		    margin: 9px 0;
-		    @include quiet_type;
-		    @include no_break;
-		    @include rounded;
-		}
-		
-	}
-	.block-content {
-		background:none;
-	}
-}
-.event-content-top {
-	margin:0;
-	.block {
-		margin:0;
-		.field-type-taxonomy-term-reference {
-			margin:0;
-		}
-	}
-	.panel-pane .block-inner .block-content {
-		background:none;
-	}
-}
-
-.inset-wrapper {
-	background:#fff;
-	float:none;
-	display:block;
-	margin: 0 10px;
-	.inset-right {
-		
-		.block-inner {
-			margin:0;
-		}
-	}
-}
 
 
 /* MENU SIDEBAR *********************************************/
@@ -5433,13 +5373,81 @@ p.site-description {
 	position:relative;
 }
 
-/* event date */
+
+/* event page */
+.event-date {
+	padding-top:10px;
+	.pane-node-field-date {
+		display:block;
+		text-align:center;
+	}
+}
+.event-content {
+	
+}
+.event-content-top .field-name-field-category ul {
+	margin:0;padding:0;
+	list-style:none;
+	background:none;
+	
+	li {
+	
+		a {
+			padding:0 0 5px 0;
+			background:none;
+			position: relative;
+		    clear: both;
+		    height: 15px;
+		    margin: 9px 0;
+		    @include quiet_type;
+		    @include no_break;
+		    @include rounded;
+		}
+		
+	}
+	.block-content {
+		background:none;
+	}
+}
+.event-content-top {
+	margin:0;
+	.block {
+		margin:0;
+		.field-type-taxonomy-term-reference {
+			margin:0;
+		}
+	}
+	.panel-pane .block-inner .block-content {
+		background:none;
+	}
+}
+
+.inset-wrapper {
+	background:#fff;
+	float:none;
+	display:block;
+	margin: 0 10px;
+	.inset-right {
+		
+		.block-inner {
+			margin:0;
+		}
+	}
+}
+
 .event-date .date-display-single {
 	font-size:30px;
 	font-family:$sans_bold_font;
+	
 	.month {
 		text-transform:uppercase;
 		font-size:18px;
-		font-family:$sans_regular_font;
+		margin-bottom:15px;
 	}
+	.month:nth-child(1) {
+		display:none;
+	}
+}
+.panel-pane .event-content {
+	padding-top:10px;
 }
