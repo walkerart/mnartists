@@ -1858,7 +1858,30 @@ form {
             color: $inverse_color;
         }
     }
-
+    input[type=submit]:after {
+	    content:"";
+	    margin:0;
+	    padding:0;
+	    display:block;
+	    clear:both;
+	    float:none;
+    }
+    a.button {
+        height: 19px;
+        padding: 1px 5px 0;
+        border: 1px solid $main_color;
+        @include quiet_type;
+        font-family: $sans_bold_font;
+        font-weight: bold;
+        @include no_break;
+        @include rounded;
+        cursor: pointer;
+        
+        &:hover {
+            background: $main_color;
+            color: $inverse_color;
+        }
+    }
     .required_label {
         color: #f90000;
     }
@@ -5558,7 +5581,7 @@ depending on the template so needs unified a bit */
 		opacity:1;
 	}
 	span {
-		line-height:16px;
+		line-height:20px;
 		display:inline-block;
 		vertical-align:top;
 	}
@@ -5566,5 +5589,11 @@ depending on the template so needs unified a bit */
 		color:$lightgray;
 	}
 	
+}
+
+
+/* forms */
+.form-item, .form-actions {
+	margin-bottom:2em;
 }
 
