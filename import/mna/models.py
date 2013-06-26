@@ -9,6 +9,38 @@
 
 from django.db import models
 
+class MnaResource(object):
+    @property
+    def resourcetype(self):
+        return self.resourceid.resourcetype
+    @property
+    def active(self):
+        return self.resourceid.active
+    @property
+    def featured(self):
+        return self.resourceid.featured
+    @property
+    def seqnbr(self):
+        return self.resourceid.seqnbr
+    @property
+    def owner(self):
+        return self.resourceid.owner
+    @property
+    def createdate(self):
+        return self.resourceid.createdate
+    @property
+    def modifieddate(self):
+        return self.resourceid.modifieddate
+    @property
+    def createdby(self):
+        return self.resourceid.createdby
+    @property
+    def modifiedby(self):
+        return self.resourceid.modifiedby
+    @property
+    def title(self):
+        return self.resourceid.title
+
 class TCountry(models.Model):
     id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=50)
@@ -80,7 +112,7 @@ class TResourceChild(models.Model):
     class Meta:
         db_table = u't_resource_child'
 
-class TWork(models.Model):
+class TWork(models.Model, MnaResource):
     responsetext = models.TextField()
     statementtext = models.TextField()
     workurl = models.CharField(max_length=255)
@@ -114,18 +146,18 @@ class TAccttypeRole(models.Model):
     class Meta:
         db_table = u't_accttype_role'
 
-class TArticle(models.Model):
+class TArticle(models.Model, MnaResource):
     bodytext = models.TextField()
     priorityranking = models.SmallIntegerField()
     startdate = models.DateTimeField()
     enddate = models.DateTimeField()
     subhead = models.CharField(max_length=255)
-    resourceid = models.ForeignKey(TResource, db_column='resourceid')
+    resourceid = models.ForeignKey(TResource, db_column='resourceid',primary_key=True)
     concurrencycol = models.IntegerField()
     class Meta:
         db_table = u't_article'
 
-class TArtist(models.Model):
+class TArtist(models.Model, MnaResource):
     activelocation = models.CharField(max_length=50)
     awardtext = models.TextField()
     birthdate = models.DateField()
@@ -140,7 +172,7 @@ class TArtist(models.Model):
     relatedorgtext = models.TextField()
     similarartiststext = models.TextField()
     citizenship = models.ForeignKey(TCountry, db_column='citizenship')
-    resourceid = models.ForeignKey(TResource, db_column='resourceid')
+    resourceid = models.ForeignKey(TResource, db_column='resourceid',primary_key=True)
     concurrencycol = models.IntegerField()
     class Meta:
         db_table = u't_artist'
@@ -277,7 +309,7 @@ class TCountyZipcode(models.Model):
     class Meta:
         db_table = u't_county_zipcode'
 
-class TEvent(models.Model):
+class TEvent(models.Model, MnaResource):
     description = models.TextField()
     status = models.SmallIntegerField()
     continuous = models.BooleanField()
@@ -290,7 +322,7 @@ class TEvent(models.Model):
     contactemail = models.CharField(max_length=255)
     contactweb = models.CharField(max_length=255)
     contactinfo = models.CharField(max_length=255)
-    resourceid = models.IntegerField()
+    resourceid = models.IntegerField(primary_key=True)
     concurrencycol = models.IntegerField()
     class Meta:
         db_table = u't_event'
@@ -381,12 +413,12 @@ class TOidSequence(models.Model):
     class Meta:
         db_table = u't_oid_sequence'
 
-class TOrganization(models.Model):
+class TOrganization(models.Model, MnaResource):
     feestext = models.TextField()
     personneltext = models.TextField()
     programtext = models.TextField()
     purposetext = models.TextField()
-    resourceid = models.ForeignKey(TResource, db_column='resourceid')
+    resourceid = models.ForeignKey(TResource, db_column='resourceid',primary_key=True)
     concurrencycol = models.IntegerField()
     class Meta:
         db_table = u't_organization'
@@ -398,7 +430,7 @@ class TTheme(models.Model):
     class Meta:
         db_table = u't_theme'
 
-class TParty(models.Model):
+class TParty(models.Model, MnaResource):
     postcardsokay = models.BooleanField()
     subscriptionsokay = models.BooleanField()
     opentopublic = models.BooleanField()
@@ -409,7 +441,7 @@ class TParty(models.Model):
     activecounty = models.ForeignKey(TCounty, db_column='activecounty')
     theme = models.ForeignKey(TTheme, db_column='theme')
     toursokay = models.BooleanField()
-    resourceid = models.ForeignKey(TResource, db_column='resourceid')
+    resourceid = models.ForeignKey(TResource, db_column='resourceid',primary_key=True)
     concurrencycol = models.IntegerField()
     class Meta:
         db_table = u't_party'
@@ -461,8 +493,8 @@ class TRelatedlink(models.Model):
     class Meta:
         db_table = u't_relatedlink'
 
-class TResourceFile(models.Model):
-    resourceid = models.ForeignKey(TResource, db_column='resourceid')
+class TResourceFile(models.Model, MnaResource):
+    resourceid = models.ForeignKey(TResource, db_column='resourceid',primary_key=True)
     fileid = models.ForeignKey(TMediafile, db_column='fileid')
     class Meta:
         db_table = u't_resource_file'
@@ -474,11 +506,11 @@ class TResourceLog(models.Model):
     class Meta:
         db_table = u't_resource_log'
 
-class TResourcecoll(models.Model):
+class TResourcecoll(models.Model, MnaResource):
     description = models.CharField(max_length=255)
     icon = models.ForeignKey(TMediafile, db_column='icon')
     classtype = models.SmallIntegerField()
-    resourceid = models.ForeignKey(TResource, db_column='resourceid')
+    resourceid = models.ForeignKey(TResource, db_column='resourceid',primary_key=True)
     concurrencycol = models.IntegerField()
     class Meta:
         db_table = u't_resourcecoll'
@@ -502,7 +534,7 @@ class TThemeproperty(models.Model):
     class Meta:
         db_table = u't_themeproperty'
 
-class TTour(models.Model):
+class TTour(models.Model, MnaResource):
     description = models.TextField()
     keywords = models.CharField(max_length=255)
     visibility = models.SmallIntegerField()
@@ -522,7 +554,7 @@ class TTourItem(models.Model):
     class Meta:
         db_table = u't_tour_item'
 
-class TVenue(models.Model):
+class TVenue(models.Model, MnaResource):
     public = models.BooleanField()
     url = models.CharField(max_length=255)
     hours = models.CharField(max_length=255)
