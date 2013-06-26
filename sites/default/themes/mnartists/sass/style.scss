@@ -5461,13 +5461,16 @@ p.site-description {
 	
 		.field-content {
 			display:table;
+			margin-bottom:10px;
 			
 			span {
 				display:table-cell;
 				vertical-align:middle;
+				padding-left:10px;
 					
 				span {
 					display:inline;
+					padding-left:0;
 				}
 				
 				a {
@@ -5478,15 +5481,21 @@ p.site-description {
 			span.promoted-date {
 				width:60px;
 				text-align:center;
-				border-right:1px solid #ccc;
+				border-right:1px solid #333;
+				padding-left:0;
 				
 				.date-display-single {
 					padding:10px 0;
 					display:block;
+					line-height:1em;
+					font-size:18px;
+					font-family:$sans_bold_font;
 					
 					.month {
 						display:block;
 						margin-bottom:5px;
+						font-size:14px;
+						font-family: $sans_regular_font;
 					}
 				
 				}
@@ -5496,6 +5505,9 @@ p.site-description {
 			.views-field-body {
 				padding:10px;
 			}
+		}
+		.view-promoted-event {
+			padding-top:10px;
 		}
 		
 	}
