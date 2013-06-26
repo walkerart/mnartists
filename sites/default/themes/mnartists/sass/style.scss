@@ -5537,3 +5537,25 @@ depending on the template so needs unified a bit */
 	}
 }
 
+
+/* add to collection flag */
+.flag-wrapper {
+	a {
+		line-height:16px;
+		
+		img {
+			margin:0;
+		}
+	}
+	a.unflagged {
+		opacity:.5;
+	}
+	a.flagged {
+		opacity:1;
+	}
+	span {
+		line-height:16px;
+	}
+	
+}
+
