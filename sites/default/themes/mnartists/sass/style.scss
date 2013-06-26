@@ -5540,8 +5540,12 @@ depending on the template so needs unified a bit */
 
 /* add to collection flag */
 .flag-wrapper {
+	line-height:20px;
+	
 	a {
-		line-height:16px;
+		line-height:20px;
+		display:inline-block;
+		vertical-align:top;
 		
 		img {
 			margin:0;
@@ -5555,6 +5559,11 @@ depending on the template so needs unified a bit */
 	}
 	span {
 		line-height:16px;
+		display:inline-block;
+		vertical-align:top;
+	}
+	.flag-count {
+		color:$lightgray;
 	}
 	
 }
