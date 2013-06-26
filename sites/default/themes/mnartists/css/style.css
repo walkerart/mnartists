@@ -6649,7 +6649,7 @@ p.site-description {
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000035488}}
 .event-sidebar .view-promoted-event .field-content span.promoted-date .date-display-single {
   display: block;
-  line-height: 1em;
+  line-height: .9em;
   font-size: 18px;
   font-family: "Apercu Bold", Arial, Helvetica, sans-serif;
 }
@@ -6663,7 +6663,7 @@ p.site-description {
 }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000035510}}
 .event-sidebar .view-promoted-event .views-field-body {
-  padding: 10px;
+  padding: 0 10px;
 }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000035516}}
 .event-sidebar .view-my-events {
@@ -6673,4 +6673,19 @@ p.site-description {
 .event-sidebar .view-my-events .view-footer a {
   font-family: "Apercu Bold", Arial, Helvetica, sans-serif;
   text-decoration: underline;
+}
+
+/* events page, but this probably applies lots of places but he markup will be diff
+depending on the template so needs unified a bit */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000035528}}
+.panel-2col .panel-col-first .panel-col-last.inset-right {
+  position: relative;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000035531}}
+.panel-2col .panel-col-first .panel-col-last.inset-right .pane-node-links {
+  position: absolute;
+  display: inline-block;
+  right: 10px;
+  top: 10px;
+  text-align: right;
 }

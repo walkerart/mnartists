@@ -5487,7 +5487,7 @@ p.site-description {
 				
 				.date-display-single {
 					display:block;
-					line-height:1em;
+					line-height:.9em;
 					font-size:18px;
 					font-family:$sans_bold_font;
 					
@@ -5508,7 +5508,7 @@ p.site-description {
 		}
 		
 		.views-field-body {
-			padding:10px;
+			padding:0 10px;
 		}
 		
 	}
@@ -5522,3 +5522,18 @@ p.site-description {
 		}
 	}
 }
+
+/* events page, but this probably applies lots of places but he markup will be diff
+depending on the template so needs unified a bit */
+.panel-2col .panel-col-first .panel-col-last.inset-right {
+	position:relative;
+	
+	.pane-node-links {
+		position:absolute;
+		display:inline-block;
+		right:10px;
+		top:10px;
+		text-align:right;
+	}
+}
+
