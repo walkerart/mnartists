@@ -2039,7 +2039,7 @@ form input[type=password]:focus {
   background: #cc0000;
 }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000031844}}
-form input[type=submit] {
+form input[type=submit], form input.form-file {
   float: right;
   height: 19px;
   padding: 1px 5px 0;
@@ -2061,7 +2061,7 @@ form input[type=submit] {
   cursor: pointer;
 }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000031856}}
-form input[type=submit]:hover {
+form input[type=submit]:hover, form input.form-file:hover {
   background: #222222;
   color: #f9f9f9;
 }
@@ -6737,6 +6737,14 @@ depending on the template so needs unified a bit */
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000035580}}
 .form-item, .form-actions {
   margin-bottom: 2em;
+}
+
+/* authoring adding nodes admin interface */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000035588}}
+body.page-node-add #content {
+  background: #fff;
+  padding: 20px;
+  margin: 20px 0;
 }
 
 /* @group Global  */

@@ -1841,7 +1841,7 @@ form {
         background: $highlight;
     }
 
-    input[type=submit] {
+    input[type=submit], input.form-file {
         float: right;
         height: 19px;
         padding: 1px 5px 0;
@@ -5581,3 +5581,12 @@ depending on the template so needs unified a bit */
 	margin-bottom:2em;
 }
 
+
+
+/* authoring adding nodes admin interface */
+
+body.page-node-add #content {
+	background: #fff;
+	padding:20px;
+	margin:20px 0;
+}
