@@ -1671,7 +1671,21 @@ fieldset {
  * Buttons used by contrib modules like Media
  */
 a.button { 
-  @include appearance(button);
+  /*@include appearance(button);*/
+  height: 19px;
+  padding: 1px 5px 0;
+  border: 1px solid $main_color;
+  @include quiet_type;
+  font-family: $sans_bold_font;
+  font-weight: bold;
+  @include no_break;
+  @include rounded;
+  cursor: pointer;
+  
+ 	&:hover {
+        background: $main_color;
+        color: $inverse_color;
+    }
 }
 
 
