@@ -1858,7 +1858,14 @@ form {
             color: $inverse_color;
         }
     }
-
+    input[type=submit]:after {
+	    content:"";
+	    margin:0;
+	    padding:0;
+	    display:block;
+	    clear:both;
+	    float:none;
+    }
     .required_label {
         color: #f90000;
     }
@@ -5558,7 +5565,7 @@ depending on the template so needs unified a bit */
 		opacity:1;
 	}
 	span {
-		line-height:16px;
+		line-height:20px;
 		display:inline-block;
 		vertical-align:top;
 	}
@@ -5568,3 +5575,18 @@ depending on the template so needs unified a bit */
 	
 }
 
+
+/* forms */
+.form-item, .form-actions {
+	margin-bottom:2em;
+}
+
+
+
+/* authoring adding nodes admin interface */
+
+body.page-node-add #content {
+	background: #fff;
+	padding:20px;
+	margin:20px 0;
+}
