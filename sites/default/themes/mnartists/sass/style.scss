@@ -5469,14 +5469,19 @@ p.site-description {
 				span {
 					display:inline;
 				}
+				
+				a {
+					font-family:$sans_bold_font;
+				}
 			}
 			
 			span.promoted-date {
-				width:35%;
+				width:60px;
 				text-align:center;
+				border-right:1px solid #ccc;
 				
 				.date-display-single {
-					padding:10px;
+					padding:10px 0;
 					display:block;
 					
 					.month {
