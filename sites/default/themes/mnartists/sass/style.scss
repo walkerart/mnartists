@@ -5605,10 +5605,13 @@ body.page-node-add #content {
 }
 .content-artwork .pane-node-title h2 {
 	 background:none;
-	 padding:0;
+	 padding:0 0 5px 0;
 	 margin:0 0 10px 0;
 	 border-bottom: 1px solid $lightgray;
 	 font-size:18px;
+	 height:auto;
+	 line-height:auto;
+	 text-transform:none;
 	 
 	 a {
 		 font-family: $serif-font;
@@ -5625,5 +5628,12 @@ body.page-node-add #content {
 		right:10px;
 		top:10px;
 		text-align:right;
+	}
+}
+.content-bottom {
+	display:table;
+	.one-third {
+		display:table-cell;
+		width:auto;
 	}
 }

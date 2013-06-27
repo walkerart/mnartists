@@ -14,21 +14,23 @@
  *   - $content['right']: Content in the right column.
  */
 ?>
-<div class="panel-display panel-1col clearfix event-content" <?php if (!empty($css_id)) { print "id=\"$css_id\""; } ?>>
+<div class="panel-display panel-1col clearfix" <?php if (!empty($css_id)) { print "id=\"$css_id\""; } ?>>
   <div class="panel-panel panel-col content-artwork">
     <div class="inset-wrapper">
-    	<div class="inside event-content-top">
+    	<div class="inside content-top">
     		<?php print $content['artwork']; ?>
     	</div>
-	    <div class="panel-panel panel-col-first inset-left one-third">
-	    	<div class="inside event-date"><?php print $content['inset_left']; ?></div>
-	    </div>
-	    <div class="panel-panel panel-col inset-middle one-third">
-	    	<div class="inside"><?php print $content['inset_middle']; ?></div>
-	    </div>
-	    <div class="panel-panel panel-col-last inset-right one-third">
-	    	<div class="inside"><?php print $content['inset_right']; ?></div>
-	    </div>
+    	<div class="content-bottom">
+		    <div class="panel-panel panel-col-first inset-left one-third">
+		    	<div class="inside"><?php print $content['inset_left']; ?></div>
+		    </div>
+		    <div class="panel-panel panel-col inset-middle one-third">
+		    	<div class="inside"><?php print $content['inset_middle']; ?></div>
+		    </div>
+		    <div class="panel-panel panel-col-last inset-right one-third">
+		    	<div class="inside"><?php print $content['inset_right']; ?></div>
+		    </div>
+    	</div>
 	    <div class="clear"></div>
     </div>
   </div>
