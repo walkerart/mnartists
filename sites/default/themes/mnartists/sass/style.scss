@@ -5377,6 +5377,7 @@ p.site-description {
 
 
 /* event page */
+/******************************************/
 .event-date {
 	padding-top:30px;
 	.pane-node-field-date {
@@ -5583,4 +5584,34 @@ body.page-node-add #content {
 	background: #fff;
 	padding:20px;
 	margin:20px 0;
+}
+
+/* general layout */
+.inset-left {
+	
+}
+.inset-right {
+	
+}
+.inset -middle {
+	
+}
+
+
+/* artwork page */
+/****************************************************/
+.content-artwork .inset-left {
+	font-family: $serif_font;
+}
+.content-artwork .pane-node-title h2 {
+	 background:none;
+	 padding:0;
+	 margin:0 0 10px 0;
+	 border-bottom: 1px solid $lightgray;
+	 font-size:18px;
+	 
+	 a {
+		 font-family: $serif-font;
+		 font-weight: normal;
+	 }
 }
