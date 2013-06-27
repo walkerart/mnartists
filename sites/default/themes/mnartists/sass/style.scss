@@ -5596,6 +5596,9 @@ body.page-node-add #content {
 .inset -middle {
 	
 }
+.inside .block {
+	margin-bottom:0;
+}
 
 
 /* artwork page */
@@ -5646,5 +5649,18 @@ body.page-node-add #content {
 	
 	.one-third.panel-col-last {
 		border-left:1px solid $lightgray;
+	}
+}
+.pane-node-field-tags, .pane-node-field-license {
+	
+	ul {
+		padding:0;margin:0;
+		list-style:none;
+		
+		li {
+			list-style:none;
+			margin:0 8px 0 0;padding:0;
+			display:inline-block;
+		}
 	}
 }
