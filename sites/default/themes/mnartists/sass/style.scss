@@ -1776,6 +1776,9 @@ form {
         border: 0;
         @include rounded;
     }
+    select[multiple] {
+	    width:100%;
+    }
     
     textarea {
         height: 64px;
@@ -5665,4 +5668,19 @@ body.page-node-add #content {
 			display:inline-block;
 		}
 	}
+}
+
+/* user authoring forms */
+div[class^="field-type-"] {
+	width:100%;
+}
+div[class^="field-type-"] div[class$="wrapper"] {
+	width:50%;
+	float:left;
+	clear:left;
+}
+.row[class^="field-type-"] div[class$="privacy"] {
+	width:45%;
+	float:left;
+	clear:right;
 }
