@@ -5615,10 +5615,12 @@ body.page-node-add #content {
 	 height:auto;
 	 line-height:auto;
 	 text-transform:none;
+	 letter-spacing:normal;
 	 
 	 a {
 		 font-family: $serif-font;
 		 font-weight: normal;
+		 height:auto;
 	 }
 }
 
@@ -5635,7 +5637,7 @@ body.page-node-add #content {
 }
 .content-bottom {
 	display:table;
-	margin-bottom:20px;
+	padding-bottom:20px;
 	
 	.one-third {
 		display:table-cell;
@@ -5651,7 +5653,7 @@ body.page-node-add #content {
 		border-left:1px solid $lightgray;
 	}
 }
-.pane-node-field-tags, .pane-node-field-license {
+.pane-node-field-tags, .pane-node-field-license, pane-node-field-medium {
 	
 	ul {
 		padding:0;margin:0;
