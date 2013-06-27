@@ -22,7 +22,20 @@ html {
 	margin-right:0;
 	width:auto;
 	display:block;
-	float:none;
-	clear:both;
+	float:none!important;
+	clear:both!important;
 	margin-bottom:20px;
+}
+.menu-trigger { 
+	display: block; 
+}
+#menu:before,
+#menu,
+#admin-menu,
+.menu-content { 
+	display:none; 
+}
+body { 
+	padding-left: 0px; 
+	
 }

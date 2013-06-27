@@ -19,7 +19,25 @@ html {
   margin-right: 0;
   width: auto;
   display: block;
-  float: none;
-  clear: both;
+  float: none!important;
+  clear: both!important;
   margin-bottom: 20px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/responsive\.smartphone\.portrait\.scss}line{font-family:\0000330}}
+.menu-trigger {
+  display: block;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/responsive\.smartphone\.portrait\.scss}line{font-family:\0000336}}
+#menu:before,
+#menu,
+#admin-menu,
+.menu-content {
+  display: none;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/responsive\.smartphone\.portrait\.scss}line{font-family:\0000339}}
+body {
+  padding-left: 0px;
 }
