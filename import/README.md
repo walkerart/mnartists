@@ -30,3 +30,5 @@ Get a pg_dump file from Nate and host it somewhere. The hosting info goes in loc
     ./manage.py runserver # Currently doesn't do anything, but I'll hook up an API or generate CSV
     ./manage.py shell_plus # Allows inspecting models
 
+Download the data: http://localhost:8100/artists.csv
+
