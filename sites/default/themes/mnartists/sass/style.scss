@@ -5696,20 +5696,20 @@ tr.odd .form-item, tr.even .form-item {
 
 
 /* form focus goodness */
-form input[type=text]:focus {
+form input[type=text],
+form textarea:focus {
     /*-moz-box-shadow: 0 0 1px 1px rgba(210,176,107,1);
     -webkit-box-shadow: 0 0 1px 1px rgba(210,176,107,1);*/
     -moz-box-shadow: 0 0 1px 1px rgba(0,0,0,0);
     -webkit-box-shadow: 0 0 1px 1px rgba(0,0,0,0);
     box-shadow: 0 0 1px 1px rgba(0,0,0,0);
-
-    -webkit-transition: all .3s ease-in-out;
     -moz-transition: all .3s ease-in-out;
     -webkit-transition: all .3s ease-in-out;
     transition: all .3s ease-in-out;
 }
 
-form input[type=text]:focus {
+form input[type=text]:focus,
+form textarea:focus {
     /*-moz-box-shadow: 0 0 3px 1px rgba(210,0,0,1);
     -webkit-box-shadow: 0 0 3px 1px rgba(210,0,0,1);*/
     -moz-box-shadow: 0 0 3px 1px rgba(0,0,0,.9);
