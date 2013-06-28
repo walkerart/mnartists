@@ -151,6 +151,10 @@ LOGGING = {
     }
 }
 
+EXCLUDE_FIELDS = ['concurrencycol','profile','diskusagelimit','accttype',
+                    'tacb','tamd','tccb','tcmb','tfcb','tfmb','trcb',
+                    'trmb','tro','tsubcb','tsubmb','seqnbr','tartist',
+                    'citizenship','password']
 
 from local_settings import *
 

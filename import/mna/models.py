@@ -8,8 +8,12 @@
 # into your database.
 
 from django.db import models
+from utils import exclude
+from django.conf import settings
+from django.db import models
 
 class MnaResource(object):
+    # convenience properties for inspecting superclass attributes
     @property
     def resourcetype(self):
         return self.resourceid.resourcetype
@@ -41,33 +45,55 @@ class MnaResource(object):
     def title(self):
         return self.resourceid.title
 
-class TCountry(models.Model):
+class modelMixin(object):
+    def field_value(self, fieldName):
+        if '.' in fieldName:
+            [obj,subField] = fieldName.split('.',1)
+            val = getattr(self,obj).field_value(subField) if hasattr(self,obj) else u''
+        else:
+            val = getattr(self,fieldName) if hasattr(self,fieldName) else u''
+        if isinstance(val,models.Model):
+            val = val.pk
+        
+        val = unicode(val) if val else u''
+        val = u'' if '<w:WordDocument>' in val else val # no way. Just... no way.
+        return val
+
+class TCountry(models.Model, modelMixin):
     id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=50)
     code = models.CharField(max_length=2)
     seqnbr = models.SmallIntegerField()
     class Meta:
         db_table = u't_country'
+        
+    @staticmethod
+    def field_names(*args, **kwargs):
+        prepend = ''
+        if 'prepend' in kwargs:
+            prepend = kwargs['prepend']+'.'
+        fieldNames = exclude(settings.EXCLUDE_FIELDS,TCountry._meta.get_all_field_names())
+        return map(lambda x: '{}{}'.format(prepend,x),fieldNames)
 
-class TRole(models.Model):
+class TRole(models.Model, modelMixin):
     id = models.IntegerField(primary_key=True)
     name = models.CharField(unique=True, max_length=50)
     class Meta:
         db_table = u't_role'
 
-class TProfile(models.Model):
+class TProfile(models.Model, modelMixin):
     id = models.IntegerField(primary_key=True)
     concurrencycol = models.IntegerField()
     class Meta:
         db_table = u't_profile'
 
-class TAccounttype(models.Model):
+class TAccounttype(models.Model, modelMixin):
     id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=50)
     class Meta:
         db_table = u't_accounttype'
 
-class TUser(models.Model):
+class TUser(models.Model, modelMixin):
     id = models.IntegerField(primary_key=True)
     username = models.CharField(unique=True, max_length=100)
     password = models.CharField(max_length=20)
@@ -83,14 +109,23 @@ class TUser(models.Model):
     concurrencycol = models.IntegerField()
     class Meta:
         db_table = u't_user'
+    
+    @staticmethod
+    def field_names(*args, **kwargs):
+        prepend = ''
+        if 'prepend' in kwargs:
+            prepend = kwargs['prepend']+'.'
+        fieldNames = exclude(settings.EXCLUDE_FIELDS,TUser._meta.get_all_field_names())
+        
+        return map(lambda x: '{}{}'.format(prepend,x),fieldNames)
 
-class TResourcetype(models.Model):
+class TResourcetype(models.Model, modelMixin):
     id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=50)
     class Meta:
         db_table = u't_resourcetype'
 
-class TResource(models.Model):
+class TResource(models.Model, modelMixin):
     id = models.IntegerField(primary_key=True)
     resourcetype = models.ForeignKey(TResourcetype, db_column='resourcetype')
     active = models.BooleanField()
@@ -105,14 +140,24 @@ class TResource(models.Model):
     concurrencycol = models.IntegerField()
     class Meta:
         db_table = u't_resource'
+    
+    @staticmethod
+    def field_names(*args, **kwargs):
+        prepend = ''
+        if 'prepend' in kwargs:
+            prepend = kwargs['prepend']+'.'
+        fieldNames = ['active','featured','createdate','modifieddate','title']
+        fieldNames.extend(TUser.field_names(**{'prepend':'owner'}))
+        
+        return map(lambda x: '{}{}'.format(prepend,x),fieldNames)
 
-class TResourceChild(models.Model):
+class TResourceChild(models.Model, modelMixin):
     parentid = models.ForeignKey(TResource, db_column='parentid', related_name='parent')
     childid = models.ForeignKey(TResource, db_column='childid', related_name='child')
     class Meta:
         db_table = u't_resource_child'
 
-class TWork(models.Model, MnaResource):
+class TWork(models.Model, MnaResource, modelMixin):
     responsetext = models.TextField()
     statementtext = models.TextField()
     workurl = models.CharField(max_length=255)
@@ -122,14 +167,14 @@ class TWork(models.Model, MnaResource):
     class Meta:
         db_table = u't_work'
 
-class ArtistRoleVw(models.Model):
+class ArtistRoleVw(models.Model, modelMixin):
     roleid = models.IntegerField()
     workid = models.IntegerField()
     artistid = models.IntegerField()
     class Meta:
         db_table = u'artist_role_vw'
 
-class FiveFameImport(models.Model):
+class FiveFameImport(models.Model, modelMixin):
     id = models.IntegerField(primary_key=True)
     ownerid = models.IntegerField()
     name = models.CharField(max_length=80)
@@ -140,13 +185,13 @@ class FiveFameImport(models.Model):
     class Meta:
         db_table = u'five_fame_import'
 
-class TAccttypeRole(models.Model):
+class TAccttypeRole(models.Model, modelMixin):
     accttypeid = models.ForeignKey(TAccounttype, db_column='accttypeid')
     roleid = models.ForeignKey(TRole, db_column='roleid')
     class Meta:
         db_table = u't_accttype_role'
 
-class TArticle(models.Model, MnaResource):
+class TArticle(models.Model, MnaResource, modelMixin):
     bodytext = models.TextField()
     priorityranking = models.SmallIntegerField()
     startdate = models.DateTimeField()
@@ -157,7 +202,7 @@ class TArticle(models.Model, MnaResource):
     class Meta:
         db_table = u't_article'
 
-class TArtist(models.Model, MnaResource):
+class TArtist(models.Model, MnaResource, modelMixin):
     activelocation = models.CharField(max_length=50)
     awardtext = models.TextField()
     birthdate = models.DateField()
@@ -176,14 +221,24 @@ class TArtist(models.Model, MnaResource):
     concurrencycol = models.IntegerField()
     class Meta:
         db_table = u't_artist'
+    
+    @staticmethod
+    def field_names(*args, **kwargs):
+        prepend = ''
+        if 'prepend' in kwargs:
+            prepend = kwargs['prepend']+'.'
+        fieldNames = exclude(settings.EXCLUDE_FIELDS,TArtist._meta.get_all_field_names())
+        fieldNames.extend(TCountry.field_names(**{'prepend':'citizenship'}))
+        fieldNames.extend(TResource.field_names(**{'prepend':'resourceid'}))
+        return map(lambda x: '{}{}'.format(prepend,x),fieldNames)
 
-class TArtistRedirect(models.Model):
+class TArtistRedirect(models.Model, modelMixin):
     oldid = models.IntegerField()
     newid = models.IntegerField()
     class Meta:
         db_table = u't_artist_redirect'
 
-class TAuthor(models.Model):
+class TAuthor(models.Model, modelMixin):
     id = models.IntegerField(primary_key=True)
     authorbio = models.TextField()
     authorname = models.CharField(max_length=100)
@@ -196,7 +251,7 @@ class TAuthor(models.Model):
     class Meta:
         db_table = u't_author'
 
-class TMimetype(models.Model):
+class TMimetype(models.Model, modelMixin):
     id = models.IntegerField(primary_key=True)
     type = models.CharField(max_length=50)
     subtype = models.CharField(max_length=50)
@@ -207,7 +262,7 @@ class TMimetype(models.Model):
     class Meta:
         db_table = u't_mimetype'
 
-class TMediafile(models.Model):
+class TMediafile(models.Model, modelMixin):
     id = models.IntegerField(primary_key=True)
     clientpath = models.CharField(max_length=255)
     filepath = models.CharField(max_length=100)
@@ -225,13 +280,13 @@ class TMediafile(models.Model):
     class Meta:
         db_table = u't_mediafile'
 
-class TAuthorFile(models.Model):
+class TAuthorFile(models.Model, modelMixin):
     authorid = models.ForeignKey(TAuthor, db_column='authorid')
     fileid = models.ForeignKey(TMediafile, db_column='fileid')
     class Meta:
         db_table = u't_author_file'
 
-class TComment(models.Model):
+class TComment(models.Model, modelMixin):
     id = models.IntegerField(primary_key=True)
     title = models.CharField(max_length=100)
     commenttext = models.TextField()
@@ -244,14 +299,14 @@ class TComment(models.Model):
     class Meta:
         db_table = u't_comment'
 
-class TFeedbacksource(models.Model):
+class TFeedbacksource(models.Model, modelMixin):
     id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=50)
     seqnbr = models.SmallIntegerField()
     class Meta:
         db_table = u't_feedbacksource'
 
-class TContactpoint(models.Model):
+class TContactpoint(models.Model, modelMixin):
     id = models.IntegerField(primary_key=True)
     visible = models.BooleanField()
     contacttype = models.IntegerField()
@@ -270,7 +325,7 @@ class TContactpoint(models.Model):
     class Meta:
         db_table = u't_contactpoint'
 
-class TContacttype(models.Model):
+class TContacttype(models.Model, modelMixin):
     id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=50)
     seqnbr = models.SmallIntegerField()
@@ -278,7 +333,7 @@ class TContacttype(models.Model):
     class Meta:
         db_table = u't_contacttype'
 
-class TState(models.Model):
+class TState(models.Model, modelMixin):
     id = models.IntegerField(primary_key=True)
     code = models.CharField(max_length=2)
     name = models.CharField(max_length=50)
@@ -286,7 +341,7 @@ class TState(models.Model):
     class Meta:
         db_table = u't_state'
 
-class TCounty(models.Model):
+class TCounty(models.Model, modelMixin):
     id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=50)
     seqnbr = models.SmallIntegerField()
@@ -294,7 +349,7 @@ class TCounty(models.Model):
     class Meta:
         db_table = u't_county'
 
-class TZipcode(models.Model):
+class TZipcode(models.Model, modelMixin):
     id = models.IntegerField(primary_key=True)
     code = models.CharField(unique=True, max_length=10)
     cityname = models.CharField(max_length=50)
@@ -303,13 +358,13 @@ class TZipcode(models.Model):
     class Meta:
         db_table = u't_zipcode'
 
-class TCountyZipcode(models.Model):
+class TCountyZipcode(models.Model, modelMixin):
     zipcodeid = models.ForeignKey(TZipcode, db_column='zipcodeid')
     countyid = models.ForeignKey(TCounty, db_column='countyid')
     class Meta:
         db_table = u't_county_zipcode'
 
-class TEvent(models.Model, MnaResource):
+class TEvent(models.Model, MnaResource, modelMixin):
     description = models.TextField()
     status = models.SmallIntegerField()
     continuous = models.BooleanField()
@@ -327,7 +382,7 @@ class TEvent(models.Model, MnaResource):
     class Meta:
         db_table = u't_event'
 
-class TEventreminder(models.Model):
+class TEventreminder(models.Model, modelMixin):
     id = models.IntegerField(primary_key=True)
     event = models.IntegerField()
     date = models.DateTimeField()
@@ -335,14 +390,14 @@ class TEventreminder(models.Model):
     class Meta:
         db_table = u't_eventreminder'
 
-class TFeedbacktype(models.Model):
+class TFeedbacktype(models.Model, modelMixin):
     id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=50)
     seqnbr = models.SmallIntegerField()
     class Meta:
         db_table = u't_feedbacktype'
 
-class TFeedback(models.Model):
+class TFeedback(models.Model, modelMixin):
     id = models.IntegerField(primary_key=True)
     contactname = models.CharField(max_length=100)
     email = models.CharField(max_length=100)
@@ -358,7 +413,7 @@ class TFeedback(models.Model):
     class Meta:
         db_table = u't_feedback'
 
-class TFlag(models.Model):
+class TFlag(models.Model, modelMixin):
     id = models.IntegerField(primary_key=True)
     ipaddress = models.CharField(max_length=255)
     comment = models.TextField()
@@ -369,21 +424,21 @@ class TFlag(models.Model):
     class Meta:
         db_table = u't_flag'
 
-class TFlagtype(models.Model):
+class TFlagtype(models.Model, modelMixin):
     id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=255)
     description = models.TextField()
     class Meta:
         db_table = u't_flagtype'
 
-class TInstance(models.Model):
+class TInstance(models.Model, modelMixin):
     id = models.IntegerField(primary_key=True)
     date = models.DateTimeField()
     event = models.IntegerField()
     class Meta:
         db_table = u't_instance'
 
-class TOidSequence(models.Model):
+class TOidSequence(models.Model, modelMixin):
     contactpoint_seq = models.IntegerField()
     contacttype_seq = models.IntegerField()
     country_seq = models.IntegerField()
@@ -413,7 +468,7 @@ class TOidSequence(models.Model):
     class Meta:
         db_table = u't_oid_sequence'
 
-class TOrganization(models.Model, MnaResource):
+class TOrganization(models.Model, MnaResource, modelMixin):
     feestext = models.TextField()
     personneltext = models.TextField()
     programtext = models.TextField()
@@ -423,14 +478,14 @@ class TOrganization(models.Model, MnaResource):
     class Meta:
         db_table = u't_organization'
 
-class TTheme(models.Model):
+class TTheme(models.Model, modelMixin):
     id = models.IntegerField(primary_key=True)
     name = models.CharField(unique=True, max_length=50)
     label = models.CharField(max_length=50)
     class Meta:
         db_table = u't_theme'
 
-class TParty(models.Model, MnaResource):
+class TParty(models.Model, MnaResource, modelMixin):
     postcardsokay = models.BooleanField()
     subscriptionsokay = models.BooleanField()
     opentopublic = models.BooleanField()
@@ -446,12 +501,12 @@ class TParty(models.Model, MnaResource):
     class Meta:
         db_table = u't_party'
 
-class TPoolTest(models.Model):
+class TPoolTest(models.Model, modelMixin):
     id = models.IntegerField(primary_key=True)
     class Meta:
         db_table = u't_pool_test'
 
-class TPostcard(models.Model):
+class TPostcard(models.Model, modelMixin):
     id = models.IntegerField(primary_key=True)
     code = models.CharField(max_length=100)
     fromname = models.CharField(max_length=100)
@@ -467,7 +522,7 @@ class TPostcard(models.Model):
     class Meta:
         db_table = u't_postcard'
 
-class TRegion(models.Model):
+class TRegion(models.Model, modelMixin):
     id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=50)
     seqnbr = models.SmallIntegerField()
@@ -475,13 +530,13 @@ class TRegion(models.Model):
     class Meta:
         db_table = u't_region'
 
-class TRegionCounty(models.Model):
+class TRegionCounty(models.Model, modelMixin):
     countyid = models.ForeignKey(TCounty, db_column='countyid')
     regionid = models.ForeignKey(TRegion, db_column='regionid')
     class Meta:
         db_table = u't_region_county'
 
-class TRelatedlink(models.Model):
+class TRelatedlink(models.Model, modelMixin):
     id = models.IntegerField(primary_key=True)
     description = models.CharField(max_length=255)
     title = models.CharField(max_length=100)
@@ -493,20 +548,20 @@ class TRelatedlink(models.Model):
     class Meta:
         db_table = u't_relatedlink'
 
-class TResourceFile(models.Model, MnaResource):
+class TResourceFile(models.Model, MnaResource, modelMixin):
     resourceid = models.ForeignKey(TResource, db_column='resourceid',primary_key=True)
     fileid = models.ForeignKey(TMediafile, db_column='fileid')
     class Meta:
         db_table = u't_resource_file'
 
-class TResourceLog(models.Model):
+class TResourceLog(models.Model, modelMixin):
     id = models.IntegerField(primary_key=True)
     resourceid = models.ForeignKey(TResource, db_column='resourceid')
     viewdate = models.DateTimeField()
     class Meta:
         db_table = u't_resource_log'
 
-class TResourcecoll(models.Model, MnaResource):
+class TResourcecoll(models.Model, MnaResource, modelMixin):
     description = models.CharField(max_length=255)
     icon = models.ForeignKey(TMediafile, db_column='icon')
     classtype = models.SmallIntegerField()
@@ -515,7 +570,7 @@ class TResourcecoll(models.Model, MnaResource):
     class Meta:
         db_table = u't_resourcecoll'
 
-class TSubscription(models.Model):
+class TSubscription(models.Model, modelMixin):
     id = models.IntegerField(primary_key=True)
     email = models.CharField(max_length=100)
     artist = models.IntegerField()
@@ -526,7 +581,7 @@ class TSubscription(models.Model):
     class Meta:
         db_table = u't_subscription'
 
-class TThemeproperty(models.Model):
+class TThemeproperty(models.Model, modelMixin):
     id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=100)
     value = models.CharField(max_length=100)
@@ -534,7 +589,7 @@ class TThemeproperty(models.Model):
     class Meta:
         db_table = u't_themeproperty'
 
-class TTour(models.Model, MnaResource):
+class TTour(models.Model, MnaResource, modelMixin):
     description = models.TextField()
     keywords = models.CharField(max_length=255)
     visibility = models.SmallIntegerField()
@@ -544,7 +599,7 @@ class TTour(models.Model, MnaResource):
     class Meta:
         db_table = u't_tour'
 
-class TTourItem(models.Model):
+class TTourItem(models.Model, modelMixin):
     id = models.IntegerField(primary_key=True)
     featured = models.BooleanField()
     description = models.TextField()
@@ -554,7 +609,7 @@ class TTourItem(models.Model):
     class Meta:
         db_table = u't_tour_item'
 
-class TVenue(models.Model, MnaResource):
+class TVenue(models.Model, MnaResource, modelMixin):
     public = models.BooleanField()
     url = models.CharField(max_length=255)
     hours = models.CharField(max_length=255)
@@ -564,7 +619,7 @@ class TVenue(models.Model, MnaResource):
     class Meta:
         db_table = u't_venue'
 
-class Test(models.Model):
+class Test(models.Model, modelMixin):
     childid = models.IntegerField()
     parentid = models.IntegerField()
     grandparentid = models.IntegerField()
@@ -577,7 +632,7 @@ class Test(models.Model):
     class Meta:
         db_table = u'test'
 
-class TTheme(models.Model):
+class TTheme(models.Model, modelMixin):
     id = models.IntegerField(primary_key=True)
     name = models.CharField(unique=True, max_length=50)
     label = models.CharField(max_length=50)
