@@ -5672,9 +5672,11 @@ body.page-node-add #content {
 
 /* user authoring forms */
 #user-profile-form {
+
 	div[class^="field-type-"] {
 		width:100%;
 	}
+	/*
 	div[class^="field-type-"] div[id$="wrapper"] {
 		width:50%;
 		float:left;
@@ -5685,5 +5687,10 @@ body.page-node-add #content {
 		float:left;
 		clear:right;
 	}
+	*/
 		
+}
+
+tr.odd .form-item, tr.even .form-item {
+	margin-bottom:10px;
 }
