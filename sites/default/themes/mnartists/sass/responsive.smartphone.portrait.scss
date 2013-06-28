@@ -16,3 +16,47 @@
 html {
   font-size: 112.5%; 
 }
+
+.sidebar-right, .main-content {
+	margin-left:0;
+	margin-right:0;
+	display:block;
+	clear:both;
+	margin-bottom:20px;
+	float:none!important;
+	width:auto!important;
+}
+
+.menu-trigger { 
+	display: block; 
+}
+#menu:before,
+#menu,
+#admin-menu,
+.menu-content { 
+	display:none; 
+}
+body { 
+	padding-left: 0px; 
+	
+}
+
+.content-bottom {
+	display:block;
+	margin-bottom:0;
+	
+	.one-third {
+		display:block;
+		width:auto;
+		float:none!important;
+		clear:both;
+	}
+	
+	.one-third.panel-col-last {
+		border-left:none;
+	}
+}
+
+form input.text-full {
+	max-width:300px;
+}

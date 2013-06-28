@@ -1776,6 +1776,9 @@ form {
         border: 0;
         @include rounded;
     }
+    select[multiple] {
+	    width:100%;
+    }
     
     textarea {
         height: 64px;
@@ -4781,13 +4784,7 @@ aside.pull_quote_position {
 
 /* @end */
 
-@media only screen and (max-width: 560px) {
-  .menu-trigger { display: block; }
-  .menu-content { display:none; }
-  #admin-menu { display:none; }
-  #menu:before, #menu { display:none; }
-  body { padding-left: 0px; }
-}
+
 
 
 /* @end */
@@ -5383,6 +5380,7 @@ p.site-description {
 
 
 /* event page */
+/******************************************/
 .event-date {
 	padding-top:30px;
 	.pane-node-field-date {
@@ -5589,4 +5587,109 @@ body.page-node-add #content {
 	background: #fff;
 	padding:20px;
 	margin:20px 0;
+}
+
+/* general layout */
+.inset-left {
+	
+}
+.inset-right {
+	
+}
+.inset -middle {
+	
+}
+.inside .block {
+	margin-bottom:0;
+}
+
+
+/* artwork page */
+/****************************************************/
+.content-artwork .inset-left {
+	font-family: $serif_font;
+}
+.content-artwork .pane-node-title h2 {
+	 background:none;
+	 padding:0 0 5px 0;
+	 margin:0 0 10px 0;
+	 border-bottom: 1px solid $lightgray;
+	 font-size:18px;
+	 height:auto;
+	 line-height:auto;
+	 text-transform:none;
+	 letter-spacing:normal;
+	 
+	 a {
+		 font-family: $serif-font;
+		 font-weight: normal;
+		 height:auto;
+	 }
+}
+
+.content-artwork {
+	position:relative;
+	
+	.pane-node-links {
+		position:absolute;
+		display:inline-block;
+		right:10px;
+		top:10px;
+		text-align:right;
+	}
+}
+.content-bottom {
+	display:table;
+	padding-bottom:20px;
+	
+	.one-third {
+		display:table-cell;
+		width:33%;
+		float:none!important;
+		
+		.inside {
+			vertical-align:top;
+		}
+	}
+	
+	.one-third.panel-col-last {
+		border-left:1px solid $lightgray;
+	}
+}
+.pane-node-field-tags, .pane-node-field-license, pane-node-field-medium {
+	
+	ul {
+		padding:0;margin:0;
+		list-style:none;
+		
+		li {
+			list-style:none;
+			margin:0 8px 0 0;padding:0;
+			display:inline-block;
+		}
+	}
+}
+
+/* user authoring forms */
+#user-profile-form {
+
+	div[class^="field-type-"] {
+		width:100%;
+		border-bottom:1px solid #ddd;
+		margin-bottom:10px;
+		
+		fieldset {
+			margin-bottom:10px;
+		}
+	}
+		
+}
+
+tr.odd .form-item, tr.even .form-item {
+	margin-bottom:10px;
+}
+.page-user-edit #columns {
+	padding:10px;
+	margin: 10px 0;
+	background:#fff;
 }
