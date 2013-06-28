@@ -2040,7 +2040,7 @@ form input[type=checkbox]:checked {
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000031843}}
 form input[type=text]:focus,
 form input[type=password]:focus {
-  background: #cc0000;
+  background: #fff;
 }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000031847}}
 form input[type=submit] {
@@ -6831,9 +6831,11 @@ tr.odd .form-item, tr.even .form-item {
 
 /* form focus goodness */
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000035699}}
-input {
+form input[type=text]:focus {
   /*-moz-box-shadow: 0 0 1px 1px rgba(210,176,107,1);
   -webkit-box-shadow: 0 0 1px 1px rgba(210,176,107,1);*/
+  -moz-box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0);
+  -webkit-box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0);
   box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0);
   -webkit-transition: all .3s ease-in-out;
   -moz-transition: all .3s ease-in-out;
@@ -6841,10 +6843,12 @@ input {
   transition: all .3s ease-in-out;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000035710}}
-input:focus {
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000035712}}
+form input[type=text]:focus {
   /*-moz-box-shadow: 0 0 3px 1px rgba(210,0,0,1);
   -webkit-box-shadow: 0 0 3px 1px rgba(210,0,0,1);*/
+  -moz-box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.9);
+  -webkit-box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.9);
   box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.9);
 }
 
