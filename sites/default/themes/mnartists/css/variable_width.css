@@ -6809,7 +6809,7 @@ body.page-node-add #content {
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000035676}}
 #user-profile-form div[class^="field-type-"] {
   width: 100%;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px dotted #eee;
   margin-bottom: 10px;
 }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000035681}}
@@ -6827,6 +6827,25 @@ tr.odd .form-item, tr.even .form-item {
   padding: 10px;
   margin: 10px 0;
   background: #fff;
+}
+
+/* form focus goodness */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000035699}}
+input {
+  /*-moz-box-shadow: 0 0 1px 1px rgba(210,176,107,1);
+  -webkit-box-shadow: 0 0 1px 1px rgba(210,176,107,1);*/
+  box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0);
+  -webkit-transition: all .3s ease-in-out;
+  -moz-transition: all .3s ease-in-out;
+  -webkit-transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000035711}}
+input:focus {
+  /*-moz-box-shadow: 0 0 3px 1px rgba(210,0,0,1);
+  -webkit-box-shadow: 0 0 3px 1px rgba(210,0,0,1);*/
+  box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.9);
 }
 
 /* @group Header */
