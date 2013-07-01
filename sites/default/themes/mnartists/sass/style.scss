@@ -4043,7 +4043,7 @@ $admin_light_green: #d5f2cd;
 
 .ui-datepicker {
     display: none;
-    width: 210px;
+    width: auto;
     padding: 5px;
     background-color: $inverse_bg;
     color: #a3a3a3;
@@ -4108,6 +4108,9 @@ $admin_light_green: #d5f2cd;
             background: url(http://cdn.walkerartcenter.org/static/img/content_sprite.png) 0 0 no-repeat;
         }
     }
+    .ui-datepicker-prev:hover {
+	    border:none;outline:none;
+    }
     
     .ui-datepicker-next {
         right: 0;
@@ -4117,9 +4120,12 @@ $admin_light_green: #d5f2cd;
             background: url(http://cdn.walkerartcenter.org/static/img/content_sprite.png) right -29px no-repeat;
         }
     }
+    .ui-datepicker-next:hover {
+	    border:none;outline:none;
+    }
     
     .ui-datepicker-title {
-        margin: 0 auto;
+        margin: 0 20px;
         font-family: $sans_bold_font;
         font-weight: bold;
         text-align: center;
