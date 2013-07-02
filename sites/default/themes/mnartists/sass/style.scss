@@ -5729,3 +5729,21 @@ textarea:focus,
 button:focus {
     outline: none;
 }
+
+/* 1 column page (layout d) */
+.panel-display.panel-1col .panel-col {
+	background:#fff;
+	margin-left:10px;
+	margin-right:10px;
+	padding:10px 0;
+	
+	.block-inner {
+		margin-left:0;
+		margin-right:0;
+		
+		.panel-pane {
+			margin-right:10px;
+			margin-left:10px;
+		}
+	}
+}
