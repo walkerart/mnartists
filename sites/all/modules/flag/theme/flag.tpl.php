@@ -19,7 +19,6 @@
  * - $link_href: The URL for the flag link.
  * - $link_text: The text to show for the link.
  * - $link_title: The title attribute for the link.
- * - $link_count: The number of current flags for the link.
  *
  * - $message_text: The long message to show after a flag action has been carried out.
  * - $after_flagging: This template is called for the link both before and after being
@@ -38,8 +37,7 @@
 ?>
 <span class="<?php print $flag_wrapper_classes; ?>">
   <?php if ($link_href): ?>
-    <a href="<?php print $link_href; ?>" title="<?php print $link_title; ?>" class="<?php print $flag_classes ?>" rel="nofollow"><?php print $link_text; ?></a>
-    <span class="flag-count"> (<?php echo isset($link_count[$flag_name_css]) ? $link_count[$flag_name_css] : 0; ?>)</span><span class="flag-throbber">&nbsp;</span>
+    <a href="<?php print $link_href; ?>" title="<?php print $link_title; ?>" class="<?php print $flag_classes ?>" rel="nofollow"><?php print $link_text; ?></a><span class="flag-throbber">&nbsp;</span>
   <?php else: ?>
     <span class="<?php print $flag_classes ?>"><?php print $link_text; ?></span>
   <?php endif; ?>
