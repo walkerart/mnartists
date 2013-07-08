@@ -1855,6 +1855,7 @@ form {
         @include no_break;
         @include rounded;
         cursor: pointer;
+        margin-left:10px;
         
         &:hover {
             background: $main_color;
@@ -5758,6 +5759,14 @@ fieldset {
 }
 .form-item table tbody {
 	padding-top:10px;
+}
+form select[multiple],
+form select.form-select {
+	outline:1px solid #ccc;
+}
+form select[multiple]:active,
+form select.form-select:active {
+	outline:1px solid #888;
 }
 
 
