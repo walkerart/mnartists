@@ -6851,40 +6851,52 @@ form textarea:focus {
   -moz-transition: all .3s ease-in-out;
   -webkit-transition: all .3s ease-in-out;
   transition: all .3s ease-in-out;
+  outline: 1px solid #ccc;
+  border: none;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000035719}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000035721}}
 form input[type=text]:focus,
 form textarea:focus {
   /*-moz-box-shadow: 0 0 3px 1px rgba(210,0,0,1);
   -webkit-box-shadow: 0 0 3px 1px rgba(210,0,0,1);*/
-  -moz-box-shadow: inset 0 0 3px 1px rgba(0, 0, 0, 0.9);
-  -webkit-box-shadow: inset 0 0 3px 1px rgba(0, 0, 0, 0.9);
-  box-shadow: inset 0 0 3px 1px rgba(0, 0, 0, 0.9);
+  -moz-box-shadow: inset 0 0 3px 1px rgba(0, 0, 0, 0.4);
+  -webkit-box-shadow: inset 0 0 3px 1px rgba(0, 0, 0, 0.4);
+  box-shadow: inset 0 0 3px 1px rgba(0, 0, 0, 0.4);
+  outline: 1px solid #888;
+  border: none;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000035729}}
-input:focus,
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000035731}}
 select:focus,
-textarea:focus,
 button:focus {
   outline: none;
 }
 
-/* 1 column page (layout d) */
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000035734}}
+.form-type-checkbox .description {
+  display: inline;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000035737}}
+.form-item label {
+  padding-left: 0;
+}
+
+/* 1 column page (layout d) */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000035742}}
 .panel-display.panel-1col .panel-col {
   background: #fff;
   margin-left: 10px;
   margin-right: 10px;
   padding: 10px 0;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000035740}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000035748}}
 .panel-display.panel-1col .panel-col .block-inner {
   margin-left: 0;
   margin-right: 0;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000035747}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000035755}}
 .panel-display.panel-1col .panel-col .panel-pane .block-inner {
   margin-right: 10px;
   margin-left: 10px;
