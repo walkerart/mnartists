@@ -5737,6 +5737,21 @@ button:focus {
 .form-item label {
 	padding-left:0;
 }
+fieldset {
+	border:none;
+	width: 100%;
+	margin-bottom: 10px;
+	padding:0;
+	
+	label {
+		display: inline-block;
+        padding: 1px 5px 1px 0;
+        color: #a3a3a3;
+        @include quiet_type;
+	}
+	
+}
+
 
 /* 1 column page (layout d) */
 .panel-display.panel-1col .panel-col {
