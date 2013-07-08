@@ -5817,15 +5817,27 @@ form select.form-select:active {
 	}
 }
 ul.slidesjs-pagination {
-	margin:0;padding:0;
+	margin:0 0 15px 0;
+	padding:0;
 	
 	li {
 		display:inline;
 		list-style:none;
-		margin:0;padding:0;
+		margin:0;
+		padding:0;
 		
 		a {
-			
+			display:block;
+			overflow:hidden;
+			text-indent:100%;
+			width:10px;
+			height:10px;
+			white-space:nowrap;
+			background:#999;
+			border-radius:50%;
+		}
+		a:hover {
+			background:#222;
 		}
 		
 	}

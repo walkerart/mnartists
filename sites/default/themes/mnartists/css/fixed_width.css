@@ -6974,15 +6974,30 @@ form select.form-select:active {
 
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000035819}}
 ul.slidesjs-pagination {
-  margin: 0;
+  margin: 0 0 15px 0;
   padding: 0;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000035822}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000035823}}
 ul.slidesjs-pagination li {
   display: inline;
   list-style: none;
   margin: 0;
   padding: 0;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000035829}}
+ul.slidesjs-pagination li a {
+  display: block;
+  overflow: hidden;
+  text-indent: 100%;
+  width: 10px;
+  height: 10px;
+  white-space: nowrap;
+  background: #999;
+  border-radius: 50%;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000035839}}
+ul.slidesjs-pagination li a:hover {
+  background: #222;
 }
 
 /* end slide js */
