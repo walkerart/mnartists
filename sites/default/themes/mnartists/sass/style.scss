@@ -5748,8 +5748,16 @@ fieldset {
         padding: 1px 5px 1px 0;
         color: #a3a3a3;
         @include quiet_type;
+        padding-left:0;
+        font-weight: 700;
 	}
 	
+}
+.form-item table thead label {
+	padding-left:5px;
+}
+.form-item table tbody {
+	padding-top:10px;
 }
 
 
