@@ -190,8 +190,8 @@
 	<a href="#" class="menu-trigger">menu</a>
 	<div class="menu-content">
 		<ul class="mega-tabs">
-			<li><a href="#">MN Artists</a></li>
-			<li class="user-tab"><a href="#">Login</a></li>
+			<li><a href="/"">MN Artists</a></li>
+			<li class="user-tab"><a href="/user">Login</a></li>
 		</ul>
 		<p class="site-description">
 			Make your own MN Artists homepage by filtering communities and content.
