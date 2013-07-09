@@ -1,5 +1,23 @@
 /* DOCUMENT READY STUFF */
 jQuery(document).ready(function(){
-	var count = jQuery(".field-name-field-media").find(".field-items").children().length;
-    if (count > 1) jQuery(".field-name-field-media").find(".field-items").slidesjs();
+	jQuery.each(jQuery(".field-name-field-media"), function() {
+		var ele = jQuery(this).find(".field-items");
+		var ch = ele.children(".field-item");
+		var n=0;
+		jQuery.each(ch, function(){
+			if(this.innerHTML != "")
+				n += 1;
+		})
+	    if (n > 1) ele.slidesjs();
+	});
+	jQuery.each(jQuery(".view.view-artist-artworks.view-id-artist_artworks"), function() {
+		var ele = jQuery(this).find(".view-content");
+		var ch = ele.children(".views-row");
+		var n=0;
+		jQuery.each(ch, function(){
+			if(this.innerHTML != "")
+				n += 1;
+		})
+	    if (n > 1) ele.slidesjs();
+	});
 });
