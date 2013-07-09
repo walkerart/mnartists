@@ -45,10 +45,7 @@ body {
 	margin-bottom:0;
 	
 	.one-third {
-		display:block;
-		width:auto;
-		float:none!important;
-		clear:both;
+		@include full_width;
 	}
 	
 	.one-third.panel-col-last {
@@ -61,8 +58,12 @@ form input.text-full {
 }
 
 .panel-1col .panel-col .one-third {
-	display:block;
-	width:auto!important;
-	float:none!important;
-	clear:both;
+	@include full_width;
+}
+.panel-2col {
+	
+	.panel-col-first, .panel-col-first {
+		@include full_width;
+		
+	}
 }

@@ -172,3 +172,10 @@ $legacy-support-for-ie7: true;
         display: block;
     }
 }
+
+@mixin full_width {
+	display:block;
+	width:auto!important;
+	float:none!important;
+	clear:both;
+}
