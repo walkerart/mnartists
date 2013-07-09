@@ -5546,6 +5546,13 @@ depending on the template so needs unified a bit */
 		right:10px;
 		top:10px;
 		text-align:right;
+		z-index:999;
+		.block-inner {
+			
+			.block-content {
+				background:none;
+			}
+		}
 	}
 }
 
@@ -5663,7 +5670,7 @@ body.page-node-add #content {
 		border-left:1px solid $lightgray;
 	}
 }
-.pane-node-field-tags, .pane-node-field-license, pane-node-field-medium {
+.pane-node-field-tags, .pane-node-field-license, .pane-node-field-medium {
 	
 	ul {
 		padding:0;margin:0;
