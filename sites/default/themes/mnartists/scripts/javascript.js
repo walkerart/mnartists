@@ -20,4 +20,5 @@ jQuery(document).ready(function(){
 		})
 	    if (n > 1) ele.slidesjs();
 	});
+    jQuery(".slidesjs-container").fitVids();
 });
