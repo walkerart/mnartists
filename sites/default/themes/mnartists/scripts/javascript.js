@@ -10,7 +10,7 @@ jQuery(document).ready(function(){
 		})
 	    if (n > 1) {
 	    	ele.slidesjs({
-	        	height: 700
+	        	height: 550
 		    });
 	    }
 	});
@@ -24,5 +24,5 @@ jQuery(document).ready(function(){
 		})
 	    if (n > 1) ele.slidesjs();
 	});
-    jQuery(".field-item").fitVids();
+    jQuery(".slidesjs-container").fitVids();
 });
