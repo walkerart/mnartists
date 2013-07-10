@@ -5767,7 +5767,13 @@ tr.odd .form-item, tr.even .form-item {
 		clear:none;
 	}
 }
-.date-no-float a[href$=".jpg"]
+.date-no-float {
+	label[href$="value2"] {
+		float:left;
+		padding-top:3px;
+	}
+	
+}
 
 
 /* form focus goodness */
