@@ -8,10 +8,7 @@ jQuery(document).ready(function(){
 			if(this.innerHTML != "")
 				n += 1;
 		})
-	    if (n > 1) ele.slidesjs({
-	    	width: 1080,
-	    	height: 630
-	    });
+	    if (n > 1) ele.slidesjs();
 	});
 	jQuery.each(jQuery(".view.view-artist-artworks.view-id-artist_artworks"), function() {
 		var ele = jQuery(this).find(".view-content");
@@ -21,9 +18,7 @@ jQuery(document).ready(function(){
 			if(this.innerHTML != "")
 				n += 1;
 		})
-	    if (n > 1) ele.slidesjs({
-	    	autoHeight: true;
-	    });
+	    if (n > 1) ele.slidesjs();
 	});
-    jQuery(".slidesjs-container").fitVids();
+    jQuery(".field-item").fitVids();
 });
