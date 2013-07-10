@@ -5907,6 +5907,26 @@ ul.slidesjs-pagination {
 		}
 	}
 }
+.pane-node-comments {
+	
+	.comment {
+		
+		.username {
+			color:$lightgray;
+			text-decoration:underline;
+		}
+		.field-name-comment-body {
+			display:inline;
+			
+			div {
+				display:inline;
+			}
+			p {
+				display:inline;
+			}
+		}
+	}
+}
 /* */
 
 /* user profile page */
@@ -5927,6 +5947,7 @@ ul.slidesjs-pagination {
 	}
 }
 .pane-user-mnartist-profiles-artworks {
+	
 	.block-inner {
 		
 		.block-content {
@@ -5938,7 +5959,7 @@ ul.slidesjs-pagination {
 			}
 			dd {
 				background:#fff;
-				padding:0;
+				padding:0;margin:0;
 			}
 		}
 	}
