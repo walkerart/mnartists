@@ -61,8 +61,8 @@
 ?>
 <div class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
   <div class="content"<?php print $content_attributes; ?>>
-  <span class="comment-author"><?php print $author; ?></span>:
-    <?php
+  <?php print $author; ?>:
+  <?php
       // We hide the comments and links now so that we can render them later.
       hide($content['links']);
       print render($content);
