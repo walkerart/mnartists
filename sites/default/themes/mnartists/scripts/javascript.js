@@ -9,7 +9,8 @@ jQuery(document).ready(function(){
 				n += 1;
 		})
 	    if (n > 1) ele.slidesjs({
-	    	height: 630;
+	    	width: 1080,
+	    	height: 630
 	    });
 	});
 	jQuery.each(jQuery(".view.view-artist-artworks.view-id-artist_artworks"), function() {
