@@ -10,8 +10,7 @@ jQuery(document).ready(function(){
 		})
 	    if (n > 1) {
 	    	ele.slidesjs({
-		    	width: 940,
-	        	height: 1100
+	        	height: 700
 		    });
 	    }
 	});
