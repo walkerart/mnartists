@@ -5626,7 +5626,7 @@ body.page-node-add #content {
 }
 .content-artwork .pane-node-title h2 {
 	 background:none;
-	 padding:0 0 5px 0;
+	 padding:10px 0 5px 0;
 	 margin:0 0 10px 0;
 	 border-bottom: 1px solid $lightgray;
 	 font-size:18px;
@@ -5768,7 +5768,8 @@ tr.odd .form-item, tr.even .form-item {
 	}
 }
 .date-no-float {
-	label[class$="value2"] {
+
+	label[class*="value2"] {
 		float:left;
 		padding-top:3px;
 	}
