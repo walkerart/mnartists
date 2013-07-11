@@ -24,20 +24,23 @@ jQuery(document).ready(function(){
         if (slideContainer == undefined) {
             continue;
         }
-        var slideElem = slideContainer.find(slideSelector);
-        var slideItems = slideElem.find(slideItemSelector);
-        var maxHeight = 0;
+        slideContainer.each(function() {
+            var $this = jQuery(this);
+            var slideElem = $this.find(slideSelector);
+            var slideItems = slideElem.find(slideItemSelector);
+            var maxHeight = 0;
 
-        if (slideItems.length > 1) {
-            slideItems.each(function(){
-                var testHeight = jQuery(this).height();
-                maxHeight = testHeight > maxHeight ? testHeight : maxHeight; 
-            });
-            slideElem.slidesjs({
-                width: slideContainer.width(),
-                height: maxHeight
-            }); 
-        }
+            if (slideItems.length > 1) {
+                slideItems.each(function(){
+                    var testHeight = jQuery(this).height();
+                    maxHeight = testHeight > maxHeight ? testHeight : maxHeight; 
+                });
+                slideElem.slidesjs({
+                    width: slideContainer.width(),
+                    height: maxHeight
+                }); 
+            }
+        });
     }
 /*
 	jQuery.each(jQuery(".field-name-field-media"), function() {

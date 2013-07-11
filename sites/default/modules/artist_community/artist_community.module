@@ -314,3 +314,10 @@ function url_query_master($text, $path, $key, $val, $attributes = array()) {
 
     return $output;
 }
+
+//Remove extra media values from the teaser view
+function artist_community_entity_view($entity, $type, $view_mode, $langcode) {
+    if ($view_mode === 'teaser' && $entity->type === 'artwork') {
+        $entity->content['field_media']['#items'] = array_slice($entity->content['field_media']['#items'], 0, 1);
+    }
+}
