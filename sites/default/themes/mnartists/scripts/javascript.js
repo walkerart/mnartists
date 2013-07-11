@@ -1,21 +1,3 @@
-<<<<<<< Updated upstream
-/* DOCUMENT READY STUFF */
-jQuery(document).ready(function(){
-    jQuery(".field-name-field-media, .view-artist-artworks").fitVids();
-    
-    var slideContainerSelectors = [
-        ".field-name-field-media",
-        ".view-artist-artworks"
-    ];
-    var slideSelectors = [
-        ".field-items",
-        ".view-content"
-    ];
-    var slideItemSelectors = [
-        ".field-item",
-        ".views-row"
-    ];
-=======
 /**
  * @author       Rob W <gwnRob@gmail.com>
  * @website      http://stackoverflow.com/a/7513356/938089
@@ -26,7 +8,8 @@ jQuery(document).ready(function(){
  * @param String frame_id The id of (the div containing) the frame
  * @param String func     Desired function to call, eg. "playVideo"
  *        (Function)      Function to call when the player is ready.
- * @param Array  args     (optional) List of arguments to pass to function func*/
+ * @param Array  args     (optional) List of arguments to pass to function func
+ */
 function callPlayer(frame_id, func, args) {
     if (window.jQuery && frame_id instanceof jQuery) frame_id = frame_id.get(0).id;
     var iframe = document.getElementById(frame_id);
@@ -114,7 +97,6 @@ jQuery(document).ready(function () {
     var slideItemSelectors = [
         ".field-item",
         ".views-row"];
->>>>>>> Stashed changes
 
     for (var i = 0, len = slideContainerSelectors.length; i < len; i++) {
         var slideContainerSelector = slideContainerSelectors[i];
@@ -125,25 +107,17 @@ jQuery(document).ready(function () {
         if (slideContainer == undefined) {
             continue;
         }
-<<<<<<< Updated upstream
-        slideContainer.each(function() {
-=======
         slideContainer.each(function () {
->>>>>>> Stashed changes
             var $this = jQuery(this);
             var slideElem = $this.find(slideSelector);
             var slideItems = slideElem.find(slideItemSelector);
             var maxHeight = 0;
 
             if (slideItems.length > 1) {
-<<<<<<< Updated upstream
-                slideItems.each(function(){
-                    var testHeight = jQuery(this).height();
-                    maxHeight = testHeight > maxHeight ? testHeight : maxHeight; 
-=======
                 slideItems.each(function () {
                     var item = jQuery(this);
                     var child = item.children();
+                    var testHeight = item.height();
                     if (child.hasClass('file-video-vimeo')) {
                         if (typeof Froogaloop == 'undefined') addJavascript('http://a.vimeocdn.com/js/froogaloop2.min.js', 'head');
                     }
@@ -153,56 +127,11 @@ jQuery(document).ready(function () {
                     if (child.hasClass('file-audio-soundcloud')) {
                         if (typeof SC == 'undefined') addJavascript('https://w.soundcloud.com/player/api.js', 'head');
                     }
-                    var testHeight = item.height();
                     maxHeight = testHeight > maxHeight ? testHeight : maxHeight;
->>>>>>> Stashed changes
                 });
                 slideElem.slidesjs({
                     width: slideContainer.width(),
                     height: maxHeight
-<<<<<<< Updated upstream
-                }); 
-            }
-        });
-    }
-/*
-	jQuery.each(jQuery(".field-name-field-media"), function() {
-		var ele = jQuery(this).find(".field-items");
-		var ch = ele.children(".field-item");
-		var n=0;
-        var maxHeight = 0;
-		jQuery.each(ch, function(){
-			if (this.innerHTML != "") {
-				n += 1;
-                var testHeight = jQuery(this).height();
-                maxHeight = testHeight > maxHeight ? testHeight : maxHeight;
-            }
-		});
-	    if (n > 1) {
-	    	ele.slidesjs({
-                width: jQuery(".field-name-field-media").width(),
-	        	height: maxHeight
-		    });
-	    }
-	});
-	jQuery(), function() {
-		var ele = jQuery(this).find(".view-content");
-		var ch = ele.children(".views-row");
-		var n=0;
-		jQuery.each(ch, function(){
-			if (this.innerHTML != "")
-				n += 1;
-		});
-	    if (n > 1) { 
-            ele.slidesjs({
-                width: jQuery(".view-artist-artworks").width(),
-                height: 550
-            });
-        }
-	});
-*/
-});
-=======
                 });
             }
         });
@@ -248,4 +177,3 @@ jQuery(document).ready(function () {
         }
     });
 });
->>>>>>> Stashed changes
