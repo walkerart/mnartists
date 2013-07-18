@@ -5605,16 +5605,16 @@ depending on the template so needs unified a bit */
 		.views-row {
 			width:45%;
 		}
-		.views-row.odd {
+		.views-row.views-row-odd {
 			float:left;
 			clear:left;
 		}
-		.views-row .even {
+		.views-row.views-row-even {
 			float:right;
 			clear:right;
 			
 		}
-		.views-row .even:after {
+		.views-row.views-row-even .even:after {
 			display:block;
 			clear:both;
 			margin:0;padding:0;
