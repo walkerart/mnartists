@@ -5588,6 +5588,39 @@ depending on the template so needs unified a bit */
 	
 }
 
+/* collection block */
+.collections {
+	dd {
+		margin:0;padding:0;
+		float:none;
+		display:block;
+		width:auto;
+	}
+	dt {
+		float:none;
+		display:block;
+		width:auto;
+	}
+	.view-collections {
+		.views-row {
+			
+		}
+		.views-row.odd {
+			float:left;
+			clear:left;
+		}
+		.views-row .even {
+			float:right;
+			clear:right;
+			
+		}
+		.views-row .even:after {
+			display:block;
+			clear:both;
+			margin:0;padding:0;
+		}
+	}
+}
 
 /* forms */
 .form-item, .form-actions {
