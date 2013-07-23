@@ -5342,7 +5342,10 @@ only screen and (min-device-pixel-ratio: 1.5) {
 						}
 					}
 					li.first {
-						border-bottom:1px solid $light_border;
+						border-bottom:none;
+					}
+					li.last {
+						margin-bottom:5px;
 					}
 				}
 			}
