@@ -5294,6 +5294,12 @@ only screen and (min-device-pixel-ratio: 1.5) {
 		margin:0;
 	}
 }
+#block-mnartist-profiles-mna-my-stuff {
+	
+	.block-inner {
+		margin:0;
+	}
+}
 
 #menu {
 	position:absolute;
@@ -6128,6 +6134,24 @@ ul.slidesjs-pagination {
 			li {
 				background:$main_bg;
 			}
+			li.user-tab {
+				background:#333;
+				border-bottom-left-radius:5px;
+				
+				a {
+					color:#e5e5e5;
+					
+				}
+			}
+		}
+		ul {
+			
+			li {
+				border-bottom: 1px solid #4C4C4C;
+			}
+			li.first {
+				border-bottom: 1px solid #4C4C4C;
+			}
 		}
 	}
 	#menu:before {
@@ -6142,3 +6166,4 @@ ul.slidesjs-pagination {
 		}
 	}
 }
+
