@@ -5327,7 +5327,7 @@ only screen and (min-device-pixel-ratio: 1.5) {
 			.item-list {
 				
 				ul {
-					background: rgba(0,0,0,.1);
+					
 					li {
 						padding-left:25px;
 						display:block;
@@ -5338,11 +5338,17 @@ only screen and (min-device-pixel-ratio: 1.5) {
 							line-height:1em;
 							background:none;
 							text-transform:none;
-							border-bottom:1px solid $lightgray;
+							border-bottom:1px solid $light_border;
 						}
+					}
+					li.first {
+						border-bottom:1px solid $light_border;
 					}
 				}
 			}
+		}
+		li.first {
+			border-bottom: 2px solid #fff;
 		}
 		.block {
 			margin-bottom:0px;
