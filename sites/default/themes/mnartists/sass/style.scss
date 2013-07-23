@@ -5307,7 +5307,21 @@ only screen and (min-device-pixel-ratio: 1.5) {
 	height:auto;
 }
 #menu {
-	
+	.search-container {
+		display:block;
+		margin:0 -10px;
+		padding:0;
+		width:100%;
+		border-bottom:1px solid #666;
+		
+		input {
+			width:100%;
+			border-width:0;
+			padding:0;
+			line-height:20px;
+			margin:0 10px;
+		}
+	}
 	ul {
 		margin:0;
 		padding:0;
@@ -5334,6 +5348,7 @@ only screen and (min-device-pixel-ratio: 1.5) {
 				
 			}
 			.item-list {
+				display:none;
 				
 				ul {
 					
@@ -6127,21 +6142,7 @@ ul.slidesjs-pagination {
 	#menu { 
 		background:$mystuff_bg_dark;
 		
-		.search-container {
-			display:block;
-			margin:0 -10px;
-			padding:0;
-			width:100%;
-			border-bottom:1px solid #666;
-			
-			input {
-				width:100%;
-				border-width:0;
-				padding:0;
-				line-height:20px;
-				margin:0 10px;
-			}
-		}
+		
 		
 		ul.mega-tabs {
 			background:$mystuff_bg_dark;
@@ -6181,7 +6182,7 @@ ul.slidesjs-pagination {
 					padding-bottom:10px;
 					padding-top:5px;
 					
-					display:none;
+					
 					
 					ul {
 						
