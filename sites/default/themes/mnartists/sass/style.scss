@@ -6255,7 +6255,7 @@ ul.slidesjs-pagination {
 .ui-datepicker-inline {
 	border:none;border-width:0;
 	padding:0;
-	background: $menu_bg;
+	background: none;
 	
 	.ui-datepicker-header {
 		border:none;
@@ -6299,4 +6299,8 @@ ul.slidesjs-pagination {
 		}
 		
 	}
+}
+#menu ul li .menu-event-datepicker {
+	margin:0 -10px;
+	background:#ebebeb;
 }
