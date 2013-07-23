@@ -6133,6 +6133,7 @@ ul.slidesjs-pagination {
 			li {
 				background:$main_bg;
 				border-bottom-right-radius:5px;
+				border:none;
 				
 				a {
 					color:$mystuff_bg_dark;
@@ -6174,6 +6175,10 @@ ul.slidesjs-pagination {
 						li.last {
 							margin-bottom:0px!important;
 							border-bottom:none;
+							
+							a {
+								border-bottom:none;
+							}
 						}
 					}
 				}
