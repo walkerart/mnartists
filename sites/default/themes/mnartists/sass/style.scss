@@ -5319,9 +5319,13 @@ only screen and (min-device-pixel-ratio: 1.5) {
 			border-width:0;
 			padding:0;
 			line-height:20px;
-			margin:0 10px;
+			margin:0;
 			background:$menu_bg;
 			text-indent:10px;
+		}
+		input:focus {
+			outline:none;
+			background:#ccc;
 		}
 	}
 	ul {
