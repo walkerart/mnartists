@@ -6260,6 +6260,8 @@ ul.slidesjs-pagination {
 	.ui-datepicker-header {
 		border:none;
 		border-width:0;
+		border-radius:0;
+		background:none;
 	}
 	a {
 		padding:0;
@@ -6267,6 +6269,8 @@ ul.slidesjs-pagination {
 		
 	}
 	table.ui-datepicker-calendar {
+		border:none;
+		
 		tbody {
 			border:none;
 		
@@ -6277,16 +6281,18 @@ ul.slidesjs-pagination {
 				margin-bottom:5px;
 				
 				td {
-					padding:0;
+					padding:0 0 5px 0;
 					border:none;
 					border-width:0;
 					a {
-						line-height:22px;
+						line-height:22px!important;
 						height:22px;
 						width:22px;
 						background-image:none;
 						border:1px solid #ccc;
 						border-radius:50%;
+						padding:0;
+						margin:0;
 					}
 				}
 			}
