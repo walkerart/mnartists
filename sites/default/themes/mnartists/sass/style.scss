@@ -5288,9 +5288,13 @@ only screen and (min-device-pixel-ratio: 1.5) {
 
 
 /* MENU SIDEBAR *********************************************/
-#menu {
+#block-artist-community-community {
 	
+	.block-inner {
+		margin:0;
+	}
 }
+
 #menu {
 	position:absolute;
 	left:0;
@@ -5308,11 +5312,12 @@ only screen and (min-device-pixel-ratio: 1.5) {
 		
 		li {
 			margin:0;
+			padding:0 10px 0 10px;
 			
 			a {
 				display:block;
 				margin:0;
-				padding:5px 5px 5px 25px;
+				padding:5px 0 5px 25px;
 				line-height:1em;
 				text-transform:uppercase;
 				font-size:12px;
@@ -5329,7 +5334,7 @@ only screen and (min-device-pixel-ratio: 1.5) {
 				ul {
 					
 					li {
-						padding-left:25px;
+						padding:0 0 0 25px;
 						display:block;
 						
 						a {
@@ -5345,7 +5350,7 @@ only screen and (min-device-pixel-ratio: 1.5) {
 						border-bottom:none;
 					}
 					li.last {
-						margin-bottom:5px;
+						margin-bottom:5px!important;
 					}
 				}
 			}
