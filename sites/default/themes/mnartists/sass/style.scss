@@ -6121,12 +6121,25 @@ ul.slidesjs-pagination {
 	background: $mystuff_bg_light;
 	
 	#menu { 
-		
-	}
-		#menu:before {
-
 		background:$mystuff_bg_dark;
-
+		
+		ul.mega-tabs {
+			
+			li {
+				background:$main_bg;
+			}
+		}
+	}
+	#menu:before {
+		background:$mystuff_bg_dark;
+	}
+	.panel-pane {
+		.block-inner {
+			.block-content {
+				background:$mystuff_bg_dark;
+				color:#fff;
+			}
+		}
 	}
 }
-
+#menu ul.mega-tabs li.user-tab
