@@ -6267,21 +6267,30 @@ ul.slidesjs-pagination {
 		
 	}
 	table.ui-datepicker-calendar {
-		
-		tr {
+		tbody {
 			border:none;
-			border-width:0;
-			td {
-				padding:0;
+		
+			tr {
 				border:none;
 				border-width:0;
-				a {
-					line-height:1.5em;
-					background-image:none;
-					border:1px solid #ccc;
-					border-radius:50%;
+				background:none;
+				margin-bottom:5px;
+				
+				td {
+					padding:0;
+					border:none;
+					border-width:0;
+					a {
+						line-height:22px;
+						height:22px;
+						width:22px;
+						background-image:none;
+						border:1px solid #ccc;
+						border-radius:50%;
+					}
 				}
 			}
 		}
+		
 	}
 }
