@@ -42,6 +42,10 @@ function artist_community_theme() {
             'file' => 'artist_community.templates.inc',
             'template' => 'templates/artist-profile',
         ),
+        'artist_community_menu_search' => array(
+            'variables' => array(),
+            'template' => 'templates/mna-search-block'
+        )
     );
 }
 
@@ -50,17 +54,38 @@ function artist_community_theme() {
  */
 function artist_community_block_info() {
 
+    $blocks['menu-search'] = array(
+        'info' => t('Menu Search'),
+        'cache' => DRUPAL_NO_CACHE,
+        'visibility' => BLOCK_VISIBILITY_PHP,
+        'pages' => '<?php return _artist_community_block_visibility(); ?>'
+    );
+
     $blocks['community'] = array(
         'info' => t('Artist Community - Communities'),
         'cache' => DRUPAL_NO_CACHE,
+        'visibility' => BLOCK_VISIBILITY_PHP,
+        'pages' => '<?php return _artist_community_block_visibility(); ?>'
     );
 
     $blocks['content'] = array(
         'info' => t('Artist Community - Content'),
         'cache' => DRUPAL_NO_CACHE,
+        'visibility' => BLOCK_VISIBILITY_PHP,
+        'pages' => '<?php return _artist_community_block_visibility(); ?>'
     );
 
     return $blocks;
+}
+
+function _artist_community_block_visibility() {
+    global $user;
+
+    if (arg(0) == 'user' && $user->uid == arg(1)) {
+        return false;
+    }
+
+    return true;
 }
 
 function artist_community_block_view($delta = '') {
@@ -73,9 +98,18 @@ function artist_community_block_view($delta = '') {
             $block['subject'] = t('Content');
             $block['content'] = _community_block_content();
             break;
+        case 'menu-search':
+            $block['subject'] = t('Search');
+            $block['content'] = _community_block_search();
     }
 
     return $block;
+}
+
+function _community_block_search() {
+    return theme("artist_community_menu_search", array(
+
+    ));
 }
 
 /**
