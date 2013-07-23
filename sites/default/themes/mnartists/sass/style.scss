@@ -5336,6 +5336,7 @@ only screen and (min-device-pixel-ratio: 1.5) {
 		li {
 			margin:0;
 			padding:0 10px 0 10px;
+			position:relative;
 			
 			a {
 				display:block;
@@ -5352,6 +5353,12 @@ only screen and (min-device-pixel-ratio: 1.5) {
 			a.active {
 				background: url('../images/mna-circle-filled.svg') no-repeat left center transparent;
 				
+			}
+			a.expand {
+				line-height:1em;
+				margin:0;padding:0;
+				right:0;top:0;
+				position:absolute;
 			}
 			.item-list {
 				display:none;
