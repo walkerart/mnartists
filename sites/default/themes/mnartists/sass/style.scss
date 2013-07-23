@@ -6266,6 +6266,12 @@ ul.slidesjs-pagination {
 		background:none;
 		top:4px;
 	}
+	.ui-datepicker-prev {
+		left:10px;
+	}
+	.ui-datepicker-next {
+		right:10px;
+	}
 	.ui-datepicker-prev .ui-icon {
 		background: url('../images/arrow-prev.svg') no-repeat center center transparent;
 		background-size:7px auto;
@@ -6297,6 +6303,13 @@ ul.slidesjs-pagination {
 		
 			tr {
 				background:none;
+				
+				th {
+					
+					span {
+						color:#111;
+					}
+				}
 			}
 		}
 		tbody {
@@ -6321,6 +6334,11 @@ ul.slidesjs-pagination {
 						border-radius:50%;
 						padding:0;
 						margin:0;
+					}
+					a.ui-state-active {
+						background:#111;
+						color:#fff;
+						border:1px solid #111;
 					}
 				}
 			}
