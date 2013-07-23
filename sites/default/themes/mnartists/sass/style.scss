@@ -6146,7 +6146,9 @@ ul.slidesjs-pagination {
 			
 			li {
 				border-bottom: 1px solid #4C4C4C;
-				
+				a {
+					color:#e3e3e3;
+				}
 				.item-list {
 					background:#4d4d4d;
 					margin-left:-10px;
@@ -6156,9 +6158,14 @@ ul.slidesjs-pagination {
 						
 						li {
 							padding:0 0 0 35px;
+							
+							a {
+								color:#ccc;
+							}
 						}
 						li.last {
 							margin-bottom:0px!important;
+							border-bottom:none;
 						}
 					}
 				}
