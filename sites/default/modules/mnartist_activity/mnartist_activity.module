@@ -1,0 +1,53 @@
+<?php
+/**
+ * @file
+ * Code for the MNArtist Activity feature.
+ */
+
+/**
+ * Implements hook_block_info()
+ */
+function mnartist_activity_block_info() {
+
+    $blocks['activity'] = array(
+        'info' => t('MN Artist Activity'),
+        'cache' => DRUPAL_NO_CACHE,
+    );
+
+    return $blocks;
+}
+
+function mnartist_activity_block_view($delta = '') {
+    global $user;
+    global $elements;
+    $page_user = user_load(arg(1));    
+    if($user->uid == $page_user->uid)
+    {
+        $results = db_query("SELECT am.message FROM mnartists.activity_messages am JOIN mnartists.activity_targets at ON am.amid = at.amid
+                  WHERE at.aid IN (SELECT aid FROM activity WHERE nid IN (SELECT content_id FROM mnartists.flag_content WHERE content_type = 'node' AND uid = :uid))
+                  ORDER BY am.amid;", array(':uid' => $user->uid));
+        $list = array();
+        foreach($results as $data) {
+            $list[] = $data->message;
+        }
+    } else {
+        $results = db_query("SELECT am.message FROM mnartists.activity_messages am JOIN mnartists.activity_targets at ON am.amid = at.amid
+                             WHERE at.uid = :uid ORDER BY am.amid;", array(':uid' => $page_user->uid));
+        $list = array();
+        foreach($results as $data) {
+            $list[] = $data->message;
+        }
+    }
+    if(count($list) > 0)
+    {
+        $content = theme('item_list', $list);
+    } else {
+        $content = "No Activity";
+    }
+    
+    $block['subject'] = t('Activity');
+    $block['content'] = $content;
+
+
+    return $block;
+}
