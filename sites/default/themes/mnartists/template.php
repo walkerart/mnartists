@@ -25,9 +25,8 @@
 /**
  * Preprocess variables for the html template.
  */
-/* -- Delete this line to enable.
 function mnartists_preprocess_html(&$vars) {
-  global $theme_key;
+  global $theme_key, $user;
 
   // Two examples of adding custom classes to the body.
   
@@ -35,10 +34,12 @@ function mnartists_preprocess_html(&$vars) {
   // $vars['classes_array'][] = drupal_html_class($theme_key);
 
   // Browser/platform sniff - adds body classes such as ipad, webkit, chrome etc.
-  // $vars['classes_array'][] = css_browser_selector();
+  $vars['classes_array'][] = css_browser_selector();
 
+  if (user_is_logged_in() && $user->uid === arg(1)) {
+    $vars['classes_array'][] = drupal_html_class("my-stuff");
+  }
 }
-// */
 
 
 /**

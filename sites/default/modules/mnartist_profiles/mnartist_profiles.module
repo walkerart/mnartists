@@ -9,6 +9,19 @@ define('ORG_ROLE', 5);
 
 include_once 'mnartist_profiles.features.inc';
 
+function mnartist_profiles_theme() {
+    $themes = array();
+
+    $themes['mna_my_stuff_menu'] = array(
+        'template' => 'templates/mna-my-stuff-menu',
+        'variables' => array(
+            'links' => array()
+        )
+    );
+
+    return $themes;
+}
+
 /**
  * Form alter to prepopulate the user registration form with role types
  */
@@ -148,4 +161,71 @@ function _get_role($user = NULL) {
     } else {
         return 'public';
     }
+}
+
+function _mnartist_profile_block_visibility() {
+    global $user;
+
+    if ((arg(0) == 'user' && $user->uid == arg(1)) || (arg(0) == 'user' && !user_is_logged_in())) {
+        return true;
+    }
+
+    return false;
+}
+
+
+function mnartist_profiles_block_info() {
+    return array(
+        'mna_my_stuff' => array(
+            'info' => 'My Stuff',
+            'cache' => DRUPAL_NO_CACHE,
+            'visibility' => BLOCK_VISIBILITY_PHP,
+            'pages' => '<?php return _mnartist_profile_block_visibility(); ?>'
+        )
+    );
+}
+
+function mnartist_profiles_block_view($delta = '') {
+    switch($delta) {
+        case 'mna_my_stuff':
+            $block['subject'] = 'My Stuff';
+            $block['content'] = _mnartist_profile_my_stuff();
+        break;
+    }
+
+    return $block;
+}
+
+function _mnartist_profile_my_stuff() {
+    $output = "";
+
+    if (!user_is_logged_in()) {
+        $userBlock = module_invoke('user', 'block', 'view', 'login');
+        $output = $userBlock['content'];
+    } else {
+        $links = array();
+
+        $links[] = l("Feed", "user/feed");
+        $links[] = array(
+            'data' => l("Collections", "user/collections"),
+            'children' => array(l("collection 1", "user/collections"), l("collection 2", "user/collections"))
+        );
+        $links[] = array(
+            'data' => l("Saved Filters", "user/saved-filters"),
+            'children' => array(l("filter 1", "user/saved-filters"), l("filter 2", "user/saved-filters"))
+        );
+        $links[] = l("Profile", "user");
+
+        $renderedLinks = theme_item_list(array(
+            'items' => $links,
+            'title' => null,
+            'type' => 'ul',
+            'attributes' => array()
+        ));
+
+        $output = theme("mna_my_stuff_menu", array(
+            'links' => $renderedLinks
+        ));
+    }
+    return $output;
 }

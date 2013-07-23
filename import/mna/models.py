@@ -73,7 +73,8 @@ class TCountry(models.Model, modelMixin):
         if 'prepend' in kwargs:
             prepend = kwargs['prepend']+'.'
         fieldNames = exclude(settings.EXCLUDE_FIELDS,TCountry._meta.get_all_field_names())
-        return map(lambda x: '{}{}'.format(prepend,x),fieldNames)
+        #return map(lambda x: prepend+x,fieldNames)
+        return map(lambda x: prepend+x,fieldNames)
 
 class TRole(models.Model, modelMixin):
     id = models.IntegerField(primary_key=True)
@@ -117,7 +118,7 @@ class TUser(models.Model, modelMixin):
             prepend = kwargs['prepend']+'.'
         fieldNames = exclude(settings.EXCLUDE_FIELDS,TUser._meta.get_all_field_names())
         
-        return map(lambda x: '{}{}'.format(prepend,x),fieldNames)
+        return map(lambda x: prepend+x,fieldNames)
 
 class TResourcetype(models.Model, modelMixin):
     id = models.IntegerField(primary_key=True)
@@ -149,7 +150,7 @@ class TResource(models.Model, modelMixin):
         fieldNames = ['active','featured','createdate','modifieddate','title']
         fieldNames.extend(TUser.field_names(**{'prepend':'owner'}))
         
-        return map(lambda x: '{}{}'.format(prepend,x),fieldNames)
+        return map(lambda x: prepend+x,fieldNames)
 
 class TResourceChild(models.Model, modelMixin):
     parentid = models.ForeignKey(TResource, db_column='parentid', related_name='parent')
@@ -230,7 +231,7 @@ class TArtist(models.Model, MnaResource, modelMixin):
         fieldNames = exclude(settings.EXCLUDE_FIELDS,TArtist._meta.get_all_field_names())
         fieldNames.extend(TCountry.field_names(**{'prepend':'citizenship'}))
         fieldNames.extend(TResource.field_names(**{'prepend':'resourceid'}))
-        return map(lambda x: '{}{}'.format(prepend,x),fieldNames)
+        return map(lambda x: prepend+x,fieldNames)
 
 class TArtistRedirect(models.Model, modelMixin):
     oldid = models.IntegerField()
