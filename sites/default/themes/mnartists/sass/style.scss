@@ -5320,7 +5320,7 @@ only screen and (min-device-pixel-ratio: 1.5) {
 			a {
 				display:block;
 				margin:0;
-				padding:5px 0 5px 20px;
+				padding:8px 0 8px 20px;
 				line-height:1em;
 				text-transform:uppercase;
 				font-size:12px;
@@ -6162,6 +6162,8 @@ ul.slidesjs-pagination {
 					background:#4d4d4d;
 					margin-left:-10px;
 					margin-right:-10px;
+					padding-bottom:10px;
+					padding-top:5px;
 					
 					ul {
 						
@@ -6173,16 +6175,14 @@ ul.slidesjs-pagination {
 							}
 						}
 						li.last {
-							
+							margin-bottom:0px!important;
 							
 							
 							a {
 								
 							}
 						}
-						li.first {
-							border-top:none;
-						}
+						
 					}
 				}
 			}
