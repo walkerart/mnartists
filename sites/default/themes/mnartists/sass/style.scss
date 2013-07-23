@@ -6253,9 +6253,11 @@ ul.slidesjs-pagination {
 	background-image:none;
 }
 .ui-datepicker-inline {
-	border:none;border-width:0;
+	border:none;
+	border-width:0;
 	padding:0;
 	background: none;
+	@include dashed_border;
 	
 	.ui-datepicker-header {
 		border:none;
@@ -6271,6 +6273,12 @@ ul.slidesjs-pagination {
 	table.ui-datepicker-calendar {
 		border:none;
 		
+		thead {
+		
+			tr {
+				background:none;
+			}
+		}
 		tbody {
 			border:none;
 		
