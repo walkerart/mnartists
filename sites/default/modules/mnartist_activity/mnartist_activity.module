@@ -26,13 +26,13 @@ function mnartist_activity_block_view($delta = '') {
     {
         $results = db_query("SELECT am.message FROM mnartists.activity_messages am JOIN mnartists.activity_targets at ON am.amid = at.amid
                   WHERE at.aid IN (SELECT aid FROM activity WHERE nid IN (SELECT content_id FROM mnartists.flag_content WHERE content_type = 'node' AND uid = :uid))
-                  ORDER BY am.amid;", array(':uid' => $user->uid));
+                  ORDER BY am.amid LIMIT 10 DESC;", array(':uid' => $user->uid));
         foreach($results as $data) {
             $list[] = $data->message;
         }
     } else {
         $results = db_query("SELECT am.message FROM mnartists.activity_messages am JOIN mnartists.activity_targets at ON am.amid = at.amid
-                             WHERE at.uid = :uid ORDER BY am.amid;", array(':uid' => $page_user->uid));
+                             WHERE at.uid = :uid ORDER BY am.amid LIMIT 10 DESC;", array(':uid' => $page_user->uid));
         foreach($results as $data) {
             $list[] = $data->message;
         }
