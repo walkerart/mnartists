@@ -6262,11 +6262,14 @@ ul.slidesjs-pagination {
 	.ui-icon {
 		
 	}
-	.ui-datepicker-prev {
+	.ui-datepicker-prev, .ui-datepicker-next {
+		background:none;
+	}
+	.ui-datepicker-prev .ui-icon {
 		background: url('../images/icon-prev.svg') no-repeat center center transparent;
 		background-size:10px auto;
 	}
-	.ui-datepicker-next {
+	.ui-datepicker-next .ui-icon {
 		background: url('../images/icon-next.svg') no-repeat center center transparent;
 		background-size:10px auto;
 	}
