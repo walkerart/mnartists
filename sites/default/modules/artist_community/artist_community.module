@@ -151,20 +151,39 @@ function _community_block_community() {
 function _community_block_content() {
     // render content menu;
     $menu_items = array(
-        'article'       => t('Articles'),
-        'artists'       => t('Artists'),
-        'artwork'       => t('Artworks'),
-        'event'         => t('Events'),
-        'opportunity'   => t('Opportunities'),
-        'organizations' => t('Organizations'),
+        'article' => array(
+            'title' => t('Articles'),
+            'subcontent' => ''
+        ),
+        'artists' => array(
+            'title' => t('Artists'),
+            'subcontent' => ''
+        ),
+        'artwork' => array(
+            'title' => t('Artworks'),
+            'subcontent' => ''
+        ),
+        'event' => array(
+            'title' => t('Events'),
+            'subcontent' => '<div class="menu-event-datepicker"></div>'
+        ),
+        'opportunity' => array(
+            'title' => t('Opportunities'),
+            'subcontent' => ''
+        ),
+        'organizations' => array(
+            'title' => t('Organizations'),
+            'subcontent' => ''
+        ),
     );
 
     $query = (isset($_GET['og'])) ? $_GET['og'] : array();
 
     $items[] = l('All Content', 'community', array('query' => $query));
 
-    foreach($menu_items as $key => $title) {
-        $items[] = url_query_master($title, 'community', 'content', $key);
+    foreach($menu_items as $key => $item) {
+        $link = url_query_master($item['title'], 'community', 'content', $key);
+        $items[] = $link . $item['subcontent'];
     }
 
     return theme('item_list', array(

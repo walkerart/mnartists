@@ -89,14 +89,14 @@ jQuery(document).ready(function () {
     jQuery(".field-name-field-media, .view-artist-artworks").fitVids();
 
     var slideContainerSelectors = [
-        ".field-name-field-media",
-        ".view-artist-artworks"];
+        ".field-name-field-media"
+    ];
     var slideSelectors = [
-        ".field-items",
-        ".view-content"];
+        ".field-items"
+    ];
     var slideItemSelectors = [
-        ".field-item",
-        ".views-row"];
+        ".field-item"
+    ];
 
     for (var i = 0, len = slideContainerSelectors.length; i < len; i++) {
         var slideContainerSelector = slideContainerSelectors[i];
