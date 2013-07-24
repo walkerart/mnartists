@@ -5841,7 +5841,11 @@ body.page-node-add #content {
 
 /* art widget on artist page */
 .pane-user-mnartist-profiles-artworks {
-
+	-webkit-transition: all .2s ease-in-out;
+	-moz-transition: all .2s ease-in-out;
+	-o-transition: all .2s ease-in-out;
+	transition: all .2s ease-in-out;
+	
 	.block-inner {
 	
 		.block-content {
@@ -5886,6 +5890,13 @@ body.page-node-add #content {
 							float: left;
 							width: 45%;
 							vertical-align:top;
+							font-family: $serif_font;
+							
+							a {
+								font-size:18px;
+								display:block;
+								border-bottom:1px solid #999;
+							}
 						}
 						.right {
 							float: right;
