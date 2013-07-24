@@ -214,7 +214,7 @@ function _mnartist_profile_my_stuff() {
             'data' => l("Saved Filters", "user/saved-filters"),
             'children' => array(l("filter 1", "user/saved-filters"), l("filter 2", "user/saved-filters"))
         );
-        $links[] = l("Profile", "user");
+        $links[] = l("Profile", "user") . l("edit", "user/edit", array("attributes" => array("class" => "user-edit")));
 
         $renderedLinks = theme_item_list(array(
             'items' => $links,
@@ -225,8 +225,21 @@ function _mnartist_profile_my_stuff() {
             )
         ));
 
+        $editLinks = theme_item_list(array(
+            'items' => array(
+                l("Add Artwork", "node/add/artwork"),
+                l("Add Event", "node/add/event")
+            ),
+            'title' => null,
+            'type' => 'ul',
+            'attributes' => array(
+                'class' => array('my-stuff-edit-menu')
+            )
+        ));
+
         $output = theme("mna_my_stuff_menu", array(
-            'links' => $renderedLinks
+            'links' => $renderedLinks,
+            'editLinks' => $editLinks
         ));
     }
     return $output;
