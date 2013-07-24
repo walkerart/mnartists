@@ -5842,24 +5842,35 @@ body.page-node-add #content {
 /* art widget on artist page */
 .pane-user-mnartist-profiles-artworks {
 
-	.block-content {
+	.block-innter {
 	
-		dd {
-			padding:10px;
+		.block-content {
+			background:none;
 			
-			.thumbs {
-				overflow-x:scroll;
-				white-space: nowrap
+			dt {
+				@include quiet_type;
+				padding:0 0 5px 0;
+				margin:0;
+			}
+			dd {
+				padding:10px;
+				background:#fff;
+				margin:0;
 				
-				img {
-					margin-right:20px;
-					height:120px;
-					width:auto;
+				.thumbs {
+					overflow-x:scroll;
+					white-space: nowrap
 					
+					img {
+						margin-right:20px;
+						height:120px;
+						width:auto;
+						
+					}
 				}
 			}
 		}
-	}
+	}		
 }
 /* end artwork widgeet */
 
@@ -6143,25 +6154,7 @@ ul.slidesjs-pagination {
 		}
 	}
 }
-.pane-user-mnartist-profiles-artworks {
-	
-	.block-inner {
-		
-		.block-content {
-			background:none;
-			
-			dt {
-				@include quiet_type;
-				padding:0 0 5px 0;
-				margin:0;
-			}
-			dd {
-				background:#fff;
-				padding:0;margin:0;
-			}
-		}
-	}
-}
+
 .pane-user-mnartist-profiles-collections {
 	.block-inner {
 	
