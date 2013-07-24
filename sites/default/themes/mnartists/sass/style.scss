@@ -6250,7 +6250,18 @@ ul.slidesjs-pagination {
 		}
 	}
 }
-
+.my-stuff #menu:before {
+	position:absolute;
+	left:0;
+	top:0;
+	bottom:0;
+	width:200px;
+	background:$mystuff_bg_dark;
+	position:fixed;
+	min-height:100%;
+	content:"";
+	z-index:-1;
+}
 
 /* date picker on page */
 #menu ul li .ui-datepicker-inline a {
