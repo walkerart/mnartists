@@ -6999,10 +6999,13 @@ body.page-node-add #content {
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000035860}}
 .pane-user-mnartist-profiles-artworks .block-inner .block-content dd .thumbs {
   overflow-x: scroll;
-  white-space: nowrap img;
-  white-space-margin-right: 20px;
-  white-space-height: 120px;
-  white-space-width: auto;
+  white-space: nowrap;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000035864}}
+.pane-user-mnartist-profiles-artworks .block-inner .block-content dd .thumbs img {
+  margin-right: 20px;
+  height: 120px;
+  width: auto;
 }
 
 /* end artwork widgeet */
