@@ -260,7 +260,9 @@ function _mnartist_profile_user_profile() {
     $output = "";
     $user = user_load(arg(1));
     $fieldset = array();
-    dpm($user);
+    
+    if(user_load(arg(1))->name == 'admin')
+        dpm($user);
     if(isset($user->content['profile_main']))
     {
         $main_array = array_values($user->content['profile_main']['view']['profile2']);
