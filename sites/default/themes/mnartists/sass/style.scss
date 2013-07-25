@@ -6360,12 +6360,30 @@ body.my-stuff {
 			li.last {
 				
 				padding-top:10px;
-				
+				position:relative;
 				
 				a {
 					
 					border:1px solid #666;
 					margin-bottom:5px;
+					
+				}
+				a.user-edit {
+					display:inline-block;
+					position:absolute;
+					right:0;
+					top:0;
+					border:none;
+					margin:0;
+				}
+			}
+			li {
+				
+				li.last {
+					padding-top:0;
+					a {
+						border:none;margin-bottom:0;
+					}
 				}
 			}
 		}
