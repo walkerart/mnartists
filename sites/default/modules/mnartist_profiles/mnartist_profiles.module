@@ -181,6 +181,13 @@ function mnartist_profiles_block_info() {
             'cache' => DRUPAL_NO_CACHE,
             'visibility' => BLOCK_VISIBILITY_PHP,
             'pages' => '<?php return _mnartist_profile_block_visibility(); ?>'
+        ),
+
+        'mna_user_profile' => array(
+            'info' => t('User Profile'),
+            'cache' => DRUPAL_NO_CACHE,
+            'visibility' => BLOCK_VISIBILITY_PHP,
+            'pages' => '<?php return _mnartist_profile_block_visibility(); ?>'
         )
     );
 }
@@ -190,6 +197,10 @@ function mnartist_profiles_block_view($delta = '') {
         case 'mna_my_stuff':
             $block['subject'] = 'My Stuff';
             $block['content'] = _mnartist_profile_my_stuff();
+        break;
+        case 'mna_user_profile':
+            $block['subject'] = 'User Profile';
+            $block['content'] = _mnartist_profile_user_profile();
         break;
     }
 
@@ -242,5 +253,95 @@ function _mnartist_profile_my_stuff() {
             'editLinks' => $editLinks
         ));
     }
+    return $output;
+}
+
+function _mnartist_profile_user_profile() {
+    $output = "";
+    $user = user_load(arg(1));
+    $fieldset = array();
+    dpm($user);
+    if(isset($user->content['profile_main']))
+    {
+        $main_array = array_values($user->content['profile_main']['view']['profile2']);
+        $main_pid = array_keys($user->content['profile_main']['view']['profile2']);
+        $main = array_shift($main_array);
+        foreach($main as $data)
+        {
+            if(is_array($data))
+            {
+                if(isset($data['#theme']))
+                {
+                    $field_data = field_info_field($data['#field_name']);
+                    $privacy = (bool) _profile2_field_privacy_value($field_data['id'], $main_pid);
+                    if($privacy != '1')
+                    {
+                        foreach($data['#items'] as $row)
+                        {
+                            $fieldset[$data['#field_name']][] = array(
+                                'name' => $data['#field_name'],
+                                'value' => $row['value']
+                            );
+                        }
+                    }
+                }
+            }
+        }
+    } else {
+        $main = NULL;
+    }
+
+    if(isset($user->content['profile_resume']))
+    {
+        $res_array = array_values($user->content['profile_resume']['view']['profile2']);
+        $res_pid = array_keys($user->content['profile_resume']['view']['profile2']);
+        $res = array_shift($res_array);
+        foreach($res as $data)
+        {
+            if(is_array($data))
+            {
+                if(isset($data['#theme']))
+                {
+                    $field_data = field_info_field($data['#field_name']);
+                    $privacy = (bool) _profile2_field_privacy_value($field_data['id'], $res_pid);
+                    if($privacy != '1')
+                    {
+                        foreach($data['#items'] as $row)
+                        {
+                            $fieldset[$data['#field_name']][] = array(
+                                'name' => $data['#field_name'],
+                                'value' => $row['value']
+                            );
+                        }
+                    }
+                }
+            }
+        }
+    } else {
+        $res = NULL;
+    }
+    if(user_load(arg(1))->name == 'admin')
+        dpm($fieldset);
+    
+    $output .= "<div class='user-profile'>";
+        $output .= "<div class='user-profile-data'>";
+            $output .= "<div class='left'>";
+    if(!is_null($user->picture))
+                $output .= "<img src='" . file_create_url($user->picture->uri) . "'>";
+            $output .= "</div>";
+            $output .= "<div class='right'>";
+
+            $output .= "</div>";
+        $output .= "</div>";
+    $output .= "</div>";
+
+    $output .= "<div class='columns'>";
+        $output .= "<div class='column-1'>";
+        $output .= "</div>";
+        $output .= "<div class='column-2'>";
+        $output .= "</div>";
+        $output .= "<div class='column-3'>";
+        $output .= "</div>";
+    $output .= "</div>";
     return $output;
 }
