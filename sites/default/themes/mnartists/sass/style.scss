@@ -6584,6 +6584,8 @@ body.my-stuff {
 				
 				a {
 					float:none;
+					opacity:.5;
+					color: $darkgray;
 				}
 			}
 			li.ui-state-default.ui-tabs-selected:after {
@@ -6599,6 +6601,11 @@ body.my-stuff {
 				display:block;
 				margin:0;padding:0;
 				border-radius:5px;
+			}
+			li.ui-state-active {
+				a {
+					opacity:1;
+				}
 			}
 		}
 		.ui-tabs-panel {
