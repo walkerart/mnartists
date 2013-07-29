@@ -8,6 +8,11 @@
 /**
  * Page callback for config.
  */
+function profile2_field_privacy_settings()
+{
+  return profile2_field_privacy_admin_overview();
+}
+
 function profile2_field_privacy_admin_overview() {
   // Display all profile types and allow selection
   $info = entity_get_all_property_info('profile2');
