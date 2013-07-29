@@ -260,7 +260,6 @@ function _mnartist_profile_user_profile() {
     $output = "";
     $user = user_load(arg(1));
     $fieldset = array();
-    
     if(user_load(arg(1))->name == 'admin')
         dpm($user);
     if(isset($user->content['profile_main']))
@@ -278,11 +277,11 @@ function _mnartist_profile_user_profile() {
                     $privacy = (bool) _profile2_field_privacy_value($field_data['id'], $main_pid);
                     if($privacy != '1')
                     {
-                        foreach($data['#items'] as $row)
+                        foreach($data['#items'] as $key => $value)
                         {
                             $fieldset[$data['#field_name']][] = array(
                                 'name' => $data['#field_name'],
-                                'value' => $row['value']
+                                'value' => $data[$key]
                             );
                         }
                     }
@@ -308,11 +307,11 @@ function _mnartist_profile_user_profile() {
                     $privacy = (bool) _profile2_field_privacy_value($field_data['id'], $res_pid);
                     if($privacy != '1')
                     {
-                        foreach($data['#items'] as $row)
+                        foreach($data['#items'] as $key => $value)
                         {
                             $fieldset[$data['#field_name']][] = array(
                                 'name' => $data['#field_name'],
-                                'value' => $row['value']
+                                'value' => $data[$key]
                             );
                         }
                     }
@@ -324,7 +323,20 @@ function _mnartist_profile_user_profile() {
     }
     if(user_load(arg(1))->name == 'admin')
         dpm($fieldset);
-    
+    if(isset($fieldset['field_full_name']))
+    {
+        $fsvalue = array_values($fieldset['field_full_name'][0]['value']['entity']['field_collection_item']);
+        $fs = array_shift($fsvalue);
+        $top_name = $fs['field_first_name'][0]['#markup'] . ' ' . $fs['field_last_name'][0]['#markup'];
+    } else {
+        if(isset($fieldset['field_pseudo']))
+        {
+            $top_name = 'toast';
+        } else {
+            $top_name = user_load(arg(1))->name;
+        }
+    }
+    $output .= "<span class='profile-top-name'>" . $top_name . "</span>";
     $output .= "<div class='user-profile'>";
         $output .= "<div class='user-profile-data'>";
             $output .= "<div class='left'>";
@@ -332,18 +344,92 @@ function _mnartist_profile_user_profile() {
                 $output .= "<img src='" . file_create_url($user->picture->uri) . "'>";
             $output .= "</div>";
             $output .= "<div class='right'>";
-
+            if(isset($fieldset['field_city']) && isset($fieldset['field_state']))
+            {
+                $output .= "<div class='profile-city-state'>";
+                $output .= $fieldset['field_city'][0]['value']['#markup'] . ', ' . $fieldset['field_state'][0]['value']['#markup'];
+                $output .= "</div>";
+            }
+            if(isset($fieldset['field_full_name']))
+            {
+                $output .= "<div class='profile-full-name'>";
+                $output .= "<span class='profle-title'>Contact Name:</span> " . $fieldset['field_full_name'][0]['value']['entity']['field_collection_item'][24]['field_first_name'][0]['#markup'] . ' ' . $fieldset['field_full_name'][0]['value']['entity']['field_collection_item'][24]['field_last_name'][0]['#markup'];
+                $output .= "</div>";
+            }
+            if(isset($fieldset['field_phone']))
+            {
+                $output .= "<div class='profile-phone'>";
+                $output .= "<span class='profile-title'>Phone:</span> " . $fieldset['field_phone'][0]['value']['#markup'];
+                $output .= "</div>";
+            }
+            if(isset($fieldset['field_public_email']))
+            {
+                $output .= "<div class='profile-email'>";
+                $output .= "<span class='profile-title'>E-Mail:</span>" . $fieldset['field_public_email'][0]['value']['#markup'];
+                $output .= "</div>";
+            }
+            // Space for Tags
             $output .= "</div>";
         $output .= "</div>";
     $output .= "</div>";
 
-    $output .= "<div class='columns'>";
-        $output .= "<div class='column-1'>";
+    $output .= "<div id='tabs'>";
+        $output .= "<ul>";
+            $output .= "<li><a href=\"#tabs-1\">About " . $top_name . "</a></li>";
+            $output .= "<li><a href=\"#tabs-2\">Awarts & Exhibitions</a></li>";
+            $output .= "<li><a href=\"#tabs-3\">Galleries Etc.</a></li>";
+        $output .= "</ul>";
+        $output .= "<div id='tabs-1'>";
+        if(isset($fieldset['field_general_statement']))
+        {
+            $output .= "<span class='artist-statement'>Artist Statement</span><hr />";
+            $output .= $fieldset['field_general_statement'][0]['value']['#markup'] . '<br />';
+        }
+        if(isset($fieldset['field_education']))
+        {
+            $output .= "<span class='artist-statement'>Education</span><hr />";
+            foreach($fieldset['field_education'] as $edu)
+            {
+                $fevalue = array_values($edu['value']['entity']['field_collection_item']);
+                $fe = array_shift($fevalue);
+                if(isset($fe['field_year']) && isset($fe['field_degree']) && isset($fe['field_school']) && isset($fe['field_major']))
+                {
+                    $output .= $fe['field_year'][0]['#markup'] . ' ';
+                    $output .= $fe['field_degree'][0]['#markup'] . ', ';
+                    $output .= $fe['field_major'][0]['#markup'] . ', ';
+                    $output .= $fe['field_school'][0]['#markup'] . '<br />';
+                }
+            }
+        } 
+        if(isset($fieldset['field_bio']) || isset($fieldset['field_country']))
+        {
+            $output .= "<span class='biography'>Biography</span><hr />";
+            if(isset($fieldset['field_bio']))
+            {
+                $output .= $fieldset['field_bio'][0]['value']['#markup'];
+            }
+            if(isset($fieldset['field_country']))
+            {
+                $output .= "<div class='field_country'><span class='Country'>Country</span><br>" . $fieldset['field_country'][0]['value']['#markup'] . "</div>";
+            }
+            if(isset($fieldset['field_birthplace']))
+            {
+                $output .= "<div class='field_birthplace'><span class='birthplace'>Birthplace</span><br>" . $fieldset['field_birthplace'][0]['value']['#markup'] . "</div>";
+            }
+        }
         $output .= "</div>";
-        $output .= "<div class='column-2'>";
+        $output .= "<div id='tabs-2'>";
+            $output .= "";
         $output .= "</div>";
-        $output .= "<div class='column-3'>";
+        $output .= "<div id='tabs-3'>";
+            $output .= "";
         $output .= "</div>";
     $output .= "</div>";
+    $output .= "<link rel=\"stylesheet\" href=\"http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/themes/base/jquery-ui.css\" type=\"text/css\" media=\"all\" />";
+    $output .= "<script>
+    jQuery(function() {
+        jQuery(\"#tabs\").tabs();
+    });
+    </script>";
     return $output;
 }
