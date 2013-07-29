@@ -6580,11 +6580,24 @@ body.my-stuff {
 				display:inline-block;
 				margin-bottom:0;
 				float:none;
-				
+				position:relative;
 				
 				a {
 					float:none;
 				}
+			}
+			li.ui-state-default.ui-tabs-selected:after {
+				content:"";
+				position:absolute;
+				bottom:-5px;
+				left:50%;
+				margin-left:-5px;
+				height:10px;
+				width:10px;
+				overflow:hidden;
+				background: $menu_bg;
+				display:block;
+				margin:0;padding:0;
 			}
 		}
 		.ui-tabs-panel {

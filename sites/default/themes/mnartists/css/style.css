@@ -7705,8 +7705,24 @@ body.my-stuff {
   display: inline-block;
   margin-bottom: 0;
   float: none;
+  position: relative;
 }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000036585}}
 .block-content .ui-tabs ul.ui-tabs-nav.ui-widget-header li.ui-state-default a {
   float: none;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000036589}}
+.block-content .ui-tabs ul.ui-tabs-nav.ui-widget-header li.ui-state-default.ui-tabs-selected:after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  margin-left: -5px;
+  height: 10px;
+  width: 10px;
+  overflow: hidden;
+  background: #e5e5e5;
+  display: block;
+  margin: 0;
+  padding: 0;
 }
