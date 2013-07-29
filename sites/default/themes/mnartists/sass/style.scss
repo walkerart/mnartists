@@ -6559,13 +6559,13 @@ body.my-stuff {
 	
 	.ui-tabs {
 		
-		ul.ui-tabs-nav {
+		ul.ui-tabs-nav.ui-widget-header {
 			background:none;
 			margin:0;
 			padding:0;
-			border-radius:none;
-			li {
-				border-radius:none;
+			border-radius:0;
+			li.ui-state-default {
+				border-radius:0;
 				background:none;
 				border:none;
 			}
