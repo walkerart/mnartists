@@ -260,8 +260,6 @@ function _mnartist_profile_user_profile() {
     $output = "";
     $user = user_load(arg(1));
     $fieldset = array();
-    if(user_load(arg(1))->name == 'admin')
-        dpm($user);
     if(isset($user->content['profile_main']))
     {
         $main_array = array_values($user->content['profile_main']['view']['profile2']);
@@ -321,8 +319,6 @@ function _mnartist_profile_user_profile() {
     } else {
         $res = NULL;
     }
-    if(user_load(arg(1))->name == 'admin')
-        dpm($fieldset);
     if(isset($fieldset['field_full_name']))
     {
         $fsvalue = array_values($fieldset['field_full_name'][0]['value']['entity']['field_collection_item']);
@@ -376,8 +372,19 @@ function _mnartist_profile_user_profile() {
     $output .= "<div id='tabs'>";
         $output .= "<ul>";
             $output .= "<li><a href=\"#tabs-1\">About " . $top_name . "</a></li>";
-            $output .= "<li><a href=\"#tabs-2\">Awarts & Exhibitions</a></li>";
-            $output .= "<li><a href=\"#tabs-3\">Galleries Etc.</a></li>";
+            $i = 1;
+            if(isset($fieldset['field_awards']))
+            {
+                $i++;
+                $ia = $i;
+                $output .= "<li><a href=\"#tabs-$i\">Awarts & Exhibitions</a></li>";
+            }
+            if(isset($fieldset['field_galleries']))
+            {
+                $i++;
+                $ig = $i;
+                $output .= "<li><a href=\"#tabs-$i\">Galleries Etc.</a></li>";
+            }
         $output .= "</ul>";
         $output .= "<div id='tabs-1'>";
         if(isset($fieldset['field_general_statement']))
@@ -418,12 +425,28 @@ function _mnartist_profile_user_profile() {
             }
         }
         $output .= "</div>";
-        $output .= "<div id='tabs-2'>";
-            $output .= "";
-        $output .= "</div>";
-        $output .= "<div id='tabs-3'>";
-            $output .= "";
-        $output .= "</div>";
+        if(isset($fieldset['field_awards']))
+        {
+            $output .= "<div id='tabs-$ia'>";
+            foreach($fieldset['field_awards'] as $award1)
+            {
+                $awardkey = array_values($award1['value']['entity']['field_collection_item']);
+                $award = array_shift($awardkey);
+                $output .= $award['field_year'][0]['#markup'] . ', ' . $award['field_award_name'][0]['#markup'] . ' ' . $award['field_award_organization'][0]['#markup'] . '<br />';
+            }
+            $output .= "</div>";
+        }
+        if(isset($fieldset['field_galleries']))
+        {
+            $output .= "<div id='tabs-$ig'>";
+            foreach($fieldset['field_galleries'] as $gal)
+            {
+                $galkey = array_values($gal['value']['entity']['field_collection_item']);
+                $gallery = array_shift($galkey);
+                $output .= $gallery['field_gallery_name'][0]['#markup'] . ', ' . $gallery['field_contact_name'][0]['#markup'] . '<br />';
+            }
+            $output .= "</div>";
+        }
     $output .= "</div>";
     $output .= "<link rel=\"stylesheet\" href=\"http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/themes/base/jquery-ui.css\" type=\"text/css\" media=\"all\" />";
     $output .= "<script>
