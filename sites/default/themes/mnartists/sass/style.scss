@@ -6373,16 +6373,20 @@ body.my-stuff {
 				a.user-edit {
 					position:absolute;
 					right: 10px;
-					top: 10px;
+					top: 0;
+					bottom:0;
 					border:none;
 					margin:0;
 					background: url('../images/icon-pencil-white.svg') no-repeat left center transparent;
 					padding:0;
-					height:18px;
+					height:auto;
 					width:18px;
 					overflow:hidden;
 					display:block;
 					
+				}
+				a.user-edit:hover {
+					opacity:.6;
 				}
 			}
 			li {
