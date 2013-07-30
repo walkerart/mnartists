@@ -349,7 +349,7 @@ function _mnartist_profile_user_profile() {
             if(isset($fieldset['field_full_name']))
             {
                 $output .= "<div class='profile-full-name'>";
-                $output .= "<span class='profle-title'>Contact Name:</span> " . $fs['field_first_name'][0]['#markup'] . ' ' . $fs['field_last_name'][0]['#markup'];
+                $output .= "<span class='profile-title'>Contact Name:</span> " . $fs['field_first_name'][0]['#markup'] . ' ' . $fs['field_last_name'][0]['#markup'];
                 $output .= "</div>";
             }
             if(isset($fieldset['field_phone']))
@@ -362,6 +362,18 @@ function _mnartist_profile_user_profile() {
             {
                 $output .= "<div class='profile-email'>";
                 $output .= "<span class='profile-title'>E-Mail:</span>" . $fieldset['field_public_email'][0]['value']['#markup'];
+                $output .= "</div>";
+            }
+            if(isset($fieldset['field_twitter']))
+            {
+                $output .= "<div class='profile-twitter'>";
+                $output .= "<a class='twitter' href='http://www.twitter.com/" . $fieldset['field_twitter'][0]['value']['#markup'] . "'>" . $fieldset['field_twitter'][0]['value']['#markup'] . "</a>";
+                $output .= "</div>";
+            }
+            if(isset($fieldset['field_facebook']))
+            {
+                $output .= "<div class='profile-facebook'>";
+                $output .= "<a class='facebook' href='http://www.facebook.com/" . $fieldset['field_facebook'][0]['value']['#markup'] . "'>" . $fieldset['field_facebook'][0]['value']['#markup'] . "</a>";
                 $output .= "</div>";
             }
             // Space for Tags
