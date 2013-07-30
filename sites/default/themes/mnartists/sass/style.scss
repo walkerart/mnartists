@@ -6273,18 +6273,34 @@ ul.slidesjs-pagination {
 	}
 }
 .pane-mnartist-profiles-mna-user-profile {
-	
-	.user-profile-data {
-		display:table;
-		.left {
-			display:table-cell;
-			width:50%;
-		}
-		.right {
-			display:table-cell;
-			width:50%;
+
+	.user-profile {
+		padding:10px;
+		
+		.user-profile-data {
+			display:table;
+			
+			.left {
+				display:table-cell;
+				width:50%;
+				vertical-align:top;
+				padding-right:10px;
+				
+				img {
+					border-radius:50%;
+					
+				}
+			}
+			.right {
+				display:table-cell;
+				width:50%;
+				vertical-align:top;
+				padding-left:10px;
+				
+			}
 		}
 	}
+	
 }
 
 /* end user profile */
