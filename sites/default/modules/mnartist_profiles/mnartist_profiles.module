@@ -349,7 +349,7 @@ function _mnartist_profile_user_profile() {
             if(isset($fieldset['field_full_name']))
             {
                 $output .= "<div class='profile-full-name'>";
-                $output .= "<span class='profle-title'>Contact Name:</span> " . $fieldset['field_full_name'][0]['value']['entity']['field_collection_item'][24]['field_first_name'][0]['#markup'] . ' ' . $fieldset['field_full_name'][0]['value']['entity']['field_collection_item'][24]['field_last_name'][0]['#markup'];
+                $output .= "<span class='profle-title'>Contact Name:</span> " . $fs['field_first_name'][0]['#markup'] . ' ' . $fs['field_last_name'][0]['#markup'];
                 $output .= "</div>";
             }
             if(isset($fieldset['field_phone']))
