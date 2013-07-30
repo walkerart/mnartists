@@ -6274,7 +6274,12 @@ ul.slidesjs-pagination {
 	}
 }
 .pane-mnartist-profiles-mna-user-profile {
-
+	h1 {
+		margin:0 10px 20px 10px;
+		border-bottom:1px solid $lightgray;
+		font-size:30px;
+		padding-top:10px;
+	}
 	.user-profile {
 		padding:10px;
 		
@@ -6316,6 +6321,27 @@ h5.profile-title {
 }
 .ui-tabs-nav {
 	margin-bottom:20px;
+}
+.social-links {
+
+	.twitter {
+		@include icon_bg;
+		height:16px;
+		width:16px;
+		background: url('../images/social-icon-twitter.svg') no-repeat left top;
+		opacity:.6;
+	}
+	.facebook {
+		@include icon_bg;
+		height:16px;
+		width:16px;
+		background: url('../images/social-icon-facebook.svg') no-repeat left top;
+		opacity:.6;
+	}
+	.twitter:hover,
+	.facebook:hover {
+		opacity:1;
+	}
 }
 
 /* end user profile */
