@@ -1,0 +1,360 @@
+// _base.scss imports _custom.scss (variables and mixins) and other partials.
+@import "base";
+
+#menu {
+	position:absolute;
+	left:0;
+	top:0;
+	width:200px;
+	min-height:100%;
+	height:auto;
+}
+#menu {
+	.search-container {
+		display:block;
+		margin:0;
+		padding:0;
+		width:100%;
+		border-bottom:1px solid #666;
+		
+		input {
+			width:100%;
+			border-width:0;
+			padding:0;
+			line-height:20px;
+			margin:0;
+			background:$menu_bg;
+			text-indent:10px;
+		}
+		input:focus {
+			outline:none;
+			background:#ccc;
+		}
+	}
+	ul {
+		margin:0;
+		padding:0;
+		list-style:none;
+		
+		li {
+			margin:0;
+			padding:0 10px 0 10px;
+			position:relative;
+			
+			a {
+				display:block;
+				margin:0;
+				padding:8px 0 8px 20px;
+				line-height:1em;
+				text-transform:uppercase;
+				font-size:12px;
+				color:#666;
+				background: url('../images/mna-circle-hollow.svg') no-repeat left center transparent;
+				background-size: 12px auto;
+				
+			}
+			a.active {
+				/*background: url('../images/mna-circle-filled.svg') no-repeat left center transparent;*/
+				background: url('../images/icon-check-solid.svg') no-repeat left center transparent;
+				background-size: 9px auto;
+				
+			}
+			a.expand {
+				line-height:1em;
+				margin:0;
+				padding:8px 10px 0 8px;
+				right:0;top:0;
+				position:absolute;
+				background:none;
+			}
+			.item-list {
+				display:none;
+				
+				ul {
+					
+					li {
+						padding:0 0 0 20px;
+						display:block;
+						
+						a {
+							margin:0;
+							/*
+								padding:5px 5px 5px 0px;
+								background:none;
+							*/
+							line-height:1em;
+							
+							text-transform:none;
+							border-bottom:1px solid $light_border;
+						}
+					}
+					li.first {
+						border-bottom:none;
+					}
+					li.last {
+						margin-bottom:5px!important;
+					}
+				}
+				.menu-event-datepicker {
+					display:none;
+				}
+			}
+			
+			
+		}
+		li.first {
+			border-bottom: 1px solid #fff;
+		}
+		.block {
+			margin-bottom:0px;
+			
+		}
+	}
+}
+#block-artist-community-menu-search {
+	
+	.block-inner {
+		margin:0;
+		padding:0;
+		
+	}
+}
+
+#menu ul.mega-tabs {
+	width:100%;
+	position:relative;
+	display:table;
+	
+	li {
+		width:50%;
+		display:table-cell;
+		
+		a {
+			display:block;
+			line-height:2.4em;
+			font-weight:bold;
+			padding:0;
+			text-align:center;
+			background-image:none;
+		}
+	}
+	li.user-tab {
+		background:#333;
+		border-bottom-left-radius:5px;
+		
+		a {
+			color:#e5e5e5;
+			
+		}
+	}
+}
+
+body.admin-menu #menu {
+	top:20px;
+}
+#menu:before {
+	position:absolute;
+	left:0;
+	top:0;
+	bottom:0;
+	width:200px;
+	background:$menu_bg;
+	position:fixed;
+	min-height:100%;
+	content:"";
+	z-index:-1;
+}
+p.site-description {
+	position:relative;
+	padding:0;
+	margin:10px;
+	font-size:12px;
+	color:#888;
+	float:none;
+	display:block;
+}
+.menu-content {
+	display:block;
+}
+.menu-trigger { 
+	display: none;
+	position:relative;
+}
+/* */
+
+
+/* date picker on menu bar (this might not need to be defined) */
+/* date picker on page ****************/
+.menu-event-datepicker {
+	display:none;
+}
+#menu ul li .ui-datepicker-inline a {
+	padding:0;
+	background-image:none;
+}
+#menu ul li .menu-event-datepicker {
+	margin:0 -10px;
+	background:#ebebeb;
+}
+/* */
+
+
+/* my stuff menu bar */
+.my-stuff {
+	background: $mystuff_bg_light;
+	
+	#menu { 
+		background:$mystuff_bg_dark;
+		
+		
+		
+		ul.mega-tabs {
+			background:$mystuff_bg_dark;
+			
+			li {
+				background:$main_bg;
+				border-bottom-right-radius:5px;
+				border:none;
+				
+				a {
+					color:$mystuff_bg_dark;
+				}
+				
+			}
+			li.user-tab {
+				background:$mystuff_bg_dark;
+				border-bottom-left-radius:5px;
+				
+				a {
+					color:#e5e5e5;
+					
+				}
+			}
+		}
+		ul {
+			
+			li {
+				border-bottom: 1px solid #4C4C4C;
+				a {
+					color:#e3e3e3;
+					background:none;
+					padding-left:0;
+				}
+				.item-list {
+					background:#4d4d4d;
+					margin-left:-10px;
+					margin-right:-10px;
+					padding-bottom:10px;
+					padding-top:5px;
+					
+					
+					
+					ul {
+						
+						li {
+							padding:0 10px 0 30px;
+							
+							a {
+								color:#ccc;
+							}
+						}
+						li.last {
+							margin-bottom:0px!important;
+							
+							
+							a {
+								
+							}
+						}
+						
+					}
+				}
+			}
+			li.first {
+				border-bottom: 1px solid #4C4C4C;
+				border-top: 1px solid #4C4C4C;
+			}
+		}
+		ul.my-stuff-menu {
+			
+			li.last {
+				
+				margin-bottom:20px !important;
+				position:relative;
+				border-bottom: 1px solid #4C4C4C !important;
+				
+				a {
+					
+					/* border:1px solid #666;
+					margin-bottom:5px; */
+					
+				}
+				a.user-edit {
+					position:absolute;
+					right: 0;
+					top: 0;
+					bottom:0;
+					border:none;
+					margin:0;
+					background: url('../images/icon-pencil-white.svg') no-repeat left center transparent;
+					padding:0;
+					height:auto;
+					width:18px;
+					overflow:hidden;
+					display:block;
+					text-indent:100%;
+					white-space:nowrap;
+					
+				}
+				a.user-edit:hover {
+					opacity:.6;
+				}
+			}
+			li {
+				
+				li.last {
+					padding-top:0;
+					a {
+						border:none;margin-bottom:0;
+					}
+				}
+			}
+		}
+		ul.my-stuff-edit-menu {
+		
+			li {
+				border:none;
+				margin-bottom:5px;
+				
+				a {
+					border:1px solid #666;
+					margin-bottom:5px;
+					padding-left:5px;
+				}
+			}
+		}
+	}
+	#menu:before {
+		background:$mystuff_bg_dark;
+		position:absolute;
+		left:0;
+		top:0;
+		bottom:0;
+		width:200px;
+		background:$mystuff_bg_dark;
+		position:fixed;
+		min-height:100%;
+		content:"";
+		z-index:-1;
+	}
+	.panel-pane {
+		.block-inner {
+			.block-content {
+				background:$mystuff_bg_dark;
+				color:#8f8f8f;
+			}
+		}
+	}
+}
+
+

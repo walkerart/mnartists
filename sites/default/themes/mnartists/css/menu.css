@@ -1,0 +1,350 @@
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/menu\.scss}line{font-family:\000034}}
+#menu {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 200px;
+  min-height: 100%;
+  height: auto;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/menu\.scss}line{font-family:\0000313}}
+#menu .search-container {
+  display: block;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  border-bottom: 1px solid #666;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/menu\.scss}line{font-family:\0000320}}
+#menu .search-container input {
+  width: 100%;
+  border-width: 0;
+  padding: 0;
+  line-height: 20px;
+  margin: 0;
+  background: #e5e5e5;
+  text-indent: 10px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/menu\.scss}line{font-family:\0000329}}
+#menu .search-container input:focus {
+  outline: none;
+  background: #ccc;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/menu\.scss}line{font-family:\0000334}}
+#menu ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/menu\.scss}line{font-family:\0000339}}
+#menu ul li {
+  margin: 0;
+  padding: 0 10px 0 10px;
+  position: relative;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/menu\.scss}line{font-family:\0000344}}
+#menu ul li a {
+  display: block;
+  margin: 0;
+  padding: 8px 0 8px 20px;
+  line-height: 1em;
+  text-transform: uppercase;
+  font-size: 12px;
+  color: #666;
+  background: url("../images/mna-circle-hollow.svg") no-repeat left center transparent;
+  background-size: 12px auto;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/menu\.scss}line{font-family:\0000356}}
+#menu ul li a.active {
+  /*background: url('../images/mna-circle-filled.svg') no-repeat left center transparent;*/
+  background: url("../images/icon-check-solid.svg") no-repeat left center transparent;
+  background-size: 9px auto;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/menu\.scss}line{font-family:\0000362}}
+#menu ul li a.expand {
+  line-height: 1em;
+  margin: 0;
+  padding: 8px 10px 0 8px;
+  right: 0;
+  top: 0;
+  position: absolute;
+  background: none;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/menu\.scss}line{font-family:\0000370}}
+#menu ul li .item-list {
+  display: none;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/menu\.scss}line{font-family:\0000375}}
+#menu ul li .item-list ul li {
+  padding: 0 0 0 20px;
+  display: block;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/menu\.scss}line{font-family:\0000379}}
+#menu ul li .item-list ul li a {
+  margin: 0;
+  /*
+  	padding:5px 5px 5px 0px;
+  	background:none;
+  */
+  line-height: 1em;
+  text-transform: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/menu\.scss}line{font-family:\0000391}}
+#menu ul li .item-list ul li.first {
+  border-bottom: none;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/menu\.scss}line{font-family:\0000394}}
+#menu ul li .item-list ul li.last {
+  margin-bottom: 5px!important;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/menu\.scss}line{font-family:\0000398}}
+#menu ul li .item-list .menu-event-datepicker {
+  display: none;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/menu\.scss}line{font-family:\00003105}}
+#menu ul li.first {
+  border-bottom: 1px solid #fff;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/menu\.scss}line{font-family:\00003108}}
+#menu ul .block {
+  margin-bottom: 0px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/menu\.scss}line{font-family:\00003116}}
+#block-artist-community-menu-search .block-inner {
+  margin: 0;
+  padding: 0;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/menu\.scss}line{font-family:\00003123}}
+#menu ul.mega-tabs {
+  width: 100%;
+  position: relative;
+  display: table;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/menu\.scss}line{font-family:\00003128}}
+#menu ul.mega-tabs li {
+  width: 50%;
+  display: table-cell;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/menu\.scss}line{font-family:\00003132}}
+#menu ul.mega-tabs li a {
+  display: block;
+  line-height: 2.4em;
+  font-weight: bold;
+  padding: 0;
+  text-align: center;
+  background-image: none;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/menu\.scss}line{font-family:\00003141}}
+#menu ul.mega-tabs li.user-tab {
+  background: #333;
+  border-bottom-left-radius: 5px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/menu\.scss}line{font-family:\00003145}}
+#menu ul.mega-tabs li.user-tab a {
+  color: #e5e5e5;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/menu\.scss}line{font-family:\00003152}}
+body.admin-menu #menu {
+  top: 20px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/menu\.scss}line{font-family:\00003155}}
+#menu:before {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 200px;
+  background: #e5e5e5;
+  position: fixed;
+  min-height: 100%;
+  content: "";
+  z-index: -1;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/menu\.scss}line{font-family:\00003167}}
+p.site-description {
+  position: relative;
+  padding: 0;
+  margin: 10px;
+  font-size: 12px;
+  color: #888;
+  float: none;
+  display: block;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/menu\.scss}line{font-family:\00003176}}
+.menu-content {
+  display: block;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/menu\.scss}line{font-family:\00003179}}
+.menu-trigger {
+  display: none;
+  position: relative;
+}
+
+/* */
+/* date picker on menu bar (this might not need to be defined) */
+/* date picker on page ****************/
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/menu\.scss}line{font-family:\00003188}}
+.menu-event-datepicker {
+  display: none;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/menu\.scss}line{font-family:\00003191}}
+#menu ul li .ui-datepicker-inline a {
+  padding: 0;
+  background-image: none;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/menu\.scss}line{font-family:\00003195}}
+#menu ul li .menu-event-datepicker {
+  margin: 0 -10px;
+  background: #ebebeb;
+}
+
+/* */
+/* my stuff menu bar */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/menu\.scss}line{font-family:\00003203}}
+.my-stuff {
+  background: #3f3f3f;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/menu\.scss}line{font-family:\00003206}}
+.my-stuff #menu {
+  background: #323232;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/menu\.scss}line{font-family:\00003211}}
+.my-stuff #menu ul.mega-tabs {
+  background: #323232;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/menu\.scss}line{font-family:\00003214}}
+.my-stuff #menu ul.mega-tabs li {
+  background: #f9f9f9;
+  border-bottom-right-radius: 5px;
+  border: none;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/menu\.scss}line{font-family:\00003219}}
+.my-stuff #menu ul.mega-tabs li a {
+  color: #323232;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/menu\.scss}line{font-family:\00003224}}
+.my-stuff #menu ul.mega-tabs li.user-tab {
+  background: #323232;
+  border-bottom-left-radius: 5px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/menu\.scss}line{font-family:\00003228}}
+.my-stuff #menu ul.mega-tabs li.user-tab a {
+  color: #e5e5e5;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/menu\.scss}line{font-family:\00003236}}
+.my-stuff #menu ul li {
+  border-bottom: 1px solid #4C4C4C;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/menu\.scss}line{font-family:\00003238}}
+.my-stuff #menu ul li a {
+  color: #e3e3e3;
+  background: none;
+  padding-left: 0;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/menu\.scss}line{font-family:\00003243}}
+.my-stuff #menu ul li .item-list {
+  background: #4d4d4d;
+  margin-left: -10px;
+  margin-right: -10px;
+  padding-bottom: 10px;
+  padding-top: 5px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/menu\.scss}line{font-family:\00003254}}
+.my-stuff #menu ul li .item-list ul li {
+  padding: 0 10px 0 30px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/menu\.scss}line{font-family:\00003257}}
+.my-stuff #menu ul li .item-list ul li a {
+  color: #ccc;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/menu\.scss}line{font-family:\00003261}}
+.my-stuff #menu ul li .item-list ul li.last {
+  margin-bottom: 0px!important;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/menu\.scss}line{font-family:\00003273}}
+.my-stuff #menu ul li.first {
+  border-bottom: 1px solid #4C4C4C;
+  border-top: 1px solid #4C4C4C;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/menu\.scss}line{font-family:\00003280}}
+.my-stuff #menu ul.my-stuff-menu li.last {
+  margin-bottom: 20px !important;
+  position: relative;
+  border-bottom: 1px solid #4C4C4C !important;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/menu\.scss}line{font-family:\00003286}}
+.my-stuff #menu ul.my-stuff-menu li.last a {
+  /* border:1px solid #666;
+  margin-bottom:5px; */
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/menu\.scss}line{font-family:\00003292}}
+.my-stuff #menu ul.my-stuff-menu li.last a.user-edit {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  border: none;
+  margin: 0;
+  background: url("../images/icon-pencil-white.svg") no-repeat left center transparent;
+  padding: 0;
+  height: auto;
+  width: 18px;
+  overflow: hidden;
+  display: block;
+  text-indent: 100%;
+  white-space: nowrap;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/menu\.scss}line{font-family:\00003309}}
+.my-stuff #menu ul.my-stuff-menu li.last a.user-edit:hover {
+  opacity: .6;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/menu\.scss}line{font-family:\00003315}}
+.my-stuff #menu ul.my-stuff-menu li li.last {
+  padding-top: 0;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/menu\.scss}line{font-family:\00003317}}
+.my-stuff #menu ul.my-stuff-menu li li.last a {
+  border: none;
+  margin-bottom: 0;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/menu\.scss}line{font-family:\00003325}}
+.my-stuff #menu ul.my-stuff-edit-menu li {
+  border: none;
+  margin-bottom: 5px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/menu\.scss}line{font-family:\00003329}}
+.my-stuff #menu ul.my-stuff-edit-menu li a {
+  border: 1px solid #666;
+  margin-bottom: 5px;
+  padding-left: 5px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/menu\.scss}line{font-family:\00003337}}
+.my-stuff #menu:before {
+  background: #323232;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 200px;
+  background: #323232;
+  position: fixed;
+  min-height: 100%;
+  content: "";
+  z-index: -1;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/menu\.scss}line{font-family:\00003352}}
+.my-stuff .panel-pane .block-inner .block-content {
+  background: #323232;
+  color: #8f8f8f;
+}
