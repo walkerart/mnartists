@@ -332,7 +332,7 @@ function _mnartist_profile_user_profile() {
             $top_name = user_load(arg(1))->name;
         }
     }
-    $output .= "<span class='profile-top-name'>" . $top_name . "</span>";
+    $output .= "<h1>" . $top_name . "</h1>";
     $output .= "<div class='user-profile'>";
         $output .= "<div class='user-profile-data'>";
             $output .= "<div class='left'>";
