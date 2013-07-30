@@ -6323,20 +6323,29 @@ h5.profile-title {
 	margin-bottom:20px;
 }
 .social-links {
-
-	.twitter {
-		@include icon_bg;
-		height:16px;
-		width:16px;
-		background: url('../images/social-icon-twitter.svg') no-repeat left top;
+	padding:10px 0 20px 0;
+	border-bottom:1px solid $lightgray;
+	margin:0 0 20px 0;
+	
+	.profile-twitter,
+	.profile-facebook {
+		float:left;
+		margin-right: 5px;
+		
+	}
+	.twitter,
+	.facebook {
+		background-size:20px auto;
+		height:20px;
+		width:20px;
 		opacity:.6;
+		@include icon_bg;
+	}
+	.twitter {
+		background: url('../images/social-icon-twitter.svg') no-repeat left top;
 	}
 	.facebook {
-		@include icon_bg;
-		height:16px;
-		width:16px;
 		background: url('../images/social-icon-facebook.svg') no-repeat left top;
-		opacity:.6;
 	}
 	.twitter:hover,
 	.facebook:hover {
