@@ -141,29 +141,60 @@ function profile2_field_privacy_field_attach_form($entity_type, $entity, &$form,
     }
 }
 
+function profile2_field_privacy_form_alter(&$form, &$form_state, $form_id) {
+    if(isset($form_state['profiles']))
+    {
+        $form['#submit'][] = 'profile2_field_privacy_submit_handler';
+    }
+}
+
+function profile2_field_privacy_submit_handler(&$form, &$form_state) {
+    profile2_form_submit_build_profile($form, $form_state);
+    // This is needed as some submit callbacks like user_register_submit() rely on
+    // clean form values.
+    profile2_form_submit_cleanup($form, $form_state);
+    foreach ($form_state['profiles'] as $type => $profile) {
+        // During registration set the uid field of the newly created user.
+        if (empty($profile->uid) && isset($form_state['user']->uid)) {
+            $profile->uid = $form_state['user']->uid;
+        }
+        if (isset($form_state['input']['profile_' . $profile->type])) {
+            // @see entity_form_field_validate()
+            $pseudo_entity = (object) $form_state['input']['profile_' . $profile->type];
+            $pseudo_entity->type = $type;
+            $pseudo_entity->pid = profile2_load_by_user($form_state['user']->uid, $type)->pid;
+            profile2_field_privacy_submit('profile2', $pseudo_entity, $form['profile_' . $profile->type], $form_state);
+        }
+    }
+}
+
 /**
  * Stores if a profile2 field's value should be kept private.
  *
  * @see profile2_field_privacy_field_attach_form
  */
-function profile2_field_privacy_field_attach_submit($entity_type, $entity, $form, $form_state) {
-    if (isset($form_state['values']) && is_array($form_state['values']) && is_array($fields = reset($form_state['values']))) {
+function profile2_field_privacy_submit($entity_type, $entity, $form, $form_state) {
+    if (isset($form_state['input']) && is_array($form_state['input'])) 
+    {
         if(isset($entity->type))
         {
-            //krumo($fields);
-            // Delete existing
-            //profile2_field_privacy_field_attach_delete($entity_type, $entity);4
-            foreach (field_info_instances('profile2', $entity->type) as $instance) {
-                if (isset($fields[$instance['field_name']]) && isset($fields[$instance['field_name']]['profile2_field_privacy'])) {
-                    //krumo($fields[$instance['field_name']]['profile2_field_privacy']);
-                    //krumo($instance);
-                    db_merge('profile2_field_privacy_value')
-                    ->key(array(
-                        'fid' => $instance['field_id'],
-                        'pid' => $form['#entity']->pid,
-                    ))
-                    ->fields(array('private' => $fields[$instance['field_name']]['profile2_field_privacy']))
-                    ->execute();
+            if(isset($form_state['input']['profile_' . $entity->type]) &&  is_array($form_state['input']['profile_' . $entity->type]) &&is_array($fields = $form_state['input']['profile_' . $entity->type])) {
+                // Delete existing
+                //profile2_field_privacy_field_attach_delete($entity_type, $entity);4
+                foreach (field_info_instances('profile2', $entity->type) as $instance) {
+                    if (isset($fields[$instance['field_name']]) && array_key_exists('profile2_field_privacy', $fields[$instance['field_name']])) {
+                        if(is_null($fields[$instance['field_name']]['profile2_field_privacy']))
+                        {
+                            $fields[$instance['field_name']]['profile2_field_privacy'] = '0';
+                        }
+                        db_merge('profile2_field_privacy_value')
+                        ->key(array(
+                            'fid' => $instance['field_id'],
+                            'pid' => $entity->pid,
+                        ))
+                        ->fields(array('private' => $fields[$instance['field_name']]['profile2_field_privacy']))
+                        ->execute();
+                    }
                 }
             }
         }
