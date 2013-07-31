@@ -5665,134 +5665,8 @@ body.page-node-add #content {
 	}
 }
 
-/* art widget on artist page */
-.pane-user-mnartist-profiles-artworks {
-	-webkit-transition: all .2s ease-in-out;
-	-moz-transition: all .2s ease-in-out;
-	-o-transition: all .2s ease-in-out;
-	transition: all .2s ease-in-out;
-	max-height:9999px;
-	
-	.block-inner {
-	
-		.block-content {
-			background:none;
-			
-			dt {
-				@include quiet_type;
-				padding:0 0 5px 0;
-				margin:0;
-			}
-			dd {
-				padding:10px;
-				background:#fff;
-				margin:0;
-				-webkit-transition: all .2s ease-in-out;
-				-moz-transition: all .2s ease-in-out;
-				-o-transition: all .2s ease-in-out;
-				transition: all .2s ease-in-out;
-				max-height:9999px;
-				height:auto;
-				
-				.thumbs {
-					overflow-x:scroll;
-					white-space: nowrap;
-					padding-top:20px;
-					margin-top:20px;
-					border-top:1px solid #999;
-					clear:both;
-					float:none;
-					
-					img {
-						margin-right:20px;
-						height:120px;
-						width:auto;
-						
-					}
-				}
-				.large-display {
-					-webkit-transition: all .2s ease-in-out;
-					-moz-transition: all .2s ease-in-out;
-					-o-transition: all .2s ease-in-out;
-					transition: all .2s ease-in-out;
-					max-height:999px;
-					height:auto;
-						
-					.slide {
-						width:100%;
-						-webkit-transition: all .2s ease-in-out;
-						-moz-transition: all .2s ease-in-out;
-						-o-transition: all .2s ease-in-out;
-						transition: all .2s ease-in-out;
-						max-height:999px;
-						
-						.content {
-							clear:both;
-							margin-bottom:20px;
-						}
-						.left {
-							float: left;
-							width: 45%;
-							vertical-align:top;
-							font-family: $serif_font;
-							
-							a {
-								font-size:18px;
-								display:block;
-								border-bottom:1px solid #999;
-								margin-bottom:10px;
-							}
-						}
-						.right {
-							float: right;
-							width: 45%;
-							vertical-align:top;
-						}
-						.right:after {
-							content:"";
-							display:block;
-							float:none;
-							clear:both;
-						}
-					}
-					.slide:after {
-						content:"";
-						clear:both;
-						float:none;
-						display:block;
-					
-					}
-				}
-			}
-		}
-	}		
-}
-/* end artwork widgeet */
 
-/* activity widget */
-.pane-mnartist-activity-activity {
-	
-	.item-list {
-		font-family: $serif_font;
-		padding:10px;
-		ul {
-			margin:0;
-			padding:0;
-			
-			li {
-				list-style:none;
-				border-bottom:1px solid #ccc;
-				display:block;
-				padding:0 0 10px 0;
-				margin:0 0 10px 0;
-			}
-		}
-	}
-	.username {
-		font-weight:bold;
-	}
-}
-/* */
+
 
 
 
@@ -5975,7 +5849,7 @@ form select.form-select:active {
 		
 }
 
-/* slide js slidesho slidejs */
+/* slide js slideshow slidejs */
 .slidesjs-container {
 	display:table;
 	background:#f2f2f2;
@@ -6013,6 +5887,8 @@ ul.slidesjs-pagination {
 }
 
 /* end slide js */
+
+
 /* comments */
 .pane-comment-recent {
 	
@@ -6057,97 +5933,7 @@ ul.slidesjs-pagination {
 }
 /* */
 
-/* user profile page */
 
-.user-picture {
-	
-	a {
-		display:block;
-		width:220px;
-		height:220px;
-		overflow:hidden;
-		border-radius:50%;
-		background:#f2f2f2;
-		
-		img {
-			
-		}
-	}
-}
-
-.pane-user-mnartist-profiles-collections {
-
-	.block-inner {
-	
-		.block-content {
-		
-			background:none;
-			
-			h3 {
-				@include quiet_type;
-				padding:0 0 5px 0;
-				margin:0;
-				line-height:12px;
-				height:15px;
-			}
-			dl {
-				background:#fff;
-				padding:0;margin:0;
-			}
-		}
-	}
-}
-.pane-mnartist-profiles-mna-user-profile {
-	h1 {
-		margin:0 10px 20px 10px;
-		border-bottom:1px solid $lightgray;
-		font-size:30px;
-		padding:20px 0 10px 0;
-	}
-	.user-profile {
-		padding:10px;
-		
-		.user-profile-data {
-			display:table;
-			
-			.left {
-				display:table-cell;
-				width:50%;
-				vertical-align:top;
-				padding-right:20px;
-				
-				img {
-					border-radius:50%;
-					
-				}
-			}
-			.right {
-				display:table-cell;
-				width:50%;
-				vertical-align:top;
-				padding-left:20px;
-				
-			}
-		}
-		
-		.profile-title {
-			@include quiet_type;
-		}
-	}
-	
-}
-h5.profile-title {
-	text-transform:uppercase;
-	text-align:center;
-	border-bottom:1px solid $lightgray;
-	margin:0 0 10px 0;
-	font-family: $serif_font;
-	font-weight:normal;
-	
-}
-.ui-tabs-nav {
-	margin-bottom:20px;
-}
 .social-links {
 	padding:10px 0 20px 0;
 	border-bottom:1px solid $lightgray;
