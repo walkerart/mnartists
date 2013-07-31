@@ -337,7 +337,7 @@ function _mnartist_profile_user_profile() {
         $output .= "<div class='user-profile-data'>";
             $output .= "<div class='left'>";
     if(!is_null($user->picture))
-                $output .= "<div class='profile-image-wrapper'><img src='" . image_style_url('large',$user->picture->uri) . "'></div>";
+                $output .= "<div class='profile-image-wrapper'><img src='" . image_style_url('artist-profile-photo',$user->picture->uri) . "'></div>";
             $output .= "</div>";
             $output .= "<div class='right'>";
             if(isset($fieldset['field_city']) && isset($fieldset['field_state']))
