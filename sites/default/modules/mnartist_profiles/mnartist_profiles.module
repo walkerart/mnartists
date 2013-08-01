@@ -395,7 +395,7 @@ function _mnartist_profile_user_profile() {
             {
                 $i++;
                 $ia = $i;
-                $output .= "<li><a href=\"#tabs-$i\">Awarts & Exhibitions</a></li>";
+                $output .= "<li><a href=\"#tabs-$i\">Awards & Exhibitions</a></li>";
             }
             if(isset($fieldset['field_galleries']))
             {
@@ -407,40 +407,42 @@ function _mnartist_profile_user_profile() {
         $output .= "<div id='tabs-1'>";
         if(isset($fieldset['field_general_statement']))
         {
-            $output .= "<h5 class='profile-title'>Artist Statement</h5>";
-            $output .= "<p>" . $fieldset['field_general_statement'][0]['value']['#markup'] . "</p>";
+            $output .= "<div class='wrap artist-statement'><h5 class='profile-title'>Artist Statement</h5>";
+            $output .= "<p>" . $fieldset['field_general_statement'][0]['value']['#markup'] . "</p></div>";
         }
         if(isset($fieldset['field_education']))
         {
-            $output .= "<h5 class='profile-title'>Education</h5>";
+            $output .= "<div class='wrap education'><h5 class='profile-title'>Education</h5>";
             foreach($fieldset['field_education'] as $edu)
             {
                 $fevalue = array_values($edu['value']['entity']['field_collection_item']);
                 $fe = array_shift($fevalue);
                 if(isset($fe['field_year']) && isset($fe['field_degree']) && isset($fe['field_school']) && isset($fe['field_major']))
                 {
-                    $output .= $fe['field_year'][0]['#markup'] . ' ';
+                    $output .= "<p>" . $fe['field_year'][0]['#markup'] . ' ';
                     $output .= $fe['field_degree'][0]['#markup'] . ', ';
                     $output .= $fe['field_major'][0]['#markup'] . ', ';
-                    $output .= $fe['field_school'][0]['#markup'] . '<br />';
+                    $output .= $fe['field_school'][0]['#markup'] . '</p>';
                 }
             }
+            $output .= "</div>";
         } 
         if(isset($fieldset['field_bio']) || isset($fieldset['field_country']))
         {
-            $output .= "<h5 class='profile-title'>Biography</h5>";
+            $output .= "<div class='wrap biography'><h5 class='profile-title'>Biography</h5>";
             if(isset($fieldset['field_bio']))
             {
                 $output .= "<p>" . $fieldset['field_bio'][0]['value']['#markup'] . "</p>";
             }
             if(isset($fieldset['field_country']))
             {
-                $output .= "<div class='field_country'><h5 class='profile-title'>Country</h5><br>" . $fieldset['field_country'][0]['value']['#markup'] . "</div>";
+                $output .= "<div class='field_country'><div class='profile-label'>Country</div><br><p>" . $fieldset['field_country'][0]['value']['#markup'] . "</p></div>";
             }
             if(isset($fieldset['field_birthplace']))
             {
-                $output .= "<div class='field_birthplace'><h5 class='title'>Birthplace</h5><br>" . $fieldset['field_birthplace'][0]['value']['#markup'] . "</div>";
+                $output .= "<div class='field_birthplace'><div class='profile-label'>Birthplace</div><br><p>" . $fieldset['field_birthplace'][0]['value']['#markup'] . "</p></div>";
             }
+            $output .= "</div>";
         }
         $output .= "</div>";
         if(isset($fieldset['field_awards']))
