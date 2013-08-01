@@ -436,11 +436,11 @@ function _mnartist_profile_user_profile() {
             }
             if(isset($fieldset['field_country']))
             {
-                $output .= "<div class='field_country'><div class='profile-label'>Country</div><br><p>" . $fieldset['field_country'][0]['value']['#markup'] . "</p></div>";
+                $output .= "<div class='field_country'><div class='profile-label'>Country</div><p>" . $fieldset['field_country'][0]['value']['#markup'] . "</p></div>";
             }
             if(isset($fieldset['field_birthplace']))
             {
-                $output .= "<div class='field_birthplace'><div class='profile-label'>Birthplace</div><br><p>" . $fieldset['field_birthplace'][0]['value']['#markup'] . "</p></div>";
+                $output .= "<div class='field_birthplace'><div class='profile-label'>Birthplace</div><p>" . $fieldset['field_birthplace'][0]['value']['#markup'] . "</p></div>";
             }
             $output .= "</div>";
         }
