@@ -1,0 +1,59 @@
+<?php
+
+/**
+ * @file
+ * Code for the MNArtist Filters feature.
+ */
+
+function _mnartist_filter_block_visibility() {
+    global $user;
+
+    if ((arg(0) == 'user' && $user->uid == arg(1)) || (arg(0) == 'user' && !user_is_logged_in())) {
+        return true;
+    }
+
+    return false;
+}
+
+function mnartist_filters_block_info() {
+    return array(
+        'mna_filter_create' => array(
+            'info' => 'Create Filter',
+            'cache' => DRUPAL_NO_CACHE,
+            'visibility' => BLOCK_VISIBILITY_PHP,
+            'pages' => '<?php return _mnartist_filter_block_visibility(); ?>'
+        ),
+
+        'mna_filter_view' => array(
+            'info' => t('View Filters'),
+            'cache' => DRUPAL_NO_CACHE,
+            'visibility' => BLOCK_VISIBILITY_PHP,
+            'pages' => '<?php return _mnartist_filter_block_visibility(); ?>'
+        )
+    );
+}
+
+function mnartist_filters_block_view($delta = '') {
+    switch($delta) {
+        case 'mna_filter_create':
+            $block['subject'] = 'Create Filter';
+            $block['content'] = _mnartist_filter_create_filter();
+        break;
+        case 'mna_filter_view':
+            $block['subject'] = 'View Filter';
+            $block['content'] = _mnartist_filter_view_filter();
+        break;
+    }
+
+    return $block;
+}
+
+function _mnartist_filter_create_filter()
+{
+
+}
+
+function _mnartist_filter_view_filter()
+{
+	
+}
