@@ -67,6 +67,10 @@ form input.text-full {
 		
 	}
 }
+.panel-2col .panel-col-last,
+.panel-2col .panel-col-first {
+	@include full_width;
+}
 
 .fieldset-wrapper {
 	.date-no-float {
