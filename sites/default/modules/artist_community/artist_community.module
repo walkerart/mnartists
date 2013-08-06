@@ -318,7 +318,7 @@ function url_query_master($text, $path, $key, $val, $attributes = array()) {
 
     if ($key == 'og') {
         if ($node = node_load($val)) {
-            if (isset($_GET['og'][$val])) $attributes['class'][] = 'selected';
+            if (isset($_GET['og'][$val]) && $_GET['og'][$val] == 1) $attributes['class'][] = 'selected';
             /**
              * If the value is set then unset it so we can toggle
              * between states.  If it isnt set it as true since this
@@ -340,6 +340,10 @@ function url_query_master($text, $path, $key, $val, $attributes = array()) {
                 // Reset the query so that the community values are included
                 if (isset($_GET['og'][$val])) {
                     $query['og'][$val] = $_GET['og'][$val];
+                }
+
+                if (isset($_GET['og'][$val]) && is_array($_GET['og'][$val]) && in_array($tid['tid'], $_GET['og'][$val])) {
+                    $attributes['class'] = array('active-trail','selected');
                 }
 
                 // if the query is true convert it to an array
