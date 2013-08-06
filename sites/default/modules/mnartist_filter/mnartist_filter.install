@@ -20,8 +20,22 @@ function mnartist_filter_schema() {
 				'unsigned' => TRUE,
 			),
 			'title' => array(
-
+				'description' => 'The title the user sets for this filter.',
+				'type' => 'varchar',
+				'length' => '50',
+				'not null' => TRUE,
 			),
-		)
+			'url' => array(
+				'description' => 'The url the user sets for this filter.',
+				'type' => 'varchar',
+				'length' => '512',
+				'not null' => TRUE,
+			),
+		),
+		'indexes' => array(
+			'filter_user' => array('uid'),
+    	),
+		'primary key' => array('fid'),
     );
+    return $schema;
 }

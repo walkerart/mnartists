@@ -5,55 +5,101 @@
  * Code for the MNArtist Filters feature.
  */
 
-function _mnartist_filter_block_visibility() {
-    global $user;
+function mnartist_filter_menu() {
+	$items['mnartist/filter/submit'] = array(
+		'page callback' => 'mnartist_filter_view',
+		'access arguments' => array('view own profile'), 
+	);
+	return $items;
+}
+function mnartist_filter_view()
+{
+	global $user;
 
-    if ((arg(0) == 'user' && $user->uid == arg(1)) || (arg(0) == 'user' && !user_is_logged_in())) {
-        return true;
-    }
-
-    return false;
+	$data = array(
+  		'uid' => $user->uid,
+  		'title' => $_POST['name'],
+  		'url' => urlencode($_POST['url']),
+	);
+	drupal_write_record('mnartist_filter', $data);
+	header('Location: ' . $_POST['url']);
 }
 
-function mnartist_filters_block_info() {
+function _mnartist_filter_block_visibility() {
+
+    if(arg(0) == 'community' && user_is_logged_in())
+    {
+    	return true;
+    } else {
+    	return false;
+    }
+}
+
+function mnartist_filter_block_info() {
     return array(
         'mna_filter_create' => array(
-            'info' => 'Create Filter',
+            'info' => 'MNArtist Create Filter',
             'cache' => DRUPAL_NO_CACHE,
             'visibility' => BLOCK_VISIBILITY_PHP,
             'pages' => '<?php return _mnartist_filter_block_visibility(); ?>'
         ),
-
+/*
         'mna_filter_view' => array(
-            'info' => t('View Filters'),
+            'info' => t('MNArtist View Filters'),
             'cache' => DRUPAL_NO_CACHE,
             'visibility' => BLOCK_VISIBILITY_PHP,
-            'pages' => '<?php return _mnartist_filter_block_visibility(); ?>'
+            'pages' => '<?php return _mnartist_filter_profile_block_visibility(); ?>'
         )
+        */
     );
 }
 
-function mnartist_filters_block_view($delta = '') {
+function mnartist_filter_block_view($delta = '') {
     switch($delta) {
         case 'mna_filter_create':
             $block['subject'] = 'Create Filter';
             $block['content'] = _mnartist_filter_create_filter();
         break;
+        /*
         case 'mna_filter_view':
             $block['subject'] = 'View Filter';
             $block['content'] = _mnartist_filter_view_filter();
         break;
+        */
     }
-
     return $block;
 }
 
 function _mnartist_filter_create_filter()
 {
+	ctools_add_js('filter', 'mnartist_filter');
+	ctools_add_css('filter', 'mnartist_filter');
+	$output = '';
+	$output .= '<div id="dialog-form" title="Create new filter">';
+		$output .= '<p class="validateTips">If you would like to save this filter please set a name and it will be saved to your mystuff filters.</p>';
 
+		$output .= '<form id="filter-form" action="/mnartist/filter/submit" method="post">';
+		$output .= '<fieldset>';
+		    $output .= '<label for="name">Filter Name</label>';
+		    $output .= '<input type="text" name="name" id="name" class="text ui-widget-content ui-corner-all" /><br/>';
+		    $output .= '<input type="hidden" name="url" value="' . $_SERVER['REQUEST_URI'] . '" />';
+		$output .= '</fieldset>';
+		$output .= '</form>';
+	$output .= '</div>';
+	$output .= '<a href="#" id="create-filter">Star</a>';
+	return $output;
 }
 
 function _mnartist_filter_view_filter()
 {
+	global $user;
 	
+	$result = db_query("SELECT mn.title, mn.url FROM {mnartist_filter} mn WHERE mn.uid = :uid", array(':uid' => $user->uid));
+
+	$output = array();
+	while ($row = $result->fetchAssoc()) 
+	{
+		$output[] = '<a href="' . urldecode($row['url']) . '">' . $row['title'] . '</a>';
+	}
+	return $output;
 }
