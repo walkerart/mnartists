@@ -117,7 +117,7 @@ function _community_block_search() {
  * returns a rendered menu for content
  */
 function _community_block_community() {
-    $items[] = l('All Communities', 'community');
+    $items = array();
 
     // render community menu;
     $results = db_select('node', 'n')
@@ -135,8 +135,11 @@ function _community_block_community() {
                     ? array('active-trail') : array(),
         );
         $list = url_query_master($result->title, 'community', 'og', $result->nid, $attributes);
-        $items[] = $list;
+        $items[$result->title] = $list;
     }
+
+    ksort($items);
+    array_unshift($items, l('All Communities', 'community'));
 
     return theme('item_list', array(
         'items' => $items,
