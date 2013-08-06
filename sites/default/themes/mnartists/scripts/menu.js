@@ -31,11 +31,5 @@
                 expand.slideUp();
             }
         });
-
-        menu.find(".menu-event-datepicker").datepicker({
-            onSelect: function(dateText, inst) {
-                console.log(dateText);
-            }
-        });
     });
 }(jQuery));
