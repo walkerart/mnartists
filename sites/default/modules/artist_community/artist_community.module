@@ -332,10 +332,9 @@ function url_query_master($text, $path, $key, $val, $attributes = array()) {
 
             $output = l($text, $path, array('query' => $query, 'attributes' => $attributes));
 
-            $attributes = array();
-
             // build sub menu items from the medium taxonomy
             foreach($node->field_medium['und'] as $tid) {
+                $attributes = array();
 
                 // Reset the query so that the community values are included
                 if (isset($_GET['og'][$val])) {
