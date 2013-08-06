@@ -11,7 +11,7 @@ function artist_community_search_page() {
     $output         = '';
 
     // Handle Organic groups and taxonomies
-/*
+
     if (isset($_GET['og'])) {
         $filter = new SearchApiQueryFilter;
         $filter->setConjunction('OR');
@@ -40,7 +40,7 @@ function artist_community_search_page() {
         $filters[] = $filter;
         $user_filters[] = $user_filter;
     }
-*/
+
     // Handle content and users
     if (isset($_GET['content'])) {
         $filter = new SearchApiQueryFilter;
