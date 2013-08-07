@@ -69,13 +69,17 @@ function mnartist_filter_user_view()
                     $string .= "<b>Communities: </b>";
                     foreach($vars['og'] as $mkey => $mvalue)
                     {
-                        $string .= '<b>' . $menu[$mkey] . '</b>: ';
+                        $string .= '<b>' . $menu[$mkey] . '</b>';
                         if(is_array($mvalue))
                         {
+                            $string .= ': ';
                             $subm = array();
                             foreach($mvalue as $skey => $svalue)
                             {
+                                dpm($mvalue);
+                                dpm($svalue);
                                 $term = taxonomy_term_load($svalue);
+                                $dpm($term);
                                 $subm[] = $term->name;
                             }
                             $string .= implode(', ', $subm);
