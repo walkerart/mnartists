@@ -40,59 +40,63 @@ function mnartist_filter_user_delete()
 
 function mnartist_filter_user_view()
 {
-    global $user;
-    
-    $result = db_query("SELECT mn.fid, mn.title, mn.url FROM {mnartist_filter} mn WHERE mn.uid = :uid", array(':uid' => $user->uid));
-    $results = db_select('node', 'n')->fields('n', array('nid', 'title'))->condition('type', 'community')->execute()->fetchAll();
-    $menu = array();
-    foreach($results as $row)
+    if($_SERVER['REQUEST_URI'] == '/user/saved-filters')
     {
-        $menu[$row->nid] = $row->title;
-    }
-    $output = "";
-    $output .= "<table>" . PHP_EOL;
-    $output .= "<thead><tr><td>Name</td><td>Filters</td><td>Options</td></tr></thead>" . PHP_EOL;
-    $output .= "<tbody>" . PHP_EOL;
-    while ($row = $result->fetchAssoc()) 
-    {
-        $url = parse_url(urldecode($row['url']));
-        $string = '';
-        if(isset($url['query']))
+        global $user;
+        
+        $result = db_query("SELECT mn.fid, mn.title, mn.url FROM {mnartist_filter} mn WHERE mn.uid = :uid", array(':uid' => $user->uid));
+        $results = db_select('node', 'n')->fields('n', array('nid', 'title'))->condition('type', 'community')->execute()->fetchAll();
+        $menu = array();
+        foreach($results as $row)
         {
-            parse_str($url['query'],$vars);
-            if(isset($vars['og']))
-            {
-                $string .= "<b>Communities: </b>";
-                foreach($vars['og'] as $mkey => $mvalue)
-                {
-                    $string .= '<b>' . $menu[$mkey] . '</b>: ';
-                    $subm = array();
-                    foreach($mvalue as $skey => $svalue)
-                    {
-                        $term = taxonomy_term_load($svalue);
-                        $subm[] = $term->name;
-                    }
-                    $string .= implode(', ', $subm);
-                    $string .= " ";
-                }
-            }
-            if(isset($vars['og']) && isset($vars['content']))
-            {
-                $string .= '<br>';
-            }
-            if(isset($vars['content']))
-            {
-                $string .= "<b>Content: </b>";
-                $string .= implode(', ', $vars['content']);
-            }
-        } else {
-            $string = '<b>All Communites</b>';
+            $menu[$row->nid] = $row->title;
         }
-        $output .= '<tr><td><a href="' . urldecode($row['url']) . '">' . $row['title'] . '</a></td><td><a href="' . urldecode($row['url']) . '">' . $string . '</a></td><td><a href="' . urldecode($row['url']) . '">Go</a> - <a href="/user/saved-filters/delete?fid=' . $row['fid'] . '">Delete</a></td>';
+        $output = "";
+        $output .= "<table>" . PHP_EOL;
+        $output .= "<thead><tr><td>Name</td><td>Filters</td><td>Options</td></tr></thead>" . PHP_EOL;
+        $output .= "<tbody>" . PHP_EOL;
+        while ($row = $result->fetchAssoc()) 
+        {
+            $url = parse_url(urldecode($row['url']));
+            $string = '';
+            if(isset($url['query']))
+            {
+                parse_str($url['query'],$vars);
+                if(isset($vars['og']))
+                {
+                    $string .= "<b>Communities: </b>";
+                    foreach($vars['og'] as $mkey => $mvalue)
+                    {
+                        $string .= '<b>' . $menu[$mkey] . '</b>: ';
+                        $subm = array();
+                        foreach($mvalue as $skey => $svalue)
+                        {
+                            $term = taxonomy_term_load($svalue);
+                            $subm[] = $term->name;
+                        }
+                        $string .= implode(', ', $subm);
+                        $string .= " ";
+                    }
+                }
+                if(isset($vars['og']) && isset($vars['content']))
+                {
+                    $string .= '<br>';
+                }
+                if(isset($vars['content']))
+                {
+                    $string .= "<b>Content: </b>";
+                    $string .= implode(', ', $vars['content']);
+                }
+            } else {
+                $string = '<b>All Communites</b>';
+            }
+            $output .= '<tr><td><a href="' . urldecode($row['url']) . '">' . $row['title'] . '</a></td><td><a href="' . urldecode($row['url']) . '">' . $string . '</a></td><td><a href="' . urldecode($row['url']) . '">Go</a> - <a href="/user/saved-filters/delete?fid=' . $row['fid'] . '">Delete</a></td>';
+        }
+        $output .= "</tbody>" . PHP_EOL;
+        $output .= "</table";
+        return $output;
     }
-    $output .= "</tbody>" . PHP_EOL;
-    $output .= "</table";
-    return $output;
+    
 }
 
 function _mnartist_filter_block_visibility() {
