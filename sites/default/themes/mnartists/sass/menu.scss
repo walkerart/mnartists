@@ -44,12 +44,12 @@
 		
 		li {
 			margin:0;
-			padding:0 10px 0 10px;
+			padding:0;
 			position:relative;
 			
 			a {
 				display:block;
-				margin:0;
+				margin:0 10px;
 				padding:8px 0 8px 20px;
 				line-height:1em;
 				text-transform:uppercase;
@@ -81,11 +81,11 @@
 				position:absolute;
 				background:none;
 			}
-			.item-list {
+			.item-list { 
 				display:none;
 				
 				ul {
-					
+					background: #eaeaea;
 					li {
 						padding:0 0 0 20px;
 						display:block;
@@ -99,7 +99,7 @@
 							line-height:1em;
 							
 							text-transform:none;
-							border-bottom:1px solid $light_border;
+							border-bottom:none;
 						}
 					}
 					li.first {

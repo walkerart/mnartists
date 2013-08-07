@@ -48,13 +48,13 @@
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/menu\.scss}line{font-family:\0000345}}
 #menu ul li {
   margin: 0;
-  padding: 0 10px 0 10px;
+  padding: 0;
   position: relative;
 }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/menu\.scss}line{font-family:\0000350}}
 #menu ul li a {
   display: block;
-  margin: 0;
+  margin: 0 10px;
   padding: 8px 0 8px 20px;
   line-height: 1em;
   text-transform: uppercase;
@@ -93,6 +93,10 @@
 #menu ul li .item-list {
   display: none;
 }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/menu\.scss}line{font-family:\0000387}}
+#menu ul li .item-list ul {
+  background: #eaeaea;
+}
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/menu\.scss}line{font-family:\0000389}}
 #menu ul li .item-list ul li {
   padding: 0 0 0 20px;
@@ -107,7 +111,7 @@
   */
   line-height: 1em;
   text-transform: none;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  border-bottom: none;
 }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/menu\.scss}line{font-family:\00003105}}
 #menu ul li .item-list ul li.first {
