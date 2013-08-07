@@ -79,7 +79,7 @@ function mnartist_filter_user_view()
                                 dpm($mvalue);
                                 dpm($svalue);
                                 $term = taxonomy_term_load($svalue);
-                                $dpm($term);
+                                dpm($term);
                                 $subm[] = $term->name;
                             }
                             $string .= implode(', ', $subm);
