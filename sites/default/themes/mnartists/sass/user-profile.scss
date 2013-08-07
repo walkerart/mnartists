@@ -42,7 +42,25 @@
 		}
 	}
 }
+
+.pane-user-flag-usercollections-link {
+	.panel-pane {
+		.block-inner {
+			background:none;
+		}
+	}
+}
 .pane-mnartist-profiles-mna-user-profile {
+	position:relative;
+	.flag-wrapper {
+		position:absolute;
+		top:30px;
+		right:15px;
+		
+		.flag-cound {
+			display:none;
+		}
+	}
 	h1 {
 		margin:0 10px 20px 10px;
 		border-bottom:1px solid $lightgray;
