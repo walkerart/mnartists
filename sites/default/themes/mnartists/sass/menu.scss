@@ -73,6 +73,7 @@
 				background: url('../images/icon-check-solid.svg') no-repeat left center transparent;
 				background-size: 9px auto;
 				color:#111;
+				font-weight:bold;
 			}
 			a.expand {
 				line-height:1em;
@@ -101,6 +102,9 @@
 							
 							text-transform:none;
 							border-bottom:none;
+						}
+						a.active-trail.active.selected {
+							font-weight:bold;
 						}
 					}
 					li.first {
