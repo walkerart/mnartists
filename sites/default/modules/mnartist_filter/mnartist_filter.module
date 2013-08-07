@@ -40,7 +40,7 @@ function mnartist_filter_user_delete()
     $url = parse_url($url);
     if(isset($url['query']))
     {
-        parse_str($url, $vars);
+        parse_str($url['query'], $vars);
         if(isset($vars['fid']))
         {
             $result = db_query("SELECT mn.fid, mn.uid, mn.title, mn.url FROM {mnartist_filter} mn WHERE mn.fid = :uid", array(':uid' => $vars['fid']))->execute()->fetchAssoc();
