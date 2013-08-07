@@ -62,19 +62,24 @@ function mnartist_filter_user_view()
             if(isset($url['query']))
             {
                 parse_str($url['query'],$vars);
+                if($user->uid == 1)
+                    dpm($vars);
                 if(isset($vars['og']))
                 {
                     $string .= "<b>Communities: </b>";
                     foreach($vars['og'] as $mkey => $mvalue)
                     {
                         $string .= '<b>' . $menu[$mkey] . '</b>: ';
-                        $subm = array();
-                        foreach($mvalue as $skey => $svalue)
+                        if(is_array($mvalue))
                         {
-                            $term = taxonomy_term_load($svalue);
-                            $subm[] = $term->name;
+                            $subm = array();
+                            foreach($mvalue as $skey => $svalue)
+                            {
+                                $term = taxonomy_term_load($svalue);
+                                $subm[] = $term->name;
+                            }
+                            $string .= implode(', ', $subm);
                         }
-                        $string .= implode(', ', $subm);
                         $string .= " ";
                     }
                 }
@@ -93,7 +98,7 @@ function mnartist_filter_user_view()
             $output .= '<tr><td><a href="' . urldecode($row['url']) . '">' . $row['title'] . '</a></td><td><a href="' . urldecode($row['url']) . '">' . $string . '</a></td><td><a href="' . urldecode($row['url']) . '">Go</a> - <a href="/user/saved-filters/delete?fid=' . $row['fid'] . '">Delete</a></td>';
         }
         $output .= "</tbody>" . PHP_EOL;
-        $output .= "</table";
+        $output .= "</table>";
         return $output;
     }
     
