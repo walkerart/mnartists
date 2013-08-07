@@ -329,90 +329,91 @@ function _mnartist_profile_user_profile() {
         {
             $top_name = 'toast';
         } else {
-            $top_name = user_load(arg(1))->name;
+            $top_name = $user->name;
         }
     }
-    $output .= "<h1>" . $top_name . "</h1>";
-    $output .= "<div class='user-profile'>";
-        $output .= "<div class='user-profile-data'>";
-            $output .= "<div class='left'>";
+    $output .= "<h1>" . $top_name . "</h1>" . PHP_EOL;
+    $output .= flag_create_link('usercollections', arg(1));
+    $output .= "<div class='user-profile'>" . PHP_EOL;
+        $output .= "<div class='user-profile-data'>" . PHP_EOL;
+            $output .= "<div class='left'>" . PHP_EOL;
     if(!is_null($user->picture))
-                $output .= "<div class='profile-image-wrapper'><img src='" . image_style_url('artist-profile-photo',$user->picture->uri) . "'></div>";
-            $output .= "</div>";
-            $output .= "<div class='right'>";
+                $output .= "<div class='profile-image-wrapper'><img src='" . image_style_url('artist-profile-photo',$user->picture->uri) . "'></div>" . PHP_EOL;
+            $output .= "</div>" . PHP_EOL;
+            $output .= "<div class='right'>" . PHP_EOL;
             if(isset($fieldset['field_city']) && isset($fieldset['field_state']))
             {
-                $output .= "<div class='profile-city-state'>";
-                $output .= $fieldset['field_city'][0]['value']['#markup'] . ', ' . $fieldset['field_state'][0]['value']['#markup'];
-                $output .= "</div>";
+                $output .= "<div class='profile-city-state'>" . PHP_EOL;
+                $output .= $fieldset['field_city'][0]['value']['#markup'] . ', ' . $fieldset['field_state'][0]['value']['#markup'] . PHP_EOL;
+                $output .= "</div>" . PHP_EOL;
             }
             if(isset($fieldset['field_full_name']))
             {
-                $output .= "<div class='profile-full-name'>";
-                $output .= "<span class='profile-title'>Contact Name:</span> " . $fs['field_first_name'][0]['#markup'] . ' ' . $fs['field_last_name'][0]['#markup'];
-                $output .= "</div>";
+                $output .= "<div class='profile-full-name'>" . PHP_EOL;
+                $output .= "<span class='profile-title'>Contact Name:</span> " . $fs['field_first_name'][0]['#markup'] . ' ' . $fs['field_last_name'][0]['#markup'] . PHP_EOL;
+                $output .= "</div>" . PHP_EOL;
             }
             if(isset($fieldset['field_phone']))
             {
-                $output .= "<div class='profile-phone'>";
-                $output .= "<span class='profile-title'>Phone:</span> " . $fieldset['field_phone'][0]['value']['#markup'];
-                $output .= "</div>";
+                $output .= "<div class='profile-phone'>" . PHP_EOL;
+                $output .= "<span class='profile-title'>Phone:</span> " . $fieldset['field_phone'][0]['value']['#markup'] . PHP_EOL;
+                $output .= "</div>" . PHP_EOL;
             }
             if(isset($fieldset['field_public_email']))
             {
-                $output .= "<div class='profile-email'>";
-                $output .= "<span class='profile-title'>E-Mail:</span>" . $fieldset['field_public_email'][0]['value']['#markup'];
-                $output .= "</div>";
+                $output .= "<div class='profile-email'>" . PHP_EOL;
+                $output .= "<span class='profile-title'>E-Mail:</span>" . $fieldset['field_public_email'][0]['value']['#markup'] . PHP_EOL;
+                $output .= "</div>" . PHP_EOL;
             }
             if(isset($fieldset['field_twitter']) || isset($fieldset['field_facebook']))
             {
-                $output .= "<div class='social-links'>";
+                $output .= "<div class='social-links'>" . PHP_EOL;
                 if(isset($fieldset['field_twitter']))
                 {
-                    $output .= "<div class='profile-twitter'>";
-                    $output .= "<a class='twitter' href='http://www.twitter.com/" . $fieldset['field_twitter'][0]['value']['#markup'] . "'>" . $fieldset['field_twitter'][0]['value']['#markup'] . "</a>";
-                    $output .= "</div>";
+                    $output .= "<div class='profile-twitter'>" . PHP_EOL;
+                    $output .= "<a class='twitter' href='http://www.twitter.com/" . $fieldset['field_twitter'][0]['value']['#markup'] . "'>" . $fieldset['field_twitter'][0]['value']['#markup'] . "</a>" . PHP_EOL;
+                    $output .= "</div>" . PHP_EOL;
                 }
                 if(isset($fieldset['field_facebook']))
                 {
-                    $output .= "<div class='profile-facebook'>";
-                    $output .= "<a class='facebook' href='http://www.facebook.com/" . $fieldset['field_facebook'][0]['value']['#markup'] . "'>" . $fieldset['field_facebook'][0]['value']['#markup'] . "</a>";
-                    $output .= "</div>";
+                    $output .= "<div class='profile-facebook'>" . PHP_EOL;
+                    $output .= "<a class='facebook' href='http://www.facebook.com/" . $fieldset['field_facebook'][0]['value']['#markup'] . "'>" . $fieldset['field_facebook'][0]['value']['#markup'] . "</a>" . PHP_EOL;
+                    $output .= "</div>" . PHP_EOL;
                 }
-                $output .= "</div>";
+                $output .= "</div>" . PHP_EOL;
             }
 
             // Space for Tags
-            $output .= "</div>";
-        $output .= "</div>";
-    $output .= "</div>";
+            $output .= "</div>" . PHP_EOL;
+        $output .= "</div>" . PHP_EOL;
+    $output .= "</div>" . PHP_EOL;
 
-    $output .= "<div id='tabs'>";
-        $output .= "<ul>";
-            $output .= "<li><a href=\"#tabs-1\">About " . $top_name . "</a></li>";
+    $output .= "<div id='tabs'>" . PHP_EOL;
+        $output .= "<ul>" . PHP_EOL;
+            $output .= "<li><a href=\"#tabs-1\">About " . $top_name . "</a></li>" . PHP_EOL;
             $i = 1;
             if(isset($fieldset['field_awards']))
             {
                 $i++;
                 $ia = $i;
-                $output .= "<li><a href=\"#tabs-$i\">Awards & Exhibitions</a></li>";
+                $output .= "<li><a href=\"#tabs-$i\">Awards & Exhibitions</a></li>" . PHP_EOL;
             }
             if(isset($fieldset['field_galleries']))
             {
                 $i++;
                 $ig = $i;
-                $output .= "<li><a href=\"#tabs-$i\">Galleries Etc.</a></li>";
+                $output .= "<li><a href=\"#tabs-$i\">Galleries Etc.</a></li>" . PHP_EOL;
             }
-        $output .= "</ul>";
-        $output .= "<div id='tabs-1'>";
+        $output .= "</ul>" . PHP_EOL;
+        $output .= "<div id='tabs-1'>" . PHP_EOL;
         if(isset($fieldset['field_general_statement']))
         {
-            $output .= "<div class='wrap artist-statement'><h5 class='profile-title'>Artist Statement</h5>";
-            $output .= "<p>" . $fieldset['field_general_statement'][0]['value']['#markup'] . "</p></div>";
+            $output .= "<div class='wrap artist-statement'><h5 class='profile-title'>Artist Statement</h5>" . PHP_EOL;
+            $output .= "<p>" . $fieldset['field_general_statement'][0]['value']['#markup'] . "</p></div>" . PHP_EOL;
         }
         if(isset($fieldset['field_education']))
         {
-            $output .= "<div class='wrap education'><h5 class='profile-title'>Education</h5>";
+            $output .= "<div class='wrap education'><h5 class='profile-title'>Education</h5>" . PHP_EOL;
             foreach($fieldset['field_education'] as $edu)
             {
                 $fevalue = array_values($edu['value']['entity']['field_collection_item']);
@@ -422,53 +423,53 @@ function _mnartist_profile_user_profile() {
                     $output .= "<p>" . $fe['field_year'][0]['#markup'] . ' ';
                     $output .= $fe['field_degree'][0]['#markup'] . ', ';
                     $output .= $fe['field_major'][0]['#markup'] . ', ';
-                    $output .= $fe['field_school'][0]['#markup'] . '</p>';
+                    $output .= $fe['field_school'][0]['#markup'] . '</p>' . PHP_EOL;
                 }
             }
-            $output .= "</div>";
+            $output .= "</div>" . PHP_EOL;
         } 
         if(isset($fieldset['field_bio']) || isset($fieldset['field_country']))
         {
-            $output .= "<div class='wrap biography'><h5 class='profile-title'>Biography</h5>";
+            $output .= "<div class='wrap biography'><h5 class='profile-title'>Biography</h5>" . PHP_EOL;
             if(isset($fieldset['field_bio']))
             {
-                $output .= "<p>" . $fieldset['field_bio'][0]['value']['#markup'] . "</p>";
+                $output .= "<p>" . $fieldset['field_bio'][0]['value']['#markup'] . "</p>" . PHP_EOL;
             }
             if(isset($fieldset['field_country']))
             {
-                $output .= "<div class='field_country'><div class='profile-label'>Country</div><p>" . $fieldset['field_country'][0]['value']['#markup'] . "</p></div>";
+                $output .= "<div class='field_country'><div class='profile-label'>Country</div><p>" . $fieldset['field_country'][0]['value']['#markup'] . "</p></div>" . PHP_EOL;
             }
             if(isset($fieldset['field_birthplace']))
             {
-                $output .= "<div class='field_birthplace'><div class='profile-label'>Birthplace</div><p>" . $fieldset['field_birthplace'][0]['value']['#markup'] . "</p></div>";
+                $output .= "<div class='field_birthplace'><div class='profile-label'>Birthplace</div><p>" . $fieldset['field_birthplace'][0]['value']['#markup'] . "</p></div>" . PHP_EOL;
             }
-            $output .= "</div>";
+            $output .= "</div>" . PHP_EOL;
         }
-        $output .= "</div>";
+        $output .= "</div>" . PHP_EOL;
         if(isset($fieldset['field_awards']))
         {
-            $output .= "<div id='tabs-$ia'>";
+            $output .= "<div id='tabs-$ia'>" . PHP_EOL;
             foreach($fieldset['field_awards'] as $award1)
             {
                 $awardkey = array_values($award1['value']['entity']['field_collection_item']);
                 $award = array_shift($awardkey);
-                $output .= $award['field_year'][0]['#markup'] . ', ' . $award['field_award_name'][0]['#markup'] . ' ' . $award['field_award_organization'][0]['#markup'] . '<br />';
+                $output .= $award['field_year'][0]['#markup'] . ', ' . $award['field_award_name'][0]['#markup'] . ' ' . $award['field_award_organization'][0]['#markup'] . '<br />' . PHP_EOL;
             }
-            $output .= "</div>";
+            $output .= "</div>" . PHP_EOL;
         }
         if(isset($fieldset['field_galleries']))
         {
-            $output .= "<div id='tabs-$ig'>";
+            $output .= "<div id='tabs-$ig'>" . PHP_EOL;
             foreach($fieldset['field_galleries'] as $gal)
             {
                 $galkey = array_values($gal['value']['entity']['field_collection_item']);
                 $gallery = array_shift($galkey);
-                $output .= $gallery['field_gallery_name'][0]['#markup'] . ', ' . $gallery['field_contact_name'][0]['#markup'] . '<br />';
+                $output .= $gallery['field_gallery_name'][0]['#markup'] . ', ' . $gallery['field_contact_name'][0]['#markup'] . '<br />' . PHP_EOL;
             }
-            $output .= "</div>";
+            $output .= "</div>" . PHP_EOL;
         }
-    $output .= "</div>";
-    $output .= "<link rel=\"stylesheet\" href=\"http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/themes/base/jquery-ui.css\" type=\"text/css\" media=\"all\" />";
+    $output .= "</div>" . PHP_EOL;
+    $output .= "<link rel=\"stylesheet\" href=\"http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/themes/base/jquery-ui.css\" type=\"text/css\" media=\"all\" />" . PHP_EOL;
     $output .= "<script>
     jQuery(function() {
         jQuery(\"#tabs\").tabs();
