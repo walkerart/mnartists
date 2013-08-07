@@ -62,8 +62,6 @@ function mnartist_filter_user_view()
             if(isset($url['query']))
             {
                 parse_str($url['query'],$vars);
-                if($user->uid == 1)
-                    dpm($vars);
                 if(isset($vars['og']))
                 {
                     $string .= "<b>Communities: </b>";
@@ -76,11 +74,12 @@ function mnartist_filter_user_view()
                             $subm = array();
                             foreach($mvalue as $skey => $svalue)
                             {
-                                dpm($mvalue);
-                                dpm($svalue);
                                 $term = taxonomy_term_load($svalue);
-                                dpm($term);
-                                $subm[] = $term->name;
+                                if(isset($term->name))
+                                {
+                                    $subm[] = $term->name;    
+                                }
+                                
                             }
                             $string .= implode(', ', $subm);
                         }
