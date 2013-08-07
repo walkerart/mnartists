@@ -35,6 +35,22 @@ function mnartist_filter_view()
 
 function mnartist_filter_user_delete()
 {
+    global $user;
+    $url = $_SERVER['REQUEST_URI'];
+    $url = parse_url($url);
+    if(isset($url['query']))
+    {
+        parse_str($url, $vars);
+        if(isset($vars['fid']))
+        {
+            $result = db_query("SELECT mn.fid, mn.uid, mn.title, mn.url FROM {mnartist_filter} mn WHERE mn.fid = :uid", array(':uid' => $vars['fid']))->execute()->fetchAssoc();
+            if($result['uid'] == $user->uid)
+            {
+                $deleted = db_delete('mnartist_filter')->condition('uid', $user->uid)->condition('fid', $vars['fid'])->execute;
+            }
+        }
+    }
+    header('Location: /user/saved-filters');
 
 }
 
