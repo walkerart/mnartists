@@ -169,6 +169,10 @@ function mnartist_filter_block_view($delta = '') {
 
 function _mnartist_filter_create_filter()
 {
+    global $user;
+    $url = urlencode($_SERVER['REQUEST_URI']);
+    $result = db_query("SELECT mn.fid FROM {mnartist_filter} mn WHERE mn.uid = :uid AND mn.url = :url", array(':uid' => $user->uid, ':url' => $url));
+    $record = $result->fetchAssoc();
 	ctools_add_js('filter', 'mnartist_filter');
 	ctools_add_css('filter', 'mnartist_filter');
 	$output = '';
@@ -183,7 +187,12 @@ function _mnartist_filter_create_filter()
 		$output .= '</fieldset>';
 		$output .= '</form>';
 	$output .= '</div>';
-	$output .= '<a href="#" id="create-filter">Star</a>';
+	$output .= '<a href="#"';
+    if(isset($record['fid']))
+    {
+        $output .= ' class="active"';
+    }
+    $output .= ' id="create-filter">Star</a>';
 	return $output;
 }
 
