@@ -27,8 +27,7 @@ function mnartist_filter_schema() {
 			),
 			'url' => array(
 				'description' => 'The url the user sets for this filter.',
-				'type' => 'varchar',
-				'length' => '512',
+				'type' => 'text',
 				'not null' => TRUE,
 			),
 		),
