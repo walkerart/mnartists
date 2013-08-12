@@ -1,0 +1,32 @@
+diff --git a/flag_lists.admin.inc b/flag_lists.admin.inc
+index a71a11c..d1cec31 100644
+--- a/flag_lists.admin.inc
++++ b/flag_lists.admin.inc
+@@ -26,6 +26,7 @@ function theme_flag_lists_admin_page($variables) {
+     $view = views_get_view('flag_lists', FALSE);
+     if (!empty($view)) {
+       $view->set_display('default');
++      $view->pre_execute();
+       $output .= $view->render();
+     }
+   }
+diff --git a/flag_lists.module b/flag_lists.module
+index 8fde9dd..eb9b364 100644
+--- a/flag_lists.module
++++ b/flag_lists.module
+@@ -151,6 +151,7 @@ function flag_lists_user_page($user) {
+     if (!empty($view)) {
+       $view->set_display('default');
+       $view->set_arguments(array($user->uid));
++      $view->pre_execute();
+       $output = $view->render();
+       drupal_set_title(str_replace(array_keys($view->build_info['substitutions']), $view->build_info['substitutions'], $view->build_info['title']));
+     }
+@@ -191,6 +192,7 @@ function flag_lists_user_list($user, $fid) {
+     if (!empty($view)) {
+       $view->set_display('default');
+       $view->set_arguments(array($fid));
++      $view->pre_execute();
+       $output = $view->render();
+       drupal_set_title(str_replace(array_keys($view->build_info['substitutions']), $view->build_info['substitutions'], $view->build_info['title']));
+     }

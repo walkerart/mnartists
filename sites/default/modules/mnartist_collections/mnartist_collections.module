@@ -1,0 +1,140 @@
+<?php
+
+/**
+ * @file
+ * Code for the MNArtist Collections feature.
+ */
+
+
+function _mnartist_collections_block_visibility() {
+
+    if(user_is_logged_in())
+    {
+    	return true;
+    } else {
+    	return false;
+    }
+}
+
+function mnartist_collections_block_info() {
+    return array(
+        'mna_collections_star' => array(
+            'info' => 'MNArtist Collections Star',
+            'cache' => DRUPAL_NO_CACHE,
+            'visibility' => BLOCK_VISIBILITY_PHP,
+            'pages' => '<?php return _mnartist_collections_block_visibility(); ?>'
+        ),
+    );
+}
+
+function mnartist_collections_block_view($delta = '') {
+    switch($delta) {
+        case 'mna_collections_star':
+            $block['content'] = _mnartist_collections_star();
+        break;
+    }
+    return $block;
+}
+
+function _mnartist_collections_get_user_flags()
+{
+    $node = $variables['node'];
+    $create = $variables['create'];
+    $ops = $variables['ops'];
+    $use_flags = $variables['use_flags'];
+
+    $items = array();
+
+    // Make sure we have a node.
+    if (is_object($node) && user_access('create flag lists')) {
+        $content_type = $node->type;
+        $content_id = $node->nid;
+    }
+    // Or at least confirm we are on a node page and use has access.
+    elseif (arg(0) == 'node' && is_numeric(arg(1)) && user_access('create flag lists')) {
+        $content_id = arg(1);
+        $query = db_select('node')->condition('nid', $content_id);
+        $query->addField('node', 'type');
+        $content_type = $query->execute()->fetchField();
+    }
+    else {
+        return;
+    }
+
+    // Do we have a list template for this node type, or are we s
+    if (!flag_lists_template_exists($content_type) && !$use_flags) {
+        return;
+    }
+
+    global $user;
+    if ($flags = flag_lists_get_user_flags($content_type, $user, $use_flags)) {
+        // Build the list of lists for this node.
+        foreach ($flags as $flag) {
+            if(isset($flag->module))
+            {
+                if ($flag->module == 'flag_lists') {
+                    $action = _flag_lists_is_flagged($flag, $content_id, $user->uid, 0) ? 'unflag' : 'flag';
+                }
+                else {
+                    $action = $flag->is_flagged($content_id) ? 'unflag' : 'flag';;
+                }
+            }
+            else {
+                $action = $flag->is_flagged($content_id) ? 'unflag' : 'flag';;
+            }
+
+            // Do we need the ops?
+            if ($ops && $flag->module == 'flag_lists') {
+                $ops_links = theme('flag_lists_ops', array('flag' => $flag));
+                $link = $flag->theme($action, $content_id) . $ops_links;
+            }
+            else {
+                $link = $flag->theme($action, $content_id);
+            }
+            if(isset($flag->module))
+            {
+                // If it's a list, fix the link.
+                if ($flag->module == 'flag_lists') {
+                    flag_lists_fix_link($link, $action);
+                }
+            }
+            $items[] = $link;
+        }
+    }
+    if ($create && flag_lists_template_exists($content_type)) {
+        $items[] = l(t('Make a new @name', array('@name' => variable_get('flag_lists_name', t('list')))), 'flag-lists/add/' . $content_type, array('query' => drupal_get_destination()));
+    }
+
+    // Return if nothing to display.
+    if (empty($items) || !count($items)) {
+        return;
+    } else {
+        return $items;
+    }
+
+}
+
+function _mnartist_collections_star()
+{
+    global $user;
+    $output .= "<ul class='menu'>" . PHP_EOL;
+    $output .= "    <li><a href='#'><img src='fav-star.svg'></a>" . PHP_EOL;
+    $output .= "        <ul>" . PHP_EOL;
+    $output .= "            <li><a href='#'>COLLECT THIS!</a></li>" . PHP_EOL;
+    $output .= "            <hr>" . PHP_EOL;
+    $output .= "            <li>ADD TO:</li>" . PHP_EOL;
+    foreach(_mnartist_collections_get_user_flags(array('create' => true, 'use_flags' => true)) as $row)
+    {
+        $output .= "            <li>" . $row . "</li>" . PHP_EOL;
+    }
+    $output .= "            <li><a href='#'>START A NEW COLLECTION...</a></li>" . PHP_EOL;
+    $output .= "            <hr>" . PHP_EOL;
+    $output .= "            <li>SHARE VIA:</li>" . PHP_EOL;
+    $output .= "            <li><a href='#' onclick=\"window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href), 'facebook-share-dialog', 'width=626,height=436'); return false;\">FACEBOOK</a></li>" . PHP_EOL;
+    $output .= "            <li><a href='#' onclick=\"window.open('https://twitter.com/share?url='+encodeURIComponent(location.href), 'twitter-share-dialog', 'width=626,height=436'); return false;\">TWITTER</a></li>" . PHP_EOL;
+    $output .= "            <li><a href='#'>ADD A NETWORK...</a></li>" . PHP_EOL;
+    $output .= "        </ul>" . PHP_EOL;
+    $output .= "    </li>" . PHP_EOL;
+    $output .= "</ul>" . PHP_EOL;
+    return $output;
+}
