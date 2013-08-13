@@ -35,6 +35,22 @@ function mnartist_filter_view()
 
 function mnartist_filter_user_delete()
 {
+    global $user;
+    $url = $_SERVER['REQUEST_URI'];
+    $url = parse_url($url);
+    if(isset($url['query']))
+    {
+        parse_str($url['query'], $vars);
+        if(isset($vars['fid']))
+        {
+            $result = db_query("SELECT mn.fid, mn.uid, mn.title, mn.url FROM {mnartist_filter} mn WHERE mn.fid = :uid", array(':uid' => $vars['fid']))->fetchAssoc();
+            if($result['uid'] == $user->uid)
+            {
+                $deleted = db_delete('mnartist_filter')->condition('uid', $user->uid)->condition('fid', $vars['fid'])->execute();
+            }
+        }
+    }
+    header('Location: /user/saved-filters');
 
 }
 
@@ -153,6 +169,10 @@ function mnartist_filter_block_view($delta = '') {
 
 function _mnartist_filter_create_filter()
 {
+    global $user;
+    $url = urlencode($_SERVER['REQUEST_URI']);
+    $result = db_query("SELECT mn.fid FROM {mnartist_filter} mn WHERE mn.uid = :uid AND mn.url = :url", array(':uid' => $user->uid, ':url' => $url));
+    $record = $result->fetchAssoc();
 	ctools_add_js('filter', 'mnartist_filter');
 	ctools_add_css('filter', 'mnartist_filter');
 	$output = '';
@@ -167,7 +187,12 @@ function _mnartist_filter_create_filter()
 		$output .= '</fieldset>';
 		$output .= '</form>';
 	$output .= '</div>';
-	$output .= '<a href="#" id="create-filter">Star</a>';
+	$output .= '<a href="#"';
+    if(isset($record['fid']))
+    {
+        $output .= ' class="active"';
+    }
+    $output .= ' id="create-filter">Star</a>';
 	return $output;
 }
 
