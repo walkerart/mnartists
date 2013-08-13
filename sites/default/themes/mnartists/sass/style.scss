@@ -6099,6 +6099,9 @@ body.my-stuff {
 							display:inline-block;
 						}
 					}
+					a.flag {
+						padding-left:0;
+					}
 					
 				}
 				
@@ -6118,11 +6121,16 @@ body.my-stuff {
 		}
 		li.first {
 			a {
-				padding:5px;
+				padding:5px 0;
 				
 				img {
 					margin:0;
 					padding:0;
+				}
+			}
+			li {
+				a {
+					padding:5px 0 5px 10px;
 				}
 			}
 		}
