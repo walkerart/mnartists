@@ -5978,6 +5978,13 @@ body.my-stuff {
 	background-image: linear-gradient(90deg, $mystuff_bg_dark 0%, $mystuff_bg_dark 200px, $mystuff_bg_light 201px);
 }
 
+
+
+
+
+
+
+
 /* share star */
 /* - - - ADxMenu: BASIC styles [ MANDATORY ] - - - */
  
@@ -6014,7 +6021,7 @@ body.my-stuff {
         visibility: hidden;     /* initially hide all submenus. */
         position: absolute;
         z-index: 10;
-        left: 25px;     /* while hidden, always keep them at the top left corner, */
+        left: 0;     /* while hidden, always keep them at the top left corner, */
         top: 0;         /*              to avoid scrollbars as much as possible */
 }
  
@@ -6060,8 +6067,41 @@ body.my-stuff {
         margin: -10px 0 0 -10px;
 }
 /* -- sticky.submenu.END -- */
- 
- 
+
+
+.pane-mnartist-collections-mna-collections-star {
+	
+	ul.menu {
+		margin:0;
+		padding:0 !important;
+		
+		li {
+			
+			ul {
+				padding:10px;
+				margin:0;
+				
+				li {
+					
+					a {
+						
+					}
+				}
+			}
+		}
+		li:hover {
+			background:#000;
+			.star-icon {
+				-webkit-filter: invert(100%);
+			}
+		}
+		
+		hr {
+			background:#fff;
+		}	
+	}
+}
+
  
  
  
