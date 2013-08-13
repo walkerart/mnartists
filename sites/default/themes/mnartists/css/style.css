@@ -7145,7 +7145,7 @@ body.my-stuff {
   /* initially hide all submenus. */
   position: absolute;
   z-index: 10;
-  left: 25px;
+  left: 0;
   /* while hidden, always keep them at the top left corner, */
   top: 0;
   /*              to avoid scrollbars as much as possible */
@@ -7221,14 +7221,13 @@ body.my-stuff {
 .pane-mnartist-collections-mna-collections-star ul.menu li:hover {
   background: #000;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000036096}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000036094}}
+.pane-mnartist-collections-mna-collections-star ul.menu li:hover .star-icon {
+  -webkit-filter: invert(100%);
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000036099}}
 .pane-mnartist-collections-mna-collections-star ul.menu hr {
   background: #fff;
-}
-
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000036101}}
-.star-icon:hover {
-  -webkit-filter: invert(100%);
 }
 
 /* - - - ADxMenu: DESIGN styles [ OPTIONAL, design your heart out :) ] - - - */

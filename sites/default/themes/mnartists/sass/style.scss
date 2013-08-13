@@ -6021,7 +6021,7 @@ body.my-stuff {
         visibility: hidden;     /* initially hide all submenus. */
         position: absolute;
         z-index: 10;
-        left: 25px;     /* while hidden, always keep them at the top left corner, */
+        left: 0;     /* while hidden, always keep them at the top left corner, */
         top: 0;         /*              to avoid scrollbars as much as possible */
 }
  
@@ -6091,6 +6091,9 @@ body.my-stuff {
 		}
 		li:hover {
 			background:#000;
+			.star-icon {
+				-webkit-filter: invert(100%);
+			}
 		}
 		
 		hr {
@@ -6098,10 +6101,7 @@ body.my-stuff {
 		}	
 	}
 }
-.star-icon:hover {
-	-webkit-filter: invert(100%);
-}
- 
+
  
  
  
