@@ -119,7 +119,7 @@ function _mnartist_collections_star()
     global $user;
     $output = "";
     $output .= "<ul class='menu'>" . PHP_EOL;
-    $output .= "    <li class='first'><a href='#'><img src='/sites/default/themes/mnartists/images/fav-star.svg' class='star-icon' /></a>" . PHP_EOL;
+    $output .= "    <li class='first'><a href='#' class='star-link'><img src='/sites/default/themes/mnartists/images/fav-star.svg' class='star-icon' /></a>" . PHP_EOL;
     $output .= "        <ul>" . PHP_EOL;
     $output .= "            <li>" . flag_create_link('collections', arg(1)) . "</li>" . PHP_EOL;
     $output .= "            <hr />" . PHP_EOL;
