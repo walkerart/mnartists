@@ -6084,7 +6084,7 @@ body.my-stuff {
 				padding:10px;
 				margin:0;
 				width:240px; 
-				position:relative;
+				
 				
 				li {
 					
@@ -6115,6 +6115,11 @@ body.my-stuff {
 						padding:5px 0 5px 15px;
 					}
 				}
+				li.add-this.last {
+					a {
+						margin-bottom:5px;
+					}
+				}
 				li.share-this {
 					
 					a {
@@ -6122,6 +6127,7 @@ body.my-stuff {
 					}
 				}
 				li.flag-this {
+					position:relative;
 					
 					a {
 						padding:5px 0 5px 15px;
@@ -6137,8 +6143,8 @@ body.my-stuff {
 					}
 					.flag-throbber {
 						position:absolute;
-						top:5px;
-						right:5px;
+						top:2px;
+						left:0;
 					}
 				}
 				
