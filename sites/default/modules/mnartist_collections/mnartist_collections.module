@@ -130,7 +130,7 @@ function _mnartist_collections_star()
     {
         foreach($flags as $row)
         {
-            $output .= "            <li>" . $row . "</li>" . PHP_EOL;
+            $output .= "            <li class='flag-this'>" . $row . "</li>" . PHP_EOL;
         }
     }
     $output .= "            <li class='add-this last'>" . l(t('START A NEW @name', array('@name' => strtoupper(variable_get('flag_lists_name', t('list'))))), 'flag-lists/add/' . $node->type, array('query' => drupal_get_destination())) . "</li>" . PHP_EOL;
