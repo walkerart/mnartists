@@ -7252,10 +7252,6 @@ body.my-stuff {
 .pane-mnartist-collections-mna-collections-star ul.menu li:hover .star-icon {
   -webkit-filter: invert(100%);
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000036125}}
-.pane-mnartist-collections-mna-collections-star ul.menu li.first a {
-  padding: 5px 0;
-}
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000036128}}
 .pane-mnartist-collections-mna-collections-star ul.menu li.first a img {
   margin: 0;
@@ -7266,28 +7262,32 @@ body.my-stuff {
   padding: 5px 0 5px 10px;
 }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000036139}}
-.pane-mnartist-collections-mna-collections-star ul.menu .star-link {
+.pane-mnartist-collections-mna-collections-star ul.menu li.first li.collect-this a {
+  padding: 5px 0;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000036144}}
+.pane-mnartist-collections-mna-collections-star ul.menu a.star-link {
   padding: 5px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000036143}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000036148}}
 .pane-mnartist-collections-mna-collections-star ul.menu hr {
   background: #fff;
 }
 
 /* - - - ADxMenu: DESIGN styles [ OPTIONAL, design your heart out :) ] - - - */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000036155}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000036160}}
 .menu ul li, .menu ul li hr {
   color: #eee;
   background: #000;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000036160}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000036165}}
 .menu ul {
   width: 14em;
   background: #000;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000036165}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000036170}}
 .menu a {
   text-decoration: none;
   color: #eee;
@@ -7296,18 +7296,18 @@ body.my-stuff {
   position: relative;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000036173}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000036178}}
 .menu a:hover, .menu li:hover > a {
   color: #fc3;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000036177}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000036182}}
 .menu ul > li + li {
   /* and remove the top border on all but first item in the list */
   border-top: 0;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000036181}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000036186}}
 .menu li li:hover > ul {
   /* inset 2nd+ submenus, to show off overlapping */
   top: 5px;
