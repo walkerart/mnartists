@@ -123,7 +123,7 @@ function _mnartist_collections_star()
     $output .= "        <ul>" . PHP_EOL;
     $output .= "            <li class='collect-this'>" . flag_create_link('collections', arg(1)) . "</li>" . PHP_EOL;
     $output .= "            <hr />" . PHP_EOL;
-    $output .= "            <li>ADD TO:</li>" . PHP_EOL;
+    $output .= "            <li class='add-this'>ADD TO:</li>" . PHP_EOL;
     $flags = _mnartist_collections_get_user_flags(array('node' => '', 'create' => false, 'use_flags' => false, 'ops' => false));
     $node = node_load(arg(1));
     if(is_array($flags))
@@ -133,9 +133,9 @@ function _mnartist_collections_star()
             $output .= "            <li>" . $row . "</li>" . PHP_EOL;
         }
     }
-    $output .= "            <li class='start-new-collection'>" . l(t('START A NEW @name', array('@name' => strtoupper(variable_get('flag_lists_name', t('list'))))), 'flag-lists/add/' . $node->type, array('query' => drupal_get_destination())) . "</li>" . PHP_EOL;
+    $output .= "            <li class='add-this last'>" . l(t('START A NEW @name', array('@name' => strtoupper(variable_get('flag_lists_name', t('list'))))), 'flag-lists/add/' . $node->type, array('query' => drupal_get_destination())) . "</li>" . PHP_EOL;
     $output .= "            <hr />" . PHP_EOL;
-    $output .= "            <li>SHARE VIA:</li>" . PHP_EOL;
+    $output .= "            <li class='share-this'>SHARE VIA:</li>" . PHP_EOL;
     $output .= "            <li><a href='#' onclick=\"window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href), 'facebook-share-dialog', 'width=626,height=436'); return false;\">FACEBOOK</a></li>" . PHP_EOL;
     $output .= "            <li><a href='#' onclick=\"window.open('https://twitter.com/share?url='+encodeURIComponent(location.href), 'twitter-share-dialog', 'width=626,height=436'); return false;\">TWITTER</a></li>" . PHP_EOL;
     //$output .= "            <li><a href='#'>ADD A NETWORK...</a></li>" . PHP_EOL;
