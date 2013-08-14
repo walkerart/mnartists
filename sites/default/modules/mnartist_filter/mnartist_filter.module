@@ -187,12 +187,19 @@ function _mnartist_filter_create_filter()
 		$output .= '</fieldset>';
 		$output .= '</form>';
 	$output .= '</div>';
-	$output .= '<a href="#"';
-    if(isset($record['fid']))
-    {
-        $output .= ' class="active"';
-    }
-    $output .= ' id="create-filter">Star</a>';
+    $output .= "<ul class='menu'>";
+        $output .= "<li class='first'><a href='#' class='star-link";
+        if(isset($record['fid']))
+        {
+            $output .= " active";
+        }
+        $output .= "'><img src='/sites/default/themes/mnartists/images/fav-star.svg' class='star-icon' /></a>";
+        $output .= "<ul>";
+            $output .= "<li><a href='#' id='create-new-filter'>Save this Filter</a></li>";
+            $output .= "<hr />";
+            $output .= "<li><a href='/user/saved-filters'>GO TO SAVED FILTERS</a></li>";
+        $output .= "</ul>";
+    $output .= "</ul>";
 	return $output;
 }
 

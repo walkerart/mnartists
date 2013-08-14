@@ -17,7 +17,7 @@ jQuery(function() {
         }
     });
 
-    jQuery( "#create-filter" )
+    jQuery( "#create-new-filter" )
         .click(function() {
             jQuery( "#dialog-form" ).dialog( "open" );
         });
