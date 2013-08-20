@@ -6235,7 +6235,27 @@ body.my-stuff {
 }
  
 
+/* search results page */
+
+.search-results.content-page {
+	
+	
+}
 
 
-
+.search-results.content-page,
+.search-results.content-venue,
+.search-results.content-article,
+.search-results.content-event,
+.search-results.content-artwork,
+.search-results.content-community,
+.search-results.content-users {
+	display:inline;
+	
+	.item {
+		display:inline-block;
+		width:200px;
+		background:#ccc;
+	}
+}
 
