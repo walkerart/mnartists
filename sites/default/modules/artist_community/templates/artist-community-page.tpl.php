@@ -1,4 +1,4 @@
-<div class="panel-2col">
+<div class="panel-2col layout-a">
 	<div class="panel-panel panel-col-first main-content">
 		<?php foreach($content as $type => $item): ?>
 		    <div class="search-results content-<?php print $type; ?>">
