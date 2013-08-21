@@ -56,7 +56,6 @@ function twitterCache($consumerKey, $consumerSecret, $count, array $screen_names
 		for($i = 0; $i < count($ch); $i++)
 		{
 			$cleanresults = json_decode(curl_multi_getcontent($ch[$i]));
-			dpm($cleanresults);
 			foreach($cleanresults as $tweet)
 			{
 				$tweets[$tweet->id_str] = $tweet; 
