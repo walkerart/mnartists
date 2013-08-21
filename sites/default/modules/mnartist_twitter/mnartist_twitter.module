@@ -1,0 +1,166 @@
+<?php
+
+/**
+ * @file
+ * Code for the MNArtist Twitter feature.
+ */
+
+function twitterCache($consumerKey, $consumerSecret, $count, array $screen_names, $reset = FALSE)
+{
+	if($cached = cache_get('mnartist_twitter'))
+	{
+		$tweets = $cached->data;
+		foreach($tweets as $tweet)
+		{
+			if(!empty($tweet))
+			{
+				$tweet->cache = true;
+			}
+		}
+	}
+	if(empty($tweets) || $reset)
+	{
+		$ch = curl_init();
+		curl_setopt($ch,CURLOPT_URL, 'https://api.twitter.com/oauth2/token');
+		curl_setopt($ch,CURLOPT_POST, true);
+		$data = array();
+		$data['grant_type'] = "client_credentials";
+		curl_setopt($ch,CURLOPT_POSTFIELDS, $data);
+
+		curl_setopt($ch,CURLOPT_USERPWD, $consumerKey . ':' . $consumerSecret);
+		curl_setopt($ch,CURLOPT_RETURNTRANSFER, true);
+		$result = curl_exec($ch);
+		curl_close($ch);
+		$bearer_token = json_decode($result);
+		$bearer = $bearer_token->{'access_token'}; // this is your app token
+		$tweets = array();
+		$ch = array();
+		$mh = curl_multi_init();
+		sort($screen_names);
+		for($i =0; $i < count($screen_names); $i++)
+		{
+			$name = $screen_names[$i];
+			$ch[$i] = curl_init();
+			curl_setopt($ch[$i],CURLOPT_URL, 'https://api.twitter.com/1.1/statuses/user_timeline.json?count='.$count.'&screen_name='.$name);
+			curl_setopt($ch[$i],CURLOPT_HTTPHEADER,array('Authorization: Bearer ' . $bearer));
+			curl_setopt($ch[$i],CURLOPT_RETURNTRANSFER, true);
+			curl_multi_add_handle($mh, $ch[$i]);
+		}
+
+		$running = 0;
+
+		do {
+			curl_multi_exec($mh, $running);
+		} while ($running > 0);
+
+		for($i = 0; $i < count($ch); $i++)
+		{
+			$cleanresults = json_decode(curl_multi_getcontent($ch[$i]));
+			dpm($cleanresults);
+			foreach($cleanresults as $tweet)
+			{
+				$tweets[$tweet->id_str] = $tweet; 
+			}
+			curl_multi_remove_handle($mh, $ch[$i]);
+			curl_close($ch[$i]);
+		}
+		curl_multi_close($mh);
+		krsort($tweets);
+		cache_set('mnartist_twitter', $tweets, 'cache', REQUEST_TIME + (60*10));
+	}
+	
+	return $tweets;
+}
+
+function _mnartist_twitter_block_visibility() {
+    	return true;
+}
+
+function mnartist_twitter_block_info() {
+    return array(
+        'mna_twitter_create' => array(
+            'info' => 'MNArtist Twitter Block
+            ',
+            'cache' => DRUPAL_NO_CACHE,
+            'visibility' => BLOCK_VISIBILITY_PHP,
+            'pages' => '<?php return _mnartist_twitter_block_visibility(); ?>'
+        ),
+    );
+}
+
+function mnartist_twitter_block_view($delta = '') {
+    switch($delta) {
+        case 'mna_twitter_create':
+            $block['content'] = _mnartist_twitter_block();
+        break;
+    }
+    return $block;
+}
+
+function _mnartist_twitter_block()
+{
+	$nids = db_select('node', 'n')->fields('n', array('nid'))->fields('n', array('type'))->condition('n.type', 'community')->execute()->fetchCol(); // returns an indexed array
+
+	// Now return the node objects.
+	$nodes = node_load_multiple($nids);
+	$ids = array();
+	foreach($nodes as $node)
+	{
+		if(!empty($node->field_community_twitter))
+		{
+			$ids[$node->title] = $node->field_community_twitter['und'][0]['value'];
+		}
+	}
+
+	/*
+		parse url get groups. 
+		if unset use all
+		if set select only those groups that have been selected.
+		Setup settings page.
+		unhardcode configureable variables.
+	*/
+	$tweets = twitterCache('DPsGAeq1fGZsUTZ6x2AEA', 'IfjU03QAIqGONOpA8iBGtdAzT0BwJ9MvsewDOOVd80', 5, $ids);
+	// Release the Kraken!
+	$output = "";
+	$output .= '<ul id="twitter_update_list">';
+	foreach ( $tweets as $tweet ) {
+		// Set up some variables
+		$tweet_url = 'http://twitter.com/'.$tweet->user->screen_name.'/statuses/'.$tweet->id_str; // tweet url
+		$urls = $tweet->entities->urls; // links
+		$retweet = false;
+		if(!empty($tweet->retweet))
+			print_r($tweet->retweet);
+			//$retweet = $tweet->retweeted_status->user->screen_name; // there is a retweeted user
+		$time = new DateTime($tweet->created_at); // lets grab the date
+		$date = $time->format('M j, g:ia'); // and format it accordingly
+		$url_find = array();
+		$url_links = array();
+		if ( $urls ) {
+		    if ( !is_array( $urls ) ) {
+		        $urls = array();
+		    }
+		    foreach ( $urls as $url ) {
+		        $theurl = $url->url;
+		        if ( $theurl ) {
+		            $url_block = '<a href="'.$theurl.'" target="_blank">'.$theurl.'</a>';
+		            $url_find[] = $theurl; // make array of urls
+		            $url_links[] = $url_block; // make array of replacement link blocks for urls in text
+		        }
+		    }
+		}
+		if ( $retweet ) { // add a class for retweets
+		    $link_class = ' class="retweet"';
+		} else {
+		    $link_class = '';
+		}
+		$output .= '<li'.$link_class.'>';
+		$new_text = preg_replace('#@([\\d\\w]+)#', '<a href="http://twitter.com/$1" target="_blank">$0</a>', $tweet->text); // replace all @mentions with actual links
+		$newer_text = preg_replace('/#([\\d\\w]+)/', '<a href="https://twitter.com/search?q=%23$1&src=hash" target="_blank">$0</a>', $new_text); // replace all #tags with actual links
+		$text = str_replace( $url_find, $url_links, $newer_text); // replace all links with actual links
+		$output .= $text;
+		$output .= '<br /><a class="twt-date" href="'.$tweet_url.'" target="_blank">'.$date.'</a>'; // format the date above
+		$output .= '</li>';
+	}
+	$output .= '</ul>';
+	return $output;
+}
