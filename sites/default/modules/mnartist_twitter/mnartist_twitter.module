@@ -98,19 +98,22 @@ function mnartist_twitter_block_view($delta = '') {
 
 function _mnartist_twitter_block()
 {
-	$nids = db_select('node', 'n')->fields('n', array('nid'))->fields('n', array('type'))->condition('n.type', 'community')->execute()->fetchCol(); // returns an indexed array
-
-	// Now return the node objects.
-	$nodes = node_load_multiple($nids);
-	$ids = array();
-	foreach($nodes as $node)
-	{
-		if(!empty($node->field_community_twitter))
-		{
-			$ids[$node->title] = $node->field_community_twitter['und'][0]['value'];
-		}
-	}
-
+	$url = $_SERVER['REQUEST_URI'];
+    $url = parse_url($url);
+    $list = array();
+    if(isset($url['query']))
+    {
+        parse_str($url['query'], $vars);
+        if(isset($vars['og']))
+        {
+        	$keys = array_keys($vars['og']);
+        	$nodes = node_load_multiple($keys);
+        	foreach($nodes as $node)
+        	{
+        		$list[] = strtolower($node->title);
+        	}
+        }
+    }
 	/*
 		parse url get groups. 
 		if unset use all
@@ -118,11 +121,28 @@ function _mnartist_twitter_block()
 		Setup settings page.
 		unhardcode configureable variables.
 	*/
-	$tweets = twitterCache('DPsGAeq1fGZsUTZ6x2AEA', 'IfjU03QAIqGONOpA8iBGtdAzT0BwJ9MvsewDOOVd80', 5, $ids);
+	$tweets = twitterCache('DPsGAeq1fGZsUTZ6x2AEA', 'IfjU03QAIqGONOpA8iBGtdAzT0BwJ9MvsewDOOVd80', 50, array('necrogami'));
 	// Release the Kraken!
 	$output = "";
 	$output .= '<ul id="twitter_update_list">';
 	foreach ( $tweets as $tweet ) {
+		if(isset($vars['og']))
+		{
+			preg_match_all("/(#\w+)/", $tweet->text, $matches);
+			$matched = false;
+			foreach($matches[0] as $match)
+			{
+				$match = ltrim(strtolower($match), "#");
+				if(in_array($match, $list))
+				{
+					$matched = true;
+				}
+			}
+			if(!$matched)
+			{
+				continue;
+			}
+		}
 		// Set up some variables
 		$tweet_url = 'http://twitter.com/'.$tweet->user->screen_name.'/statuses/'.$tweet->id_str; // tweet url
 		$urls = $tweet->entities->urls; // links
