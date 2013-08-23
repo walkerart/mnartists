@@ -13,6 +13,11 @@
 	</div>
 	<div class="panel-panel panel-col-last sidebar-right">
 		<p>test</p>
+		<div class="">
+			<?php $block = module_invoke('mnartist_twitter', 'block_view', 'mna_twitter_create');
+				  print render($block['content']);
+			?>
+		</div>
 	</div>
 </div>
 
