@@ -6262,8 +6262,7 @@ body.my-stuff {
 	
 	.item {
 		display:inline-block;
-		width:200px;
-		background:#f2f2f2;
+		width:195px;
 		vertical-align:top;
 		margin-right:10px;
 		margin-bottom:15px;
@@ -6329,6 +6328,25 @@ body.my-stuff {
 }
 * html .panel-2col.layout-a .panel-col-first .panel-col-last.inset-right{
   width: 24.9%;
+}
+
+/* twitter tweets */
+#twitter_update_list {
+	list-style:none;
+	margin:0;
+	padding:10px;
+	background:$mystuff_bg_dark;
+	color:#fff;
+	
+	li {
+		list-style:none;
+		margin:0 0 15px 0;
+		
+		a {
+			color:#fff;
+			text-decoration:underline;
+		}
+	}
 }
 
 /* twitter tweets */
