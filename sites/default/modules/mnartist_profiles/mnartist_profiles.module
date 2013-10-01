@@ -211,6 +211,7 @@ function mnartist_profiles_block_view($delta = '') {
 }
 
 function _mnartist_profile_my_stuff() {
+    global $user;
     $output = "";
 
     if (!user_is_logged_in()) {
@@ -228,7 +229,7 @@ function _mnartist_profile_my_stuff() {
             'data' => l("Saved Filters", "user/saved-filters"),
             'children' => _mnartist_filter_view_filter()
         );
-        $links[] = l("Profile", "user") . l("edit", "user/edit", array("attributes" => array("class" => "user-edit")));
+        $links[] = l("Profile", "user") . l("edit", "user/{$user->uid}/edit", array("attributes" => array("class" => "user-edit")));
 
         $renderedLinks = theme_item_list(array(
             'items' => $links,
@@ -239,13 +240,20 @@ function _mnartist_profile_my_stuff() {
             )
         ));
 
+        $editItems = array(
+            l("Add Artwork", "node/add/artwork"),
+            l("Add Event", "node/add/event")
+        );
+
+        if (in_array('administrator', array_values($user->roles))) {
+            $editItems[] = l("Add Venue", "node/add/venue");
+            $editItems[] = l("Add Article", "node/add/article");
+        }
+
+        $editItems[] = l("Logout", "user/logout");
+
         $editLinks = theme_item_list(array(
-            'items' => array(
-                l("Add Artwork", "node/add/artwork"),
-                l("Add Event", "node/add/event"),
-                l("Add Venue", "node/add/venue"),
-                l("Add Article", "node/add/article")
-            ),
+            'items' => $editItems,
             'title' => null,
             'type' => 'ul',
             'attributes' => array(
