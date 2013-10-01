@@ -166,7 +166,10 @@ function _get_role($user = NULL) {
 function _mnartist_profile_block_visibility() {
     global $user;
 
-    if ((arg(0) == 'user' && $user->uid == arg(1)) || (arg(0) == 'user' && !user_is_logged_in())) {
+    if ((arg(0) == 'user' && $user->uid == arg(1)) || 
+        (arg(0) == 'user' && !user_is_logged_in()) ||
+        (arg(0) == "node" && in_array(arg(1), array("edit", "add")))
+    ) {
         return true;
     }
 
@@ -239,7 +242,9 @@ function _mnartist_profile_my_stuff() {
         $editLinks = theme_item_list(array(
             'items' => array(
                 l("Add Artwork", "node/add/artwork"),
-                l("Add Event", "node/add/event")
+                l("Add Event", "node/add/event"),
+                l("Add Venue", "node/add/venue"),
+                l("Add Article", "node/add/article")
             ),
             'title' => null,
             'type' => 'ul',
@@ -476,4 +481,12 @@ function _mnartist_profile_user_profile() {
     });
     </script>";
     return $output;
+}
+
+function mnartist_profiles_form_alter(&$form, $form_state, $form_id) {
+    if ($form_id == 'user_profile_form') {
+        $form['account']['status']['#options'][0] = "Inactive";
+        $form['picture']['#title'] = "Profile Picture";
+        $form['picture']['picture_upload']['#title'] = "Upload Profile Picture";
+    }
 }

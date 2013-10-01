@@ -81,7 +81,7 @@ function artist_community_block_info() {
 function _artist_community_block_visibility() {
     global $user;
 
-    if (arg(0) == 'user' && $user->uid == arg(1)) {
+    if ((arg(0) == 'user' && $user->uid == arg(1)) || (arg(0) === "node" && in_array(arg(1), array("add", "edit")))) {
         return false;
     }
 
@@ -168,7 +168,7 @@ function _community_block_content() {
         ),
         'event' => array(
             'title' => t('Events'),
-            'subcontent' => '<div class="menu-event-datepicker"></div>'
+            'subcontent' => ''
         ),
         'opportunity' => array(
             'title' => t('Opportunities'),
@@ -339,6 +339,8 @@ function url_query_master($text, $path, $key, $val, $attributes = array()) {
                 // Reset the query so that the community values are included
                 if (isset($_GET['og'][$val])) {
                     $query['og'][$val] = $_GET['og'][$val];
+                } else {
+                    $query['og'][$val] = array();
                 }
 
                 if (isset($_GET['og'][$val]) && is_array($_GET['og'][$val]) && in_array($tid['tid'], $_GET['og'][$val])) {
