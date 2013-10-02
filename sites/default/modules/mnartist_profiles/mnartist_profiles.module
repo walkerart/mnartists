@@ -221,9 +221,16 @@ function _mnartist_profile_my_stuff() {
         $links = array();
 
         $links[] = l("Feed", "user/feed");
+
+        $account = user_load($user->uid);
+        $flagLists = flag_lists_get_user_flags(NULL, $account);
+        $flags = array();
+        foreach($flagLists as $flag) {
+            $flags[] = l($flag->title, "user/{$user->uid}/flags/lists/{$flag->fid}");
+        }
         $links[] = array(
-            'data' => l("Collections", "user/collections"),
-            'children' => array(l("collection 1", "user/collections"), l("collection 2", "user/collections"))
+            'data' => l("Collections", "user/{$user->uid}/flags/lists"),
+            'children' => $flags
         );
         $links[] = array(
             'data' => l("Saved Filters", "user/saved-filters"),
