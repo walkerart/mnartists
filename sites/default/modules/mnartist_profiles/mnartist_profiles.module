@@ -9,6 +9,62 @@ define('ORG_ROLE', 5);
 
 include_once 'mnartist_profiles.features.inc';
 
+function mnartist_profiles_menu() {
+
+    // endpoint for downloading user resume
+    $items['users/%/resume/download'] = array(
+        'page callback'     => 'mnartist_profiles_resume_download',
+        'page arguments'    => array(1),
+        'access callback'   => TRUE,
+        'type'              => MENU_CALLBACK,
+    );
+
+    return $items;
+
+}
+
+/* and either tap into the existing form_alter here, or roll your own to get the actual button in place that uses the path above */
+
+function mnartist_profiles_resume_download($uid) {
+
+    global $user;
+
+    // if ($uid == $user->uid) {
+
+        $context_profile = profile2_load_by_user($uid, 'resume');
+
+        if ($context_profile != NULL) {
+
+            $output = theme("mna_resume_download", array(
+                    'resume_data' => array(
+                        'general_statement' => $context_profile->field_general_statement,// value (html, utf-8)
+                        'biography' => $context_profile->field_biography,// value (html, utf-8)
+                        'education' => $context_profile->field_education,// iterate
+                        'work_experience' => $context_profile->field_work_experience,// iterate
+                        'teaching_experience' => $context_profile->field_teaching_experience,// iterate
+                        'awards' => $context_profile->field_awards,// iterate
+                        'exhibition_and_performance' => $context_profile->field_exhibition_and_performance,// iterate
+                        'publications' => $context_profile->field_publications,// iterate
+                        'galleries' => $context_profile->field_galleries,// iterate
+                        'collections' => $context_profile->field_collections,// iterate
+                        'related_organizations' => $context_profile->field_related_organizations,// iterate
+                        'websites' => $context_profile->field_websites// iterate
+                    )
+                )
+            );
+            echo $output;
+        } else {
+            echo "this user doesn't seem to have a resume";
+        }
+
+
+    // } else {
+    //     echo "you can't see that";
+    // }
+
+    drupal_exit();
+}
+
 function mnartist_profiles_theme() {
     $themes = array();
 
@@ -16,6 +72,13 @@ function mnartist_profiles_theme() {
         'template' => 'templates/mna-my-stuff-menu',
         'variables' => array(
             'links' => array()
+        )
+    );
+
+    $themes['mna_resume_download'] = array(
+        'template' => 'templates/mna-resume-download',
+        'variables' => array(
+            'resume_data' => array()
         )
     );
 
@@ -70,7 +133,7 @@ function mnartist_profiles_form_user_register_submit(&$form, &$form_state) {
     }
 
     // Redirect to the users profile edit page
-    drupal_goto('user/' . $user->uid . '/edit/' . $goto); 
+    drupal_goto('user/' . $user->uid . '/edit/' . $goto);
 }
 
 /**
@@ -137,7 +200,7 @@ function mnartist_profiles_user_view($account, $view_mode, $langcode) {
             '#markup' => $view->render(),
         );
 
-    }  
+    }
 
 }
 
@@ -152,7 +215,7 @@ function mnartist_profiles_preprocess_user_profile(&$vars) {
 function _get_role($user = NULL) {
     if (!$user) {
         global $user;
-    } 
+    }
 
     if ($user->roles[ARTIST_ROLE]) {
         return 'artist';
@@ -166,7 +229,7 @@ function _get_role($user = NULL) {
 function _mnartist_profile_block_visibility() {
     global $user;
 
-    if ((arg(0) == 'user' && $user->uid == arg(1)) || 
+    if ((arg(0) == 'user' && $user->uid == arg(1)) ||
         (arg(0) == 'user' && !user_is_logged_in()) ||
         (arg(0) == "node" && in_array(arg(1), array("edit", "add")))
     ) {
@@ -447,7 +510,7 @@ function _mnartist_profile_user_profile() {
                 }
             }
             $output .= "</div>" . PHP_EOL;
-        } 
+        }
         if(isset($fieldset['field_bio']) || isset($fieldset['field_country']))
         {
             $output .= "<div class='wrap biography'><h5 class='profile-title'>Biography</h5>" . PHP_EOL;
