@@ -6220,10 +6220,15 @@ body.my-stuff {
 		
 		li:hover {
 			background:#000;
+			
+			.star-icon {
+				-webkit-filter: invert(100%);
+				
+			}
 		}
 		li {
 			a.star-link {
-				padding:5px;
+				padding:5px!important;
 			}
 			ul {
 				padding:10px;
