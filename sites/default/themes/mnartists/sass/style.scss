@@ -6213,8 +6213,8 @@ body.my-stuff {
 	}
 }
 
-
-#block-mnartist-filter-mna-filter-create {
+/* filter star in sidebar menu */
+#block-mnartist-filter-mna-filter-create { /* there is more to this in the menu.scss */
 	
 	ul.menu {
 		padding:0px;
@@ -6247,6 +6247,10 @@ body.my-stuff {
 				}
 			}
 		}
+	}
+	.block-inner {
+		margin:0 5px 0 0;
+		padding:0;
 	}
 }
  
