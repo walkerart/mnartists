@@ -5810,12 +5810,18 @@ tr.odd .form-item, tr.even .form-item {
 		
 			.fieldset-wrapper {
 				padding-top:10px;
+				
 			}
 			
 		}
 		
 	}
 
+}
+
+/* cancel out :focus outline */
+li:focus {
+	outline:none;
 }
 
 /* form focus goodness */
