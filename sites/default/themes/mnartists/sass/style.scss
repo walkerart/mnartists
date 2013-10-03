@@ -5742,7 +5742,7 @@ tr.odd .form-item, tr.even .form-item {
 }
 
 .fieldset-wrapper {
-	display:table;
+	
 	
 	.fieldset-description {
 		display:block;
@@ -5750,9 +5750,7 @@ tr.odd .form-item, tr.even .form-item {
 	}
 	
 	.date-no-float {
-		display:table-cell;
-		width:50%;
-		clear:none;
+		
 	}
 }
 .date-no-float {
@@ -5762,6 +5760,25 @@ tr.odd .form-item, tr.even .form-item {
 		padding-top:3px;
 	}
 	
+}
+
+.node-form {
+
+	.form-wrapper {
+	
+		.form-item {
+			
+			label {
+				min-width:90px;
+			}
+			div {
+			
+			}
+			select {
+			
+			}
+		}
+	}
 }
 
 
