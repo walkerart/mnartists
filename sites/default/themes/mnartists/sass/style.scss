@@ -5765,11 +5765,14 @@ tr.odd .form-item, tr.even .form-item {
 .node-form {
 
 	.form-wrapper {
-	
+		margin-bottom:15px;
+		
 		.form-item {
+			margin:0;
 			
 			label {
 				min-width:90px;
+				
 			}
 			div {
 			
@@ -5777,6 +5780,17 @@ tr.odd .form-item, tr.even .form-item {
 			select {
 			
 			}
+		}
+		fieldset {
+			legend {
+				border-bottom:1px solid $light_border;
+				width:100%;
+				display:block;
+				clear:both;
+			}
+		}
+		.container-inline-date .date-padding {
+			padding:0;
 		}
 	}
 }
