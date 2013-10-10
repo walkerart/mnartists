@@ -29,7 +29,7 @@ function mnartist_profiles_resume_download($uid) {
 
     global $user;
 
-    // if ($uid == $user->uid) {
+    if ($user->uid == $uid || in_array('administrator', $user->roles)) {
 
         $context_profile = profile2_load_by_user($uid, 'resume');
 
@@ -58,9 +58,9 @@ function mnartist_profiles_resume_download($uid) {
         }
 
 
-    // } else {
-    //     echo "you can't see that";
-    // }
+    } else {
+        echo "you can't see that";
+    }
 
     drupal_exit();
 }
@@ -563,6 +563,16 @@ function _mnartist_profile_user_profile() {
 
 function mnartist_profiles_form_alter(&$form, $form_state, $form_id) {
     if ($form_id == 'user_profile_form') {
+        if (isset($form["#user_category"]) && $form["#user_category"] == 'resume') {
+            global $user;
+            $uid = $form['#user']->uid;
+            // @TODO is this test acceptable? or should it be tied to a specific user permission?
+            if ($user->uid == $uid || in_array('administrator', $user->roles)) {
+                $form['resume_download'] = array(
+                    '#markup' => "<a href='/users/$uid/resume/download'>download resume</a>"
+                );
+            }
+        }
         $form['account']['status']['#options'][0] = "Inactive";
         $form['picture']['#title'] = "Profile Picture";
         $form['picture']['picture_upload']['#title'] = "Upload Profile Picture";
