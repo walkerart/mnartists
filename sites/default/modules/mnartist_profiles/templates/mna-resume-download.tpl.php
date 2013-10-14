@@ -167,14 +167,7 @@
 
         <section class="resume-block websites">
             <h2>Websites</h2>
-            <ul>
-            <?php
-                // @TODO rework this to cooperate with new format
-                foreach ($resume_data['field_websites'] as $site) {?>
-                    <li><?= $site ?></li>
-                <?}
-            ?>
-            </ul>
+            <p><?= $resume_data['field_websites'] ?></p>
         </section>
 
     </body>
