@@ -12,7 +12,7 @@ include_once 'mnartist_profiles.features.inc';
 function mnartist_profiles_menu() {
 
     // endpoint for downloading user resume
-    $items['users/%/resume/download'] = array(
+    $items['user/%/resume/download'] = array(
         'page callback'     => 'mnartist_profiles_resume_download',
         'page arguments'    => array(1),
         'access callback'   => TRUE,
