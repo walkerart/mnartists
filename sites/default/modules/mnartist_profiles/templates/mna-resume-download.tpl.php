@@ -29,13 +29,14 @@
 
     <body>
         <section class="resume-block general-statement">
+            <!-- @TODO push this logic further back, delegate decisions about display onto the data's type -->
             <h2>General Statement</h2>
-            <?= $resume_data['field_general_statement'] ?>
+            <?= $resume_data['field_general_statement'][0]['value'] ?>
         </section>
 
         <section class="resume-block biography">
             <h2>Biography</h2>
-            <?= $resume_data['field_biography'] ?>
+            <?= $resume_data['field_biography'][0]['value'] ?>
         </section>
 
         <section class="resume-block education">
@@ -167,7 +168,13 @@
 
         <section class="resume-block websites">
             <h2>Websites</h2>
-            <p><?= $resume_data['field_websites'] ?></p>
+            <ul>
+            <?php
+                foreach ($resume_data['field_websites'] as $site) {?>
+                    <li><?=$site['title'] ?> - <a href="<?=$site['value'] ?>"><?=$site['value'] ?></a></li>
+                <?}
+            ?>
+            </ul>
         </section>
 
     </body>
