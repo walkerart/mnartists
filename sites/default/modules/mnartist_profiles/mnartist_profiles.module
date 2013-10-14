@@ -34,30 +34,38 @@ function mnartist_profiles_resume_download($uid) {
         $context_profile = profile2_load_by_user($uid, 'resume');
 
         if ($context_profile != NULL) {
+            $template_data = array();
 
+            foreach ($context_profile as $field_name => $field) {
+
+                $field_info = field_info_field($field_name);
+
+                // @TODO get labels into all of these, use them in the template
+                if (isset($field_info['type']) && $field_info['type'] != 'field_collection') {
+                    $template_data[$field_name] = $field['und'][0]['value'];
+                } else if (isset($field_info['type']) && $field_info['type'] == 'field_collection') {
+
+                    $template_data[$field_name] = array();
+                    $items = $field['und'];
+                    foreach ($items as &$collection) {
+                        $entity = field_collection_item_load($collection['value']);
+                        $instances = field_info_instances('field_collection_item', $field_name);
+                        $context_data = array();
+
+                        // @TODO this is still a bit too blunt, you're losing certain fields that can have multiple values
+                        foreach ($instances as $instance_field_name => $instance_field) {
+                            $context_data[$instance_field_name] = $entity->{$instance_field_name}['und'][0]['value'];
+                        }
+                        $template_data[$field_name][] = $context_data;
+                    }
+                }
+            }
             $output = theme("mna_resume_download", array(
-                    'resume_data' => array(
-                        'general_statement' => $context_profile->field_general_statement,// value (html, utf-8)
-                        'biography' => $context_profile->field_biography,// value (html, utf-8)
-                        'education' => $context_profile->field_education,// iterate
-                        'work_experience' => $context_profile->field_work_experience,// iterate
-                        'teaching_experience' => $context_profile->field_teaching_experience,// iterate
-                        'awards' => $context_profile->field_awards,// iterate
-                        'exhibition_and_performance' => $context_profile->field_exhibition_and_performance,// iterate
-                        'publications' => $context_profile->field_publications,// iterate
-                        'galleries' => $context_profile->field_galleries,// iterate
-                        'collections' => $context_profile->field_collections,// iterate
-                        'related_organizations' => $context_profile->field_related_organizations,// iterate
-                        'websites' => $context_profile->field_websites// iterate
-                    )
-                )
-            );
+                                'resume_data' => $template_data
+                            )
+                        );
             echo $output;
-        } else {
-            echo "this user doesn't seem to have a resume";
         }
-
-
     } else {
         echo "you can't see that";
     }
