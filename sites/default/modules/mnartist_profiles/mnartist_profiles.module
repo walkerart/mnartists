@@ -39,23 +39,34 @@ function mnartist_profiles_resume_download($uid) {
             foreach ($context_profile as $field_name => $field) {
 
                 $field_info = field_info_field($field_name);
+                $field_info_instances = field_info_instances('profile2', 'resume');
+                $label = $field_info_instances[$field_name]['label'];
 
-                // @TODO get labels into all of these, use them in the template
                 if (isset($field_info['type']) && $field_info['type'] != 'field_collection') {
-                    $template_data[$field_name] = $field['und'];
+
+                    $template_data[$field_name] = array(
+                        'label' => $label,
+                        'item' => $field['und']
+                    );
                 } else if (isset($field_info['type']) && $field_info['type'] == 'field_collection') {
 
-                    $template_data[$field_name] = array();
+                    $template_data[$field_name] = array(
+                        'label' => $label,
+                        'item' => array()
+                    );
                     $items = $field['und'];
                     foreach ($items as &$collection) {
                         $entity = field_collection_item_load($collection['value']);
                         $instances = field_info_instances('field_collection_item', $field_name);
-                        $context_data = array();
 
+                        $context_data = array();
                         foreach ($instances as $instance_field_name => $instance_field) {
-                            $context_data[$instance_field_name] = $entity->{$instance_field_name}['und'];
+                            $context_data[$instance_field_name] = array(
+                                'label' => $instances[$instance_field_name]['label'],
+                                'item' => $entity->{$instance_field_name}['und']
+                            );
                         }
-                        $template_data[$field_name][] = $context_data;
+                        $template_data[$field_name]['item'][] = $context_data;
                     }
                 }
             }
