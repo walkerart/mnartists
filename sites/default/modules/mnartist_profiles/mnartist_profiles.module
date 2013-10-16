@@ -23,8 +23,6 @@ function mnartist_profiles_menu() {
 
 }
 
-/* and either tap into the existing form_alter here, or roll your own to get the actual button in place that uses the path above */
-
 function mnartist_profiles_resume_download($uid) {
 
     // pull in user global
@@ -37,7 +35,7 @@ function mnartist_profiles_resume_download($uid) {
         $context_profile = profile2_load_by_user($uid, 'resume');
 
         // if we got a profile back...
-        if ($context_profile != NULL) {
+        if ($context_profile != NULL && $context_profile != false) {
             $template_data = array();
 
             // for each of the profile fields
@@ -88,10 +86,11 @@ function mnartist_profiles_resume_download($uid) {
                             )
                         );
             echo $output;
+        } else {
+            echo "No resume data for that user."
         }
     } else {
-        // @TODO better error handling here
-        echo "you can't see that";
+        echo "I'm sorry, you're not allowed to see that.";
     }
 
     drupal_exit();
