@@ -601,7 +601,7 @@ function mnartist_profiles_form_alter(&$form, $form_state, $form_id) {
             // @TODO is this test acceptable? or should it be tied to a specific user permission?
             if ($user->uid == $uid || in_array('administrator', $user->roles)) {
                 $form['resume_download'] = array(
-                    '#markup' => "<a href='/users/$uid/resume/download'>download resume</a>"
+                    '#markup' => "<a href='/user/$uid/resume/download'>download resume</a>"
                 );
             }
         }
