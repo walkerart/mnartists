@@ -9,7 +9,6 @@
     </head>
 
     <body>
-    <?= drupal_get_path('module', 'mnartist_profiles') ?>
         <section class="resume-block resume-block-simple general-statement">
             <h2><?= $resume_data['field_general_statement']['label'] ?></h2>
             <?= $resume_data['field_general_statement']['item'][0]['value'] ?>
