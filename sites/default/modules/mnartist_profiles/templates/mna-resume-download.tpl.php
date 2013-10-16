@@ -35,7 +35,7 @@
         </section>
 
         <section class="resume-block resume-block-simple biography">
-            <h2><?= $resume_data['field_general_statement']['label'] ?></h2>
+            <h2><?= $resume_data['field_biography']['label'] ?></h2>
             <?= $resume_data['field_biography']['item'][0]['value'] ?>
         </section>
 
