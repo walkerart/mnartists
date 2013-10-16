@@ -2,33 +2,14 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title></title>
+        <title>Download Resume</title>
 
-        <style>
-            p {
-                margin: 0;
-                padding: 0;
-            }
-            section {
-                margin-bottom: 1em;
-                padding-bottom: 1em;
-                border-bottom: 1px solid #ccc;
-            }
-            section > div {
-                margin-bottom: .5em;
-            }
-            .resume-block label {
-                margin-right: 1em;
-            }
-            .resume-block label:after {
-                content: ": ";
-            }
-        </style>
+        <link rel="stylesheet" href="/<?= drupal_get_path('module', 'mnartist_profiles') ?>/css/mnartist_profiles_resume_download.css">
 
     </head>
 
     <body>
-
+    <?= drupal_get_path('module', 'mnartist_profiles') ?>
         <section class="resume-block resume-block-simple general-statement">
             <h2><?= $resume_data['field_general_statement']['label'] ?></h2>
             <?= $resume_data['field_general_statement']['item'][0]['value'] ?>

@@ -27,27 +27,37 @@ function mnartist_profiles_menu() {
 
 function mnartist_profiles_resume_download($uid) {
 
+    // pull in user global
     global $user;
 
+    // check if the current user is the one whose resume data we're fetching,
+    // or is an admin user
     if ($user->uid == $uid || in_array('administrator', $user->roles)) {
 
         $context_profile = profile2_load_by_user($uid, 'resume');
 
+        // if we got a profile back...
         if ($context_profile != NULL) {
             $template_data = array();
 
+            // for each of the profile fields
             foreach ($context_profile as $field_name => $field) {
 
+                // get field metadata
                 $field_info = field_info_field($field_name);
                 $field_info_instances = field_info_instances('profile2', 'resume');
                 $label = $field_info_instances[$field_name]['label'];
 
+                // if the field is NOT a field collection, just stash its contents
                 if (isset($field_info['type']) && $field_info['type'] != 'field_collection') {
 
                     $template_data[$field_name] = array(
                         'label' => $label,
                         'item' => $field['und']
                     );
+
+                // or if it IS a field collection go a bit deeper (only deals with one
+                // level of nesting here at this point)
                 } else if (isset($field_info['type']) && $field_info['type'] == 'field_collection') {
 
                     $template_data[$field_name] = array(
@@ -70,6 +80,9 @@ function mnartist_profiles_resume_download($uid) {
                     }
                 }
             }
+
+            // render the template with the data we just constructed,
+            // and output it
             $output = theme("mna_resume_download", array(
                                 'resume_data' => $template_data
                             )
@@ -77,6 +90,7 @@ function mnartist_profiles_resume_download($uid) {
             echo $output;
         }
     } else {
+        // @TODO better error handling here
         echo "you can't see that";
     }
 
