@@ -6,6 +6,8 @@ define('USER_INDEX', 'users');
 /**
  * @file
  * Code for the Artist Community feature.
+ * NB: the label for this field was changed during development from 'medium' to 'community', and this is why
+ *      you will find the data in field_medium, not field_community.
  */
 
 include_once 'artist_community.features.inc';
@@ -81,7 +83,11 @@ function artist_community_block_info() {
 function _artist_community_block_visibility() {
     global $user;
 
-    if ((arg(0) == 'user' && $user->uid == arg(1)) || (arg(0) === "node" && in_array(arg(1), array("add", "edit")))) {
+    if ((arg(0) == 'user' && $user->uid == arg(1)) ||
+            (arg(0) == 'user' && !user_is_logged_in()) ||
+            (arg(0) == "node" && in_array(arg(1), array("edit", "add"))) ||
+            (arg(0) == 'user' && in_array(arg(1), array("saved-filters")))
+        ) {
         return false;
     }
 
@@ -124,14 +130,14 @@ function _community_block_community() {
         ->fields('n', array('nid', 'title'))
         ->condition('type', 'community')
         ->execute()
-        ->fetchAll(); 
+        ->fetchAll();
 
     foreach($results as $result) {
         $sub_items = array();
 
         // build the top level link
         $attributes = array(
-            'class' => (isset($_GET['og'][$result->nid])) 
+            'class' => (isset($_GET['og'][$result->nid]))
                     ? array('active-trail') : array(),
         );
         $list = url_query_master($result->title, 'community', 'og', $result->nid, $attributes);
@@ -211,7 +217,7 @@ function artist_community_form_user_profile_form_alter(&$form, &$form_state) {
 function artist_community_form_artwork_node_form_alter(&$form, &$form_state) {
     // Find the communities associated with each term
     $query = db_select('node', 'n');
-    $query->leftJoin('field_data_field_medium', 'm', 'n.nid = m.entity_id'); 
+    $query->leftJoin('field_data_field_medium', 'm', 'n.nid = m.entity_id');
     $result = $query->fields('n', array('nid', 'title'))
         ->fields('m')
         ->condition('type', 'community')
@@ -237,7 +243,7 @@ function artist_community_artwork_form_submit(&$form, &$form_state) {
     foreach($form_state['values']['field_medium']['und'] as $field) {
         $gid = gid_by_tid($field['tid']);
         // Add artwork to the group
-        $form_state['values']['og_group_ref']['und'][]['target_id'] = $gid; 
+        $form_state['values']['og_group_ref']['und'][]['target_id'] = $gid;
         // Add user to the group
         og_group('node', $gid, $values);
     }
@@ -260,7 +266,7 @@ function artist_community_execute_query($index, $filters = array()) {
     $options = array(
         'search id' => 'artist_community:' . $index,
         'parse mode' => 'terms',
-    );  
+    );
     $query = search_api_query($index, $options);
 
     // Add filters
@@ -279,14 +285,14 @@ function artist_community_execute_query($index, $filters = array()) {
  * remove it if it does
  */
 function array_mashinator(&$array, $needle) {
-    if (empty($array) || !in_array($needle, $array)) { 
+    if (empty($array) || !in_array($needle, $array)) {
         $array[] = $needle;
     } else {
-        // The needle exists in our query so remove it from the array 
+        // The needle exists in our query so remove it from the array
         $key = array_search($needle, $array);
         unset($array[$key]);
         $array = array_values($array);
-    }   
+    }
 }
 
 /**
@@ -353,7 +359,7 @@ function url_query_master($text, $path, $key, $val, $attributes = array()) {
                 }
 
                 $term = taxonomy_term_load($tid['tid']);
-        
+
                 array_mashinator($query['og'][$val], $tid['tid']);
 
                 // Build a sub menu of taxonomy terms
@@ -361,11 +367,11 @@ function url_query_master($text, $path, $key, $val, $attributes = array()) {
                     'query' => $query,
                     'attributes' => $attributes,
                 ));
-            }   
+            }
 
             if (isset($sub_items)) {
                 $output .= theme('item_list', array('items' => $sub_items));
-            }   
+            }
 
         }
     } else if ($key == 'content') {
