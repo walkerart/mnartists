@@ -22,7 +22,7 @@
 		padding:0;
 		width:100%;
 		border-bottom:1px solid #666;
-		
+
 		input {
 			width:100%;
 			border-width:0;
@@ -41,12 +41,12 @@
 		margin:0;
 		padding:0;
 		list-style:none;
-		
+
 		li {
 			margin:0;
 			padding:0;
 			position:relative;
-			
+
 			a {
 				display:block;
 				margin:0 10px;
@@ -57,13 +57,13 @@
 				color:#666;
 				background: url('../images/mna-circle-hollow.svg') no-repeat left center transparent;
 				background-size: 12px auto;
-				
+
 			}
 			a.active-trail {
 				/*background: url('../images/mna-circle-filled.svg') no-repeat left center transparent;*/
 				background: url('../images/icon-check-solid.svg') no-repeat left center transparent;
 				background-size: 9px auto;
-				
+
 			}
 			a.active-trail.active {
 				background: url('../images/icon-check-hollow.svg') no-repeat left center transparent;
@@ -83,15 +83,15 @@
 				position:absolute;
 				background:none;
 			}
-			.item-list { 
+			.item-list {
 				display:none;
-				
+
 				ul {
 					background: #eaeaea;
 					li {
 						padding:0 0 0 30px;
 						display:block;
-						
+
 						a {
 							margin:0;
 							/*
@@ -99,7 +99,7 @@
 								background:none;
 							*/
 							line-height:1em;
-							
+
 							text-transform:none;
 							border-bottom:none;
 							padding:8px 0 8px 20px;
@@ -112,31 +112,31 @@
 						border-bottom:none;
 					}
 					li.last {
-						
+
 					}
 				}
 				.menu-event-datepicker {
 					display:none;
 				}
 			}
-			
-			
+
+
 		}
 		li.first {
 			border-bottom: 1px solid #fff;
 		}
 		.block {
 			margin-bottom:0px;
-			
+
 		}
 	}
 }
 #block-artist-community-menu-search {
-	
+
 	.block-inner {
 		margin:0;
 		padding:0;
-		
+
 	}
 }
 
@@ -144,9 +144,9 @@
 	position:absolute;
 	top:10px;
 	right:0px;
-	
+
 	ul.menu {
-		
+
 		li {
 			border:none;
 			a {
@@ -154,11 +154,11 @@
 				margin:0;
 				padding:0;
 			}
-			
+
 			ul {
-				
+
 				li {
-					
+
 					a {
 						background: none;
 						padding: 5px 0;
@@ -176,12 +176,12 @@
 	width:100%;
 	position:relative;
 	display:table;
-	
+
 	li {
 		width:50%;
 		display:table-cell;
-		
-		
+
+
 		a {
 			display:block;
 			line-height:2.4em;
@@ -194,10 +194,10 @@
 	li.user-tab {
 		background:#333;
 		border-bottom-left-radius:5px;
-		
+
 		a {
 			color:#e5e5e5;
-			
+
 		}
 	}
 }
@@ -229,7 +229,7 @@ p.site-description {
 .menu-content {
 	display:block;
 }
-.menu-trigger { 
+.menu-trigger {
 	display: none;
 	position:relative;
 }
@@ -271,37 +271,37 @@ p.site-description {
 /* my stuff menu bar */
 .my-stuff {
 	background: $mystuff_bg_light;
-	
-	#menu { 
+
+	#menu {
 		background:$mystuff_bg_dark;
-		
-		
-		
+
+
+
 		ul.mega-tabs {
 			background:$mystuff_bg_dark;
-			
+
 			li {
 				background:$main_bg;
 				border-bottom-right-radius:5px;
 				border:none;
-				
+
 				a {
 					color:$mystuff_bg_dark;
 				}
-				
+
 			}
 			li.user-tab {
 				background:$mystuff_bg_dark;
 				border-bottom-left-radius:5px;
-				
+
 				a {
 					color:#e5e5e5;
-					
+
 				}
 			}
 		}
 		ul {
-			
+
 			li {
 				border-bottom: 1px solid #4C4C4C;
 				a {
@@ -315,16 +315,16 @@ p.site-description {
 					margin-right:0;
 					padding-bottom:10px;
 					padding-top:5px;
-					
-					
-					
+
+
+
 					ul {
 						background:#4d4d4d;
-						
+
 						li {
 							padding:0 0 0 0;
-							
-							
+
+
 							a {
 								color:#ccc;
 								padding:5px 0;
@@ -337,13 +337,13 @@ p.site-description {
 						}
 						li.last {
 							margin-bottom:0px!important;
-							
-							
+
+
 							a {
-								
+
 							}
 						}
-						
+
 					}
 				}
 			}
@@ -353,19 +353,21 @@ p.site-description {
 			}
 		}
 		ul.my-stuff-menu {
-			
+
 			li.last {
-				
+
 				margin-bottom:20px !important;
 				position:relative;
 				border-bottom: 1px solid #4C4C4C !important;
-				
+
 				a {
-					
+
 					/* border:1px solid #666;
 					margin-bottom:5px; */
-					
+
 				}
+			}
+			li {
 				a.user-edit {
 					position:absolute;
 					right: 0;
@@ -381,14 +383,11 @@ p.site-description {
 					display:block;
 					text-indent:100%;
 					white-space:nowrap;
-					
+
 				}
 				a.user-edit:hover {
 					opacity:.6;
 				}
-			}
-			li {
-				
 				li.last {
 					padding-top:0;
 					a {
@@ -398,11 +397,11 @@ p.site-description {
 			}
 		}
 		ul.my-stuff-edit-menu {
-		
+
 			li {
 				border:none;
 				margin-bottom:5px;
-				
+
 				a {
 					border:1px solid #666;
 					margin-bottom:5px;
