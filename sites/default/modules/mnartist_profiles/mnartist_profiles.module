@@ -332,6 +332,7 @@ function _mnartist_profile_my_stuff() {
             'data' => l("Saved Filters", "user/saved-filters"),
             'children' => _mnartist_filter_view_filter()
         );
+        $links[] = l("My Resume", "user/{$user->uid}/resume/download") . l("edit", "user/{$user->uid}/edit/resume", array("attributes" => array("class" => array("user-edit"))));
         $links[] = l("Profile", "user") . l("edit", "user/{$user->uid}/edit", array("attributes" => array("class" => array("user-edit"))));
 
         $renderedLinks = theme_item_list(array(
