@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <title>Download Resume</title>
 
-        <link rel="stylesheet" href="/<?= drupal_get_path('module', 'mnartist_profiles') ?>/css/mnartist_profiles_resume_download.css">
+        <link rel="stylesheet" href="/<?= drupal_get_path('theme', 'mnartists') ?>/css/resume-download.css">
 
     </head>
 
