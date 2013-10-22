@@ -6,6 +6,7 @@
 
 define('ARTIST_ROLE', 4);
 define('ORG_ROLE', 5);
+define('PUBLIC_ROLE', 6);
 
 include_once 'mnartist_profiles.features.inc';
 
@@ -141,6 +142,7 @@ function mnartist_profiles_form_user_register_submit(&$form, &$form_state) {
     // Determine what type of account the user registered
     switch($form_state['values']['account_type']) {
         case 'public':
+            $rid = PUBLIC_ROLE;
             $goto = 'main';
             break;
         case 'artist':
