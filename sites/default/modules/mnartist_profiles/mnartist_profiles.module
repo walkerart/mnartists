@@ -12,7 +12,7 @@ include_once 'mnartist_profiles.features.inc';
 function mnartist_profiles_menu() {
 
     // endpoint for downloading user resume
-    $items['users/%/resume/download'] = array(
+    $items['user/%/resume/download'] = array(
         'page callback'     => 'mnartist_profiles_resume_download',
         'page arguments'    => array(1),
         'access callback'   => TRUE,
@@ -23,44 +23,75 @@ function mnartist_profiles_menu() {
 
 }
 
-/* and either tap into the existing form_alter here, or roll your own to get the actual button in place that uses the path above */
-
 function mnartist_profiles_resume_download($uid) {
 
+    // pull in user global
     global $user;
 
-    // if ($uid == $user->uid) {
+    // check if the current user is the one whose resume data we're fetching,
+    // or is an admin user
+    if ($user->uid == $uid || in_array('administrator', $user->roles)) {
 
         $context_profile = profile2_load_by_user($uid, 'resume');
 
-        if ($context_profile != NULL) {
+        // if we got a profile back...
+        if ($context_profile != NULL && $context_profile != false) {
+            $template_data = array();
 
+            // for each of the profile fields
+            foreach ($context_profile as $field_name => $field) {
+
+                // get field metadata
+                $field_info = field_info_field($field_name);
+                $field_info_instances = field_info_instances('profile2', 'resume');
+                $label = $field_info_instances[$field_name]['label'];
+
+                // if the field is NOT a field collection, just stash its contents
+                if (isset($field_info['type']) && $field_info['type'] != 'field_collection') {
+
+                    $template_data[$field_name] = array(
+                        'label' => $label,
+                        'item' => $field['und']
+                    );
+
+                // or if it IS a field collection go a bit deeper (only deals with one
+                // level of nesting here at this point)
+                } else if (isset($field_info['type']) && $field_info['type'] == 'field_collection') {
+
+                    $template_data[$field_name] = array(
+                        'label' => $label,
+                        'item' => array()
+                    );
+                    $items = $field['und'];
+                    foreach ($items as &$collection) {
+                        $entity = field_collection_item_load($collection['value']);
+                        $instances = field_info_instances('field_collection_item', $field_name);
+
+                        $context_data = array();
+                        foreach ($instances as $instance_field_name => $instance_field) {
+                            $context_data[$instance_field_name] = array(
+                                'label' => $instances[$instance_field_name]['label'],
+                                'item' => $entity->{$instance_field_name}['und']
+                            );
+                        }
+                        $template_data[$field_name]['item'][] = $context_data;
+                    }
+                }
+            }
+
+            // render the template with the data we just constructed,
+            // and output it
             $output = theme("mna_resume_download", array(
-                    'resume_data' => array(
-                        'general_statement' => $context_profile->field_general_statement,// value (html, utf-8)
-                        'biography' => $context_profile->field_biography,// value (html, utf-8)
-                        'education' => $context_profile->field_education,// iterate
-                        'work_experience' => $context_profile->field_work_experience,// iterate
-                        'teaching_experience' => $context_profile->field_teaching_experience,// iterate
-                        'awards' => $context_profile->field_awards,// iterate
-                        'exhibition_and_performance' => $context_profile->field_exhibition_and_performance,// iterate
-                        'publications' => $context_profile->field_publications,// iterate
-                        'galleries' => $context_profile->field_galleries,// iterate
-                        'collections' => $context_profile->field_collections,// iterate
-                        'related_organizations' => $context_profile->field_related_organizations,// iterate
-                        'websites' => $context_profile->field_websites// iterate
-                    )
-                )
-            );
+                                'resume_data' => $template_data
+                            )
+                        );
             echo $output;
         } else {
-            echo "this user doesn't seem to have a resume";
+            echo "No resume data for that user.";
         }
-
-
-    // } else {
-    //     echo "you can't see that";
-    // }
+    } else {
+        echo "I'm sorry, you're not allowed to see that.";
+    }
 
     drupal_exit();
 }
@@ -230,9 +261,11 @@ function _mnartist_profile_block_visibility() {
     global $user;
 
     if ((arg(0) == 'user' && $user->uid == arg(1)) ||
-        (arg(0) == 'user' && !user_is_logged_in()) ||
-        (arg(0) == "node" && in_array(arg(1), array("edit", "add")))
-    ) {
+            (arg(0) == 'user' && !user_is_logged_in()) ||
+            (arg(0) == "node" && in_array(arg(1), array("edit", "add"))) ||
+            (arg(0) == "node" && in_array(arg(2), array("edit"))) ||
+            (arg(0) == 'user' && in_array(arg(1), array("saved-filters")))
+        ) {
         return true;
     }
 
@@ -299,6 +332,11 @@ function _mnartist_profile_my_stuff() {
             'data' => l("Saved Filters", "user/saved-filters"),
             'children' => _mnartist_filter_view_filter()
         );
+
+        // check for artist role
+        if (_get_role($user) == 'artist') {
+            $links[] = l("My Resume", "user/{$user->uid}/resume/download") . l("edit", "user/{$user->uid}/edit/resume", array("attributes" => array("class" => array("user-edit"))));
+        }
         $links[] = l("Profile", "user") . l("edit", "user/{$user->uid}/edit", array("attributes" => array("class" => array("user-edit"))));
 
         $renderedLinks = theme_item_list(array(
@@ -309,12 +347,11 @@ function _mnartist_profile_my_stuff() {
                 'class' => array('my-stuff-menu')
             )
         ));
-
-        $editItems = array(
-            l("Add Artwork", "node/add/artwork"),
-            l("Add Event", "node/add/event")
-        );
-
+        $editItems = array();
+        if (_get_role($user) == 'artist' || in_array('administrator', array_values($user->roles))) {
+            $editItems[] = l("Add Artwork", "node/add/artwork");
+        }
+        $editItems[] = l("Add Event", "node/add/event");
         if (in_array('administrator', array_values($user->roles))) {
             $editItems[] = l("Add Venue", "node/add/venue");
             $editItems[] = l("Add Article", "node/add/article");
@@ -563,6 +600,16 @@ function _mnartist_profile_user_profile() {
 
 function mnartist_profiles_form_alter(&$form, $form_state, $form_id) {
     if ($form_id == 'user_profile_form') {
+        if (isset($form["#user_category"]) && $form["#user_category"] == 'resume') {
+            global $user;
+            $uid = $form['#user']->uid;
+            // @TODO is this test acceptable? or should it be tied to a specific user permission?
+            if ($user->uid == $uid || in_array('administrator', $user->roles)) {
+                $form['resume_download'] = array(
+                    '#markup' => "<a href='/user/$uid/resume/download'>download resume</a>"
+                );
+            }
+        }
         $form['account']['status']['#options'][0] = "Inactive";
         $form['picture']['#title'] = "Profile Picture";
         $form['picture']['picture_upload']['#title'] = "Upload Profile Picture";
