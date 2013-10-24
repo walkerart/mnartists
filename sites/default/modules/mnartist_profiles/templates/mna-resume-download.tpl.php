@@ -21,10 +21,12 @@
 
         <section class="resume-block resume-block-complex education">
             <h2><?= $resume_data['field_education']['label'] ?></h2>
+
             <?php
                 foreach ($resume_data['field_education']['item'] as $field) {?>
                     <div class="education-block">
                         <p><label><?= $field['field_school']['label'] ?></label><?=$field['field_school']['item'][0]['value']?></p>
+                        <p><label><?= $field['field_institution_url']['label'] ?></label><?=$field['field_institution_url']['item'][0]['value']?></p>
                         <p><label><?=$field['field_degree']['label']?></label><?=$field['field_degree']['item'][0]['value']?></p>
                         <p><label><?=$field['field_year']['label']?></label><?=$field['field_year']['item'][0]['value']?></p>
                         <p><label><?=$field['field_or_dates_attended']['label']?></label><?=$field['field_or_dates_attended']['item'][0]['value']?></p>
@@ -63,7 +65,8 @@
                     <div class="experience-block">
                         <p><label><?=$field['field__teaching_venue']['label']?></label><?=$field['field__teaching_venue']['item'][0]['value']?></p>
                         <p><label><?=$field['field_course']['label']?></label><?=$field['field_course']['item'][0]['value']?></p>
-                        <p><label><?=$field['field_year']['label']?></label><?=$field['field_year']['item'][0]['value']?></p>
+                        <!-- @TODO this may not work quite the same way now, double check with some data -->
+                        <p><label><?=$field['field_date']['label']?></label><?=$field['field_date']['item'][0]['value']?></p>
                         <p><label><?=$field['field_url']['label']?></label><?=$field['field_url']['item'][0]['value']?></p>
                         <p><label><?=$field['field_description_of_position']['label']?></label><?=$field['field_description_of_position']['item'][0]['value']?></p>
                         <p><label><?=$field['field_position']['label']?></label><?=$field['field_position']['item'][0]['value']?></p>
@@ -78,6 +81,7 @@
                 foreach ($resume_data['field_awards']['item'] as $field) {?>
                     <div class="award-block">
                         <p><label><?=$field['field_award_name']['label']?></label><?=$field['field_award_name']['item'][0]['value']?></p>
+                        <p><label><?=$field['field_description']['label']?></label><?=$field['field_description']['item'][0]['value']?></p>
                         <p><label><?=$field['field_year']['label']?></label><?=$field['field_year']['item'][0]['value']?></p>
                         <p><label><?=$field['field_award_organization']['label']?></label><?=$field['field_award_organization']['item'][0]['value']?></p>
                         <p><label><?=$field['field_url']['label']?></label><?=$field['field_url']['item'][0]['value']?></p>
@@ -92,6 +96,7 @@
                 foreach ($resume_data['field_exhibition_and_performance']['item'] as $field) {?>
                     <div class="exhibition-block">
                         <p><label><?=$field['field_title']['label']?></label><?=$field['field_title']['item'][0]['value']?></p>
+                        <p><label><?=$field['field_description']['label']?></label><?=$field['field_description']['item'][0]['value']?></p>
                         <p><label><?=$field['field_exhibition_venue']['label']?></label><?=$field['field_exhibition_venue']['item'][0]['value']?></p>
                         <p><label><?=$field['field_group_individual']['label']?></label><?=$field['field_group_individual']['item'][0]['value']?></p>
                         <p><label><?=$field['field_url']['label']?></label><?=$field['field_url']['item'][0]['value']?></p>
@@ -106,8 +111,8 @@
             <?php
                 foreach ($resume_data['field_publications']['item'] as $field) {?>
                     <div class="publication-block">
-                        <p><label><?=$field['field_publication']['label']?></label><?=$field['field_publication']['item'][0]['value']?></p>
                         <p><label><?=$field['field_publication_title']['label']?></label><?=$field['field_publication_title']['item'][0]['value']?></p>
+                        <p><label><?=$field['field_url']['label']?></label><?=$field['field_url']['item'][0]['value']?></p>
                         <p><label><?=$field['field_author_editor']['label']?></label><?=$field['field_author_editor']['item'][0]['value']?></p>
                         <p><label><?=$field['field_description']['label']?></label><?=$field['field_description']['item'][0]['value']?></p>
                     </div>
@@ -134,14 +139,6 @@
                 foreach ($resume_data['field_collections']['item'] as $field) {?>
                     <div class="collection-block">
                         <p><label><?=$field['field_collection_name']['label']?></label><?=$field['field_collection_name']['item'][0]['value']?></p>
-                        <p>
-                            <label><?=$field['field_works']['label'] ?></label><ul>
-                            <?php
-                                foreach ($field['field_works']['item'] as $inner_field) {?>
-                                    <li><?=$inner_field['value']?></li>
-                                <?}
-                            ?>
-                        </ul></p>
                         <p><label><?=$field['field_url']['label']?></label><?=$field['field_url']['item'][0]['value']?></p>
                     </div>
                 <?}
