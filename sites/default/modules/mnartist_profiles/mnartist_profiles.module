@@ -26,6 +26,8 @@ function mnartist_profiles_menu() {
 
 function mnartist_profiles_resume_download($uid) {
 
+    // @TODO - add some if is sets in here to prevent errors from bubbling up to drupal admin
+
     // pull in user global
     global $user;
 
@@ -250,9 +252,9 @@ function _get_role($user = NULL) {
         global $user;
     }
 
-    if ($user->roles[ARTIST_ROLE]) {
+    if (isset($user->roles[ARTIST_ROLE])) {
         return 'artist';
-    } else if ($user->roles[ORG_ROLE]) {
+    } else if (isset($user->roles[ORG_ROLE])) {
         return 'org';
     } else {
         return 'public';

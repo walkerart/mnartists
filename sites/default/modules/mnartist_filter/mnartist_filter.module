@@ -8,15 +8,15 @@
 function mnartist_filter_menu() {
 	$items['mnartist/filter/submit'] = array(
 		'page callback' => 'mnartist_filter_view',
-		'access arguments' => array('view own profile'), 
+		'access callback' => 'user_is_logged_in'
 	);
     $items['user/saved-filters'] = array(
         'page callback' => 'mnartist_filter_user_view',
-        'access arguments' => array('view own profile'), 
+        'access callback' => 'user_is_logged_in'
     );
     $items['user/saved-filters/delete'] = array(
         'page callback' => 'mnartist_filter_user_delete',
-        'access arguments' => array('edit own profile'), 
+        'access callback' => 'user_is_logged_in'
     );
 	return $items;
 }
@@ -59,7 +59,7 @@ function mnartist_filter_user_view()
     if($_SERVER['REQUEST_URI'] == '/user/saved-filters')
     {
         global $user;
-        
+
         $result = db_query("SELECT mn.fid, mn.title, mn.url FROM {mnartist_filter} mn WHERE mn.uid = :uid", array(':uid' => $user->uid));
         $results = db_select('node', 'n')->fields('n', array('nid', 'title'))->condition('type', 'community')->execute()->fetchAll();
         $menu = array();
@@ -71,7 +71,7 @@ function mnartist_filter_user_view()
         $output .= "<table>" . PHP_EOL;
         $output .= "<thead><tr><td>Name</td><td>Filters</td><td>Options</td></tr></thead>" . PHP_EOL;
         $output .= "<tbody>" . PHP_EOL;
-        while ($row = $result->fetchAssoc()) 
+        while ($row = $result->fetchAssoc())
         {
             $url = parse_url(urldecode($row['url']));
             $string = '';
@@ -93,9 +93,9 @@ function mnartist_filter_user_view()
                                 $term = taxonomy_term_load($svalue);
                                 if(isset($term->name))
                                 {
-                                    $subm[] = $term->name;    
+                                    $subm[] = $term->name;
                                 }
-                                
+
                             }
                             $string .= implode(', ', $subm);
                         }
@@ -120,7 +120,7 @@ function mnartist_filter_user_view()
         $output .= "</table>";
         return $output;
     }
-    
+
 }
 
 function _mnartist_filter_block_visibility() {
@@ -206,11 +206,11 @@ function _mnartist_filter_create_filter()
 function _mnartist_filter_view_filter()
 {
 	global $user;
-	
+
 	$result = db_query("SELECT mn.title, mn.url FROM {mnartist_filter} mn WHERE mn.uid = :uid", array(':uid' => $user->uid));
 
 	$output = array();
-	while ($row = $result->fetchAssoc()) 
+	while ($row = $result->fetchAssoc())
 	{
 		$output[] = '<a href="' . urldecode($row['url']) . '">' . $row['title'] . '</a>';
 	}

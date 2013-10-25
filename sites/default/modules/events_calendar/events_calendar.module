@@ -17,3 +17,13 @@ function events_calendar_form_alter(&$form, $form_state, $form_id) {
         $form['og_group_ref']['#type'] = 'hidden';
     }
 }
+
+function events_calendar_node_presave(&$node) {
+    // if incoming node is an event...
+    if ($node->type === 'event') {
+        // overwrite 'old' communities data with data from 'new' communities field
+        if (isset($node->field_community_user_select['und'])) {
+            $node->og_group_ref['und'] = $node->field_community_user_select['und'];
+        }
+    }
+}
