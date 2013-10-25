@@ -12,5 +12,8 @@ function events_calendar_form_alter(&$form, $form_state, $form_id) {
 
         $form['field_url']['und']['#title'] = "";
         $form['field_url']['und'][0]['#title'] = "";
+
+        //hide the community og group field since it gets populated by the user select community field
+        $form['og_group_ref']['#type'] = 'hidden';
     }
 }
