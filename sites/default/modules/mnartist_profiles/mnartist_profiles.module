@@ -20,8 +20,37 @@ function mnartist_profiles_menu() {
         'type'              => MENU_CALLBACK,
     );
 
+    // @TODO pretty sure this belongs somewhere else, move it there
+    $items['user/feed'] = array(
+        'page callback'     => 'mnartist_profiles_feed',
+        'page arguments'    => array(1),
+        'access callback'   => TRUE,
+        'type'              => MENU_CALLBACK,
+    );
+
     return $items;
 
+}
+
+function mnartist_profiles_feed() {
+
+    // get users current user has flagged, put it
+    // into a unique'd array
+    $flagged_users = array();
+    $flagged_stuff = flag_get_user_flags('user');
+    foreach ($flagged_stuff['usercollections'] as $thing) {
+        $flagged_users[] = $thing->uid;
+    }
+    $flagged_users = array_unique($flagged_users);
+
+    // get our feed view
+    $view = views_get_view('activity_view_filtered');
+    $view->set_arguments($flagged_users);
+    // $view->pre_execute();// @TODO this doesn't work in this bare-naked output context, reinstate once you get all this running in the proper context
+    $view->execute();
+    print $view->render();
+
+    drupal_exit();
 }
 
 function mnartist_profiles_resume_download($uid) {
