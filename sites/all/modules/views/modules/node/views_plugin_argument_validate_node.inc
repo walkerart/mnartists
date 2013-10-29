@@ -73,8 +73,9 @@ class views_plugin_argument_validate_node extends views_plugin_argument_validate
   }
 
   function validate_argument($argument) {
-    $types = $this->options['types'];
+    $argument = str_replace(' ', '', $argument);
 
+    $types = $this->options['types'];
     switch ($this->options['nid_type']) {
       case 'nid':
         if (!is_numeric($argument)) {
@@ -107,7 +108,6 @@ class views_plugin_argument_validate_node extends views_plugin_argument_validate
         if ($nids->value == array(-1)) {
           return FALSE;
         }
-
         $test = drupal_map_assoc($nids->value);
         $titles = array();
 
@@ -127,6 +127,7 @@ class views_plugin_argument_validate_node extends views_plugin_argument_validate
           unset($test[$node->nid]);
         }
 
+        $this->argument->argument = $argument;
         $this->argument->validated_title = implode($nids->operator == 'or' ? ' + ' : ', ', $titles);
         // If this is not empty, we did not find a nid.
         return empty($test);
