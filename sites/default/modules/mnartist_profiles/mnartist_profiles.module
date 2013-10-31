@@ -38,8 +38,10 @@ function mnartist_profiles_feed() {
     // into a unique'd array
     $flagged_users = array();
     $flagged_stuff = flag_get_user_flags('user');
-    foreach ($flagged_stuff['usercollections'] as $thing) {
-        $flagged_users[] = $thing->uid;
+    if (isset($flagged_stuff['usercollections'])) {
+        foreach ($flagged_stuff['usercollections'] as $thing) {
+            $flagged_users[] = $thing->uid;
+        }
     }
     $flagged_users = array_unique($flagged_users);
 
