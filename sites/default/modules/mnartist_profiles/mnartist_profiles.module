@@ -46,11 +46,17 @@ function mnartist_profiles_feed() {
     // get our feed view
     $view = views_get_view('activity_view_filtered');
     $view->set_arguments($flagged_users);
-    // $view->pre_execute();// @TODO this doesn't work in this bare-naked output context, reinstate once you get all this running in the proper context
     $view->execute();
-    print $view->render();
-
-    drupal_exit();
+    $render = array(
+        '#type' => 'container',
+        '#attributes' => array(),
+        'content' => array(
+            '#type' => 'markup',
+            '#markup' => $view->render(),
+            '#weight' => 0,
+        ),
+    );
+    return $render;
 }
 
 function mnartist_profiles_resume_download($uid) {
