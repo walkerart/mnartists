@@ -47,7 +47,9 @@ function mnartist_profiles_feed() {
 
     // get our feed view
     $view = views_get_view('activity_view_filtered');
+    $view->set_display('default');
     $view->set_arguments($flagged_users);
+    $view->pre_execute();
     $view->execute();
     $render = array(
         '#type' => 'container',
