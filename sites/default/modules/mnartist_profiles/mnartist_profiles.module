@@ -47,11 +47,11 @@ function mnartist_profiles_feed() {
 
     // query to get activities of type user_update with eid's in
     // user's list of flagged users
-    $sql = "SELECT activity.eid as uid, activity_messages.message FROM activity
-            RIGHT JOIN activity_targets ON activity.aid = activity_targets.aid
-            RIGHT JOIN activity_messages ON activity_targets.amid = activity_messages.amid
-            WHERE activity.type = 'user_update'
-            AND activity.eid in (:flagged_users)
+    $sql = "SELECT DISTINCT activity.type, activity.uid, activity.eid, activity.created, activity_messages.message FROM activity
+            INNER JOIN activity_targets ON activity.aid = activity_targets.aid
+            INNER JOIN activity_messages ON activity_targets.amid = activity_messages.amid
+            AND activity.uid in (:flagged_users)
+            AND (activity.uid = activity.eid or activity.type != 'user_update')
             ORDER BY activity.created DESC";
     $result = db_query($sql, array(':flagged_users' => $flagged_users));
 
@@ -63,6 +63,7 @@ function mnartist_profiles_feed() {
         $context_user = user_load($row->uid);
         $context_object->message = $row->message;
         $context_object->user_picture_uri = $context_user->picture->uri;// @TODO switch to thumbnail
+        $context_object->update_timestamp = $context_user->created;
         $feed_data[] = $context_object;
     }
 
