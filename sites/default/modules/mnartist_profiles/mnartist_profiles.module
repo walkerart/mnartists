@@ -40,23 +40,40 @@ function mnartist_profiles_feed() {
     $flagged_stuff = flag_get_user_flags('user');
     if (isset($flagged_stuff['usercollections'])) {
         foreach ($flagged_stuff['usercollections'] as $thing) {
-            $flagged_users[] = $thing->uid;
+            $flagged_users[] = $thing->content_id;
         }
     }
     $flagged_users = array_unique($flagged_users);
 
-    // get our feed view
-    $view = views_get_view('activity_view_filtered');
-    $view->set_display('default');
-    $view->set_arguments($flagged_users);
-    $view->pre_execute();
-    $view->execute();
+    // query to get activities of type user_update with eid's in
+    // user's list of flagged users
+    $sql = "SELECT activity.eid as uid, activity_messages.message FROM activity
+            RIGHT JOIN activity_targets ON activity.aid = activity_targets.aid
+            RIGHT JOIN activity_messages ON activity_targets.amid = activity_messages.amid
+            WHERE activity.type = 'user_update'
+            AND activity.eid in (:flagged_users)
+            ORDER BY activity.created DESC";
+    $result = db_query($sql, array(':flagged_users' => $flagged_users));
+
+    // munge the data to send to the template, add user
+    // picture uri's as you go
+    $feed_data = array();
+    foreach ($result as $row) {
+        $context_object = new StdClass();
+        $context_user = user_load($row->uid);
+        $context_object->message = $row->message;
+        $context_object->user_picture_uri = $context_user->picture->uri;// @TODO switch to thumbnail
+        $feed_data[] = $context_object;
+    }
+
+    // generate output, pass it to render
+    $feed_output = theme("mna_feed", array('feed_data' => $feed_data));
     $render = array(
         '#type' => 'container',
         '#attributes' => array(),
         'content' => array(
             '#type' => 'markup',
-            '#markup' => $view->render(),
+            '#markup' => $feed_output,
             '#weight' => 0,
         ),
     );
@@ -152,6 +169,13 @@ function mnartist_profiles_theme() {
         'template' => 'templates/mna-resume-download',
         'variables' => array(
             'resume_data' => array()
+        )
+    );
+
+    $themes['mna_feed'] = array(
+        'template' => 'templates/mna-feed',
+        'variables' => array(
+            'feed_data' => array()
         )
     );
 
