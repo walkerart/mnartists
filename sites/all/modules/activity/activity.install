@@ -83,9 +83,18 @@ function activity_schema() {
       'created' => array('created'),
     ),
     'foreign keys' => array(
-      'nid' => array('node' => 'nid'),
-      'actions_id' => array('actions' => 'aid'),
-      'uid' => array('user' => 'uid'),
+      'node' => array(
+        'table' => 'node',
+        'columns' => array('nid' => 'nid'),
+       ),
+      'actions' => array(
+        'table' => 'actions',
+        'columns' => array('aid' => 'aid'),
+      ),
+      'users' => array(
+        'table' => 'users',
+        'columns' => array('uid' => 'uid')
+      ),
     ),
   );
 
@@ -123,9 +132,18 @@ function activity_schema() {
       'amid' => array('amid'),
     ),
     'foreign keys' => array(
-      'aid' => array('activity' => 'aid'),
-      'uid' => array('user' => 'uid'),
-      'amid' => array('activity_messages' => 'amid'),
+      'activity' => array(
+        'table' => 'activity',
+        'columns' => array('aid' => 'aid'),
+      ),
+      'uid' => array(
+        'table' => 'user',
+        'columns' => array('uid' => 'uid'),
+      ),
+      'activity_messages' => array(
+        'table' => 'activity_messages',
+        'columns' => array('amid' => 'amid'),
+      ),
     ),
   );
 
@@ -173,7 +191,10 @@ function activity_schema() {
     // UGG!!!
     'primary key' => array('aid', 'realm', 'value'),
     'foreign keys' => array(
-      'aid' => array('activity' => 'aid'),
+      'activity' => array(
+        'table' => 'activity',
+        'columns' => array('aid' => 'aid'),
+      ),
     ),
   );
   return $schema;
