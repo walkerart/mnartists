@@ -62,7 +62,7 @@ function mnartist_profiles_feed() {
         $context_object = new StdClass();
         $context_user = user_load($row->uid);
         $context_object->message = $row->message;
-        $context_object->user_picture_uri = $context_user->picture->uri;// @TODO switch to thumbnail
+        $context_object->user_picture_uri = image_style_url('thumbnail', $context_user->picture->uri);
         $context_object->update_timestamp = $context_user->created;
         $feed_data[] = $context_object;
     }
