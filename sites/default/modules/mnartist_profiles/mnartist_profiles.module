@@ -131,7 +131,7 @@ function mnartist_profiles_resume_download($uid) {
                         foreach ($instances as $instance_field_name => $instance_field) {
                             $context_data[$instance_field_name] = array(
                                 'label' => $instances[$instance_field_name]['label'],
-                                'item' => $entity->{$instance_field_name}['und']
+                                'item' => (isset($entity->{$instance_field_name}['und'])) ? $entity->{$instance_field_name}['und'] : null
                             );
                         }
                         $template_data[$field_name]['item'][] = $context_data;

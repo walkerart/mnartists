@@ -33,9 +33,11 @@
                         <p>
                             <label><?=$field['field_areas_of_study']['label']?></label><ul>
                             <?php
-                                foreach ($field['field_areas_of_study']['item'] as $inner_field) {?>
-                                    <li><?=$inner_field['value']?></li>
-                                <?}
+                                if (isset($field['field_areas_of_study']['item']) &&
+                                    !(empty($field['field_areas_of_study']['item']))) {
+                                    foreach ($field['field_areas_of_study']['item'] as $inner_field) {?>
+                                        <li><?=$inner_field['value']?></li>
+                                <?}}
                             ?>
                         </ul></p>
                     </div>
@@ -93,14 +95,14 @@
         <section class="resume-block resume-block-complex exhibition-and-performance">
             <h2><?= $resume_data['field_exhibition_and_performance']['label'] ?></h2>
             <?php
-                foreach ($resume_data['field_exhibition_and_performance']['item'] as $field) {?>
+                foreach ($resume_data['field_exhibition_and_performance']['item'] as $field) { ?>
                     <div class="exhibition-block">
                         <p><label><?=$field['field_title']['label']?></label><?=$field['field_title']['item'][0]['value']?></p>
                         <p><label><?=$field['field_description']['label']?></label><?=$field['field_description']['item'][0]['value']?></p>
-                        <p><label><?=$field['field_exhibition_venue']['label']?></label><?=$field['field_exhibition_venue']['item'][0]['value']?></p>
-                        <p><label><?=$field['field_group_individual']['label']?></label><?=$field['field_group_individual']['item'][0]['value']?></p>
                         <p><label><?=$field['field_url']['label']?></label><?=$field['field_url']['item'][0]['value']?></p>
                         <p><label><?=$field['field_venue_url']['label']?></label><?=$field['field_venue_url']['item'][0]['value']?></p>
+                        <p><label><?=$field['field_year']['label']?></label><?=$field['field_year']['item'][0]['value']?></p>
+                        <p><label><?=$field['field_group_individual']['label']?></label><?=$field['field_group_individual']['item'][0]['value']?></p>
                     </div>
                 <?}
             ?>
@@ -161,9 +163,11 @@
             <h2><?= $resume_data['field_websites']['label'] ?></h2>
             <ul>
             <?php
-                foreach ($resume_data['field_websites']['item'] as $site) {?>
-                    <li><?=$site['title'] ?> - <a href="<?=$site['value'] ?>"><?=$site['value'] ?></a></li>
-                <?}
+                if (isset($field['field_websites']['item']) &&
+                    !(empty($field['field_websites']['item']))) {
+                    foreach ($resume_data['field_websites']['item'] as $site) {?>
+                        <li><?=$site['title'] ?> - <a href="<?=$site['value'] ?>"><?=$site['value'] ?></a></li>
+                <?}}
             ?>
             </ul>
         </section>
