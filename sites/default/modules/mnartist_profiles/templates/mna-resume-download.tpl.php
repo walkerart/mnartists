@@ -52,7 +52,22 @@
                     <div class="experience-block">
                         <p><label><?=$field['field_employer']['label']?></label><?=$field['field_employer']['item'][0]['value']?></p>
                         <p><label><?=$field['field_position']['label']?></label><?=$field['field_position']['item'][0]['value']?></p>
-                        <p><label><?=$field['field_years']['label']?></label><?=$field['field_years']['item'][0]['value']?></p>
+                        <p>
+                            <label><?=$field['field_years_worked']['label']?></label>
+                            <?=$field['field_years_worked']['item'][0]['value']?>
+                            <?php if (isset($field['field_years_worked']['item'][0]['value2'])) { ?>
+                                &ndash;
+                                <!-- @TODO reevaluate this logic, it is based on the
+                                    assumption that drupal will always provide a value2,
+                                    and if the user has not set a value for it that it
+                                    will be equal to value -->
+                                <?php if ($field['field_years_worked']['item'][0]['value'] === $field['field_years_worked']['item'][0]['value2']) { ?>
+                                    present
+                                <?php } else { ?>
+                                    <?= $field['field_years_worked']['item'][0]['value2'] ?>
+                                <?php } ?>
+                            <?php }?>
+                        </p>
                         <p><label><?=$field['field_description_of_position']['label']?></label><?=$field['field_description_of_position']['item'][0]['value']?></p>
                         <p><label><?=$field['field_url']['label']?></label><?=$field['field_url']['item'][0]['value']?></p>
                     </div>
