@@ -262,7 +262,7 @@ function gid_by_tid($tid) {
     return $result['entity_id'];
 }
 
-function artist_community_execute_query($index, $filters = array()) {
+function artist_community_execute_query($index, $filters = array(), $sorts = array()) {
         // Initialize the solr query
     $options = array(
         'search id' => 'artist_community:' . $index,
@@ -273,6 +273,17 @@ function artist_community_execute_query($index, $filters = array()) {
     // Add filters
     foreach($filters as $filter) {
         $query->filter($filter);
+    }
+
+    // Add sorts
+    foreach($sorts as $sort) {
+        $term = $sort[0];
+        $direction = isset($sort[1]) ? $sort[1] : null;
+        if ($direction !== null) {
+            $query->sort($term, $direction);
+        } else {
+            $query->sort($term);
+        }
     }
 
     $index = $query->getIndex();
