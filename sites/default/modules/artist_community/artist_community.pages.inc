@@ -9,6 +9,7 @@ function artist_community_search_page() {
     $content        = array();
     $has_user       = FALSE;
     $output         = '';
+    $articles       = array();
 
     // Handle Organic groups and taxonomies
 
@@ -74,6 +75,10 @@ function artist_community_search_page() {
     } else {
         $has_content = TRUE;
         $has_user = TRUE;
+
+        $article_filter = new SearchApiQueryFilter;
+        $article_filter->condition('type', 'article');
+        $articles = artist_community_execute_query(NODE_INDEX, array($article_filter), array(array('changed')));
     }
 
     // Query the content index
@@ -93,5 +98,5 @@ function artist_community_search_page() {
         }
     }
 
-    return theme('artist_community_page', array('content' => $content));
+    return theme('artist_community_page', array('content' => $content, 'articles' => $articles));
 }
