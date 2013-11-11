@@ -60,7 +60,29 @@
 	border-top: 1px solid #808080;
 	padding-top: 1em;
 }
+.user-thing ul,
+.user-thing ul li {
+	list-style: none;
+	margin: 0; padding: 0;
+}
+.user-thing ul li {
+	margin-bottom: 1em;
+}
+.user-thing ul li img {
+	border-radius: 50%;
+}
+.user-thing-labels {
+	display: inline-block;
+}
+.user-thing-name {
+	font-family: "adobe-text-pro", "Times New Roman", Times, serif;
+	font-weight: bold;
+}
+.user-thing-practice {
+	color: #adadad;
+}
 </style>
+
 <script>
 (function($) {
     $(function () {
@@ -157,16 +179,17 @@
 								$practice = $field_info['settings']['allowed_values'][$practice_value];
 							}
 						}
+						// @TODO get default out of here
+						$image_uri = (isset($latest_users[$value]->picture->uri)) ? image_style_url('artist_thumbnail_small', $latest_users[$value]->picture->uri) : 'http://mnartist.imalab.us/sites/default/files/styles/artist_thumbnail_small/public/pictures/picture-default.jpg';
 
 						if ($index >= 3) { break; }
 						else { ?>
 							<li>
-								<?php if (isset($latest_users[$value]->picture->uri)) { ?>
-									<!-- @TODO add a profile picture default image, use that if none available -->
-									<img src="<?php echo image_style_url('square_thumbnail', $latest_users[$value]->picture->uri); ?>" width="68" height="68">
-								<?php } ?>
-								<div class="user-thing-name"><?= $full_name ?></div>
-								<div class="user-thing-practice"><?= $practice ?></div>
+								<img src="<?= $image_uri ?>" width="68" height="68">
+								<div class="user-thing-labels">
+									<div class="user-thing-name"><?= $full_name ?></div>
+									<div class="user-thing-practice"><?= $practice ?></div>
+								</div>
 							</li>
 						<?php }
 					} ?>
