@@ -34,6 +34,9 @@
 	color: #808080;
 	height: 80px;
 }
+.the-list-of-articles-container ul li a {
+	text-decoration: none;
+}
 .the-list-of-articles-container ul li.active {
 	background-color: #e5e5e5;
 	color: black;
@@ -58,6 +61,22 @@
 	padding-top: 1em;
 }
 </style>
+<script>
+(function($) {
+    $(function () {
+    	var articleThing = $('.article-thing');
+    	var allTopStoryLinks = articleThing.find('.the-list-of-articles-container ul li a');
+    	allTopStoryLinks.click(function (evt) {
+    		evt.preventDefault();
+    	});
+    	var articleBlocks = articleThing.find('.article-detail');
+    	var startingArticle = $(articleBlocks[0]);
+    	var pairedLink = articleThing.find('a[href=#' + startingArticle.attr('id') + ']').parent();
+    	startingArticle.show();
+    	pairedLink.addClass('active');
+    });
+}(jQuery));
+</script>
 <div class="panel-2col layout-a">
 	<div class="panel-panel panel-col-first main-content">
 		<?php if (!empty($articles)) { ?>
@@ -66,11 +85,10 @@
 				<?php foreach($articles as $index => $article) {
 					$article_image_url = isset($article->field_images['und']) ? file_create_url($article->field_images['und'][0]['uri']) : null;
 					if ($article_image_url === null) { continue; }
-					dpm($article_image_url);
 					$excerpt = text_summary($article->body['und'][0]['value'], null, 300);
 					$article_id = $article->nid;
 				?>
-					<div class="article-detail" id="article-detail-<?= $article_id ?>">
+					<div class="article-detail" id="article-detail-<?= $article_id ?>" style="display: none;">
 						<img src="<?= $article_image_url ?>">
 						<div class="article-detail-byline">by <?= $article->name ?></div>
 						<a href="#">flag</a><!-- @TODO: favorite link block here -->
@@ -87,8 +105,10 @@
 							if (!(isset($article->field_images['und']))) { continue; }
 						?>
 							<li>
-								<h4><?= $article_category_term->name ?></h4>
-								<p><?= $article->title ?></p>
+								<a href="#article-detail-<?= $article->nid ?>">
+									<h4><?= $article_category_term->name ?></h4>
+									<p><?= $article->title ?></p>
+								</a>
 							</li>
 						<?php } ?>
 					</ul>
