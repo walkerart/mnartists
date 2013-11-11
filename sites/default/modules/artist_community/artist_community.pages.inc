@@ -77,7 +77,7 @@ function artist_community_search_page() {
         $has_user = TRUE;
 
         // if there's a community filter, merge it with the article type
-        // filter, otherwise carry ontinue
+        // filter, otherwise carry on
         $article_filters = array();
         $article_filter = new SearchApiQueryFilter;
         $article_filter->condition('type', 'article');
