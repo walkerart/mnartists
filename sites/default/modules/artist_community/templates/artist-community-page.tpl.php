@@ -107,7 +107,51 @@
 	    <?php endforeach; ?>
 	</div>
 	<div class="panel-panel panel-col-last sidebar-right">
-		<p>test</p>
+		<?php if (!empty($latest_users)) {
+			$user_keys = array_keys($latest_users);
+		?>
+			<div class="user-thing">
+				<h3>Newest Artists</h3>
+				<ul>
+					<?php foreach($user_keys as $index => $value) {
+
+						$user = $latest_users[$value];
+						$main_profile = profile2_load_by_user($user->uid, 'main');
+						$full_name = null;
+						if (isset($main_profile->field_full_name['und'])) {
+							// @TODO also, once you've got this sorted out move all of this and all the article stuff back into .pages.inc, to make iteration simpler here
+							$entity = field_collection_item_load($main_profile->field_full_name['und'][0]['value']);
+							$first_name = $entity->field_first_name['und'][0]['value'];
+							$last_name = $entity->field_last_name['und'][0]['value'];
+							$full_name = "$first_name $last_name";
+						} else {
+							$full_name = $user->name;
+						}
+						$practice = '';
+						if (isset($main_profile->field_practice['und'])) {
+							$practice_value = $main_profile->field_practice['und'][0]['value'];
+							$field_info = field_info_field('field_practice');
+							if (isset ($field_info['settings']['allowed_values'][$practice_value])) {
+								$practice = $field_info['settings']['allowed_values'][$practice_value];
+							}
+						}
+
+						if ($index >= 3) { break; }
+						else { ?>
+							<li>
+								<?php if (isset($latest_users[$value]->picture->uri)) { ?>
+									<!-- @TODO add a profile picture default image, use that if none available -->
+									<img src="<?php echo image_style_url('square_thumbnail', $latest_users[$value]->picture->uri); ?>" width="68" height="68">
+								<?php } ?>
+								<div class="user-thing-name"><?= $full_name ?></div>
+								<div class="user-thing-practice"><?= $practice ?></div>
+							</li>
+						<?php }
+					} ?>
+				</ul>
+			</div>
+		<?php } ?>
+
 		<div class="">
 			<?php $block = module_invoke('mnartist_twitter', 'block_view', 'mna_twitter_create');
 				  print render($block['content']);

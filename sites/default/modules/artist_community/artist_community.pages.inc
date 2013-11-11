@@ -98,5 +98,9 @@ function artist_community_search_page() {
         }
     }
 
-    return theme('artist_community_page', array('content' => $content, 'articles' => $articles));
+    $latest_user_filter = new SearchApiQueryFilter;
+    $latest_user_filter->condition('roles', ARTIST_ROLE);
+    $latest_users = artist_community_execute_query(USER_INDEX, array($latest_user_filter), array(array('created', 'DESC')));
+
+    return theme('artist_community_page', array('content' => $content, 'articles' => $articles, 'latest_users' => $latest_users));// @TODO bundle the new data into content?
 }
