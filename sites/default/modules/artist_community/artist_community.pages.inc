@@ -76,9 +76,16 @@ function artist_community_search_page() {
         $has_content = TRUE;
         $has_user = TRUE;
 
+        // if there's a community filter, merge it with the article type
+        // filter, otherwise carry ontinue
+        $article_filters = array();
         $article_filter = new SearchApiQueryFilter;
         $article_filter->condition('type', 'article');
-        $articles = artist_community_execute_query(NODE_INDEX, array($article_filter), array(array('changed')));
+        $article_filters[] = $article_filter;
+        if (isset($_GET['og'])) {
+            $article_filters = array_merge($article_filters, $filters);
+        }
+        $articles = artist_community_execute_query(NODE_INDEX, $article_filters, array(array('changed')));
     }
 
     // Query the content index

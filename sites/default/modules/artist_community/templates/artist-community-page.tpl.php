@@ -65,11 +65,12 @@
 				<h3>Top Stories</h3>
 				<?php foreach($articles as $index => $article) {
 					$article_image_url = isset($article->field_images['und']) ? file_create_url($article->field_images['und'][0]['uri']) : null;
-					if ($article_image_url === null) { continue; }// @TODO: would need to do this in list as well, if you were actually going to do this
+					if ($article_image_url === null) { continue; }
+					dpm($article_image_url);
 					$excerpt = text_summary($article->body['und'][0]['value'], null, 300);
 					$article_id = $article->nid;
 				?>
-					<div class="article-detail" id="article-detail-<?= $article_id ?>"<?php if ($index !== 19) { echo ' style="display: none"'; } ?>>
+					<div class="article-detail" id="article-detail-<?= $article_id ?>">
 						<img src="<?= $article_image_url ?>">
 						<div class="article-detail-byline">by <?= $article->name ?></div>
 						<a href="#">flag</a><!-- @TODO: favorite link block here -->
@@ -85,7 +86,7 @@
 							$article_category_term = taxonomy_term_load($article->field_article_category['und'][0]['tid']);
 							if (!(isset($article->field_images['und']))) { continue; }
 						?>
-							<li<?php if ($index === 19) { echo ' class="active"'; } ?>>
+							<li>
 								<h4><?= $article_category_term->name ?></h4>
 								<p><?= $article->title ?></p>
 							</li>
@@ -129,6 +130,7 @@
 						}
 						$practice = '';
 						if (isset($main_profile->field_practice['und'])) {
+							// @TODO should this value come from practice? or somewhere else?
 							$practice_value = $main_profile->field_practice['und'][0]['value'];
 							$field_info = field_info_field('field_practice');
 							if (isset ($field_info['settings']['allowed_values'][$practice_value])) {
