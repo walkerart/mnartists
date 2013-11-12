@@ -86,6 +86,30 @@ function artist_community_search_page() {
             $article_filters = array_merge($article_filters, $filters);
         }
         $articles = artist_community_execute_query(NODE_INDEX, $article_filters, array(array('changed')));
+
+
+        // as above, but with events
+        $event_filters = array();
+        $event_filter = new SearchApiQueryFilter;
+        $event_filter->condition('type', 'event');
+        // @TODO figure out this date filtering
+        // $today = new DateTime();
+        // $next_week = date_add(clone $today, date_interval_create_from_date_string('7 days'));
+        // $event_filter->condition('field_date', $today->format('Y-m-d\TH:i:s\Z'), '>=');
+        // $event_filter->condition('field_date', $next_week->format('Y-m-d\TH:i:s\Z'), '<=');
+        $event_filters[] = $event_filter;
+        if (isset($_GET['og'])) {
+            $event_filters = array_merge($event_filters, $filters);
+        }
+        $events = artist_community_execute_query(NODE_INDEX, $event_filters, array());
+        $events_data = array();
+        foreach ($events as $event) {
+            $context_event_data = new StdClass();
+            $context_event_data->nid = $event->nid;
+            $context_event_data->title = $event->title;
+            $context_event_data->image_uri = image_style_url('thumbnail', $event->field_images['und'][0]['uri']);
+            $events_data[] = $context_event_data;
+        }
     }
 
     // Query the content index
@@ -105,9 +129,46 @@ function artist_community_search_page() {
         }
     }
 
+    // get latest users data, format data for template
     $latest_user_filter = new SearchApiQueryFilter;
     $latest_user_filter->condition('roles', ARTIST_ROLE);
     $latest_users = artist_community_execute_query(USER_INDEX, array($latest_user_filter), array(array('created', 'DESC')));
+    $user_keys = array_keys($latest_users);
+    $latest_users_data = array();
+    foreach($user_keys as $index => $value) {
+        if ($index >= 3) { break; }
+        $user = $latest_users[$value];
+        $context_latest_user_data = new StdClass();
+        $main_profile = profile2_load_by_user($user->uid, 'main');
+        if (isset($main_profile->field_full_name['und'])) {
+            $entity = field_collection_item_load($main_profile->field_full_name['und'][0]['value']);
+            $first_name = $entity->field_first_name['und'][0]['value'];
+            $last_name = $entity->field_last_name['und'][0]['value'];
+            $full_name = "$first_name $last_name";
+        } else {
+            $full_name = $user->name;
+        }
 
-    return theme('artist_community_page', array('content' => $content, 'articles' => $articles, 'latest_users' => $latest_users));// @TODO bundle the new data into content?
+        $practice = '';
+        if (isset($main_profile->field_practice['und'])) {
+            // @TODO should this value come from practice? or somewhere else?
+            $practice_value = $main_profile->field_practice['und'][0]['value'];
+            $field_info = field_info_field('field_practice');
+            if (isset ($field_info['settings']['allowed_values'][$practice_value])) {
+                $practice = $field_info['settings']['allowed_values'][$practice_value];
+            }
+        }
+
+        $image_uri = (isset($user->picture->uri)) ? image_style_url('artist_thumbnail_small', $user->picture->uri) : 'http://mnartist.imalab.us/sites/default/files/styles/artist_thumbnail_small/public/pictures/picture-default.jpg';
+
+        $context_latest_user_data->uid = $user->uid;
+        $context_latest_user_data->username = $user->name;
+        $context_latest_user_data->full_name = $full_name;
+        $context_latest_user_data->practice = $practice;
+        $context_latest_user_data->image_uri = $image_uri;
+        $latest_users_data[] = $context_latest_user_data;
+    }
+
+
+    return theme('artist_community_page', array('content' => $content, 'articles' => $articles, 'events' => $events_data, 'latest_users' => $latest_users_data));// @TODO bundle the new data into content?
 }

@@ -1,4 +1,5 @@
 <style>
+/* article-thing */
 .article-thing {
 	clear: both;
 	height: 600px;
@@ -63,6 +64,8 @@
 	border-top: 1px solid #808080;
 	padding-top: 1em;
 }
+
+/* user-thing */
 .user-thing ul,
 .user-thing ul li {
 	list-style: none;
@@ -90,6 +93,29 @@
 .panel-panel > div,
 .user-thing ul li {
 	clear: both;
+}
+
+/* twitter-thing */
+.twitter-thing {
+	height: 200px;
+	overflow-y: auto;
+}
+
+/* event-thing */
+.event-thing {
+	background-color: white;
+}
+.event-thing-event-block {
+	margin-bottom: 1em;
+}
+.event-thing-event-block img,
+.event-thing-event-tite {
+	margin: 0;
+	padding: 0;
+}
+.event-thing-event-block img {}
+.event-thing-event-title {
+
 }
 </style>
 
@@ -121,6 +147,10 @@
     });
 }(jQuery));
 </script>
+<?php
+	// dpm($events);
+	// @TODO convert all these new things to blocks?
+?>
 <div class="panel-2col layout-a">
 	<div class="panel-panel panel-col-first main-content">
 		<?php if (!empty($articles)) { ?>
@@ -172,57 +202,41 @@
 	    <?php endforeach; ?>
 	</div>
 	<div class="panel-panel panel-col-last sidebar-right">
-		<?php if (!empty($latest_users)) {
-			$user_keys = array_keys($latest_users);
-		?>
+		<?php if (!empty($latest_users)) { ?>
 			<div class="user-thing">
 				<h3>Newest Artists</h3>
 				<ul>
-					<?php foreach($user_keys as $index => $value) {
-
-						$user = $latest_users[$value];
-						$main_profile = profile2_load_by_user($user->uid, 'main');
-						$full_name = null;
-						if (isset($main_profile->field_full_name['und'])) {
-							// @TODO also, once you've got this sorted out move all of this and all the article stuff back into .pages.inc, to make iteration simpler here
-							$entity = field_collection_item_load($main_profile->field_full_name['und'][0]['value']);
-							$first_name = $entity->field_first_name['und'][0]['value'];
-							$last_name = $entity->field_last_name['und'][0]['value'];
-							$full_name = "$first_name $last_name";
-						} else {
-							$full_name = $user->name;
-						}
-						$practice = '';
-						if (isset($main_profile->field_practice['und'])) {
-							// @TODO should this value come from practice? or somewhere else?
-							$practice_value = $main_profile->field_practice['und'][0]['value'];
-							$field_info = field_info_field('field_practice');
-							if (isset ($field_info['settings']['allowed_values'][$practice_value])) {
-								$practice = $field_info['settings']['allowed_values'][$practice_value];
-							}
-						}
-						// @TODO get default out of here
-						$image_uri = (isset($latest_users[$value]->picture->uri)) ? image_style_url('artist_thumbnail_small', $latest_users[$value]->picture->uri) : 'http://mnartist.imalab.us/sites/default/files/styles/artist_thumbnail_small/public/pictures/picture-default.jpg';
-
-						if ($index >= 3) { break; }
-						else { ?>
-							<li>
-								<img src="<?= $image_uri ?>" width="68" height="68">
+					<?php foreach($latest_users as $context_user) { ?>
+						<li>
+							<a href="/users/<?= $context_user->username ?>">
+								<img src="<?= $context_user->image_uri ?>" width="68" height="68">
 								<div class="user-thing-labels">
-									<div class="user-thing-name"><?= $full_name ?></div>
-									<div class="user-thing-practice"><?= $practice ?></div>
+									<div class="user-thing-name"><?= $context_user->full_name ?></div>
+									<div class="user-thing-practice"><?= $context_user->practice ?></div>
 								</div>
-							</li>
-						<?php }
-					} ?>
+							</a>
+						</li>
+					<?php } ?>
 				</ul>
 			</div>
 		<?php } ?>
 
-		<div class="">
+		<div class="twitter-thing">
 			<?php $block = module_invoke('mnartist_twitter', 'block_view', 'mna_twitter_create');
 				  print render($block['content']);
 			?>
+		</div>
+
+		<div class="event-thing">
+			<h3>This Week</h3>
+			<?php foreach ($events as $event) { ?>
+				<div class="event-thing-event-block">
+					<a href="/node/<?= $event->nid ?>">
+						<img src="<?= $event->image_uri ?>">
+						<div class="event-thing-event-title"><?= $event->title ?></div>
+					</a>
+				</div>
+			<?php } ?>
 		</div>
 	</div>
 </div>
