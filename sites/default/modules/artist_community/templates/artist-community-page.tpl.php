@@ -36,6 +36,9 @@
 }
 .the-list-of-articles-container ul li a {
 	text-decoration: none;
+	display: block;
+	width: 100%;
+	height: 100%;
 }
 .the-list-of-articles-container ul li.active {
 	background-color: #e5e5e5;
@@ -71,8 +74,11 @@
 .user-thing ul li img {
 	border-radius: 50%;
 }
+.user-thing ul li img,
 .user-thing-labels {
-	display: inline-block;
+	float: left;
+}
+.user-thing-labels {
 }
 .user-thing-name {
 	font-family: "adobe-text-pro", "Times New Roman", Times, serif;
@@ -81,19 +87,35 @@
 .user-thing-practice {
 	color: #adadad;
 }
+.panel-panel > div,
+.user-thing ul li {
+	clear: both;
+}
 </style>
 
 <script>
 (function($) {
     $(function () {
+    	// setup, grab the relevant elements
     	var articleThing = $('.article-thing');
     	var allTopStoryLinks = articleThing.find('.the-list-of-articles-container ul li a');
-    	allTopStoryLinks.click(function (evt) {
-    		evt.preventDefault();
-    	});
     	var articleBlocks = articleThing.find('.article-detail');
     	var startingArticle = $(articleBlocks[0]);
     	var pairedLink = articleThing.find('a[href=#' + startingArticle.attr('id') + ']').parent();
+
+    	// attach click events for the list items
+    	allTopStoryLinks.click(function (evt) {
+    		evt.preventDefault();
+    		var targetElId = evt.currentTarget.href.split('#')[1];
+    		var articleBlocks = $('.article-thing').find('.article-detail');
+    		var articleListEls = $('.article-thing').find('.the-list-of-articles-container ul li');
+    		articleListEls.removeClass('active');
+    		$(evt.currentTarget).parent().addClass('active');
+    		articleBlocks.hide();
+    		$('#' + targetElId).show();
+    	});
+
+    	// show/make active the first item
     	startingArticle.show();
     	pairedLink.addClass('active');
     });
@@ -112,11 +134,11 @@
 				?>
 					<div class="article-detail" id="article-detail-<?= $article_id ?>" style="display: none;">
 						<img src="<?= $article_image_url ?>">
-						<div class="article-detail-byline">by <?= $article->name ?></div>
+						<div class="article-detail-byline">by <?= $article->name ?><!-- @TODO switch to full name? --></div>
 						<a href="#">flag</a><!-- @TODO: favorite link block here -->
 						<div class="article-detail-excerpt"><?= $excerpt ?></div>
 						<a class="article-detail-excerpt-more" href="#">More &gt;</a>
-						<div class="article-detail-photo-credit">Video still from BodyCartography Project's &ldquo;Something for Myself&rdquo; Courtesy of Young Dance</div>
+						<div class="article-detail-photo-credit"><!-- @TODO where is this going to come from? --> Video still from BodyCartography Project's &ldquo;Something for Myself&rdquo; Courtesy of Young Dance</div>
 					</div>
 				<?php } ?>
 
@@ -204,4 +226,3 @@
 		</div>
 	</div>
 </div>
-

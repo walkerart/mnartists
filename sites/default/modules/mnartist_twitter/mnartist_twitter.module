@@ -58,7 +58,7 @@ function twitterCache($consumerKey, $consumerSecret, $count, array $screen_names
 			$cleanresults = json_decode(curl_multi_getcontent($ch[$i]));
 			foreach($cleanresults as $tweet)
 			{
-				$tweets[$tweet->id_str] = $tweet; 
+				$tweets[$tweet->id_str] = $tweet;
 			}
 			curl_multi_remove_handle($mh, $ch[$i]);
 			curl_close($ch[$i]);
@@ -67,7 +67,7 @@ function twitterCache($consumerKey, $consumerSecret, $count, array $screen_names
 		krsort($tweets);
 		cache_set('mnartist_twitter', $tweets, 'cache', REQUEST_TIME + (60*10));
 	}
-	
+
 	return $tweets;
 }
 
@@ -115,13 +115,13 @@ function _mnartist_twitter_block()
         }
     }
 	/*
-		parse url get groups. 
+		parse url get groups.
 		if unset use all
 		if set select only those groups that have been selected.
 		Setup settings page.
 		unhardcode configureable variables.
 	*/
-	$tweets = twitterCache('DPsGAeq1fGZsUTZ6x2AEA', 'IfjU03QAIqGONOpA8iBGtdAzT0BwJ9MvsewDOOVd80', 50, array('necrogami'));
+	$tweets = twitterCache('Um4IzEEJM7Tr3NJYErlJQ', 'xYz6sms8Z3Z7ik9hXjTCmweVxZa1jIjsYCohYBShAs', 50, array('necrogami'));
 	// Release the Kraken!
 	$output = "";
 	$output .= '<ul id="twitter_update_list">';
