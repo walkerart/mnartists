@@ -66,6 +66,11 @@
 }
 
 /* user-thing */
+.user-thing {
+	float: left;
+	background-color: white;
+	width: 100%;
+}
 .user-thing ul,
 .user-thing ul li {
 	list-style: none;
@@ -113,9 +118,9 @@
 	margin: 0;
 	padding: 0;
 }
-.event-thing-event-block img {}
-.event-thing-event-title {
 
+.sidebar-right > div {
+	margin-bottom: 2em;
 }
 </style>
 
