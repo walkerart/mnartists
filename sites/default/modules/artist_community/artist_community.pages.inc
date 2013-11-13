@@ -9,7 +9,8 @@ function artist_community_search_page() {
     $content        = array();
     $has_user       = FALSE;
     $output         = '';
-    $articles       = array();
+    $articles_data  = array();
+    $events_data    = array();
 
     // Handle Organic groups and taxonomies
 
@@ -86,7 +87,6 @@ function artist_community_search_page() {
             $article_filters = array_merge($article_filters, $filters);
         }
         $articles = artist_community_execute_query(NODE_INDEX, $article_filters, array(array('changed')));
-        $articles_data = array();
         foreach($articles as $index => $article) {
             $context_article_data = new StdClass();
             $author_full_name = '';
@@ -125,7 +125,6 @@ function artist_community_search_page() {
             $event_filters = array_merge($event_filters, $filters);
         }
         $events = artist_community_execute_query(NODE_INDEX, $event_filters, array());
-        $events_data = array();
         foreach ($events as $event) {
             $context_event_data = new StdClass();
             $context_event_data->nid = $event->nid;
