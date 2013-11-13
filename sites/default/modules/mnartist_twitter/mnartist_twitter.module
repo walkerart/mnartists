@@ -115,13 +115,15 @@ function _mnartist_twitter_block()
         }
     }
 	/*
+		@TODO
 		parse url get groups.
 		if unset use all
 		if set select only those groups that have been selected.
 		Setup settings page.
 		unhardcode configureable variables.
 	*/
-	$tweets = twitterCache('Um4IzEEJM7Tr3NJYErlJQ', 'xYz6sms8Z3Z7ik9hXjTCmweVxZa1jIjsYCohYBShAs', 50, array('necrogami'));
+	$twitter_users = array('ddamico', 'kjaebker', 'msg317', 'ritaelise', 'graybowman');
+	$tweets = twitterCache('Um4IzEEJM7Tr3NJYErlJQ', 'xYz6sms8Z3Z7ik9hXjTCmweVxZa1jIjsYCohYBShAs', 50, $twitter_users);
 	// Release the Kraken!
 	$output = "";
 	$output .= '<ul id="twitter_update_list">';
