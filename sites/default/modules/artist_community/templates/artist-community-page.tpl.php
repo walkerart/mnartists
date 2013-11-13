@@ -148,7 +148,6 @@
 }(jQuery));
 </script>
 <?php
-	// dpm($events);
 	// @TODO convert all these new things to blocks?
 ?>
 <div class="panel-2col layout-a">
@@ -156,31 +155,23 @@
 		<?php if (!empty($articles)) { ?>
 			<div class="article-thing">
 				<h3>Top Stories</h3>
-				<?php foreach($articles as $index => $article) {
-					$article_image_url = isset($article->field_images['und']) ? file_create_url($article->field_images['und'][0]['uri']) : null;
-					if ($article_image_url === null) { continue; }
-					$excerpt = text_summary($article->body['und'][0]['value'], null, 300);
-					$article_id = $article->nid;
-				?>
-					<div class="article-detail" id="article-detail-<?= $article_id ?>" style="display: none;">
-						<img src="<?= $article_image_url ?>">
-						<div class="article-detail-byline">by <?= $article->name ?><!-- @TODO switch to full name? --></div>
-						<a href="#">flag</a><!-- @TODO: favorite link block here -->
-						<div class="article-detail-excerpt"><?= $excerpt ?></div>
-						<a class="article-detail-excerpt-more" href="#">More &gt;</a>
-						<div class="article-detail-photo-credit"><!-- @TODO where is this going to come from? --> Video still from BodyCartography Project's &ldquo;Something for Myself&rdquo; Courtesy of Young Dance</div>
+				<?php foreach($articles as $article) { ?>
+					<div class="article-detail" id="article-detail-<?= $article->nid ?>" style="display: none;">
+						<img src="<?= $article->image_uri ?>">
+						<div class="article-detail-byline">by <?= $article->author ?></div>
+						<a href="#">flag</a>
+						<div class="article-detail-excerpt"><?= $article->excerpt ?></div>
+						<a class="article-detail-excerpt-more" href="/node/<?= $article->nid ?>">More &gt;</a>
+						<div class="article-detail-photo-credit"><?= $article->photo_credit ?></div>
 					</div>
 				<?php } ?>
 
 				<div class="the-list-of-articles-container">
 					<ul>
-						<?php foreach($articles as $index => $article) {
-							$article_category_term = taxonomy_term_load($article->field_article_category['und'][0]['tid']);
-							if (!(isset($article->field_images['und']))) { continue; }
-						?>
+						<?php foreach($articles as $article) { ?>
 							<li>
 								<a href="#article-detail-<?= $article->nid ?>">
-									<h4><?= $article_category_term->name ?></h4>
+									<h4><?= $article->category ?></h4>
 									<p><?= $article->title ?></p>
 								</a>
 							</li>
