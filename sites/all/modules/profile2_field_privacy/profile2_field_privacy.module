@@ -6,37 +6,20 @@
  */
 
 /**
-* Implements hook_menu().
-*/
-function profile2_field_privacy_menu() {
-    // Config
-    $items['admin/config/people/profile2-field-privacy'] = array(
-        'title' => 'Profile 2 Field Privacy',
-        'description' => 'Select profile types where field privacy should be enabled.',
-        'page callback' => 'drupal_get_form',
-        'page arguments' => array('profile2_field_privacy_settings'),
-        'access arguments' => array('administer private fields'),
-        'file' => 'profile2_field_privacy.admin.inc',
-    );
-    
-    return $items;
-}
-
-/**
  * Implements hook_permission().
  */
 function profile2_field_privacy_permission() {
     return array(
         'view private fields' => array(
-            'title' => t('View private fields'), 
+            'title' => t('View private fields'),
             'description' => t('Allow user to see fields set as private.'),
         ),
         'edit private fields' => array(
-            'title' => t('Override private fields'), 
+            'title' => t('Override private fields'),
             'description' => t('Allow administrative users to override privacy set on fields.'),
         ),
         'administer private fields' => array(
-            'title' => t('Administer private fields'), 
+            'title' => t('Administer private fields'),
             'description' => t('Administer private field settings.'),
         ),
     );
@@ -111,7 +94,7 @@ function _profile2_field_privacy_value($fid, $pid) {
         ->execute()
         ->fetchField();
     } else {
-        return 1;
+        return 0;
     }
 
 }
@@ -174,7 +157,7 @@ function profile2_field_privacy_submit_handler(&$form, &$form_state) {
  * @see profile2_field_privacy_field_attach_form
  */
 function profile2_field_privacy_submit($entity_type, $entity, $form, $form_state) {
-    if (isset($form_state['input']) && is_array($form_state['input'])) 
+    if (isset($form_state['input']) && is_array($form_state['input']))
     {
         if(isset($entity->type))
         {
