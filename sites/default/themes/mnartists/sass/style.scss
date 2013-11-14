@@ -1,5 +1,5 @@
 /* @import "reset"; */
-@import "base"; 
+@import "base";
 
 // UPDATE FILE 2
 
@@ -46,7 +46,7 @@ body.wysiwygeditor {
 a {
     color: $main_color;
     text-decoration: none;
-    
+
     &:hover {
         color: #a3a3a3;
     }
@@ -78,11 +78,11 @@ hr {
     border: none;
     height: 1px;
     background: $divider_bg;
-    
+
     &.spaced {
         margin-top: 10px;
     }
-    
+
     article & {
         margin: 10px -5px;
     }
@@ -93,7 +93,7 @@ hr {
     margin-left: 2px;
     border-left: 1px dotted $divider_color;
     -webkit-font-smoothing: subpixel-antialiased;
-    
+
     a {
         margin-left: 2px;
         padding: 1px 3px;
@@ -112,22 +112,22 @@ hr {
     right: 0;
     z-index: 1000;
     width: 20px;
-    
+
     &.day_0,
     &.day_4 {
         background-image: url(http://cdn.walkerartcenter.org/static/img/branding_stripe_1.png);
     }
-    
+
     &.day_1,
     &.day_5 {
         background-image: url(http://cdn.walkerartcenter.org/static/img/branding_stripe_2.png);
     }
-    
+
     &.day_2,
     &.day_6 {
         background-image: url(http://cdn.walkerartcenter.org/static/img/branding_stripe_3.png);
     }
-    
+
     &.day_3 {
         background-image: url(http://cdn.walkerartcenter.org/static/img/branding_stripe_4.png);
     }
@@ -143,12 +143,12 @@ hr {
     width: 220px;
     height: 142px;
     background: url(http://cdn.walkerartcenter.org/static/img/video_play_small.png) center center no-repeat;
-    
+
     .feature_large & {
         width: 340px;
         height: 220px;
     }
-    
+
     a:hover & {
         background-image: url(http://cdn.walkerartcenter.org/static/img/video_play_small_hover.png);
     }
@@ -170,7 +170,7 @@ hr {
     text-align: center;
     padding: 4px;
     border-bottom: 1px solid #ee7700;
-    
+
     a {
         color: #fff;
         text-decoration: underline;
@@ -190,7 +190,7 @@ hr {
     background: #ffef9c !important;
     cursor: pointer;
     overflow: hidden;
-    
+
     > form {
         background-color: transparent;
     }
@@ -213,40 +213,40 @@ hr {
     line-height: 11px;
     text-align: right;
     @include rounded;
-    
+
     &.inset {
         top: 4px;
         right: 4px;
     }
-    
+
     &.inset_vertical {
         top: 4px;
     }
-    
+
     &.inset_horizontal {
         right: 4px;
     }
-    
+
     .design & {
         @include program($design_color);
     }
-    
+
     .education & {
         @include program($education_color);
     }
-    
+
     .film & {
         @include program($film_color);
     }
-    
+
     .new_media & {
         @include program($new_media_color);
     }
-    
+
     .performing_arts & {
         @include program($performing_arts_color);
     }
-    
+
     .visual_arts & {
         @include program($visual_arts_color);
     }
@@ -258,7 +258,7 @@ hr {
 
 .design.highlighted {
     @include program_highlighted($design_color);
-    
+
     &.tile {
         @include program($design_color_dark);
 
@@ -382,23 +382,23 @@ img {
     .col_0 {
         background: $divider_bg 0 0 repeat-y;
     }
-    
+
     > .col_0 {
         background: $divider_bg 10px 0 repeat-y;
     }
-    
+
     .col_2 {
         background: $divider_bg 110px 0 repeat-y;
     }
-    
+
     > .col_2 {
         background: $divider_bg 120px 0 repeat-y;
     }
-    
+
     .col_4 {
         background: $divider_bg 230px 0 repeat-y;
     }
-    
+
     > .col_4 {
         background: $divider_bg 240px 0 repeat-y;
     }
@@ -406,7 +406,7 @@ img {
     .col_6 {
         background: $divider_bg 350px 0 repeat-y;
     }
-    
+
     > .col_6 {
         background: $divider_bg 360px 0 repeat-y;
     }
@@ -414,7 +414,7 @@ img {
     .col_8 {
         background: $divider_bg 470px 0 repeat-y;
     }
-    
+
     > .col_8 {
         background: $divider_bg 480px 0 repeat-y;
     }
@@ -422,15 +422,15 @@ img {
     .col_9 {
         background: $divider_bg 530px 0 repeat-y;
     }
-    
+
     > .col_9 {
         background: $divider_bg 540px 0 repeat-y;
     }
-    
+
     .col_10 {
         background: $divider_bg 590px 0 repeat-y;
     }
-    
+
     > .col_10 {
         background: $divider_bg 600px 0 repeat-y;
     }
@@ -438,7 +438,7 @@ img {
     .col_12 {
         background: $divider_bg 710px 0 repeat-y;
     }
-    
+
     > .col_12 {
         background: $divider_bg 720px 0 repeat-y;
     }
@@ -454,7 +454,7 @@ img {
     .col_2_4 {
         background: $divider_bg 110px 0 repeat-y, $divider_bg 350px 0 repeat-y;
     }
-    
+
     > .col_2_4 {
         background: $divider_bg 120px 0 repeat-y, $divider_bg 360px 0 repeat-y;
     }
@@ -462,7 +462,7 @@ img {
     .col_4_2 {
         background: $divider_bg 230px 0 repeat-y, $divider_bg 350px 0 repeat-y;
     }
-    
+
     > .col_4_2 {
         background: $divider_bg 240px 0 repeat-y, $divider_bg 360px 0 repeat-y;
     }
@@ -470,7 +470,7 @@ img {
     .col_4_4 {
         background: $divider_bg 230px 0 repeat-y, $divider_bg 470px 0 repeat-y;
     }
-    
+
     > .col_4_4 {
         background: $divider_bg 240px 0 repeat-y, $divider_bg 480px 0 repeat-y;
     }
@@ -478,7 +478,7 @@ img {
     .col_4_6 {
         background: $divider_bg 230px 0 repeat-y, $divider_bg 590px 0 repeat-y;
     }
-    
+
     > .col_4_6 {
         background: $divider_bg 240px 0 repeat-y, $divider_bg 600px 0 repeat-y;
     }
@@ -486,7 +486,7 @@ img {
     .col_4_8 {
         background: $divider_bg 230px 0 repeat-y, $divider_bg 710px 0 repeat-y;
     }
-    
+
     > .col_4_8 {
         background: $divider_bg 240px 0 repeat-y, $divider_bg 720px 0 repeat-y;
     }
@@ -494,7 +494,7 @@ img {
     .col_8_2 {
         background: $divider_bg 470px 0 repeat-y, $divider_bg 590px 0 repeat-y;
     }
-    
+
     > .col_8_2 {
         background: $divider_bg 480px 0 repeat-y, $divider_bg 600px 0 repeat-y;
     }
@@ -502,7 +502,7 @@ img {
     .col_2_2_2 {
         background: $divider_bg 110px 0 repeat-y, $divider_bg 230px 0 repeat-y, $divider_bg 350px 0 repeat-y;
     }
-    
+
     > .col_2_2_2 {
         background: $divider_bg 120px 0 repeat-y, $divider_bg 240px 0 repeat-y, $divider_bg 360px 0 repeat-y;
     }
@@ -510,7 +510,7 @@ img {
     .col_2_2_6 {
         background: $divider_bg 110px 0 repeat-y, $divider_bg 230px 0 repeat-y, $divider_bg 590px 0 repeat-y;
     }
-    
+
     > .col_2_2_6 {
         background: $divider_bg 120px 0 repeat-y, $divider_bg 240px 0 repeat-y, $divider_bg 600px 0 repeat-y;
     }
@@ -518,7 +518,7 @@ img {
     .col_3_3_3 {
         background: $divider_bg 170px 0 repeat-y, $divider_bg 350px 0 repeat-y, $divider_bg 530px 0 repeat-y;
     }
-    
+
     > .col_3_3_3 {
         background: $divider_bg 180px 0 repeat-y, $divider_bg 360px 0 repeat-y, $divider_bg 540px 0 repeat-y;
     }
@@ -526,7 +526,7 @@ img {
     .col_4_4_4 {
         background: $divider_bg 230px 0 repeat-y, $divider_bg 470px 0 repeat-y, $divider_bg 710px 0 repeat-y;
     }
-    
+
     > .col_4_4_4 {
         background: $divider_bg 240px 0 repeat-y, $divider_bg 480px 0 repeat-y, $divider_bg 720px 0 repeat-y;
     }
@@ -536,31 +536,31 @@ img {
     .col_3 {
         background: $divider_bg 230px 0 repeat-y;
     }
-    
+
     > .col_3 {
         background: $divider_bg 240px 0 repeat-y;
     }
-    
+
     .col_4_4 {
         background: $divider_bg 310px 0 repeat-y, $divider_bg 630px 0 repeat-y;
     }
-    
+
     > .col_4_4 {
         background: $divider_bg 320px 0 repeat-y, $divider_bg 640px 0 repeat-y;
     }
-    
+
     .col_6 {
         background: $divider_bg 470px 0 repeat-y;
     }
-    
+
     > .col_6 {
         background: $divider_bg 480px 0 repeat-y;
     }
-    
+
     .col_8 {
         background: $divider_bg 630px 0 repeat-y;
     }
-    
+
     > .col_8 {
         background: $divider_bg 640px 0 repeat-y;
     }
@@ -578,11 +578,11 @@ h1 {
     font-size: 19px;
     line-height: 24px;
     -webkit-font-smoothing: antialiased;
-    
+
     &.spaced {
         margin-top: 20px;
     }
-    
+
     em {
         font-family: $sans_bold_italic_font;
     }
@@ -592,7 +592,7 @@ h1 {
     .quiet {
         font-family: $sans_regular_font;
         font-weight: normal;
-        
+
         em {
             font-family: $sans_italic_font;
         }
@@ -603,7 +603,7 @@ h1 {
         padding-bottom: 9px;
         margin-bottom: 9px;
     }
-    
+
     &.quiet {
         font-size: 16px;
         line-height: 19px;
@@ -616,17 +616,17 @@ h1 {
 
     &.intro {
         margin-bottom: 20px;
-        
+
         a {
             padding-bottom: 3px;
             background: url(http://cdn.walkerartcenter.org/static/img/a_sprite.png) 0 -76px repeat-x;
-            
+
             &:hover {
                 background-position: 0 -176px;
             }
         }
     }
-    
+
     .breadcrumb {
         padding-right: 22px;
         background: url(http://cdn.walkerartcenter.org/static/img/content_sprite.png) right -26px no-repeat !important;
@@ -648,7 +648,7 @@ h2 {
     @include quiet_type;
     @include no_break;
     @include rounded;
-    
+
     .date,
     .count {
         position: absolute;
@@ -658,13 +658,13 @@ h2 {
         width: 200px;
         text-align: right;
     }
-    
+
     &.alternate .date,
     &.alternate .count {
         right: 3px;
         top: 3px;
     }
-        
+
     .view_all {
         position: absolute;
         display: block;
@@ -679,7 +679,7 @@ h2 {
         font-weight: normal;
         text-align: right;
     }
-    
+
     a {
         display: block;
         font-family: $sans_bold_font;
@@ -688,17 +688,17 @@ h2 {
         .view_all {
             color: #999;
         }
-        
+
         &:hover {
             color: $main_color;
-            
+
             .view_all {
                 color: $main_color;
                 background-position: right -29px;
             }
         }
     }
-    
+
     .pager_container {
         position: absolute;
         top: 0;
@@ -714,7 +714,7 @@ h2 {
             background-repeat: no-repeat;
             background-image: url(http://cdn.walkerartcenter.org/static/img/pager_inverse.png);
             background-position: 6px -1px;
-            
+
             &:hover {
                 background-position: 6px -22px;
                 background-color: transparent;
@@ -726,7 +726,7 @@ h2 {
             }
         }
     }
-    
+
     &.inverse {
         background: $inverse_bg;
         color: $inverse_color;
@@ -737,26 +737,26 @@ h2 {
             .view_all {
                 color: #999;
             }
-        
+
             &:hover .view_all {
                 color: $inverse_color;
                 background-position: right -261px;
             }
         }
-        
+
         .pager_container {
             background: url(http://cdn.walkerartcenter.org/static/img/pager_container_bg.png);
 
             a {
                 background-image: url(http://cdn.walkerartcenter.org/static/img/pager.png);
-            
+
                 &.video_pager {
                     background-image: url(http://cdn.walkerartcenter.org/static/img/pager_video.png);
                 }
             }
         }
     }
-    
+
     &.alternate {
         background: none;
         padding: 3px 4px 0;
@@ -771,7 +771,7 @@ h2 {
             }
         }
     }
-    
+
     .oldie & {
         padding-top: 4px;
         height: 15px;
@@ -785,7 +785,7 @@ h6 {
     margin: 0 5px 8px;
     font-family: $sans_bold_font;
     font-weight: bold;
-    
+
     em {
         font-family: $sans_bold_italic_font;
     }
@@ -798,7 +798,7 @@ h6 {
 .button_container {
     padding-top: 4px;
     text-align: center;
-    
+
     a {
         display: inline-block;
         padding: 0 1px 0 2px;
@@ -808,7 +808,7 @@ h6 {
         line-height: 11px;
         text-align: center;
         @include rounded;
-    
+
         &:hover {
             color: $main_color;
             border-color: $main_color;
@@ -844,7 +844,7 @@ aside {
     display: inline-block;
     float: left;
     margin-right: 5px;
-    
+
     &:hover {
         background: transparent;
     }
@@ -871,25 +871,25 @@ dl {
         float: left;
         width: 168px;
         padding-bottom: 6px;
-        
+
         &:last-child {
             padding-bottom: 0;
         }
-        
+
         &.wide {
             width: 408px;
         }
     }
-    
+
     &.wide {
-        
+
         dt {
             width: 84px;
         }
-        
+
         dd {
             width: 126px;
-            
+
             &.wide {
                 width: 366px;
             }
@@ -912,17 +912,17 @@ dl {
         padding-bottom: 0;
         border-bottom: none;
     }
-    
+
     &.last {
         padding-bottom: 0;
     }
-    
+
     .quiet,
     &.quiet {
         font-size: 10px;
         line-height: 12px;
     }
-    
+
     .align_right {
         text-align: right;
     }
@@ -937,7 +937,7 @@ dl {
         margin: 0 0 6px 13px;
         list-style: disc url(http://cdn.walkerartcenter.org/static/img/bullet.png) outside;
     }
-    
+
     .condensed li,
     &.condensed li {
         margin: 0 0 0 12px;
@@ -947,7 +947,7 @@ dl {
         -moz-hyphens: none;
         hyphens: none;
     }
-    
+
     .no-csscolumns &.col_1,
     .no-csscolumns &.col_2,
     .no-csscolumns &.col_3,
@@ -966,7 +966,7 @@ dl {
     .no-csscolumns &.col_16 {
         background: none !important;
     }
-    
+
     .text_col_2,
     .text_col_3,
     .text_col_4 {
@@ -976,28 +976,28 @@ dl {
         -webkit-column-gap: 20px;
         column-gap: 20px;
     }
-    
+
     .text_col_2 {
         -moz-column-count: 2;
         -webkit-column-count: 2;
         column-count: 2;
     }
-    
+
     .text_col_3 {
         -moz-column-count: 3;
         -webkit-column-count: 3;
         column-count: 3;
     }
-    
+
     .text_col_4 {
         -moz-column-count: 4;
         -webkit-column-count: 4;
         column-count: 4;
     }
-    
+
     li {
         position: relative;
-        
+
         .count {
             position: absolute;
             display: block;
@@ -1011,11 +1011,11 @@ dl {
     a {
         text-decoration: underline;
     }
-    
+
     img {
         vertical-align: middle;
     }
-    
+
     &.article_text {
         margin-top: 3px;
     }
@@ -1027,7 +1027,7 @@ dl {
         -webkit-hyphens: none;
         -moz-hyphens: none;
         hyphens: none;
-        
+
         a {
             font-family: $sans_bold_font;
             font-weight: bold;
@@ -1040,32 +1040,32 @@ dl {
             font-weight: bold;
         }
     }
-    
+
     table {
         width: 100%;
-        
+
         * {
             vertical-align: top;
         }
-        
+
         th,
         .important {
             font-family: $sans_bold_font;
             font-weight: bold;
-            
+
             em {
                 font-family: $sans_bold_italic_font;
             }
         }
-        
+
         tr {
             border-bottom: 1px solid #d4d4d4;
-            
+
             &.spacing_top td {
                 padding-top: 12px !important;
             }
         }
-        
+
         td, th {
             padding: 3px 4px 4px !important;
 
@@ -1073,18 +1073,18 @@ dl {
                 padding-left: 24px !important;
             }
         }
-        
+
         .figure {
             text-align: right;
         }
-        
+
         .benefit {
             width: 150px;
         }
-        
+
         .side {
             border-right: 1px dotted $divider_color;
-            
+
             &:last-child {
                 border: 0;
             }
@@ -1096,7 +1096,7 @@ dl {
     margin: 0 5px 9px;
     @include quiet_type;
     @include no_break;
-    
+
     &.centered {
         text-align: center;
     }
@@ -1114,7 +1114,7 @@ article {
 
     p {
         text-indent: 24px;
-    
+
         &:first-child {
             text-indent: 0;
         }
@@ -1124,7 +1124,7 @@ article {
         font-family: $serif_font;
         line-height: 1px;
     }
-    
+
     strong,
     strong a,
     a strong {
@@ -1133,7 +1133,7 @@ article {
         font-size: 14px;
         line-height: 1px;
     }
-    
+
     strong em,
     em strong,
     strong a em,
@@ -1155,11 +1155,11 @@ article {
         font-size: 14px;
         line-height: 1px;
         background: url(http://cdn.walkerartcenter.org/static/img/a_sprite.png) 0 -82px repeat-x;
-    
+
         &:hover {
             background-position: 0 -182px;
         }
-        
+
         &.img_link {
             display: block;
             background: none !important;
@@ -1170,11 +1170,11 @@ article {
     em a {
         font-family: $sans_italic_font;
     }
-    
+
     .image {
         float: right;
         margin: 0 -245px 8px 0;
-        
+
         .caption {
             margin: 0 5px;
             font-family: $sans_regular_font;
@@ -1185,7 +1185,7 @@ article {
 
     hgroup {
         margin: 0 0 12px 19px;
-        
+
         h1, h2, h3, h4, h5, h6 {
             color: $main_color;
 
@@ -1215,7 +1215,7 @@ article {
             text-transform: none;
             letter-spacing: 0;
             background: transparent;
-        
+
             a {
                 margin: 0 1px 0 2px;
                 font-family: $sans_regular_font;
@@ -1230,21 +1230,21 @@ article {
         margin: 12px 0;
         text-indent: 0;
         text-align: left;
-        
+
         &:first-child {
             margin-top: 0;
         }
-        
+
         h1, h2, h3, h4, h5, h6, p, li {
             margin-bottom: 8px;
             text-indent: 0;
         }
-    
+
         em {
             font-style: italic;
         }
     }
-    
+
     hr + p,
     pre + p,
     blockquote + p {
@@ -1267,50 +1267,50 @@ article {
         text-overflow: clip;
         white-space: normal;
         -webkit-font-smoothing: subpixel-antialiased !important;
-        
+
         &:first-child {
             margin-top: 2px;
         }
-        
+
         & + p {
             text-indent: 0;
         }
-        
+
         em {
             font-family: $sans_bold_italic_font;
         }
-        
+
         a {
             color: #a3a3a3;
             background: url(http://cdn.walkerartcenter.org/static/img/a_sprite.png) 0 -79px repeat-x;
             font-family: $sans_bold_font;
             font-size: 15px;
             line-height: 18px;
-            
+
             &:hover {
                 color: $main_color;
                 background: url(http://cdn.walkerartcenter.org/static/img/a_sprite.png) 0 -179px repeat-x;
             }
         }
     }
-    
+
     h1 {
         color: $main_color;
-        
+
         a {
             color: $main_color;
             background: url(http://cdn.walkerartcenter.org/static/img/a_sprite.png) 0 -79px repeat-x;
-            
+
             &:hover {
                 color: #a3a3a3;
                 background: url(http://cdn.walkerartcenter.org/static/img/a_sprite.png) 0 -179px repeat-x;
             }
         }
     }
-    
+
     ul {
         margin: 8px 0;
-        
+
         li {
             margin: 0 0 4px 24px;
             list-style: disc url(http://cdn.walkerartcenter.org/static/img/bullet.png) outside;
@@ -1320,25 +1320,25 @@ article {
             margin-top: 0;
         }
     }
-    
+
     ol {
         margin: 8px 0;
-        
+
         li {
             margin: 0 0 4px 24px;
             list-style: decimal;
         }
-        
+
         &:first-child {
             margin-top: 0;
         }
     }
-    
+
     .col_container {
         width: auto;
         margin: 0 -5px;
     }
-    
+
     pre {
         width: 426px;
         padding: 6px 10px 7px;
@@ -1350,18 +1350,18 @@ article {
         line-height: 18px;
         @include rounded;
     }
-    
+
     .aux {
         margin-top: 8px;
         color: $main_color;
-        
+
         p {
             font-family: $sans_regular_font;
             font-size: 12px;
             line-height: 16px;
             text-indent: 0 !important;
             margin-bottom: 8px;
-            
+
             a {
                 font-family: $sans_regular_font;
                 font-size: 12px;
@@ -1369,7 +1369,7 @@ article {
                 text-decoration: underline;
                 background: none;
             }
-            
+
             strong,
             strong a,
             a strong {
@@ -1378,7 +1378,7 @@ article {
                 font-size: 12px;
                 line-height: 16px;
             }
-    
+
             strong em,
             em strong,
             strong a em,
@@ -1423,12 +1423,12 @@ a.note {
     padding: 6px 10px 8px;
     text-decoration: none !important;
     @include rounded;
-    
+
     h1 {
         margin-top: 0;
         margin-bottom: 6px;
     }
-    
+
     &:hover {
         color: $inverse_color;
         background: #dc8100;
@@ -1441,21 +1441,21 @@ a.note {
 
 .thumbnail {
     margin-bottom: 10px;
-    
+
     .image_thumbnail_link {
         position: relative;
         display: block;
         outline: none !important;
-        
+
         img {
             margin-bottom: 4px;
         }
     }
-    
+
     h3 {
         margin-bottom: 8px;
     }
-    
+
     .credit {
         margin-top: 2px;
         font-size: 10px;
@@ -1479,45 +1479,45 @@ a.note {
             margin: 0 0 6px;
             padding-bottom: 7px;
             border-bottom: 1px dotted $divider_color;
-            
+
             &:last-child {
                 margin-bottom: 0;
                 padding-bottom: 0;
                 border-bottom: none;
             }
-            
+
             li {
                 margin: 0 6px;
                 list-style: none;
-                
+
                 a {
                     position: relative;
                     display: block;
                     margin: 0 -6px;
                     padding: 2px 30px 2px 5px;
-                    
+
                     &:hover {
                         background-color: $highlight;
                         color: $main_color;
                     }
                 }
-                
+
                 &.static a,
                 &.link a {
                     font-family: $sans_bold_font;
                     font-weight: bold;
                     padding-right: 5px;
-                    
+
                     em {
                         font-family: $sans_bold_italic_font;
                     }
                 }
-                
+
                 &.active > a {
                     cursor: default;
                     background-color: $highlight;
                 }
-                
+
                 .count {
                     position: absolute;
                     display: block;
@@ -1528,12 +1528,12 @@ a.note {
                     text-align: right;
                 }
             }
-            
+
             ul {
                 margin: 4px 0 4px 8px !important;
                 border-left: 1px dotted $divider_color;
             }
-            
+
             ul li {
                 margin: 0 0 0 10px;
             }
@@ -1547,18 +1547,18 @@ a.note {
 
 .feature {
     position: relative;
-    
+
     .placeholder * {
         color: #999;
     }
-    
+
     .feature_link {
         display: block;
-        
+
         &.placeholder * {
             color: #999;
         }
-        
+
         h1 {
             width: 200px;
             margin: 0 auto 10px;
@@ -1585,41 +1585,41 @@ a.note {
             @include no_break;
         }
     }
-    
+
     p {
         margin-bottom: 0;
         font-size: 13px;
         font-family: $serif_font;
         text-indent: 12px;
-        
+
         &:first-child {
             text-indent: 0;
         }
-    
+
         em,
         cite {
             font-family: $serif_font;
         }
-        
+
         a {
             font-family: $sans_regular_font;
             font-size: 12px;
         }
-        
+
         strong,
         strong a,
         a strong {
             font-family: $sans_bold_font;
             font-size: 12px;
         }
-        
+
         strong em,
         em strong,
         strong cite,
         cite strong {
             font-family: $sans_bold_italic_font;
         }
-        
+
         em a,
         a em,
         cite a,
@@ -1697,13 +1697,13 @@ a.note {
         padding: 0 2px;
         margin: 0 -2px;
     }
-    
+
     .show_more,
     .hide_more {
         margin: -9px 0 10px;
         padding: 4px 5px 0;
     }
-    
+
     .instance .alert {
         color: #e30000;
     }
@@ -1727,7 +1727,7 @@ a.note {
 
 .show_more {
     background: url(http://cdn.walkerartcenter.org/static/img/content_sprite.png) right -58px no-repeat;
-    
+
     &:hover {
         background: $highlight url(http://cdn.walkerartcenter.org/static/img/content_sprite.png) right -58px no-repeat !important;
         color: $main_color;
@@ -1737,7 +1737,7 @@ a.note {
 .hide_more {
     display: none;
     background: url(http://cdn.walkerartcenter.org/static/img/content_sprite.png) right -87px no-repeat;
-    
+
     &:hover {
         background: $highlight url(http://cdn.walkerartcenter.org/static/img/content_sprite.png) right -87px no-repeat !important;
         color: $main_color;
@@ -1754,10 +1754,10 @@ a.note {
 
 form {
     position: relative;
-    
+
     > div {
         margin-bottom: 6px;
-        
+
         &:last-child {
             margin-bottom: 0;
         }
@@ -1781,7 +1781,7 @@ form {
     select[multiple] {
 	    width:100%;
     }
-    
+
     textarea {
         height: 64px;
     }
@@ -1804,7 +1804,7 @@ form {
 		border:none;
 		box-shadow:none;
 	}
-    
+
     .grid_4 & input[type=text],
     .grid_4 & input[type=password],
     .grid_4 & textarea {
@@ -1862,7 +1862,7 @@ form {
         @include rounded;
         cursor: pointer;
         margin-left:10px;
-        
+
         &:hover {
             background: $main_color;
             color: $inverse_color;
@@ -1894,20 +1894,20 @@ form {
         height: 19px;
         z-index: 950;
         @include rounded;
-        
+
         &.previous {
             left: 0;
             background: #d4d4d4 url(http://cdn.walkerartcenter.org/static/img/content_sprite.png) 0 0 no-repeat;
-            
+
             &:active {
                 background-position: -2px 0;
             }
         }
-        
+
         &.next {
             right: 0;
             background: #d4d4d4 url(http://cdn.walkerartcenter.org/static/img/content_sprite.png) 0 -29px no-repeat;
-        
+
             &:active {
                 background-position: 2px -29px;
             }
@@ -1964,7 +1964,7 @@ form {
     height: 18px;
     padding: 0 5px 0 26px;
     background: url(http://cdn.walkerartcenter.org/static/img/ical.png) 2px top no-repeat;
-    
+
     h2 & {
         position: absolute;
         top: 3px;
@@ -1974,7 +1974,7 @@ form {
         font-family: $sans_regular_font;
         font-weight: normal;
     }
-    
+
     h2.inverse & {
         display: none;
     }
@@ -1987,7 +1987,7 @@ form {
 .graphic_rotator {
     overflow: hidden;
     margin-bottom: 10px;
-    
+
     .graphic_pager > div {
         height: 99px;
         overflow: hidden;
@@ -2002,12 +2002,12 @@ form {
 .results_container {
     > div {
         position: relative;
-        
+
         a.contents {
             display: block;
             overflow: hidden;
             padding-bottom: 30px;
-            
+
             .thumb {
                 position: relative;
                 margin-left: -2px;
@@ -2054,7 +2054,7 @@ form {
                     z-index: 502;
                 }
             }
-            
+
             h1, h3 {
                 margin: 0 0 6px;
                 padding: 0 5px;
@@ -2063,30 +2063,30 @@ form {
                 font-size: 16px;
                 line-height: 17px;
                 -webkit-font-smoothing: subpixel-antialiased;
-                
+
                 em {
                     font-family: $sans_italic_font;
                 }
             }
-        
+
             h1 span {
                 background: url(http://cdn.walkerartcenter.org/static/img/a_sprite.png) 0 -81px repeat-x;
                 padding-bottom: 1px;
             }
-            
+
             &:hover h1 span {
                 background: url(http://cdn.walkerartcenter.org/static/img/a_sprite.png) 0 -181px repeat-x;
             }
-        
+
             h3, h4, .date {
                 color: #a3a3a3;
             }
-            
+
             h4 {
                 margin-top: 3px;
                 @include quiet_type;
             }
-            
+
             .date_container {
                 position: relative;
                 width: auto;
@@ -2126,7 +2126,7 @@ form {
                     border-top: 1px dotted #a3a3a3;
                 }
             }
-        
+
             .text {
                 margin-top: 2px;
                 padding: 0 5px;
@@ -2137,7 +2137,7 @@ form {
             h1, h2, h3, h4, .date_container {
                 @include program_coloring($design_color, transparent);
             }
-            
+
             h1 span {
                 background: url(http://cdn.walkerartcenter.org/static/img/a_sprite.png) 0 -381px repeat-x;
             }
@@ -2147,7 +2147,7 @@ form {
             h1, h2, h3, h4, .date_container {
                 @include program_coloring($education_color, transparent);
             }
-            
+
             h1 span {
                 background: url(http://cdn.walkerartcenter.org/static/img/a_sprite.png) 0 -481px repeat-x;
             }
@@ -2157,7 +2157,7 @@ form {
             h1, h2, h3, h4, .date_container {
                 @include program_coloring($film_color, transparent);
             }
-            
+
             h1 span {
                 background: url(http://cdn.walkerartcenter.org/static/img/a_sprite.png) 0 -581px repeat-x;
             }
@@ -2167,7 +2167,7 @@ form {
             h1, h2, h3, h4, .date_container {
                 @include program_coloring($new_media_color, transparent);
             }
-            
+
             h1 span {
                 background: url(http://cdn.walkerartcenter.org/static/img/a_sprite.png) 0 -681px repeat-x;
             }
@@ -2177,7 +2177,7 @@ form {
             h1, h2, h3, h4, .date_container {
                 @include program_coloring($performing_arts_color, transparent);
             }
-            
+
             h1 span {
                 background: url(http://cdn.walkerartcenter.org/static/img/a_sprite.png) 0 -781px repeat-x;
             }
@@ -2187,12 +2187,12 @@ form {
             h1, h2, h3, h4, .date_container {
                 @include program_coloring($visual_arts_color, transparent);
             }
-            
+
             h1 span {
                 background: url(http://cdn.walkerartcenter.org/static/img/a_sprite.png) 0 -881px repeat-x;
             }
         }
-        
+
         a.contents:hover .text {
             color: $main_color;
         }
@@ -2229,7 +2229,7 @@ form {
     &:last-child {
         margin-bottom: 0;
     }
-    
+
     h2 {
         background: $inverse_bg;
         color: $inverse_color;
@@ -2238,11 +2238,11 @@ form {
     .tile_group_container {
         display: none;
     }
-    
+
     .tile_group {
         overflow: hidden;
     }
-    
+
     .tile {
         position: relative;
 
@@ -2318,32 +2318,32 @@ form {
                 letter-spacing: -5px;
                 -webkit-font-smoothing: antialiased;
             }
-        
+
             h3,
             .date {
                 @include quiet_type;
                 text-align: center;
             }
-            
+
             hgroup {
                 margin: 0 4px;
                 max-height: 81px;
                 overflow: hidden;
-                
+
                 &.overflowed {
                     border-bottom: 1px dotted #333;
                 }
-            
+
                 h3 {
                     margin: 8px 0 3px 1px;
                 }
-            
+
                 h1 {
                     margin: 0 11px;
                     padding-bottom: 1px; /* fixes cut-off descender */
                     @include feature_type;
                     -webkit-font-smoothing: subpixel-antialiased;
-                    
+
                     em {
                         font-family: $serif_font;
                     }
@@ -2357,17 +2357,17 @@ form {
                 background: #d4d4d4;
                 @include no_break;
             }
-            
+
             .start_date {
                 left: 7px;
                 padding-right: 2px;
             }
-            
+
             .end_date {
                 right: 6px;
                 padding-left: 3px;
             }
-            
+
             .date_connector {
                 position: absolute;
                 bottom: 11px;
@@ -2377,37 +2377,37 @@ form {
                 border-top: 1px dotted #333;
             }
         }
-        
+
         a.contents:hover,
         a.contents:hover .date {
             background: #e4e0af;
             color: $main_color;
         }
-        
+
         &.design a.contents:hover {
             @include program_tiles($design_color_dark, $design_bg);
         }
-        
+
         &.education a.contents:hover {
             @include program_tiles($education_color_dark, $education_bg);
         }
-        
+
         &.film a.contents:hover {
             @include program_tiles($film_color_dark, $film_bg);
         }
-        
+
         &.new_media a.contents:hover {
             @include program_tiles($new_media_color_dark, $new_media_bg);
         }
-        
+
         &.performing_arts a.contents:hover {
             @include program_tiles($performing_arts_color_dark, $performing_arts_bg);
         }
-    
+
         &.visual_arts a.contents:hover {
             @include program_tiles($visual_arts_color_dark, $visual_arts_bg);
         }
-        
+
         &.design .program {
             @include program($design_color_dark);
         }
@@ -2431,7 +2431,7 @@ form {
         &.visual_arts .program {
             @include program($visual_arts_color_dark);
         }
-        
+
     }
 
     .social_meta {
@@ -2455,7 +2455,7 @@ form {
             }
         }
     }
-    
+
     .has_meta .social_meta {
         visibility: visible;
     }
@@ -2487,11 +2487,11 @@ form {
                 width: 32px;
                 padding-top: 4px;
                 text-align: center;
-                
+
                 span {
                     color: #a3a3a3;
                 }
-                
+
                 .oldie & {
                     padding-top: 5px;
                 }
@@ -2500,11 +2500,11 @@ form {
             &.previous {
                 left: -34px;
                 background: #222 url(http://cdn.walkerartcenter.org/static/img/content_sprite.png) right -232px no-repeat;
-                
+
                 &.previous .count {
                     text-align: right;
                 }
-                
+
                 &:active {
                     background-position: 32px -232px;
                 }
@@ -2513,12 +2513,12 @@ form {
             &.next {
                 right: -34px;
                 background: #222 url(http://cdn.walkerartcenter.org/static/img/content_sprite.png) 0 -261px no-repeat;
-                
+
                 .count {
                     text-align: left;
                     float: right;
                 }
-                
+
                 &:active {
                     background-position: 2px -261px;
                 }
@@ -2529,7 +2529,7 @@ form {
 
 .tile_wall_container .tile_group {
     margin-bottom: 10px;
-    
+
     &:last-child {
         margin-bottom: 0;
     }
@@ -2546,11 +2546,11 @@ form {
     border-top: 1px dotted $divider_color;
     overflow: hidden;
     text-align: center;
-    
+
     li {
         display: inline;
         margin: 0 2px;
-        
+
         &.number {
             span,
             a {
@@ -2565,7 +2565,7 @@ form {
                 -moz-border-radius: 22px;
                 border-radius: 22px;
             }
-            
+
             a:hover {
                 width: 20px;
                 height: 19px;
@@ -2575,7 +2575,7 @@ form {
                 color: $main_color;
             }
         }
-        
+
         &.active {
             span,
             a {
@@ -2585,11 +2585,11 @@ form {
                 -webkit-font-smoothing: antialiased;
             }
         }
-        
+
         &.forth {
             font-family: $sans_bold_font;
             font-weight: bold;
-            
+
             a {
                 padding-left: 5px;
                 padding-right: 5px;
@@ -2608,12 +2608,12 @@ form {
 .vertical_list {
     margin: -9px 0 0;
     overflow: hidden;
-    
+
     li {
         position: relative;
         margin: 0;
         list-style: none;
-        
+
         .program {
             top: 9px;
             background: $main_bg;
@@ -2626,31 +2626,31 @@ form {
             border-bottom: 1px dotted $divider_color;
             padding: 10px 5px 9px !important;
         }
-        
+
         a.contents:hover * {
             color: #a3a3a3;
         }
-        
+
         &.design a.contents:hover {
             @include program_coloring($design_color, #f9f9f9);
         }
-        
+
         &.education a.contents:hover {
             @include program_coloring($education_color, #f9f9f9);
         }
-        
+
         &.film a.contents:hover {
             @include program_coloring($film_color, #f9f9f9);
         }
-        
+
         &.new_media a.contents:hover {
             @include program_coloring($new_media_color, #f9f9f9);
         }
-        
+
         &.performing_arts a.contents:hover {
             @include program_coloring($performing_arts_color, #f9f9f9);
         }
-    
+
         &.visual_arts a.contents:hover {
             @include program_coloring($visual_arts_color, #f9f9f9);
         }
@@ -2673,17 +2673,17 @@ form {
         hgroup {
             float: left;
             width: 168px;
-            
+
             .grid_8 > & {
                 width: 220px;
             }
-            
+
             h3 {
                 color: #a3a3a3;
                 margin: 0 0 2px;
                 @include quiet_type;
             }
-            
+
             h1 {
                 margin: 0;
                 padding: 0;
@@ -2691,13 +2691,13 @@ form {
                 font-size: 12px;
                 line-height: 16px;
                 -webkit-font-smoothing: subpixel-antialiased;
-                
+
                 em {
                     font-family: $sans_bold_italic_font;
                 }
             }
         }
-        
+
         .date_container {
             position: relative;
             float: right;
@@ -2705,13 +2705,13 @@ form {
             height: 15px;
             margin: 0 0 1px;
             overflow: hidden;
-            
+
             .grid_8 > & {
                 height: 12px;
             }
         }
     }
-    
+
     .show_more,
     .hide_more {
         margin: 0 0 10px !important;
@@ -2721,12 +2721,12 @@ form {
 .vertical_list {
     hgroup {
         width: 210px !important;
-    
+
         .grid_8 > & {
             width: 262px !important;
         }
     }
-    
+
     .date_container {
         width: 210px !important;
     }
@@ -2738,7 +2738,7 @@ form {
 
 .link_list {
     overflow: hidden;
-    
+
     li {
         position: relative;
         margin: 0;
@@ -2749,7 +2749,7 @@ form {
             clear: both;
             overflow: hidden;
             padding: 0 5px 9px;
-            
+
             .title {
                 font-family: $sans_bold_font;
                 font-weight: bold;
@@ -2759,7 +2759,7 @@ form {
                 }
             }
         }
-        
+
         &:last-child a {
             border-bottom: none;
         }
@@ -2779,15 +2779,15 @@ form {
 
 .program_accordion {
     display: none;
-    
+
     h2 {
         margin: 3px 0 0;
         outline: 0 !important;
-        
+
         a:hover {
             color: $main_color;
         }
-        
+
         .view_all {
             position: absolute;
             display: none;
@@ -2802,7 +2802,7 @@ form {
             font-weight: normal;
             text-align: right;
         }
-        
+
         &.ui-state-active {
             background: $inverse_bg;
             color: $inverse_color;
@@ -2819,7 +2819,7 @@ form {
                 &.active,
                 &:hover {
                     color: $inverse_color !important;
-                    
+
                     .view_all {
                         color: $inverse_color !important;
                         background-position: right -261px;
@@ -2828,7 +2828,7 @@ form {
             }
         }
     }
-    
+
     .feature {
         .program {
             top: 15px;
@@ -2836,13 +2836,13 @@ form {
             color: $inverse_color !important;
             border-color: $inverse_color !important;
         }
-        
+
         a {
             .thumbnail {
                 position: relative;
                 width: 220px;
                 height: 147px;
-        
+
                 .overlay {
                     display: block;
                     position: absolute;
@@ -2853,16 +2853,16 @@ form {
                     right: 10px;
                     background: rgba(34, 34, 34, 0.65);
                     @include rounded;
-                    
+
                     .hgroup_outer_container {
                         display: table;
                         width: 100%;
                         height: 100%;
-                        
+
                         .hgroup_inner_container {
                             display: table-cell;
                             vertical-align: middle;
-                            
+
                             hgroup {
                                 h3 {
                                     margin-top: 0;
@@ -2877,7 +2877,7 @@ form {
                             }
                         }
                     }
-                    
+
                     .date {
                         position: absolute;
                         bottom: 6px;
@@ -2909,50 +2909,50 @@ form {
                 }
             }
         }
-        
+
         &.design .overlay {
             background: transparentize($design_color_dark, 0.25) !important;
-            
+
             .no-rgba & {
                 background: $design_color_dark !important;
             }
         }
-        
+
         &.education .overlay {
             background: transparentize($education_color_dark, 0.25) !important;
-            
+
             .no-rgba & {
                 background: $education_color_dark !important;
             }
         }
-        
+
         &.film .overlay {
             background: transparentize($film_color_dark, 0.25) !important;
-            
+
             .no-rgba & {
                 background: $film_color_dark !important;
             }
         }
-        
+
         &.new_media .overlay {
             background: transparentize($new_media_color_dark, 0.25) !important;
-            
+
             .no-rgba & {
                 background: $new_media_color_dark !important;
             }
         }
-        
+
         &.performing_arts .overlay {
             background: transparentize($performing_arts_color_dark, 0.25) !important;
-            
+
             .no-rgba & {
                 background: $performing_arts_color_dark !important;
             }
         }
-        
+
         &.visual_arts .overlay {
             background: transparentize($visual_arts_color_dark, 0.25) !important;
-            
+
             .no-rgba & {
                 background: $visual_arts_color_dark !important;
             }
@@ -2980,21 +2980,21 @@ form {
             color: #888;
             outline: 0;
             word-spacing: -1px;
-        
+
             &.active {
                 background: url(http://cdn.walkerartcenter.org/static/img/content_sprite.png) center -352px no-repeat;
                 color: $main_color;
                 cursor: default;
-                
+
                 .inverse & {
                     color: $inverse_color;
                 }
             }
-        
+
             &:hover {
                 background-color: transparent !important;
                 color: $main_color;
-                
+
                 .inverse & {
                     color: $inverse_color;
                 }
@@ -3028,7 +3028,7 @@ form {
     -moz-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.36);
     box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.36);
     @include rounded;
-    
+
     h2 {
         margin-top: 0;
         background: $inverse_bg;
@@ -3059,7 +3059,7 @@ form {
     color: $inverse_color;
     @include quiet_type;
     @include rounded;
-        
+
     .tip {
         position: absolute;
         top: -5px;
@@ -3078,7 +3078,7 @@ form {
     display: block;
     float: left;
     margin: 0 5px 0 4px;
-    
+
     a:hover {
         opacity: 0.36;
     }
@@ -3093,30 +3093,30 @@ form {
     margin: 10px 0 0;
     overflow: hidden;
     clear: both;
-    
+
     li {
         margin: 0;
         list-style: none;
-        
+
         a {
             position: relative;
             height: 60px;
-            
+
             &:hover .title span {
                 color: #a3a3a3;
                 background: url(http://cdn.walkerartcenter.org/static/img/a_sprite.png) 0 -181px repeat-x;
             }
-            
+
             .count {
                 margin: 3px 6px 0;
                 @include quiet_type;
             }
-            
+
             .title {
                 margin: 0 5px;
                 font-size: 16px;
                 line-height: 17px;
-                
+
                 span {
                     background: url(http://cdn.walkerartcenter.org/static/img/a_sprite.png) 0 -81px repeat-x;
                 }
@@ -3132,7 +3132,7 @@ form {
 .media {
     padding: 0 5px;
     position: relative;
-    
+
     h2 {
         margin: 0 -5px 10px;
         background: $inverse_bg;
@@ -3148,11 +3148,11 @@ form {
         width: 690px;
         height: 345px;
         text-align: center;
-        
+
         a {
             position: relative;
             display: block;
-            
+
             .video_overlay {
                 display: block;
                 position: absolute;
@@ -3162,15 +3162,15 @@ form {
                 height: 100%;
                 background: url(http://cdn.walkerartcenter.org/static/img/video_play_large.png) center center no-repeat;
             }
-            
+
             &:hover {
                 background: none;
-                
+
                 .video_overlay {
                     background-image: url(http://cdn.walkerartcenter.org/static/img/video_play_large_hover.png);
                 }
             }
-            
+
             &:focus {
                 outline: 0;
             }
@@ -3197,45 +3197,45 @@ form {
             line-height: 12px;
             overflow: hidden;
             @include rounded;
-            
+
             .count {
                 display: block;
                 width: 32px;
                 padding-top: 4px;
                 color: $main_color;
                 text-align: center;
-                
+
                 .oldie & {
                     padding-top: 5px;
                 }
-                
+
                 span {
                     color: #a3a3a3;
                 }
             }
-            
+
             &.previous {
                 left: -34px;
                 background: #d4d4d4 url(http://cdn.walkerartcenter.org/static/img/content_sprite.png) right 0 no-repeat;
-                
+
                 .count {
                     text-align: right;
                 }
-                
+
                 &:active {
                     background-position: 32px 0;
                 }
             }
-            
+
             &.next {
                 right: -34px;
                 background: #d4d4d4 url(http://cdn.walkerartcenter.org/static/img/content_sprite.png) 0 -29px no-repeat;
-            
+
                 .count {
                     text-align: left;
                     float: right;
                 }
-            
+
                 &:active {
                     background-position: 2px -29px;
                 }
@@ -3260,7 +3260,7 @@ form {
         font-size: 29px;
         line-height: 25px;
         -webkit-font-smoothing: subpixel-antialiased;
-        
+
         .line {
             display: inline-block;
             float: left;
@@ -3283,28 +3283,28 @@ form {
     position: relative;
     padding-bottom: 4px;
     overflow: hidden;
-    
+
     .homepage & .highlights_container {
         background: url(http://cdn.walkerartcenter.org/static/img/loading_spinner.gif) center 210px no-repeat;
     }
-    
+
     .highlights {
         display: none;
-        
+
         h1 {
             @include no_break;
             text-align: center;
-            
+
             em {
                 font-family: $sans_bold_italic_font;
                 font-style: italic;
             }
         }
-    
+
         .highlight {
             position: relative;
             width: 460px;
-            
+
             .date_container {
                 position: relative;
                 width: auto;
@@ -3348,7 +3348,7 @@ form {
             .divider {
                 margin: 0 5px;
             }
-            
+
             &.design a:hover {
                 @include program_coloring($design_color, #f9f9f9);
             }
@@ -3374,23 +3374,23 @@ form {
             }
         }
     }
-    
+
     .grid_4 {
         float: right;
     }
-    
+
     .showcase_pager {
         h1 {
             margin: 0 auto 2px;
             padding: 0;
             @include feature_type;
             -webkit-font-smoothing: subpixel-antialiased;
-            
+
             em {
                 font-family: $serif_font;
             }
         }
-        
+
         h3 {
             margin: 2px 0 3px 1px;
             padding: 0;
@@ -3398,14 +3398,14 @@ form {
             text-align: center;
             @include no_break;
         }
-        
+
         li {
             border-bottom: 1px dotted $divider_color;
-            
+
             &:last-child {
                 border-bottom: none;
             }
-            
+
             a {
                 display: block;
                 margin: -1px 0 -1px -10px;
@@ -3414,36 +3414,36 @@ form {
                 @include feature_type;
                 text-shadow: 0 1px 0 rgba(255, 255, 255, 0.1);
             }
-            
+
             a:hover {
                 background: url(http://cdn.walkerartcenter.org/static/img/showcase_pager_sprite.png) 5px center no-repeat;
             }
-            
+
             &.design a:hover {
                 color: $design_color_dark !important;
                 background-position: -230px center;
             }
-            
+
             &.education a:hover {
                 color: $education_color_dark !important;
                 background-position: -465px center;
             }
-            
+
             &.film a:hover {
                 color: $film_color_dark !important;
                 background-position: -700px center;
             }
-            
+
             &.new_media a:hover {
                 color: $new_media_color_dark !important;
                 background-position: -935px center;
             }
-            
+
             &.performing_arts a:hover {
                 color: $performing_arts_color_dark !important;
                 background-position: -1170px center;
             }
-            
+
             &.visual_arts a:hover {
                 color: $visual_arts_color_dark !important;
                 background-position: -1405px center;
@@ -3455,24 +3455,24 @@ form {
             background: url(http://cdn.walkerartcenter.org/static/img/showcase_pager_sprite.png) 5px center no-repeat;
         }
     }
-    
+
     .homepage & {
         padding-bottom: 0;
-        
+
         .showcase_pager {
             border-top: 1px dotted $divider_color;
         }
-        
+
         .highlight .info {
             text-align: left;
             font-family: $serif_font;
             font-size: 15px;
             line-height: 20px;
-            
+
             em {
                 font-family: $serif_font;
             }
-            
+
             > p a {
                 padding-bottom: 1px;
                 font-family: $sans_regular_font;
@@ -3491,7 +3491,7 @@ form {
                     background: none !important;
                 }
             }
-            
+
             > p .more a {
                 padding-bottom: 0;
                 @include quiet_type;
@@ -3502,7 +3502,7 @@ form {
             em a {
                 font-family: $sans_italic_font;
             }
-            
+
             .context {
                 margin-top: 10px;
                 padding-top: 8px;
@@ -3549,22 +3549,22 @@ form {
     margin-bottom: 20px;
     border-bottom: 1px dotted $divider_color;
     background: url(http://cdn.walkerartcenter.org/static/img/loading.gif) center center no-repeat;
-    
+
     .slides {
         display: none;
         width: 940px;
         padding-bottom: 15px;
         text-align: center;
-        
+
         h3 {
             margin-bottom: 2px;
         }
-        
+
         article {
             text-align: left;
         }
     }
-    
+
     .media_status {
         position: absolute;
         top: 0;
@@ -3574,7 +3574,7 @@ form {
         background: $secondary_bg;
         overflow: hidden;
         @include rounded;
-    
+
         .pager_container {
             margin: 0 auto;
             padding-right: 7px;
@@ -3589,7 +3589,7 @@ form {
                 background-repeat: no-repeat;
                 background-image: url(http://cdn.walkerartcenter.org/static/img/pager_inverse.png);
                 background-position: 6px -1px;
-                
+
                 &:hover {
                     background-position: 6px -22px;
                     background-color: transparent;
@@ -3602,11 +3602,11 @@ form {
             }
         }
     }
-    
+
     .numbered_arrows a {
         display: block !important;
     }
-    
+
     .media_arrows a {
         position: absolute;
         display: block;
@@ -3618,45 +3618,45 @@ form {
         line-height: 12px;
         overflow: hidden;
         @include rounded;
-            
+
         .count {
             display: block;
             width: 32px;
             padding-top: 4px;
             color: $main_color;
             text-align: center;
-                
+
             .oldie & {
                 padding-top: 5px;
             }
-                
+
             span {
                 color: #a3a3a3;
             }
         }
-            
+
         &.previous {
             left: -34px;
             background: #d4d4d4 url(http://cdn.walkerartcenter.org/static/img/content_sprite.png) right 0 no-repeat;
-                
+
             .count {
                 text-align: right;
             }
-                
+
             &:active {
                 background-position: 32px 0;
             }
         }
-            
+
         &.next {
             right: -34px;
             background: #d4d4d4 url(http://cdn.walkerartcenter.org/static/img/content_sprite.png) 0 -29px no-repeat;
-            
+
             .count {
                 text-align: left;
                 float: right;
             }
-            
+
             &:active {
                 background-position: 2px -29px;
             }
@@ -3672,30 +3672,30 @@ form {
     clear: both;
     margin: 16px 20px 24px;
     text-align: center;
-    
+
     li {
         position: relative;
         display: inline;
         padding: 0;
         margin-right: 10px;
-        
+
         a {
             font-size: 23px;
             line-height: 29px;
             letter-spacing: 2px;
             text-transform: uppercase;
             -webkit-font-smoothing: antialiased;
-            
+
             img {
                 margin: 0 0 -2px 7px;
                 vertical-align: baseline;
             }
-        
+
             &:hover {
                 background: transparent;
             }
         }
-        
+
         &.design a:hover {
             @include program_coloring($design_color, #f9f9f9);
         }
@@ -3727,8 +3727,8 @@ form {
 /* @group Twitter */
 
 .twitter {
-    
-    
+
+
     .tweet {
         border: 4px solid #d4d4d4;
         border-bottom: none;
@@ -3736,9 +3736,9 @@ form {
         font-family: $sans_bold_font;
         font-weight: bold;
         @include rounded;
-        
+
     }
-    
+
     a {
         text-decoration: none;
     }
@@ -3747,13 +3747,13 @@ form {
         margin: 0;
         list-style: none;
     }
-    
+
     .info {
         margin-top: -1px;
         min-height: 13px;
         padding: 9px 0 0 47px;
         background: url(http://cdn.walkerartcenter.org/static/img/twitter_bg.png) no-repeat;
-        
+
         .label a {
             padding-left: 1px;
             color: #a3a3a3;
@@ -3795,13 +3795,13 @@ $admin_light_green: #d5f2cd;
             background-color: $admin_light_green;
         }
     }
-    
+
     input[type="submit"] {
         height: auto;
         border: none;
         background-color: #6a9a6c;
         color: #ade6af;
-        
+
         &:hover {
             background-color: #6a9a6c;
         }
@@ -3829,7 +3829,7 @@ $admin_light_green: #d5f2cd;
     text-transform: uppercase !important;
     letter-spacing: 1px !important;
     @include rounded;
-    
+
     &:hover {
         background-color: #6a9a6c !important;
         color: #ade6af !important;
@@ -3844,7 +3844,7 @@ $admin_light_green: #d5f2cd;
     width: 960px;
     margin: 30px auto;
     text-align: center;
-    
+
     > img,
     > div {
         margin: 0 auto;
@@ -3857,7 +3857,7 @@ $admin_light_green: #d5f2cd;
         line-height: 20px;
         font-weight: bold;
         -webkit-font-smoothing: subpixel-antialiased;
-        
+
         em {
             font-family: $serif_font;
         }
@@ -3875,11 +3875,11 @@ $admin_light_green: #d5f2cd;
         margin-bottom: 10px;
         overflow: hidden;
     }
-    
+
     .promos {
         line-height: 0 !important;
     }
-    
+
     .accordion_showcase_container,
     .channel_container,
     .shop_container,
@@ -3889,81 +3889,81 @@ $admin_light_green: #d5f2cd;
     .series_container {
         position: relative;
         overflow: hidden;
-        
+
         .feature {
             width: 220px;
         }
-        
+
         .accordion_showcase,
         .garden {
             height: 147px;
         }
-        
+
         .channel,
         .archives,
         .artspeaks {
             min-height: 348px;
         }
-        
+
         .shop {
             min-height: 203px;
         }
-        
+
         .arrows a {
             top: 63px;
         }
-        
+
         &:hover .arrows {
             display: block;
         }
     }
-    
+
     .shop_container {
         .arrows a {
             top: 50px;
         }
     }
-    
+
     .artspeaks_container,
     .channel_container {
         margin-top: 19px;
-        
+
         .arrows a {
             top: 101px;
         }
     }
-    
+
     .mnartists {
         margin-top: 9px;
         overflow: hidden;
     }
-    
+
     .series_container {
         .arrows a {
             top: 90px;
         }
     }
-    
+
     .archives_container {
         .arrows a {
             top: 101px;
         }
     }
-    
+
     .quoted a:hover img {
         opacity: 0.36;
     }
-    
+
     .article_list {
         margin: -4px 0 6px;
-        
+
         li {
             border-top: 1px dotted $divider_color;
-            
+
             &:first-child {
                 border-top: none;
             }
-            
+
             a {
                 display: block;
                 padding: 4px 3px 7px 5px;
@@ -4031,17 +4031,17 @@ $admin_light_green: #d5f2cd;
     @include quiet_type;
     @include rounded;
     outline: none;
-    
+
     .oldie & {
         padding-top: 5px;
         height: 15px;
     }
-    
+
     &:hover {
         background: $secondary_highlight url(http://cdn.walkerartcenter.org/static/img/content_sprite.png) right -58px no-repeat;
         cursor: pointer;
     }
-    
+
     &:focus {
         background: $highlight url(http://cdn.walkerartcenter.org/static/img/content_sprite.png) right -58px no-repeat;
         cursor: text;
@@ -4055,28 +4055,28 @@ $admin_light_green: #d5f2cd;
     background-color: $inverse_bg;
     color: #a3a3a3;
     -webkit-font-smoothing: antialiased;
-    
+
     .inverted & {
         padding-top: 0;
         background-color: transparent;
         color: $main_color;
         -webkit-font-smoothing: subpixel-antialiased;
     }
-    
+
     a {
         color: #f9f9f9;
-        
+
         .inverted & {
             color: $main_color;
         }
     }
-    
+
     .ui-datepicker-header {
         position: relative;
         padding-bottom: 3px;
         margin-bottom: 3px;
         border-bottom: 1px solid #666;
-        
+
         .inverted & {
             position: relative;
             clear: both;
@@ -4090,7 +4090,7 @@ $admin_light_green: #d5f2cd;
             @include rounded;
         }
     }
-    
+
     .ui-datepicker-prev,
     .ui-datepicker-next {
         position: absolute;
@@ -4101,16 +4101,16 @@ $admin_light_green: #d5f2cd;
         white-space: nowrap;
         overflow: hidden;
         cursor: pointer;
-        
+
         .inverted & {
             height: 19px;
         }
     }
-    
+
     .ui-datepicker-prev {
         left: 0;
         background: url(http://cdn.walkerartcenter.org/static/img/content_sprite.png) 0 -232px no-repeat;
-        
+
         .inverted & {
             background: url(http://cdn.walkerartcenter.org/static/img/content_sprite.png) 0 0 no-repeat;
         }
@@ -4118,11 +4118,11 @@ $admin_light_green: #d5f2cd;
     .ui-datepicker-prev:hover {
 	    border:none;outline:none;
     }
-    
+
     .ui-datepicker-next {
         right: 0;
         background: url(http://cdn.walkerartcenter.org/static/img/content_sprite.png) right -261px no-repeat;
-        
+
         .inverted & {
             background: url(http://cdn.walkerartcenter.org/static/img/content_sprite.png) right -29px no-repeat;
         }
@@ -4130,30 +4130,30 @@ $admin_light_green: #d5f2cd;
     .ui-datepicker-next:hover {
 	    border:none;outline:none;
     }
-    
+
     .ui-datepicker-title {
         margin: 0 20px;
         font-family: $sans_bold_font;
         font-weight: bold;
         text-align: center;
-        
+
         &:hover {
             cursor: pointer;
             color: #888;
         }
     }
-    
+
     table {
         border-collapse: collapse;
         margin: 0 auto;
-        
+
         th,
         td {
             padding: 0 3px 6px;
             border: 0;
             text-align: center;
         }
-        
+
         td span,
         td a {
             display: block;
@@ -4167,24 +4167,24 @@ $admin_light_green: #d5f2cd;
             -moz-border-radius: 22px;
             border-radius: 22px;
         }
-        
+
         .inverted & td span,
         .inverted & td a {
             border: 1px solid #bbb;
         }
-        
+
         td a:hover {
             width: 20px;
             height: 19px;
             padding-top: 1px;
             border: 2px solid #f9f9f9;
-            
+
             .inverted & {
                 border: 2px solid $main_color;
             }
         }
     }
-    
+
     .ui-datepicker-current-day a,
     .ui-state-active {
         background-color: #f9f9f9;
@@ -4192,7 +4192,7 @@ $admin_light_green: #d5f2cd;
         border: 1px solid #f9f9f9;
         cursor: default;
     }
-    
+
     .inverted & .ui-datepicker-current-day a,
     .inverted & .ui-state-active {
         background-color: $main_color;
@@ -4207,7 +4207,7 @@ $admin_light_green: #d5f2cd;
     margin-top: 10px 0 16px;
     padding-top: 16px;
     color: #a3a3a3;
-    
+
     .days > li > * {
         padding: 0 5px;
     }
@@ -4218,12 +4218,12 @@ $admin_light_green: #d5f2cd;
         font-size: 16px;
         word-spacing: -1px;
     }
-    
+
     .day {
         padding-bottom: 8px !important;
         border-bottom: 1px dotted $divider_color;
     }
-    
+
     .special {
         display: block;
         padding: 6px 0 0 !important;
@@ -4243,28 +4243,28 @@ $admin_light_green: #d5f2cd;
         margin: 0 -5px;
         padding: 5px 1px 6px 5px;
     }
-    
+
     .events li:last-child a,
     .events li:last-child p {
         border-bottom: none;
     }
-    
+
     .design a:hover {
         @include program_coloring($design_color, #f9f9f9);
     }
-    
+
     .education a:hover {
         @include program_coloring($education_color, #f9f9f9);
     }
-    
+
     .film a:hover {
         @include program_coloring($film_color, #f9f9f9);
     }
-    
+
     .new_media a:hover {
         @include program_coloring($new_media_color, #f9f9f9);
     }
-    
+
     .performing_arts a:hover {
         @include program_coloring($performing_arts_color, #f9f9f9);
     }
@@ -4272,13 +4272,13 @@ $admin_light_green: #d5f2cd;
     .visual_arts a:hover {
         @include program_coloring($visual_arts_color, #f9f9f9);
     }
-    
+
     .show_more,
     .hide_more {
         width: 90px;
         margin: 0 -5px 10px !important;
     }
-    
+
     .hide_more {
         display: none;
     }
@@ -4310,7 +4310,7 @@ $admin_light_green: #d5f2cd;
                 @include rounded;
                 @include no_break;
             }
-            
+
             &.design a:hover {
                 @include program_coloring($design_color_dark, $design_bg);
             }
@@ -4441,11 +4441,11 @@ $admin_light_green: #d5f2cd;
     .ends_1 {
         margin-right: 600px;
     }
-    
+
     .ends_0 {
         margin-right: 660px;
     }
-    
+
     .ends_0 .date,
     .ends_1 .date,
     .ends_2 .date,
@@ -4454,7 +4454,7 @@ $admin_light_green: #d5f2cd;
     .starts_12 .date {
         display: none !important;
     }
-    
+
     .ends_0 a,
     .ends_1 a,
     .ends_2 a,
@@ -4479,7 +4479,7 @@ $admin_light_green: #d5f2cd;
     p {
         margin-left: 28px;
     }
-    
+
     .note h1,
     .note p {
         margin-left: 0 !important;
@@ -4516,7 +4516,7 @@ $admin_light_green: #d5f2cd;
     background-color: #f0ed34;
     text-align: center;
     @include rounded;
-    
+
     h1 {
         margin: 0 10px 9px;
         padding-top: 45px;
@@ -4537,7 +4537,7 @@ $admin_light_green: #d5f2cd;
     dt {
         color: #ad94bf;
     }
-    
+
     a,
     dd {
         color: #6e408e;
@@ -4556,7 +4556,7 @@ $admin_light_green: #d5f2cd;
     h2 {
         background: #6e408e;
         color: #ede8f1;
-        
+
         .toggle li a {
             color: #baa5c9;
 
@@ -4607,14 +4607,14 @@ $admin_light_green: #d5f2cd;
             padding-top: 37px;
             background-image: url(http://cdn.walkerartcenter.org/static/img/header_footer_sprite.png);
             background-repeat: no-repeat;
-            
+
             &#footer_about { background-position: -220px -801px; }
             &#footer_programs { background-position: -440px -801px; }
             &#footer_network { background-position: -660px -801px; }
 
             li {
                 margin: 0 5px;
-                
+
                 a {
                     display: block;
                     margin: 0 -5px;
@@ -4630,10 +4630,10 @@ $admin_light_green: #d5f2cd;
 
         .social_media {
             margin-top: 10px;
-            
+
             li {
                 margin: 0;
-                
+
                 a {
                     display: block;
                     float: left;
@@ -4646,53 +4646,53 @@ $admin_light_green: #d5f2cd;
                     text-indent: 100%;
                     white-space: nowrap;
                     overflow: hidden;
-                
+
                     &.facebook {
                         background-position: 5px -1004px;
-                    
+
                         &:hover {
                             background-position: 5px -1024px;
                         }
                     }
-                
+
                     &.twitter {
                         background-position: -23px -1004px;
-                    
+
                         &:hover {
                             background-position: -23px -1024px;
                         }
                     }
-                
+
                     &.flickr {
                         background-position: -51px -1004px;
-                    
+
                         &:hover {
                             background-position: -51px -1024px;
                         }
                     }
-                
+
                     &.youtube {
                         background-position: -79px -1004px;
-                    
+
                         &:hover {
                             background-position: -79px -1024px;
                         }
                     }
-                
+
                     &.rss {
                         background-position: -107px -1004px;
-                    
+
                         &:hover {
                             background-position: -107px -1024px;
                         }
                     }
-                
+
                     &:hover {
                         background-color: transparent;
                     }
                 }
             }
-            
+
         }
 
         .aux {
@@ -4702,7 +4702,7 @@ $admin_light_green: #d5f2cd;
             border-top: 1px dotted $divider_color_dark;
             color: $main_color;
             @include quiet_type;
-            
+
             a {
                 margin: 0 -3px;
                 padding: 1px 3px;
@@ -4715,11 +4715,11 @@ $admin_light_green: #d5f2cd;
 
             .contact {
                 float: right;
-                
+
                 div {
                     margin-left: 16px;
                 }
-                
+
                 .cta {
                     font-family: $sans_bold_font;
                     font-weight: bold;
@@ -4827,7 +4827,7 @@ aside.pull_quote_position {
 .cboxIframe{width:100%; height:100%; display:block; border:0;}
 #colorbox, #cboxContent, #cboxLoadedContent{box-sizing:content-box; -moz-box-sizing:content-box; -webkit-box-sizing:content-box;}
 
-/* 
+/*
     User Style:
     Change the following styles to modify the appearance of ColorBox.   They are
     ordered & tabbed in a way that represents the nesting of the generated HTML.
@@ -4864,7 +4864,7 @@ aside.pull_quote_position {
     width: 100%;
     color: $inverse_color;
     text-align: center;
-    
+
     .title {
         margin-bottom: 6px;
         @include feature_type;
@@ -4872,18 +4872,18 @@ aside.pull_quote_position {
         em {
             font-family: $serif_font;
         }
-        
+
         a {
             color: $inverse_color;
         }
     }
-    
+
     .body a,
     .credit a {
         color: $inverse_color;
         text-decoration: underline;
     }
-    
+
     a:hover {
         color: $highlight;
     }
@@ -4898,7 +4898,7 @@ aside.pull_quote_position {
 #cboxPrevious {
     left: -22px;
     background: #222 url(http://cdn.walkerartcenter.org/static/img/content_sprite.png) 0 -232px no-repeat;
-    
+
     &:hover {
         background: $main_bg url(http://cdn.walkerartcenter.org/static/img/content_sprite.png) 0 0 no-repeat;
     }
@@ -4907,7 +4907,7 @@ aside.pull_quote_position {
 #cboxNext {
     right: -22px;
     background: #222 url(http://cdn.walkerartcenter.org/static/img/content_sprite.png) 0 -261px no-repeat;
-    
+
     &:hover {
         background-color: $main_bg;
         background: $main_bg url(http://cdn.walkerartcenter.org/static/img/content_sprite.png) 0 -29px no-repeat;
@@ -4968,7 +4968,7 @@ aside.pull_quote_position {
         filter: none !important;
         -ms-filter: none !important;
     }
-    
+
     #extras,
     #header_container,
     #promoted,
@@ -4978,31 +4978,31 @@ aside.pull_quote_position {
     #branding {
         display: none;
     }
-    
+
     #main {
         margin: 0 !important;
     }
-    
+
     pre, blockquote {
         page-break-inside: avoid;
     }
-    
+
     thead {
         display: table-header-group;
     }
-    
+
     tr, img {
         page-break-inside: avoid;
     }
-    
+
     img {
         max-width: 100% !important;
     }
-    
+
     @page {
         margin: 0.5cm;
     }
-    
+
     h1, h2, h3, h4, h5, h6 {
         page-break-after: avoid;
     }
@@ -5015,7 +5015,7 @@ div.jp-progress-container {
 
 div.jp-audio div.jp-type-single div.jp-progress {
     /* for mobile */
-    width:117px; 
+    width:117px;
 }
 
 /* @end */
@@ -5026,7 +5026,7 @@ div.jp-audio div.jp-type-single div.jp-progress {
 only screen and (-o-min-device-pixel-ratio: 3/2),
 only screen and (min--moz-device-pixel-ratio: 1.5),
 only screen and (min-device-pixel-ratio: 1.5) {
-        
+
     h1 .breadcrumb,
     h2 .view_all,
     .show_more,
@@ -5047,7 +5047,7 @@ only screen and (min-device-pixel-ratio: 1.5) {
     .toggle li a.active,
     #related #related_visibility,
     .media .media_arrows a.previous,
-    .media .media_arrows a.next, 
+    .media .media_arrows a.next,
     .slideshow .media_arrows a.previous,
     .slideshow .media_arrows a.next,
     .sidebar #date_picker,
@@ -5068,11 +5068,11 @@ only screen and (min-device-pixel-ratio: 1.5) {
         -webkit-background-size: 19px 609px;
         background-size: 19px 609px;
     }
-    
+
     h1 .breadcrumb {
         background-image: url(http://cdn.walkerartcenter.org/static/img/content_sprite@2x.png) !important;
     }
-    
+
     h2 .pager_container a {
         background-image: url(http://cdn.walkerartcenter.org/static/img/pager_inverse@2x.png);
         -moz-background-size: 9px 63px;
@@ -5081,7 +5081,7 @@ only screen and (min-device-pixel-ratio: 1.5) {
         -webkit-background-size: 9px 63px;
         background-size: 9px 63px;
     }
-    
+
     h2.inverse .pager_container a,
     .slideshow .media_status .pager_container a {
         background-image: url(http://cdn.walkerartcenter.org/static/img/pager@2x.png);
@@ -5091,7 +5091,7 @@ only screen and (min-device-pixel-ratio: 1.5) {
         -webkit-background-size: 9px 63px;
         background-size: 9px 63px;
     }
-    
+
     h2 .pager_container a.video_pager {
         background-image: url(http://cdn.walkerartcenter.org/static/img/pager_video@2x.png);
         -moz-background-size: 9px 63px;
@@ -5100,7 +5100,7 @@ only screen and (min-device-pixel-ratio: 1.5) {
         -webkit-background-size: 9px 63px;
         background-size: 9px 63px;
     }
-    
+
     h2.alternate .pager_container a,
     .slideshow .media_status .pager_container a {
         background-image: url(http://cdn.walkerartcenter.org/static/img/pager_inverse@2x.png);
@@ -5110,7 +5110,7 @@ only screen and (min-device-pixel-ratio: 1.5) {
         -webkit-background-size: 9px 63px;
         background-size: 9px 63px;
     }
-    
+
     .video_overlay {
         background-image: url(http://cdn.walkerartcenter.org/static/img/video_play_small@2x.png);
         -moz-background-size: 36px 36px;
@@ -5119,7 +5119,7 @@ only screen and (min-device-pixel-ratio: 1.5) {
         -webkit-background-size: 36px 36px;
         background-size: 36px 36px;
     }
-    
+
     a:hover .video_overlay {
         background-image: url(http://cdn.walkerartcenter.org/static/img/video_play_small_hover@2x.png);
         -moz-background-size: 36px 36px;
@@ -5128,7 +5128,7 @@ only screen and (min-device-pixel-ratio: 1.5) {
         -webkit-background-size: 36px 36px;
         background-size: 36px 36px;
     }
-    
+
     .media h2 .rotated a .video_overlay {
         background-image: url(http://cdn.walkerartcenter.org/static/img/video_play_large@2x.png);
         -moz-background-size: 64px 64px;
@@ -5137,7 +5137,7 @@ only screen and (min-device-pixel-ratio: 1.5) {
         -webkit-background-size: 64px 64px;
         background-size: 64px 64px;
     }
-    
+
     .media h2 .rotated a:hover .video_overlay {
         background-image: url(http://cdn.walkerartcenter.org/static/img/video_play_large_hover@2x.png);
         -moz-background-size: 64px 64px;
@@ -5146,7 +5146,7 @@ only screen and (min-device-pixel-ratio: 1.5) {
         -webkit-background-size: 64px 64px;
         background-size: 64px 64px;
     }
-    
+
     .twitter .info {
         background-image: url(http://cdn.walkerartcenter.org/static/img/twitter_bg@2x.png);
         -moz-background-size: 220px 22px;
@@ -5155,7 +5155,7 @@ only screen and (min-device-pixel-ratio: 1.5) {
         -webkit-background-size: 220px 22px;
         background-size: 220px 22px;
     }
-    
+
     #meta dt.buy {
         background-image: url(http://cdn.walkerartcenter.org/static/img/meta_tickets@2x.png);
         -moz-background-size: 14px 10px;
@@ -5164,7 +5164,7 @@ only screen and (min-device-pixel-ratio: 1.5) {
         -webkit-background-size: 14px 10px;
         background-size: 14px 10px;
     }
-    
+
     h1.intro a,
     article a,
     article hgroup h1 a,
@@ -5204,7 +5204,7 @@ only screen and (min-device-pixel-ratio: 1.5) {
         -webkit-background-size: 1px 900px;
         background-size: 1px 900px;
     }
-    
+
     #branding.day_0,
     #branding.day_4 {
         background-image: url(http://cdn.walkerartcenter.org/static/img/branding_stripe_1@2x.png);
@@ -5214,7 +5214,7 @@ only screen and (min-device-pixel-ratio: 1.5) {
         -webkit-background-size: 20px 1553px;
         background-size: 20px 1553px;
     }
-    
+
     #branding.day_1,
     #branding.day_5 {
         background-image: url(http://cdn.walkerartcenter.org/static/img/branding_stripe_2@2x.png);
@@ -5224,7 +5224,7 @@ only screen and (min-device-pixel-ratio: 1.5) {
         -webkit-background-size: 20px 1549px;
         background-size: 20px 1549px;
     }
-    
+
     #branding.day_2,
     #branding.day_6 {
         background-image: url(http://cdn.walkerartcenter.org/static/img/branding_stripe_3@2x.png);
@@ -5234,7 +5234,7 @@ only screen and (min-device-pixel-ratio: 1.5) {
         -webkit-background-size: 20px 1549px;
         background-size: 20px 1549px;
     }
-    
+
     #branding.day_3 {
         background-image: url(http://cdn.walkerartcenter.org/static/img/branding_stripe_4@2x.png);
         -moz-background-size: 20px 1551px;
@@ -5243,7 +5243,7 @@ only screen and (min-device-pixel-ratio: 1.5) {
         -webkit-background-size: 20px 1551px;
         background-size: 20px 1551px;
     }
-    
+
     #footer_container footer #footer_teaser,
     #footer_container footer nav,
     #footer_container footer .social_media li a {
@@ -5254,7 +5254,7 @@ only screen and (min-device-pixel-ratio: 1.5) {
         -webkit-background-size: 1100px 1072px;
         background-size: 1100px 1072px;
     }
-    
+
 }
 
 /* @end */
@@ -5269,9 +5269,9 @@ only screen and (min-device-pixel-ratio: 1.5) {
 		color: $red_color;
 	}
 	a:hover {
-		
+
 	}
-	
+
 }
 .panel-pane .block-inner .block-content {
 	background:#fff;
@@ -5287,7 +5287,7 @@ only screen and (min-device-pixel-ratio: 1.5) {
 .block-twitter .block-inner .block-content {
 	background: $darkgray;
 	color: $menu_bg;
-	
+
 }
 
 
@@ -5297,7 +5297,7 @@ only screen and (min-device-pixel-ratio: 1.5) {
 #block-mnartist-profiles-mna-my-stuff,
 #block-artist-community-content,
 #block-artist-community-community {
-	
+
 	.block-inner {
 		margin:0;
 	}
@@ -5316,15 +5316,15 @@ only screen and (min-device-pixel-ratio: 1.5) {
 	}
 }
 .event-content {
-	
+
 }
 .event-content-top .field-name-field-category ul {
 	margin:0;padding:0;
 	list-style:none;
 	background:none;
-	
+
 	li {
-	
+
 		a {
 			padding:0 0 5px 0;
 			background:none;
@@ -5336,7 +5336,7 @@ only screen and (min-device-pixel-ratio: 1.5) {
 		    @include no_break;
 		    @include rounded;
 		}
-		
+
 	}
 	.block-content {
 		background:none;
@@ -5361,7 +5361,7 @@ only screen and (min-device-pixel-ratio: 1.5) {
 	display:block;
 	margin: 0 10px;
 	.inset-right {
-		
+
 		.block-inner {
 			margin:0;
 		}
@@ -5371,7 +5371,7 @@ only screen and (min-device-pixel-ratio: 1.5) {
 .event-date .date-display-single {
 	font-size:40px;
 	font-family:$sans_bold_font;
-	
+
 	.month {
 		text-transform:uppercase;
 		font-size:20px;
@@ -5388,42 +5388,42 @@ only screen and (min-device-pixel-ratio: 1.5) {
 }
 
 .event-sidebar {
-	
+
 	.view-promoted-event {
 		padding-top:10px;
-	
+
 		.field-content {
 			display:table;
 			margin-bottom:10px;
-			
+
 			span {
 				display:table-cell;
 				vertical-align:middle;
 				padding-left:10px;
-					
+
 				span {
 					display:inline;
 					padding-left:0;
 				}
-				
+
 				a {
 					font-family:$sans_bold_font;
 				}
 			}
-			
+
 			span.promoted-date {
 				width:60px;
 				text-align:center;
 				border-right:1px solid $darkgray;
 				padding-left:0;
-				
+
 				.date-display-single {
 					display:block;
 					line-height:.9em;
 					font-size:18px;
 					font-family:$sans_bold_font;
-					
-					
+
+
 					.month {
 						display:block;
 						font-size:12px;
@@ -5431,23 +5431,23 @@ only screen and (min-device-pixel-ratio: 1.5) {
 						text-transform: uppercase;
 						color:$lightgray;
 					}
-				
+
 				}
-				
+
 			}
-			
-			
+
+
 		}
-		
+
 		.views-field-body {
 			padding:0 10px;
 		}
-		
+
 	}
-	
+
 	.view-my-events {
 		padding:10px;
-		
+
 		.view-footer a {
 			font-family:$sans_bold_font;
 			text-decoration:underline;
@@ -5459,7 +5459,7 @@ only screen and (min-device-pixel-ratio: 1.5) {
 depending on the template so needs unified a bit */
 .panel-2col .panel-col-first .panel-col-last.inset-right {
 	position:relative;
-	
+
 	.pane-node-links {
 		position:absolute;
 		display:inline-block;
@@ -5468,7 +5468,7 @@ depending on the template so needs unified a bit */
 		text-align:right;
 		z-index:999;
 		.block-inner {
-			
+
 			.block-content {
 				background:none;
 			}
@@ -5480,12 +5480,12 @@ depending on the template so needs unified a bit */
 /* add to collection flag */
 .flag-wrapper {
 	line-height:20px;
-	
+
 	a {
 		line-height:20px;
 		display:inline-block;
 		vertical-align:top;
-		
+
 		img {
 			margin:0;
 		}
@@ -5504,7 +5504,7 @@ depending on the template so needs unified a bit */
 	.flag-count {
 		color:$lightgray;
 	}
-	
+
 }
 
 /* collection block */
@@ -5526,16 +5526,16 @@ depending on the template so needs unified a bit */
 	.view-collections {
 		.views-row {
 			width:48%;
-			
+
 			.views-field-title {
 				font-family: $serif_font;
 				font-weight:bold;
 				margin-bottom:10px;
-				
+
 			}
 			.content {
 				line-height:1;
-				
+
 				img {
 					margin:0 0 5px 0;padding:0;
 				}
@@ -5548,7 +5548,7 @@ depending on the template so needs unified a bit */
 		.views-row.views-row-even {
 			float:right;
 			clear:right;
-			
+
 		}
 		.views-row.views-row-even .even:after {
 			display:block;
@@ -5575,13 +5575,13 @@ body.page-node-add #content {
 
 /* general layout */
 .inset-left {
-	
+
 }
 .inset-right {
-	
+
 }
 .inset -middle {
-	
+
 }
 .inside .block {
 	margin-bottom:0;
@@ -5603,7 +5603,7 @@ body.page-node-add #content {
 	 line-height:auto;
 	 text-transform:none;
 	 letter-spacing:normal;
-	 
+
 	 a {
 		 font-family: $serif-font;
 		 font-weight: normal;
@@ -5613,7 +5613,7 @@ body.page-node-add #content {
 
 .content-artwork {
 	position:relative;
-	
+
 	.pane-node-links {
 		position:absolute;
 		display:inline-block;
@@ -5622,7 +5622,7 @@ body.page-node-add #content {
 		text-align:right;
 	}
 	.pane-node-author {
-		
+
 		a {
 			font-size:24px;
 			font-weight:bold;
@@ -5641,27 +5641,27 @@ body.page-node-add #content {
 .content-bottom {
 	display:table;
 	padding-bottom:20px;
-	
+
 	.one-third {
 		display:table-cell;
 		width:33%;
 		float:none!important;
-		
+
 		.inside {
 			vertical-align:top;
 		}
 	}
-	
+
 	.one-third.panel-col-last {
 		border-left:1px solid $lightgray;
 	}
 }
 .pane-node-field-tags, .pane-node-field-license, .pane-node-field-medium {
-	
+
 	ul {
 		padding:0;margin:0;
 		list-style:none;
-		
+
 		li {
 			list-style:none;
 			margin:0 8px 0 0;padding:0;
@@ -5673,7 +5673,7 @@ body.page-node-add #content {
 
 	.field-type-taxonomy-term-reference {
 		margin-bottom:0;
-		
+
 	}
 }
 
@@ -5686,7 +5686,7 @@ body.page-node-add #content {
 .search-results {
 
 	.artist-profile {
-	
+
 		a {
 			display:block;
 			overflow:hidden;
@@ -5724,12 +5724,12 @@ body.page-node-add #content {
 		width:100%;
 		border-bottom:1px dotted #eee;
 		margin-bottom:10px;
-		
+
 		fieldset {
 			margin-bottom:10px;
 		}
 	}
-		
+
 }
 
 tr.odd .form-item, tr.even .form-item {
@@ -5742,15 +5742,15 @@ tr.odd .form-item, tr.even .form-item {
 }
 
 .fieldset-wrapper {
-	
-	
+
+
 	.fieldset-description {
 		display:block;
 		width:100%;
 	}
-	
+
 	.date-no-float {
-		
+
 	}
 }
 .date-no-float {
@@ -5759,26 +5759,26 @@ tr.odd .form-item, tr.even .form-item {
 		float:left;
 		padding-top:3px;
 	}
-	
+
 }
 
 .node-form {
 
 	.form-wrapper {
 		margin-bottom:15px;
-		
+
 		.form-item {
 			margin:0;
-			
+
 			label {
 				min-width:90px;
-				
+
 			}
 			div {
-			
+
 			}
 			select {
-			
+
 			}
 		}
 		fieldset {
@@ -5799,22 +5799,22 @@ tr.odd .form-item, tr.even .form-item {
 
 	.form-type-checkbox {
 		clear:both;
-		
+
 	}
 }
 .vertical-tabs {
 
 	.vertical-tabs-panes {
-	
+
 		fieldset {
-		
+
 			.fieldset-wrapper {
 				padding-top:10px;
-				
+
 			}
-			
+
 		}
-		
+
 	}
 
 }
@@ -5832,7 +5832,7 @@ form textarea:focus {
     -moz-box-shadow: inset 0 0 1px 1px rgba(0,0,0,0);
     -webkit-box-shadow: inset 0 0 1px 1px rgba(0,0,0,0);
     box-shadow: inset 0 0 1px 1px rgba(0,0,0,0);
-    
+
     -moz-transition: all .3s ease-in-out;
     -webkit-transition: all .3s ease-in-out;
     transition: all .3s ease-in-out;
@@ -5865,7 +5865,7 @@ fieldset {
 	width: 100%;
 	margin-bottom: 10px;
 	padding:0;
-	
+
 	legend {
 		display: inline-block;
         padding: 1px 5px 1px 0;
@@ -5874,7 +5874,7 @@ fieldset {
         padding-left:0;
         font-weight: 700;
 	}
-	
+
 }
 .form-item table thead label {
 	padding-left:5px;
@@ -5891,7 +5891,7 @@ form select.form-select:active {
 	outline:1px solid #888;
 }
 .sticky-table td fieldset .fieldset-wrapper {
-	
+
 	.form-item {
 		margin-bottom:0;
 		.date-padding {
@@ -5911,43 +5911,43 @@ form select.form-select:active {
 	margin-left:10px;
 	margin-right:10px;
 	padding:10px 0;
-	
+
 	.block-inner {
 		margin-left:0;
 		margin-right:0;
-	
+
 	}
 	.panel-pane {
-		
+
 		.block-inner {
 			margin-right:10px;
 			margin-left:10px;
-		
+
 		}
 	}
-		
+
 }
 
 /* slide js slideshow slidejs */
 .slidesjs-container {
 	display:table;
 	background:#f2f2f2;
-	
+
 	.slidesjs-control {
 		display:table-cell;
-		
+
 	}
 }
 ul.slidesjs-pagination {
 	margin:0 0 15px 0;
 	padding:0;
-	
+
 	li {
 		display:inline-block;
 		list-style:none;
 		margin:0 5px 0 0;
 		padding:0;
-		
+
 		a {
 			display:inline-block;
 			overflow:hidden;
@@ -5961,7 +5961,7 @@ ul.slidesjs-pagination {
 		a:hover {
 			background:#222;
 		}
-		
+
 	}
 }
 
@@ -5970,18 +5970,18 @@ ul.slidesjs-pagination {
 
 /* comments */
 .pane-comment-recent {
-	
+
 	.item-list {
-		
+
 		ul {
 			margin:0 0 10px 0;
 			padding:0;
-			
+
 			li {
 				list-style:none;
 				margin:0 0 10px 0;
 				padding:0;
-				
+
 				a {
 					color:$lightgray;
 					text-decoration:underline;
@@ -5991,16 +5991,16 @@ ul.slidesjs-pagination {
 	}
 }
 .pane-node-comments {
-	
+
 	.comment {
-		
+
 		.username {
 			color:$lightgray;
 			text-decoration:underline;
 		}
 		.field-name-comment-body {
 			display:inline;
-			
+
 			div {
 				display:inline;
 			}
@@ -6017,16 +6017,16 @@ ul.slidesjs-pagination {
 	padding:10px 0 20px 0;
 	border-bottom:1px solid $lightgray;
 	margin:0 0 20px 0;
-	
+
 	.profile-twitter,
 	.profile-facebook {
 		display:inline-block;
 		margin-right: 5px;
-		
+
 	}
 	.twitter,
 	.facebook {
-		
+
 		height:24px;
 		width:24px;
 		opacity:.6;
@@ -6054,16 +6054,16 @@ ul.slidesjs-pagination {
 /* my stuff **********************************************/
 /**********************************************************/
 body.my-stuff {
-	
+
 	background-image: linear-gradient(90deg, $mystuff_bg_dark 0%, $mystuff_bg_dark 200px, $mystuff_bg_light 201px);
-	
+
 	#tasks {
-	
+
 		.primary {
-			display:none;
-			
+
+
 		}
-		
+
 	}
     .pane-user-mnartist-profiles-artworks  {
 
@@ -6078,7 +6078,7 @@ body.my-stuff {
 
         }
     }
-    // main content in my stuff 
+    // main content in my stuff
     article {
         color:#fff;
 
@@ -6098,7 +6098,7 @@ body.my-stuff {
 
                 &:hover {
                     color:#ccc;
-                    
+
                 }
             }
         }
@@ -6123,7 +6123,7 @@ body.my-stuff {
 
 /* share star */
 /* - - - ADxMenu: BASIC styles [ MANDATORY ] - - - */
- 
+
 /* remove all list stylings */
 .menu, .menu ul {
         margin: 0;
@@ -6132,7 +6132,7 @@ body.my-stuff {
         list-style-type: none;
         display: block;
 }
- 
+
 .menu li {
         margin: 0;
         padding: 0;
@@ -6142,17 +6142,17 @@ body.my-stuff {
         position: relative;     /* position each LI, thus creating potential IE.win overlap problem */
         z-index: 5;             /* thus we need to apply explicit z-index here... */
 }
- 
+
 .menu li:hover {
         z-index: 10000; /* ...and here. this makes sure active item is always above anything else in the menu */
         white-space: normal;/* required to resolve IE7 :hover bug (z-index above is ignored if this is not present)
                                                         see http://www.tanfa.co.uk/css/articles/pure-css-popups-bug.asp for other stuff that work */
 }
- 
+
 .menu li li {
         float: none;/* items of the nested menus are kept on separate lines */
 }
- 
+
 .menu ul {
         visibility: hidden;     /* initially hide all submenus. */
         position: absolute;
@@ -6160,12 +6160,12 @@ body.my-stuff {
         left: 0;     /* while hidden, always keep them at the top left corner, */
         top: 0;         /*              to avoid scrollbars as much as possible */
 }
- 
+
 .menu li:hover>ul {
         visibility: visible;    /* display submenu them on hover */
         top: 100%;      /* 1st level go below their parent item */
 }
- 
+
 .content-artwork {
 	.menu li:hover>ul {
 		top: 100%;
@@ -6173,12 +6173,12 @@ body.my-stuff {
 		left: auto;
 	}
 }
- 
+
 .menu li li:hover>ul {  /* 2nd+ levels go on the right side of the parent item */
         top: 0;
         left: 100%;
 }
- 
+
 /* -- float.clear --
         force containment of floated LIs inside of UL */
 .menu:after, .menu ul:after {
@@ -6193,7 +6193,7 @@ body.my-stuff {
         min-height: 0;
 }
 /* -- float.clear.END --  */
- 
+
 /* -- sticky.submenu --
         it should not disappear when your mouse moves a bit outside the submenu
         YOU SHOULD NOT STYLE the background of the ".menu UL" or this feature may not work properly!
@@ -6213,32 +6213,32 @@ body.my-stuff {
 
 
 .pane-mnartist-collections-mna-collections-star {
-	
+
 	ul.menu {
 		margin:0;
 		padding:0 !important;
-		
+
 		li {
-			
+
 			a {
 				padding:0;
 			}
 			ul {
 				padding:10px;
 				margin:0;
-				width:240px; 
-				
+				width:240px;
+
 				.flag-count {
 					padding: 5px 0;
-				} 
-				
+				}
+
 				li {
-					
+
 					a {
 						padding:5px 0;
 					}
 					.flag-wrapper {
-						
+
 						a {
 							display:inline-block;
 						}
@@ -6246,17 +6246,17 @@ body.my-stuff {
 							display:inline-block;
 						}
 					}
-					
-					
+
+
 				}
 				li.collect-this {
-					
+
 					a {
-						
+
 					}
 				}
 				li.add-this {
-					
+
 					a {
 						padding:5px 0 5px 15px;
 					}
@@ -6268,18 +6268,18 @@ body.my-stuff {
 					}
 				}
 				li.share-this {
-					
+
 					a {
 						padding:5px 0 5px 15px;
 					}
 				}
 				li.flag-this {
 					position:relative;
-					
+
 					a {
 						padding:5px 0 5px 15px;
 					}
-					
+
 					.flag-message {
 						clear:both;
 						position:relative;
@@ -6293,11 +6293,11 @@ body.my-stuff {
 						top:2px;
 						left:0;
 					}
-					
+
 				}
-				
+
 				li.start-new-collection {
-					
+
 					a {
 						opacity:.7;
 						padding:5px 0;
@@ -6312,33 +6312,33 @@ body.my-stuff {
 				-webkit-filter: invert(100%);
 			}
 		}
-		
+
 		a.star-link {
 			padding:5px;
-			
+
 			img {
 				margin:0;
 			}
 		}
-		
+
 		hr {
 			background:#fff;
-		}	
+		}
 	}
 }
 
 /* filter star in sidebar menu */
 #block-mnartist-filter-mna-filter-create { /* there is more to this in the menu.scss */
-	
+
 	ul.menu {
 		padding:0px;
-		
+
 		li:hover {
 			background:#000;
-			
+
 			.star-icon {
 				-webkit-filter: invert(100%);
-				
+
 			}
 		}
 		li {
@@ -6347,10 +6347,10 @@ body.my-stuff {
 			}
 			ul {
 				padding:10px;
-				
+
 				li {
-					
-					
+
+
 					a {
 						color:#fff;
 						opacity:.8;
@@ -6367,22 +6367,22 @@ body.my-stuff {
 		padding:0;
 	}
 }
- 
- 
- 
- 
+
+
+
+
 /* - - - ADxMenu: DESIGN styles [ OPTIONAL, design your heart out :) ] - - - */
- 
+
 .menu ul li,.menu ul li hr {
         color: #eee;
         background: #000;
 }
- 
+
 .menu ul {
         width: 14em;
         background: #000;
 }
- 
+
 .menu a {
         text-decoration: none;
         color: #eee;
@@ -6390,26 +6390,26 @@ body.my-stuff {
         display: block;
         position: relative;
 }
- 
+
 .menu a:hover, .menu li:hover>a {
         color: #fc3;
 }
- 
+
 .menu ul>li + li {      /* and remove the top border on all but first item in the list */
         border-top: 0;
 }
- 
+
 .menu li li:hover>ul {  /* inset 2nd+ submenus, to show off overlapping */
         top: 5px;
         left: 90%;
 }
- 
+
 
 /* search results page */
 
 .search-results.content-page {
 	padding:20px 0;
-	
+
 }
 
 
@@ -6421,14 +6421,14 @@ body.my-stuff {
 .search-results.content-community,
 .search-results.content-users {
 	display:inline;
-	
+
 	.item {
 		display:inline-block;
 		width:195px;
 		vertical-align:top;
 		margin-right:10px;
 		margin-bottom:15px;
-		
+
 		h3 {
 			@include quiet_type;
 		}
@@ -6437,31 +6437,31 @@ body.my-stuff {
 
 
 /* community and homepage template stuff */
-.panel-2col.layout-a { 
+.panel-2col.layout-a {
 /*  overflow: hidden;  */
 }
 
-.panel-2col.layout-a .panel-col-first { 
-  float: left; 
-  width: 75%; 
+.panel-2col.layout-a .panel-col-first {
+  float: left;
+  width: 75%;
 }
 * html .panel-2col.layout-a .panel-col-first {
   width: 74.9%;
 }
 
-.panel-2col.layout-a .panel-col-first .inside { 
+.panel-2col.layout-a .panel-col-first .inside {
   margin: 0 .5em 1em 0;
 }
 
-.panel-2col.layout-a .panel-col-last { 
-  float: left; 
-  width: 25%; 
+.panel-2col.layout-a .panel-col-last {
+  float: left;
+  width: 25%;
 }
 * html .panel-2col.layout-a .panel-col-last {
   width: 24.9%;
 }
 
-.panel-2col.layout-a .panel-col-last .inside { 
+.panel-2col.layout-a .panel-col-last .inside {
   margin: 0 0 1em .5em;
 }
 
@@ -6476,16 +6476,16 @@ body.my-stuff {
 
 
 /* insets */
-.panel-2col.layout-a .panel-col-first .panel-col-first.inset-left{ 
-  float: left; 
-  width: 75%; 
+.panel-2col.layout-a .panel-col-first .panel-col-first.inset-left{
+  float: left;
+  width: 75%;
 }
 * html .panel-2col.layout-a .panel-col-first .panel-col-first.inset-left{
   width: 74.9%;
 }
 
-.panel-2col.layout-a .panel-col-first .panel-col-last.inset-right{ 
-  float: left; 
+.panel-2col.layout-a .panel-col-first .panel-col-last.inset-right{
+  float: left;
   width: 25%;
 }
 * html .panel-2col.layout-a .panel-col-first .panel-col-last.inset-right{
@@ -6499,11 +6499,11 @@ body.my-stuff {
 	padding:10px;
 	background:$mystuff_bg_dark;
 	color:#fff;
-	
+
 	li {
 		list-style:none;
 		margin:0 0 15px 0;
-		
+
 		a {
 			color:#fff;
 			text-decoration:underline;
@@ -6518,11 +6518,11 @@ body.my-stuff {
 	padding:10px;
 	background:$mystuff_bg_dark;
 	color:#fff;
-	
+
 	li {
 		list-style:none;
 		margin:0 0 15px 0;
-		
+
 		a {
 			color:#fff;
 			text-decoration:underline;
@@ -6541,3 +6541,5 @@ body.my-stuff {
 #profile-resume-field-exhibition-and-performance-add-more-wrapper .field-widget-url-external label {
     display: none;
 }
+
+/* more shame */
