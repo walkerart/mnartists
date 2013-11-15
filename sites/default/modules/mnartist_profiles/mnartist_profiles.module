@@ -66,6 +66,8 @@ function mnartist_profiles_feed() {
         $context_object = new StdClass();
         $context_user = user_load($row->uid);
         $context_object->message = $row->message;
+        // @TODO these user images are still not right, need to revisit the query
+        // to figure out how to get that right
         $context_object->user_picture_uri = image_style_url('square_thumbnail', $context_user->picture->uri);
         $context_object->update_timestamp = $row->created;
         $context_object->interval_summary = mnartist_profiles_duration_in_plain_english($row->created);
