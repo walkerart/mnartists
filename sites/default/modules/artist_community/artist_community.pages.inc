@@ -164,9 +164,14 @@ function artist_community_search_page() {
         $main_profile = profile2_load_by_user($user->uid, 'main');
         if (isset($main_profile->field_full_name['und'])) {
             $entity = field_collection_item_load($main_profile->field_full_name['und'][0]['value']);
-            $first_name = $entity->field_first_name['und'][0]['value'];
-            $last_name = $entity->field_last_name['und'][0]['value'];
-            $full_name = "$first_name $last_name";
+            if (isset($entity->field_first_name['und']) &&
+                isset($entity->field_last_name['und'][0]['value'])) {
+                $first_name = $entity->field_first_name['und'][0]['value'];
+                $last_name = $entity->field_last_name['und'][0]['value'];
+                $full_name = "$first_name $last_name";
+            } else {
+                $full_name = $user->name;
+            }
         } else {
             $full_name = $user->name;
         }
