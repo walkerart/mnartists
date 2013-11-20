@@ -89,7 +89,7 @@ function mnartist_twitter_menu() {
         'description' => 'Setup for your twitter API account. Information available at dev.twitter.com',
         'page callback' => 'drupal_get_form',
         'page arguments' => array('mnartist_twitter_admin'),
-        'access arguments' => array('administer mnartist_twitter settings'),
+        'access arguments' => array('administer users'),
         'type' => MENU_NORMAL_ITEM,
     );
     return $items;
