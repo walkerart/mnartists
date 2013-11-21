@@ -173,12 +173,7 @@
 					<div class="article-detail" id="article-detail-<?= $article->nid ?>" style="display: none;">
 						<img src="<?= $article->image_uri ?>">
 						<div class="article-detail-byline">by <?= $article->author ?></div>
-						<?php
-							// @TODO how the heck do I pass the node id here? Talk to Matt about panelizer, maybe that's how this is supposed to work?
-							// $star_block = module_invoke('mnartist_collections', 'block_view', 'mna_collections_star');
-							// print render($star_block['content']);
-						?>
-						<a href="#">FLAG</a>
+						<a href="#">FLAG</a><!-- @TODO add real flag block here -->
 						<div class="article-detail-excerpt"><?= $article->excerpt ?></div>
 						<a class="article-detail-excerpt-more" href="/node/<?= $article->nid ?>">More &gt;</a>
 						<div class="article-detail-photo-credit"><?= $article->photo_credit ?></div>
