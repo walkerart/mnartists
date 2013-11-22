@@ -54,7 +54,7 @@ function mnartist_profiles_feed() {
     $sql = "SELECT DISTINCT activity.type, activity.uid, activity.eid, activity.created, activity_messages.message FROM activity
             INNER JOIN activity_targets ON activity.aid = activity_targets.aid
             INNER JOIN activity_messages ON activity_targets.amid = activity_messages.amid
-            AND activity.uid in (:flagged_users)
+            WHERE activity.uid in (:flagged_users)
             AND (activity.uid = activity.eid or activity.type != 'user_update')
             ORDER BY activity.created DESC";
     $result = db_query($sql, array(':flagged_users' => $flagged_users));
