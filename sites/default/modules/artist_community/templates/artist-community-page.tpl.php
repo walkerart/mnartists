@@ -153,7 +153,16 @@
 }(jQuery));
 </script>
 <?php
-	// @TODO convert all these new things to blocks?
+	// if there are any, get og params from url to
+	// preserve them in links below
+	$og_get_string = '';
+	if (!(empty($_GET['og']))) {
+		$og_get_string_arr = array();
+		foreach($_GET['og'] as $og_id => $terms) {
+			$og_get_string_arr[] = "og[$og_id]=$terms";
+		}
+		$og_get_string = implode('&', $og_get_string_arr);
+	}
 ?>
 <div class="panel-2col layout-a">
 	<div class="panel-panel panel-col-first main-content">
@@ -164,7 +173,7 @@
 					<div class="article-detail" id="article-detail-<?= $article->nid ?>" style="display: none;">
 						<img src="<?= $article->image_uri ?>">
 						<div class="article-detail-byline">by <?= $article->author ?></div>
-						<a href="#">flag</a>
+						<a href="#">FLAG</a><!-- @TODO add real flag block here -->
 						<div class="article-detail-excerpt"><?= $article->excerpt ?></div>
 						<a class="article-detail-excerpt-more" href="/node/<?= $article->nid ?>">More &gt;</a>
 						<div class="article-detail-photo-credit"><?= $article->photo_credit ?></div>
@@ -213,6 +222,8 @@
 							</a>
 						</li>
 					<?php } ?>
+					<!-- @TODO replace with actual downward arrow -->
+					<li class="user-thing-more"><a href="/community?content[0]=artists<?php if ($og_get_string != '') { echo "&$og_get_string"; } ?>" style="font-size: 4em;">&#709;</a></li>
 				</ul>
 			</div>
 		<?php } ?>

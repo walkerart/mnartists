@@ -103,8 +103,8 @@ function artist_community_search_page() {
             $context_article_data->title = $article->title;
             // $context_article_data->uri = url(drupal_lookup_path('article', 'node/' . $node->nid), array('absolute' => true));// @TODO how do we get this?
             $context_article_data->image_uri = isset($article->field_images['und']) ? file_create_url($article->field_images['und'][0]['uri']) : '';// @TODO article image placeholder? or just skip over articles that don't have one?
-            $context_article_data->photo_credit = "Video still from BodyCartography Project's &ldquo;Something for Myself&rdquo; Courtesy of Young Dance";// @TODO where will this ACTUALLY come from?
-            $context_article_data->excerpt = text_summary($article->body['und'][0]['value'], null, 300);
+            $context_article_data->photo_credit = isset($article->field_images['und'][0]['image_field_caption']['value']) ? $article->field_images['und'][0]['image_field_caption']['value'] : '';
+            $context_article_data->excerpt = (isset($article->body['und'])) ? text_summary($article->body['und'][0]['value'], null, 300) : '';
             $context_article_data->nid = $article->nid;
             $category_term = taxonomy_term_load($article->field_article_category['und'][0]['tid']);
             $context_article_data->category = $category_term->name;
@@ -164,9 +164,14 @@ function artist_community_search_page() {
         $main_profile = profile2_load_by_user($user->uid, 'main');
         if (isset($main_profile->field_full_name['und'])) {
             $entity = field_collection_item_load($main_profile->field_full_name['und'][0]['value']);
-            $first_name = $entity->field_first_name['und'][0]['value'];
-            $last_name = $entity->field_last_name['und'][0]['value'];
-            $full_name = "$first_name $last_name";
+            if (isset($entity->field_first_name['und']) &&
+                isset($entity->field_last_name['und'][0]['value'])) {
+                $first_name = $entity->field_first_name['und'][0]['value'];
+                $last_name = $entity->field_last_name['und'][0]['value'];
+                $full_name = "$first_name $last_name";
+            } else {
+                $full_name = $user->name;
+            }
         } else {
             $full_name = $user->name;
         }
@@ -190,7 +195,6 @@ function artist_community_search_page() {
         $context_latest_user_data->image_uri = $image_uri;
         $latest_users_data[] = $context_latest_user_data;
     }
-
 
     return theme('artist_community_page', array('content' => $content, 'articles' => $articles_data, 'events' => $events_data, 'latest_users' => $latest_users_data));// @TODO bundle the new data into content?
 }

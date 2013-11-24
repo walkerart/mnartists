@@ -120,21 +120,22 @@ hide($content['links']);
   <?php if(!empty($user_picture) || $display_submitted): ?>
     <footer<?php print $footer_attributes; ?>>
       <?php print $user_picture; ?>
-      <?php if ($node->type !== 'venue') { ?>
-        <p class="author-datetime"><?php print $submitted; ?></p>
-      <?php } ?>
+      <p class="author-datetime"><?php print $name; ?></p>
+      <?php
+        if (!(empty($node->field_medium3))) {
+          $term_list = array();
+          foreach ($node->field_medium3['und'] as $term) {
+            $tterm = taxonomy_term_load($term['tid']);
+            $term_list[] = $tterm->name;
+          } ?>
+          <p class="medium"><?= implode(', ', $term_list) ?></p>
+        <?php } ?>
     </footer>
   <?php endif; ?>
 
-  <div<?php print $content_attributes; ?>>
+  <div<?php print $content_attributes; ?> onclick="window.location = '<?php print $node_url; ?>'">
     <?php print render($content); ?>
   </div>
-
-  <?php if ($links = render($content['links'])): ?>
-    <nav<?php print $links_attributes; ?>><?php print $links; ?></nav>
-  <?php endif; ?>
-
-  <?php print render($content['comments']); ?>
 
   <?php print render($title_suffix); ?>
 </article>

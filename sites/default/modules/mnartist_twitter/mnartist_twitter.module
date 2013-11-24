@@ -1,14 +1,28 @@
 <?php
+define('TWITTER_HOME_USER', variable_get('mnartist_twitter_home_user'));
+define('TWITTER_SEARCH_ENDPOINT', 'https://api.twitter.com/1.1/search/tweets.json');
+define('TWITTER_USERSTATUSES_ENDPOINT', 'https://api.twitter.com/1.1/statuses/user_timeline.json');
+define('TWITTER_CONSUMER_KEY', variable_get('mnartist_twitter_consumer_key'));
+define('TWITTER_CONSUMER_SECRET', variable_get('mnartist_twitter_consumer_secret'));
+define('TWITTER_ACCESS_TOKEN', variable_get('mnartist_twitter_access_token'));
+define('TWITTER_TOKEN_SECRET', variable_get('mnartist_twitter_token_secret'));
 
 /**
  * @file
  * Code for the MNArtist Twitter feature.
  */
 
-function twitterCache($consumerKey, $consumerSecret, $count, array $screen_names, $reset = FALSE)
+function twitterCache($endpointUrl, array $urlParams, $reset = FALSE)
 {
-	if($cached = cache_get('mnartist_twitter'))
-	{
+    $urlParamsStringArr = array();
+    foreach ($urlParams as $key => $value) {
+        $urlParamsStringArr[] = "$key=".urlencode($value);
+    }
+    $urlParamsString = implode('&', $urlParamsStringArr);
+    $fetchUrl = "$endpointUrl?$urlParamsString";
+    $cacheKey = 'mnartist_twitter_'.md5($fetchUrl);
+
+	if($cached = cache_get($cacheKey)) {
 		$tweets = $cached->data;
 		foreach($tweets as $tweet)
 		{
@@ -18,68 +32,92 @@ function twitterCache($consumerKey, $consumerSecret, $count, array $screen_names
 			}
 		}
 	}
-	if(empty($tweets) || $reset)
-	{
-		$ch = curl_init();
-		curl_setopt($ch,CURLOPT_URL, 'https://api.twitter.com/oauth2/token');
-		curl_setopt($ch,CURLOPT_POST, true);
-		$data = array();
-		$data['grant_type'] = "client_credentials";
-		curl_setopt($ch,CURLOPT_POSTFIELDS, $data);
+	if (empty($tweets) || $reset) {
 
-		curl_setopt($ch,CURLOPT_USERPWD, $consumerKey . ':' . $consumerSecret);
-		curl_setopt($ch,CURLOPT_RETURNTRANSFER, true);
-		$result = curl_exec($ch);
-		curl_close($ch);
-		$bearer_token = json_decode($result);
-		$bearer = $bearer_token->{'access_token'}; // this is your app token
-		$tweets = array();
-		$ch = array();
-		$mh = curl_multi_init();
-		sort($screen_names);
-		for($i =0; $i < count($screen_names); $i++)
-		{
-			$name = $screen_names[$i];
-			$ch[$i] = curl_init();
-			curl_setopt($ch[$i],CURLOPT_URL, 'https://api.twitter.com/1.1/statuses/user_timeline.json?count='.$count.'&screen_name='.$name);
-			curl_setopt($ch[$i],CURLOPT_HTTPHEADER,array('Authorization: Bearer ' . $bearer));
-			curl_setopt($ch[$i],CURLOPT_RETURNTRANSFER, true);
-			curl_multi_add_handle($mh, $ch[$i]);
-		}
+        // setup oauth for request
+        // NB dependency on php OAuth library here
+        $oauth = new OAuth(TWITTER_CONSUMER_KEY, TWITTER_CONSUMER_SECRET, OAUTH_SIG_METHOD_HMACSHA1, OAUTH_AUTH_TYPE_URI);
+        $oauth->setToken(TWITTER_ACCESS_TOKEN, TWITTER_TOKEN_SECRET);
 
-		$running = 0;
+        // do the request
+        $oauth->fetch($fetchUrl);
+        $tweets = json_decode($oauth->getLastResponse());
 
-		do {
-			curl_multi_exec($mh, $running);
-		} while ($running > 0);
-
-		for($i = 0; $i < count($ch); $i++)
-		{
-			$cleanresults = json_decode(curl_multi_getcontent($ch[$i]));
-			foreach($cleanresults as $tweet)
-			{
-				$tweets[$tweet->id_str] = $tweet;
-			}
-			curl_multi_remove_handle($mh, $ch[$i]);
-			curl_close($ch[$i]);
-		}
-		curl_multi_close($mh);
-		krsort($tweets);
-		cache_set('mnartist_twitter', $tweets, 'cache', REQUEST_TIME + (60*10));
-	}
-
-	return $tweets;
+        // set the cache
+        cache_set($cacheKey, $tweets, 'cache', REQUEST_TIME + (60*10));
+    }
+    return $tweets;
 }
 
 function _mnartist_twitter_block_visibility() {
     	return true;
 }
 
+function mnartist_twitter_admin() {
+    $form = array();
+    $form['mnartist_twitter_home_user'] = array(
+        '#type' => 'textfield',
+        '#title' => t('Twitter API Home User'),
+        '#default_value' => variable_get('mnartist_twitter_home_user', ''),
+        '#description' => t("The twitter user that will be used as the basis for the home page feed. Do not include '@' sign."),
+        '#required' => FALSE,
+    );
+    $form['mnartist_twitter_consumer_key'] = array(
+        '#type' => 'textfield',
+        '#title' => t('Twitter API Consumer Key'),
+        '#default_value' => variable_get('mnartist_twitter_consumer_key', ''),
+        '#size' => 21,
+        '#maxlength' => 21,
+        '#description' => t("Your Twitter API Consumer Key, from dev.twitter.com."),
+        '#required' => FALSE,
+    );
+    $form['mnartist_twitter_consumer_secret'] = array(
+        '#type' => 'textfield',
+        '#title' => t('Twitter API Consumer Secret'),
+        '#default_value' => variable_get('mnartist_twitter_consumer_secret', ''),
+        '#size' => 42,
+        '#maxlength' => 42,
+        '#description' => t("Your Twitter API Consumer Secret, from dev.twitter.com."),
+        '#required' => FALSE,
+    );
+    $form['mnartist_twitter_access_token'] = array(
+        '#type' => 'textfield',
+        '#title' => t('Twitter API Access Token'),
+        '#default_value' => variable_get('mnartist_twitter_access_token', ''),
+        '#size' => 50,
+        '#maxlength' => 50,
+        '#description' => t("Your Twitter API Access Token, from dev.twitter.com."),
+        '#required' => FALSE,
+    );
+    $form['mnartist_twitter_token_secret'] = array(
+        '#type' => 'textfield',
+        '#title' => t('Twitter API Token Secret'),
+        '#default_value' => variable_get('mnartist_twitter_token_secret', ''),
+        '#size' => 45,
+        '#maxlength' => 45,
+        '#description' => t("Your Twitter API Token Secret, from dev.twitter.com."),
+        '#required' => FALSE,
+    );
+    return system_settings_form($form);
+}
+
+function mnartist_twitter_menu() {
+    $items = array();
+    $items['admin/config/mnartist_twitter'] = array(
+        'title' => 'MNArtsts Twitter module settings',
+        'description' => 'Setup for your twitter API account. Information available at dev.twitter.com',
+        'page callback' => 'drupal_get_form',
+        'page arguments' => array('mnartist_twitter_admin'),
+        'access arguments' => array('administer users'),
+        'type' => MENU_NORMAL_ITEM,
+    );
+    return $items;
+}
+
 function mnartist_twitter_block_info() {
     return array(
         'mna_twitter_create' => array(
-            'info' => 'MNArtist Twitter Block
-            ',
+            'info' => 'MNArtist Twitter Block',
             'cache' => DRUPAL_NO_CACHE,
             'visibility' => BLOCK_VISIBILITY_PHP,
             'pages' => '<?php return _mnartist_twitter_block_visibility(); ?>'
@@ -101,50 +139,68 @@ function _mnartist_twitter_block()
 	$url = $_SERVER['REQUEST_URI'];
     $url = parse_url($url);
     $list = array();
+    $tweets = array();
+
+    // if a community is selected, get the relevant hashtags and
+    // add them to $list
     if(isset($url['query']))
     {
         parse_str($url['query'], $vars);
         if(isset($vars['og']))
         {
+            $hashtag_list = array();
         	$keys = array_keys($vars['og']);
+
         	$nodes = node_load_multiple($keys);
         	foreach($nodes as $node)
         	{
-        		$list[] = strtolower($node->title);
+        		// if the community has a hashtag set, add it to the terms
+        		// we'll scrape for
+        		if (isset($node->field_community_twitter['und'])) {
+        			$hashtag_list[] = urlencode('#'.strtolower($node->field_community_twitter['und'][0]['safe_value']));
+        		}
         	}
+            sort($hashtag_list);
+            $hashtag_tweets_options = array(
+                'q' => implode(' OR ', $hashtag_list),
+                'count' => '50',
+            );
+            $hashtag_tweets = twitterCache(TWITTER_SEARCH_ENDPOINT, $hashtag_tweets_options);
+            foreach ($hashtag_tweets->statuses as $tweet) {
+                $tweets[$tweet->id_str] = $tweet;
+            }
+            krsort($tweets);
         }
+    // or if no community is selected, get tweets for 'home user' (set in config)
+    // plus mentions of that user
+    } else {
+        // get user tweets directly from user statuses endpoint
+        $user_tweets_options = array(
+            'screen_name' => TWITTER_HOME_USER,
+            'count' => '50',
+        );
+        $user_tweets = twitterCache(TWITTER_USERSTATUSES_ENDPOINT, $user_tweets_options);
+
+        // get mentions from search endpoint
+        $mention_tweets_options = array(
+            'q' => '@'.TWITTER_HOME_USER,
+            'count' => '50',
+        );
+        $mention_tweets = twitterCache(TWITTER_SEARCH_ENDPOINT, $mention_tweets_options);
+
+        // interleave the user tweets and mentions
+        foreach ($user_tweets as $tweet) {
+            $tweets[$tweet->id_str] = $tweet;
+        }
+        foreach ($mention_tweets->statuses as $tweet) {
+            $tweets[$tweet->id_str] = $tweet;
+        }
+        krsort($tweets);
     }
-	/*
-		@TODO
-		parse url get groups.
-		if unset use all
-		if set select only those groups that have been selected.
-		Setup settings page.
-		unhardcode configureable variables.
-	*/
-	$twitter_users = array('ddamico', 'kjaebker', 'msg317', 'ritaelise', 'graybowman');
-	$tweets = twitterCache('Um4IzEEJM7Tr3NJYErlJQ', 'xYz6sms8Z3Z7ik9hXjTCmweVxZa1jIjsYCohYBShAs', 50, $twitter_users);
-	// Release the Kraken!
+
 	$output = "";
 	$output .= '<ul id="twitter_update_list">';
 	foreach ( $tweets as $tweet ) {
-		if(isset($vars['og']))
-		{
-			preg_match_all("/(#\w+)/", $tweet->text, $matches);
-			$matched = false;
-			foreach($matches[0] as $match)
-			{
-				$match = ltrim(strtolower($match), "#");
-				if(in_array($match, $list))
-				{
-					$matched = true;
-				}
-			}
-			if(!$matched)
-			{
-				continue;
-			}
-		}
 		// Set up some variables
 		$tweet_url = 'http://twitter.com/'.$tweet->user->screen_name.'/statuses/'.$tweet->id_str; // tweet url
 		$urls = $tweet->entities->urls; // links
