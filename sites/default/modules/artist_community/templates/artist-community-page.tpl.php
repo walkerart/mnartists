@@ -31,7 +31,7 @@
 	margin: 0; padding: 0;
 }
 .the-list-of-articles-container ul li {
-	padding: 1em 0;
+
 	color: #808080;
 	height: 80px;
 }
@@ -165,6 +165,12 @@
 ?>
 <div class="panel-2col layout-a">
 	<div class="panel-panel panel-col-first main-content">
+		<div class="community-intro">
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ornare ultrices ante, eget ultricies arcu dapibus in. Nunc placerat tincidunt mauris quis rhoncus. Vivamus varius nunc ac tellus egestas ullamcorper. In consectetur, sem non lobortis interdum, erat quam volutpat tellus, in pellentesque ipsum felis vitae neque. Vivamus cursus tempor iaculis. Cras euismod suscipit nunc. Vestibulum viverra hendrerit sem tempor eleifend. Donec at sodales erat. Fusce vel ante ultrices, laoreet lacus at, dictum neque. Nunc vel nunc semper, pulvinar ante eget, interdum sem. Aenean porta viverra magna, sed tempus nisi dictum non. Curabitur at accumsan nibh. Duis convallis neque non bibendum dapibus. Duis non eros turpis.</p>
+		</div>
+		<div class="community-logo">
+			logo
+		</div>
 		<?php if (!empty($articles)) { ?>
 			<div class="article-thing">
 				<h3>Top Stories</h3>
