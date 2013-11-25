@@ -229,10 +229,12 @@
 			</div>
 		<?php } ?>
 
-		<div class="twitter-thing widget">
+		<div class="twitter-thing widget widget-reverse">
+			<h3>Tweets &amp; Posts</h3>
 			<?php $block = module_invoke('mnartist_twitter', 'block_view', 'mna_twitter_create');
 				  print render($block['content']);
 			?>
+			<a href="#" class="more-link">More...</a>
 		</div>
 
 		<div class="event-thing widget-standard">

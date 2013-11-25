@@ -6526,9 +6526,20 @@ body.my-stuff {
         background:#fff;
         padding:10px;
         display:block;
+
+        .more-link {
+
+        }
     }
 }
-
+.widget-reverse {
+    a {
+        &.more-link {
+            color:#fff;
+            text-decoration:none;
+        }
+    }
+}
 
 /* article thing */
 .article-thing {
@@ -6589,8 +6600,8 @@ body.my-stuff {
 
             li {
                 display:block;
-                padding:10px;
                 box-sizing:border-box;
+                padding:0 0 10px 0;
 
                 a {
 
