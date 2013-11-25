@@ -6509,6 +6509,32 @@ body.my-stuff {
   width: 24.9%;
 }
 
+/* article thing */
+.article-thing {
+
+    .the-list-of-articles-container {
+        ul {
+            padding-left:20px;
+
+            li {
+                border-bottom:1px dotted $lightgray;
+
+                a {
+                    h4 {
+
+                    }
+                    p {
+
+                    }
+                }
+                &.active {
+
+                }
+            }
+        }
+    }
+}
+
 /* twitter tweets */
 #twitter_update_list {
 	list-style:none;
@@ -6520,11 +6546,16 @@ body.my-stuff {
 	li {
 		list-style:none;
 		margin:0 0 15px 0;
+        padding:0 0 15px 0;
+        border-bottom: 1px dotted #999;
 
 		a {
 			color:#fff;
 			text-decoration:underline;
 		}
+        &:last-child {
+
+        }
 	}
 }
 
