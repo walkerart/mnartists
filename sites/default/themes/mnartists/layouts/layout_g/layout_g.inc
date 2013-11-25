@@ -8,6 +8,7 @@ $plugin = array(
   'theme' => 'layout_g',
   'css' => 'layout_g.css',
   'regions' => array(
+    'artwork_top' => t('Artwork Top'),
     'artwork' => t('Artwork'),
     'inset_left' => t('Inset Left side'),
     'inset_middle' => t('Inset Middle'),
