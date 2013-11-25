@@ -53,20 +53,23 @@
                         <p><label><?=$field['field_employer']['label']?></label><?=$field['field_employer']['item'][0]['value']?></p>
                         <p><label><?=$field['field_position']['label']?></label><?=$field['field_position']['item'][0]['value']?></p>
                         <p>
-                            <label><?=$field['field_years_worked']['label']?></label>
-                            <?=$field['field_years_worked']['item'][0]['value']?>
-                            <?php if (isset($field['field_years_worked']['item'][0]['value2'])) { ?>
-                                &ndash;
-                                <!-- @TODO reevaluate this logic, it is based on the
-                                    assumption that drupal will always provide a value2,
-                                    and if the user has not set a value for it that it
-                                    will be equal to value -->
-                                <?php if ($field['field_years_worked']['item'][0]['value'] === $field['field_years_worked']['item'][0]['value2']) { ?>
-                                    present
-                                <?php } else { ?>
-                                    <?= $field['field_years_worked']['item'][0]['value2'] ?>
-                                <?php } ?>
-                            <?php }?>
+                            <label><?=$field['field_work_date_range']['label']?></label>
+                            <?php
+                                // @TODO this works okay, but maybe add an extra level of tree-climbing
+                                // in .module so that we aren't digging around in the FC here?
+                                $entity = field_collection_item_load($field['field_work_date_range']['item'][0]['value']);
+                                $instances = field_info_instances('field_collection_item', 'field_work_date_range');
+                                $context_data = array();
+                                foreach ($instances as $instance_field_name => $instance_field) {
+                                    $context_data[$instance_field_name] = array(
+                                        'label' => $instances[$instance_field_name]['label'],
+                                        'item' => (isset($entity->{$instance_field_name}['und'])) ? $entity->{$instance_field_name}['und'] : null
+                                    );
+                                }
+                                $start_date = $context_data['field_work_start_date']['item'][0]['value'];
+                                $end_date = ($context_data['field_current_position']['item'][0]['value'] === '1') ? 'present' : $context_data['field_work_end_date']['item'][0]['value'];
+                            ?>
+                            <?= $start_date ?> &ndash; <?= $end_date ?>
                         </p>
                         <p><label><?=$field['field_description_of_position']['label']?></label><?=$field['field_description_of_position']['item'][0]['value']?></p>
                         <p><label><?=$field['field_url']['label']?></label><?=$field['field_url']['item'][0]['value']?></p>
@@ -82,7 +85,6 @@
                     <div class="experience-block">
                         <p><label><?=$field['field__teaching_venue']['label']?></label><?=$field['field__teaching_venue']['item'][0]['value']?></p>
                         <p><label><?=$field['field_course']['label']?></label><?=$field['field_course']['item'][0]['value']?></p>
-                        <!-- @TODO this may not work quite the same way now, double check with some data -->
                         <p><label><?=$field['field_date']['label']?></label><?=$field['field_date']['item'][0]['value']?></p>
                         <p><label><?=$field['field_url']['label']?></label><?=$field['field_url']['item'][0]['value']?></p>
                         <p><label><?=$field['field_description_of_position']['label']?></label><?=$field['field_description_of_position']['item'][0]['value']?></p>
