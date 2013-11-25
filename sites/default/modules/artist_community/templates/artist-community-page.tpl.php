@@ -171,11 +171,13 @@
 				<?php foreach($articles as $article) { ?>
 					<div class="article-detail" id="article-detail-<?= $article->nid ?>" style="display: none;">
 						<img src="<?= $article->image_uri ?>">
-						<div class="article-detail-byline">by <?= $article->author ?></div>
-						<a href="#">FLAG</a><!-- @TODO add real flag block here -->
-						<div class="article-detail-excerpt"><?= $article->excerpt ?></div>
-						<a class="article-detail-excerpt-more" href="/node/<?= $article->nid ?>">More &gt;</a>
-						<div class="article-detail-photo-credit"><?= $article->photo_credit ?></div>
+						<div class="article-content">
+							<div class="article-detail-byline">by <?= $article->author ?></div>
+							<a href="#">FLAG</a><!-- @TODO add real flag block here -->
+							<div class="article-detail-excerpt"><?= $article->excerpt ?></div>
+							<a class="article-detail-excerpt-more" href="/node/<?= $article->nid ?>">More &gt;</a>
+							<div class="article-detail-photo-credit"><?= $article->photo_credit ?></div>
+						</div>
 					</div>
 				<?php } ?>
 
@@ -193,7 +195,7 @@
 				</div>
 			</div>
 		<?php } ?>
-
+		<div class="clear"></div>
 		<?php foreach($content as $type => $item): ?>
 		    <div class="search-results content-<?php print $type; ?>">
 		        <?php foreach($item as $node): ?>
