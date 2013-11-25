@@ -207,7 +207,7 @@
 	</div>
 	<div class="panel-panel panel-col-last sidebar-right">
 		<?php if (!empty($latest_users)) { ?>
-			<div class="user-thing widget-standard">
+			<div class="user-thing widget-standard widget">
 				<h3>Newest Artists</h3>
 				<div class="widget-content">
 				<ul>
@@ -237,7 +237,7 @@
 			<a href="#" class="more-link">More...</a>
 		</div>
 
-		<div class="event-thing widget-standard">
+		<div class="event-thing widget-standard widget">
 			<h3>This Week</h3>
 			<div class="widget-content">
 			<?php foreach ($events as $event) { ?>
