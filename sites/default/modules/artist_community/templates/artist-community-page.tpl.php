@@ -172,7 +172,7 @@
 			logo
 		</div>
 		<?php if (!empty($articles)) { ?>
-			<div class="article-thing">
+			<div class="article-thing widget">
 				<h3>Top Stories</h3>
 				<?php foreach($articles as $article) { ?>
 					<div class="article-detail" id="article-detail-<?= $article->nid ?>" style="display: none;">
