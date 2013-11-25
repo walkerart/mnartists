@@ -68,7 +68,6 @@
 /* user-thing */
 .user-thing {
 	float: left;
-	background-color: white;
 	width: 100%;
 }
 .user-thing ul,
@@ -108,7 +107,7 @@
 
 /* event-thing */
 .event-thing {
-	background-color: white;
+
 }
 .event-thing-event-block {
 	margin-bottom: 1em;
@@ -208,8 +207,9 @@
 	</div>
 	<div class="panel-panel panel-col-last sidebar-right">
 		<?php if (!empty($latest_users)) { ?>
-			<div class="user-thing">
+			<div class="user-thing widget-standard">
 				<h3>Newest Artists</h3>
+				<div class="widget-content">
 				<ul>
 					<?php foreach($latest_users as $context_user) { ?>
 						<li>
@@ -225,17 +225,19 @@
 					<!-- @TODO replace with actual downward arrow -->
 					<li class="user-thing-more"><a href="/community?content[0]=artists<?php if ($og_get_string != '') { echo "&$og_get_string"; } ?>" style="font-size: 4em;">&#709;</a></li>
 				</ul>
+				</div>
 			</div>
 		<?php } ?>
 
-		<div class="twitter-thing">
+		<div class="twitter-thing widget">
 			<?php $block = module_invoke('mnartist_twitter', 'block_view', 'mna_twitter_create');
 				  print render($block['content']);
 			?>
 		</div>
 
-		<div class="event-thing">
+		<div class="event-thing widget-standard">
 			<h3>This Week</h3>
+			<div class="widget-content">
 			<?php foreach ($events as $event) { ?>
 				<div class="event-thing-event-block">
 					<a href="/node/<?= $event->nid ?>">
@@ -244,6 +246,7 @@
 					</a>
 				</div>
 			<?php } ?>
+			</div>
 		</div>
 	</div>
 </div>
