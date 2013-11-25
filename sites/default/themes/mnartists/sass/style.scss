@@ -6435,8 +6435,25 @@ body.my-stuff {
 	}
 }
 
-
+/* LAYOUT A ************************************/
 /* community and homepage template stuff */
+
+.layout-a {
+
+    .panel-col-first {
+
+        .article-thing {
+            margin-right:20px;
+        }
+        .search-results {
+            margin-right:20px;
+        }
+
+    }
+    .panel-col-last {
+
+    }
+}
 .panel-2col.layout-a {
 /*  overflow: hidden;  */
 }
@@ -6521,6 +6538,7 @@ body.my-stuff {
             li {
                 display:block;
                 padding:10px;
+                box-sizing:border-box;
 
                 a {
 
