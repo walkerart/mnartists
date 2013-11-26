@@ -14,7 +14,7 @@
  *   - $content['right']: Content in the right column.
  */
 ?>
-<div class="panel-display panel-1col clearfix" <?php if (!empty($css_id)) { print "id=\"$css_id\""; } ?>>
+<div class="panel-display panel-1col clearfix layout-g" <?php if (!empty($css_id)) { print "id=\"$css_id\""; } ?>>
 <div class="title-artwork"><?php print $content['artwork_top']; ?></div>
   <div class="panel-panel panel-col content-artwork">
     <div class="inset-wrapper">
