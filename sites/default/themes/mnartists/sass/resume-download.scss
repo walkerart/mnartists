@@ -5,35 +5,47 @@
 html {
     background: $main_bg;
     color: $main_color;
+    margin:0;padding:0;
 
     body {
         font-family: $sans_regular_font;
         font-size: 12px;
         line-height: 16px;
         text-rendering: optimizeLegibility;
+        margin:0;padding:0;
+        text-align:center;
 
-        section {
+        .container {
+            background:#fff;
+            margin:1em auto;
+            padding:40px;
+            text-align:left;
+            display:inline-block;
+            max-width:940px;
 
-            h2 {
+            section {
 
-            }
-            p {
-
-            }
-            ul {
-
-                li {
-
-                }
-            }
-            ol {
-
-                li {
+                h2 {
 
                 }
-            }
-            a {
+                p {
 
+                }
+                ul {
+
+                    li {
+
+                    }
+                }
+                ol {
+
+                    li {
+
+                    }
+                }
+                a {
+
+                }
             }
         }
     }
