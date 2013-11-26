@@ -1,7 +1,7 @@
 <?php
-define('TWITTER_HOME_USER', variable_get('mnartist_twitter_home_user'));
 define('TWITTER_SEARCH_ENDPOINT', 'https://api.twitter.com/1.1/search/tweets.json');
 define('TWITTER_USERSTATUSES_ENDPOINT', 'https://api.twitter.com/1.1/statuses/user_timeline.json');
+define('TWITTER_HOME_USER', variable_get('mnartist_twitter_home_user'));
 define('TWITTER_CONSUMER_KEY', variable_get('mnartist_twitter_consumer_key'));
 define('TWITTER_CONSUMER_SECRET', variable_get('mnartist_twitter_consumer_secret'));
 define('TWITTER_ACCESS_TOKEN', variable_get('mnartist_twitter_access_token'));
@@ -43,8 +43,26 @@ function twitterCache($endpointUrl, array $urlParams, $reset = FALSE)
         $oauth->fetch($fetchUrl);
         $tweets = json_decode($oauth->getLastResponse());
 
-        // set the cache
-        cache_set($cacheKey, $tweets, 'cache', REQUEST_TIME + (60*10));
+        // if endpoint returned errors, log them and return false
+        if (isset($tweets->errors)) {
+            foreach ($tweets->errors as $index => $error) {
+                watchdog('mnartist_twitter', 'Twitter API returned an error in mnartist_twitter.module->twitterCache():', array(), WATCHDOG_ERROR);
+                watchdog('mnartist_twitter', 'Error message: @message', array("@message" => $error->message), WATCHDOG_ERROR);
+                watchdog('mnartist_twitter', 'Error code: @code', array("@code" => $error->code), WATCHDOG_ERROR);
+                watchdog('mnartist_twitter', 'Error @num of @den', array("@num" => $index, "@den" => count($tweets->errors)), WATCHDOG_ERROR);
+            }
+            return false;
+        } else {
+            // okay this is less than ideal, but because search api results
+            // are structured differently from timeline results in this one
+            // way (the search returns the tweets in a 'statuses' property),
+            // if we have the statuses property then jump down to that, otherwise
+            // just return the decoded return
+            $tweets = (isset($tweets->statuses)) ? $tweets->statuses : $tweets;
+
+            // set the cache
+            cache_set($cacheKey, $tweets, 'cache', REQUEST_TIME + (60*10));
+        }
     }
     return $tweets;
 }
@@ -166,7 +184,7 @@ function _mnartist_twitter_block()
                 'count' => '50',
             );
             $hashtag_tweets = twitterCache(TWITTER_SEARCH_ENDPOINT, $hashtag_tweets_options);
-            foreach ($hashtag_tweets->statuses as $tweet) {
+            foreach ($hashtag_tweets as $tweet) {
                 $tweets[$tweet->id_str] = $tweet;
             }
             krsort($tweets);
@@ -192,7 +210,7 @@ function _mnartist_twitter_block()
         foreach ($user_tweets as $tweet) {
             $tweets[$tweet->id_str] = $tweet;
         }
-        foreach ($mention_tweets->statuses as $tweet) {
+        foreach ($mention_tweets as $tweet) {
             $tweets[$tweet->id_str] = $tweet;
         }
         krsort($tweets);
