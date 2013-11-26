@@ -9,6 +9,7 @@
     </head>
 
     <body>
+        <div class="container">
         <section class="resume-block resume-block-simple general-statement">
             <h2><?= $resume_data['field_general_statement']['label'] ?></h2>
             <?= $resume_data['field_general_statement']['item'][0]['value'] ?>
@@ -28,8 +29,23 @@
                         <p><label><?= $field['field_school']['label'] ?></label><?=$field['field_school']['item'][0]['value']?></p>
                         <p><label><?= $field['field_institution_url']['label'] ?></label><?=$field['field_institution_url']['item'][0]['value']?></p>
                         <p><label><?=$field['field_degree']['label']?></label><?=$field['field_degree']['item'][0]['value']?></p>
-                        <p><label><?=$field['field_year']['label']?></label><?=$field['field_year']['item'][0]['value']?></p>
-                        <p><label><?=$field['field_or_dates_attended']['label']?></label><?=$field['field_or_dates_attended']['item'][0]['value']?></p>
+                        <?php
+                            if ($field['field_or_dates_atten']['item'] !== null &&
+                                isset($field['field_or_dates_atten']['item'][0]['value']) &&
+                                isset($field['field_or_dates_atten']['item'][0]['value2'])) {
+
+                                $start_date = new DateTime($field['field_or_dates_atten']['item'][0]['value']);
+                                $end_date = new DateTime($field['field_or_dates_atten']['item'][0]['value2']);
+                                ?>
+                                <p><label><?=$field['field_or_dates_atten']['label']?></label><?=$start_date->format('Y-m-d')?> &ndash; <?=$end_date->format('Y-m-d')?></p>
+                                <?php
+                            } else {
+                                $year_graduated = new DateTime($field['field_year']['item'][0]['value']);
+                                ?>
+                                <p><label><?=$field['field_year']['label']?></label><?=$year_graduated->format('Y')?></p>
+                                <?php
+                            }
+                        ?>
                         <p>
                             <label><?=$field['field_areas_of_study']['label']?></label><ul>
                             <?php
@@ -188,6 +204,6 @@
             ?>
             </ul>
         </section>
-
+        </div>
     </body>
 </html>
