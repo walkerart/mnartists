@@ -9,10 +9,10 @@ html {
 html body {
   font-family: "Apercu Regular", Arial, Helvetica, sans-serif;
   font-size: 12px;
-  line-height: 16px;
+  line-height: 14px;
   text-rendering: optimizeLegibility;
   margin: 0;
-  padding: 0;
+  padding: 10px;
   text-align: center;
 }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/resume-download\.scss}line{font-family:\0000318}}
@@ -29,4 +29,19 @@ html body .container section {
   padding-bottom: 40px;
   margin-bottom: 40px;
   border-bottom: 1px solid #ccc;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/resume-download\.scss}line{font-family:\0000331}}
+html body .container section:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/resume-download\.scss}line{font-family:\0000340}}
+html body .container section div p label {
+  display: block;
+  font-weight: bold;
+  font-size: 12px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/resume-download\.scss}line{font-family:\0000349}}
+html body .container section h2 {
+  font-size: 20px;
 }
