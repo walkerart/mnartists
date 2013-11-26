@@ -101,6 +101,11 @@ $legacy-support-for-ie7: true;
     letter-spacing: 1px;
     text-transform: uppercase;
 }
+@mixin widget_title {
+    padding: 0 0 5px 0;
+    margin: 0;
+    height: 15px;
+}
 
 @mixin feature_type {
     font-family: $serif_font;
@@ -139,7 +144,7 @@ $legacy-support-for-ie7: true;
     * {
         color: $color;
     }
-    
+
     .alternate,
     .date_connector {
         border-color: $color !important;
@@ -173,7 +178,7 @@ $legacy-support-for-ie7: true;
     h1 {
         color: $color !important;
     }
-    
+
     .program {
         display: block;
     }

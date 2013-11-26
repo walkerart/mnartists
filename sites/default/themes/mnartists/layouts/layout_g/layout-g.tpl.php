@@ -15,7 +15,7 @@
  */
 ?>
 <div class="panel-display panel-1col clearfix" <?php if (!empty($css_id)) { print "id=\"$css_id\""; } ?>>
-    <?php print $content['artwork_top']; ?>
+<div class="title-artwork"><?php print $content['artwork_top']; ?></div>
   <div class="panel-panel panel-col content-artwork">
     <div class="inset-wrapper">
     	<div class="inside content-top">

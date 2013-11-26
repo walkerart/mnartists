@@ -6439,7 +6439,18 @@ body.my-stuff {
 /* community and homepage template stuff */
 
 .layout-a {
-
+    .title-artwork {
+        .block {
+            margin:0;
+            .block-inner {
+                .block-content {
+                    h2 {
+                        @include widget_title;
+                    }
+                }
+            }
+        }
+    }
     .panel-col-first {
 
         .article-thing {
@@ -6823,6 +6834,7 @@ body.my-stuff {
                 &.user-thing-more {
                     margin:0;
                     padding:0;
+
                 }
             }
         }
