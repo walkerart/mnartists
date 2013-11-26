@@ -5588,56 +5588,7 @@ body.page-node-add #content {
 }
 
 
-/* artwork page */
-/****************************************************/
-.content-artwork .inset-left {
-	font-family: $serif_font;
-}
-.content-artwork .pane-node-title h2 {
-	 background:none;
-	 padding:10px 0 5px 0;
-	 margin:0 0 10px 0;
-	 border-bottom: 1px solid $lightgray;
-	 font-size:18px;
-	 height:auto;
-	 line-height:auto;
-	 text-transform:none;
-	 letter-spacing:normal;
 
-	 a {
-		 font-family: $serif-font;
-		 font-weight: normal;
-		 height:auto;
-	 }
-}
-
-.content-artwork {
-	position:relative;
-
-	.pane-node-links {
-		position:absolute;
-		display:inline-block;
-		right:10px;
-		top:10px;
-		text-align:right;
-	}
-	.pane-node-author {
-
-		a {
-			font-size:24px;
-			font-weight:bold;
-			line-height:24px;
-			margin-bottom:5px;
-			display:block;
-		}
-	}
-	.pane-mnartist-collections-mna-collections-star {
-		position:absolute;
-		top:10px;
-		right:0px;
-		z-index:9999;
-	}
-}
 .content-bottom {
 	display:table;
 	padding-bottom:20px;
@@ -6517,6 +6468,7 @@ body.my-stuff {
             margin:0;
             .block-inner {
                 .block-content {
+                    background:none;
                     h2 {
                         @include widget_title;
                     }
@@ -6525,6 +6477,57 @@ body.my-stuff {
         }
     }
 }
+/* artwork  */
+.content-artwork .inset-left {
+    font-family: $serif_font;
+}
+.content-artwork .pane-node-title h2 {
+     background:none;
+     padding:15px 0 10px 0;
+     margin:0 0 10px 0;
+     border-bottom: 1px solid $lightgray;
+     font-size:18px;
+     height:auto;
+     line-height:auto;
+     text-transform:none;
+     letter-spacing:normal;
+
+     a {
+         font-family: $serif-font;
+         font-weight: normal;
+         height:auto;
+     }
+}
+
+.content-artwork {
+    position:relative;
+
+    .pane-node-links {
+        position:absolute;
+        display:inline-block;
+        right:10px;
+        top:10px;
+        text-align:right;
+    }
+    .pane-node-author {
+
+        a {
+            font-size:24px;
+            font-weight:bold;
+            line-height:24px;
+            margin-bottom:10px;
+            padding-top:5px;
+            display:block;
+        }
+    }
+    .pane-mnartist-collections-mna-collections-star {
+        position:absolute;
+        top:10px;
+        right:0px;
+        z-index:9999;
+    }
+}
+
 
 
 /* STANDARD WIDGET PATTERN */
