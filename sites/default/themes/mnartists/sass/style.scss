@@ -6004,45 +6004,35 @@ ul.slidesjs-pagination {
 
 /* my stuff **********************************************/
 /**********************************************************/
-body.my-stuff {
+body {
+    &.my-stuff {
 
-	background-image: linear-gradient(90deg, $mystuff_bg_dark 0%, $mystuff_bg_dark 200px, $mystuff_bg_light 201px);
+    	background-image: linear-gradient(90deg, $mystuff_bg_dark 0%, $mystuff_bg_dark 200px, $mystuff_bg_light 201px);
 
-	#tasks {
+    	#tasks {
 
-		.primary {
+    		.primary {
 
 
-		}
+    		}
 
-	}
-    .pane-user-mnartist-profiles-artworks  {
+    	}
+        .pane-user-mnartist-profiles-artworks  {
 
-        .block-inner {
+            .block-inner {
 
-            .block-content {
+                .block-content {
 
-                dd {
-                    background:$mystuff_bg_dark;
+                    dd {
+                        background:$mystuff_bg_dark;
+                    }
                 }
+
             }
-
         }
-    }
-    // main content in my stuff
-    article {
-        color:#fff;
-
-        a {
+        // main content in my stuff
+        article {
             color:#fff;
-
-            &:hover {
-                color:#ccc;
-
-            }
-        }
-
-        h1 {
 
             a {
                 color:#fff;
@@ -6052,6 +6042,21 @@ body.my-stuff {
 
                 }
             }
+
+            h1 {
+
+                a {
+                    color:#fff;
+
+                    &:hover {
+                        color:#ccc;
+
+                    }
+                }
+            }
+        }
+        &.page-node-edit {
+
         }
     }
 }
@@ -6392,69 +6397,50 @@ body.my-stuff {
 .layout-a {
 
     .panel-col-first {
+        float: left;
+        width: 75%;
 
-        .article-thing {
-            margin-right:20px;
+        .inside {
+            margin: 0 .5em 1em 0;
+
+            .article-thing {
+                margin-right:20px;
+            }
+            .search-results {
+                margin-right:20px;
+            }
         }
-        .search-results {
-            margin-right:20px;
+        .inset-left {
+            float: left;
+            width: 75%;
+        }
+        .inset-right {
+            float: left;
+            width: 25%;
         }
 
     }
     .panel-col-last {
-
+        float: left;
+        width: 25%;
+        .inside {
+            margin: 0 0 1em .5em;
+        }
+    }
+    .panel-separator {
+        margin: 0 0 1em 0;
     }
 }
-.panel-2col.layout-a {
-/*  overflow: hidden;  */
-}
 
-.panel-2col.layout-a .panel-col-first {
-  float: left;
-  width: 75%;
-}
 * html .panel-2col.layout-a .panel-col-first {
   width: 74.9%;
-}
-
-.panel-2col.layout-a .panel-col-first .inside {
-  margin: 0 .5em 1em 0;
-}
-
-.panel-2col.layout-a .panel-col-last {
-  float: left;
-  width: 25%;
 }
 * html .panel-2col.layout-a .panel-col-last {
   width: 24.9%;
 }
-
-.panel-2col.layout-a .panel-col-last .inside {
-  margin: 0 0 1em .5em;
-}
-
-#panels-edit-display .panel-pane,
-#panels-edit-display .helperclass {
-  margin: .5em;
-}
-
-.panel-2col.layout-a .panel-separator {
-  margin: 0 0 1em 0;
-}
-
-
 /* insets */
-.panel-2col.layout-a .panel-col-first .panel-col-first.inset-left{
-  float: left;
-  width: 75%;
-}
 * html .panel-2col.layout-a .panel-col-first .panel-col-first.inset-left{
   width: 74.9%;
-}
-
-.panel-2col.layout-a .panel-col-first .panel-col-last.inset-right{
-  float: left;
-  width: 25%;
 }
 * html .panel-2col.layout-a .panel-col-first .panel-col-last.inset-right{
   width: 24.9%;
@@ -6476,58 +6462,71 @@ body.my-stuff {
             }
         }
     }
-}
-/* artwork  */
-.content-artwork .inset-left {
-    font-family: $serif_font;
-}
-.content-artwork .pane-node-title h2 {
-     background:none;
-     padding:15px 0 10px 0;
-     margin:0 0 10px 0;
-     border-bottom: 1px solid $lightgray;
-     font-size:18px;
-     height:auto;
-     line-height:auto;
-     text-transform:none;
-     letter-spacing:normal;
+    .panel-col {
 
-     a {
-         font-family: $serif-font;
-         font-weight: normal;
-         height:auto;
-     }
-}
+        &.content-artwork {
+            position:relative;
 
-.content-artwork {
-    position:relative;
+            .content-top {
 
-    .pane-node-links {
-        position:absolute;
-        display:inline-block;
-        right:10px;
-        top:10px;
-        text-align:right;
-    }
-    .pane-node-author {
+            }
+            .content-bottom {
 
-        a {
-            font-size:24px;
-            font-weight:bold;
-            line-height:24px;
-            margin-bottom:10px;
-            padding-top:5px;
-            display:block;
+                .inset-left {
+                    font-family: $serif_font;
+                }
+                .inset-middle {
+
+                }
+                .inset-right {
+
+                }
+            }
+
+            .pane-node-title h2 {
+                 background:none;
+                 padding:15px 0 10px 0;
+                 margin:0 0 10px 0;
+                 border-bottom: 1px solid $lightgray;
+                 font-size:18px;
+                 height:auto;
+                 line-height:auto;
+                 text-transform:none;
+                 letter-spacing:normal;
+
+                 a {
+                     font-family: $serif-font;
+                     font-weight: normal;
+                     height:auto;
+                 }
+            }
+            .pane-node-links {
+                position:absolute;
+                display:inline-block;
+                right:10px;
+                top:10px;
+                text-align:right;
+            }
+            .pane-node-author {
+
+                a {
+                    font-size:24px;
+                    font-weight:bold;
+                    line-height:24px;
+                    margin-bottom:10px;
+                    padding-top:5px;
+                    display:block;
+                }
+            }
+            .pane-mnartist-collections-mna-collections-star {
+                position:absolute;
+                top:10px;
+                right:0px;
+                z-index:9999;
+            }
         }
     }
-    .pane-mnartist-collections-mna-collections-star {
-        position:absolute;
-        top:10px;
-        right:0px;
-        z-index:9999;
-    }
 }
-
 
 
 /* STANDARD WIDGET PATTERN */
@@ -6637,7 +6636,7 @@ body.my-stuff {
     }
 }
 
-/* shame this needs organaized
+/* needs organaized
    in a major way like e-40 */
 
 /* article-thing */
@@ -6860,6 +6859,10 @@ body.my-stuff {
 
 #profile-resume-field-exhibition-and-performance-add-more-wrapper .field-widget-url-external label {
     display: none;
+}
+#panels-edit-display .panel-pane,
+#panels-edit-display .helperclass {
+    margin: .5em;
 }
 
 /* more shame */
