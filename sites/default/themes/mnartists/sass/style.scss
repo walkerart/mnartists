@@ -5262,7 +5262,9 @@ only screen and (min-device-pixel-ratio: 1.5) {
 
 
 
-/* IMA SCSS STARTS BELOW */
+/* IMA LAB SCSS STARTS BELOW */
+/* EXCUSE OUR MESS, STILL LOTS OF MOVING PARTS
+   HERE AND OPTIMIZATIONS TO DO */
 /* ================================================= */
 
 /* node general */
@@ -5288,9 +5290,10 @@ only screen and (min-device-pixel-ratio: 1.5) {
 
 /* twitter block */
 .block-twitter .block-inner .block-content {
+    /* tmp at one point there was a block but its all different
+    now so i think this is irrelevant */
 	background: $darkgray;
 	color: $menu_bg;
-
 }
 
 
@@ -6479,6 +6482,7 @@ body {
         height: 100%;
         width: 36%;
         padding-left:20px;
+        box-sizing:border-box;
 
         ul {
             list-style: none;
