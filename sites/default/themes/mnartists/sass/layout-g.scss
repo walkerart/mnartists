@@ -1,0 +1,81 @@
+/* LAYOUT G artwork **************************/
+
+.layout-g {
+    .title-artwork {
+        .block {
+            margin:0;
+            .block-inner {
+                .block-content {
+                    background:none;
+                    h2 {
+                        @include widget_title;
+                    }
+                }
+            }
+        }
+    }
+    .panel-col {
+
+        &.content-artwork {
+            position:relative;
+
+            .content-top {
+
+            }
+            .content-bottom {
+
+                .inset-left {
+                    font-family: $serif_font;
+                }
+                .inset-middle {
+
+                }
+                .inset-right {
+
+                }
+            }
+
+            .pane-node-title h2 {
+                 background:none;
+                 padding:15px 0 10px 0;
+                 margin:0 0 10px 0;
+                 border-bottom: 1px solid $lightgray;
+                 font-size:18px;
+                 height:auto;
+                 line-height:auto;
+                 text-transform:none;
+                 letter-spacing:normal;
+
+                 a {
+                     font-family: $serif-font;
+                     font-weight: normal;
+                     height:auto;
+                 }
+            }
+            .pane-node-links {
+                position:absolute;
+                display:inline-block;
+                right:10px;
+                top:10px;
+                text-align:right;
+            }
+            .pane-node-author {
+
+                a {
+                    font-size:24px;
+                    font-weight:bold;
+                    line-height:24px;
+                    margin-bottom:10px;
+                    padding-top:5px;
+                    display:block;
+                }
+            }
+            .pane-mnartist-collections-mna-collections-star {
+                position:absolute;
+                top:10px;
+                right:0px;
+                z-index:9999;
+            }
+        }
+    }
+}
