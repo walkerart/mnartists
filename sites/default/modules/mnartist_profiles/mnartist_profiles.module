@@ -3,7 +3,7 @@
  * @file
  * Code for the MNArtist Profiles feature.
  */
-
+// @TODO if you use mnartist_profiles_fullname_or_username in any other modules make sure to indicate in the module info file that the module is dependent on this one
 define('ARTIST_ROLE', 4);
 define('ORG_ROLE', 5);
 define('PUBLIC_ROLE', 6);
@@ -130,6 +130,18 @@ function mnartist_profiles_duration_in_plain_english($activityDate) {
     }
     $returnStringArr[] = 'ago';
     return implode(' ', $returnStringArr);
+}
+
+function mnartist_profiles_fullname_or_username($uid) {
+    $context_user = user_load($uid);
+    $context_profile = profile2_load_by_user($uid, 'main');
+    if (isset($context_profile->field_full_name['und'])) {
+        $entity = field_collection_item_load($context_profile->field_full_name['und'][0]['value']);
+        $first_name = $entity->field_first_name['und'][0]['value'];
+        $last_name = $entity->field_last_name['und'][0]['value'];
+        return "$first_name $last_name";
+    }
+    return $context_user->name;
 }
 
 function mnartist_profiles_resume_download($uid) {

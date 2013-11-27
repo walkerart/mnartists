@@ -81,7 +81,6 @@
 		    <div class="search-results content-<?php print $type; ?>">
 		        <?php foreach($item as $node): ?>
 		            <div class="item item-<?php print $type; ?>">
-		            	<h3><?php print $type; ?></h3>
 		            	<?php print $node; ?>
 		            </div>
 		        <?php endforeach; ?>

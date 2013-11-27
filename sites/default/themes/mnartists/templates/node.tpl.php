@@ -104,6 +104,7 @@
 hide($content['comments']);
 hide($content['links']);
 ?>
+<h3><?php print $type; ?></h3>
 <article id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
   <?php print render($title_prefix); ?>
 

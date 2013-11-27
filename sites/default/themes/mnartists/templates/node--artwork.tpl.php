@@ -103,39 +103,22 @@
  */
 hide($content['comments']);
 hide($content['links']);
+$top_title = $type;
+if (!(empty($node->field_medium3))) {
+    $term_list = array();
+    foreach ($node->field_medium3['und'] as $term) {
+        $tterm = taxonomy_term_load($term['tid']);
+        $term_list[] = $tterm->name;
+    }
+    $top_title = implode(', ', $term_list);
+}
 ?>
+<h3><?php print $top_title; ?></h3>
 <article id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
-  <?php print render($title_prefix); ?>
-
-  <?php if ($title && !$page): ?>
-    <header<?php print $header_attributes; ?>>
-      <?php if ($title): ?>
-        <h1<?php print $title_attributes; ?>>
-          <a href="<?php print $node_url; ?>" rel="bookmark"><?php print $title; ?></a>
-        </h1>
-      <?php endif; ?>
-    </header>
-  <?php endif; ?>
-
-  <?php if(!empty($user_picture) || $display_submitted): ?>
-    <footer<?php print $footer_attributes; ?>>
-      <?php print $user_picture; ?>
-      <p class="author-datetime"><?php print $name; ?></p>
-      <?php
-        if (!(empty($node->field_medium3))) {
-          $term_list = array();
-          foreach ($node->field_medium3['und'] as $term) {
-            $tterm = taxonomy_term_load($term['tid']);
-            $term_list[] = $tterm->name;
-          } ?>
-          <p class="medium"><?= implode(', ', $term_list) ?></p>
-        <?php } ?>
-    </footer>
-  <?php endif; ?>
-
-  <div<?php print $content_attributes; ?> onclick="window.location = '<?php print $node_url; ?>'">
-    <?php print render($content); ?>
+  <?php print render($content); ?>
+  <div class="item-info-container">
+    <p class="item-info-title"><?php print $node->title; ?></p>
+    <p class="item-info-author"><?php print mnartist_profiles_fullname_or_username($node->uid); ?></p>
+    <p class="item-info-flag">FLAG</p>
   </div>
-
-  <?php print render($title_suffix); ?>
 </article>
