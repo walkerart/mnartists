@@ -5260,7 +5260,10 @@ only screen and (min-device-pixel-ratio: 1.5) {
 /* @end */
 
 
-/* matt css */
+
+
+/* IMA SCSS STARTS BELOW */
+/* ================================================= */
 
 /* node general */
 .event-content-top h1.node-title {
@@ -6391,145 +6394,11 @@ body {
 	}
 }
 
-/* LAYOUT A ************************************/
-/* community and homepage template stuff */
-
-.layout-a {
-
-    .panel-col-first {
-        float: left;
-        width: 75%;
-
-        .inside {
-            margin: 0 .5em 1em 0;
-
-            .article-thing {
-                margin-right:20px;
-            }
-            .search-results {
-                margin-right:20px;
-            }
-        }
-        .inset-left {
-            float: left;
-            width: 75%;
-        }
-        .inset-right {
-            float: left;
-            width: 25%;
-        }
-
-    }
-    .panel-col-last {
-        float: left;
-        width: 25%;
-        .inside {
-            margin: 0 0 1em .5em;
-        }
-    }
-    .panel-separator {
-        margin: 0 0 1em 0;
-    }
-}
-
-* html .panel-2col.layout-a .panel-col-first {
-  width: 74.9%;
-}
-* html .panel-2col.layout-a .panel-col-last {
-  width: 24.9%;
-}
-/* insets */
-* html .panel-2col.layout-a .panel-col-first .panel-col-first.inset-left{
-  width: 74.9%;
-}
-* html .panel-2col.layout-a .panel-col-first .panel-col-last.inset-right{
-  width: 24.9%;
-}
-
-/* LAYOUT G artwork **************************/
-/*************************************/
-.layout-g {
-    .title-artwork {
-        .block {
-            margin:0;
-            .block-inner {
-                .block-content {
-                    background:none;
-                    h2 {
-                        @include widget_title;
-                    }
-                }
-            }
-        }
-    }
-    .panel-col {
-
-        &.content-artwork {
-            position:relative;
-
-            .content-top {
-
-            }
-            .content-bottom {
-
-                .inset-left {
-                    font-family: $serif_font;
-                }
-                .inset-middle {
-
-                }
-                .inset-right {
-
-                }
-            }
-
-            .pane-node-title h2 {
-                 background:none;
-                 padding:15px 0 10px 0;
-                 margin:0 0 10px 0;
-                 border-bottom: 1px solid $lightgray;
-                 font-size:18px;
-                 height:auto;
-                 line-height:auto;
-                 text-transform:none;
-                 letter-spacing:normal;
-
-                 a {
-                     font-family: $serif-font;
-                     font-weight: normal;
-                     height:auto;
-                 }
-            }
-            .pane-node-links {
-                position:absolute;
-                display:inline-block;
-                right:10px;
-                top:10px;
-                text-align:right;
-            }
-            .pane-node-author {
-
-                a {
-                    font-size:24px;
-                    font-weight:bold;
-                    line-height:24px;
-                    margin-bottom:10px;
-                    padding-top:5px;
-                    display:block;
-                }
-            }
-            .pane-mnartist-collections-mna-collections-star {
-                position:absolute;
-                top:10px;
-                right:0px;
-                z-index:9999;
-            }
-        }
-    }
-}
 
 
-/* STANDARD WIDGET PATTERN */
+
+
+/* @group Widget Standard Pattern */
 .widget {
 
     h3 {
@@ -6558,35 +6427,98 @@ body {
         }
     }
 }
+/* @end */
 
-/* article thing */
+
+
+
+/* @group Article Slideshow Block for Communities */
 .article-thing {
+    clear: both;
+    height: 600px; /* tmp should it be variable? */
 
+    .article-detail {
+        float: left;
+        background-color: white;
+        height: 100%;
+        width: 63.963963964%;
+
+        img {
+            max-width: 100%;
+            width: 100%;
+            height:auto;
+        }
+        .article-content {
+            padding:10px;
+            position:relative;
+
+            .article-detail-byline {
+                text-transform: uppercase;
+            }
+            .article-detail-excerpt {
+                font-size: 1.1em;
+                display:block;
+                font-family:$serif_font;
+            }
+            .article-detail-excerpt-more {
+                float:right;
+                text-transform:uppercase;
+                white-space:nowrap;
+            }
+            .article-detail-photo-credit {
+                border-top: 1px solid #E0E0E0;
+                padding-top: 1em;
+                margin-top:1em;
+                color:#777;
+            }
+        }
+    }
     .the-list-of-articles-container {
+        float: left;
+        background-color: white;
+        height: 100%;
+        width: 36%;
+        padding-left:20px;
+
         ul {
-            padding-left:20px;
+            list-style: none;
+            margin: 0; padding: 0;
 
             li {
+                list-style: none;
+                margin: 0; padding: 0;
+                color: #808080;
+                height: 80px; /* tmp should be variable? */
                 border-bottom:1px dotted $lightgray;
                 padding: 1em;
 
+                h4 {
+                    margin: 0; padding: 0;
+                    text-transform:uppercase;
+                }
+                p {
+                    margin: 0; padding: 0;
+                    font-family: $serif_font;
+                    font-size: 1.8em;
+                    line-height:1.2em;
+                }
                 a {
+                    text-decoration: none;
+                    display: block;
+                    width: 100%;
+                    height: 100%;
                     color:#a3a3a3;
-
-                    h4 {
-                        text-transform:uppercase;
-                    }
-                    p {
-                        line-height:1.2em;
-                    }
 
                     &:hover {
                         color:$main_color;
                     }
                 }
+
                 &.active {
-                    backround:#e5e5e5;
+                    background-color: #e5e5e5;
+                    background:#e5e5e5;
                     position:relative;
+                    color:$main_color;
 
                     &:before {
                         right: 100%;
@@ -6602,182 +6534,97 @@ body {
                         border-width: 10px;
                         margin-top: -10px;
                     }
-                    a {
-                        color:$main_color;
-                    }
-
                 }
             }
         }
     }
-    .article-content {
-        padding:10px;
-        position:relative;
-
-        .article-detail-byline {
-            text-transform: uppercase;
-        }
-        .article-detail-excerpt {
-            font-size: 1.1em;
-            display:block;
-            font-family:$serif_font;
-        }
-        .article-detail-excerpt-more {
-            float:right;
-            text-transform:uppercase;
-            white-space:nowrap;
-        }
-        .article-detail-photo-credit {
-            border-top: 1px solid #E0E0E0;
-            padding-top: 1em;
-            margin-top:1em;
-            color:#777;
-        }
-    }
 }
 
-/* needs organaized
-   in a major way like e-40 */
+/* @end */
 
-/* article-thing */
-.article-thing {
-    clear: both;
-    height: 600px;
-}
-.article-detail,
-.the-list-of-articles-container {
-    float: left;
-    background-color: white;
-    height: 100%;
-}
-.article-detail img {
-    max-width: 100%;
-    width: 100%;
-}
-.article-detail {
-    width: 63.963963964%;
-}
-.the-list-of-articles-container {
-    width: 36%;
-}
-.the-list-of-articles-container ul,
-.the-list-of-articles-container ul li {
-    list-style: none;
-}
-.the-list-of-articles-container ul,
-.the-list-of-articles-container ul li,
-.the-list-of-articles-container ul li h4,
-.the-list-of-articles-container ul li p {
-    margin: 0; padding: 0;
-}
-.the-list-of-articles-container ul li {
-
-    color: #808080;
-    height: 80px;
-}
-.the-list-of-articles-container ul li a {
-    text-decoration: none;
-    display: block;
-    width: 100%;
-    height: 100%;
-}
-.the-list-of-articles-container ul li.active {
-    background-color: #e5e5e5;
-    color: black;
-}
-.the-list-of-articles li h4 {
-}
-.the-list-of-articles-container ul li p,
-.article-detail-excerpt {
-    font-family: "adobe-text-pro", "Times New Roman", Times, serif;
-}
-.the-list-of-articles-container ul li p {
-    font-size: 1.8em;
-}
-
-
-/* user-thing */
+/* @group New User Block - sidebar display of new users */
 .user-thing {
     float: left;
     width: 100%;
-}
-.user-thing ul,
-.user-thing ul li {
-    list-style: none;
-    margin: 0; padding: 0;
-}
-.user-thing ul li {
-    margin-bottom: 1em;
-}
-.user-thing ul li img {
-    border-radius: 50%;
-}
-.user-thing ul li img,
-.user-thing-labels {
-    float: left;
-}
-.user-thing-labels {
-}
-.user-thing-name {
-    font-family: "adobe-text-pro", "Times New Roman", Times, serif;
-    font-weight: bold;
-}
-.user-thing-practice {
-    color: #adadad;
-}
-.panel-panel > div,
-.user-thing ul li {
-    clear: both;
-}
 
-/* twitter-thing */
+    ul {
+        list-style: none;
+        margin: 0; padding: 0;
+
+        li {
+            list-style: none;
+            margin: 0 0 1em 0; padding: 0;
+            clear: both;
+
+            img {
+                border-radius: 50%;
+                float: left;
+            }
+            .user-thing-labels {
+                float: left;
+            }
+            .user-thing-name {
+                font-family: "adobe-text-pro", "Times New Roman", Times, serif; /* tmp */
+                font-weight: bold;
+            }
+            .user-thing-practice {
+                color: #adadad; /* tmp */
+
+            }
+        }
+    }
+}
+/* @end */
+
+/* @group Twitter Tweets Block */
 .twitter-thing {
     height: 200px;
     overflow-y: auto;
-}
 
-/* event-thing */
+    ul {
+        list-style:none;
+        margin:0;
+        padding:10px;
+        background:$mystuff_bg_dark;
+        color:#fff;
+
+        li {
+            list-style:none;
+            margin:0 0 15px 0;
+            padding:0 0 15px 0;
+            border-bottom: 1px dotted #999;
+
+            a {
+                color:#fff;
+                text-decoration:underline;
+            }
+            &:last-child {
+
+            }
+        }
+    }
+}
+/* @end */
+
+/* @group Events Block */
 .event-thing {
 
-}
-.event-thing-event-block {
-    margin-bottom: 1em;
-}
-.event-thing-event-block img,
-.event-thing-event-tite {
-    margin: 0;
-    padding: 0;
-}
+    .event-thing-event-block {
+        margin-bottom: 1em;
 
-.sidebar-right > div {
-    margin-bottom: 2em;
-}
-
-   /* end shame */
-
-/* twitter tweets */
-#twitter_update_list {
-	list-style:none;
-	margin:0;
-	padding:10px;
-	background:$mystuff_bg_dark;
-	color:#fff;
-
-	li {
-		list-style:none;
-		margin:0 0 15px 0;
-        padding:0 0 15px 0;
-        border-bottom: 1px dotted #999;
-
-		a {
-			color:#fff;
-			text-decoration:underline;
-		}
-        &:last-child {
-
+        img {
+            margin: 0;
+            padding: 0;
         }
-	}
+        .event-thing-event-title {
+            margin: 0;
+            padding: 0;
+        }
+    }
 }
+/* @end */
+
+
 /* commununity pages intro text */
 .community-intro {
     margin-right:20px;
@@ -6788,7 +6635,7 @@ body {
 }
 
 /* community page logo (it needs to be dynamic eventually) */
-.community-logo {
+.community-logo { /* tmp this will change */
     margin-right:20px;
     display:block;
     text-align:center;
@@ -6796,7 +6643,7 @@ body {
     font-size:28px;
 }
 
-/* sidebar right ***********/
+/* @group Sidebar Right */
 .sidebar-right {
 
     .user-thing {
@@ -6848,8 +6695,12 @@ body {
     }
 
 }
+/* @end */
 
 /* misc */
+.sidebar-right > div {
+    margin-bottom: 2em;
+}
 .field-widget-url-external legend {
     display: none;
 }
@@ -6865,4 +6716,8 @@ body {
     margin: .5em;
 }
 
-/* more shame */
+/* wtf whats this for? */
+.panel-panel > div {
+    clear: both;
+}
+
