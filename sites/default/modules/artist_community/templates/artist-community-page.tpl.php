@@ -55,7 +55,7 @@
 						<div class="article-content">
 							<div class="article-detail-byline">by <?= $article->author ?></div>
 							<a href="#">FLAG</a><!-- @TODO add real flag block here -->
-							<div class="article-detail-excerpt"><?= $article->excerpt ?></div>
+							<div class="article-detail-excerpt"><?= trim($article->excerpt) ?>&hellip;</div>
 							<a class="article-detail-excerpt-more" href="/node/<?= $article->nid ?>">More &gt;</a>
 							<div class="article-detail-photo-credit"><?= $article->photo_credit ?></div>
 						</div>
