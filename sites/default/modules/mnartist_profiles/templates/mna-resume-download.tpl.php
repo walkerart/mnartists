@@ -9,6 +9,7 @@
     </head>
 
     <body>
+        <div class="container">
         <section class="resume-block resume-block-simple general-statement">
             <h2><?= $resume_data['field_general_statement']['label'] ?></h2>
             <?= $resume_data['field_general_statement']['item'][0]['value'] ?>
@@ -28,8 +29,23 @@
                         <p><label><?= $field['field_school']['label'] ?></label><?=$field['field_school']['item'][0]['value']?></p>
                         <p><label><?= $field['field_institution_url']['label'] ?></label><?=$field['field_institution_url']['item'][0]['value']?></p>
                         <p><label><?=$field['field_degree']['label']?></label><?=$field['field_degree']['item'][0]['value']?></p>
-                        <p><label><?=$field['field_year']['label']?></label><?=$field['field_year']['item'][0]['value']?></p>
-                        <p><label><?=$field['field_or_dates_attended']['label']?></label><?=$field['field_or_dates_attended']['item'][0]['value']?></p>
+                        <?php
+                            if ($field['field_or_dates_atten']['item'] !== null &&
+                                isset($field['field_or_dates_atten']['item'][0]['value']) &&
+                                isset($field['field_or_dates_atten']['item'][0]['value2'])) {
+
+                                $start_date = new DateTime($field['field_or_dates_atten']['item'][0]['value']);
+                                $end_date = new DateTime($field['field_or_dates_atten']['item'][0]['value2']);
+                                ?>
+                                <p><label><?=$field['field_or_dates_atten']['label']?></label><?=$start_date->format('Y/m/d')?> &ndash; <?=$end_date->format('Y/m/d')?></p>
+                                <?php
+                            } else {
+                                $year_graduated = new DateTime($field['field_year']['item'][0]['value']);
+                                ?>
+                                <p><label><?=$field['field_year']['label']?></label><?=$year_graduated->format('Y')?></p>
+                                <?php
+                            }
+                        ?>
                         <p>
                             <label><?=$field['field_areas_of_study']['label']?></label><ul>
                             <?php
@@ -66,8 +82,8 @@
                                         'item' => (isset($entity->{$instance_field_name}['und'])) ? $entity->{$instance_field_name}['und'] : null
                                     );
                                 }
-                                $start_date = $context_data['field_work_start_date']['item'][0]['value'];
-                                $end_date = ($context_data['field_current_position']['item'][0]['value'] === '1') ? 'present' : $context_data['field_work_end_date']['item'][0]['value'];
+                                $start_date = date_format(new DateTime($context_data['field_work_start_date']['item'][0]['value']), 'Y/m');
+                                $end_date = ($context_data['field_current_position']['item'][0]['value'] === '1') ? 'present' : date_format(new DateTime($context_data['field_work_end_date']['item'][0]['value']), 'Y/m');
                             ?>
                             <?= $start_date ?> &ndash; <?= $end_date ?>
                         </p>
@@ -85,7 +101,23 @@
                     <div class="experience-block">
                         <p><label><?=$field['field__teaching_venue']['label']?></label><?=$field['field__teaching_venue']['item'][0]['value']?></p>
                         <p><label><?=$field['field_course']['label']?></label><?=$field['field_course']['item'][0]['value']?></p>
-                        <p><label><?=$field['field_date']['label']?></label><?=$field['field_date']['item'][0]['value']?></p>
+                        <p>
+                            <label><?=$field['field_work_date_range']['label']?></label>
+                            <?php
+                                $entity = field_collection_item_load($field['field_work_date_range']['item'][0]['value']);
+                                $instances = field_info_instances('field_collection_item', 'field_work_date_range');
+                                $context_data = array();
+                                foreach ($instances as $instance_field_name => $instance_field) {
+                                    $context_data[$instance_field_name] = array(
+                                        'label' => $instances[$instance_field_name]['label'],
+                                        'item' => (isset($entity->{$instance_field_name}['und'])) ? $entity->{$instance_field_name}['und'] : null
+                                    );
+                                }
+                                $start_date = date_format(new DateTime($context_data['field_work_start_date']['item'][0]['value']), 'Y/m');
+                                $end_date = ($context_data['field_current_position']['item'][0]['value'] === '1') ? 'present' : date_format(new DateTime($context_data['field_work_end_date']['item'][0]['value']), 'Y/m');
+                            ?>
+                            <?= $start_date ?> &ndash; <?= $end_date ?>
+                        </p>
                         <p><label><?=$field['field_url']['label']?></label><?=$field['field_url']['item'][0]['value']?></p>
                         <p><label><?=$field['field_description_of_position']['label']?></label><?=$field['field_description_of_position']['item'][0]['value']?></p>
                         <p><label><?=$field['field_position']['label']?></label><?=$field['field_position']['item'][0]['value']?></p>
@@ -101,7 +133,7 @@
                     <div class="award-block">
                         <p><label><?=$field['field_award_name']['label']?></label><?=$field['field_award_name']['item'][0]['value']?></p>
                         <p><label><?=$field['field_description']['label']?></label><?=$field['field_description']['item'][0]['value']?></p>
-                        <p><label><?=$field['field_year']['label']?></label><?=$field['field_year']['item'][0]['value']?></p>
+                        <p><label><?=$field['field_year']['label']?></label><?=date_format(new DateTime($field['field_year']['item'][0]['value']), 'Y')?></p>
                         <p><label><?=$field['field_award_organization']['label']?></label><?=$field['field_award_organization']['item'][0]['value']?></p>
                         <p><label><?=$field['field_url']['label']?></label><?=$field['field_url']['item'][0]['value']?></p>
                     </div>
@@ -118,7 +150,7 @@
                         <p><label><?=$field['field_description']['label']?></label><?=$field['field_description']['item'][0]['value']?></p>
                         <p><label><?=$field['field_url']['label']?></label><?=$field['field_url']['item'][0]['value']?></p>
                         <p><label><?=$field['field_venue_url']['label']?></label><?=$field['field_venue_url']['item'][0]['value']?></p>
-                        <p><label><?=$field['field_year']['label']?></label><?=$field['field_year']['item'][0]['value']?></p>
+                        <p><label><?=$field['field_year']['label']?></label><?=date_format(new DateTime($field['field_year']['item'][0]['value']), 'Y')?></p>
                         <p><label><?=$field['field_group_individual']['label']?></label><?=$field['field_group_individual']['item'][0]['value']?></p>
                     </div>
                 <?}
@@ -170,7 +202,14 @@
                 foreach ($resume_data['field_related_organizations']['item'] as $field) {?>
                     <div class="organization-block">
                         <p><label><?=$field['field_organization']['label']?></label><?=$field['field_organization']['item'][0]['value']?></p>
-                        <p><label><?=$field['field_years']['label']?></label><?=$field['field_years']['item'][0]['value']?></p>
+                        <p>
+                            <label><?=$field['field_years']['label']?></label>
+                            <?=date_format(new DateTime($field['field_years']['item'][0]['value']), 'Y')?>
+                            <?php if (isset($field['field_years']['item'][0]['value2']) &&
+                                        $field['field_years']['item'][0]['value'] !== $field['field_years']['item'][0]['value2']) { ?>
+                                &ndash; <?=date_format(new DateTime($field['field_years']['item'][0]['value2']), 'Y')?></p>
+                            <?php } ?>
+                        </p>
                     </div>
                 <?}
             ?>
@@ -188,6 +227,6 @@
             ?>
             </ul>
         </section>
-
+        </div>
     </body>
 </html>
