@@ -77,15 +77,23 @@
 			</div>
 		<?php } ?>
 		<div class="clear"></div>
-		<?php foreach($content as $type => $item): ?>
-		    <div class="search-results content-<?php print $type; ?>">
-		        <?php foreach($item as $node): ?>
-		            <div class="item item-<?php print $type; ?>">
-		            	<?php print $node; ?>
-		            </div>
-		        <?php endforeach; ?>
-		    </div>
-	    <?php endforeach; ?>
+		<div class="search-results content-all">
+		    <?php foreach($all_content_items as $item): ?>
+		        <div class="item item-<?php print $item->type; ?>">
+		        	<?php
+		        		$content_node = node_view($item, 'teaser');
+		        		print render($content_node);
+		        	?>
+		        </div>
+		    <?php endforeach; ?>
+		</div>
+	    <div class="search-results content-users">
+	        <?php foreach($content['users'] as $item): ?>
+	            <div class="item item-users">
+	            	<?php print $item; ?>
+	            </div>
+	        <?php endforeach; ?>
+	    </div>
 	</div>
 	<div class="panel-panel panel-col-last sidebar-right">
 		<?php if (!empty($latest_users)) { ?>

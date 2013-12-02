@@ -11,6 +11,8 @@ function artist_community_search_page() {
     $output         = '';
     $articles_data  = array();
     $events_data    = array();
+    $all_content_items = array();
+    $all_user_items = array();
 
     // Handle Organic groups and taxonomies
 
@@ -136,8 +138,8 @@ function artist_community_search_page() {
 
     // Query the content index
     if ($has_content) {
-        $items = artist_community_execute_query(NODE_INDEX, $filters);
-        foreach($items as $item) {
+        $all_content_items = artist_community_execute_query(NODE_INDEX, $filters);
+        foreach($all_content_items as $item) {
             $content_node = node_view($item, 'teaser');
             $content[$item->type][] = render($content_node);
         }
@@ -145,11 +147,13 @@ function artist_community_search_page() {
 
     // Query the user index
     if ($has_user) {
-        $items = artist_community_execute_query(USER_INDEX, $user_filters);
-        foreach($items as $item) {
+        $all_user_items = artist_community_execute_query(USER_INDEX, $user_filters);
+        foreach($all_user_items as $item) {
             $content['users'][] = theme('artist_community_artist_profile', array('user' => $item));
         }
     }
+    // @TODO refactor above, $content is a leftover from when all
+    // users and content types were kept discrete
 
     // get latest users data, format data for template
     $latest_user_filter = new SearchApiQueryFilter;
@@ -196,5 +200,5 @@ function artist_community_search_page() {
         $latest_users_data[] = $context_latest_user_data;
     }
 
-    return theme('artist_community_page', array('content' => $content, 'articles' => $articles_data, 'events' => $events_data, 'latest_users' => $latest_users_data));// @TODO bundle the new data into content?
+    return theme('artist_community_page', array('content' => $content, 'all_content_items' => $all_content_items, 'articles' => $articles_data, 'events' => $events_data, 'latest_users' => $latest_users_data));// @TODO bundle the new data into content?
 }
