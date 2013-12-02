@@ -6367,37 +6367,28 @@ body {
 }
 
 
-/* search results page */
+/* search results content / page */
+.main-content {
+    .search-results {
+        @include container;
 
+        .item {
+            display:inline-block;
+            width:195px;
+            vertical-align:top;
+            margin-right:10px;
+            margin-bottom:15px;
+
+            h3 {
+                @include quiet_type;
+            }
+        }
+    }
+}
 .search-results.content-page {
 	padding:20px 0;
 
 }
-
-
-.search-results.content-page,
-.search-results.content-venue,
-.search-results.content-article,
-.search-results.content-event,
-.search-results.content-artwork,
-.search-results.content-community,
-.search-results.content-users {
-	display:inline;
-
-	.item {
-		display:inline-block;
-		width:195px;
-		vertical-align:top;
-		margin-right:10px;
-		margin-bottom:15px;
-
-		h3 {
-			@include quiet_type;
-		}
-	}
-}
-
-
 
 
 
