@@ -1,5 +1,5 @@
 <div class="artist-profile">
-    <h3><?php echo (isset($user->roles[ORG_ROLE])) ? 'Organization' : 'Artist' ?></h3>
+    <h3><?php echo (isset($user->roles[ORG_ROLE])) ? 'Org' : 'Artist' ?></h3>
     <a href="<?php print $url; ?>">
         <?php
             // @TODO better default fallback here
