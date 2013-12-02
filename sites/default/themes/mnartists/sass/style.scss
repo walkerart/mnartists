@@ -6371,16 +6371,25 @@ body {
 .main-content {
 
     .search-results {
+        width:100%;
 
         .item {
-            display:inline-block;
-            width:195px;
+            display:block;
+            width:25%;
             vertical-align:top;
-            margin-right:10px;
+            margin-right:0px;
             margin-bottom:15px;
+            box-sizing: border-box;
+            float:left;
 
             h3 {
                 @include quiet_type;
+                margin-left:0;margin-right:0;
+                padding-left:0;padding-right:0;
+            }
+            article {
+                margin-left:0;margin-right:0;
+                padding-left:0;padding-right:0;
             }
         }
     }
