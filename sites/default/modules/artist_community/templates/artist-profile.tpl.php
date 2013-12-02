@@ -1,4 +1,5 @@
 <div class="artist-profile">
+    <h3><?php echo (isset($user->roles[ORG_ROLE])) ? 'Organization' : 'Artist' ?></h3>
     <a href="<?php print $url; ?>">
         <?php
             // @TODO better default fallback here
@@ -9,7 +10,7 @@
 
     <div class="username">
         <a href="<?php print $url; ?>">
-            <?php print $name; ?>
+            <?php print mnartist_profiles_collective_or_fullname_or_username($user->uid); ?>
         </a>
     </div>
 </div>

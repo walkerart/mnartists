@@ -132,14 +132,32 @@ function mnartist_profiles_duration_in_plain_english($activityDate) {
     return implode(' ', $returnStringArr);
 }
 
+// @TODO give some thought to distilling these two methods into one
 function mnartist_profiles_fullname_or_username($uid) {
     $context_user = user_load($uid);
     $context_profile = profile2_load_by_user($uid, 'main');
-    if (isset($context_profile->field_full_name['und'])) {
-        $entity = field_collection_item_load($context_profile->field_full_name['und'][0]['value']);
+    if (isset($entity->field_first_name['und'][0]['value']) &&
+        isset($entity->field_last_name['und'][0]['value'])) {
         $first_name = $entity->field_first_name['und'][0]['value'];
         $last_name = $entity->field_last_name['und'][0]['value'];
         return "$first_name $last_name";
+    }
+    return $context_user->name;
+}
+
+function mnartist_profiles_collective_or_fullname_or_username($uid) {
+    $context_user = user_load($uid);
+    $context_profile = profile2_load_by_user($uid, 'main');
+    if (isset($context_profile->field_pseudonym['und'])) {
+        return $context_profile->field_pseudonym['und'][0]['value'];
+    } else if (isset($context_profile->field_full_name['und'])) {
+        $entity = field_collection_item_load($context_profile->field_full_name['und'][0]['value']);
+        if (isset($entity->field_first_name['und'][0]['value']) &&
+            isset($entity->field_last_name['und'][0]['value'])) {
+            $first_name = $entity->field_first_name['und'][0]['value'];
+            $last_name = $entity->field_last_name['und'][0]['value'];
+            return "$first_name $last_name";
+        }
     }
     return $context_user->name;
 }
