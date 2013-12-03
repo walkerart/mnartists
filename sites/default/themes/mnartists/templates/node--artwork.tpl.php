@@ -118,7 +118,7 @@ if (!(empty($node->field_medium3))) {
   <?php print render($content); ?>
   <div class="item-info-container">
     <p class="item-info-title"><?php print $node->title; ?></p>
-    <p class="item-info-author"><?php print mnartist_profiles_fullname_or_username($node->uid); ?></p>
+    <p class="item-info-author"><?php print mnartist_profiles_collective_or_fullname_or_username($node->uid, true); ?></p>
     <p class="item-info-flag">FLAG</p>
   </div>
 </article>

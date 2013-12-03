@@ -165,37 +165,15 @@ function artist_community_search_page() {
         if ($index >= 3) { break; }
         $user = $latest_users[$value];
         $context_latest_user_data = new StdClass();
-        $main_profile = profile2_load_by_user($user->uid, 'main');
-        if (isset($main_profile->field_full_name['und'])) {
-            $entity = field_collection_item_load($main_profile->field_full_name['und'][0]['value']);
-            if (isset($entity->field_first_name['und']) &&
-                isset($entity->field_last_name['und'][0]['value'])) {
-                $first_name = $entity->field_first_name['und'][0]['value'];
-                $last_name = $entity->field_last_name['und'][0]['value'];
-                $full_name = "$first_name $last_name";
-            } else {
-                $full_name = $user->name;
-            }
-        } else {
-            $full_name = $user->name;
-        }
 
-        $practice = '';
-        if (isset($main_profile->field_practice['und'])) {
-            // @TODO should this value come from practice? or somewhere else?
-            $practice_value = $main_profile->field_practice['und'][0]['value'];
-            $field_info = field_info_field('field_practice');
-            if (isset ($field_info['settings']['allowed_values'][$practice_value])) {
-                $practice = $field_info['settings']['allowed_values'][$practice_value];
-            }
-        }
-
+        $full_name = mnartist_profiles_collective_or_fullname_or_username($user->uid);
+        $practices = implode(', ', mnartist_profiles_practice_values_as_array($user->uid));
         $image_uri = (isset($user->picture->uri)) ? image_style_url('artist_thumbnail_small', $user->picture->uri) : 'http://mnartist.imalab.us/sites/default/files/styles/artist_thumbnail_small/public/pictures/picture-default.jpg';
 
         $context_latest_user_data->uid = $user->uid;
         $context_latest_user_data->username = $user->name;
         $context_latest_user_data->full_name = $full_name;
-        $context_latest_user_data->practice = $practice;
+        $context_latest_user_data->practice = $practices;
         $context_latest_user_data->image_uri = $image_uri;
         $latest_users_data[] = $context_latest_user_data;
     }
