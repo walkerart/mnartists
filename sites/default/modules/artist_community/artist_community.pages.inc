@@ -138,7 +138,7 @@ function artist_community_search_page() {
 
     // Query the content index
     if ($has_content) {
-        $all_content_items = artist_community_execute_query(NODE_INDEX, $filters);
+        $all_content_items = artist_community_execute_query(NODE_INDEX, $filters, array(array('changed', 'DESC')));
         foreach($all_content_items as $item) {
             $content_node = node_view($item, 'teaser');
             $content[$item->type][] = render($content_node);
