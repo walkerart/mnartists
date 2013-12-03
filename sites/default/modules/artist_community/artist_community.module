@@ -160,6 +160,15 @@ function _community_block_community() {
  */
 function _community_block_content() {
     // render content menu;
+
+    // get artist experience level terms to build
+    // artists sub-menu
+    $experience_vocabulary_tree = taxonomy_get_tree(12);
+    $artist_sub_items = array();
+    foreach($experience_vocabulary_tree as $term) {
+        $artist_sub_items[] = url_query_master($term->name, 'community', 'content', 'artists');
+    }
+
     $menu_items = array(
         'article' => array(
             'title' => t('Articles'),
@@ -167,7 +176,7 @@ function _community_block_content() {
         ),
         'artists' => array(
             'title' => t('Artists'),
-            'subcontent' => ''
+            'subcontent' => theme('item_list', array('items' => $artist_sub_items))
         ),
         'artwork' => array(
             'title' => t('Artworks'),
@@ -216,6 +225,13 @@ function artist_community_form_user_profile_form_alter(&$form, &$form_state) {
  * Implements hook_form_FORM_ID_alter()
  */
 function artist_community_form_artwork_node_form_alter(&$form, &$form_state) {
+
+    // add multiselect javascript and css, we're going to use that to
+    // alter multiselect widget
+    drupal_add_js(drupal_get_path('module', 'artist_community') .'/vendor/jquery.multiselect/jquery.multiselect.min.js');
+    drupal_add_css(drupal_get_path('module', 'artist_community') .'/vendor/jquery.multiselect/jquery.multiselect.css');
+    drupal_add_js(drupal_get_path('module', 'artist_community') .'/js/artwork_form.js');
+
     // Find the communities associated with each term
     $query = db_select('node', 'n');
     $query->leftJoin('field_data_field_medium', 'm', 'n.nid = m.entity_id');
@@ -229,10 +245,8 @@ function artist_community_form_artwork_node_form_alter(&$form, &$form_state) {
     while ($row = $result->fetchAssoc()) {
        $rows[$row['title']][$row['field_medium_tid']] = $form['field_medium']['und']['#options'][$row['field_medium_tid']];
     }
-
     $form['field_medium']['und']['#options'] = $rows;
     unset($form['og_group_ref']);
-
     $form['#submit'][] = 'artist_community_artwork_form_submit';
 }
 
@@ -332,6 +346,8 @@ function url_query_master($text, $path, $key, $val, $attributes = array()) {
 
     if (isset($_GET['content'])) {
         $query['content'] = $_GET['content'];
+
+        // @TODO gotta do more here to get the content types if it's artist, I guess?
     }
 
     if ($key == 'og') {
