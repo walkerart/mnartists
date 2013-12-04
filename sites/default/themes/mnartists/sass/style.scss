@@ -5645,11 +5645,12 @@ body.page-node-add #content {
 
     .item {
         @include column(6);
+
+        &:nth-child(4) {
+            @include last;
+        }
     }
-    &:nth-child(4) {
-        @include column(6);
-        @include last;
-    }
+
 
 	.artist-profile {
 
