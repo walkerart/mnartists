@@ -5643,6 +5643,7 @@ body.page-node-add #content {
 .search-results {
     @include container;
     font-size:0;
+    padding-top:2em;
 
     .item {
         @include column(6);
@@ -6454,7 +6455,7 @@ body {
 .article-thing {
     clear: both;
     height: 600px; /* tmp should it be variable? */
-    margin-bottom:2em;
+
 
     .article-detail {
         float: left;
