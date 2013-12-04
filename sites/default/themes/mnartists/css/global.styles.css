@@ -1,78 +1,1388 @@
-/*
-Syntax error: Invalid CSS after "...d-grid-columns ": expected ":", was "24;"
-        on line 85 of /Users/mgipson/Documents/Repositories/mnartists/sites/default/themes/mnartists/sass/_base.scss
-        from line 3 of /Users/mgipson/Documents/Repositories/mnartists/sites/default/themes/mnartists/sass/global.styles.scss
+/* now let's get those layout files */
+/* LAYOUT A ************************************/
+/* community and homepage template stuff */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/layout-a\.scss}line{font-family:\000036}}
+.layout-a .panel-col-first {
+  float: left;
+  width: 75%;
+  box-sizing: border-box;
+  padding-right: 20px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/layout-a\.scss}line{font-family:\0000312}}
+.layout-a .panel-col-first .inside {
+  margin: 0 .5em 1em 0;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/layout-a\.scss}line{font-family:\0000315}}
+.layout-a .panel-col-first .inside .article-thing {
+  margin-right: 20px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/layout-a\.scss}line{font-family:\0000318}}
+.layout-a .panel-col-first .inside .search-results {
+  margin-right: 20px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/layout-a\.scss}line{font-family:\0000322}}
+.layout-a .panel-col-first .inset-left {
+  float: left;
+  width: 75%;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/layout-a\.scss}line{font-family:\0000326}}
+.layout-a .panel-col-first .inset-right {
+  float: left;
+  width: 25%;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/layout-a\.scss}line{font-family:\0000332}}
+.layout-a .panel-col-last {
+  float: left;
+  width: 25%;
+  box-sizing: border-box;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/layout-a\.scss}line{font-family:\0000337}}
+.layout-a .panel-col-last .inside {
+  margin: 0 0 1em .5em;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/layout-a\.scss}line{font-family:\0000341}}
+.layout-a .panel-separator {
+  margin: 0 0 1em 0;
+}
 
-Backtrace:
-/Users/mgipson/Documents/Repositories/mnartists/sites/default/themes/mnartists/sass/_base.scss:85
-/Users/mgipson/Documents/Repositories/mnartists/sites/default/themes/mnartists/sass/global.styles.scss:3
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/scss/parser.rb:1129:in `expected'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/scss/parser.rb:1066:in `expected'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/scss/parser.rb:1061:in `tok!'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/scss/parser.rb:495:in `variable'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/scss/parser.rb:536:in `block_child'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/scss/parser.rb:529:in `block_contents'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/scss/parser.rb:70:in `stylesheet'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/scss/parser.rb:27:in `parse'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/engine.rb:342:in `_to_tree'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/engine.rb:272:in `to_tree'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/tree/visitors/perform.rb:222:in `visit_import'
-org/jruby/RubyKernel.java:2096:in `send'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/tree/visitors/base.rb:37:in `visit'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/tree/visitors/perform.rb:98:in `visit'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/tree/visitors/base.rb:53:in `visit_children'
-org/jruby/RubyArray.java:2336:in `collect'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/tree/visitors/base.rb:53:in `visit_children'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/tree/visitors/perform.rb:107:in `visit_children'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/tree/visitors/perform.rb:119:in `with_environment'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/tree/visitors/perform.rb:106:in `visit_children'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/tree/visitors/base.rb:37:in `visit'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/tree/visitors/perform.rb:126:in `visit_root'
-org/jruby/RubyKernel.java:2096:in `send'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/tree/visitors/base.rb:37:in `visit'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/tree/visitors/perform.rb:98:in `visit'
-org/jruby/RubyKernel.java:2096:in `send'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/tree/visitors/perform.rb:7:in `visit'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/tree/root_node.rb:20:in `render'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/engine.rb:315:in `_render'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/engine.rb:262:in `render'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/lib/compass/compiler.rb:140:in `compile'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/lib/compass/compiler.rb:126:in `timed'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/lib/compass/compiler.rb:139:in `compile'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/lib/compass/logger.rb:45:in `red'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/lib/compass/compiler.rb:138:in `compile'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/lib/compass/compiler.rb:118:in `compile_if_required'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/lib/compass/compiler.rb:103:in `run'
-org/jruby/RubyArray.java:1603:in `each'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/lib/compass/compiler.rb:101:in `run'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/lib/compass/compiler.rb:126:in `timed'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/lib/compass/compiler.rb:100:in `run'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/lib/compass/commands/watch_project.rb:147:in `recompile'
-org/jruby/RubyMethod.java:133:in `call'
-org/jruby/RubyProc.java:268:in `call'
-org/jruby/RubyProc.java:228:in `call'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/fssm-0.2.9/lib/fssm/path.rb:73:in `run_callback'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/fssm-0.2.9/lib/fssm/path.rb:55:in `callback_action'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/fssm-0.2.9/lib/fssm/path.rb:35:in `update'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/fssm-0.2.9/lib/fssm/state/directory.rb:39:in `modified'
-org/jruby/RubyArray.java:1603:in `each'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/fssm-0.2.9/lib/fssm/state/directory.rb:37:in `modified'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/fssm-0.2.9/lib/fssm/state/directory.rb:18:in `refresh'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/fssm-0.2.9/lib/fssm/backends/polling.rb:17:in `run'
-org/jruby/RubyArray.java:1603:in `each'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/fssm-0.2.9/lib/fssm/backends/polling.rb:17:in `run'
-org/jruby/RubyKernel.java:1419:in `loop'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/fssm-0.2.9/lib/fssm/backends/polling.rb:15:in `run'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/fssm-0.2.9/lib/fssm/monitor.rb:26:in `run'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/fssm-0.2.9/lib/fssm.rb:70:in `monitor'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/lib/compass/commands/watch_project.rb:87:in `perform'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/lib/compass/commands/base.rb:18:in `execute'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/lib/compass/commands/project_base.rb:19:in `execute'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/lib/compass/exec/sub_command_ui.rb:43:in `perform!'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/lib/compass/exec/sub_command_ui.rb:15:in `run!'
-/Applications/Scout.app/Contents/Resources/bin/compass:12:in `(root)'
-*/
-body:before {
-  white-space: pre;
-  font-family: monospace;
-  content: "Syntax error: Invalid CSS after \"...d-grid-columns \": expected \":\", was \"24;\"\A         on line 85 of /Users/mgipson/Documents/Repositories/mnartists/sites/default/themes/mnartists/sass/_base.scss\A         from line 3 of /Users/mgipson/Documents/Repositories/mnartists/sites/default/themes/mnartists/sass/global.styles.scss"; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/layout-a\.scss}line{font-family:\0000346}}
+* html .panel-2col.layout-a .panel-col-first {
+  width: 74.9%;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/layout-a\.scss}line{font-family:\0000349}}
+* html .panel-2col.layout-a .panel-col-last {
+  width: 24.9%;
+}
+
+/* insets */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/layout-a\.scss}line{font-family:\0000353}}
+* html .panel-2col.layout-a .panel-col-first .panel-col-first.inset-left {
+  width: 74.9%;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/layout-a\.scss}line{font-family:\0000356}}
+* html .panel-2col.layout-a .panel-col-first .panel-col-last.inset-right {
+  width: 24.9%;
+}
+
+/* LAYOUT G artwork **************************/
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/layout-g\.scss}line{font-family:\000035}}
+.layout-g .title-artwork .block {
+  margin: 0;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/layout-g\.scss}line{font-family:\000038}}
+.layout-g .title-artwork .block .block-inner .block-content {
+  background: none;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/layout-g\.scss}line{font-family:\0000310}}
+.layout-g .title-artwork .block .block-inner .block-content h2 {
+  padding: 0 0 5px 0;
+  margin: 0;
+  height: 15px;
+  background: none;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/layout-g\.scss}line{font-family:\0000319}}
+.layout-g .panel-col.content-artwork {
+  position: relative;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/layout-g\.scss}line{font-family:\0000327}}
+.layout-g .panel-col.content-artwork .content-bottom .inset-left {
+  font-family: "adobe-text-pro", "Times New Roman", Times, serif;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/layout-g\.scss}line{font-family:\0000338}}
+.layout-g .panel-col.content-artwork .pane-node-title h2 {
+  background: none;
+  padding: 15px 0 10px 0;
+  margin: 0 0 10px 0;
+  border-bottom: 1px solid #888888;
+  font-size: 18px;
+  height: auto;
+  line-height: auto;
+  text-transform: none;
+  letter-spacing: normal;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/layout-g\.scss}line{font-family:\0000349}}
+.layout-g .panel-col.content-artwork .pane-node-title h2 a {
+  font-family: "adobe-text-pro", "Times New Roman", Times, serif;
+  font-weight: normal;
+  height: auto;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/layout-g\.scss}line{font-family:\0000355}}
+.layout-g .panel-col.content-artwork .pane-node-links {
+  position: absolute;
+  display: inline-block;
+  right: 10px;
+  top: 10px;
+  text-align: right;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/layout-g\.scss}line{font-family:\0000364}}
+.layout-g .panel-col.content-artwork .pane-node-author a {
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 24px;
+  margin-bottom: 10px;
+  padding-top: 5px;
+  display: block;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/layout-g\.scss}line{font-family:\0000373}}
+.layout-g .panel-col.content-artwork .pane-mnartist-collections-mna-collections-star {
+  position: absolute;
+  top: 10px;
+  right: 0px;
+  z-index: 9999;
+}
+
+/*
+ * @file
+ * global.styles
+ *
+ * Styles you add here will load for all device sizes, they are "global", as
+ * opposed to "responsive" styles, which only load for a given breakpoint (media
+ * query) that you set in theme settings. See the README for more details.
+ *
+ *
+ * How to use this file:
+ * --------------------
+ *
+ * There are many empty selectors and some basic styles to act as a guide.
+ * Nothing is set in stone and you can change anything - even delete all of it
+ * and start with your own clean slate.
+ *
+ * To FORCE PRINT all selectors you can search and replace a single { (opening
+ * curly brace) and insert an empty comment. This is very useful in conjuction
+ * with FireSass: https://addons.mozilla.org/en-US/firefox/addon/firesass-for-firebug/
+ *
+ * See global.base also which includes normalize.css and some additional
+ * helper classes and base styles.
+ */
+/* =============================================================================
+ *   Base
+ * ========================================================================== */
+/* 
+ * To preserve theme settings never apply font properties to the HTML element.
+ * This is critically important if you are using the Responsive JavaScript
+ * feature as this relies on being able to set a pseudo font family on the HTML
+ * element. If you need to set default font properties of any kind use the BODY
+ * element as these can be overridden using font theme settings.
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\0000341}}
+html {
+  background: white;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\0000345}}
+body {
+  font-family: "Trebuchet MS", "Helvetica Neue", Arial, Helvetica, sans-serif;
+  font-size: 87.5%;
+}
+
+/* =============================================================================
+ *   HTML Elements
+ * ========================================================================== */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\00003140}}
+pre,
+code,
+tt,
+samp,
+kbd,
+var {
+  font-family: Consolas, Monaco, "Courier New", Courier, monospace, sans-serif;
+}
+
+/* =============================================================================
+ *   Wrappers
+ * ========================================================================== */
+/*
+ * Page wrapper, includes the .container class which sets the overall page or section width
+ * Main wrapper in page.tpl.php, the .container class sets the width of the page, do not add width to it!
+ */
+/*
+ * Wraps all header elements - branding and .region-header
+ */
+/*
+ * Wraps the sidebars the content column
+ */
+/*
+ * Main content column wrapper
+ */
+/*
+ * Wraps the main-content-header, the content region and feed-icons. Use this wrapper to style the entire main content column
+ */
+/*
+ * Wraps the content region, avoid applying styles to this wrapper, its used mainly for position and invisible gutters and can be problematic to style
+ */
+/*
+ * Footer wrapper
+ */
+/*
+ * Panels may need additional margin wrangling when in the $content region
+ */
+/*
+ * Full Width Wrappers
+ * These are used in the optional page--full-width-wrappers.tpl.php template.
+ * All have internal .container classes. In the full width wrapper template the
+ * .container classes set the width or max-width of the contained element - you
+ * can style this but never add any width/margin/padding/borders etc to .container
+ */
+/*
+ * Wraps #page
+ */
+/*
+ * Wraps the leaderboard
+ */
+/*
+ * Wraps the header
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\00003227}}
+#header-wrapper {
+  /* Debug styles, is this working */
+  background: rgba(255, 192, 203, 0.5);
+}
+
+/*
+ * Wraps the nav elements
+ */
+/*
+ * Wraps breadcrumb
+ */
+/*
+ * Wraps messages and help
+ */
+/*
+ * Wraps the secondary content/preface region
+ */
+/*
+ * Wraps the main content column
+ */
+/*
+ * Wraps the tertiary content/postfix region
+ */
+/*
+ * Footer wrapper
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\00003285}}
+#footer-wrapper {
+  /* Debug styles, is this working? */
+  background: rgba(255, 192, 203, 0.5);
+}
+
+/* =============================================================================
+ *   Branding
+ * ========================================================================== */
+/*
+ * Wraps all the branding elements, logo, name and slogan
+ */
+/*
+ * Logo
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\00003306}}
+#logo {
+  padding: 10px 0;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\00003309}}
+#logo img {
+  vertical-align: bottom;
+}
+
+/*
+ * Wrapper for the site name and slogan (hgroup)
+ */
+/*
+ * Site name (h1)
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\00003324}}
+#site-name {
+  margin: 0;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\00003330}}
+#site-name a:link, #site-name a:visited {
+  text-decoration: none;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\00003335}}
+#site-name a:hover, #site-name a:focus {
+  text-decoration: underline;
+}
+
+/*
+ * Site slogan (h2)
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\00003345}}
+#site-slogan {
+  margin: 0;
+}
+
+/* =============================================================================
+ *   Page content header
+ * ========================================================================== */
+/*
+ * Main content header wraps the page title, tabs and actions links
+ */
+/*
+ * The main page title (h1)
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\00003363}}
+#page-title {
+  margin: 0;
+}
+
+/* =============================================================================
+ *   Misc Global Styles
+ * ========================================================================== */
+/*
+ * Feed icons
+ */
+/*
+ * Aggregator feed source
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\00003381}}
+#aggregator .feed-source .feed-icon {
+  display: inline;
+  float: none;
+  margin-right: 10px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\00003389}}
+.feed-details dt,
+.feed-details dd {
+  display: inline;
+  margin: 0;
+}
+
+/*
+ * Generic styles for the more link
+ */
+/*
+ * Generic styles for links. See the ul.links declaration in node and comment stylesheets
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\00003404}}
+ul.links {
+  margin: 0;
+  padding: 0;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\00003408}}
+ul.links.inline {
+  display: block;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\00003412}}
+ul.links li {
+  display: inline;
+  list-style: none;
+  padding: 0 10px 0 0;
+}
+
+/*
+ * Search results are an ordered list so reset the margin
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\00003423}}
+.search-results {
+  margin: 0;
+}
+
+/* =============================================================================
+ *   Regions
+ * ========================================================================== */
+/*
+ * Standard region wrapper, don't add width to any regions, you will bork the layout - no margin, padding or borders etc
+ */
+/*
+ * Regions have an inner div - perfect for adding margin, padding or borders
+ */
+/*
+ * Regions can be nested, such as when using Panels
+ */
+/*
+ * Header region, embedded in the #header
+ */
+/*
+ * Generally used to output Drupals help block, if the help module is enabled
+ */
+/*
+ * Secondary content
+ */
+/*
+ * Sits above the main content header, like a content-top region
+ */
+/*
+ * Sits below the main content, like a content-bottom region
+ */
+/*
+ * Sidebars - targets both
+ */
+/*
+ * First sidebar
+ */
+/*
+ * Second sidebar
+ */
+/*
+ * Tertiary content
+ */
+/*
+ * Footer region
+ */
+/* =============================================================================
+ *   Links
+ * ========================================================================== */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\00003514}}
+a {
+  text-decoration: none;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\00003524}}
+a:hover, a:focus {
+  text-decoration: underline;
+}
+
+/* =============================================================================
+ *   Primary, Secondary and Menu Bar region menus
+ * ========================================================================== */
+/*
+ * Use one of the following id's for granular control:
+ *  - #menu-bar (menu bar region)
+ *  - #primary-menu (main menu)
+ *  - #secondary-menu (secondary/user menu)
+ * You can target all of these with .nav or div[id$="menu-bar"]
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\00003542}}
+.nav {
+  clear: both;
+  margin: 10px 0;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\00003547}}
+.nav ul,
+.nav ul.menu {
+  margin: 0;
+  padding: 0;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\00003553}}
+.nav li,
+.nav ul.menu li {
+  display: inline;
+  float: left;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\00003562}}
+.nav li a,
+.nav ul.menu li a {
+  display: block;
+  white-space: nowrap;
+  padding: 0 10px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\00003573}}
+.nav .block {
+  margin-bottom: 0;
+}
+
+/* =============================================================================
+ *   Superfish
+ * ========================================================================== */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\00003583}}
+ul.sf-menu {
+  margin-bottom: 0;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\00003586}}
+ul.sf-menu a {
+  border-left: 0;
+  border-top: 0;
+  padding: 0 10px;
+  text-decoration: none;
+  height: 2.5em;
+  line-height: 2.5em;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\00003600}}
+ul.sf-menu li:hover, ul.sf-menu li.sfHover {
+  outline: 0;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\00003608}}
+ul.sf-menu a:focus, ul.sf-menu a:hover, ul.sf-menu a:active {
+  outline: 0;
+}
+
+/*
+ * Superfish blocks
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\00003622}}
+.block-superfish ul {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\00003633}}
+.block-superfish li {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/*
+ * Vertical style
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\00003643}}
+.sf-vertical {
+  width: 100%;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\00003646}}
+.sf-vertical li {
+  width: 100%;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\00003652}}
+.sf-vertical li:hover ul, .sf-vertical li.sfHover ul {
+  left: 100%;
+  top: 0;
+  margin: 0;
+  padding: 0;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\00003659}}
+.sf-vertical li a {
+  padding: 0 10px;
+}
+
+/*
+ * Navbar style
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\00003669}}
+.sf-navbar {
+  padding-bottom: 0 !important;
+}
+
+/*
+ * Sensible padding for the default style
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\00003677}}
+.sf-menu.sf-style-default a {
+  padding: 0 10px;
+}
+
+/* =============================================================================
+ *   Menus, usually blocks
+ * ========================================================================== */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\00003686}}
+ul.menu {
+  padding-left: 15px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\00003689}}
+ul.menu ul {
+  padding-left: 15px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\00003697}}
+ul.menu li {
+  margin: 0;
+}
+
+/* If li.content exists it's a problem, so reset the padding */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\00003726}}
+.block .menu li.content {
+  padding: 0;
+}
+
+/* =============================================================================
+ *   Book navigation menu
+ * ========================================================================== */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\00003743}}
+.book-navigation .page-up {
+  /* Prevent text wrapping to a new line, assumes English "up" is used (two characters) */
+  min-width: 2em;
+  white-space: nowrap;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\00003749}}
+.book-navigation .menu {
+  margin-left: 0;
+}
+
+/* =============================================================================
+ *   Breadcrumbs
+ * ========================================================================== */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\00003759}}
+#breadcrumb {
+  margin: 10px 0;
+  /* If the label is set to show in theme settings the label class is added */
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\00003763}}
+#breadcrumb .breadcrumb-label {
+  font-size: 1em;
+  display: inline;
+  padding-right: 10px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\00003768}}
+#breadcrumb .breadcrumb-label:after {
+  content: ":";
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\00003773}}
+#breadcrumb ol {
+  margin: 0;
+  padding: 0;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\00003778}}
+#breadcrumb .with-breadcrumb-label ol {
+  display: inline;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\00003782}}
+#breadcrumb li {
+  list-style: none;
+  display: inline;
+}
+
+/* =============================================================================
+ *   Pagers
+ * ========================================================================== */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\00003809}}
+ul.pager {
+  clear: both;
+  margin: 0;
+  text-align: center;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\00003816}}
+.item-list ul.pager li {
+  margin: 0;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\00003821}}
+ul.pager li {
+  background-image: none;
+  display: inline;
+  list-style-type: none;
+  padding: .5em;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\00003827}}
+ul.pager li.pager-current {
+  font-weight: 700;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\00003833}}
+.block ul.pager li {
+  margin: 0;
+}
+
+/*
+ * Theme the various states of pager links
+ */
+/* =============================================================================
+ *   Skip Navigation
+ * ========================================================================== */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\00003870}}
+#skip-link {
+  left: 50%;
+  margin-left: -6.5em;
+  margin-top: 0;
+  padding: 0 0.5em;
+  position: absolute;
+  width: 12em;
+  z-index: 50;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\00003879}}
+#skip-link a {
+  background: #444;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  display: block;
+  line-height: 2;
+  padding: 0;
+  text-align: center;
+  text-decoration: none;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\00003890}}
+#skip-link a:link, #skip-link a:visited {
+  background: #444;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  display: block;
+  line-height: 2;
+  padding: 0;
+  text-align: center;
+  text-decoration: none;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\00003902}}
+#skip-link a:hover, #skip-link a:focus, #skip-link a:active {
+  outline: 0;
+}
+
+/* =============================================================================
+ *   Tabs (local tasks)
+ * ========================================================================== */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\00003913}}
+#tasks {
+  margin-bottom: 15px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\00003918}}
+ul.primary {
+  border-bottom-color: #cccccc;
+  margin: 20px 0;
+  padding: 0 0 0 5px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\00003923}}
+ul.primary li {
+  display: block;
+  float: left;
+  margin: 0 1px -1px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\00003928}}
+ul.primary li a {
+  background-color: whitesmoke;
+  border-color: #cccccc;
+  margin-right: 1px;
+  padding: 0 10px;
+  display: block;
+  float: left;
+  height: 1.5em;
+  line-height: 1.5em;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\00003939}}
+ul.primary li a:hover, ul.primary li a:focus {
+  background-color: #eeeeee;
+  border-color: #cccccc;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\00003949}}
+ul.primary li.active a,
+ul.primary li.active a:hover,
+ul.primary li.active a:focus {
+  background-color: white;
+  border-bottom-color: white;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\00003957}}
+ul.secondary {
+  border-bottom: 1px solid #cccccc;
+  margin: 1em 0 0;
+  padding: 0 .3em 1em;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\00003962}}
+ul.secondary li {
+  border-right: 0;
+  list-style: none;
+  padding: 0 10px 0 0;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\00003969}}
+ul.secondary li a:hover, ul.secondary li a.active {
+  border-bottom: none;
+  text-decoration: underline;
+}
+
+/* =============================================================================
+ *   Action links
+ * ========================================================================== */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\00003982}}
+ul.action-links {
+  margin: 20px 0 0;
+  list-style: none;
+}
+
+/* =============================================================================
+ *  Field Styling
+ * ========================================================================== */
+/*
+ * Wrapper for any field
+ */
+/*
+ * Above and inline classes are on the field wrapper
+ */
+/*
+ * When labels are set to inline in field display settings the clearfix class is automatically added
+ */
+/*
+ * Labels are h2 in Adaptivetheme. Use a strong selector to mitigate unwanted ineritance issues
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\000031015}}
+.field-label {
+  font-size: 1em;
+  font-weight: 700;
+  font-family: inherit;
+  line-height: inherit;
+  margin-bottom: 0;
+}
+
+/*
+ * Field types (Core)
+ */
+/*
+ * Image fields use the <figure> and <figcaption> elements from HTML5
+ */
+/*
+ * Taxonomy
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\000031044}}
+.field-type-taxonomy-term-reference {
+  /* The same bottom margin as p, blockquote, ul, ol and dl */
+  margin-bottom: 1.5em;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\000031049}}
+.field-type-taxonomy-term-reference.field-label-inline .field-items {
+  margin: 0;
+  padding: 0;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\000031054}}
+.field-type-taxonomy-term-reference.field-label-inline .field-item {
+  display: inline;
+  list-style: none;
+  padding: 0 10px 0 0;
+}
+
+/*
+ * Text
+ */
+/*
+ * Long text
+ */
+/*
+ * Text with summary
+ */
+/*
+ * File
+ */
+/*
+ * Number/Integer
+ */
+/*
+ * Decimal
+ */
+/*
+ * Number float
+ */
+/*
+ * List
+ */
+/*
+ * List boolean
+ */
+/*
+ * List integer
+ */
+/*
+ * List float
+ */
+/*
+ * Field types (Contrib)
+ */
+/*
+ * Named fields
+ */
+/*
+ * Underscores in field name are replaced with dashes
+ */
+/*
+ * Image Alignment Theme Settings - included here so you can easily override 
+ */
+/*
+ * Float none setting
+ */
+/*
+ * Float left setting
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\000031169}}
+.ia-l .field-type-image figure,
+.iat-l .field-type-image figure {
+  margin: 5px 20px 15px 0;
+}
+
+/*
+ * Centered setting
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\000031178}}
+.ia-c .field-type-image figure,
+.iat-c .field-type-image figure {
+  margin: 5px auto 15px;
+}
+
+/*
+ * Float right setting
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\000031187}}
+.ia-r .field-type-image figure,
+.iat-r .field-type-image figure {
+  margin: 5px 0 15px 20px;
+}
+
+/* =============================================================================
+ *   Block Styling
+ * ========================================================================== */
+/*
+ * Main wrapper for most blocks, block_system_main does not have it
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\000031200}}
+.block {
+  margin-bottom: 20px;
+}
+
+/*
+ * Inner wrapper for most blocks, good for margin, padding and borders, block_system_main does not have it
+ */
+/*
+ * The first block in the region
+ */
+/*
+ * The last block in the region
+ */
+/*
+ * Zebra striping for each block in the region
+ */
+/*
+ * Zebra striping for each block in the region
+ */
+/*
+ * Block title
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\000031238}}
+.block-title {
+  margin: 0;
+}
+
+/*
+ * Block content wrapper
+ */
+/*
+ * Match item list and block menu margin and padding
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\000031255}}
+.block-content ul,
+.block-content ol {
+  padding: 0 0 0 15px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\000031259}}
+.block-content li {
+  margin: 0;
+  padding: 0;
+}
+
+/*
+ * Block for the latest news items in the first category
+ */
+/*
+ * Block for the latest news items in the first feed
+ */
+/*
+ * First block created with "Add block" link
+ */
+/*
+ * "Recent blog posts" block
+ */
+/*
+ * "Book navigation" block for the current book's table of contents
+ */
+/*
+ * "Recent comments" block
+ */
+/*
+ * "Active forum topics" block
+ */
+/*
+ * "New forum topics" block
+ */
+/*
+ * Language switcher block
+ */
+/*
+ * Custom menu block
+ */
+/*
+ * "Recent content" block
+ */
+/*
+ * "Syndicate" block for primary RSS feed; see also page.css's .feed-icon
+ */
+/*
+ * "Most recent poll" block
+ */
+/*
+ * "Author information" block for the profile of the page's author
+ */
+/*
+ * "Search form" block
+ */
+/*
+ * "Shortcuts" block
+ */
+/*
+ * "Popular content" block
+ */
+/*
+ * "Main menu" block
+ */
+/*
+ * "Management" block for Drupal management menu
+ */
+/*
+ * "Navigation" block for Drupal navigation menu
+ */
+/*
+ * "User menu" block for Drupal user menu
+ */
+/*
+ * "System help" block
+ */
+/*
+ * "Main page content" block
+ */
+/*
+ * "Powered by Drupal" block
+ */
+/*
+ * "User login form" block
+ */
+/*
+ * "Who's new" block for a list of the newest users
+ */
+/*
+ * "Who's online" block for a list of the online users
+ */
+/* =============================================================================
+ *   Node Styling
+ * ========================================================================== */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\000031432}}
+.node {
+  margin-bottom: 20px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\000031449}}
+.node .node-title {
+  margin: 0;
+}
+
+/*
+ * All nodes are given a node-FOO class that describes the type of content that
+ * it is. If you create a new content type called "my-custom-type", it will
+ * receive a "node-my-custom-type" class.
+ */
+/* =============================================================================
+ *   Comment Styling - Comments, comment wrapper, comment form
+ * ========================================================================== */
+/*
+ * Wrapper for the list of comments and its titles
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\000031507}}
+#comments {
+  margin: 1.5em 0;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\000031511}}
+#comments h2.comment-title {
+  margin: 0;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\000031515}}
+#comments h2.comment-form {
+  margin: 0;
+}
+
+/*
+ * Wrapper for a single comment
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\000031525}}
+.comment {
+  margin-bottom: 20px;
+}
+
+/*
+ * Comment title
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\000031556}}
+.comment-title {
+  margin: 0;
+}
+
+/*
+ * Comment states
+ */
+/*
+ * Preview of the comment before submitting new or updated comment
+ */
+/*
+ * "New" marker for comments that are new for the current user
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\000031588}}
+.new {
+  color: #cc0000;
+}
+
+/*
+ * Nested comments are indented
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\000031596}}
+.indented {
+  margin-left: 40px;
+}
+
+/* =============================================================================
+ *   Forms
+ * ========================================================================== */
+/*
+ * Wrapper for a form element (or group of form elements) and its label
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\000031612}}
+.form-item input.error,
+.form-item textarea.error,
+.form-item select.error {
+  border: 1px solid #cc0000;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\000031616}}
+.form-item label {
+  font-weight: 700;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\000031623}}
+.form-item .description {
+  font-size: 0.85em;
+}
+
+/*
+ * Highlight marks and form required mark
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\000031637}}
+.marker,
+.form-required {
+  color: #cc0000;
+}
+
+/*
+ * The submit button
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\000031651}}
+.container-inline div,
+.container-inline label {
+  display: inline;
+}
+
+/*
+ * Define consistent borders
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\000031659}}
+fieldset {
+  border: 1px solid #cccccc;
+}
+
+/*
+ * Tips for Drupal's input formats
+ */
+/*
+ * Buttons used by contrib modules like Media
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\000031673}}
+a.button {
+  /*@include appearance(button);*/
+  height: 19px;
+  padding: 1px 5px 0;
+  border: 1px solid #222222;
+  font-family: "Apercu Regular", Arial, Helvetica, sans-serif;
+  font-weight: normal;
+  font-size: 9px;
+  line-height: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-family: "Apercu Bold", Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-border-radius: 1px;
+  -moz-border-radius: 1px;
+  border-radius: 1px;
+  cursor: pointer;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\000031685}}
+a.button:hover {
+  background: #222222;
+  color: #f9f9f9;
+}
+
+/*
+ * Password confirmation
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\000031696}}
+.password-parent,
+.confirm-parent {
+  margin: 0;
+}
+
+/* =============================================================================
+ *   Tables
+ * ========================================================================== */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\000031705}}
+table {
+  margin: 10px 0;
+  padding: 0;
+  width: 100%;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\000031710}}
+table.sticky-header {
+  z-index: 10;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\000031721}}
+table,
+thead,
+tbody,
+tr,
+th,
+td {
+  border-color: #cccccc;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\000031728}}
+table,
+td,
+th {
+  vertical-align: middle;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\000031735}}
+caption,
+th,
+td {
+  text-align: left;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\000031740}}
+thead tr {
+  font-weight: 700;
+  background-color: #e5e5e5;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\000031747}}
+td,
+th {
+  border-bottom: 0;
+  margin: 0;
+  padding: 5px 7px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\000031757}}
+tbody tr {
+  border-top: 1px solid #cccccc;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\000031762}}
+tr {
+  /* Table row striping */
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\000031764}}
+tr.odd {
+  background: white;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\000031771}}
+tr.info, tr.even, tr:nth-child(2n+2) {
+  border-bottom: 0;
+  background-color: whitesmoke;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\000031780}}
+tr.odd td.active {
+  background-color: #eeeeee;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\000031784}}
+tr.even td.active {
+  background-color: #ebebeb;
+}
+
+/*
+ * Forum tables
+ * Core sets white-space to nowrap, which makes no sense
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\000031812}}
+#forum td .created,
+#forum td .posts,
+#forum td .topics,
+#forum td .last-reply,
+#forum td .replies,
+#forum td .pager {
+  white-space: normal;
+}
+
+/* =============================================================================
+ *   Messages
+ * ========================================================================== */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\000031823}}
+div.messages {
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\000031828}}
+div.messages ul {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+/*
+ * Unpublished nodes
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\000031869}}
+.node-unpublished p.unpublished,
+.comment-unpublished p.unpublished {
+  color: pink;
+  color: rgba(239, 170, 170, 0.4);
+  font-family: Impact, Haettenschweiler, "Franklin Gothic Bold", Charcoal, "Helvetica Inserat", "Bitstream Vera Sans Bold", "Arial Black", sans-serif;
+  font-size: 50px;
+  font-weight: 700;
+  line-height: 1.2;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  overflow: visible;
+  text-align: center;
+  text-transform: uppercase;
+  word-wrap: break-word;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/_custom\.scss}line{font-family:\00003187}}
+.ie6-7 .node-unpublished p.unpublished > *, .ie6-7
+.comment-unpublished p.unpublished > * {
+  position: relative;
+}
+
+/* =============================================================================
+ *    Maintenance pages
+ * ========================================================================== */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\000031880}}
+.maintenance-page .container {
+  padding: 40px 0;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\000031885}}
+.maintenance-page #site-name,
+.maintenance-page #page-title {
+  margin: 0;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\000031892}}
+.db-offline .container {
+  margin: 0 auto;
+  padding: 40px 0;
+  width: 100%;
+  max-width: 960px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\000031899}}
+.db-offline div.messages {
+  margin: 20px 0 0;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\000031903}}
+.db-offline #content {
+  padding: 20px 0;
+}
+
+/* =============================================================================
+ *   Misc overrides for contrib modules
+ * ========================================================================== */
+/*
+ * Admin menu overrides
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\000031916}}
+#admin-menu {
+  margin: 0;
+  padding: 0;
+}
+
+/*
+ * Devel Module
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\000031925}}
+.dev-query {
+  background: #eeeeee;
+  padding: 30px;
+}
+
+/*
+ * Styleguide module tweaks
+ */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\000031934}}
+#styleguide-header {
+  padding: 0 10px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.styles\.scss}line{font-family:\000031937}}
+#styleguide-header .item-list {
+  font-family: inherit;
+  margin: 0 20px 20px 0;
+  min-height: 260px;
+  width: auto;
+}

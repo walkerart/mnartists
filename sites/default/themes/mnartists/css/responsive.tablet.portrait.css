@@ -1,78 +1,216 @@
-/*
-Syntax error: Invalid CSS after "...d-grid-columns ": expected ":", was "24;"
-        on line 85 of /Users/mgipson/Documents/Repositories/mnartists/sites/default/themes/mnartists/sass/_base.scss
-        from line 3 of /Users/mgipson/Documents/Repositories/mnartists/sites/default/themes/mnartists/sass/responsive.tablet.portrait.scss
+/* now let's get those layout files */
+/* LAYOUT A ************************************/
+/* community and homepage template stuff */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/layout-a\.scss}line{font-family:\000036}}
+.layout-a .panel-col-first {
+  float: left;
+  width: 75%;
+  box-sizing: border-box;
+  padding-right: 20px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/layout-a\.scss}line{font-family:\0000312}}
+.layout-a .panel-col-first .inside {
+  margin: 0 .5em 1em 0;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/layout-a\.scss}line{font-family:\0000315}}
+.layout-a .panel-col-first .inside .article-thing {
+  margin-right: 20px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/layout-a\.scss}line{font-family:\0000318}}
+.layout-a .panel-col-first .inside .search-results {
+  margin-right: 20px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/layout-a\.scss}line{font-family:\0000322}}
+.layout-a .panel-col-first .inset-left {
+  float: left;
+  width: 75%;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/layout-a\.scss}line{font-family:\0000326}}
+.layout-a .panel-col-first .inset-right {
+  float: left;
+  width: 25%;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/layout-a\.scss}line{font-family:\0000332}}
+.layout-a .panel-col-last {
+  float: left;
+  width: 25%;
+  box-sizing: border-box;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/layout-a\.scss}line{font-family:\0000337}}
+.layout-a .panel-col-last .inside {
+  margin: 0 0 1em .5em;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/layout-a\.scss}line{font-family:\0000341}}
+.layout-a .panel-separator {
+  margin: 0 0 1em 0;
+}
 
-Backtrace:
-/Users/mgipson/Documents/Repositories/mnartists/sites/default/themes/mnartists/sass/_base.scss:85
-/Users/mgipson/Documents/Repositories/mnartists/sites/default/themes/mnartists/sass/responsive.tablet.portrait.scss:3
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/scss/parser.rb:1129:in `expected'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/scss/parser.rb:1066:in `expected'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/scss/parser.rb:1061:in `tok!'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/scss/parser.rb:495:in `variable'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/scss/parser.rb:536:in `block_child'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/scss/parser.rb:529:in `block_contents'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/scss/parser.rb:70:in `stylesheet'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/scss/parser.rb:27:in `parse'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/engine.rb:342:in `_to_tree'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/engine.rb:272:in `to_tree'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/tree/visitors/perform.rb:222:in `visit_import'
-org/jruby/RubyKernel.java:2096:in `send'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/tree/visitors/base.rb:37:in `visit'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/tree/visitors/perform.rb:98:in `visit'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/tree/visitors/base.rb:53:in `visit_children'
-org/jruby/RubyArray.java:2336:in `collect'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/tree/visitors/base.rb:53:in `visit_children'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/tree/visitors/perform.rb:107:in `visit_children'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/tree/visitors/perform.rb:119:in `with_environment'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/tree/visitors/perform.rb:106:in `visit_children'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/tree/visitors/base.rb:37:in `visit'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/tree/visitors/perform.rb:126:in `visit_root'
-org/jruby/RubyKernel.java:2096:in `send'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/tree/visitors/base.rb:37:in `visit'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/tree/visitors/perform.rb:98:in `visit'
-org/jruby/RubyKernel.java:2096:in `send'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/tree/visitors/perform.rb:7:in `visit'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/tree/root_node.rb:20:in `render'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/engine.rb:315:in `_render'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/engine.rb:262:in `render'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/lib/compass/compiler.rb:140:in `compile'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/lib/compass/compiler.rb:126:in `timed'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/lib/compass/compiler.rb:139:in `compile'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/lib/compass/logger.rb:45:in `red'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/lib/compass/compiler.rb:138:in `compile'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/lib/compass/compiler.rb:118:in `compile_if_required'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/lib/compass/compiler.rb:103:in `run'
-org/jruby/RubyArray.java:1603:in `each'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/lib/compass/compiler.rb:101:in `run'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/lib/compass/compiler.rb:126:in `timed'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/lib/compass/compiler.rb:100:in `run'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/lib/compass/commands/watch_project.rb:147:in `recompile'
-org/jruby/RubyMethod.java:133:in `call'
-org/jruby/RubyProc.java:268:in `call'
-org/jruby/RubyProc.java:228:in `call'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/fssm-0.2.9/lib/fssm/path.rb:73:in `run_callback'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/fssm-0.2.9/lib/fssm/path.rb:55:in `callback_action'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/fssm-0.2.9/lib/fssm/path.rb:35:in `update'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/fssm-0.2.9/lib/fssm/state/directory.rb:39:in `modified'
-org/jruby/RubyArray.java:1603:in `each'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/fssm-0.2.9/lib/fssm/state/directory.rb:37:in `modified'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/fssm-0.2.9/lib/fssm/state/directory.rb:18:in `refresh'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/fssm-0.2.9/lib/fssm/backends/polling.rb:17:in `run'
-org/jruby/RubyArray.java:1603:in `each'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/fssm-0.2.9/lib/fssm/backends/polling.rb:17:in `run'
-org/jruby/RubyKernel.java:1419:in `loop'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/fssm-0.2.9/lib/fssm/backends/polling.rb:15:in `run'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/fssm-0.2.9/lib/fssm/monitor.rb:26:in `run'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/fssm-0.2.9/lib/fssm.rb:70:in `monitor'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/lib/compass/commands/watch_project.rb:87:in `perform'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/lib/compass/commands/base.rb:18:in `execute'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/lib/compass/commands/project_base.rb:19:in `execute'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/lib/compass/exec/sub_command_ui.rb:43:in `perform!'
-/Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/lib/compass/exec/sub_command_ui.rb:15:in `run!'
-/Applications/Scout.app/Contents/Resources/bin/compass:12:in `(root)'
-*/
-body:before {
-  white-space: pre;
-  font-family: monospace;
-  content: "Syntax error: Invalid CSS after \"...d-grid-columns \": expected \":\", was \"24;\"\A         on line 85 of /Users/mgipson/Documents/Repositories/mnartists/sites/default/themes/mnartists/sass/_base.scss\A         from line 3 of /Users/mgipson/Documents/Repositories/mnartists/sites/default/themes/mnartists/sass/responsive.tablet.portrait.scss"; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/layout-a\.scss}line{font-family:\0000346}}
+* html .panel-2col.layout-a .panel-col-first {
+  width: 74.9%;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/layout-a\.scss}line{font-family:\0000349}}
+* html .panel-2col.layout-a .panel-col-last {
+  width: 24.9%;
+}
+
+/* insets */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/layout-a\.scss}line{font-family:\0000353}}
+* html .panel-2col.layout-a .panel-col-first .panel-col-first.inset-left {
+  width: 74.9%;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/layout-a\.scss}line{font-family:\0000356}}
+* html .panel-2col.layout-a .panel-col-first .panel-col-last.inset-right {
+  width: 24.9%;
+}
+
+/* LAYOUT G artwork **************************/
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/layout-g\.scss}line{font-family:\000035}}
+.layout-g .title-artwork .block {
+  margin: 0;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/layout-g\.scss}line{font-family:\000038}}
+.layout-g .title-artwork .block .block-inner .block-content {
+  background: none;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/layout-g\.scss}line{font-family:\0000310}}
+.layout-g .title-artwork .block .block-inner .block-content h2 {
+  padding: 0 0 5px 0;
+  margin: 0;
+  height: 15px;
+  background: none;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/layout-g\.scss}line{font-family:\0000319}}
+.layout-g .panel-col.content-artwork {
+  position: relative;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/layout-g\.scss}line{font-family:\0000327}}
+.layout-g .panel-col.content-artwork .content-bottom .inset-left {
+  font-family: "adobe-text-pro", "Times New Roman", Times, serif;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/layout-g\.scss}line{font-family:\0000338}}
+.layout-g .panel-col.content-artwork .pane-node-title h2 {
+  background: none;
+  padding: 15px 0 10px 0;
+  margin: 0 0 10px 0;
+  border-bottom: 1px solid #888888;
+  font-size: 18px;
+  height: auto;
+  line-height: auto;
+  text-transform: none;
+  letter-spacing: normal;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/layout-g\.scss}line{font-family:\0000349}}
+.layout-g .panel-col.content-artwork .pane-node-title h2 a {
+  font-family: "adobe-text-pro", "Times New Roman", Times, serif;
+  font-weight: normal;
+  height: auto;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/layout-g\.scss}line{font-family:\0000355}}
+.layout-g .panel-col.content-artwork .pane-node-links {
+  position: absolute;
+  display: inline-block;
+  right: 10px;
+  top: 10px;
+  text-align: right;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/layout-g\.scss}line{font-family:\0000364}}
+.layout-g .panel-col.content-artwork .pane-node-author a {
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 24px;
+  margin-bottom: 10px;
+  padding-top: 5px;
+  display: block;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/layout-g\.scss}line{font-family:\0000373}}
+.layout-g .panel-col.content-artwork .pane-mnartist-collections-mna-collections-star {
+  position: absolute;
+  top: 10px;
+  right: 0px;
+  z-index: 9999;
+}
+
+/*
+ *   Important Information about this CSS File
+ *
+ * - Do not delete or rename this file, if you do not use it leave it blank (delete
+ *   everything) and the file will be skipped when you enable Production Mode in
+ *   the Global theme settings.
+ *
+ * - Read the _README file in this directory, it contains useful help and other information.
+ */
+/* Increase the body font size on small devices */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/responsive\.tablet\.portrait\.scss}line{font-family:\0000316}}
+html {
+  font-size: 81.3%;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/responsive\.tablet\.portrait\.scss}line{font-family:\0000320}}
+.sidebar-right, .main-content {
+  margin-left: 0;
+  margin-right: 0;
+  display: block;
+  clear: both;
+  margin-bottom: 20px;
+  float: none!important;
+  width: auto!important;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/responsive\.tablet\.portrait\.scss}line{font-family:\0000329}}
+.content-bottom {
+  display: block;
+  margin-bottom: 0;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/responsive\.tablet\.portrait\.scss}line{font-family:\0000333}}
+.content-bottom .one-third {
+  display: block;
+  width: auto!important;
+  float: none!important;
+  clear: both;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/responsive\.tablet\.portrait\.scss}line{font-family:\0000337}}
+.content-bottom .one-third.panel-col-last {
+  border-left: none;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/responsive\.tablet\.portrait\.scss}line{font-family:\0000341}}
+form input.text-full {
+  max-width: 220px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/responsive\.tablet\.portrait\.scss}line{font-family:\0000345}}
+.panel-1col .panel-col .one-third {
+  display: block;
+  width: auto!important;
+  float: none!important;
+  clear: both;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/responsive\.tablet\.portrait\.scss}line{font-family:\0000351}}
+.panel-2col .panel-col-first, .panel-2col .panel-col-first {
+  display: block;
+  width: auto!important;
+  float: none!important;
+  clear: both;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/responsive\.tablet\.portrait\.scss}line{font-family:\0000358}}
+.panel-2col .panel-col-last,
+.panel-2col .panel-col-first,
+.panel-2col .panel-col-last .panel-col-first.inset-left,
+.panel-2col .panel-col-last .panel-col-last.inset-right {
+  display: block;
+  width: auto!important;
+  float: none!important;
+  clear: both;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/responsive\.tablet\.portrait\.scss}line{font-family:\0000363}}
+.fieldset-wrapper .date-no-float {
+  display: block;
+  width: auto;
+  clear: both;
+}
