@@ -5648,6 +5648,11 @@ body.page-node-add #content {
 
         &:nth-child(4) {
             @include last;
+
+            &:after {
+                @include clearfix;
+                content:"";
+            }
         }
     }
 
