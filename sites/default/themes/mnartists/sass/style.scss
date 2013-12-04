@@ -5646,6 +5646,9 @@ body.page-node-add #content {
     .item {
         @include column(6);
     }
+    &:nth-child(4) {
+        @include last;
+    }
 
 	.artist-profile {
 
@@ -6379,13 +6382,13 @@ body {
         width:100%;
 
         .item {
-            display:block;
+            /*display:block;
             width:25%;
             vertical-align:top;
             margin-right:0px;
             margin-bottom:15px;
             box-sizing: border-box;
-            float:left;
+            float:left;*/
 
             h3 {
                 @include quiet_type;
