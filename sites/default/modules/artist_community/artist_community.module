@@ -2,6 +2,8 @@
 
 define('NODE_INDEX', 'default_node_index');
 define('USER_INDEX', 'users');
+define('EXPERIENCE_TID', '12');
+define('PRACTICE_TID', '13');
 
 /**
  * @file
@@ -161,13 +163,18 @@ function _community_block_community() {
 function _community_block_content() {
     // render content menu;
 
-    // get artist experience level terms to build
+    // get artist experience level and practice terms to build
     // artists sub-menu
-    $experience_vocabulary_tree = taxonomy_get_tree(12);
+    $experience_vocabulary_tree = taxonomy_get_tree(EXPERIENCE_TID);
     $artist_sub_items = array();
     foreach($experience_vocabulary_tree as $term) {
         $artist_sub_items[] = url_query_master($term->name, 'community', 'content', 'artists-'.$term->tid);
     }
+    $practice_vocabulary_tree = taxonomy_get_tree(PRACTICE_TID);
+    foreach($practice_vocabulary_tree as $term) {
+        $artist_sub_items[] = url_query_master($term->name, 'community', 'content', 'artists-'.$term->tid);
+    }
+    // @TODO either sort these or do something on front-end to separate them visually
 
     $menu_items = array(
         'article' => array(
@@ -277,7 +284,7 @@ function gid_by_tid($tid) {
 }
 
 function artist_community_execute_query($index, $filters = array(), $sorts = array()) {
-        // Initialize the solr query
+    // Initialize the solr query
     $options = array(
         'search id' => 'artist_community:' . $index,
         'parse mode' => 'terms',
@@ -302,7 +309,6 @@ function artist_community_execute_query($index, $filters = array(), $sorts = arr
 
     $index = $query->getIndex();
     $results = $query->execute();
-
     return $index->loadItems(array_keys($results['results']));
 }
 
