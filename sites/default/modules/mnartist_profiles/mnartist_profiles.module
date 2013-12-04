@@ -151,26 +151,6 @@ function mnartist_profiles_collective_or_fullname_or_username($uid, $prefer_full
     return $context_user->name;
 }
 
-// returns a given user's practices as an array of the
-// practice values, or false if none
-function mnartist_profiles_practice_values_as_array($uid) {
-    $practices = array();
-
-    $main_profile = profile2_load_by_user($uid, 'main');
-    if ($main_profile !== false) {
-        if (isset($main_profile->field_practice['und'])) {
-            foreach ($main_profile->field_practice['und'] as $practice) {
-                $practice_value = $practice['value'];
-                $field_info = field_info_field('field_practice');
-                if (isset($field_info['settings']['allowed_values'][$practice_value])) {
-                    $practices[] = $field_info['settings']['allowed_values'][$practice_value];
-                }
-            }
-        }
-    }
-    return $practices;
-}
-
 // get all a user's roles from artworks they have submitted
 function mnartist_profiles_get_artwork_roles_for_user($uid) {
     $all_roles = array();
