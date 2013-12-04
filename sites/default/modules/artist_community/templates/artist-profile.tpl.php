@@ -13,5 +13,5 @@
             <?php print mnartist_profiles_collective_or_fullname_or_username($user->uid); ?>
         </a>
     </div>
-    <div class="practice"><?php print implode(', ', mnartist_profiles_practice_values_as_array($user->uid)); ?></div>
+    <div class="roles"><?php print implode(', ', mnartist_profiles_get_artwork_roles_for_user($user->uid)); ?></div>
 </div>

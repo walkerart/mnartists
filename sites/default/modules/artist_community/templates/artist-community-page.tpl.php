@@ -107,7 +107,7 @@
 								<img src="<?= $context_user->image_uri ?>" width="68" height="68">
 								<div class="user-thing-labels">
 									<div class="user-thing-name"><?= $context_user->full_name ?></div>
-									<div class="user-thing-practice"><?= $context_user->practice ?></div>
+									<div class="user-thing-roles"><?= implode(', ', mnartist_profiles_get_artwork_roles_for_user($context_user->uid)) ?></div>
 								</div>
 							</a>
 						</li>

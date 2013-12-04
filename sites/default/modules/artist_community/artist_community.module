@@ -166,7 +166,7 @@ function _community_block_content() {
     $experience_vocabulary_tree = taxonomy_get_tree(12);
     $artist_sub_items = array();
     foreach($experience_vocabulary_tree as $term) {
-        $artist_sub_items[] = url_query_master($term->name, 'community', 'content', 'artists');
+        $artist_sub_items[] = url_query_master($term->name, 'community', 'content', 'artists-'.$term->tid);
     }
 
     $menu_items = array(
