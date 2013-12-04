@@ -2,26 +2,14 @@
 
 @import "base";
 
-html {
+.page-user-resume-download {
     background: $main_bg;
     color: $main_color;
     margin:0;padding:0;
 
-    body {
-        font-family: $sans_regular_font;
-        font-size: 12px;
-        line-height: 14px;
-        text-rendering: optimizeLegibility;
-        margin:0;padding:10px;
-        text-align:center;
+    #content {
 
         .container {
-            background:#fff;
-            margin:1em auto;
-            padding:40px;
-            text-align:left;
-            display:block;
-            max-width:940px;
 
             section {
                 padding-bottom:40px;
@@ -32,41 +20,17 @@ html {
                     border-bottom:none;
                     margin-bottom:0;
                 }
-
                 div {
-
                     p {
-
                         label {
-                            display:block;
-                            @include quiet_type;
 
                         }
                     }
                 }
-
-                h2 {
-                    font-size:20px;
-                }
-                p {
-
-                }
-                ul {
-
-                    li {
-
-                    }
-                }
-                ol {
-
-                    li {
-
-                    }
-                }
-                a {
-
-                }
             }
         }
+    }
+    #menu {
+        display:none; /* we don't want to show this on this page */
     }
 }
