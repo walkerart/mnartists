@@ -5639,21 +5639,42 @@ body.page-node-add #content {
 
 
 
-/* artist result listing */
+/* search result listing */
 .search-results {
     @include container;
     font-size:0;
-    padding-top:2em;
+    padding-top:20px;
 
     .item {
         @include column(6);
-        font-size:16px;
+        font-size:14px;
         display:inline-block!important;
         float:none!important;
         vertical-align:top;
 
         &:nth-child(4n+4) {
             @include last;
+        }
+
+        .item-info-container {
+            position:relative;
+            p {
+                text-indent:none;
+                margin:0 0 .5em 0;
+            }
+
+            .item-info-title {
+                font-weight:bold;
+            }
+            .item-info-author {
+
+            }
+            .item-info-flag {
+                position:absolute;
+                right:0px;
+                top:0px;
+
+            }
         }
     }
 
