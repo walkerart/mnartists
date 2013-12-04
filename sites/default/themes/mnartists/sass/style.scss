@@ -5641,6 +5641,11 @@ body.page-node-add #content {
 
 /* artist result listing */
 .search-results {
+    @include container;
+
+    .item {
+        @include column(6);
+    }
 
 	.artist-profile {
 
