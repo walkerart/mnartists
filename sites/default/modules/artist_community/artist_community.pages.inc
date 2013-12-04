@@ -69,8 +69,15 @@ function artist_community_search_page() {
                 case (preg_match('/artists-.*/', $type) === 1):
                     $exploded_type = explode('-', $type);
                     $tid = $exploded_type[1];
-                    // dpm($tid);
-                    $user_filter->condition('roles', ARTIST_ROLE);// @TODO is the experience field in solr? can we filter that way?
+                    $term = taxonomy_term_load($tid);
+                    $term_target = '';
+                    if ($term->vid === EXPERIENCE_TID) {
+                        $term_target = 'experiences';
+                    } else if ($term->vid === PRACTICE_TID) {
+                        $term_target = 'practices';
+                    }
+                    $vocabulary = taxonomy_vocabulary_load($term->vid);
+                    $user_filter->condition($term_target, $tid);
                     $has_user = TRUE;
                     break;
                 case 'organizations':
@@ -181,7 +188,6 @@ function artist_community_search_page() {
         $context_latest_user_data->uid = $user->uid;
         $context_latest_user_data->username = $user->name;
         $context_latest_user_data->full_name = $full_name;
-        $context_latest_user_data->practice = $practices;
         $context_latest_user_data->image_uri = $image_uri;
         $latest_users_data[] = $context_latest_user_data;
     }
