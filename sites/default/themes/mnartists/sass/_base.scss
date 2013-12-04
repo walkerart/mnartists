@@ -75,6 +75,14 @@ $legacy-support-for-ie7: true;
 
 
 //
+// Blueprint grid definitions
+//
+
+$blueprint-grid-columns : 24;
+$blueprint-grid-width   : 30px;
+$blueprint-grid-margin  : 10px;
+
+//
 // Partials to be shared with all .scss files.
 //
 
@@ -82,6 +90,7 @@ $legacy-support-for-ie7: true;
 @import 'compass/utilities/general/clearfix';  // Better than Drupal's clearfix.
 @import 'compass/utilities/sprites';           // See http://compass-style.org/help/tutorials/spriting/
 @import 'compass/css3';                        // Use one CSS3 mixin instead of multiple vendor prefixes.
+@import 'blueprint';
 
 
 //
