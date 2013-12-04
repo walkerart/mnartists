@@ -66,6 +66,13 @@ function artist_community_search_page() {
                     $user_filter->condition('roles', ARTIST_ROLE);
                     $has_user = TRUE;
                     break;
+                case (preg_match('/artists-.*/', $type) === 1):
+                    $exploded_type = explode('-', $type);
+                    $tid = $exploded_type[1];
+                    // dpm($tid);
+                    $user_filter->condition('roles', ARTIST_ROLE);// @TODO is the experience field in solr? can we filter that way?
+                    $has_user = TRUE;
+                    break;
                 case 'organizations':
                     $user_filter->condition('roles', ORG_ROLE);
                     $has_user = TRUE;
@@ -147,9 +154,11 @@ function artist_community_search_page() {
 
     // Query the user index
     if ($has_user) {
+        // @TODO dump the users and interrogate to figure out how to
+        // get at main profile values
         $all_user_items = artist_community_execute_query(USER_INDEX, $user_filters);
-        foreach($all_user_items as $item) {
-            $content['users'][] = theme('artist_community_artist_profile', array('user' => $item));
+        foreach($all_user_items as $user) {
+            $content['users'][] = theme('artist_community_artist_profile', array('user' => $user));
         }
     }
     // @TODO refactor above, $content is a leftover from when all

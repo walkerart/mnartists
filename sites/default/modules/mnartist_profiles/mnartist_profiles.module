@@ -171,6 +171,33 @@ function mnartist_profiles_practice_values_as_array($uid) {
     return $practices;
 }
 
+// get all a user's roles from artworks they have submitted
+function mnartist_profiles_get_artwork_roles_for_user($uid) {
+    $all_roles = array();
+    $user_artworks = mnartist_profiles_get_artworks_for_user($uid);
+    if (!(empty($user_artworks))) {
+        foreach ($user_artworks as $artwork_node) {
+            $sql = "SELECT * FROM field_revision_field_roles where entity_id = :target_node";
+            $result = db_query($sql, array(':target_node' => $artwork_node->nid));
+            foreach ($result as $row) {
+                if (isset($row->field_roles_tid)) {
+                    $term = taxonomy_term_load($row->field_roles_tid);
+                    $all_roles[] = $term->name;
+                }
+            }
+        }
+    }
+    return $all_roles;
+}
+
+// get all artwork nodes for a given user
+function mnartist_profiles_get_artworks_for_user($uid) {
+    // @TODO move artwork type into a constant?
+    $sql = "SELECT * FROM node WHERE type = 'artwork' AND uid = :target_user";
+    $result = db_query($sql, array(':target_user' => $uid));
+    return $result->fetchAll();
+}
+
 function mnartist_profiles_resume_download($uid) {
 
     // pull in user global
