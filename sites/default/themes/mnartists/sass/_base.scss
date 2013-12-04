@@ -78,9 +78,14 @@ $legacy-support-for-ie7: true;
 // Blueprint grid definitions
 //
 
-$blueprint-grid-columns : 24;
-$blueprint-grid-width   : 30px;
-$blueprint-grid-margin  : 10px;
+// $blueprint-grid-columns : 24;
+// $blueprint-grid-width   : 30px;
+// $blueprint-grid-margin  : 10px;
+
+$blueprint-liquid-grid-columns 24;
+$blueprint-liquid-grid-width 3.167%;
+$blueprint-liquid-grid-margin 1.042%;
+$blueprint-liquid-container-width 100%;
 
 //
 // Partials to be shared with all .scss files.
@@ -90,8 +95,8 @@ $blueprint-grid-margin  : 10px;
 @import 'compass/utilities/general/clearfix';  // Better than Drupal's clearfix.
 @import 'compass/utilities/sprites';           // See http://compass-style.org/help/tutorials/spriting/
 @import 'compass/css3';                        // Use one CSS3 mixin instead of multiple vendor prefixes.
-@import 'blueprint';
-
+// @import 'blueprint';
+@import 'blueprint/liquid';
 
 //
 // Import custom partial - mixins and variables defined for your theme
