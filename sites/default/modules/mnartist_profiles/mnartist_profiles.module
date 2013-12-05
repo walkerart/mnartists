@@ -242,15 +242,23 @@ function mnartist_profiles_resume_download($uid) {
                                 'resume_data' => $template_data
                             )
                         );
-            echo $output;
         } else {
-            echo "No resume data for that user.";
+            $output = "No resume data for that user.";
         }
     } else {
-        echo "I'm sorry, you're not allowed to see that.";
+        $output = "I'm sorry, you're not allowed to see that.";
     }
-
-    drupal_exit();
+    drupal_add_css(drupal_get_path('theme', 'mnartists').'/css/resume-download.css');
+    $render = array(
+        '#type' => 'container',
+        '#attributes' => array(),
+        'content' => array(
+            '#type' => 'markup',
+            '#markup' => $output,
+            '#weight' => 0,
+        ),
+    );
+    return $render;
 }
 
 function mnartist_profiles_theme() {
