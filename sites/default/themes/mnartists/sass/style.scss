@@ -5651,6 +5651,7 @@ body.page-node-add #content {
         display:inline-block!important;
         float:none!important;
         vertical-align:top;
+        overflow:visible;
 
         &:nth-child(4n+4) {
             @include last;
@@ -6218,6 +6219,8 @@ body {
 	ul.menu {
 		margin:0;
 		padding:0 !important;
+        font-size:12px;
+        font-family: $sans_regular_font;
 
 		li {
 
