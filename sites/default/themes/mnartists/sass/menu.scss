@@ -73,6 +73,7 @@
 				background: url('../images/icon-check-solid.svg') no-repeat left center transparent;
 				background-size: 9px auto;
 				color:#111;
+                @include sans_bold_font;
 				font-weight:bold;
 			}
 			a.expand {
@@ -185,6 +186,7 @@
 		a {
 			display:block;
 			line-height:2.4em;
+            @include sans_bold_font;
 			font-weight:bold;
 			padding:0;
 			text-align:center;
@@ -193,7 +195,7 @@
 	}
 	li.user-tab {
 		background:#333;
-		border-bottom-left-radius:5px;
+		border-bottom-left-radius:1px;
 
 		a {
 			color:#e5e5e5;
@@ -292,7 +294,7 @@ p.site-description {
 			}
 			li.user-tab {
 				background:$mystuff_bg_dark;
-				border-bottom-left-radius:5px;
+				border-bottom-left-radius:1px;
 
 				a {
 					color:#e5e5e5;
