@@ -1,0 +1,84 @@
+<?php
+
+/**
+ * @file
+ * Provides functionality to search the node content screen.
+ */
+
+/**
+ * Implements hook_form_alter().
+ */
+function find_content_form_node_admin_content_alter(&$form, &$form_state, $form_id) {
+  $searched_for = '';
+  $results_array = '';
+  if (isset($_SESSION['node_overview_search'])) {
+    $results_array = $_SESSION['node_overview_search'];
+  }
+  if (isset($_SESSION['node_overview_search_term'])) {
+    $searched_for = $_SESSION['node_overview_search_term'];
+  }
+  $form['admin']['nodes']['#weight'] = 2;
+  $form['admin']['search'] = array(
+    '#type' => 'fieldset',
+    '#title' => 'Search by title',
+    '#access' => TRUE,
+    '#weight' => 1,
+  );
+  $form['admin']['search']['search_term'] = array(
+    '#type' => 'textfield',
+    '#title' => t(''),
+    '#size' => 60,
+    '#default_value' => $searched_for,
+  );
+  $form['admin']['search']['submit'] = array(
+    '#type' => 'submit',
+    '#value' => 'Search',
+  );
+  $form['admin']['search']['reset'] = array(
+    '#type' => 'submit',
+    '#value' => 'Reset',
+  );
+  $form['#submit'][] = '_find_content_submit';
+  if (!empty($results_array)) {
+    foreach ($form['admin']['nodes']['#options'] as $key => $value) {
+      if (!in_array($key, $results_array)) {
+        unset($form['admin']['nodes']['#options'][$key]);
+      }
+    }
+  }
+}
+
+/**
+ * Submit function for search form.
+ */
+function _find_content_submit($form, &$form_state) {
+  switch ($form_state['clicked_button']['#value']) {
+    case 'Reset':
+      unset($_SESSION['node_overview_search']);
+      unset($_SESSION['node_overview_search_term']);
+      $nodes_to_show = array();
+      $_SESSION['node_overview_search'] = $nodes_to_show;
+      break;
+
+    default:
+      unset($_SESSION['node_overview_search']);
+      unset($_SESSION['node_overview_search_term']);
+      $nodes = node_load_multiple(array_keys($form['admin']['nodes']['#options']));
+      $search_term = $form['admin']['search']['search_term']['#value'];
+      $_SESSION['node_overview_search_term'] = $search_term;
+      $nodes_to_show = array();
+      $query = db_query(
+        'SELECT * FROM {node} WHERE UPPER(title) LIKE :pattern',
+        array(':pattern' => '%' . db_like(strtoupper($search_term)) . '%'))->fetchAll();
+      if (!empty($query)) {
+        foreach ($query as $result) {
+          $nodes_to_show[] = $result->nid;
+        }
+        $_SESSION['node_overview_search'] = $nodes_to_show;
+      }
+      else {
+        $_SESSION['node_overview_search'] = $nodes_to_show;
+      }
+      break;
+  }
+}

@@ -8,15 +8,12 @@
         <a href='#' class='star-link'><img src='/sites/default/themes/mnartists/images/fav-star.svg' class='star-icon' alt="flag this" /></a>
         <ul>
             <li class='collect-this'><?= flag_create_link('collections', $node_id) ?></li>
-            <hr><!-- @TODO this can't be here. and yet here it is. can't all these sections just be individual sub-ul's?  -->
+            <hr>
             <li class='add-this'>ADD TO:</li>
-            <?php
-                if(is_array($flags))
-                {
-                    foreach($flags as $row)
-                    { ?>
-                        <li class='flag-this'><?= $row ?></li>
-                    <?php }
+            <?php if(is_array($flags)) {
+                foreach($flags as $row) { ?>
+                    <li class='flag-this'><?= $row ?></li>
+                <?php }
             } ?>
             <li class='add-this last'><?= l(t('START A NEW @name', array('@name' => strtoupper(variable_get('flag_lists_name', t('list'))))), 'flag-lists/add/' . $node->type, array('query' => drupal_get_destination())) ?></li>
             <hr>
