@@ -54,7 +54,7 @@
 						<img src="<?= $article->image_uri ?>">
 						<div class="article-content">
 							<div class="article-detail-byline">by <?= $article->author ?></div>
-							<a href="#">FLAG</a><!-- @TODO add real flag block here -->
+							<div class="article-detail-flag pane-mnartist-collections-mna-collections-star"><?= theme("mnartist_collections_star", array('node_id' => $article->nid)) ?></div>
 							<div class="article-detail-excerpt"><?= trim($article->excerpt) ?>&hellip;</div>
 							<a class="article-detail-excerpt-more" href="/node/<?= $article->nid ?>">More &gt;</a>
 							<div class="article-detail-photo-credit"><?= $article->photo_credit ?></div>
