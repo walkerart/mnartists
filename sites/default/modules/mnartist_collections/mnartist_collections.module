@@ -50,7 +50,7 @@ function _mnartist_collections_get_user_flags($variables)
         $content_type = $node->type;
         $content_id = $node->nid;
     }
-    // Or at least confirm we are on a node page and use has access.
+    // Or at least confirm we are on a node page and user has access.
     elseif (arg(0) == 'node' && is_numeric(arg(1)) && user_access('create flag lists')) {
         $content_id = arg(1);
         $query = db_select('node')->condition('nid', $content_id);
@@ -114,33 +114,29 @@ function _mnartist_collections_get_user_flags($variables)
 
 }
 
+function mnartist_collections_theme() {
+    dpm('theme gets called');
+    return array(
+        'mnartist_collections_star' => array(
+            'variables' => array(
+                'node_id' => array(),
+            ),
+            'template' => 'templates/node_star'
+        )
+    );
+}
+
 function _mnartist_collections_star()
 {
-    global $user;
-    $output = "";
-    $output .= "<ul class='menu'>" . PHP_EOL;
-    $output .= "    <li class='first'><a href='#' class='star-link'><img src='/sites/default/themes/mnartists/images/fav-star.svg' class='star-icon' /></a>" . PHP_EOL;
-    $output .= "        <ul>" . PHP_EOL;
-    $output .= "            <li class='collect-this'>" . flag_create_link('collections', arg(1)) . "</li>" . PHP_EOL;
-    $output .= "            <hr />" . PHP_EOL;
-    $output .= "            <li class='add-this'>ADD TO:</li>" . PHP_EOL;
-    $flags = _mnartist_collections_get_user_flags(array('node' => '', 'create' => false, 'use_flags' => false, 'ops' => false));
-    $node = node_load(arg(1));
-    if(is_array($flags))
-    {
-        foreach($flags as $row)
-        {
-            $output .= "            <li class='flag-this'>" . $row . "</li>" . PHP_EOL;
-        }
-    }
-    $output .= "            <li class='add-this last'>" . l(t('START A NEW @name', array('@name' => strtoupper(variable_get('flag_lists_name', t('list'))))), 'flag-lists/add/' . $node->type, array('query' => drupal_get_destination())) . "</li>" . PHP_EOL;
-    $output .= "            <hr />" . PHP_EOL;
-    $output .= "            <li class='share-this'>SHARE VIA:</li>" . PHP_EOL;
-    $output .= "            <li class='share-this'><a href='#' onclick=\"window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href), 'facebook-share-dialog', 'width=626,height=436'); return false;\">FACEBOOK</a></li>" . PHP_EOL;
-    $output .= "            <li class='share-this'><a href='#' onclick=\"window.open('https://twitter.com/share?url='+encodeURIComponent(location.href), 'twitter-share-dialog', 'width=626,height=436'); return false;\">TWITTER</a></li>" . PHP_EOL;
-    //$output .= "            <li><a href='#'>ADD A NETWORK...</a></li>" . PHP_EOL;
-    $output .= "        </ul>" . PHP_EOL;
-    $output .= "    </li>" . PHP_EOL;
-    $output .= "</ul>" . PHP_EOL;
-    return $output;
+    $output = theme("mnartist_collections_star", array('node_id' => arg(1)));
+    $render = array(
+        '#type' => 'container',
+        '#attributes' => array(),
+        'content' => array(
+            '#type' => 'markup',
+            '#markup' => $output,
+            '#weight' => 0,
+        ),
+    );
+    return $render;
 }
