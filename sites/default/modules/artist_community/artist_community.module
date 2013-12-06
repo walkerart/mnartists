@@ -168,38 +168,57 @@ function _community_block_content() {
     $experience_vocabulary_tree = taxonomy_get_tree(EXPERIENCE_TID);
     $artist_sub_items = array();
     foreach($experience_vocabulary_tree as $term) {
-        $artist_sub_items[] = url_query_master($term->name, 'community', 'content', 'artists-'.$term->tid);
+        $attributes = array();
+        if (isset($_GET['content']) && in_array('artists-'.$term->tid, $_GET['content'])) {
+            $attributes['class'] = array('active-trail');
+        }
+        $artist_sub_items[] = url_query_master($term->name, 'community', 'content', 'artists-'.$term->tid, $attributes);
     }
     $practice_vocabulary_tree = taxonomy_get_tree(PRACTICE_TID);
     foreach($practice_vocabulary_tree as $term) {
+        $attributes = array();
+        if (isset($_GET['content']) && in_array('artists-'.$term->tid, $_GET['content'])) {
+            $attributes['class'] = array('active-trail');
+        }
         $artist_sub_items[] = url_query_master($term->name, 'community', 'content', 'artists-'.$term->tid);
     }
     // @TODO either sort these or do something on front-end to separate them visually
-
     $menu_items = array(
         'article' => array(
             'title' => t('Articles'),
-            'subcontent' => ''
+            'subcontent' => '',
+            'class' => (isset($_GET['content']) && in_array('article', $_GET['content']))
+                    ? array('active-trail') : array()
         ),
         'artists' => array(
             'title' => t('Artists'),
-            'subcontent' => theme('item_list', array('items' => $artist_sub_items))
+            'subcontent' => theme('item_list', array('items' => $artist_sub_items)),
+            'class' => (isset($_GET['content']) && in_array('artists', $_GET['content']))
+                    ? array('active-trail') : array()
         ),
         'artwork' => array(
             'title' => t('Artworks'),
-            'subcontent' => ''
+            'subcontent' => '',
+            'class' => (isset($_GET['content']) && in_array('artwork', $_GET['content']))
+                    ? array('active-trail') : array()
         ),
         'event' => array(
             'title' => t('Events'),
-            'subcontent' => ''
+            'subcontent' => '',
+            'class' => (isset($_GET['content']) && in_array('event', $_GET['content']))
+                    ? array('active-trail') : array()
         ),
         'opportunity' => array(
             'title' => t('Opportunities'),
-            'subcontent' => ''
+            'subcontent' => '',
+            'class' => (isset($_GET['content']) && in_array('opportunity', $_GET['content']))
+                    ? array('active-trail') : array()
         ),
         'organizations' => array(
             'title' => t('Organizations'),
-            'subcontent' => ''
+            'subcontent' => '',
+            'class' => (isset($_GET['content']) && in_array('organizations', $_GET['content']))
+                    ? array('active-trail') : array()
         ),
     );
 
@@ -208,7 +227,11 @@ function _community_block_content() {
     $items[] = l('All Content', 'community', array('query' => $query));
 
     foreach($menu_items as $key => $item) {
-        $link = url_query_master($item['title'], 'community', 'content', $key);
+        $attributes = array();
+        if (isset($item['class'])) {
+            $attributes['class'] = $item['class'];
+        }
+        $link = url_query_master($item['title'], 'community', 'content', $key, $attributes);
         $items[] = $link . $item['subcontent'];
     }
 
