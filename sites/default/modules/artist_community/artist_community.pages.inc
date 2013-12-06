@@ -160,6 +160,7 @@ function artist_community_search_page() {
     }
 
     // Query the user index
+    $content['users'] = array();
     if ($has_user) {
         // @TODO dump the users and interrogate to figure out how to
         // get at main profile values
