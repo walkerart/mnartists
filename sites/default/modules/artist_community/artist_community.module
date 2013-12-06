@@ -432,6 +432,7 @@ function url_query_master($text, $path, $key, $val, $attributes = array()) {
 
         }
     } else if ($key == 'content') {
+        // @TODO if we have content, we need to throw away the naked content=artists and only keep the more specific ones
         array_mashinator($query['content'], $val);
         $output = l($text, $path, array('query' => $query, 'attributes' => $attributes));
     }

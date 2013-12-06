@@ -161,37 +161,36 @@ function _mnartist_twitter_block()
 
     // if a community is selected, get the relevant hashtags and
     // add them to $list
-    if(isset($url['query']))
+    if(isset($_GET['og']))
     {
         parse_str($url['query'], $vars);
-        if(isset($vars['og']))
-        {
-            $hashtag_list = array();
-        	$keys = array_keys($vars['og']);
 
-        	$nodes = node_load_multiple($keys);
-        	foreach($nodes as $node)
-        	{
-        		// if the community has a hashtag set, add it to the terms
-        		// we'll scrape for
-        		if (isset($node->field_community_twitter['und'])) {
-        			$hashtag_list[] = urlencode('#'.strtolower($node->field_community_twitter['und'][0]['safe_value']));
-        		}
-        	}
-            sort($hashtag_list);
-            $hashtag_tweets_options = array(
-                'q' => implode(' OR ', $hashtag_list),
-                'count' => '50',
-            );
-            $hashtag_tweets = twitterCache(TWITTER_SEARCH_ENDPOINT, $hashtag_tweets_options);
-            foreach ($hashtag_tweets as $tweet) {
-                $tweets[$tweet->id_str] = $tweet;
-            }
-            krsort($tweets);
+        $hashtag_list = array();
+    	$keys = array_keys($vars['og']);
+
+    	$nodes = node_load_multiple($keys);
+    	foreach($nodes as $node)
+    	{
+    		// if the community has a hashtag set, add it to the terms
+    		// we'll scrape for
+    		if (isset($node->field_community_twitter['und'])) {
+    			$hashtag_list[] = urlencode('#'.strtolower($node->field_community_twitter['und'][0]['safe_value']));
+    		}
+    	}
+        sort($hashtag_list);
+        $hashtag_tweets_options = array(
+            'q' => implode(' OR ', $hashtag_list),
+            'count' => '50',
+        );
+        $hashtag_tweets = twitterCache(TWITTER_SEARCH_ENDPOINT, $hashtag_tweets_options);
+        foreach ($hashtag_tweets as $tweet) {
+            $tweets[$tweet->id_str] = $tweet;
         }
-    // or if no community is selected, get tweets for 'home user' (set in config)
-    // plus mentions of that user
+        krsort($tweets);
     } else {
+        // or if no community is selected, get tweets for 'home user' (set in config)
+        // plus mentions of that user
+
         // get user tweets directly from user statuses endpoint
         $user_tweets_options = array(
             'screen_name' => TWITTER_HOME_USER,
