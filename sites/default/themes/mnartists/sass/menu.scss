@@ -73,8 +73,10 @@
 				background: url('../images/icon-check-solid.svg') no-repeat left center transparent;
 				background-size: 9px auto;
 				color:#111;
-                @include sans_bold_font;
-				font-weight:bold;
+                /*@include sans_bold_font;
+				font-weight:bold;*/
+				font-weight:normal;
+				font-family: $sans_bold_font;
 			}
 			a.expand {
 				line-height:1em;
