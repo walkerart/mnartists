@@ -112,7 +112,6 @@
 							</a>
 						</li>
 					<?php } ?>
-					<!-- @TODO replace with actual downward arrow -->
 					<li class="user-thing-more"><a href="/community?content[0]=artists<?php if ($og_get_string != '') { echo "&$og_get_string"; } ?>" style="font-size: 4em;">&#709;</a></li>
 				</ul>
 				</div>
