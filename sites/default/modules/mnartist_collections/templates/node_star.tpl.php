@@ -18,8 +18,8 @@
             <li class='add-this last'><?= l(t('START A NEW @name', array('@name' => strtoupper(variable_get('flag_lists_name', t('list'))))), 'flag-lists/add/' . $node->type, array('query' => drupal_get_destination())) ?></li>
             <hr>
             <li class='share-this'>SHARE VIA:</li>
-            <li class='share-this'><a href='#' onclick=\"window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(<?= $node_url ?>), 'facebook-share-dialog', 'width=626,height=436'); return false;\">FACEBOOK</a></li>
-            <li class='share-this'><a href='#' onclick=\"window.open('https://twitter.com/share?url='+encodeURIComponent(<?= $node_url ?>), 'twitter-share-dialog', 'width=626,height=436'); return false;\">TWITTER</a></li>
+            <li class='share-this'><a href='#' onclick='window.open("https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent("<?= $node_url ?>"), "facebook-share-dialog", "width=626,height=436"); return false;'>FACEBOOK</a></li>
+            <li class='share-this'><a href='#' onclick='window.open("https://twitter.com/share?url=" + encodeURIComponent("<?= $node_url ?>"), "twitter-share-dialog", "width=626,height=436"); return false;'>TWITTER</a></li>
             <li><a href='#'>ADD A NETWORK&hellip;</a></li>
         </ul>
     </li>
