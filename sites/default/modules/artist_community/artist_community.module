@@ -2,8 +2,9 @@
 
 define('NODE_INDEX', 'default_node_index');
 define('USER_INDEX', 'users');
-define('EXPERIENCE_TID', '12');
-define('PRACTICE_TID', '13');
+define('SUBJECT_VID', '8');
+define('EXPERIENCE_VID', '12');
+define('PRACTICE_VID', '13');
 
 /**
  * @file
@@ -163,62 +164,31 @@ function _community_block_community() {
 function _community_block_content() {
     // render content menu;
 
-    // get artist experience level and practice terms to build
-    // artists sub-menu
-    $experience_vocabulary_tree = taxonomy_get_tree(EXPERIENCE_TID);
-    $artist_sub_items = array();
-    foreach($experience_vocabulary_tree as $term) {
-        $attributes = array();
-        if (isset($_GET['content']) && in_array('artists-'.$term->tid, $_GET['content'])) {
-            $attributes['class'] = array('active-trail');
-        }
-        $artist_sub_items[] = url_query_master($term->name, 'community', 'content', 'artists-'.$term->tid, $attributes);
-    }
-    $practice_vocabulary_tree = taxonomy_get_tree(PRACTICE_TID);
-    foreach($practice_vocabulary_tree as $term) {
-        $attributes = array();
-        if (isset($_GET['content']) && in_array('artists-'.$term->tid, $_GET['content'])) {
-            $attributes['class'] = array('active-trail');
-        }
-        $artist_sub_items[] = url_query_master($term->name, 'community', 'content', 'artists-'.$term->tid);
-    }
     // @TODO either sort these or do something on front-end to separate them visually
     $menu_items = array(
         'article' => array(
             'title' => t('Articles'),
             'subcontent' => '',
-            'class' => (isset($_GET['content']) && in_array('article', $_GET['content']))
-                    ? array('active-trail') : array()
         ),
         'artists' => array(
             'title' => t('Artists'),
-            'subcontent' => theme('item_list', array('items' => $artist_sub_items)),
-            'class' => (isset($_GET['content']) && in_array('artists', $_GET['content']))
-                    ? array('active-trail') : array()
+            'subcontent' => '',
         ),
         'artwork' => array(
             'title' => t('Artworks'),
             'subcontent' => '',
-            'class' => (isset($_GET['content']) && in_array('artwork', $_GET['content']))
-                    ? array('active-trail') : array()
         ),
         'event' => array(
             'title' => t('Events'),
             'subcontent' => '',
-            'class' => (isset($_GET['content']) && in_array('event', $_GET['content']))
-                    ? array('active-trail') : array()
         ),
         'opportunity' => array(
             'title' => t('Opportunities'),
             'subcontent' => '',
-            'class' => (isset($_GET['content']) && in_array('opportunity', $_GET['content']))
-                    ? array('active-trail') : array()
         ),
         'organizations' => array(
             'title' => t('Organizations'),
             'subcontent' => '',
-            'class' => (isset($_GET['content']) && in_array('organizations', $_GET['content']))
-                    ? array('active-trail') : array()
         ),
     );
 
@@ -231,6 +201,7 @@ function _community_block_content() {
         if (isset($item['class'])) {
             $attributes['class'] = $item['class'];
         }
+        //($text, $path, $key, $val, $attributes = array())
         $link = url_query_master($item['title'], 'community', 'content', $key, $attributes);
         $items[] = $link . $item['subcontent'];
     }
@@ -375,8 +346,6 @@ function url_query_master($text, $path, $key, $val, $attributes = array()) {
 
     if (isset($_GET['content'])) {
         $query['content'] = $_GET['content'];
-
-        // @TODO gotta do more here to get the content types if it's artist, I guess?
     }
 
     if ($key == 'og') {
@@ -432,9 +401,115 @@ function url_query_master($text, $path, $key, $val, $attributes = array()) {
 
         }
     } else if ($key == 'content') {
-        // @TODO if we have content, we need to throw away the naked content=artists and only keep the more specific ones
-        array_mashinator($query['content'], $val);
+
+        if (isset($_GET['content'][$val]) && $_GET['content'][$val] == 1) {
+            $attributes['class'] = array('active-trail','selected');
+        } else if (isset($_GET['content'][$val]) && is_array($_GET['content'][$val])) {
+            $attributes['class'] = array('active-trail','active');
+        }
+
+        if (isset($query['content'][$val])) {
+            unset($query['content'][$val]);
+        } else {
+            $query['content'][$val] = TRUE;
+        }
         $output = l($text, $path, array('query' => $query, 'attributes' => $attributes));
+
+        if ($val === 'artists') {
+            $artist_sub_items = array();
+            $experience_vocabulary_tree = taxonomy_get_tree(EXPERIENCE_VID);
+            foreach($experience_vocabulary_tree as $term) {
+                $attributes = array();
+
+                // Reset the query so that the content sub-categories are included
+                if (isset($_GET['content'][$val])) {
+                    $query['content'][$val] = $_GET['content'][$val];
+                } else {
+                    $query['content'][$val] = array();
+                }
+
+                if (isset($_GET['content'][$val]) && is_array($_GET['content'][$val]) && in_array($term->tid, $_GET['content'][$val])) {
+                    $attributes['class'] = array('active-trail','selected');
+                }
+
+                // if the query is true convert it to an array
+                if ($query['content'][$val] == 1) {
+                    $query['content'][$val] = array();
+                }
+
+                array_mashinator($query['content'][$val], $term->tid);
+
+                // Build a sub menu of taxonomy terms
+                $artist_sub_items[] = l($term->name, 'community', array(
+                    'query' => $query,
+                    'attributes' => $attributes,
+                ));
+            }
+            $practice_vocabulary_tree = taxonomy_get_tree(PRACTICE_VID);
+            foreach($practice_vocabulary_tree as $term) {
+                $attributes = array();
+
+                // Reset the query so that the content sub-categories are included
+                if (isset($_GET['content'][$val])) {
+                    $query['content'][$val] = $_GET['content'][$val];
+                } else {
+                    $query['content'][$val] = array();
+                }
+
+                if (isset($_GET['content'][$val]) && is_array($_GET['content'][$val]) && in_array($term->tid, $_GET['content'][$val])) {
+                    $attributes['class'] = array('active-trail','selected');
+                }
+
+                // if the query is true convert it to an array
+                if ($query['content'][$val] == 1) {
+                    $query['content'][$val] = array();
+                }
+
+                array_mashinator($query['content'][$val], $term->tid);
+
+                // Build a sub menu of taxonomy terms
+                $artist_sub_items[] = l($term->name, 'community', array(
+                    'query' => $query,
+                    'attributes' => $attributes,
+                ));
+            }
+            if (isset($artist_sub_items)) {
+                $output .= theme('item_list', array('items' => $artist_sub_items));
+            }
+        } else if ($val === 'artwork') {
+            $artwork_sub_items = array();
+            $subject_vocabulary_tree = taxonomy_get_tree(SUBJECT_VID);
+            foreach($subject_vocabulary_tree as $term) {
+                $attributes = array();
+
+                // Reset the query so that the content sub-categories are included
+                if (isset($_GET['content'][$val])) {
+                    $query['content'][$val] = $_GET['content'][$val];
+                } else {
+                    $query['content'][$val] = array();
+                }
+
+                if (isset($_GET['content'][$val]) && is_array($_GET['content'][$val]) && in_array($term->tid, $_GET['content'][$val])) {
+                    $attributes['class'] = array('active-trail','selected');
+                }
+
+                // if the query is true convert it to an array
+                if ($query['content'][$val] == 1) {
+                    $query['content'][$val] = array();
+                }
+
+                array_mashinator($query['content'][$val], $term->tid);
+
+                // Build a sub menu of taxonomy terms
+                $artwork_sub_items[] = l($term->name, 'community', array(
+                    'query' => $query,
+                    'attributes' => $attributes,
+                ));
+            }
+            if (isset($artwork_sub_items)) {
+                $output .= theme('item_list', array('items' => $artwork_sub_items));
+            }
+        }
     }
 
     return $output;

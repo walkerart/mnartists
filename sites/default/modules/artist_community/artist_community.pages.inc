@@ -52,32 +52,40 @@ function artist_community_search_page() {
 
         $user_filter = new SearchApiQueryFilter;
         $user_filter->setConjunction('OR');
-
-        foreach($_GET['content'] as $type) {
+        foreach($_GET['content'] as $type => $value) {
             switch($type) {
-                case 'article':
                 case 'artwork':
+                    if (isset($_GET['content']['artwork']) &&
+                        is_array($_GET['content']['artwork'])) {
+                        foreach ($_GET['content']['artwork'] as $tid) {
+                            $term = taxonomy_term_load($tid);
+                            $filter->condition('field_subject_concept', $tid);
+                        }
+                        $has_content = TRUE;
+                        break;
+                    }
+                case 'article':
                 case 'event':
                 case 'opportunity':
                     $filter->condition('type', $type);
                     $has_content = TRUE;
                     break;
                 case 'artists':
-                    $user_filter->condition('roles', ARTIST_ROLE);
-                    $has_user = TRUE;
-                    break;
-                case (preg_match('/artists-.*/', $type) === 1):
-                    $exploded_type = explode('-', $type);
-                    $tid = $exploded_type[1];
-                    $term = taxonomy_term_load($tid);
-                    $term_target = '';
-                    if ($term->vid === EXPERIENCE_TID) {
-                        $term_target = 'experiences';
-                    } else if ($term->vid === PRACTICE_TID) {
-                        $term_target = 'practices';
+                    if (isset($_GET['content']['artists']) &&
+                        is_array($_GET['content']['artists'])) {
+                        foreach ($_GET['content']['artists'] as $tid) {
+                            $term = taxonomy_term_load($tid);
+                            $term_target = '';
+                            if ($term->vid === EXPERIENCE_VID) {
+                                $term_target = 'experiences';
+                            } else if ($term->vid === PRACTICE_VID) {
+                                $term_target = 'practices';
+                            }
+                            $user_filter->condition($term_target, $tid);
+                        }
+                    } else {
+                        $user_filter->condition('roles', ARTIST_ROLE);
                     }
-                    $vocabulary = taxonomy_vocabulary_load($term->vid);
-                    $user_filter->condition($term_target, $tid);
                     $has_user = TRUE;
                     break;
                 case 'organizations':
