@@ -5693,7 +5693,7 @@ body.page-node-add #content {
 			img {
 				display:block;
 				line-height:1;
-				width:100%; /* this is getting ignored */
+				width:100%!important; /* this is getting ignored */
 				height:auto;
 				margin:0;
 			}
@@ -5709,10 +5709,14 @@ body.page-node-add #content {
 				font-size:14px;
 				padding:5px;
 				display:block;
+                display:block;
+                /* a test comment */
 			}
 		}
 	}
 }
+
+
 
 /* user authoring forms */
 #user-profile-form {
