@@ -6709,9 +6709,24 @@ body {
         background: $mystuff_bg_dark;
         padding:10px;
         margin-bottom:20px;
+        color:#fff;
 
         &:last-child {
 
+        }
+
+        img {
+            display:inline-block;
+            margin-right:20px;
+            vertical-align:top;
+            border:5px solid #111; /* what should this color be? */
+        }
+        .user-feed-message-container {
+            display:inline-block;
+            vertical-align:top;
+        }
+        a {
+            color:#fff;
         }
     }
 }
