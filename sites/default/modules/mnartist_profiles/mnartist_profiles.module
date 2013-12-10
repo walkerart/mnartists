@@ -34,6 +34,8 @@ function mnartist_profiles_menu() {
 
 function mnartist_profiles_feed() {
 
+    global $user;
+
     // get users current user has flagged, put it
     // into a unique'd array
     $flagged_users = array();
@@ -45,17 +47,14 @@ function mnartist_profiles_feed() {
     }
     $flagged_users = array_unique($flagged_users);
 
-    // @TODO presumably we'd want this cached "to the gills"
-    // query to get activities of type user_update with eid's in
-    // user's list of flagged users
-    // @TODO also remove dupes, you can get "you updated" and "[the same user] updated" from this query
+    $target_uids = ($user->uid === 'gra') ? array(0,1) : array($user->uid);
     $sql = "SELECT DISTINCT activity.type, activity.uid, activity.eid, activity.created, activity_messages.message FROM activity
             INNER JOIN activity_targets ON activity.aid = activity_targets.aid
             INNER JOIN activity_messages ON activity_targets.amid = activity_messages.amid
-            WHERE activity.uid in (:flagged_users)
-            AND (activity.uid = activity.eid or activity.type != 'user_update')
-            ORDER BY activity.created DESC";
-    $result = db_query($sql, array(':flagged_users' => $flagged_users));
+            WHERE ((activity.type = 'node_insert' AND activity_targets.uid in (0,:my_uid))
+            OR (activity.type = 'node_update' AND activity_targets.uid in (:my_uid)))
+            AND activity.uid in (:flagged_users)";
+    $result = db_query($sql, array(':flagged_users' => $flagged_users, ':my_uid' => $user->uid));
 
     // munge the data to send to the template, add user
     // picture uri's as you go
