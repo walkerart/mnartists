@@ -5693,7 +5693,7 @@ body.page-node-add #content {
 			img {
 				display:block;
 				line-height:1;
-				width:100%!important; /* this is getting ignored */
+				width:100%;
 				height:auto;
 				margin:0;
 			}
@@ -5709,8 +5709,6 @@ body.page-node-add #content {
 				font-size:14px;
 				padding:5px;
 				display:block;
-                display:block;
-                /* a test comment */
 			}
 		}
 	}
@@ -6517,6 +6515,11 @@ body {
                 padding-top: 1em;
                 margin-top:1em;
                 color:#777;
+            }
+            .pane-mnartist-collections-mna-collections-star {
+                position:absolute;
+                top:0;
+                right:0;
             }
         }
     }
