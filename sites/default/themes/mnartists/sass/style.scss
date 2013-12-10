@@ -6710,6 +6710,7 @@ body {
         padding:10px;
         margin-bottom:20px;
         color:#fff;
+        position:relative;
 
         &:last-child {
 
@@ -6719,11 +6720,30 @@ body {
             display:inline-block;
             margin-right:20px;
             vertical-align:top;
-            border:5px solid #111; /* what should this color be? */
+            border:5px solid #222; /* what should this color be? */
+            position:absolute;
+            left:10px;
         }
         .user-feed-message-container {
             display:inline-block;
             vertical-align:top;
+            padding-left:80px;
+
+            .left {
+
+            }
+            .right {
+
+            }
+            img {
+                border-radius:none;
+                border:none;
+                left:auto;
+                position:relative;
+            }
+            .user-feed-interval-summary {
+                display:none;
+            }
         }
         a {
             color:#fff;
