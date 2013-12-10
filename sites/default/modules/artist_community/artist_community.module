@@ -417,6 +417,7 @@ function url_query_master($text, $path, $key, $val, $attributes = array()) {
 
         if ($val === 'artists') {
             $artist_sub_items = array();
+            $artist_sub_items[] = '<span class="community-content-menu-subheading">Experience</span>';
             $experience_vocabulary_tree = taxonomy_get_tree(EXPERIENCE_VID);
             foreach($experience_vocabulary_tree as $term) {
                 $attributes = array();
@@ -445,6 +446,7 @@ function url_query_master($text, $path, $key, $val, $attributes = array()) {
                     'attributes' => $attributes,
                 ));
             }
+            $artist_sub_items[] = '<span class="community-content-menu-subheading">Practice</span>';
             $practice_vocabulary_tree = taxonomy_get_tree(PRACTICE_VID);
             foreach($practice_vocabulary_tree as $term) {
                 $attributes = array();
