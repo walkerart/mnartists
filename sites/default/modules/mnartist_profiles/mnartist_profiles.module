@@ -34,9 +34,6 @@ function mnartist_profiles_menu() {
 
 function mnartist_profiles_feed() {
 
-    // include feed css
-    drupal_add_css(drupal_get_path("module", "mnartist_profiles") . "/css/mnartist-profiles-feed.css");
-
     // get users current user has flagged, put it
     // into a unique'd array
     $flagged_users = array();
@@ -51,6 +48,7 @@ function mnartist_profiles_feed() {
     // @TODO presumably we'd want this cached "to the gills"
     // query to get activities of type user_update with eid's in
     // user's list of flagged users
+    // @TODO also remove dupes, you can get "you updated" and "[the same user] updated" from this query
     $sql = "SELECT DISTINCT activity.type, activity.uid, activity.eid, activity.created, activity_messages.message FROM activity
             INNER JOIN activity_targets ON activity.aid = activity_targets.aid
             INNER JOIN activity_messages ON activity_targets.amid = activity_messages.amid
@@ -68,6 +66,7 @@ function mnartist_profiles_feed() {
         $context_object->message = $row->message;
         // @TODO these user images are still not right, need to revisit the query
         // to figure out how to get that right
+        $context_object->entity_id = $row->eid;
         $context_object->user_picture_uri = image_style_url('square_thumbnail', $context_user->picture->uri);
         $context_object->update_timestamp = $row->created;
         $context_object->interval_summary = mnartist_profiles_duration_in_plain_english($row->created);
