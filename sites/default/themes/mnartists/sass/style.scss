@@ -6735,11 +6735,12 @@ body {
                 .user-feed-message-container {
                     display:inline-block;
                     vertical-align:top;
-                    padding-left:80px;
                     @include container;
 
                     .left {
                         @include column(15);
+                        box-sizing:border-box;
+                        padding-left:80px;
                     }
                     .right {
                         @include column(9);
@@ -6752,7 +6753,7 @@ body {
                         position:relative;
                     }
                     .user-feed-interval-summary {
-                        display:none;
+
                     }
                 }
                 .feed-update-node-image {
