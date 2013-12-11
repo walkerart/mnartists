@@ -5660,10 +5660,13 @@ body.page-node-add #content {
                 @include last;
             }
         }
-
-        &:nth-child(4n+4) {
-            @include last;
+        @media screen and (max-width: $break-desktop-small) {
+            &:nth-child(4n+4) {
+                @include last;
+            }
         }
+
+
 
         .item-info-container {
             position:relative;
