@@ -5656,7 +5656,7 @@ body.page-node-add #content {
         @media screen and (max-width: $break-tablet) {
             @include column(12);
 
-            &:last-child(2n+2) {
+            &:nth-child(2n+2) {
                 @include last;
             }
         }
