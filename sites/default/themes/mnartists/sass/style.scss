@@ -6711,7 +6711,7 @@ body {
             padding:20px 0;
             @include column(14);
 
-            li {
+            li.feed-item {
                 background: $mystuff_bg_dark;
                 padding:10px;
                 margin-bottom:20px;
@@ -6752,15 +6752,17 @@ body {
                         left:auto;
                         position:relative;
                     }
-                    .user-feed-interval-summary {
-
-                    }
                 }
                 .feed-update-node-image {
                     border-radius:0;
                 }
                 a {
                     color:#fff;
+                }
+                .user-feed-message-star {
+                    position:absolute;
+                    top:10px;
+                    right:10px;
                 }
             }
         }
