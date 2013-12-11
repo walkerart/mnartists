@@ -6736,12 +6736,14 @@ body {
                     display:inline-block;
                     vertical-align:top;
                     padding-left:80px;
+                    @include container;
 
                     .left {
-
+                        @include column(15);
                     }
                     .right {
-
+                        @include column(9);
+                        @include last;
                     }
                     img {
                         border-radius:none;
