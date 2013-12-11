@@ -6704,7 +6704,6 @@ body {
 /* @group user feed */
 .user-feed {
     padding:20px 0;
-    @include container;
 
     li {
         background: $mystuff_bg_dark;
@@ -6712,7 +6711,7 @@ body {
         margin-bottom:20px;
         color:#fff;
         position:relative;
-        @include column(8);
+        list-style:none;
 
         &:last-child {
 
@@ -6723,6 +6722,7 @@ body {
             margin-right:20px;
             vertical-align:top;
             border:5px solid #222; /* what should this color be? */
+            border-radius:50%;
             position:absolute;
             left:10px;
         }
@@ -6746,6 +6746,9 @@ body {
             .user-feed-interval-summary {
                 display:none;
             }
+        }
+        .feed-update-node-image {
+            border-radius:0;
         }
         a {
             color:#fff;

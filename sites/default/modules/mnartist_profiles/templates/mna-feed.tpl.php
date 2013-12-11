@@ -8,6 +8,7 @@
             <span class="user-feed-interval-summary" title="updated time: <?= date('D, d M Y H:i:s', $feed_event->update_timestamp) ?>">
                 <?= $feed_event->interval_summary ?>
             </span>
+            <div class="user-feed-message-star"><?= theme("mnartist_collections_star", array('node_id' => $feed_event->entity_id)) ?></div>
         </div>
     </li>
     <? } ?>

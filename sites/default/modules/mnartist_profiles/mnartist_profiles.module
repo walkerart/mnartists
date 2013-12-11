@@ -34,8 +34,7 @@ function mnartist_profiles_menu() {
 
 function mnartist_profiles_feed() {
 
-    // include feed css
-    drupal_add_css(drupal_get_path("module", "mnartist_profiles") . "/css/mnartist-profiles-feed.css");
+    global $user;
 
     // get users current user has flagged, put it
     // into a unique'd array
@@ -47,17 +46,17 @@ function mnartist_profiles_feed() {
         }
     }
     $flagged_users = array_unique($flagged_users);
-
-    // @TODO presumably we'd want this cached "to the gills"
-    // query to get activities of type user_update with eid's in
-    // user's list of flagged users
+    // @TODO check query in activity module, or else add some conditions here to
+    // switch between public and other based on whether content user's uid is
+    // activity.uid
+    $target_uids = ($user->uid === 'gra') ? array(0,1) : array($user->uid);
     $sql = "SELECT DISTINCT activity.type, activity.uid, activity.eid, activity.created, activity_messages.message FROM activity
             INNER JOIN activity_targets ON activity.aid = activity_targets.aid
             INNER JOIN activity_messages ON activity_targets.amid = activity_messages.amid
-            WHERE activity.uid in (:flagged_users)
-            AND (activity.uid = activity.eid or activity.type != 'user_update')
-            ORDER BY activity.created DESC";
-    $result = db_query($sql, array(':flagged_users' => $flagged_users));
+            WHERE ((activity.type = 'node_insert' AND activity_targets.uid in (0,:my_uid))
+            OR (activity.type = 'node_update' AND activity_targets.uid in (:my_uid)))
+            AND activity.uid in (:flagged_users)";
+    $result = db_query($sql, array(':flagged_users' => $flagged_users, ':my_uid' => $user->uid));
 
     // munge the data to send to the template, add user
     // picture uri's as you go
@@ -68,6 +67,7 @@ function mnartist_profiles_feed() {
         $context_object->message = $row->message;
         // @TODO these user images are still not right, need to revisit the query
         // to figure out how to get that right
+        $context_object->entity_id = $row->eid;
         $context_object->user_picture_uri = image_style_url('square_thumbnail', $context_user->picture->uri);
         $context_object->update_timestamp = $row->created;
         $context_object->interval_summary = mnartist_profiles_duration_in_plain_english($row->created);
