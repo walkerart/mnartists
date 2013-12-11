@@ -6728,6 +6728,7 @@ body {
                 color:#fff;
                 position:relative;
                 list-style:none;
+                min-height:80px;
 
                 &:last-child {
 
@@ -6747,7 +6748,7 @@ body {
                     font-size:14px;
                     font-family:$serif_font;
                     margin-bottom:10px;
-
+                    font-weight:bold;
 
                     a {
                         text-decoration:underline;
@@ -6797,6 +6798,11 @@ body {
                     position:absolute;
                     top:10px;
                     right:10px;
+
+                    .star-icon {
+                        -webkit-filter: invert(100%);
+                        filter: invert(100%);
+                    }
                 }
             }
         }
