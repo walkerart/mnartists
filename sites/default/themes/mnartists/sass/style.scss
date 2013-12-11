@@ -6702,62 +6702,68 @@ body {
 }
 
 /* @group user feed */
-.user-feed {
-    padding:20px 0;
-    @include container;
+.page-user-feed {
 
-    li {
-        background: $mystuff_bg_dark;
-        padding:10px;
-        margin-bottom:20px;
-        color:#fff;
-        position:relative;
-        list-style:none;
-        @include column(8);
-        @include legacy-pie-clearfix;
+    #block-system-main {
+        @include container;
 
-        &:last-child {
+        .user-feed {
+            padding:20px 0;
+            @include column(14);
 
-        }
-
-        img {
-            display:inline-block;
-            margin-right:20px;
-            vertical-align:top;
-            border:5px solid #222; /* what should this color be? */
-            border-radius:50%;
-            position:absolute;
-            left:10px;
-        }
-        .user-feed-message-container {
-            display:inline-block;
-            vertical-align:top;
-            padding-left:80px;
-
-            .left {
-
-            }
-            .right {
-
-            }
-            img {
-                border-radius:none;
-                border:none;
-                left:auto;
+            li {
+                background: $mystuff_bg_dark;
+                padding:10px;
+                margin-bottom:20px;
+                color:#fff;
                 position:relative;
+                list-style:none;
+
+                &:last-child {
+
+                }
+
+                img {
+                    display:inline-block;
+                    margin-right:20px;
+                    vertical-align:top;
+                    border:5px solid #222; /* what should this color be? */
+                    border-radius:50%;
+                    position:absolute;
+                    left:10px;
+                }
+                .user-feed-message-container {
+                    display:inline-block;
+                    vertical-align:top;
+                    padding-left:80px;
+
+                    .left {
+
+                    }
+                    .right {
+
+                    }
+                    img {
+                        border-radius:none;
+                        border:none;
+                        left:auto;
+                        position:relative;
+                    }
+                    .user-feed-interval-summary {
+                        display:none;
+                    }
+                }
+                .feed-update-node-image {
+                    border-radius:0;
+                }
+                a {
+                    color:#fff;
+                }
             }
-            .user-feed-interval-summary {
-                display:none;
-            }
-        }
-        .feed-update-node-image {
-            border-radius:0;
-        }
-        a {
-            color:#fff;
         }
     }
 }
+
 /* @end */
 
 /* @group Sidebar Right */
