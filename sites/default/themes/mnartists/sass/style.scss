@@ -6704,6 +6704,7 @@ body {
 /* @group user feed */
 .user-feed {
     padding:20px 0;
+    @include container;
 
     li {
         background: $mystuff_bg_dark;
@@ -6711,6 +6712,7 @@ body {
         margin-bottom:20px;
         color:#fff;
         position:relative;
+        @include column(8);
 
         &:last-child {
 
