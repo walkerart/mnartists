@@ -6748,10 +6748,21 @@ body {
                         @include column(15);
                         box-sizing:border-box;
                         padding-left:80px;
+
+                        @media screen and (max-width: $break-tablet) {
+                            @include column(24);
+                        }
+
                     }
                     .right {
                         @include column(9);
                         @include last;
+
+                        @media screen and (max-width: $break-tablet) {
+                            @include column(24);
+                            padding-left:80px;
+                        }
+
                     }
                     img {
                         border-radius:none;
