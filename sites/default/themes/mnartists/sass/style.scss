@@ -6711,6 +6711,13 @@ body {
             padding:20px 0;
             @include column(14);
 
+            @media screen and (max-width: $break-mobile) {
+                @include column(24);
+            }
+            @media screen and (max-width: $break-tablet) {
+                @include column(24);
+            }
+
             li.feed-item {
                 background: $mystuff_bg_dark;
                 padding:10px;
