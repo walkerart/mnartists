@@ -6777,7 +6777,8 @@ body {
 
                         @media screen and (max-width: $break-tablet) {
                             @include column(24);
-                            padding-left:80px;
+                            padding-left:0px;
+                            margin-left:80px;
                         }
 
                     }
@@ -6799,10 +6800,16 @@ body {
                     top:10px;
                     right:10px;
 
-                    .star-icon {
-                        -webkit-filter: invert(100%);
-                        filter: invert(100%);
+                    .star-link {
+                        padding:0;
+
+                        .star-icon {
+                            -webkit-filter: invert(100%);
+                            filter: invert(100%);
+                            margin:0;
+                        }
                     }
+
                 }
             }
         }
