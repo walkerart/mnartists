@@ -6710,7 +6710,7 @@ body {
         .user-feed {
             padding:20px 0;
             @include column(14);
-
+            overflow:visible;
             @media screen and (max-width: $break-mobile) {
                 @include column(24);
             }
@@ -6741,6 +6741,15 @@ body {
                     border-radius:50%;
                     position:absolute;
                     left:10px;
+                }
+                .feed-update-description {
+                    padding-left:80px;
+                    font-size:14px;
+                    font-family:$serif_font;
+
+                    a {
+                        text-decoration:underline;
+                    }
                 }
                 .user-feed-message-container {
                     display:inline-block;
