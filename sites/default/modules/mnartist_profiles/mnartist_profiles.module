@@ -46,7 +46,9 @@ function mnartist_profiles_feed() {
         }
     }
     $flagged_users = array_unique($flagged_users);
-
+    // @TODO check query in activity module, or else add some conditions here to
+    // switch between public and other based on whether content user's uid is
+    // activity.uid
     $target_uids = ($user->uid === 'gra') ? array(0,1) : array($user->uid);
     $sql = "SELECT DISTINCT activity.type, activity.uid, activity.eid, activity.created, activity_messages.message FROM activity
             INNER JOIN activity_targets ON activity.aid = activity_targets.aid
