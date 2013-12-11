@@ -6714,6 +6714,7 @@ body {
         position:relative;
         list-style:none;
         @include column(8);
+        @include legacy-pie-clearfix;
 
         &:last-child {
 
