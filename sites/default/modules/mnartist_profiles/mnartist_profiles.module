@@ -46,16 +46,13 @@ function mnartist_profiles_feed() {
         }
     }
     $flagged_users = array_unique($flagged_users);
-    // @TODO check query in activity module, or else add some conditions here to
-    // switch between public and other based on whether content user's uid is
-    // activity.uid
-    $target_uids = ($user->uid === 'gra') ? array(0,1) : array($user->uid);
+    // @TODO this is broken if you're not logged in, check that
     $sql = "SELECT DISTINCT activity.type, activity.uid, activity.eid, activity.created, activity_messages.message FROM activity
             INNER JOIN activity_targets ON activity.aid = activity_targets.aid
             INNER JOIN activity_messages ON activity_targets.amid = activity_messages.amid
-            WHERE ((activity.type = 'node_insert' AND activity_targets.uid in (0,:my_uid))
-            OR (activity.type = 'node_update' AND activity_targets.uid in (:my_uid)))
-            AND activity.uid in (:flagged_users)";
+            WHERE ((activity.uid = :my_uid and activity_targets.uid = :my_uid) OR (activity.uid != :my_uid AND activity_targets.uid = 0))
+            AND activity.uid in (:flagged_users)
+            ORDER BY activity.created DESC";
     $result = db_query($sql, array(':flagged_users' => $flagged_users, ':my_uid' => $user->uid));
 
     // munge the data to send to the template, add user
@@ -65,12 +62,9 @@ function mnartist_profiles_feed() {
         $context_object = new StdClass();
         $context_user = user_load($row->uid);
         $context_object->message = $row->message;
-        // @TODO these user images are still not right, need to revisit the query
-        // to figure out how to get that right
         $context_object->entity_id = $row->eid;
         $context_object->user_picture_uri = image_style_url('square_thumbnail', $context_user->picture->uri);
         $context_object->update_timestamp = $row->created;
-        $context_object->interval_summary = mnartist_profiles_duration_in_plain_english($row->created);
         $feed_data[] = $context_object;
     }
 
@@ -86,50 +80,6 @@ function mnartist_profiles_feed() {
         ),
     );
     return $render;
-}
-
-/* take a timestamp, compare it to the present, return a
-    phrase that suggests the period between the two */
-// @TODO assuming this feed would eventually be cached, this
-//       would need to move up to that layer (or the client),
-//       but this is the general idea for the implementation
-function mnartist_profiles_duration_in_plain_english($activityDate) {
-    $activityDateTime = date_create_from_format('U', $activityDate);
-    $now = new DateTime();
-    $intervalSinceActivity = $activityDateTime->diff($now);
-
-    $returnStringArr = array();
-    if ($intervalSinceActivity->y >= 1) {
-        $returnStringArr[] = $intervalSinceActivity->y;
-        $returnStringArr[] = ($intervalSinceActivity->y === 1) ? 'year' : 'years';
-    } else if ($intervalSinceActivity->y < 1) {
-        if ($intervalSinceActivity->m >= 1) {
-            $returnStringArr[] = $intervalSinceActivity->m;
-            $returnStringArr[] = ($intervalSinceActivity->m === 1) ? 'month' : 'months';
-        } else if ($intervalSinceActivity->m < 1) {
-            if ($intervalSinceActivity->d >= 1) {
-                $returnStringArr[] = $intervalSinceActivity->d;
-                $returnStringArr[] = ($intervalSinceActivity->d === 1) ? 'day' : 'days';
-            } else if ($intervalSinceActivity->d < 1) {
-                if ($intervalSinceActivity->h >= 1) {
-                    $returnStringArr[] = $intervalSinceActivity->h;
-                    $returnStringArr[] = ($intervalSinceActivity->h === 1) ? 'hour' : 'hours';
-                } else if ($intervalSinceActivity->h < 1) {
-                    if ($intervalSinceActivity->i >= 5) {
-                        $returnStringArr[] = $intervalSinceActivity->i.' minutes';
-                    } else if ($intervalSinceActivity->i < 5) {
-                        if ($intervalSinceActivity->i < 1) {
-                            $returnStringArr[] = 'a few seconds';
-                        } else {
-                            $returnStringArr[] = 'a few minutes';
-                        }
-                    }
-                }
-            }
-        }
-    }
-    $returnStringArr[] = 'ago';
-    return implode(' ', $returnStringArr);
 }
 
 // gives you either the collective name, or fullname, or username
