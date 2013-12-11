@@ -6717,6 +6717,9 @@ body {
             @media screen and (max-width: $break-tablet) {
                 @include column(24);
             }
+            @media screen and (max-width: $break-desktop-small) {
+                @include column(24);
+            }
 
             li.feed-item {
                 background: $mystuff_bg_dark;
