@@ -44,9 +44,60 @@ function mnartist_activity_block_view($delta = '') {
     } else {
         $content = "No Activity";
     }
-    
+
     $block['subject'] = t('Activity');
     $block['content'] = $content;
 
     return $block;
+}
+
+/**
+ * Implements hook_token_info().
+ */
+function mnartist_activity_token_info() {
+  return array(
+    'tokens' => array(
+      'node' => array(
+        'node-post-artwork-media-image-uri' => array(
+          'name' => t("Activity Artwork Node Media Uri"),
+          'description' => t("Uri for either the media image itself or, if it's a different media type, its image representation"),
+        ),
+      ),
+    ),
+  );
+}
+
+/**
+ * Implements hook_tokens().
+ */
+function mnartist_activity_tokens($type, $tokens, array $data = array(), array $options = array()) {
+  $replacements = array();
+
+  if ($type == 'node' && !empty($data['node'])) {
+    foreach ($tokens as $name => $original) {
+      switch ($name) {
+        case 'node-post-artwork-media-image-uri':
+          if (isset($data['node']->field_media['und'])) {
+            $uri = $data['node']->field_media['und'][0]['uri'];
+            $scheme = file_uri_scheme($uri);
+            switch ($scheme) {
+              case ('soundcloud'):
+              case ('youtube'):
+              case ('vimeo'):
+                // this leaves out image style stuff, either add that back or
+                // make sure that can be handled elsewhere (css?)
+                $wrapper = file_stream_wrapper_get_instance_by_uri($uri);
+                $uri = $wrapper->getLocalThumbnailPath();
+                break;
+              case ('public'):
+                break;
+            }
+          }
+          $first_image_uri = (isset($data['node']->field_media['und'])) ? $data['node']->field_media['und'][0]['uri'] : '';
+          $replacements[$original] = file_create_url($uri);
+          break;
+      }
+    }
+  }
+  return $replacements;
 }

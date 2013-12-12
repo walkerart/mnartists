@@ -13,25 +13,18 @@
         <h2><?= $resume_data['field_education']['label'] ?></h2>
 
         <?php
-            foreach ($resume_data['field_education']['item'] as $field) {?>
+            foreach ($resume_data['field_education']['item'] as $field) { ?>
                 <div class="education-block">
                     <p><label><?= $field['field_school']['label'] ?></label><?=$field['field_school']['item'][0]['value']?></p>
                     <p><label><?= $field['field_institution_url']['label'] ?></label><?=$field['field_institution_url']['item'][0]['value']?></p>
                     <p><label><?=$field['field_degree']['label']?></label><?=$field['field_degree']['item'][0]['value']?></p>
                     <?php
-                        if ($field['field_or_dates_atten']['item'] !== null &&
-                            isset($field['field_or_dates_atten']['item'][0]['value']) &&
-                            isset($field['field_or_dates_atten']['item'][0]['value2'])) {
-
-                            $start_date = new DateTime($field['field_or_dates_atten']['item'][0]['value']);
-                            $end_date = new DateTime($field['field_or_dates_atten']['item'][0]['value2']);
+                        // @TODO need to do a little experimentation here for empty checking
+                        if ($field['field_dates_attended']['item'] !== null) {
+                            $start_date = $field['field_dates_attended']['item'][0]['from']['month'].' '.$field['field_dates_attended']['item'][0]['from']['year'];
+                            $end_date = $field['field_dates_attended']['item'][0]['to']['month'].' '.$field['field_dates_attended']['item'][0]['to']['year'];
                             ?>
-                            <p><label><?=$field['field_or_dates_atten']['label']?></label><?=$start_date->format('Y/m/d')?> &ndash; <?=$end_date->format('Y/m/d')?></p>
-                            <?php
-                        } else {
-                            $year_graduated = new DateTime($field['field_year']['item'][0]['value']);
-                            ?>
-                            <p><label><?=$field['field_year']['label']?></label><?=$year_graduated->format('Y')?></p>
+                            <p><label><?=$field['field_dates_attended']['label']?></label><?= $start_date ?> &ndash; <?=$end_date ?></p>
                             <?php
                         }
                     ?>
