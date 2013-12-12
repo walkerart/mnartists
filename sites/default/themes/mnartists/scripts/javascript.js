@@ -176,6 +176,6 @@ jQuery(document).ready(function () {
             });
         }
     });
-    jQuery('.form-checkbox').prettyCheckable();
-    jQuery('.form-radio').prettyCheckable();
+    // jQuery('.form-checkbox').prettyCheckable();
+    // jQuery('.form-radio').prettyCheckable();
 });
