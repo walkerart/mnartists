@@ -78,22 +78,16 @@
 		<?php } ?>
 		<div class="clear"></div>
 		<div class="search-results content-all">
-		    <?php foreach($all_content_items as $item): ?>
-		        <div class="item item-<?php print $item->type; ?>">
+		    <?php foreach($all_results as $item): ?>
+		        <div class="item item-<?php /*print $item->type; */?>">
 		        	<?php
-		        		$content_node = node_view($item, 'teaser');
-		        		print render($content_node);
+		        		print($item);
+		        		// $content_node = node_view($item, 'teaser');
+		        		// print render($content_node);
 		        	?>
 		        </div>
 		    <?php endforeach; ?>
 		</div>
-	    <div class="search-results content-users">
-	        <?php foreach($content['users'] as $item): ?>
-	            <div class="item item-users">
-	            	<?php print $item; ?>
-	            </div>
-	        <?php endforeach; ?>
-	    </div>
 	</div>
 	<div class="panel-panel panel-col-last sidebar-right">
 		<?php if (!empty($latest_users)) { ?>
