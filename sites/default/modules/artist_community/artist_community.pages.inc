@@ -159,24 +159,30 @@ function artist_community_search_page() {
     }
 
     // Query the content index
+    // $content['users'] = array();
+    $all_results = array();
     if ($has_content) {
         $all_content_items = artist_community_execute_query(NODE_INDEX, $filters, array(array('changed', 'DESC')));
         foreach($all_content_items as $item) {
-            $content_node = node_view($item, 'teaser');
-            $content[$item->type][] = render($content_node);
+            if (isset($item->nid)) {
+                $content_node = node_view($item, 'teaser');
+                $all_results[] = render($content_node);
+            } else {
+                $all_results[] = theme('artist_community_artist_profile', array('user' => $item));
+            }
         }
     }
 
     // Query the user index
-    $content['users'] = array();
-    if ($has_user) {
-        // @TODO dump the users and interrogate to figure out how to
-        // get at main profile values
-        $all_user_items = artist_community_execute_query(USER_INDEX, $user_filters);
-        foreach($all_user_items as $user) {
-            $content['users'][] = theme('artist_community_artist_profile', array('user' => $user));
-        }
-    }
+    // $content['users'] = array();
+    // if ($has_user) {
+    //     // @TODO dump the users and interrogate to figure out how to
+    //     // get at main profile values
+    //     $all_user_items = artist_community_execute_query(USER_INDEX, $user_filters);
+    //     foreach($all_user_items as $user) {
+    //         $content['users'][] = theme('artist_community_artist_profile', array('user' => $user));
+    //     }
+    // }
     // @TODO refactor above, $content is a leftover from when all
     // users and content types were kept discrete
 
@@ -201,5 +207,5 @@ function artist_community_search_page() {
         $latest_users_data[] = $context_latest_user_data;
     }
 
-    return theme('artist_community_page', array('content' => $content, 'all_content_items' => $all_content_items, 'articles' => $articles_data, 'events' => $events_data, 'latest_users' => $latest_users_data));// @TODO bundle the new data into content?
+    return theme('artist_community_page', array('content' => $content, 'all_results' => $all_results, 'articles' => $articles_data, 'events' => $events_data, 'latest_users' => $latest_users_data));// @TODO bundle the new data into content?
 }
