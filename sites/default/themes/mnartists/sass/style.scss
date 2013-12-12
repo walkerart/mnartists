@@ -5818,6 +5818,7 @@ tr.odd .form-item, tr.even .form-item {
 			}
 		}
 		fieldset {
+
 			legend {
 				border-bottom:1px solid $light_border;
 				width:100%;
@@ -6945,3 +6946,66 @@ body {
     clear: both;
 }
 
+
+// iCheck //
+/* iCheck plugin Minimal skin, grey
+----------------------------------- */
+.icheckbox,
+.iradio {
+    display: block;
+    margin: 0;
+    padding: 0;
+    width: 18px;
+    height: 18px;
+    background: url('../images/grey.png') no-repeat;
+    border: none;
+    cursor: pointer;
+}
+
+.icheckbox {
+    background-position: 0 0;
+}
+    .icheckbox.hover {
+        background-position: -20px 0;
+    }
+    .icheckbox.checked {
+        background-position: -40px 0;
+    }
+    .icheckbox.disabled {
+        background-position: -60px 0;
+        cursor: default;
+    }
+    .icheckbox.checked.disabled {
+        background-position: -80px 0;
+    }
+
+.iradio {
+    background-position: -100px 0;
+}
+    .iradio.hover {
+        background-position: -120px 0;
+    }
+    .iradio.checked {
+        background-position: -140px 0;
+    }
+    .iradio.disabled {
+        background-position: -160px 0;
+        cursor: default;
+    }
+    .iradio.checked.disabled {
+        background-position: -180px 0;
+    }
+
+/* Retina support */
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+       only screen and (-moz-min-device-pixel-ratio: 1.5),
+       only screen and (-o-min-device-pixel-ratio: 1.5),
+       only screen and (min-device-pixel-ratio: 1.5) {
+    .icheckbox,
+    .iradio {
+        background-image: url('../images/grey@2x.png');
+        -webkit-background-size: 200px 20px;
+        background-size: 200px 20px;
+    }
+}
+// end iCheck //
