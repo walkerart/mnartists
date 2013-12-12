@@ -135,6 +135,8 @@ jQuery(document).ready(function () {
                 });
             }
         });
+        $('.form-checkbox').prettyCheckable();
+        $('.form-radio').prettyCheckable();
     }
     jQuery(".slidesjs-navigation").click(function () {
         for (var i = 0, len = slideContainerSelectors.length; i < len; i++) {
@@ -176,4 +178,5 @@ jQuery(document).ready(function () {
             });
         }
     });
+
 });
