@@ -6963,12 +6963,25 @@ body {
     }
     &.form-type-checkboxes {
         width:100%;
-
         label {
             width:33%;
         }
         .form-checkboxes {
 
+        }
+        .form-item {
+
+            &.form-type-checkbox {
+                width:100%;
+
+                .icheckbox {
+                    width:auto;
+                    margin-right:20px; /* tmp */
+                }
+                label {
+                    width:auto;
+                }
+            }
         }
     }
 }
