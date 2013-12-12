@@ -6946,6 +6946,33 @@ body {
     clear: both;
 }
 
+/* form things agian this will need to be organized heavily soon but
+    doing some rapid testing work */
+.form-item {
+    margin-bottom:8px;
+
+    &.form-type-checkbox {
+        margin-bottom:8px;
+
+        .icheckbox {
+
+        }
+        label {
+
+        }
+    }
+    &.form-type-checkboxes {
+        width:100%;
+
+        label {
+            width:33%;
+        }
+        .form-checkboxes {
+
+        }
+    }
+}
+
 
 // iCheck //
 /* iCheck plugin Minimal skin, grey
