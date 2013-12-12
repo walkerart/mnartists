@@ -5780,6 +5780,30 @@ tr.odd .form-item, tr.even .form-item {
 		.form-item {
 			margin:0;
 
+            &.form-type-textfield {
+                display: table;
+                width:100%;
+
+                label {
+                    display:table-cell;
+                    width:33%;
+                }
+                input {
+                    display:table-cellk;
+
+                }
+
+                &.form-item-title {
+                    label {
+
+                    }
+                    input {
+
+                    }
+
+                }
+            }
+
 			label {
 				min-width:90px;
 
@@ -5804,6 +5828,18 @@ tr.odd .form-item, tr.even .form-item {
 			padding:0;
 		}
 	}
+    .field-widget-taxonomy-autocomplete {
+
+        &.field-widget-taxonomy-autocomplete {
+
+        }
+        &.field-widget-options-select {
+
+        }
+        &.field-widget-taxonomy-autocomplete {
+
+        }
+    }
 }
 .form-checkboxes {
 
