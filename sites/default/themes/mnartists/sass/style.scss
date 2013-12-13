@@ -7130,25 +7130,6 @@ body {
                 margin-bottom:8px;
             }
         }
-        &.field-type-partial-date-form {
-
-            .form-item {
-                width:100%;
-                max-width:520px;
-                position:relative;
-
-                label {
-                    width:33%;
-                    float:left;
-                }
-                .partial-date-element {
-                    float:left;
-                    width:66%;
-                    box-sizing:border-box;
-                    margin-bottom:8px;
-                }
-            }
-        }
     }
     &.field-type-datetime-form {
         fieldset.form-wrapper {
@@ -7190,7 +7171,25 @@ body {
             margin-bottom:8px;
         }
     }
+    &.field-type-partial-date-form {
 
+        .form-item {
+            width:100%;
+            max-width:520px;
+            position:relative;
+
+            label {
+                width:33%;
+                float:left;
+            }
+            .partial-date-element {
+                float:left;
+                width:66%;
+                box-sizing:border-box;
+                margin-bottom:8px;
+            }
+        }
+    }
 }
 .vertical-tabs {
     clear:both;
