@@ -7237,12 +7237,12 @@ body {
         }
     }
 }
-
+fieldset {
+    margin:0;
+}
 // ck editor overrides
 .cke_chrome {
-    -moz-box-shadow:none;
-    -webkit-box-shadow:none;
-    box-shadow:none;
+    box-shadow:none!important;
 
     .cke_top {
         margin:0;padding:0;
