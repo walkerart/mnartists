@@ -7049,6 +7049,17 @@ body {
             width:66%;
             box-sizing:border-box;
         }
+        .text-format-wrapper {
+            width:100%;
+            max-width:520px;
+            clear:both;float:none;
+
+            fieldset {
+                width:auto;
+                margin-left:33%;
+            }
+        }
+
     }
     &.form-type-textfield {
 
@@ -7079,6 +7090,9 @@ body {
                 position:absolute;
                 right:-20px;
             }
+        }
+        &.form-type-textfield {
+
         }
     }
     &.field-type-datetime-form {
