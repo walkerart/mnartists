@@ -6963,6 +6963,8 @@ body {
     }
     &.form-type-checkboxes {
         width:100%;
+        max-width:520px;
+
         label {
             width:33%;
             float:left;
@@ -6986,6 +6988,35 @@ body {
                     float:left;
                 }
             }
+        }
+    }
+    &.form-type-select {
+        width:100%;
+        max-width:520px;
+
+        label {
+            width:33%;
+            float:left;
+        }
+        select {
+            float:left;
+        }
+    }
+    &.form-type-managed-file {
+        width:100%;
+        max-width:520px;
+
+        label {
+            width:33%;
+            float:left;
+        }
+        .image-widget {
+
+        }
+        .description {
+            margin-left:33%;
+            clear:both;
+            display:block;
         }
     }
 }
