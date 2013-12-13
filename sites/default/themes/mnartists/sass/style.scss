@@ -7000,6 +7000,7 @@ body {
         }
         select {
             float:left;
+            margin-bottom:8px;
         }
     }
     &.form-type-managed-file {
@@ -7032,6 +7033,7 @@ body {
             float:left;
             width:66%;
             box-sizing:border-box;
+            margin-bottom:8px;
         }
     }
     &.form-type-textarea {
@@ -7046,6 +7048,28 @@ body {
             float:left;
             width:66%;
             box-sizing:border-box;
+        }
+    }
+    &.form-type-textfield {
+
+    }
+}
+.form-wrapper {
+    .form-item {
+        &.form-type-textfield {
+            width:100%;
+            max-width:520px;
+
+            label {
+                width:33%;
+                float:left;
+            }
+            input.form-text {
+                float:left;
+                width:66%;
+                box-sizing:border-box;
+                margin-bottom:8px;
+            }
         }
     }
 }
