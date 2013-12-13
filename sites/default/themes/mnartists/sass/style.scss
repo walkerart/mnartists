@@ -7158,6 +7158,10 @@ body {
 }
 .vertical-tabs {
     clear:both;
+
+    .form-wrapper {
+        clear:right;
+    }
 }
 .form-wrapper {
     float:none;
@@ -7169,12 +7173,16 @@ body {
 
     thead {
         border:none;
-        background:none;
 
         tr {
             border:none;
+            border-bottom:1px solid #ccc;
+            background:none;
+
             th {
                 border:none;
+                box-sizing:bortder-box;
+                padding:5px 0;
             }
         }
     }
@@ -7184,6 +7192,12 @@ body {
             border:none;
             td {
                 border:none;
+                box-sizing:bortder-box;
+                padding:5px 0;
+
+                &.field-multiple-drag {
+                    border-right:1px solid #ccc;
+                }
             }
         }
     }
