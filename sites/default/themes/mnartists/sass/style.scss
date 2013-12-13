@@ -7075,6 +7075,15 @@ body {
         }
     }
 }
+.form-item {
+    label {
+        box-sizing: border-box;
+    }
+    input {
+        box-sizing: border-box;
+    }
+}
+
 .form-wrapper {
     .form-item {
         &.form-type-textfield {
@@ -7091,6 +7100,10 @@ body {
                 width:66%;
                 box-sizing:border-box;
                 margin-bottom:8px;
+            }
+            .description {
+                float:none;
+                margin-left:33%;
             }
             .entityconnect-add {
                 position:absolute;
@@ -7152,9 +7165,12 @@ body {
     display:block;
 }
 .sticky-table {
+    border:none;
 
     thead {
         border:none;
+        background:none;
+
         tr {
             border:none;
             th {
