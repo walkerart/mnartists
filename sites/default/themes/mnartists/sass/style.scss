@@ -7114,6 +7114,22 @@ body {
                 right:-20px;
             }
         }
+        &.form-type-textarea {
+            width:100%;
+            max-width:520px;
+            position:relative;
+
+            label {
+                width:33%;
+                float:left;
+            }
+            .form-textarea-wrapper {
+                float:left;
+                width:66%;
+                box-sizing:border-box;
+                margin-bottom:8px;
+            }
+        }
     }
     &.field-type-datetime-form {
         fieldset.form-wrapper {
@@ -7155,6 +7171,7 @@ body {
             margin-bottom:8px;
         }
     }
+
 }
 .vertical-tabs {
     clear:both;
