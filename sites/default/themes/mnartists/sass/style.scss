@@ -7059,6 +7059,7 @@ body {
         &.form-type-textfield {
             width:100%;
             max-width:520px;
+            position:relative;
 
             label {
                 width:33%;
@@ -7069,6 +7070,14 @@ body {
                 width:66%;
                 box-sizing:border-box;
                 margin-bottom:8px;
+            }
+            .entityconnect-add {
+                position:absolute;
+                right:-40px;
+            }
+            .entityconnect-edit {
+                position:absolute;
+                right:-20px;
             }
         }
     }
@@ -7091,7 +7100,7 @@ body {
     padding: 0;
     width: 18px;
     height: 18px;
-    background: url('../images/grey.png') no-repeat;
+    background: url('../images/icheck-sprites.png') no-repeat;
     border: none;
     cursor: pointer;
 }
@@ -7137,7 +7146,7 @@ body {
        only screen and (min-device-pixel-ratio: 1.5) {
     .icheckbox,
     .iradio {
-        background-image: url('../images/grey@2x.png');
+        background-image: url('../images/icheck-sprites_@2x.png');
         -webkit-background-size: 200px 20px;
         background-size: 200px 20px;
     }
