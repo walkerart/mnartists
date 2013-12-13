@@ -7130,6 +7130,25 @@ body {
                 margin-bottom:8px;
             }
         }
+        &.field-type-partial-date-form {
+
+            .form-item {
+                width:100%;
+                max-width:520px;
+                position:relative;
+
+                label {
+                    width:33%;
+                    float:left;
+                }
+                .partial-date-element {
+                    float:left;
+                    width:66%;
+                    box-sizing:border-box;
+                    margin-bottom:8px;
+                }
+            }
+        }
     }
     &.field-type-datetime-form {
         fieldset.form-wrapper {
@@ -7222,6 +7241,8 @@ body {
 
 // ck editor overrides
 .cke_chrome {
+    -moz-box-shadow:none;
+    -webkit-box-shadow:none;
     box-shadow:none;
 
     .cke_top {
