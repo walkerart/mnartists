@@ -18,11 +18,10 @@ ini_set('display_startup_errors', TRUE);
 /**
  * Root directory of Drupal installation.
  */
-require_once DRUPAL_ROOT.'/sites/default/libraries/Solarium/Autoloader.php';
 
 
 define('DRUPAL_ROOT', getcwd());
-
+require_once DRUPAL_ROOT.'/sites/default/libraries/Solarium/Autoloader.php';
 require_once DRUPAL_ROOT . '/includes/bootstrap.inc';
 drupal_bootstrap(DRUPAL_BOOTSTRAP_FULL);
 menu_execute_active_handler();
