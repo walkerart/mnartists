@@ -159,24 +159,39 @@ function artist_community_search_page() {
     }
 
     // Query the content index
-    if ($has_content) {
-        $all_content_items = artist_community_execute_query(NODE_INDEX, $filters, array(array('changed', 'DESC')));
-        foreach($all_content_items as $item) {
-            $content_node = node_view($item, 'teaser');
-            $content[$item->type][] = render($content_node);
-        }
-    }
+    $solarium_config = array(
+        'endpoint' => array(
+            'localhost' => array(
+                'host' => '127.0.0.1',
+                'port' => 8080,
+                'path' => '/solr/',
+            )
+        )
+    );
+    $client = new Solarium\Client($solarium_config);
+    $query = $client->createQuery($client::QUERY_SELECT);
+    $resultset = $client->execute($query);
+    dpm($resultset->getNumFound());
+
+
+    // if ($has_content) {
+    //     $all_content_items = artist_community_execute_query(NODE_INDEX, $filters, array(array('changed', 'DESC')));
+    //     foreach($all_content_items as $item) {
+    //         $content_node = node_view($item, 'teaser');
+    //         $content[$item->type][] = render($content_node);
+    //     }
+    // }
 
     // Query the user index
-    $content['users'] = array();
-    if ($has_user) {
-        // @TODO dump the users and interrogate to figure out how to
-        // get at main profile values
-        $all_user_items = artist_community_execute_query(USER_INDEX, $user_filters);
-        foreach($all_user_items as $user) {
-            $content['users'][] = theme('artist_community_artist_profile', array('user' => $user));
-        }
-    }
+    // $content['users'] = array();
+    // if ($has_user) {
+    //     // @TODO dump the users and interrogate to figure out how to
+    //     // get at main profile values
+    //     $all_user_items = artist_community_execute_query(USER_INDEX, $user_filters);
+    //     foreach($all_user_items as $user) {
+    //         $content['users'][] = theme('artist_community_artist_profile', array('user' => $user));
+    //     }
+    // }
     // @TODO refactor above, $content is a leftover from when all
     // users and content types were kept discrete
 
