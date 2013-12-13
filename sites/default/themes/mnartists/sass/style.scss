@@ -7055,12 +7055,12 @@ body {
             clear:both;float:none;
 
             fieldset {
+                width:100%;
+                margin:0;
+                padding:0;
 
-                &.filter-wrapper {
-                    width:auto;
+                .fieldset-wrapper {
                     margin-left:33%;
-                    margin:0;
-                    padding:0;
 
                     .filter-help {
                         padding:0;
@@ -7068,7 +7068,6 @@ body {
                 }
             }
         }
-
     }
     &.form-type-textfield {
 
