@@ -7019,6 +7019,37 @@ body {
             display:block;
         }
     }
+    &.form-type-textfield {
+        width:100%;
+        max-width:520px;
+
+        label {
+            width:33%;
+            float:left;
+            min-width:none;
+        }
+        input {
+            float:left;
+        }
+    }
+    &.form-type-textarea {
+        width:100%;
+        max-width:520px;
+
+        label {
+            width:33%;
+            float:left;
+        }
+        .form-textarea-wrapper {
+            float:left;
+        }
+    }
+}
+
+.form-wrapper {
+    float:none;
+    clear:both;
+    display:block;
 }
 
 
