@@ -90,7 +90,7 @@ function _artist_community_block_visibility() {
             (arg(0) == 'user' && !user_is_logged_in()) ||
             (arg(0) == "node" && in_array(arg(1), array("edit", "add"))) ||
             (arg(0) == "node" && in_array(arg(2), array("edit"))) ||
-            (arg(0) == 'user' && in_array(arg(1), array("saved-filters", "feed")))
+            (arg(0) == 'user' && in_array(arg(1), array("saved-filters")))
         ) {
         return false;
     }
@@ -277,24 +277,6 @@ function gid_by_tid($tid) {
     return $result['entity_id'];
 }
 
-function artist_community_search_api_solr_field_mapping_alter (&$index, &$ret) {
-    // dpm($index);
-    $ret['index_id'] = 'index_id';
-    // dpm($ret);
-}
-
-function artist_community_search_api_solr_query_alter (&$call_args, &$query) {
-    $call_args['params']['fl'] .= ',index_id,search_api_id';
-    $new_fq = array();
-    foreach ($call_args['params']['fq'] as $fq) {
-        if (strpos($fq, 'index_id') !== 0) {
-            $new_fq[] = $fq;
-        }
-    }
-    $call_args['params']['fq'] = $new_fq;
-    // dpm($call_args);
-}
-
 function artist_community_execute_query($index, $filters = array(), $sorts = array()) {
     // Initialize the solr query
     $options = array(
@@ -321,26 +303,7 @@ function artist_community_execute_query($index, $filters = array(), $sorts = arr
 
     $index = $query->getIndex();
     $results = $query->execute();
-    // dpm($results);
-    $everything = array();
-
-    foreach ($results['results'] as $key => $result) {
-
-        if ($result['fields']['index_id'] === 'default_node_index') {
-            // dpm('node');
-            $everything[] = node_load($key);
-            // $everything['node']++;
-        } else if ($result['fields']['index_id'] === 'users') {
-            // dpm('user');
-            $everything [] = user_load($key);
-            // $everything['user']++;
-        }
-    }
-    dpm($everything);
-
-    $blah = $index->loadItems(array_keys($results['results']));
-    dpm($blah);
-    return $everything;
+    return $index->loadItems(array_keys($results['results']));
 }
 
 /**
