@@ -7081,12 +7081,29 @@ body {
             }
         }
     }
+    &.field-type-datetime-form {
+        fieldset.form-wrapper {
+            width:100%;
+            max-width:520px;
+            position:relative;
+
+            legend {
+                width:33%;
+                float:left;
+            }
+            .fieldset-wrapper {
+
+            }
+        }
+    }
 }
 
 .form-wrapper {
     float:none;
     clear:both;
     display:block;
+
+
 }
 
 
