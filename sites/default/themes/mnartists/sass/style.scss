@@ -7036,41 +7036,42 @@ body {
             margin-bottom:8px;
         }
     }
-    &.form-type-textarea {
-        width:100%;
-        max-width:520px;
 
-        label {
-            width:33%;
-            float:left;
-        }
-        .form-textarea-wrapper {
-            float:left;
-            width:66%;
-            box-sizing:border-box;
-        }
-        .text-format-wrapper {
+    &.form-type-textfield {
+
+    }
+}
+.text-format-wrapper {
+
+    .form-item {
+
+        &.form-type-textarea {
             width:100%;
             max-width:520px;
-            clear:both;float:none;
 
-            fieldset {
-                width:100%;
-                margin:0;
-                padding:0;
-
-                .fieldset-wrapper {
-                    margin-left:33%;
-
-                    .filter-help {
-                        padding:0;
-                    }
-                }
+            label {
+                width:33%;
+                float:left;
+            }
+            .form-textarea-wrapper {
+                float:left;
+                width:66%;
+                box-sizing:border-box;
             }
         }
     }
-    &.form-type-textfield {
+    fieldset.filter-wrapper {
+        width:100%;
+        margin:0;
+        padding:0;
 
+        .fieldset-wrapper {
+            margin-left:33%;
+
+            .filter-help {
+                padding:0;
+            }
+        }
     }
 }
 .form-wrapper {
