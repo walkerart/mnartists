@@ -5820,11 +5820,11 @@ tr.odd .form-item, tr.even .form-item {
 		fieldset {
 
 			legend {
-				border-bottom:1px solid $light_border;
+
 				width:100%;
 				display:block;
 				clear:both;
-				margin-bottom:10px;
+				margin-bottom:8px;
 			}
 		}
 		.container-inline-date .date-padding {
@@ -5918,8 +5918,8 @@ fieldset {
 	legend {
 		display: inline-block;
         padding: 1px 5px 1px 0;
-        color: #a3a3a3;
-        @include quiet_type;
+        color: #333;
+        /* @include quiet_type; */
         padding-left:0;
         font-weight: 700;
 	}
@@ -7064,6 +7064,7 @@ body {
         width:100%;
         margin:0;
         padding:0;
+        max-width:520px;
 
         .fieldset-wrapper {
             margin-left:33%;
