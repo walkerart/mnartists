@@ -7055,8 +7055,17 @@ body {
             clear:both;float:none;
 
             fieldset {
-                width:auto;
-                margin-left:33%;
+
+                &.filter-wrapper {
+                    width:auto;
+                    margin-left:33%;
+                    margin:0;
+                    padding:0;
+
+                    .filter-help {
+                        padding:0;
+                    }
+                }
             }
         }
 
@@ -7091,9 +7100,6 @@ body {
                 right:-20px;
             }
         }
-        &.form-type-textfield {
-
-        }
     }
     &.field-type-datetime-form {
         fieldset.form-wrapper {
@@ -7112,7 +7118,7 @@ body {
                 }
                 .date-no-float {
                     float:left;
-                    width:66%;
+                    width:33%;
                     box-sizing:border-box;
                     clear:none;
                 }
