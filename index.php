@@ -18,8 +18,14 @@ ini_set('display_startup_errors', TRUE);
 /**
  * Root directory of Drupal installation.
  */
-define('DRUPAL_ROOT', getcwd());
 
+
+define('DRUPAL_ROOT', getcwd());
+require_once DRUPAL_ROOT.'/sites/all/libraries/SymfonyEventDispatcher/EventDispatcherInterface.php';
+require_once DRUPAL_ROOT.'/sites/all/libraries/SymfonyEventDispatcher/EventDispatcher.php';
+require_once DRUPAL_ROOT.'/sites/all/libraries/SymfonyEventDispatcher/Event.php';
+require_once DRUPAL_ROOT.'/sites/all/libraries/Solarium/Autoloader.php';
+Solarium\Autoloader::register();
 require_once DRUPAL_ROOT . '/includes/bootstrap.inc';
 drupal_bootstrap(DRUPAL_BOOTSTRAP_FULL);
 menu_execute_active_handler();
