@@ -31,5 +31,12 @@
                 expand.slideUp();
             }
         });
+
+        $('div.item-list').each(function () {
+            var targetEl = $(this);
+            if (targetEl.find('.selected').length > 0) {
+                targetEl.siblings('.expand').trigger('click');
+            }
+        });
     });
 }(jQuery));
