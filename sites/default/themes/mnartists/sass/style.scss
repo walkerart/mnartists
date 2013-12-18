@@ -7273,18 +7273,21 @@ fieldset {
 .page-node-add,
 .page-node-edit {
 
-    input[type="submit"] {
+    input[type=submit] {
         float: left;
-        height: 19px;
-        padding: 4px 10px 0;
+        height: auto;
+        padding: 5px 10px 0;
         border: 1px solid #333;
         font-family: $sans_bold_font;
         @include no_break;
         @include rounded;
         cursor: pointer;
-        margin-left:10px;
+        margin-left:none;
+        margin-right:10px;
         background: #333;
         color:#fff;
+        text-transform:capitalize;
+        font-size:12px;
 
         &:hover {
             background: #333;

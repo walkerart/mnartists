@@ -8511,10 +8511,10 @@ fieldset {
 }
 
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000037276}}
-.page-node-add input[type="submit"],
-.page-node-edit input[type="submit"] {
+.page-node-add input[type=submit],
+.page-node-edit input[type=submit] {
   float: left;
-  height: 19px;
+  height: auto;
   padding: 4px 10px 0;
   border: 1px solid #333;
   font-family: "Apercu Bold", Arial, Helvetica, sans-serif;
@@ -8525,27 +8525,30 @@ fieldset {
   -moz-border-radius: 1px;
   border-radius: 1px;
   cursor: pointer;
-  margin-left: 10px;
+  margin-left: none;
+  margin-right: 10px;
   background: #333;
   color: #fff;
+  text-transform: capitalize;
+  font-size: 12px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000037289}}
-.page-node-add input[type="submit"]:hover,
-.page-node-edit input[type="submit"]:hover {
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000037292}}
+.page-node-add input[type=submit]:hover,
+.page-node-edit input[type=submit]:hover {
   background: #333;
   color: #fff;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000037297}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000037300}}
 .cke_chrome {
   box-shadow: none!important;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000037300}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000037303}}
 .cke_chrome .cke_top {
   margin: 0;
   padding: 0;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000037303}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000037306}}
 .cke_chrome .cke_top .cke_toolgroup {
   margin: 0;
   padding: 0;
@@ -8555,7 +8558,7 @@ fieldset {
 
 /* iCheck plugin Minimal skin, grey
 ----------------------------------- */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000037315}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000037318}}
 .icheckbox,
 .iradio {
   display: block;
@@ -8568,61 +8571,61 @@ fieldset {
   cursor: pointer;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000037326}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000037329}}
 .icheckbox {
   background-position: 0 0;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000037329}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000037332}}
 .icheckbox.hover {
   background-position: -20px 0;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000037332}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000037335}}
 .icheckbox.checked {
   background-position: -40px 0;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000037335}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000037338}}
 .icheckbox.disabled {
   background-position: -60px 0;
   cursor: default;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000037339}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000037342}}
 .icheckbox.checked.disabled {
   background-position: -80px 0;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000037343}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000037346}}
 .iradio {
   background-position: -100px 0;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000037346}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000037349}}
 .iradio.hover {
   background-position: -120px 0;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000037349}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000037352}}
 .iradio.checked {
   background-position: -140px 0;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000037352}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000037355}}
 .iradio.disabled {
   background-position: -160px 0;
   cursor: default;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000037356}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000037359}}
 .iradio.checked.disabled {
   background-position: -180px 0;
 }
 
 /* Retina support */
 @media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (-moz-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5) {
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000037366}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000037369}}
   .icheckbox,
   .iradio {
     background-image: url("../images/icheck-sprites_@2x.png");
