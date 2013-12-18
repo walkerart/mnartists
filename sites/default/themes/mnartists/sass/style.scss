@@ -7190,6 +7190,30 @@ body {
             }
         }
     }
+    &.field-name-field-for-sale-form {
+
+        .icheckbox {
+            float: left;
+            margin-right: 15px;
+            margin-bottom: 8px;
+        }
+        label {
+            width: auto;
+            float: left;
+        }
+    }
+    &.field-name-field-public-form {
+
+        .icheckbox {
+            float: left;
+            margin-right: 15px;
+            margin-bottom: 8px;
+        }
+        label {
+            width: auto;
+            float: left;
+        }
+    }
 }
 .vertical-tabs {
     clear:both;
@@ -7227,11 +7251,16 @@ body {
             border:none;
             td {
                 border:none;
-                box-sizing:bortder-box;
+                box-sizing:border-box;
                 padding:5px 0;
 
                 &.field-multiple-drag {
                     border-right:1px solid #ccc;
+                }
+
+                .media-widget {
+                    padding-left:20px;
+
                 }
             }
         }
@@ -7240,6 +7269,30 @@ body {
 fieldset {
     margin:0;
 }
+
+.page-node-add,
+.page-node-edit {
+
+    input[type="submit"] {
+        float: left;
+        height: 19px;
+        padding: 4px 10px 0;
+        border: 1px solid #333;
+        font-family: $sans_bold_font;
+        @include no_break;
+        @include rounded;
+        cursor: pointer;
+        margin-left:10px;
+        background: #333;
+        color:#fff;
+
+        &:hover {
+            background: #333;
+            color:#fff;
+        }
+    }
+}
+
 // ck editor overrides
 .cke_chrome {
     box-shadow:none!important;
