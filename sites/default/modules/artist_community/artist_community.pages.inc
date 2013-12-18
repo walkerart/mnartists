@@ -1,27 +1,56 @@
 <?php
 
 function artist_community_search_page() {
+
+    // include the community js
     ctools_add_js('community', 'artist_community');
 
+    // declare some empty stuff
     $filters        = array();
-    $user_filters   = array();
-    $has_content    = FALSE;
     $content        = array();
-    $has_user       = FALSE;
     $output         = '';
     $articles_data  = array();
     $events_data    = array();
-    $all_content_items = array();
-    $all_user_items = array();
+    $all_results    = array();
+
+    // the field names in solr aren't quite
+    // the same as the drupal entity field names,
+    // so let's put those into variables why not?
+    $og_group_red_field     = 'im_og_group_ref';
+    $medium_field           = 'im_field_medium';
+    $subject_field          = 'im_field_subject_concept';
+    $user_node_field        = 'im_og_user_node';
+    $type_field             = 'ss_type';
+    $user_roles_field       = 'im_roles';
+    $created_field          = 'ds_created';
+
+    $default_content_chunk = 50;
+
+    // containers for the query conditions we'll build below
+    $nodeQueryBuilder = array();
+    $userQueryBuilder = array();
+
+    // config for solarium
+    // @TODO move this somewhere more widely accessible
+    $solarium_config = array(
+        'endpoint' => array(
+            'localhost' => array(
+                'host' => '127.0.0.1',
+                'port' => 8080,
+                'path' => '/solr/',
+            )
+        )
+    );
+
+    // instantiate our query object
+    $client = new Solarium\Client($solarium_config);
+    $solarium_query = $client->createSelect();
 
     // Handle Organic groups and taxonomies
 
     if (isset($_GET['og'])) {
         $filter = new SearchApiQueryFilter;
         $filter->setConjunction('OR');
-
-        $user_filter = new SearchApiQueryFilter;
-        $user_filter->setConjunction('OR');
 
         foreach($_GET['og'] as $og_id => $terms) {
             $filter->condition('og_group_ref', $og_id);
@@ -31,18 +60,16 @@ function artist_community_search_page() {
                 $sub_filter = new SearchApiQueryFilter;
                 foreach($terms as $term) {
                     $sub_filter->condition('field_medium', $term);
+
+                    $nodeQueryBuilder[] = "$medium_field:$term";
                 }
-
                 $filter->filter($sub_filter);
+            } else {
+                $nodeQueryBuilder[] = "$og_group_red_field:$og_id";
             }
-
-            // Add user index filters
-            $user_filter->condition('og_user_node', $og_id);
-
+            $userQueryBuilder[] = "$user_node_field:$og_id";
         }
-
         $filters[] = $filter;
-        $user_filters[] = $user_filter;
     }
 
     // Handle content and users
@@ -50,57 +77,55 @@ function artist_community_search_page() {
         $filter = new SearchApiQueryFilter;
         $filter->setConjunction('OR');
 
-        $user_filter = new SearchApiQueryFilter;
-        $user_filter->setConjunction('OR');
         foreach($_GET['content'] as $type => $value) {
             switch($type) {
                 case 'artwork':
+
+                    $nodeQueryBuilder[] = "$type_field:$type";
+
                     if (isset($_GET['content']['artwork']) &&
                         is_array($_GET['content']['artwork'])) {
                         foreach ($_GET['content']['artwork'] as $tid) {
                             $term = taxonomy_term_load($tid);
                             $filter->condition('field_subject_concept', $tid);
+
+                            $nodeQueryBuilder[] = "$subject_field:$tid";
+
                         }
-                        $has_content = TRUE;
                         break;
                     }
                 case 'article':
                 case 'event':
                 case 'opportunity':
-                    $filter->condition('type', $type);
-                    $has_content = TRUE;
+                    $nodeQueryBuilder[] = "$type_field:$type";
                     break;
                 case 'artists':
                     if (isset($_GET['content']['artists']) &&
                         is_array($_GET['content']['artists'])) {
                         foreach ($_GET['content']['artists'] as $tid) {
-                            $term = taxonomy_term_load($tid);
-                            $term_target = '';
-                            if ($term->vid === EXPERIENCE_VID) {
-                                $term_target = 'experiences';
-                            } else if ($term->vid === PRACTICE_VID) {
-                                $term_target = 'practices';
-                            }
-                            $user_filter->condition($term_target, $tid);
+
+                            // @TODO how do we do this? these fields were searchable through
+                            // the search api, but only the main profile itself was
+                            // $userQueryBuilder[] = '$user_node_field:$og_id';
+
+                            // $term = taxonomy_term_load($tid);
+                            // $term_target = '';
+                            // if ($term->vid === EXPERIENCE_VID) {
+                            //     $term_target = 'experiences';
+                            // } else if ($term->vid === PRACTICE_VID) {
+                            //     $term_target = 'practices';
+                            // }
                         }
                     } else {
-                        $user_filter->condition('roles', ARTIST_ROLE);
+                        $userQueryBuilder[] = "$user_roles_field:".ARTIST_ROLE;
                     }
-                    $has_user = TRUE;
                     break;
                 case 'organizations':
-                    $user_filter->condition('roles', ORG_ROLE);
-                    $has_user = TRUE;
+                    $userQueryBuilder[] = "$user_roles_field:".ORG_ROLE;
                     break;
             }
         }
-
-        $filters[] = $filter;
-        $user_filters[] = $user_filter;
     } else {
-        $has_content = TRUE;
-        $has_user = TRUE;
-
         // get articles for 'top stories' block. if there's a community filter, merge
         // it with the article type filter. package the data up for the template
         $article_filters = array();
@@ -158,43 +183,6 @@ function artist_community_search_page() {
         }
     }
 
-    // Query the content index
-    $solarium_config = array(
-        'endpoint' => array(
-            'localhost' => array(
-                'host' => '127.0.0.1',
-                'port' => 8080,
-                'path' => '/solr/',
-            )
-        )
-    );
-    $client = new Solarium\Client($solarium_config);
-    $query = $client->createQuery($client::QUERY_SELECT);
-    $resultset = $client->execute($query);
-    dpm($resultset->getNumFound());
-
-
-    // if ($has_content) {
-    //     $all_content_items = artist_community_execute_query(NODE_INDEX, $filters, array(array('changed', 'DESC')));
-    //     foreach($all_content_items as $item) {
-    //         $content_node = node_view($item, 'teaser');
-    //         $content[$item->type][] = render($content_node);
-    //     }
-    // }
-
-    // Query the user index
-    // $content['users'] = array();
-    // if ($has_user) {
-    //     // @TODO dump the users and interrogate to figure out how to
-    //     // get at main profile values
-    //     $all_user_items = artist_community_execute_query(USER_INDEX, $user_filters);
-    //     foreach($all_user_items as $user) {
-    //         $content['users'][] = theme('artist_community_artist_profile', array('user' => $user));
-    //     }
-    // }
-    // @TODO refactor above, $content is a leftover from when all
-    // users and content types were kept discrete
-
     // get latest users data, format data for template
     $latest_user_filter = new SearchApiQueryFilter;
     $latest_user_filter->condition('roles', ARTIST_ROLE);
@@ -216,5 +204,28 @@ function artist_community_search_page() {
         $latest_users_data[] = $context_latest_user_data;
     }
 
-    return theme('artist_community_page', array('content' => $content, 'all_content_items' => $all_content_items, 'articles' => $articles_data, 'events' => $events_data, 'latest_users' => $latest_users_data));// @TODO bundle the new data into content?
+    // deal with solarium query
+    $nodeQueryBuilderString = (count($nodeQueryBuilder) !== 0) ? ' AND ('.implode(' OR ', $nodeQueryBuilder).')' : '';
+    $userQueryBuilderString = (count($userQueryBuilder) !== 0) ? ' AND ('.implode(' OR ', $userQueryBuilder).')' : '';
+    // @TODO do those ss_type conditions need to be 3 ors or can they be on statement and derive the terms from a constant or something?
+    $finalQueryString = "(index_id:default_node_index$nodeQueryBuilderString AND (ss_type:article OR ss_type:artwork OR ss_type:event)) OR (index_id:users$userQueryBuilderString)";
+    $solarium_query->createFilterQuery('the_thing')->setQuery($finalQueryString);
+    $solarium_query->setStart(0)->setRows($default_content_chunk);// @TODO 'pagination would go here too'
+    $solarium_query->addSort($created_field, $solarium_query::SORT_ASC);
+    $resultset = $client->select($solarium_query);
+
+    // get items of the appropriate types, put them into
+    // the all community results array
+    foreach($resultset as $item) {
+        switch ($item->index_id) {
+            case 'users':
+                $all_results[] = array('type' => 'user', 'item' => user_load($item->is_uid));
+                break;
+            case 'default_node_index':
+                $all_results[] = array('type' => 'node', 'item' => node_load($item->is_nid));
+                break;
+        }
+    }
+
+    return theme('artist_community_page', array('content' => $all_results, 'articles' => $articles_data, 'events' => $events_data, 'latest_users' => $latest_users_data));
 }
