@@ -12,6 +12,7 @@ function artist_community_search_page() {
     $articles_data  = array();
     $events_data    = array();
     $all_results    = array();
+    $kill_content   = false;
 
     // the field names in solr aren't quite
     // the same as the drupal entity field names,
@@ -22,8 +23,11 @@ function artist_community_search_page() {
     $user_node_field        = 'im_og_user_node';
     $type_field             = 'ss_type';
     $user_roles_field       = 'im_roles';
+    $user_practice_field    = 'im_practice';
+    $user_experience_field  = 'im_experience';
     $created_field          = 'ds_created';
 
+    // set up how many articles we want to pull back at a go
     $default_content_chunk = 50;
 
     // containers for the query conditions we'll build below
@@ -88,7 +92,6 @@ function artist_community_search_page() {
                         foreach ($_GET['content']['artwork'] as $tid) {
                             $term = taxonomy_term_load($tid);
                             $filter->condition('field_subject_concept', $tid);
-
                             $nodeQueryBuilder[] = "$subject_field:$tid";
 
                         }
@@ -100,6 +103,8 @@ function artist_community_search_page() {
                     $nodeQueryBuilder[] = "$type_field:$type";
                     break;
                 case 'artists':
+                    // kill the content filters??
+
                     if (isset($_GET['content']['artists']) &&
                         is_array($_GET['content']['artists'])) {
                         foreach ($_GET['content']['artists'] as $tid) {
@@ -108,13 +113,15 @@ function artist_community_search_page() {
                             // the search api, but only the main profile itself was
                             // $userQueryBuilder[] = '$user_node_field:$og_id';
 
-                            // $term = taxonomy_term_load($tid);
-                            // $term_target = '';
-                            // if ($term->vid === EXPERIENCE_VID) {
-                            //     $term_target = 'experiences';
-                            // } else if ($term->vid === PRACTICE_VID) {
-                            //     $term_target = 'practices';
-                            // }
+                            $term = taxonomy_term_load($tid);
+                            $term_target = '';
+                            if ($term->vid === EXPERIENCE_VID) {
+                                $term_target = $user_experience_field;
+                            } else if ($term->vid === PRACTICE_VID) {
+                                $term_target = $user_practice_field;
+                            }
+                            $userQueryBuilder[] = "$term_target:".$tid;
+                            // $user_filter->condition($term_target, $tid);
                         }
                     } else {
                         $userQueryBuilder[] = "$user_roles_field:".ARTIST_ROLE;
@@ -208,7 +215,13 @@ function artist_community_search_page() {
     $nodeQueryBuilderString = (count($nodeQueryBuilder) !== 0) ? ' AND ('.implode(' OR ', $nodeQueryBuilder).')' : '';
     $userQueryBuilderString = (count($userQueryBuilder) !== 0) ? ' AND ('.implode(' OR ', $userQueryBuilder).')' : '';
     // @TODO do those ss_type conditions need to be 3 ors or can they be on statement and derive the terms from a constant or something?
-    $finalQueryString = "(index_id:default_node_index$nodeQueryBuilderString AND (ss_type:article OR ss_type:artwork OR ss_type:event)) OR (index_id:users$userQueryBuilderString)";
+    if (count($nodeQueryBuilder) === 0 && count($userQueryBuilder) > 0) {
+        $finalQueryString = "(index_id:users$userQueryBuilderString)";
+    } else {
+        $finalQueryString = "((index_id:default_node_index AND (ss_type:article OR ss_type:artwork OR ss_type:event))$nodeQueryBuilderString) OR (index_id:users$userQueryBuilderString)";
+    }
+
+    dpm($finalQueryString);
     $solarium_query->createFilterQuery('the_thing')->setQuery($finalQueryString);
     $solarium_query->setStart(0)->setRows($default_content_chunk);// @TODO 'pagination would go here too'
     $solarium_query->addSort($created_field, $solarium_query::SORT_ASC);
