@@ -221,7 +221,6 @@ function artist_community_search_page() {
         $finalQueryString = "((index_id:default_node_index AND (ss_type:article OR ss_type:artwork OR ss_type:event))$nodeQueryBuilderString) OR (index_id:users$userQueryBuilderString)";
     }
 
-    dpm($finalQueryString);
     $solarium_query->createFilterQuery('the_thing')->setQuery($finalQueryString);
     $solarium_query->setStart(0)->setRows($default_content_chunk);// @TODO 'pagination would go here too'
     $solarium_query->addSort($created_field, $solarium_query::SORT_ASC);
