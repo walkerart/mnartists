@@ -14,18 +14,8 @@ function artist_community_search_page() {
     $all_results    = array();
     $kill_content   = false;
 
-    // the field names in solr aren't quite
-    // the same as the drupal entity field names,
-    // so let's put those into variables why not?
-    $og_group_red_field     = 'im_og_group_ref';
-    $medium_field           = 'im_field_medium';
-    $subject_field          = 'im_field_subject_concept';
-    $user_node_field        = 'im_og_user_node';
-    $type_field             = 'ss_type';
-    $user_roles_field       = 'im_roles';
-    $user_practice_field    = 'im_practice';
-    $user_experience_field  = 'im_experience';
-    $created_field          = 'ds_created';
+    // pull in solarium config
+    global $solarium_config;
 
     // set up how many articles we want to pull back at a go
     $default_content_chunk = 50;
@@ -34,19 +24,7 @@ function artist_community_search_page() {
     $nodeQueryBuilder = array();
     $userQueryBuilder = array();
 
-    // config for solarium
-    // @TODO move this somewhere more widely accessible
-    $solarium_config = array(
-        'endpoint' => array(
-            'localhost' => array(
-                'host' => '127.0.0.1',
-                'port' => 8080,
-                'path' => '/solr/',
-            )
-        )
-    );
-
-    // instantiate our query object
+    // instantiate our client and query objects
     $client = new Solarium\Client($solarium_config);
     $solarium_query = $client->createSelect();
 
@@ -57,21 +35,20 @@ function artist_community_search_page() {
         $filter->setConjunction('OR');
 
         foreach($_GET['og'] as $og_id => $terms) {
-            $filter->condition('og_group_ref', $og_id);
+            $filter->condition(AC_OG_GROUP_REF_FIELD, $og_id);
 
             // Add taxonomy filters for a specific taxonomy
             if (is_array($terms)) {
                 $sub_filter = new SearchApiQueryFilter;
                 foreach($terms as $term) {
-                    $sub_filter->condition('field_medium', $term);
-
-                    $nodeQueryBuilder[] = "$medium_field:$term";
+                    $sub_filter->condition(AC_FIELD_MEDIUM, $term);
+                    $nodeQueryBuilder[] = AC_FIELD_MEDIUM.":$term";
                 }
                 $filter->filter($sub_filter);
             } else {
-                $nodeQueryBuilder[] = "$og_group_red_field:$og_id";
+                $nodeQueryBuilder[] = AC_OG_GROUP_REF_FIELD.":$og_id";
             }
-            $userQueryBuilder[] = "$user_node_field:$og_id";
+            $userQueryBuilder[] = AC_USER_NODE_FIELD.":$og_id";
         }
         $filters[] = $filter;
     }
@@ -85,14 +62,14 @@ function artist_community_search_page() {
             switch($type) {
                 case 'artwork':
 
-                    $nodeQueryBuilder[] = "$type_field:$type";
+                    $nodeQueryBuilder[] = AC_TYPE_FIELD.":$type";
 
                     if (isset($_GET['content']['artwork']) &&
                         is_array($_GET['content']['artwork'])) {
                         foreach ($_GET['content']['artwork'] as $tid) {
                             $term = taxonomy_term_load($tid);
-                            $filter->condition('field_subject_concept', $tid);
-                            $nodeQueryBuilder[] = "$subject_field:$tid";
+                            $filter->condition(AC_SUBJECT_FIELD, $tid);
+                            $nodeQueryBuilder[] = AC_SUBJECT_FIELD.":$tid";
 
                         }
                         break;
@@ -100,7 +77,7 @@ function artist_community_search_page() {
                 case 'article':
                 case 'event':
                 case 'opportunity':
-                    $nodeQueryBuilder[] = "$type_field:$type";
+                    $nodeQueryBuilder[] = AC_TYPE_FIELD.":$type";
                     break;
                 case 'artists':
                     // kill the content filters??
@@ -108,27 +85,22 @@ function artist_community_search_page() {
                     if (isset($_GET['content']['artists']) &&
                         is_array($_GET['content']['artists'])) {
                         foreach ($_GET['content']['artists'] as $tid) {
-
-                            // @TODO how do we do this? these fields were searchable through
-                            // the search api, but only the main profile itself was
-                            // $userQueryBuilder[] = '$user_node_field:$og_id';
-
                             $term = taxonomy_term_load($tid);
                             $term_target = '';
                             if ($term->vid === EXPERIENCE_VID) {
-                                $term_target = $user_experience_field;
+                                $term_target = AC_USER_EXPERIENCE_FIELD;
                             } else if ($term->vid === PRACTICE_VID) {
-                                $term_target = $user_practice_field;
+                                $term_target = AC_USER_PRACTICE_FIELD;
                             }
                             $userQueryBuilder[] = "$term_target:".$tid;
                             // $user_filter->condition($term_target, $tid);
                         }
                     } else {
-                        $userQueryBuilder[] = "$user_roles_field:".ARTIST_ROLE;
+                        $userQueryBuilder[] = AC_USER_ROLES_FIELD.":".ARTIST_ROLE;
                     }
                     break;
                 case 'organizations':
-                    $userQueryBuilder[] = "$user_roles_field:".ORG_ROLE;
+                    $userQueryBuilder[] = AC_USER_ROLES_FIELD.":".ORG_ROLE;
                     break;
             }
         }
@@ -223,7 +195,7 @@ function artist_community_search_page() {
 
     $solarium_query->createFilterQuery('the_thing')->setQuery($finalQueryString);
     $solarium_query->setStart(0)->setRows($default_content_chunk);// @TODO 'pagination would go here too'
-    $solarium_query->addSort($created_field, $solarium_query::SORT_ASC);
+    $solarium_query->addSort(AC_CREATED_FIELD, $solarium_query::SORT_ASC);
     $resultset = $client->select($solarium_query);
 
     // get items of the appropriate types, put them into
