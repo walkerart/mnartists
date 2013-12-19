@@ -1,7 +1,7 @@
 <?php
-    $flags = _mnartist_collections_get_user_flags(array('node' => '', 'create' => false, 'use_flags' => false, 'ops' => false));
     $node = node_load($node_id);
     $node_url = url("node/$node->nid", array('absolute' => TRUE));
+    $flags = _mnartist_collections_get_user_flags(array('node' => $node, 'create' => false, 'use_flags' => false, 'ops' => false));
 ?>
 <ul class='menu'>
     <li class='first'>
