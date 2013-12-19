@@ -7344,9 +7344,13 @@ fieldset {
 // add artwork form only
 .node-artwork-form {
     .field-type-text-with-summary,
-    .field-name-field-tags-form,
-    .field-name-field-dimensions-form {
+    .field-name-field-tags-form {
         margin-bottom:64px;
+    }
+    .field-name-field-dimensions-form {
+        textarea {
+            margin-bottom:64px;
+        }
     }
 }
 
