@@ -657,7 +657,7 @@ function artist_community_get_items ($start = null, $rows = null, $sort = null) 
     if ($num_rows !== null && is_int($num_rows)) {
         $solarium_query->setRows($num_rows);
     }
-    $solarium_query->addSort(AC_CREATED_FIELD, $solarium_query::SORT_ASC);// @TODO get sort from incoming params?
+    $solarium_query->addSort(AC_CREATED_FIELD, $solarium_query::SORT_DESC);// @TODO get sort from incoming params?
     $resultset = $client->select($solarium_query);
 
     // get items of the appropriate types, put them into
