@@ -6992,7 +6992,8 @@ body {
         margin-bottom:8px;
 
         .icheckbox {
-
+            float:left;
+            margin-right:15px;
         }
         label {
 
@@ -7033,7 +7034,8 @@ body {
             }
         }
     }
-    &.form-type-password {
+    &.form-type-password,
+    &.form-item-files-picture-upload {
         width:100%;
         max-width:520px;
 
@@ -7043,6 +7045,8 @@ body {
         }
         input {
             float:left;
+            width:66%;
+            box-sizing:border-box;
             margin-bottom:8px;
         }
     }
@@ -7058,6 +7062,8 @@ body {
             }
             input {
                 float:left;
+                width:66%;
+                box-sizing:border-box;
                 margin-bottom:8px;
             }
         }
@@ -7359,7 +7365,8 @@ fieldset {
 }
 
 .page-node-add,
-.page-node-edit {
+.page-node-edit,
+.page-user-edit {
     input {
 
         &.ajax-processed,
