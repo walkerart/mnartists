@@ -106,8 +106,6 @@ hide($content['links']);
 ?>
 <h3><?php print $type; ?></h3>
 <article id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
-  <?php print render($title_prefix); ?>
-
   <?php if ($title && !$page): ?>
     <header<?php print $header_attributes; ?>>
       <?php if ($title): ?>
@@ -117,25 +115,7 @@ hide($content['links']);
       <?php endif; ?>
     </header>
   <?php endif; ?>
-
-  <?php if(!empty($user_picture) || $display_submitted): ?>
-    <footer<?php print $footer_attributes; ?>>
-      <?php print $user_picture; ?>
-      <?php if ($node->type !== 'venue') { ?>
-        <p class="author-datetime"><?php print $submitted; ?></p>
-      <?php } ?>
-    </footer>
-  <?php endif; ?>
-
   <div<?php print $content_attributes; ?>>
-    <?php print render($content); ?>
+    <?php print strip_tags(text_summary($node->field_body['und'][0]['safe_value'], 'html', 200)) ?> <a href="/node/<?= $node->nid ?>">&gt;</a>
   </div>
-
-  <?php if ($links = render($content['links'])): ?>
-    <nav<?php print $links_attributes; ?>><?php print $links; ?></nav>
-  <?php endif; ?>
-
-  <?php print render($content['comments']); ?>
-
-  <?php print render($title_suffix); ?>
 </article>
