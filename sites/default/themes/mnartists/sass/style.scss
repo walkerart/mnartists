@@ -7086,10 +7086,12 @@ body {
             box-sizing:border-box;
             margin-bottom:8px;
         }
-        .password-strength {
+        .password-strength,
+        .password-confirm {
             clear:both;float:none;
             margin-bottom:8px;
         }
+
     }
     &.form-type-password {
         .description {
@@ -7099,6 +7101,7 @@ body {
         }
     }
     &.form-type-password-confirm {
+        margin-bottom:64px;
 
         .form-type-password {
             width:100%;
