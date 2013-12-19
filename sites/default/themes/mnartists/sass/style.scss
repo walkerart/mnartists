@@ -7300,28 +7300,36 @@ fieldset {
 
 
     }
-    input.form-submit {
-        float: left;
-        height: auto;
-        padding: 5px 10px;
-        border: 1px solid #333;
-        font-family: $sans_bold_font;
-        @include no_break;
-        @include rounded;
-        cursor: pointer;
-        margin-left:0;
-        margin-right:10px;
-        background: #333;
-        color:#fff;
-        text-transform:capitalize;
-        font-size:12px;
-        font-weight:normal;
-        letter-spacing:0;
+    input {
 
-        &:hover {
-            background: #222;
+        &.ajax-processed,
+        &#edit-submit,
+        &#edit-preview {
+            float: left;
+            height: auto;
+            padding: 5px 10px;
+            border: 1px solid #333;
+            font-family: $sans_bold_font;
+            @include no_break;
+            @include rounded;
+            cursor: pointer;
+            margin-left:0;
+            margin-right:10px;
+            background: #333;
             color:#fff;
+            text-transform:capitalize;
+            font-size:12px;
+            font-weight:normal;
+            letter-spacing:0;
+
+            &:hover {
+                background: #222;
+                color:#fff;
+            }
         }
+    }
+    input.form-submit {
+
     }
 }
 
