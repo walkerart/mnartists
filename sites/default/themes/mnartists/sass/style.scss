@@ -5653,6 +5653,10 @@ body.page-node-add #content {
         vertical-align:top;
         overflow:visible;
 
+        &:nth-child(4n+4) {
+            @include last;
+        }
+
         @media screen and (max-width: $break-tablet) {
             @include column(12);
 
