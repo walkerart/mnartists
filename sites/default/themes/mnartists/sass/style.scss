@@ -7282,18 +7282,21 @@ body {
                     box-sizing:border-box;
                     clear:none;
 
-                    .form-item {
-
+                    &.end-date-wrapper {
                         .form-item {
 
-                            label {
-                                display:none;
+                            .form-item {
+
+                                label {
+                                    display:none;
+                                }
+                            }
+                            .description {
+                                margin-left:0;
                             }
                         }
-                        .description {
-                            margin-left:0;
-                        }
                     }
+
 
                 }
             }
