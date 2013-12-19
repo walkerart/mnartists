@@ -7033,6 +7033,35 @@ body {
             }
         }
     }
+    &.form-type-password {
+        width:100%;
+        max-width:520px;
+
+        label {
+            width:33%;
+            float:left;
+        }
+        input {
+            float:left;
+            margin-bottom:8px;
+        }
+    }
+    &.form-type-password-confirm {
+
+        .form-type-password {
+            width:100%;
+            max-width:520px;
+
+            label {
+                width:33%;
+                float:left;
+            }
+            input {
+                float:left;
+                margin-bottom:8px;
+            }
+        }
+    }
     &.form-type-select {
         width:100%;
         max-width:520px;
