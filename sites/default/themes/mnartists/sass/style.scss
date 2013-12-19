@@ -6755,6 +6755,39 @@ body {
     font-size:28px;
 }
 
+/* @group collection list page */
+.page-user-flags-lists- {
+
+    #content {
+        @include container;
+        .view-content {
+             padding:20px 0;
+            @include column(14);
+            overflow:visible;
+            @media screen and (max-width: $break-mobile) {
+                @include column(24);
+            }
+            @media screen and (max-width: $break-tablet) {
+                @include column(24);
+            }
+            @media screen and (max-width: $break-desktop-small) {
+                @include column(24);
+            }
+            .views-row {
+                background: $mystuff_bg_dark;
+                padding:10px;
+                margin-bottom:20px;
+                color:#fff;
+                position:relative;
+                list-style:none;
+                min-height:80px;
+            }
+        }
+    }
+
+}
+/* @end */
+
 /* @group user feed */
 .page-user-feed {
 
