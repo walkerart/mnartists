@@ -21,11 +21,15 @@ ini_set('display_startup_errors', TRUE);
 
 
 define('DRUPAL_ROOT', getcwd());
+
+// include solarium library (and symfonyeventdispatcher, on which it depends)
 require_once DRUPAL_ROOT.'/sites/all/libraries/SymfonyEventDispatcher/EventDispatcherInterface.php';
 require_once DRUPAL_ROOT.'/sites/all/libraries/SymfonyEventDispatcher/EventDispatcher.php';
 require_once DRUPAL_ROOT.'/sites/all/libraries/SymfonyEventDispatcher/Event.php';
 require_once DRUPAL_ROOT.'/sites/all/libraries/Solarium/Autoloader.php';
 Solarium\Autoloader::register();
+
+// bootstrap drupal
 require_once DRUPAL_ROOT . '/includes/bootstrap.inc';
 drupal_bootstrap(DRUPAL_BOOTSTRAP_FULL);
 menu_execute_active_handler();

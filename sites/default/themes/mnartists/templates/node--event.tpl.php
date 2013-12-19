@@ -116,7 +116,7 @@ hide($content['links']);
     </header>
   <?php endif; ?>
   <div<?php print $content_attributes; ?>>
-    <?php dpm($node); print text_summary($node->body['und'][0]['value'], 'html', 200) ?>
+    <?php print text_summary($node->body['und'][0]['value'], 'html', 200) ?>
   </div>
   <?php if ($links = render($content['links'])): ?>
     <nav<?php print $links_attributes; ?>><?php print $links; ?></nav>
