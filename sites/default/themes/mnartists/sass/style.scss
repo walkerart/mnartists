@@ -7087,13 +7087,14 @@ body {
             margin-bottom:8px;
         }
         .password-strength,
-        .password-confirm {
-            clear:both;float:none;
+        div.password-confirm {
+            clear:both;
+            float:none;
             margin-bottom:8px;
-            .password-confirm {
-                clear:none;
-                float:left;
-            }
+        }
+        input.password-confirm {
+            clear:none;
+            float:left;
         }
 
     }
