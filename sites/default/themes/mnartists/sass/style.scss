@@ -5775,7 +5775,7 @@ tr.odd .form-item, tr.even .form-item {
 .node-form {
 
 	.form-wrapper {
-		margin-bottom:15px;
+		margin-bottom:64px;
 
 		.form-item {
 			margin:0;
@@ -5824,7 +5824,7 @@ tr.odd .form-item, tr.even .form-item {
 				width:100%;
 				display:block;
 				clear:both;
-				margin-bottom:8px;
+				margin-bottom:24px;
 			}
 		}
 		.container-inline-date .date-padding {
@@ -7214,6 +7214,14 @@ body {
             float: left;
         }
     }
+    &.field-name-field-images-form,
+    &.field-name-field-tags-form,
+    &.field-name-og-group-ref,
+    &.field-type-text-long-form,
+    &.field-name-field-subheader-form,
+    &.field-type-url-form {
+        margin-bottom:64px;
+    }
 }
 .vertical-tabs {
     clear:both;
@@ -7257,10 +7265,11 @@ body {
                 &.field-multiple-drag {
                     border-right:1px solid #ccc;
                 }
-
                 .media-widget {
                     padding-left:20px;
-
+                }
+                .field-value-url {
+                    padding-left:20px;
                 }
             }
         }
