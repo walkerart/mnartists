@@ -1,11 +1,5 @@
 <?php
 
-define('NODE_INDEX', 'default_node_index');
-define('USER_INDEX', 'users');
-define('SUBJECT_VID', '8');
-define('EXPERIENCE_VID', '12');
-define('PRACTICE_VID', '13');
-
 /**
  * @file
  * Code for the Artist Community feature.
@@ -13,7 +7,39 @@ define('PRACTICE_VID', '13');
  *      you will find the data in field_medium, not field_community.
  */
 
+// some indices
+define('NODE_INDEX', 'default_node_index');
+define('USER_INDEX', 'users');
+define('SUBJECT_VID', '8');
+define('EXPERIENCE_VID', '12');
+define('PRACTICE_VID', '13');
+
 include_once 'artist_community.features.inc';
+
+// field names for use in our solr queries
+define('AC_OG_GROUP_REF_FIELD', 'im_og_group_ref');
+define('AC_MEDIUM_FIELD', 'im_field_medium');
+define('AC_SUBJECT_FIELD', 'im_field_subject_concept');
+define('AC_USER_NODE_FIELD', 'im_og_user_node');
+define('AC_TYPE_FIELD', 'ss_type');
+define('AC_USER_ROLES_FIELD', 'im_roles');
+define('AC_USER_PRACTICE_FIELD', 'im_practice');
+define('AC_USER_EXPERIENCE_FIELD', 'im_experience');
+define('AC_CREATED_FIELD', 'ds_created');
+
+// config for solarium
+global $solarium_config;
+$solarium_config = array(
+    'endpoint' => array(
+        'localhost' => array(
+            'host' => '127.0.0.1',
+            'port' => 8080,
+            'path' => '/solr/',
+        )
+    )
+);
+
+
 
 /**
  * Implements hook_menu()
@@ -25,8 +51,87 @@ function artist_community_menu() {
         'access arguments'  => array('access content'),
         'file'              => 'artist_community.pages.inc',
     );
+    $items['communitygetitems'] = array(
+        'title'             => t('Community Get Items'),
+        'access arguments'  => array('access content'),
+        'page callback'     => 'artist_community_get_items',
+    );
 
     return $items;
+}
+
+function artist_community_get_items () {
+    global $solarium_config;
+
+    // instantiate our client and query object
+    $client = new Solarium\Client($solarium_config);
+    $solarium_query = $client->createSelect();
+
+    // Handle Organic groups and taxonomies
+    if (isset($_GET['og'])) {
+        foreach($_GET['og'] as $og_id => $terms) {
+            $filter->condition(AC_OG_GROUP_REF_FIELD, $og_id);
+
+            // Add taxonomy filters for a specific taxonomy
+            if (is_array($terms)) {
+                foreach($terms as $term) {
+                    $nodeQueryBuilder[] = AC_FIELD_MEDIUM.":$term";
+                }
+            } else {
+                $nodeQueryBuilder[] = AC_OG_GROUP_REF_FIELD.":$og_id";
+            }
+            $userQueryBuilder[] = AC_USER_NODE_FIELD.":$og_id";
+        }
+    }
+
+    // Handle content and users
+    if (isset($_GET['content'])) {
+        foreach($_GET['content'] as $type => $value) {
+            switch($type) {
+                case 'artwork':
+                    $nodeQueryBuilder[] = AC_TYPE_FIELD.":$type";
+                    if (isset($_GET['content']['artwork']) &&
+                        is_array($_GET['content']['artwork'])) {
+                        foreach ($_GET['content']['artwork'] as $tid) {
+                            $term = taxonomy_term_load($tid);
+                            $filter->condition(AC_SUBJECT_FIELD, $tid);
+                            $nodeQueryBuilder[] = AC_SUBJECT_FIELD.":$tid";
+
+                        }
+                        break;
+                    }
+                case 'article':
+                case 'event':
+                case 'opportunity':
+                    $nodeQueryBuilder[] = AC_TYPE_FIELD.":$type";
+                    break;
+                case 'artists':
+                    // kill the content filters??
+
+                    if (isset($_GET['content']['artists']) &&
+                        is_array($_GET['content']['artists'])) {
+                        foreach ($_GET['content']['artists'] as $tid) {
+                            $term = taxonomy_term_load($tid);
+                            $term_target = '';
+                            if ($term->vid === EXPERIENCE_VID) {
+                                $term_target = AC_USER_EXPERIENCE_FIELD;
+                            } else if ($term->vid === PRACTICE_VID) {
+                                $term_target = AC_USER_PRACTICE_FIELD;
+                            }
+                            $userQueryBuilder[] = "$term_target:".$tid;
+                        }
+                    } else {
+                        $userQueryBuilder[] = AC_USER_ROLES_FIELD.":".ARTIST_ROLE;
+                    }
+                    break;
+                case 'organizations':
+                    $userQueryBuilder[] = AC_USER_ROLES_FIELD.":".ORG_ROLE;
+                    break;
+            }
+        }
+    }
+
+    echo 'here';
 }
 
 /**
