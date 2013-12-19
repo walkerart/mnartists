@@ -7333,6 +7333,34 @@ fieldset {
     }
 }
 
+// add venue only
+.node-venue-form {
+    .field-name-field-public-form,
+    .field-type-taxonomy-term-reference-form {
+        margin-bottom:64px;
+    }
+}
+
+// add event form only
+.node-event-form {
+    .field-name-field-category-form,
+    .field-name-field-date-form {
+        margin-bottom:64px;
+    }
+}
+
+// add edit icons on form fields
+.entityconnect-add,
+.entityconnect-edit {
+    input {
+        width:16px;
+        padding:0;
+        margin:0;
+        border:none;
+    }
+}
+
+
 // ck editor overrides
 .cke_chrome {
     box-shadow:none!important;
