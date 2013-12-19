@@ -7226,8 +7226,14 @@ body {
     &.field-type-text-long-form,
     &.field-name-field-subheader-form,
     &.field-type-url-form,
-    &.field-name-field-dimensions-form {
+    &.field-name-field-media-form {
         margin-bottom:64px;
+    }
+    &.field-name-field-dimensions-form {
+
+        .form-textarea-wrapper {
+            margin-bottom:64px;
+        }
     }
 }
 .vertical-tabs {
@@ -7290,6 +7296,11 @@ fieldset {
 .page-node-edit {
 
     input[type=submit] {
+
+
+
+    }
+    input.form-submit {
         float: left;
         height: auto;
         padding: 5px 10px;
@@ -7308,7 +7319,7 @@ fieldset {
         letter-spacing:0;
 
         &:hover {
-            background: #333;
+            background: #222;
             color:#fff;
         }
     }
