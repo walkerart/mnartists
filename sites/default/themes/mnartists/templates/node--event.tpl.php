@@ -116,9 +116,6 @@ hide($content['links']);
     </header>
   <?php endif; ?>
   <div<?php print $content_attributes; ?>>
-    <?php print text_summary($node->body['und'][0]['value'], 'html', 200) ?>
+    <?php print text_summary($node->body['und'][0]['value'], 'html', 200) ?> <a href="/node/<?= $node->nid ?>">&gt;</a>
   </div>
-  <?php if ($links = render($content['links'])): ?>
-    <nav<?php print $links_attributes; ?>><?php print $links; ?></nav>
-  <?php endif; ?>
 </article>
