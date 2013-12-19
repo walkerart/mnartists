@@ -5775,7 +5775,7 @@ tr.odd .form-item, tr.even .form-item {
 .node-form {
 
 	.form-wrapper {
-		margin-bottom:64px;
+
 
 		.form-item {
 			margin:0;
@@ -6987,6 +6987,12 @@ body {
                     width:auto;
                     float:left;
                 }
+                &:last-child {
+
+                    .icheckbox {
+                        margin-bottom:64px;
+                    }
+                }
             }
         }
     }
@@ -7219,7 +7225,9 @@ body {
     &.field-name-og-group-ref,
     &.field-type-text-long-form,
     &.field-name-field-subheader-form,
-    &.field-type-url-form {
+    &.field-type-url-form,
+    &.field-name-field-dimensions-form,
+    &. {
         margin-bottom:64px;
     }
 }
