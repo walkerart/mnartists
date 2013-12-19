@@ -7294,12 +7294,6 @@ fieldset {
 
 .page-node-add,
 .page-node-edit {
-
-    input[type=submit] {
-
-
-
-    }
     input {
 
         &.ajax-processed,
@@ -7328,9 +7322,6 @@ fieldset {
             }
         }
     }
-    input.form-submit {
-
-    }
 }
 
 // add venue only
@@ -7344,7 +7335,17 @@ fieldset {
 // add event form only
 .node-event-form {
     .field-name-field-category-form,
-    .field-name-field-date-form {
+    .field-name-field-date-form,
+    .field-type-text-with-summary {
+        margin-bottom:64px;
+    }
+}
+
+// add artwork form only
+.node-artwork-form {
+    .field-type-text-with-summary,
+    .field-name-field-tags-form,
+    .field-name-field-dimensions-form {
         margin-bottom:64px;
     }
 }
@@ -7353,7 +7354,7 @@ fieldset {
 .entityconnect-add,
 .entityconnect-edit {
     input {
-        width:16px;
+        width:16px!important;
         padding:0;
         margin:0;
         border:none;
