@@ -561,9 +561,10 @@ function artist_community_get_items ($start = null, $rows = null, $sort = null) 
     global $solarium_config;
 
     // get start and number of row params, if they're there
-    $start_row = (isset($_GET['start']) && is_numeric($_GET['start'])) ? $_GET['start'] : null;
-    $num_rows = (isset($_GET['rows']) && is_numeric($_GET['rows'])) ? $_GET['rows'] : null;
+    $start_row = (isset($_GET['start']) && is_numeric($_GET['start'])) ? intval($_GET['start']) : null;
+    $num_rows = (isset($_GET['rows']) && is_numeric($_GET['rows'])) ? intval($_GET['rows']) : null;
 
+    // declare container for all results
     $all_results = array();
 
     // containers for the query conditions we'll build below
@@ -650,10 +651,10 @@ function artist_community_get_items ($start = null, $rows = null, $sort = null) 
     }
 
     $solarium_query->createFilterQuery('the_thing')->setQuery($finalQueryString);
-    if ($start_row != null && is_int($start_row)) {
+    if ($start_row !== null && is_int($start_row)) {
         $solarium_query->setStart($start_row);
     }
-    if ($num_rows != null && is_int($num_rows)) {
+    if ($num_rows !== null && is_int($num_rows)) {
         $solarium_query->setRows($num_rows);
     }
     $solarium_query->addSort(AC_CREATED_FIELD, $solarium_query::SORT_ASC);// @TODO get sort from incoming params?
