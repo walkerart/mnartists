@@ -7376,6 +7376,9 @@ fieldset {
     .field-type-text-with-summary {
         margin-bottom:64px;
     }
+    #edit-submit {
+        float:none;
+    }
 }
 
 // add artwork form only
@@ -7394,6 +7397,16 @@ fieldset {
     }
     .description {
         margin-bottom:8px;
+    }
+    .field-name-field-created-date-form {
+
+        .partial-date-year {
+
+            .description {
+                clear:both;
+                margin-left:0;
+            }
+        }
     }
 }
 
