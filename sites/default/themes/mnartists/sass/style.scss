@@ -5855,6 +5855,7 @@ tr.odd .form-item, tr.even .form-item {
 
 	}
 }
+
 .vertical-tabs {
 
 	.vertical-tabs-panes {
@@ -6990,6 +6991,7 @@ body {
 
     &.form-type-checkbox {
         margin-bottom:8px;
+        clear:both;float:none;
 
         .icheckbox {
             float:left;
@@ -7028,6 +7030,41 @@ body {
                 &:last-child {
 
                     .icheckbox {
+                        margin-bottom:64px;
+                    }
+                }
+            }
+        }
+    }
+    &.form-type-radios {
+        width:100%;
+        max-width:520px;
+
+        label {
+            width:33%;
+            float:left;
+            min-width:none;
+        }
+        .form-checkboxes {
+            float:left;
+        }
+        .form-item {
+
+            &.form-type-radio {
+                width:100%;
+
+                .iradio {
+                    float:left;
+                    margin-right:15px; /* tmp */
+                    margin-bottom:8px;
+                }
+                label {
+                    width:auto;
+                    float:left;
+                }
+                &:last-child {
+
+                    .iradio {
                         margin-bottom:64px;
                     }
                 }
