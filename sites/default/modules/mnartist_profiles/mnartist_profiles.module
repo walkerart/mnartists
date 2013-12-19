@@ -724,9 +724,9 @@ function _mnartist_profile_user_profile() {
 }
 
 function mnartist_profiles_form_alter(&$form, $form_state, $form_id) {
+    global $user;
     if ($form_id == 'user_profile_form') {
         if (isset($form["#user_category"]) && $form["#user_category"] == 'resume') {
-            global $user;
             $uid = $form['#user']->uid;
             // @TODO is this test acceptable? or should it be tied to a specific user permission?
             if ($user->uid == $uid || in_array('administrator', $user->roles)) {
@@ -738,8 +738,20 @@ function mnartist_profiles_form_alter(&$form, $form_state, $form_id) {
         $form['account']['status']['#options'][0] = "Inactive";
         $form['picture']['#title'] = "Profile Picture";
         $form['picture']['picture_upload']['#title'] = "Upload Profile Picture";
+    } else if (in_array($form_id, array('article_node_form', 'artwork_node_form', 'community_node_form', 'event_node_form', 'program_node_form', 'venue_node_form')) &&
+        !(in_array('administrator', array_values($user->roles)))) {
+            // disable additional options if we're on the appropriate
+            // node edit forms and we're not an admin user
+            _mnartist_profiles_disable_vertical_tabs($form);
     }
 }
+
+function _mnartist_profiles_disable_vertical_tabs(&$form){
+    if(isset($form['additional_settings']['#type']) && ($form['additional_settings']['#type'] === 'vertical_tabs')) {
+        $form['additional_settings']['#access'] = FALSE;
+    }
+}
+
 
 // entity property info alter and callbacks to make practices
 // and experiences accessible to solr searches

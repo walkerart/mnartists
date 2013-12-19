@@ -60,80 +60,6 @@ function artist_community_menu() {
     return $items;
 }
 
-function artist_community_get_items () {
-    global $solarium_config;
-
-    // instantiate our client and query object
-    $client = new Solarium\Client($solarium_config);
-    $solarium_query = $client->createSelect();
-
-    // Handle Organic groups and taxonomies
-    if (isset($_GET['og'])) {
-        foreach($_GET['og'] as $og_id => $terms) {
-            $filter->condition(AC_OG_GROUP_REF_FIELD, $og_id);
-
-            // Add taxonomy filters for a specific taxonomy
-            if (is_array($terms)) {
-                foreach($terms as $term) {
-                    $nodeQueryBuilder[] = AC_FIELD_MEDIUM.":$term";
-                }
-            } else {
-                $nodeQueryBuilder[] = AC_OG_GROUP_REF_FIELD.":$og_id";
-            }
-            $userQueryBuilder[] = AC_USER_NODE_FIELD.":$og_id";
-        }
-    }
-
-    // Handle content and users
-    if (isset($_GET['content'])) {
-        foreach($_GET['content'] as $type => $value) {
-            switch($type) {
-                case 'artwork':
-                    $nodeQueryBuilder[] = AC_TYPE_FIELD.":$type";
-                    if (isset($_GET['content']['artwork']) &&
-                        is_array($_GET['content']['artwork'])) {
-                        foreach ($_GET['content']['artwork'] as $tid) {
-                            $term = taxonomy_term_load($tid);
-                            $filter->condition(AC_SUBJECT_FIELD, $tid);
-                            $nodeQueryBuilder[] = AC_SUBJECT_FIELD.":$tid";
-
-                        }
-                        break;
-                    }
-                case 'article':
-                case 'event':
-                case 'opportunity':
-                    $nodeQueryBuilder[] = AC_TYPE_FIELD.":$type";
-                    break;
-                case 'artists':
-                    // kill the content filters??
-
-                    if (isset($_GET['content']['artists']) &&
-                        is_array($_GET['content']['artists'])) {
-                        foreach ($_GET['content']['artists'] as $tid) {
-                            $term = taxonomy_term_load($tid);
-                            $term_target = '';
-                            if ($term->vid === EXPERIENCE_VID) {
-                                $term_target = AC_USER_EXPERIENCE_FIELD;
-                            } else if ($term->vid === PRACTICE_VID) {
-                                $term_target = AC_USER_PRACTICE_FIELD;
-                            }
-                            $userQueryBuilder[] = "$term_target:".$tid;
-                        }
-                    } else {
-                        $userQueryBuilder[] = AC_USER_ROLES_FIELD.":".ARTIST_ROLE;
-                    }
-                    break;
-                case 'organizations':
-                    $userQueryBuilder[] = AC_USER_ROLES_FIELD.":".ORG_ROLE;
-                    break;
-            }
-        }
-    }
-
-    echo 'here';
-}
-
 /**
  * Implements hook_theme()
  */
@@ -627,4 +553,126 @@ function artist_community_entity_view($entity, $type, $view_mode, $langcode) {
     if ($view_mode === 'teaser' && $entity->type === 'artwork') {
         $entity->content['field_media']['#items'] = array_slice($entity->content['field_media']['#items'], 0, 1);
     }
+}
+
+// endpoint for getting community results
+function artist_community_get_items ($start = null, $rows = null, $sort = null) {
+
+    global $solarium_config;
+
+    // get start and number of row params, if they're there
+    $start_row = (isset($_GET['start']) && is_numeric($_GET['start'])) ? $_GET['start'] : null;
+    $num_rows = (isset($_GET['rows']) && is_numeric($_GET['rows'])) ? $_GET['rows'] : null;
+
+    $all_results = array();
+
+    // containers for the query conditions we'll build below
+    $nodeQueryBuilder = array();
+    $userQueryBuilder = array();
+
+    // instantiate our client and query object
+    $client = new Solarium\Client($solarium_config);
+    $solarium_query = $client->createSelect();
+
+    // Handle Organic groups and taxonomies
+    if (isset($_GET['og'])) {
+        foreach($_GET['og'] as $og_id => $terms) {
+            $filter->condition(AC_OG_GROUP_REF_FIELD, $og_id);
+
+            // Add taxonomy filters for a specific taxonomy
+            if (is_array($terms)) {
+                foreach($terms as $term) {
+                    $nodeQueryBuilder[] = AC_FIELD_MEDIUM.":$term";
+                }
+            } else {
+                $nodeQueryBuilder[] = AC_OG_GROUP_REF_FIELD.":$og_id";
+            }
+            $userQueryBuilder[] = AC_USER_NODE_FIELD.":$og_id";
+        }
+    }
+
+    // Handle content and users
+    if (isset($_GET['content'])) {
+        foreach($_GET['content'] as $type => $value) {
+            switch($type) {
+                case 'artwork':
+                    $nodeQueryBuilder[] = AC_TYPE_FIELD.":$type";
+                    if (isset($_GET['content']['artwork']) &&
+                        is_array($_GET['content']['artwork'])) {
+                        foreach ($_GET['content']['artwork'] as $tid) {
+                            $term = taxonomy_term_load($tid);
+                            $filter->condition(AC_SUBJECT_FIELD, $tid);
+                            $nodeQueryBuilder[] = AC_SUBJECT_FIELD.":$tid";
+
+                        }
+                        break;
+                    }
+                case 'article':
+                case 'event':
+                case 'opportunity':
+                    $nodeQueryBuilder[] = AC_TYPE_FIELD.":$type";
+                    break;
+                case 'artists':
+                    // kill the content filters??
+
+                    if (isset($_GET['content']['artists']) &&
+                        is_array($_GET['content']['artists'])) {
+                        foreach ($_GET['content']['artists'] as $tid) {
+                            $term = taxonomy_term_load($tid);
+                            $term_target = '';
+                            if ($term->vid === EXPERIENCE_VID) {
+                                $term_target = AC_USER_EXPERIENCE_FIELD;
+                            } else if ($term->vid === PRACTICE_VID) {
+                                $term_target = AC_USER_PRACTICE_FIELD;
+                            }
+                            $userQueryBuilder[] = "$term_target:".$tid;
+                        }
+                    } else {
+                        $userQueryBuilder[] = AC_USER_ROLES_FIELD.":".ARTIST_ROLE;
+                    }
+                    break;
+                case 'organizations':
+                    $userQueryBuilder[] = AC_USER_ROLES_FIELD.":".ORG_ROLE;
+                    break;
+            }
+        }
+    }
+
+    // build the solarium query string
+    $nodeQueryBuilderString = (count($nodeQueryBuilder) !== 0) ? ' AND ('.implode(' OR ', $nodeQueryBuilder).')' : '';
+    $userQueryBuilderString = (count($userQueryBuilder) !== 0) ? ' AND ('.implode(' OR ', $userQueryBuilder).')' : '';
+
+    // if we want users only, switch to that, otherwise build the full query string
+    if (count($nodeQueryBuilder) === 0 && count($userQueryBuilder) > 0) {
+        $finalQueryString = "(index_id:users$userQueryBuilderString)";
+    } else {
+        $finalQueryString = "((index_id:default_node_index AND (ss_type:article OR ss_type:artwork OR ss_type:event))$nodeQueryBuilderString) OR (index_id:users$userQueryBuilderString)";
+    }
+
+    $solarium_query->createFilterQuery('the_thing')->setQuery($finalQueryString);
+    if ($start_row != null && is_int($start_row)) {
+        $solarium_query->setStart($start_row);
+    }
+    if ($num_rows != null && is_int($num_rows)) {
+        $solarium_query->setRows($num_rows);
+    }
+    $solarium_query->addSort(AC_CREATED_FIELD, $solarium_query::SORT_ASC);// @TODO get sort from incoming params?
+    $resultset = $client->select($solarium_query);
+
+    // get items of the appropriate types, put them into
+    // the all community results array
+    foreach($resultset as $item) {
+        switch ($item->index_id) {
+            case 'users':
+                $all_results[] = theme('artist_community_artist_profile', array('user' => user_load($item->is_uid)));
+                break;
+            case 'default_node_index':
+                $all_results[] = render(node_view(node_load($item->is_nid), 'teaser'));
+                break;
+        }
+    }
+
+    // echo "<pre>";
+    var_dump($all_results);
+    // echo "</pre>";
 }
