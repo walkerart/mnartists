@@ -7349,12 +7349,16 @@ body {
 
                 &.field-multiple-drag {
                     border-right:1px solid #ccc;
+                    vertical-align:top;
                 }
                 .media-widget {
                     padding-left:20px;
                 }
                 .field-value-url {
                     padding-left:20px;
+                }
+                &:nth-child(2) {
+                    padding-left:10px;
                 }
             }
         }
