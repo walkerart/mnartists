@@ -556,13 +556,7 @@ function artist_community_entity_view($entity, $type, $view_mode, $langcode) {
 }
 
 // endpoint for getting community results
-// @TODO sure would be nice just to get params as call params,
-// but how do we get them in from the url then?
 function artist_community_get_items () {
-    // okay move everything into params that you pull out
-    // of _GET first, pass it to _artist_community_get_items_query,
-    // use it in .pages and here
-
     // get url params, then pass them on
     $local_og = (isset($_GET['og'])) ? $_GET['og'] : null;
     $local_content = (isset($_GET['content'])) ? $_GET['content'] : null;
@@ -570,7 +564,8 @@ function artist_community_get_items () {
     $num_rows = (isset($_GET['rows']) && is_numeric($_GET['rows'])) ? intval($_GET['rows']) : null;
     $rendernodes = true;
 
-    var_dump(_artist_community_get_items_query($local_og, $local_content, $start_row, $num_rows, $rendernodes));
+    echo implode('', _artist_community_get_items_query($local_og, $local_content, $start_row, $num_rows, $rendernodes));
+    drupal_exit();
 }
 
 function _artist_community_get_items_query ($local_og = null,
@@ -679,15 +674,43 @@ function _artist_community_get_items_query ($local_og = null,
 
     if ($rendernodes === true) {
         foreach($resultset as $item) {
+            $the_element_string = '';
             switch ($item->index_id) {
                 case 'users':
-                    $all_results[] = theme('artist_community_artist_profile', array('user' => user_load($item->is_uid)));
+                    $the_class_suffix = 'user';
+                    $the_element_string = theme('artist_community_artist_profile', array('user' => user_load($item->is_uid)));
                     break;
                 case 'default_node_index':
-                    $all_results[] = render(node_view(node_load($item->is_nid), 'teaser'));
+                    $the_node = node_load($item->is_nid);
+                    $the_class_suffix = $the_node->type;
+                    $the_element_string = render(node_view($the_node, 'teaser'));
                     break;
             }
+
+            $element_string_arr = array();
+            $element_string_arr[] = "<div class='item item-$the_class_suffix'>";
+            $element_string_arr[] = $the_element_string;
+            $element_string_arr[] = "</div>";
+            $all_results[] = implode('', $element_string_arr);
         }
+
+        if (count($all_results) === $num_rows) {
+            // build the next 'more' link (if we have
+            // a full set of results, otherwise we're probably
+            // at the end of the line)
+            $current_start = (isset($_GET['start'])) ? intval($_GET['start']) : null;
+            $current_rows = (isset($_GET['rows'])) ? intval($_GET['rows']) : null;
+            $new_start = (!is_null($current_start) && !is_null($current_rows)) ? $current_start + $current_rows : null;
+
+            $new_get = array(
+                'og' => (isset($_GET['og'])) ? $_GET['og'] : null,
+                'content' => (isset($_GET['content'])) ? $_GET['content'] : null,
+                'rows' => (isset($_GET['rows'])) ? $_GET['rows'] : null,
+                'start' => $new_start,
+            );
+            $all_results[] = '<div class="item item-more"><a href="/communitygetitems?'.http_build_query($new_get).'">Show me more!</a></div>';
+        }
+
     } else {
         foreach($resultset as $item) {
             switch ($item->index_id) {
@@ -700,8 +723,5 @@ function _artist_community_get_items_query ($local_og = null,
             }
         }
     }
-
-    // echo "<pre>";
     return $all_results;
-    // echo "</pre>";
 }

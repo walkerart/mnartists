@@ -91,6 +91,21 @@
 		    		<?php } ?>
 		    	</div>
 		    <?php } ?>
+		    <div class="item item-more">
+		    	<?php
+		    		$current_start = (isset($_GET['start'])) ? intval($_GET['start']) : null;
+		    		$current_rows = (isset($_GET['rows'])) ? intval($_GET['rows']) : null;
+		    		$new_start = (!is_null($current_start) && !is_null($current_rows)) ? $current_start + $current_rows : null;
+
+		    		$new_get = array(
+		    			'og' => (isset($_GET['og'])) ? $_GET['og'] : null,
+		    			'content' => (isset($_GET['content'])) ? $_GET['content'] : null,
+		    			'rows' => (isset($_GET['rows'])) ? $_GET['rows'] : null,
+		    			'start' => $new_start,
+		    		);
+		    	?>
+		    	<a href="/community?<?= http_build_query($new_get) ?>">Show me more!</a>
+		    </div>
 		</div>
 	</div>
 	<div class="panel-panel panel-col-last sidebar-right">
