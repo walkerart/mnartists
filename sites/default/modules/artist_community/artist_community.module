@@ -556,13 +556,30 @@ function artist_community_entity_view($entity, $type, $view_mode, $langcode) {
 }
 
 // endpoint for getting community results
-function artist_community_get_items ($start = null, $rows = null, $sort = null) {
+// @TODO sure would be nice just to get params as call params,
+// but how do we get them in from the url then?
+function artist_community_get_items () {
+    // okay move everything into params that you pull out
+    // of _GET first, pass it to _artist_community_get_items_query,
+    // use it in .pages and here
 
-    global $solarium_config;
-
-    // get start and number of row params, if they're there
+    // get url params, then pass them on
+    $local_og = (isset($_GET['og'])) ? $_GET['og'] : null;
+    $local_content = (isset($_GET['content'])) ? $_GET['content'] : null;
     $start_row = (isset($_GET['start']) && is_numeric($_GET['start'])) ? intval($_GET['start']) : null;
     $num_rows = (isset($_GET['rows']) && is_numeric($_GET['rows'])) ? intval($_GET['rows']) : null;
+    $rendernodes = true;
+
+    var_dump(_artist_community_get_items_query($local_og, $local_content, $start_row, $num_rows, $rendernodes));
+}
+
+function _artist_community_get_items_query ($local_og = null,
+                                            $local_content = null,
+                                            $start_row = null,
+                                            $num_rows = null,
+                                            $rendernodes = null) {
+
+    global $solarium_config;
 
     // declare container for all results
     $all_results = array();
@@ -576,8 +593,8 @@ function artist_community_get_items ($start = null, $rows = null, $sort = null) 
     $solarium_query = $client->createSelect();
 
     // Handle Organic groups and taxonomies
-    if (isset($_GET['og'])) {
-        foreach($_GET['og'] as $og_id => $terms) {
+    if ($local_og !== null) {
+        foreach($local_og as $og_id => $terms) {
             $filter->condition(AC_OG_GROUP_REF_FIELD, $og_id);
 
             // Add taxonomy filters for a specific taxonomy
@@ -593,14 +610,14 @@ function artist_community_get_items ($start = null, $rows = null, $sort = null) 
     }
 
     // Handle content and users
-    if (isset($_GET['content'])) {
-        foreach($_GET['content'] as $type => $value) {
+    if ($local_content !== null) {
+        foreach($local_content as $type => $value) {
             switch($type) {
                 case 'artwork':
                     $nodeQueryBuilder[] = AC_TYPE_FIELD.":$type";
-                    if (isset($_GET['content']['artwork']) &&
-                        is_array($_GET['content']['artwork'])) {
-                        foreach ($_GET['content']['artwork'] as $tid) {
+                    if (isset($local_content['artwork']) &&
+                        is_array($local_content['artwork'])) {
+                        foreach ($local_content['artwork'] as $tid) {
                             $term = taxonomy_term_load($tid);
                             $filter->condition(AC_SUBJECT_FIELD, $tid);
                             $nodeQueryBuilder[] = AC_SUBJECT_FIELD.":$tid";
@@ -616,9 +633,9 @@ function artist_community_get_items ($start = null, $rows = null, $sort = null) 
                 case 'artists':
                     // kill the content filters??
 
-                    if (isset($_GET['content']['artists']) &&
-                        is_array($_GET['content']['artists'])) {
-                        foreach ($_GET['content']['artists'] as $tid) {
+                    if (isset($local_content['artists']) &&
+                        is_array($local_content['artists'])) {
+                        foreach ($local_content['artists'] as $tid) {
                             $term = taxonomy_term_load($tid);
                             $term_target = '';
                             if ($term->vid === EXPERIENCE_VID) {
@@ -660,20 +677,31 @@ function artist_community_get_items ($start = null, $rows = null, $sort = null) 
     $solarium_query->addSort(AC_CREATED_FIELD, $solarium_query::SORT_DESC);// @TODO get sort from incoming params?
     $resultset = $client->select($solarium_query);
 
-    // get items of the appropriate types, put them into
-    // the all community results array
-    foreach($resultset as $item) {
-        switch ($item->index_id) {
-            case 'users':
-                $all_results[] = theme('artist_community_artist_profile', array('user' => user_load($item->is_uid)));
-                break;
-            case 'default_node_index':
-                $all_results[] = render(node_view(node_load($item->is_nid), 'teaser'));
-                break;
+    if ($rendernodes === true) {
+        foreach($resultset as $item) {
+            switch ($item->index_id) {
+                case 'users':
+                    $all_results[] = theme('artist_community_artist_profile', array('user' => user_load($item->is_uid)));
+                    break;
+                case 'default_node_index':
+                    $all_results[] = render(node_view(node_load($item->is_nid), 'teaser'));
+                    break;
+            }
+        }
+    } else {
+        foreach($resultset as $item) {
+            switch ($item->index_id) {
+                case 'users':
+                    $all_results[] = array('type' => 'user', 'item' => user_load($item->is_uid));
+                    break;
+                case 'default_node_index':
+                    $all_results[] = array('type' => 'node', 'item' => node_load($item->is_nid));
+                    break;
+            }
         }
     }
 
     // echo "<pre>";
-    var_dump($all_results);
+    return $all_results;
     // echo "</pre>";
 }
