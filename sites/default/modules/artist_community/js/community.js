@@ -3,7 +3,9 @@
 
         // infinite scrolling dealings-with
         // do href stuff
-        var moreLink = $('.item-more a');
+        var moreContentContainer = $('.content-all');
+        var moreLinkContainer = moreContentContainer.find('.item-more');
+        var moreLink = moreLinkContainer.find('a');
 
         // update more link href to use async load
         var params = moreLink.attr('href').split('?')[1].split('&');
@@ -13,25 +15,45 @@
         // attach the async more items link
         moreLink.attr('href', newHref);
 
-        // attach jscroll
-        // @TODO autoTrigger doesn't seem to be working, either
-        // fix or find another library
-        var moreContentContainer = $('.content-all');
-        moreContentContainer.jscroll({
-            loadingHtml: '<img src="http://mnartist.imalab.us/sites/default/themes/mnartists/images/icon-loader.gif" alt="Loading" height="100" width="100> Loading...',
-            padding: 0,
-            nextSelector: '.item-more a',
-            autoTrigger: false,
-            debug: true,
 
-            // jscroll places new results into their own container
-            // which we don't want, so pull the results out and
-            // remove it
-            callback: function () {
-                $('.jscroll-inner').append($('.jscroll-added').find('.item'));
-                $('.jscroll-added').remove();
+
+
+        // trying to roll my own, can't seem to do a good
+        // cutoff once you get to the bottom
+        $(window).scroll(function (evt) {
+
+            // @TODO add a loading indicator, think about updating window.location
+            if($(window).scrollTop() == $(document).height() - $(window).height()) {
+                $.ajax({
+                    url: newHref,
+                    success: function(html)
+                    {
+                        moreLinkContainer.remove();
+                        if (html) {
+
+                            var findContent = $('<output>').append($.parseHTML(html));
+                            moreContentContainer.append(html);
+
+                            if (findContent.find('.item-more').length !== 0) {
+
+                                moreLinkContainer = moreContentContainer.find('.item-more');
+                                moreLink = moreLinkContainer.find('a');
+                                params = moreLink.attr('href').split('?')[1].split('&');
+                                endpoint = '/communitygetitems';
+                                newHref = endpoint + '?' + params.join('&');
+
+                                // attach the async more items link
+                                moreLink.attr('href', newHref);
+                            } else {
+                                $(window).unbind('scroll');
+                                return;
+                            }
+                        } else {
+                            return;
+                        }
+                    }
+                });
             }
         });
-
     });
 })(jQuery);
