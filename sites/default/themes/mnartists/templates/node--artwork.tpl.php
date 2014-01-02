@@ -112,12 +112,13 @@ if (!(empty($node->field_medium3))) {
     }
     $top_title = implode(', ', $term_list);
 }
+$image_url = image_style_url('medium', $content['field_media'][0]['#file']->uri);
 ?>
 <h3><?php print $top_title; ?></h3>
 <article id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
-  <?php print render($content); ?>
+  <a href="<?= $node_url ?>"><img src="<?= $image_url ?>"></a>
   <div class="item-info-container">
-    <p class="item-info-title"><a href="/node/<?= $node->nid ?>"><?php print $node->title; ?></a></p>
+    <p class="item-info-title"><a href="<?= $node_url ?>"><?php print $node->title; ?></a></p>
     <p class="item-info-author"><?php print mnartist_profiles_collective_or_fullname_or_username($node->uid, true); ?></p>
     <div class="item-info-flag pane-mnartist-collections-mna-collections-star"><?= theme("mnartist_collections_star", array('node_id' => $node->nid)) ?></div>
   </div>
