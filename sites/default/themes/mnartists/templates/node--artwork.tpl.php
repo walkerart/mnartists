@@ -112,11 +112,28 @@ if (!(empty($node->field_medium3))) {
     }
     $top_title = implode(', ', $term_list);
 }
-$image_url = image_style_url('medium', $content['field_media'][0]['#file']->uri);
+
+// if non-standard media type get image by scheme,
+// otherwise use image
+if (isset($node->field_media['und'])) {
+  $working_uri = $node->field_media['und'][0]['uri'];
+  $scheme = file_uri_scheme($working_uri);
+  switch ($scheme) {
+    case ('soundcloud'):
+    case ('youtube'):
+    case ('vimeo'):
+      $wrapper = file_stream_wrapper_get_instance_by_uri($working_uri);
+      $working_uri = $wrapper->getLocalThumbnailPath();
+      break;
+    case ('public'):
+      break;
+  }
+}
+$image_uri = image_style_url('medium', $working_uri);
 ?>
 <h3><?php print $top_title; ?></h3>
 <article id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
-  <a href="<?= $node_url ?>"><img src="<?= $image_url ?>"></a>
+  <a href="<?= $node_url ?>"><img src="<?= $image_uri ?>"></a>
   <div class="item-info-container">
     <p class="item-info-title"><a href="<?= $node_url ?>"><?php print $node->title; ?></a></p>
     <p class="item-info-author"><?php print mnartist_profiles_collective_or_fullname_or_username($node->uid, true); ?></p>
