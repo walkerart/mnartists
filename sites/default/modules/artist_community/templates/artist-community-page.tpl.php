@@ -26,6 +26,18 @@
     });
 }(jQuery));
 </script>
+<style>
+	#item-loading-indicator {
+		width: 100%;
+		height: 100px;
+		clear: both;
+
+		background: red url('/sites/default/themes/mnartists/images/icon-loader.gif') no-repeat center center;
+		background-size: 100px 100%;
+		background-color: red;
+		color: blue;
+	}
+</style>
 <?php
 	// if there are any, get og params from url to
 	// preserve them in links below
@@ -93,14 +105,14 @@
 		    <?php } ?>
 		    <div class="item item-more">
 		    	<?php
-		    		$current_start = (isset($_GET['start'])) ? intval($_GET['start']) : null;
-		    		$current_rows = (isset($_GET['rows'])) ? intval($_GET['rows']) : null;
-		    		$new_start = (!is_null($current_start) && !is_null($current_rows)) ? $current_start + $current_rows : null;
+		    		$current_start = (isset($_GET['start'])) ? intval($_GET['start']) : 0;
+		    		$current_rows = (isset($_GET['rows'])) ? intval($_GET['rows']) : SEARCH_DEFAULT_ROWS;
+		    		$new_start = (!is_null($current_start) && !is_null($current_rows)) ? $current_start + $current_rows : 0;
 
 		    		$new_get = array(
 		    			'og' => (isset($_GET['og'])) ? $_GET['og'] : null,
 		    			'content' => (isset($_GET['content'])) ? $_GET['content'] : null,
-		    			'rows' => (isset($_GET['rows'])) ? $_GET['rows'] : null,
+		    			'rows' => (isset($_GET['rows'])) ? $_GET['rows'] : SEARCH_DEFAULT_ROWS,
 		    			'start' => $new_start,
 		    		);
 		    	?>
