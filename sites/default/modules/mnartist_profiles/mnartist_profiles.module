@@ -768,6 +768,27 @@ function mnartist_profiles_entity_property_info_alter(&$info) {
         'sanitized' => TRUE,
         'getter callback' => 'mnartist_profiles_experiences_getter_callback',
     );
+    $info['user']['bundles']['user']['properties']['latlng'] = array(
+        'type' => 'location',
+        'label' => t('Latitude/Longitude'),
+        'sanitized' => TRUE,
+        'getter callback' => 'mnartist_profiles_latlng_getter_callback',
+    );
+}
+
+function mnartist_profiles_latlng_getter_callback($item) {
+    $main_profile = profile2_load_by_user($item->uid, 'main');
+    if (isset($main_profile) && isset($main_profile->field_zip['und'])) {
+        $zip = $main_profile->field_zip['und'][0]['value'];
+        $point = geocoder('google', $zip);
+        $geoJSON = $point->out('json');
+        $parsedPoint = json_decode($geoJSON);
+        if (isset($parsedPoint->coordinates)) {
+            // @TODO verify
+            return implode(',', $parsedPoint->coordinates);
+        }
+    }
+    return null;
 }
 
 function mnartist_profiles_practices_getter_callback($item) {
