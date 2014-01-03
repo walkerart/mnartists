@@ -7225,6 +7225,21 @@ body {
 }
 
 .form-wrapper {
+    .field-value-url {
+        width:100%;
+        max-width:520px;
+        position:relative;
+        label {
+            width:33%;
+            float:left;
+        }
+        input.form-text {
+            float:left;
+            width:66%;
+            box-sizing:border-box;
+            margin-bottom:8px;
+        }
+    }
     .form-item {
         &.form-type-textfield {
             width:100%;

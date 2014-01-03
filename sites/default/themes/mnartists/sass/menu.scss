@@ -390,6 +390,10 @@ p.site-description {
 					display:block;
 					text-indent:100%;
 					white-space:nowrap;
+					&.active {
+						background: url('../images/icon-pencil-white.svg') no-repeat left center transparent;
+						opacity:.6;
+					}
 
 				}
 				a.user-edit:hover {
