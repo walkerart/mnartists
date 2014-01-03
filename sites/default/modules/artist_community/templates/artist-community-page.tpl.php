@@ -26,18 +26,6 @@
     });
 }(jQuery));
 </script>
-<style>
-	#item-loading-indicator {
-		width: 100%;
-		height: 100px;
-		clear: both;
-
-		background: red url('/sites/default/themes/mnartists/images/icon-loader.gif') no-repeat center center;
-		background-size: 100px 100%;
-		background-color: red;
-		color: blue;
-	}
-</style>
 <?php
 	// if there are any, get og params from url to
 	// preserve them in links below
