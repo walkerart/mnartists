@@ -6802,6 +6802,122 @@ body {
 }
 /* @end */
 
+/* @group single collection list page */
+.page-user-flags-lists- {
+
+    .view-content {
+        @include container;
+
+        .user-list {
+            padding:20px 0;
+            @include column(14);
+            overflow:visible;
+            @media screen and (max-width: $break-mobile) {
+                @include column(24);
+            }
+            @media screen and (max-width: $break-tablet) {
+                @include column(24);
+            }
+            @media screen and (max-width: $break-desktop-small) {
+                @include column(24);
+            }
+
+            li.user-collection-item{
+                background: $mystuff_bg_dark;
+                padding:10px;
+                margin-bottom:20px;
+                color:#fff;
+                position:relative;
+                list-style:none;
+                min-height:80px;
+
+                &:last-child {
+
+                }
+
+                img {
+                    display:inline-block;
+                    margin-right:20px;
+                    vertical-align:top;
+                    border:5px solid #222; /* what should this color be? */
+                    border-radius:50%;
+                    position:absolute;
+                    left:10px;
+                }
+                .feed-update-description {
+                    padding-left:80px;
+                    font-size:14px;
+                    font-family:$serif_font;
+                    margin-bottom:10px;
+                    font-weight:bold;
+
+                    a {
+                        text-decoration:underline;
+                    }
+                }
+                .user-feed-message-container {
+                    display:inline-block;
+                    vertical-align:top;
+                    @include container;
+
+                    .left {
+                        @include column(15);
+                        box-sizing:border-box;
+                        padding-left:80px;
+
+                        @media screen and (max-width: $break-tablet) {
+                            @include column(24);
+                        }
+
+                    }
+                    .right {
+                        @include column(9);
+                        @include last;
+                        border-top:1px solid #fff;
+                        padding-top:10px;
+
+                        @media screen and (max-width: $break-tablet) {
+                            @include column(24);
+                            padding-left:0px;
+                            margin-left:80px;
+                        }
+
+                    }
+                    img {
+                        border-radius:none;
+                        border:none;
+                        left:auto;
+                        position:relative;
+                    }
+                }
+                .feed-update-node-image {
+                    border-radius:0;
+                }
+                a {
+                    color:#fff;
+                }
+                .user-feed-message-star {
+                    position:absolute;
+                    top:5px;
+                    right:5px;
+
+                    .star-link {
+
+
+                        .star-icon {
+                            -webkit-filter: invert(100%);
+                            filter: invert(100%);
+                            margin:0;
+                        }
+                    }
+
+                }
+            }
+        }
+    }
+}
+/* @end */
+
 /* @group user feed */
 .page-user-feed {
 
@@ -6898,11 +7014,11 @@ body {
                 }
                 .user-feed-message-star {
                     position:absolute;
-                    top:10px;
-                    right:10px;
+                    top:5px;
+                    right:5px;
 
                     .star-link {
-                        padding:0;
+
 
                         .star-icon {
                             -webkit-filter: invert(100%);
