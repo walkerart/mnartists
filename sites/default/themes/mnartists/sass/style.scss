@@ -6274,6 +6274,7 @@ body {
 /* -- sticky.submenu.END -- */
 
 
+// collection star
 .pane-mnartist-collections-mna-collections-star,
 .user-feed-message-star {
 
@@ -6380,7 +6381,7 @@ body {
 		}
 
 		a.star-link {
-			padding:5px;
+			padding:5px!important;
 
 			img {
 				margin:0;
@@ -6391,6 +6392,14 @@ body {
 			background:#fff;
 		}
 	}
+}
+.user-feed-message-star {
+    ul.menu {
+        ul {
+            right:0px;
+            left:auto;
+        }
+    }
 }
 
 /* filter star in sidebar menu */
