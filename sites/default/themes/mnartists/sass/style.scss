@@ -6809,7 +6809,7 @@ body {
 
         .user-list {
             padding:20px 0;
-            @include column(14);
+            @include column(24);
             overflow:visible;
             @media screen and (max-width: $break-mobile) {
                 @include column(24);
@@ -6867,12 +6867,37 @@ body {
                         article {
                             padding:0;
                             margin:0;
-                            img {
-                                border-radius:none;
-                                border:none;
-                                left:auto;
-                                position:relative;
 
+                            a {
+
+
+                            }
+                            .item-image {
+                                @include column(15);
+                                box-sizing:border-box;
+
+                                @media screen and (max-width: $break-tablet) {
+                                    @include column(24);
+                                }
+
+                                img {
+                                    border-radius:none;
+                                    border:none;
+                                    left:auto;
+                                    position:relative;
+                                }
+                            }
+                            .item-info-container {
+                                @include column(9);
+                                @include last;
+                                border-top:1px solid #fff;
+                                padding-top:10px;
+
+                                @media screen and (max-width: $break-tablet) {
+                                    @include column(24);
+                                    padding-left:0px;
+                                    margin-left:80px;
+                                }
                             }
                         }
                     }
