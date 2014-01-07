@@ -584,6 +584,10 @@ function _artist_community_get_items_query ($local_og = null,
     $nodeQueryBuilder = array();
     $userQueryBuilder = array();
 
+    // couple of filter triggers for the mixed content-type/user-type filtering
+    $filtered_by_type = false;
+    $filtered_by_type_and_user = false;
+
     // instantiate our client and query object
     $client = new Solarium\Client($solarium_config);
     $solarium_query = $client->createSelect();
@@ -591,12 +595,11 @@ function _artist_community_get_items_query ($local_og = null,
     // Handle Organic groups and taxonomies
     if ($local_og !== null) {
         foreach($local_og as $og_id => $terms) {
-            $filter->condition(AC_OG_GROUP_REF_FIELD, $og_id);
 
             // Add taxonomy filters for a specific taxonomy
             if (is_array($terms)) {
                 foreach($terms as $term) {
-                    $nodeQueryBuilder[] = AC_FIELD_MEDIUM.":$term";
+                    $nodeQueryBuilder[] = AC_MEDIUM_FIELD.":$term";
                 }
             } else {
                 $nodeQueryBuilder[] = AC_OG_GROUP_REF_FIELD.":$og_id";
@@ -607,6 +610,7 @@ function _artist_community_get_items_query ($local_og = null,
 
     // Handle content and users
     if ($local_content !== null) {
+        $filtered_by_type = true;
         foreach($local_content as $type => $value) {
             switch($type) {
                 case 'artwork':
@@ -615,9 +619,7 @@ function _artist_community_get_items_query ($local_og = null,
                         is_array($local_content['artwork'])) {
                         foreach ($local_content['artwork'] as $tid) {
                             $term = taxonomy_term_load($tid);
-                            $filter->condition(AC_SUBJECT_FIELD, $tid);
                             $nodeQueryBuilder[] = AC_SUBJECT_FIELD.":$tid";
-
                         }
                         break;
                     }
@@ -627,8 +629,7 @@ function _artist_community_get_items_query ($local_og = null,
                     $nodeQueryBuilder[] = AC_TYPE_FIELD.":$type";
                     break;
                 case 'artists':
-                    // kill the content filters??
-
+                    $filtered_by_type_and_user = true;
                     if (isset($local_content['artists']) &&
                         is_array($local_content['artists'])) {
                         foreach ($local_content['artists'] as $tid) {
@@ -646,6 +647,7 @@ function _artist_community_get_items_query ($local_og = null,
                     }
                     break;
                 case 'organizations':
+                    $filtered_by_type_and_user = true;
                     $userQueryBuilder[] = AC_USER_ROLES_FIELD.":".ORG_ROLE;
                     break;
             }
@@ -659,10 +661,11 @@ function _artist_community_get_items_query ($local_og = null,
     // if we want users only, switch to that, otherwise build the full query string
     if (count($nodeQueryBuilder) === 0 && count($userQueryBuilder) > 0) {
         $finalQueryString = "(index_id:users$userQueryBuilderString)";
+    } else if ($filtered_by_type && $filtered_by_type_and_user === false) {
+        $finalQueryString = "((index_id:default_node_index)$nodeQueryBuilderString)";
     } else {
         $finalQueryString = "((index_id:default_node_index AND (ss_type:article OR ss_type:artwork OR ss_type:event))$nodeQueryBuilderString) OR (index_id:users$userQueryBuilderString)";
     }
-
     $solarium_query->createFilterQuery('the_thing')->setQuery($finalQueryString);
     if ($start_row !== null && is_int($start_row)) {
         $solarium_query->setStart($start_row);
