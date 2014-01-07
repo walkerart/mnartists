@@ -5752,6 +5752,37 @@ tr.odd .form-item, tr.even .form-item {
             border:none;
         }
     }
+    form input[type=text],
+    form textarea {
+        /*-moz-box-shadow: 0 0 1px 1px rgba(210,176,107,1);
+        -webkit-box-shadow: 0 0 1px 1px rgba(210,176,107,1);*/
+        -moz-box-shadow: inset 0 0 1px 1px rgba(0,0,0,0);
+        -webkit-box-shadow: inset 0 0 1px 1px rgba(0,0,0,0);
+        box-shadow: inset 0 0 1px 1px rgba(0,0,0,0);
+
+        -moz-transition: all .3s ease-in-out;
+        -webkit-transition: all .3s ease-in-out;
+        transition: all .3s ease-in-out;
+        border:none;
+        outline: none;
+        color:#737373;
+        padding:4px;
+        box-sizing: border-box;
+        background:#fff;
+    }
+
+    form input[type=text]:focus,
+    form textarea:focus {
+        /*-moz-box-shadow: 0 0 3px 1px rgba(210,0,0,1);
+        -webkit-box-shadow: 0 0 3px 1px rgba(210,0,0,1);*/
+        -moz-box-shadow: inset 0 0 3px 1px rgba(0,0,0,0);
+        -webkit-box-shadow: inset 0 0 3px 1px rgba(0,0,0,0);
+        box-shadow: inset 0 0 3px 1px rgba(0,0,0,0);
+        border:none;
+        outline: none;
+        color:#737373;
+
+    }
 }
 
 .fieldset-wrapper {
