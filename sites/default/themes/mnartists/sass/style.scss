@@ -5744,7 +5744,14 @@ tr.odd .form-item, tr.even .form-item {
 .page-user-edit #columns {
 	padding:10px;
 	margin: 10px 0;
-	background:#fff;
+	background:#f2f2f2
+
+    input {
+        &[type="text"] {
+            background:#fff;
+            border:none;
+        }
+    }
 }
 
 .fieldset-wrapper {
@@ -7347,7 +7354,7 @@ body {
             margin-bottom:8px;
             padding:4px;
             border:1px solid #eee;
-            background: url('../images/icon-select-arrow.png') no-repeat 90% center #fff;
+            background: url('../images/icon-select-arrow.png') no-repeat 95% center #fff;
         }
     }
     &.form-type-managed-file {
