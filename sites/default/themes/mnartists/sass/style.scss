@@ -6859,6 +6859,7 @@ body {
                     vertical-align:top;
                     @include container;
                     padding-left:80px;
+                    box-sizing:border-box;
 
                     .user-collection-item-teaser {
                         h3 {
@@ -6881,7 +6882,7 @@ body {
                                 }
 
                                 img {
-                                    border-radius:none;
+                                    border-radius:0;
                                     border:none;
                                     left:auto;
                                     position:relative;
