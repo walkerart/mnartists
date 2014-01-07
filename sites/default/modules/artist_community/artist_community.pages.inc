@@ -28,6 +28,9 @@ function artist_community_search_page() {
     $client = new Solarium\Client($solarium_config);
     $solarium_query = $client->createSelect();
 
+    // @TODO somewhere in here, you gotta add a search for
+    // 'ss_latlng', and see if it works
+
     // assign url vars to local variables
     $local_og = (isset($_GET['og'])) ? $_GET['og'] : null;
     $local_content = (isset($_GET['content'])) ? $_GET['content'] : null;
@@ -40,13 +43,13 @@ function artist_community_search_page() {
         $filter->setConjunction('OR');
 
         foreach($local_og as $og_id => $terms) {
-            $filter->condition(AC_OG_GROUP_REF_FIELD, $og_id);
+            $filter->condition('og_group_ref', $og_id);
 
             // Add taxonomy filters for a specific taxonomy
             if (is_array($terms)) {
                 $sub_filter = new SearchApiQueryFilter;
                 foreach($terms as $term) {
-                    $sub_filter->condition(AC_FIELD_MEDIUM, $term);
+                    $sub_filter->condition('field_medium', $term);
                 }
                 $filter->filter($sub_filter);
             } else {
@@ -67,7 +70,7 @@ function artist_community_search_page() {
                         is_array($local_content['artwork'])) {
                         foreach ($local_content['artwork'] as $tid) {
                             $term = taxonomy_term_load($tid);
-                            $filter->condition(AC_SUBJECT_FIELD, $tid);
+                            $filter->condition('field_subject_concept', $tid);
                         }
                         break;
                     }
