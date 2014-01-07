@@ -6802,11 +6802,37 @@ body {
 }
 /* @end */
 
+/* @group collections list landing page */
+.page-user-flags-lists {
+    .view-content {
+        h2 {
+            padding:0 0 5px 0;
+            background:none;
+            color:#fff;
+        }
+
+        .view-flag-lists-user-list {
+            background: $mystuff_bg_dark;
+            padding:10px;
+            margin-bottom:20px;
+            color:#fff;
+            position:relative;
+            list-style:none;
+            min-height:80px;
+        }
+    }
+}
+/* @end */
+
 /* @group single collection list page */
 .page-user-flags-lists- {
 
     .view-content {
-
+        h2 {
+            padding:0 0 5px 0;
+            background:none;
+            color:#fff;
+        }
         .user-list {
             padding:20px 0;
             @include column(24);
