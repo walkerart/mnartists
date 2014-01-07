@@ -24,8 +24,8 @@ define('AC_SUBJECT_FIELD', 'im_field_subject_concept');
 define('AC_USER_NODE_FIELD', 'im_og_user_node');
 define('AC_TYPE_FIELD', 'ss_type');
 define('AC_USER_ROLES_FIELD', 'im_roles');
-define('AC_USER_PRACTICE_FIELD', 'im_practice');
-define('AC_USER_EXPERIENCE_FIELD', 'im_experience');
+define('AC_USER_PRACTICE_FIELD', 'im_practices');
+define('AC_USER_EXPERIENCE_FIELD', 'im_experiences');
 define('AC_CREATED_FIELD', 'ds_created');
 
 // config for solarium
@@ -661,8 +661,12 @@ function _artist_community_get_items_query ($local_og = null,
     // if we want users only, switch to that, otherwise build the full query string
     if (count($nodeQueryBuilder) === 0 && count($userQueryBuilder) > 0) {
         $finalQueryString = "(index_id:users$userQueryBuilderString)";
-    } else if ($filtered_by_type && $filtered_by_type_and_user === false) {
-        $finalQueryString = "((index_id:default_node_index)$nodeQueryBuilderString)";
+    } else if ($filtered_by_type) {
+        if ($filtered_by_type_and_user === false) {
+            $finalQueryString = "((index_id:default_node_index)$nodeQueryBuilderString)";
+        } else {
+            $finalQueryString = "((index_id:default_node_index)$nodeQueryBuilderString) OR (index_id:users$userQueryBuilderString)";
+        }
     } else {
         $finalQueryString = "((index_id:default_node_index AND (ss_type:article OR ss_type:artwork OR ss_type:event))$nodeQueryBuilderString) OR (index_id:users$userQueryBuilderString)";
     }
