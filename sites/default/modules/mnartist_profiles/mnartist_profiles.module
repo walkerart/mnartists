@@ -727,6 +727,10 @@ function mnartist_profiles_form_alter(&$form, $form_state, $form_id) {
     global $user;
     if ($form_id == 'user_profile_form') {
         if (isset($form["#user_category"]) && $form["#user_category"] == 'resume') {
+
+            // include form js
+            drupal_add_js(drupal_get_path('module', 'mnartist_profiles') .'/js/resume_form.js');
+
             $uid = $form['#user']->uid;
             // @TODO is this test acceptable? or should it be tied to a specific user permission?
             if ($user->uid == $uid || in_array('administrator', $user->roles)) {
