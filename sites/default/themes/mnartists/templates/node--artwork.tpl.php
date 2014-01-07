@@ -133,7 +133,7 @@ $image_uri = image_style_url('medium', $working_uri);
 ?>
 <h3><?php print $top_title; ?></h3>
 <article id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
-  <a href="<?= $node_url ?>"><img src="<?= $image_uri ?>"></a>
+  <a href="<?= $node_url ?>" class="item-image"><img src="<?= $image_uri ?>"></a>
   <div class="item-info-container">
     <p class="item-info-title"><a href="<?= $node_url ?>"><?php print $node->title; ?></a></p>
     <p class="item-info-author"><?php print mnartist_profiles_collective_or_fullname_or_username($node->uid, true); ?></p>
