@@ -2,77 +2,83 @@
     $(document).ready(function() {
 
         // infinite scrolling dealings-with
-        // do href stuff
+
+        // see if we have a more link...
         var moreContentContainer = $('.content-all');
         var moreLinkContainer = moreContentContainer.find('.item-more');
-        var moreLink = moreLinkContainer.find('a');
 
-        // update more link href to use async load
-        var params = moreLink.attr('href').split('?')[1].split('&');
-        var endpoint = '/communitygetitems';
-        var newHref = endpoint + '?' + params.join('&');
+        if (moreLinkContainer.length !== 0) {
 
-        // attach the async more items link
-        moreLink.attr('href', newHref);
+            var moreLink = moreLinkContainer.find('a');
 
-        // trying to roll my own, can't seem to do a good
-        // cutoff once you get to the bottom
-        $(window).scroll(function (evt) {
+            // do href stuff
+            // update more link href to use async load
+            var params = moreLink.attr('href').split('?')[1].split('&');
+            var endpoint = '/communitygetitems';
+            var newHref = endpoint + '?' + params.join('&');
 
-            // @TODO add a loading indicator, think about updating window.location
-            if($(window).scrollTop() == $(document).height() - $(window).height()) {
+            // attach the async more items link
+            moreLink.attr('href', newHref);
 
-                $('.item-loading-indicator').remove();
-                moreContentContainer.append($('<div id="item-loading-indicator" class="item-loading-indicator">loading more content</div>'));
+            // trying to roll my own, can't seem to do a good
+            // cutoff once you get to the bottom
+            $(window).scroll(function (evt) {
 
-                $.ajax({
-                    url: newHref,
-                    success: function (html) {
+                // @TODO think about updating window.location to preserve state?
+                if($(window).scrollTop() == $(document).height() - $(window).height()) {
 
-                        if (moreLinkContainer) {
-                            moreLinkContainer.remove();
-                        }
+                    $('.item-loading-indicator').remove();
+                    moreContentContainer.append($('<div id="item-loading-indicator" class="item-loading-indicator">loading more content</div>'));
 
-                        if (html) {
+                    $.ajax({
+                        url: newHref,
+                        success: function (html) {
 
-                            // kill the loading indicator (by class in case
-                            // we have somehow elsewhere ended up with more than one)
-                            $('.item-loading-indicator').remove();
+                            if (moreLinkContainer) {
+                                moreLinkContainer.remove();
+                            }
 
-                            // append the incoming markup, then get it parsed so
-                            // we can check it for a 'more' link
-                            moreContentContainer.append(html);
-                            var findContent = $('<output>').append($.parseHTML(html));
+                            if (html) {
 
-                            if (findContent.find('.item-more').length !== 0) {
-
-                                // re-fgure-out the
-                                moreLinkContainer = moreContentContainer.find('.item-more');
-                                moreLink = moreLinkContainer.find('a');
-                                params = moreLink.attr('href').split('?')[1].split('&');
-                                endpoint = '/communitygetitems';
-                                newHref = endpoint + '?' + params.join('&');
-
-                                // attach the async more items link
-                                moreLink.attr('href', newHref);
-
-                                // remove the loading indicator
+                                // kill the loading indicator (by class in case
+                                // we have somehow elsewhere ended up with more than one)
                                 $('.item-loading-indicator').remove();
 
+                                // append the incoming markup, then get it parsed so
+                                // we can check it for a 'more' link
+                                moreContentContainer.append(html);
+                                var findContent = $('<output>').append($.parseHTML(html));
+
+                                if (findContent.find('.item-more').length !== 0) {
+
+                                    // re-fgure-out the
+                                    moreLinkContainer = moreContentContainer.find('.item-more');
+                                    moreLink = moreLinkContainer.find('a');
+                                    params = moreLink.attr('href').split('?')[1].split('&');
+                                    endpoint = '/communitygetitems';
+                                    newHref = endpoint + '?' + params.join('&');
+
+                                    // attach the async more items link
+                                    moreLink.attr('href', newHref);
+
+                                    // remove the loading indicator
+                                    $('.item-loading-indicator').remove();
+
+                                } else {
+                                    $(window).unbind('scroll');
+                                    return;
+                                }
                             } else {
-                                $(window).unbind('scroll');
                                 return;
                             }
-                        } else {
-                            return;
-                        }
-                    },
-                    error: function (error) {
-                        // put an error message in the loading indicator
-                        $('#item-loading-indicator').text('error loading more content');
-                    },
-                });
-            }
-        });
+                        },
+                        error: function (error) {
+                            // put an error message in the loading indicator
+                            $('#item-loading-indicator').text('error loading more content');
+                        },
+                    });
+                }
+            });
+        }
     });
 })(jQuery);
