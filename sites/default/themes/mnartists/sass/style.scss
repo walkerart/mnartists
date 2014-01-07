@@ -6858,15 +6858,17 @@ body {
                     display:inline-block;
                     vertical-align:top;
                     @include container;
-                    box-sizing:border-box;
+
 
                     .user-collection-item-teaser {
                         h3 {
-
+                            padding:0 0 0 80px;
+                            box-sizing:border-box;
                         }
                         article {
-                            padding:0;
+                            padding:0 0 0 80px;
                             margin:0;
+                            box-sizing:border-box;
 
                             a {
 
