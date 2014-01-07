@@ -97,7 +97,7 @@
 				$current_rows = (isset($_GET['rows'])) ? intval($_GET['rows']) : SEARCH_DEFAULT_ROWS;
 				$new_start = (!is_null($current_start) && !is_null($current_rows)) ? $current_start + $current_rows : 0;
 
-	    		if (count($content) > $current_rows) {
+	    		if (count($content) >= $current_rows) {
 					$new_get = array(
 						'og' => (isset($_GET['og'])) ? $_GET['og'] : null,
 						'content' => (isset($_GET['content'])) ? $_GET['content'] : null,
