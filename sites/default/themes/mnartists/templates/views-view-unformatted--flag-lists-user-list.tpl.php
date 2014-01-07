@@ -5,10 +5,12 @@
 // the rendering of the individual items in the list
 
 reset($rows);
-// @TODO: gotta get list title in here, how do we do that?
-// @TODO: and then also remove title instance in lists view so that it picks up this one
+$list_title = $view->style_plugin->render_tokens[0]['%1'];
+$list_uri = $view->style_plugin->render_tokens[0]['%q'].'/'.$view->style_plugin->render_tokens[0]['!1'];
+
+// @TODO: consider eliminating single view, just pass id to multiple view to limit
 ?>
-<h2>(list title would go here?)<?= $title ?></h2>
+<h2><a href="/<?= $list_uri ?>"><?= $list_title ?></a></h2>
 <ul class="user-list">
     <?php
         foreach ($rows as $index => $item) {
