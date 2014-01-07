@@ -7,13 +7,29 @@
 
 $node = node_load($row->nid);
 $user = user_load($node->uid);
-$user_picture_uri = image_style_url('square_thumbnail', $user->picture->uri);
-$rendered_teaser = render(node_view($node, 'teaser'));
+$node_uri = "/node/$node->nid";
+$image_uri = null;
 
+if ($node->type === 'artwork') {
+    // if non-standard media type get image by scheme,
+    // otherwise use image
+    if (isset($node->field_media['und'])) {
+      $working_uri = $node->field_media['und'][0]['uri'];
+      $scheme = file_uri_scheme($working_uri);
+      switch ($scheme) {
+        case ('soundcloud'):
+        case ('youtube'):
+        case ('vimeo'):
+          $wrapper = file_stream_wrapper_get_instance_by_uri($working_uri);
+          $working_uri = $wrapper->getLocalThumbnailPath();
+          break;
+        case ('public'):
+          break;
+      }
+    }
+    $image_uri = image_style_url('medium', $working_uri);
+}
 ?>
-<li class="user-collection-item">
-    <img src="<?= file_create_url($user_picture_uri) ?>" width="50" height="50">
-    <div class="user-collection-item-container">
-        <div class="user-collection-item-teaser"><?= $rendered_teaser ?></div>
-    </div>
-</li>
+<a class="user-collection-item" href="<?= $node_uri ?>">
+    <img src="<?= file_create_url($image_uri) ?>">
+</a>
