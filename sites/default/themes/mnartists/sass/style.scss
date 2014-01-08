@@ -7979,7 +7979,14 @@ tr.even {
         border:none;
 
         thead {
+            tr {
+                background:none;
+                border-bottom:none;
 
+                th {
+                    background:none;
+                }
+            }
         }
         tbody {
 
@@ -7991,6 +7998,17 @@ tr.even {
                     background:none;
                     border:none;
                     background-image:none!important;
+
+                    .ui-state-default {
+                        background:none;
+                        border:none;
+                        background-image:none!important;
+
+                        &.ui-state-active {
+                            background:#222222;
+                            color:#fff;
+                        }
+                    }
                 }
             }
         }
