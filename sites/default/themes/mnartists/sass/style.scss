@@ -7616,34 +7616,7 @@ body {
             margin-bottom:8px;
         }
     }
-    &.form-type-date-select {
 
-
-        .form-type-select {
-            width:100%;
-            max-width:520px;
-            position:relative;
-            float:none!important;
-            clear:both;
-
-            label {
-                width:33%;
-                float:left;
-            }
-            .date-month {
-                float:left;
-                width:66%;
-                box-sizing:border-box;
-                margin-bottom:8px;
-            }
-            .date-padding {
-                padding:0;
-                float:none;
-                display:block;
-
-            }
-        }
-    }
     &.field-type-partial-date-form {
 
         .form-item {
@@ -7700,6 +7673,38 @@ body {
 
         .form-textarea-wrapper {
             margin-bottom:64px;
+        }
+    }
+}
+.field-name-field-birthdate {
+
+    .form-type-date-select {
+
+        .date-padding {
+            padding:0;
+            float:none;
+            display:block;
+
+        }
+
+        .form-type-select {
+            width:100%;
+            max-width:520px;
+            position:relative;
+            float:none!important;
+            clear:both;
+
+            label {
+                width:33%;
+                float:left;
+            }
+            .date-month {
+                float:left;
+                width:66%;
+                box-sizing:border-box;
+                margin-bottom:8px;
+            }
+
         }
     }
 }
