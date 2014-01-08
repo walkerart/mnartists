@@ -7989,10 +7989,13 @@ tr.even {
             }
         }
         tbody {
+            border:none;
+            border-top:none;
 
             tr {
                 background:none;
                 border:none;
+                border-top:none;
 
                 td {
                     background:none;
@@ -8001,11 +8004,12 @@ tr.even {
 
                     .ui-state-default {
                         background:none;
-                        border:none;
+                        border:1px solid #ccc;
                         background-image:none!important;
 
                         &.ui-state-active {
                             background:#222222;
+                            border:1px solid #222;
                             color:#fff;
                         }
                     }
