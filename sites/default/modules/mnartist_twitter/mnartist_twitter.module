@@ -214,7 +214,10 @@ function _mnartist_twitter_block()
         }
         krsort($tweets);
     }
-
+    // if we have no results, return false so we can hide the block
+    if (count($tweets) === 0) {
+        return false;
+    }
 	$output = "";
 	$output .= '<ul id="twitter_update_list">';
 	foreach ( $tweets as $tweet ) {

@@ -40,9 +40,11 @@
 ?>
 <div class="panel-2col layout-a">
 	<div class="panel-panel panel-col-first main-content">
+		<!-- @TODO only show if unfiltered-->
 		<div class="community-intro">
 			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ornare ultrices ante, eget ultricies arcu dapibus in. Nunc placerat tincidunt mauris quis rhoncus. Vivamus varius nunc ac tellus egestas ullamcorper. In consectetur, sem non lobortis interdum, erat quam volutpat tellus, in pellentesque ipsum felis vitae neque. Vivamus cursus tempor iaculis. Cras euismod suscipit nunc. Vestibulum viverra hendrerit sem tempor eleifend. Donec at sodales erat. Fusce vel ante ultrices, laoreet lacus at, dictum neque. Nunc vel nunc semper, pulvinar ante eget, interdum sem. Aenean porta viverra magna, sed tempus nisi dictum non. Curabitur at accumsan nibh. Duis convallis neque non bibendum dapibus. Duis non eros turpis.</p>
 		</div>
+		<!-- @TODO create block to replace this based on filter -->
 		<div class="community-logo">
 			logo
 		</div>
@@ -133,13 +135,16 @@
 			</div>
 		<?php } ?>
 
-		<div class="twitter-thing widget widget-reverse">
-			<h3>Tweets &amp; Posts</h3>
-			<?php $block = module_invoke('mnartist_twitter', 'block_view', 'mna_twitter_create');
-				  print render($block['content']);
-			?>
-			<a href="#" class="more-link">More...</a>
-		</div>
+		<?php
+		$block = module_invoke('mnartist_twitter', 'block_view', 'mna_twitter_create');
+		if ($block['content'] !== false) { ?>
+			<div class="twitter-thing widget widget-reverse">
+				<h3>Tweets &amp; Posts</h3>
+				<?= render($block['content']) ?>
+				<a href="#" class="more-link">More...</a>
+			</div>
+		<?php } ?>
+
 
 		<div class="event-thing widget-standard widget">
 			<h3>This Week</h3>
