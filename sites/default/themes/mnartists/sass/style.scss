@@ -7970,16 +7970,27 @@ tr.even {
     border:none;
     box-shadow:0 2px 6px rgba(0,0,0,.15);
     .ui-datepicker-header {
-
+        border:none;
+        border-radius:0;
+        background:#D3D3D3;
     }
     .ui-datepicker-calendar {
+        background:none;
+        border:none;
+
         thead {
 
         }
         tbody {
-            tr {
-                td {
 
+            tr {
+                background:none;
+                border:none;
+
+                td {
+                    background:none;
+                    border:none;
+                    background-image:none!important;
                 }
             }
         }
