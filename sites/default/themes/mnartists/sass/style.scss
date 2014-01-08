@@ -7969,6 +7969,10 @@ tr.even {
     border-radius:0;
     border:none;
     box-shadow:0 2px 6px rgba(0,0,0,.15);
+
+    font-family: 'Apercu Regular';
+    font-style: normal;
+
     .ui-datepicker-header {
         border:none;
         border-radius:0;
@@ -8007,10 +8011,22 @@ tr.even {
                         border:1px solid #ccc;
                         background-image:none!important;
 
+                        display: block;
+                        width: 20px;
+                        height: 20px;
+                        padding:0;
+
                         &.ui-state-active {
                             background:#222222;
                             border:1px solid #222;
                             color:#fff;
+                            padding:0;
+                        }
+
+                        &:hover {
+                            height:auto;
+                            width:auto;
+                            padding:0;
                         }
                     }
                 }
