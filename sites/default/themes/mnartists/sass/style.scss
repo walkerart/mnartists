@@ -5753,7 +5753,8 @@ tr.odd .form-item, tr.even .form-item {
         }
     }
     form input[type=text],
-    form textarea {
+    form textarea.
+    form input[type=password] {
         /*-moz-box-shadow: 0 0 1px 1px rgba(210,176,107,1);
         -webkit-box-shadow: 0 0 1px 1px rgba(210,176,107,1);*/
         -moz-box-shadow: inset 0 0 1px 1px rgba(0,0,0,0);
@@ -5782,6 +5783,21 @@ tr.odd .form-item, tr.even .form-item {
         outline: none;
         color:#737373;
 
+    }
+    tr.even, tr.odd {
+        background:none;
+    }
+    .sticky-table tbody tr.draggable {
+        border-bottom:none;
+
+        &:after {
+            content:"";
+            display:block;
+            clear:both;
+            float:none;
+            height:15px;
+            overflow:hidden;
+        }
     }
 }
 
@@ -5910,9 +5926,7 @@ tr.odd .form-item, tr.even .form-item {
 
 }
 
-.sticky-table tbody tr.draggable {
-    border-bottom:20px solid #fff;
-}
+
 
 /* cancel out :focus outline */
 li:focus {
