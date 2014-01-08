@@ -23,7 +23,7 @@
             var expand = target.next();
             if (target.hasClass("closed")) {
                 target.text("-")
-                      .toggleClass("closed open"); 
+                      .toggleClass("closed open");
                 expand.slideDown();
             } else {
                 target.text("+")
@@ -32,10 +32,11 @@
             }
         });
 
+        // open menu sub-items that have selections
         $('div.item-list').each(function () {
             var targetEl = $(this);
             if (targetEl.find('.selected').length > 0) {
-                targetEl.siblings('.expand').trigger('click');
+                targetEl.css('display', 'block');
             }
         });
     });
