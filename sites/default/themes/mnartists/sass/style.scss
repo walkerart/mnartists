@@ -5767,7 +5767,7 @@ tr.odd .form-item, tr.even .form-item {
         border:none;
         outline: none;
         color:#737373;
-        padding:4px;
+        padding:4px 4px 0 4px;
         box-sizing: border-box;
         background:#fff;
         border-left:4px solid #fff;
@@ -5787,6 +5787,10 @@ tr.odd .form-item, tr.even .form-item {
         border:none;
         outline: none;
         color:#737373;
+        border-left:4px solid #fff;
+        border-right:4px solid #fff;
+        box-shadow: 0px 4px 0 0 #fff;
+        border-bottom:1px solid #ccc;
 
     }
     tr.even, tr.odd {
