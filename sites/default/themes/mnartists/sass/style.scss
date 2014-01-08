@@ -7977,6 +7977,29 @@ tr.even {
         border:none;
         border-radius:0;
         background:#D3D3D3;
+
+        .ui-datepicker-next {
+            background:none;
+            height:auto;
+            top:0;
+            bottom:0;
+
+            .ui-icon {
+                background: url('../images/arrow-next.svg') no-repeat center center transparent;
+                background-size:10px auto;
+            }
+        }
+        .ui-datepicker-prev {
+            background:none;
+            height:auto;
+            top:0;
+            bottom:0;
+
+            .ui-icon {
+                background: url('../images/arrow-prev.svg') no-repeat center center transparent;
+                background-size:10px auto;
+            }
+        }
     }
     .ui-datepicker-calendar {
         background:none;
@@ -7989,6 +8012,8 @@ tr.even {
 
                 th {
                     background:none;
+                    font-weight:normal;
+                    color:#666;
                 }
             }
         }
@@ -8015,6 +8040,7 @@ tr.even {
                         width: 20px;
                         height: 20px;
                         padding:0;
+                        line-height:20px;
 
                         &.ui-state-active {
                             background:#222222;
