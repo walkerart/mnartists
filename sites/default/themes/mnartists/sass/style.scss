@@ -5573,11 +5573,25 @@ depending on the template so needs unified a bit */
 
 /* authoring adding nodes admin interface */
 
-body.page-node-add #content {
-	background: #fff;
-	padding:20px;
-	margin:20px 0;
+body.page-node-add {
+    #main-content {
+        #content {
+            background: #f2f2f2;
+            padding:20px;
+            margin:20px 0;
+            @include columns(14);
+
+            @media screen and (max-width: $break-tablet) {
+                @include column(24);
+            }
+            @media screen and (max-width: $break-desktop-small) {
+                @include column(24);
+            }
+
+        }
+    }
 }
+
 
 /* general layout */
 .inset-left {
