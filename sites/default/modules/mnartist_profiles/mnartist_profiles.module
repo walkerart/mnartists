@@ -32,7 +32,10 @@ function mnartist_profiles_menu() {
 
 }
 
-function mnartist_profiles_feed() {
+function mnartist_profiles_feed($start_row = null, $num_rows = null) {
+
+    // $start_row = (isset($_GET['start']) && is_numeric($_GET['start'])) ? intval($_GET['start']) : null;
+    // $num_rows = (isset($_GET['rows']) && is_numeric($_GET['rows'])) ? intval($_GET['rows']) : null;
 
     global $user;
 
@@ -46,7 +49,10 @@ function mnartist_profiles_feed() {
         }
     }
     $flagged_users = array_unique($flagged_users);
-    // @TODO this is broken if you're not logged in, check that
+
+    // @TODO this is broken if you're not logged in,
+    // make sure you can't get here (or should this
+    // be 'the firehose' if you're not logged in?)
     $sql = "SELECT DISTINCT activity.type, activity.uid, activity.eid, activity.created, activity_messages.message FROM activity
             INNER JOIN activity_targets ON activity.aid = activity_targets.aid
             INNER JOIN activity_messages ON activity_targets.amid = activity_messages.amid
@@ -772,27 +778,55 @@ function mnartist_profiles_entity_property_info_alter(&$info) {
         'sanitized' => TRUE,
         'getter callback' => 'mnartist_profiles_experiences_getter_callback',
     );
-    $info['user']['bundles']['user']['properties']['latlng'] = array(
+    $info['user']['bundles']['user']['properties']['user_latlng'] = array(
         'type' => 'location',
-        'label' => t('Latitude/Longitude'),
+        'label' => t('User Latitude/Longitude'),
         'sanitized' => TRUE,
         'getter callback' => 'mnartist_profiles_latlng_getter_callback',
     );
 }
 
+function mnartist_profiles_search_api_data_type_info() {
+  return array(
+    'location' => array(
+      'name' => t('Latitude/longitude'),
+      'fallback' => 'string',
+    ),
+  );
+}
+
 function mnartist_profiles_latlng_getter_callback($item) {
+    $coords_array = array();
     $main_profile = profile2_load_by_user($item->uid, 'main');
-    if (isset($main_profile) && isset($main_profile->field_zip['und'])) {
-        $zip = $main_profile->field_zip['und'][0]['value'];
-        $point = geocoder('google', $zip);
-        $geoJSON = $point->out('json');
-        $parsedPoint = json_decode($geoJSON);
-        if (isset($parsedPoint->coordinates)) {
-            // @TODO verify
-            return implode(',', $parsedPoint->coordinates);
+    if (isset($main_profile)) {
+        $search_string = '';
+        if (isset($main_profile->field_address['und']) &&
+            isset($main_profile->field_city['und']) &&
+            isset($main_profile->field_state['und']) &&
+            isset($main_profile->field_zip['und'])) {
+
+            $address = $main_profile->field_address['und'][0]['value'];
+            $city = $main_profile->field_city['und'][0]['value'];
+            $state = $main_profile->field_state['und'][0]['value'];
+            $zip = $main_profile->field_zip['und'][0]['value'];
+            $search_string = "$address, $city, $state, $zip";
+
+        } else if (isset($main_profile->field_zip['und'])) {
+            $search_string = $main_profile->field_zip['und'][0]['value'];
+        }
+        if ($search_string !== '') {
+            $point = geocoder('google', $search_string);
+            $geoJSON = $point->out('json');
+            $parsedPoint = json_decode($geoJSON);
+            $lat = $parsedPoint->coordinates[1];
+            $long = $parsedPoint->coordinates[0];
+
+            if (isset($parsedPoint->coordinates)) {
+                $coords_array = array("$lat,$long");
+            }
         }
     }
-    return null;
+    return $coords_array;
 }
 
 function mnartist_profiles_practices_getter_callback($item) {
