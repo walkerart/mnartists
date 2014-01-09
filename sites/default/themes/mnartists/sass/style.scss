@@ -5801,6 +5801,16 @@ tr.odd .form-item, tr.even .form-item {
             background:#f2f2f2;
             padding:10px;
             box-sizing:border-box;
+            @include column(14);
+            @media screen and (max-width: $break-mobile) {
+                @include column(24);
+            }
+            @media screen and (max-width: $break-tablet) {
+                @include column(24);
+            }
+            @media screen and (max-width: $break-desktop-small) {
+
+            }
         }
     }
 
