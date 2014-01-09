@@ -5794,9 +5794,15 @@ tr.odd .form-item, tr.even .form-item {
 	margin-bottom:10px;
 }
 .page-user-edit #columns {
-	padding:10px;
-	margin: 10px 0;
-	background:#f2f2f2;
+
+    .content-inner {
+
+        #main-content {
+            background:#f2f2f2;
+            padding:10px;
+            box-sizing:border-box;
+        }
+    }
 
     input {
         &[type=text] {
@@ -7582,11 +7588,13 @@ body {
             }
             .entityconnect-add {
                 position:absolute;
-                right:-40px;
+                right:5px;
+                padding:1px;
             }
             .entityconnect-edit {
                 position:absolute;
-                right:-20px;
+                right:27px;
+                padding:1px;
             }
         }
         &.form-type-textarea {
