@@ -5580,12 +5580,16 @@ body.page-node-add {
             padding:20px;
             margin:20px 0;
             @include column(14);
+            box-sizing:border-box;
+            @include last;
 
             @media screen and (max-width: $break-tablet) {
                 @include column(24);
+                @include last;
             }
             @media screen and (max-width: $break-desktop-small) {
                 @include column(24);
+                @include last;
             }
 
         }
