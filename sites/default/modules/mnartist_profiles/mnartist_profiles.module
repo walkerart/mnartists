@@ -797,33 +797,17 @@ function mnartist_profiles_search_api_data_type_info() {
 
 function mnartist_profiles_latlng_getter_callback($item) {
     $coords_array = array();
-    $main_profile = profile2_load_by_user($item->uid, 'main');
-    if (isset($main_profile)) {
-        $search_string = '';
-        if (isset($main_profile->field_address['und']) &&
-            isset($main_profile->field_city['und']) &&
-            isset($main_profile->field_state['und']) &&
-            isset($main_profile->field_zip['und'])) {
+    $search_string = mnartist_profiles_get_geocoding_search_string_for_uid($item->uid);
 
-            $address = $main_profile->field_address['und'][0]['value'];
-            $city = $main_profile->field_city['und'][0]['value'];
-            $state = $main_profile->field_state['und'][0]['value'];
-            $zip = $main_profile->field_zip['und'][0]['value'];
-            $search_string = "$address, $city, $state, $zip";
+    if ($search_string) {
+        $point = geocoder('google', $search_string);
+        $geoJSON = $point->out('json');
+        $parsedPoint = json_decode($geoJSON);
+        $lat = $parsedPoint->coordinates[1];
+        $long = $parsedPoint->coordinates[0];
 
-        } else if (isset($main_profile->field_zip['und'])) {
-            $search_string = $main_profile->field_zip['und'][0]['value'];
-        }
-        if ($search_string !== '') {
-            $point = geocoder('google', $search_string);
-            $geoJSON = $point->out('json');
-            $parsedPoint = json_decode($geoJSON);
-            $lat = $parsedPoint->coordinates[1];
-            $long = $parsedPoint->coordinates[0];
-
-            if (isset($parsedPoint->coordinates)) {
-                $coords_array = array("$lat,$long");
-            }
+        if (isset($parsedPoint->coordinates)) {
+            $coords_array = array("$lat,$long");
         }
     }
     return $coords_array;
@@ -849,4 +833,28 @@ function mnartist_profiles_experiences_getter_callback($item) {
         }
     }
     return $all_experiences;
+}
+
+function mnartist_profiles_get_geocoding_search_string_for_uid($uid) {
+
+    $search_string = false;
+    $main_profile = profile2_load_by_user($uid, 'main');
+    if (isset($main_profile)) {
+        $search_string = '';
+        if (isset($main_profile->field_address['und']) &&
+            isset($main_profile->field_city['und']) &&
+            isset($main_profile->field_state['und']) &&
+            isset($main_profile->field_zip['und'])) {
+
+            $address = $main_profile->field_address['und'][0]['value'];
+            $city = $main_profile->field_city['und'][0]['value'];
+            $state = $main_profile->field_state['und'][0]['value'];
+            $zip = $main_profile->field_zip['und'][0]['value'];
+            $search_string = "$address, $city, $state, $zip";
+
+        } else if (isset($main_profile->field_zip['und'])) {
+            $search_string = $main_profile->field_zip['und'][0]['value'];
+        }
+    }
+    return $search_string;
 }

@@ -14,6 +14,7 @@ define('SUBJECT_VID', '8');
 define('EXPERIENCE_VID', '12');
 define('PRACTICE_VID', '13');
 define('SEARCH_DEFAULT_ROWS', '10');
+define('NEAR_ME_RADIUS', '50');
 
 include_once 'artist_community.features.inc';
 
@@ -27,6 +28,7 @@ define('AC_USER_ROLES_FIELD', 'im_roles');
 define('AC_USER_PRACTICE_FIELD', 'im_practices');
 define('AC_USER_EXPERIENCE_FIELD', 'im_experiences');
 define('AC_CREATED_FIELD', 'ds_created');
+define('AC_USER_LATLNG_FIELD', 'locm_user_latlng');
 
 // config for solarium
 global $solarium_config;
@@ -587,6 +589,7 @@ function _artist_community_get_items_query ($local_og = null,
     // couple of filter triggers for the mixed content-type/user-type filtering
     $filtered_by_type = false;
     $filtered_by_type_and_user = false;
+    $filtered_by_location = (isset($_GET['near_me']) && $_GET['near_me'] === '1');
 
     // instantiate our client and query object
     $client = new Solarium\Client($solarium_config);
@@ -654,6 +657,28 @@ function _artist_community_get_items_query ($local_og = null,
         }
     }
 
+    if ($filtered_by_location) {
+        global $user;
+        $geocode_search_string = mnartist_profiles_get_geocoding_search_string_for_uid($user->uid);
+        if ($geocode_search_string) {
+            // @TODO this must not stay here, can't be running this request on every search.
+            // Either cache it, or hang it off the profile.
+            // @TODO also, what about other content types? wouldn't we want to add this to
+            // events and so on?
+            $point = geocoder('google', $geocode_search_string);
+            $geoJSON = $point->out('json');
+            $parsedPoint = json_decode($geoJSON);
+            $lat = $parsedPoint->coordinates[1];
+            $long = $parsedPoint->coordinates[0];
+
+            if (isset($parsedPoint->coordinates)) {
+                $coords = "$lat,$long";
+            }
+
+            $locationSearchString = '{!geofilt sfield='.AC_USER_LATLNG_FIELD." pt=$coords d=".NEAR_ME_RADIUS.'}';
+        }
+    }
+
     // build the solarium query string
     $nodeQueryBuilderString = (count($nodeQueryBuilder) !== 0) ? ' AND ('.implode(' OR ', $nodeQueryBuilder).')' : '';
     $userQueryBuilderString = (count($userQueryBuilder) !== 0) ? ' AND ('.implode(' OR ', $userQueryBuilder).')' : '';
@@ -671,6 +696,9 @@ function _artist_community_get_items_query ($local_og = null,
         $finalQueryString = "((index_id:default_node_index AND (ss_type:article OR ss_type:artwork OR ss_type:event))$nodeQueryBuilderString) OR (index_id:users$userQueryBuilderString)";
     }
     $solarium_query->createFilterQuery('the_thing')->setQuery($finalQueryString);
+    if ($filtered_by_location) {
+        $solarium_query->createFilterQuery('location_filter')->setQuery($locationSearchString);
+    }
     if ($start_row !== null && is_int($start_row)) {
         $solarium_query->setStart($start_row);
     }
@@ -710,10 +738,12 @@ function _artist_community_get_items_query ($local_og = null,
             $current_rows = (isset($_GET['rows'])) ? intval($_GET['rows']) : SEARCH_DEFAULT_ROWS;
             $new_start = (!is_null($current_start) && !is_null($current_rows)) ? $current_start + $current_rows : 0;
 
+            // @TODO make sure you're not losing the nesting here
             // defaults for start and rows
             $new_get = array(
                 'og' => (isset($_GET['og'])) ? $_GET['og'] : null,
                 'content' => (isset($_GET['content'])) ? $_GET['content'] : null,
+                'near_me' => (isset($_GET['near_me'])) ? $_GET['near_me'] : null,
                 'rows' => (isset($_GET['rows'])) ? $_GET['rows'] : SEARCH_DEFAULT_ROWS,
                 'start' => $new_start,
             );
