@@ -28,14 +28,11 @@ function artist_community_search_page() {
     $client = new Solarium\Client($solarium_config);
     $solarium_query = $client->createSelect();
 
-    // @TODO somewhere in here, you gotta add a search for
-    // 'ss_latlng', and see if it works
-
     // assign url vars to local variables
     $local_og = (isset($_GET['og'])) ? $_GET['og'] : null;
     $local_content = (isset($_GET['content'])) ? $_GET['content'] : null;
     $start_row = (isset($_GET['start']) && is_numeric($_GET['start'])) ? intval($_GET['start']) : null;
-    $num_rows = (isset($_GET['rows']) && is_numeric($_GET['rows'])) ? intval($_GET['rows']) : null;
+    $num_rows = (isset($_GET['rows']) && is_numeric($_GET['rows'])) ? intval($_GET['rows']) : intval(SEARCH_DEFAULT_ROWS);
 
     // Handle Organic groups and taxonomies
     if ($local_og !== null) {
@@ -112,6 +109,13 @@ function artist_community_search_page() {
         }
 
         // as above, but with events
+
+        // @TODO - key off of 'promoted to front page' to get a
+        // key event, then two more that are just 'the next ones,
+        // timewise'
+        // query - order by promoted and date, then they query's
+        // always the same
+
         $event_filters = array();
         $event_filter = new SearchApiQueryFilter;
         $event_filter->condition('type', 'event');

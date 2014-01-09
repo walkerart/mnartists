@@ -96,7 +96,7 @@
 
 				// check if we need to show the 'show more' anchor, and if so then show it
 				$current_start = (isset($_GET['start'])) ? intval($_GET['start']) : 0;
-				$current_rows = (isset($_GET['rows'])) ? intval($_GET['rows']) : SEARCH_DEFAULT_ROWS;
+				$current_rows = (isset($_GET['rows'])) ? intval($_GET['rows']) : intval(SEARCH_DEFAULT_ROWS);
 				$new_start = (!is_null($current_start) && !is_null($current_rows)) ? $current_start + $current_rows : 0;
 
 	    		if (count($content) >= $current_rows) {
