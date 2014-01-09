@@ -5592,6 +5592,13 @@ body.page-node-add {
                 @include last;
             }
 
+            input[type=text],
+            input[type=password],
+            textarea {
+                background:#fff;
+                border:none;
+            }
+
         }
     }
 }
@@ -7428,7 +7435,7 @@ body {
     }
     &.form-type-managed-file {
         width:100%;
-        max-width:520px;
+        /*max-width:520px;*/
 
         label {
             width:33%;
@@ -7470,7 +7477,7 @@ body {
 
         &.form-type-textarea {
             width:100%;
-            max-width:520px;
+            /*max-width:520px;*/
 
             label {
                 width:33%;
