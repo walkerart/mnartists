@@ -5597,12 +5597,33 @@ body.page-node-add {
             textarea {
                 background:#fff;
                 border:none;
+                outline:none;
             }
 
         }
     }
 }
 
+
+/* ck edit me not */
+.form-textarea-wrapper {
+
+    .cke_chrome {
+        border:none;
+
+        .cke_top {
+            background-image:none;
+            background-color:#fff;
+            box-shadow:none;
+            border-bottom:#ccc;
+
+            .cke_toolgroup {
+                background-image:none;
+                box-shadow:none;
+            }
+        }
+    }
+}
 
 /* general layout */
 .inset-left {
