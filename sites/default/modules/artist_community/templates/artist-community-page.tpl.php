@@ -145,19 +145,25 @@
 			</div>
 		<?php } ?>
 
-
-		<div class="event-thing widget-standard widget">
-			<h3>This Week</h3>
-			<div class="widget-content">
-			<?php foreach ($events as $event) { ?>
-				<div class="event-thing-event-block">
-					<a href="/node/<?= $event->nid ?>">
-						<img src="<?= $event->image_uri ?>">
-						<div class="event-thing-event-title"><?= $event->title ?></div>
-					</a>
+		<?php if (!empty($events)) { ?>
+			<div class="event-thing widget-standard widget">
+				<h3>This Week</h3>
+				<div class="widget-content">
+					<div class="event-thing-event-block event-thing-event-block-hero">
+						<a href="/node/<?= $events['hero']->nid ?>">
+							<img src="<?= $events['hero']->image_uri ?>">
+							<div class="event-thing-event-title"><?= $events['hero']->title ?></div>
+						</a>
+					</div>
+					<?php foreach ($events['others'] as $event) { ?>
+						<div class="event-thing-event-block">
+							<a href="/node/<?= $event->nid ?>">
+								<div class="event-thing-event-title"><?= $event->title ?></div>
+							</a>
+						</div>
+					<?php } ?>
 				</div>
-			<?php } ?>
 			</div>
-		</div>
+		<?php } ?>
 	</div>
 </div>
