@@ -382,6 +382,10 @@ function url_query_master($text, $path, $key, $val, $attributes = array()) {
         $query['content'] = $_GET['content'];
     }
 
+    if (isset($_GET['near_me'])) {
+        $query['near_me'] = $_GET['near_me'];
+    }
+
     if ($key == 'og') {
         if ($node = node_load($val)) {
             if (isset($_GET['og'][$val]) && $_GET['og'][$val] == 1) $attributes['class'][] = 'selected';
