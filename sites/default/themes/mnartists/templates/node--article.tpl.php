@@ -110,12 +110,12 @@ hide($content['links']);
     <header<?php print $header_attributes; ?>>
       <?php if ($title): ?>
         <h1<?php print $title_attributes; ?>>
-          <a href="<?php print $node_url; ?>" rel="bookmark"><?php print $title; ?></a>
+          <a href="<?= $node_url; ?>" rel="bookmark"><?php print $title; ?></a>
         </h1>
       <?php endif; ?>
     </header>
   <?php endif; ?>
   <div<?php print $content_attributes; ?>>
-    <?php print strip_tags(text_summary($node->field_body['und'][0]['safe_value'], 'html', 200)) ?> <a href="/node/<?= $node->nid ?>">&gt;</a>
+    <?php print strip_tags(text_summary($node->field_body['und'][0]['safe_value'], 'html', 200)) ?> <a href="/node/<?= $node_url ?>">&gt;</a>
   </div>
 </article>
