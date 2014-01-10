@@ -778,8 +778,8 @@ function mnartist_profiles_entity_property_info_alter(&$info) {
         'sanitized' => TRUE,
         'getter callback' => 'mnartist_profiles_experiences_getter_callback',
     );
-    $info['user']['bundles']['user']['properties']['user_latlng'] = array(
-        'type' => 'location',
+    $info['user']['bundles']['user']['properties']['near_me_latlng'] = array(
+        'type' => 'string',
         'label' => t('User Latitude/Longitude'),
         'sanitized' => TRUE,
         'getter callback' => 'mnartist_profiles_latlng_getter_callback',
@@ -787,7 +787,7 @@ function mnartist_profiles_entity_property_info_alter(&$info) {
 
     // this doesn't *really* belong here, but I guess
     // this is the best of a bunch of bad options for placement
-    $info['node']['bundles']['event']['properties']['event_latlng'] = array(
+    $info['node']['bundles']['event']['properties']['near_me_latlng'] = array(
         'type' => 'string',
         'label' => t('Event Latitude/Longitude'),
         'sanitized' => TRUE,
