@@ -7928,32 +7928,35 @@ tr.even {
 }
 
 // add edit icons on form fields
+.entityconnect-add, .entityconnect-edit {
+    width:auto;
+}
 .entityconnect-add {
     input {
         width:16px!important;
         padding:0;
         margin:0;
         border:none;
-        background: url('../images/icon-small-add.png') no-repeat center center transparent !important;
+        background: url('../images/icon-small-add.png') no-repeat center center #fff !important;
         opacity:.8;
 
         &:hover {
-            background: url('../images/icon-small-add.png') no-repeat center center transparent !important;
+            background: url('../images/icon-small-add.png') no-repeat center center #fff !important;
             opacity:1;
         }
     }
 }
-.entityconnect-edit {
+div.entityconnect-edit {
     input {
         width:16px!important;
         padding:0;
         margin:0;
         border:none;
-        background: url('../images/icon-small-edit.png') no-repeat center center transparent !important;
+        background: url('../images/icon-small-edit.png') no-repeat center center #fff !important;
         opacity:.8;
 
         &:hover {
-            background: url('../images/icon-small-edit.png') no-repeat center center transparent !important;
+            background: url('../images/icon-small-edit.png') no-repeat center center #fff !important;
             opacity:1;
         }
     }
