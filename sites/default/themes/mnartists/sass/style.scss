@@ -5886,7 +5886,7 @@ tr.odd .form-item, tr.even .form-item {
         text-indent:0px;
         background: url('../images/bg-drag-image-here') no-repeat 0px 0px transparent;
         min-height:130px;
-        padding-left:130px;
+
         box-sizing:border-box;
     }
 
@@ -5900,15 +5900,21 @@ tr.odd .form-item, tr.even .form-item {
         border: none;
         border-radius: 0;
         padding: 10px;
-        min-height:130px;
-
         outline: none;
         white-space: nowrap;
         -webkit-user-select: none;
         cursor: pointer;
         padding:0;margin:0;
         text-indent:0px;
-        padding-top:30px;
+        margin-top:30px;
+        padding-left:0px;
+        padding:5px 10px;
+        background:#333;
+        color:#fff;
+
+        &:hover {
+
+        }
     }
 
 }
