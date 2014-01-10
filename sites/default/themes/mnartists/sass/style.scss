@@ -5796,7 +5796,7 @@ tr.odd .form-item, tr.even .form-item {
 .page-user-edit #columns {
 
     .content-inner {
-
+        margin-right:10px;
         #main-content {
             background:#f2f2f2;
             padding:20px;
@@ -5871,6 +5871,43 @@ tr.odd .form-item, tr.even .form-item {
             border-top:none;
         }
     }
+}
+
+.form-item-files-picture-upload {
+
+    input[type=file] {
+            background:none;
+            border:none;
+            box-shadow:none;
+            height:110px;
+            width:110px;
+            overflow:hidden;
+            white-space: nowrap;
+            text-indent:120px;
+        }
+    }
+
+    input[type=file]::-webkit-file-upload-button {
+        visibility: hidden;
+    }
+    input[type=file]:before {
+        content: 'Select some files';
+        display: inline-block;
+        background: none;
+        border: none;
+        border-radius: 0;
+        padding: 10px;
+        min-height:130px;
+        background: url('../images/bg-drag-image-here') no-repeat 10px 10px transparent;
+        outline: none;
+        white-space: nowrap;
+        -webkit-user-select: none;
+        cursor: pointer;
+        text-shadow: 1px 1px #fff;
+        font-weight: 700;
+        font-size: 10pt;
+    }
+
 }
 
 .fieldset-wrapper {
