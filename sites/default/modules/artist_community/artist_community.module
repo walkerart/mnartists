@@ -28,7 +28,7 @@ define('AC_USER_ROLES_FIELD', 'im_roles');
 define('AC_USER_PRACTICE_FIELD', 'im_practices');
 define('AC_USER_EXPERIENCE_FIELD', 'im_experiences');
 define('AC_CREATED_FIELD', 'ds_created');
-define('AC_USER_LATLNG_FIELD', 'locm_user_latlng');
+define('AC_USER_LATLNG_FIELD', 'locs_near_me_latlng');
 
 // config for solarium
 global $solarium_config;
@@ -380,6 +380,10 @@ function url_query_master($text, $path, $key, $val, $attributes = array()) {
 
     if (isset($_GET['content'])) {
         $query['content'] = $_GET['content'];
+    }
+
+    if (isset($_GET['near_me'])) {
+        $query['near_me'] = $_GET['near_me'];
     }
 
     if ($key == 'og') {

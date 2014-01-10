@@ -103,19 +103,20 @@
  */
 hide($content['comments']);
 hide($content['links']);
+
+$image_uri = '';
+if (isset($node->field_images['und'])) {
+  $image_uri = $image_uri = image_style_url('medium', $node->field_images['und'][0]['uri']);
+}
 ?>
 <h3><?php print $type; ?></h3>
 <article id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
-  <?php if ($title && !$page): ?>
-    <header<?php print $header_attributes; ?>>
-      <?php if ($title): ?>
-        <h1<?php print $title_attributes; ?>>
-          <a href="<?php print $node_url; ?>" rel="bookmark"><?php print $title; ?></a>
-        </h1>
-      <?php endif; ?>
-    </header>
-  <?php endif; ?>
-  <div<?php print $content_attributes; ?>>
-    <?php print text_summary($node->body['und'][0]['value'], 'html', 200) ?> <a href="/node/<?= $node->nid ?>">&gt;</a>
+  <a href="<?= $node_url ?>" class="item-image"><img src="<?= $image_uri ?>"></a>
+  <div class="item-info-container">
+    <p class="item-info-title"><a href="<?= $node_url ?>"><?php print $node->title; ?></a></p>
+    <p class="item-info-excerpt">
+      <?php print text_summary($node->body['und'][0]['value'], 'html', 200) ?> <a href="<?= $node_url ?>">&gt;</a>
+    </p>
+    <div class="item-info-flag pane-mnartist-collections-mna-collections-star"><?= theme("mnartist_collections_star", array('node_id' => $node->nid)) ?></div>
   </div>
 </article>
