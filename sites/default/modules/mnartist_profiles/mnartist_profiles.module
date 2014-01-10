@@ -784,6 +784,15 @@ function mnartist_profiles_entity_property_info_alter(&$info) {
         'sanitized' => TRUE,
         'getter callback' => 'mnartist_profiles_latlng_getter_callback',
     );
+
+    // this doesn't *really* belong here, but I guess
+    // this is the best of a bunch of bad options for placement
+    $info['node']['bundles']['event']['properties']['event_latlng'] = array(
+        'type' => 'string',
+        'label' => t('Event Latitude/Longitude'),
+        'sanitized' => TRUE,
+        'getter callback' => 'mnartist_profiles_latlng_getter_callback',
+    );
 }
 
 function mnartist_profiles_search_api_data_type_info() {
@@ -796,10 +805,26 @@ function mnartist_profiles_search_api_data_type_info() {
 }
 
 function mnartist_profiles_latlng_getter_callback($item) {
-    $coords_array = array();
-    $search_string = mnartist_profiles_get_geocoding_search_string_for_uid($item->uid);
 
-    if ($search_string) {
+    $search_string = '';
+
+    if (isset($item->type)) {
+        // if this is a node, specifically an event,
+        // try to get its zip
+        if ($item->type === 'event' && isset($item->field_venue['und'])) {
+            $venue = node_load($item->field_venue['und'][0]['target_id']);
+            if ($venue->field_zip['und']) {
+                $search_string = $venue->field_zip['und'][0]['value'];
+            }
+        }
+    } else {
+        // this is a user, get search string from module method
+        $search_string = mnartist_profiles_get_geocoding_search_string_for_uid($item->uid);
+    }
+
+    // if we have a search string, try to geocode it
+    if ($search_string && $search_string !== '') {
+        $coords_array = array();
         $point = geocoder('google', $search_string);
         $geoJSON = $point->out('json');
         $parsedPoint = json_decode($geoJSON);
@@ -809,8 +834,9 @@ function mnartist_profiles_latlng_getter_callback($item) {
         if (isset($parsedPoint->coordinates)) {
             $coords_array = array("$lat,$long");
         }
+        return $coords_array;
     }
-    return $coords_array;
+    return null;
 }
 
 function mnartist_profiles_practices_getter_callback($item) {
