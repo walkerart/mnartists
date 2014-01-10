@@ -5898,7 +5898,8 @@ tr.odd .form-item, tr.even .form-item {
 
 	.form-wrapper {
 
-        .field-value-url {
+        .field-value-url,
+        .field-value-title {
             padding-left:0;
             width:100%;
             clear:both;
@@ -7926,13 +7927,28 @@ tr.even {
 }
 
 // add edit icons on form fields
-.entityconnect-add,
+.entityconnect-add {
+    input {
+        width:16px!important;
+        padding:0;
+        margin:0;
+        border:none;
+        background: url('../images/icon-small-add.png') no-repeat center center transparent;
+        &:hover {
+            background: url('../images/icon-small-add.png') no-repeat center center transparent;
+        }
+    }
+}
 .entityconnect-edit {
     input {
         width:16px!important;
         padding:0;
         margin:0;
         border:none;
+        background: url('../images/icon-small-edit.png') no-repeat center center transparent;
+        &:hover {
+            background: url('../images/icon-small-edit.png') no-repeat center center transparent;
+        }
     }
 }
 
