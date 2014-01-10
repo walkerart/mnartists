@@ -311,11 +311,12 @@ function gid_by_tid($tid) {
     return $result['entity_id'];
 }
 
-function artist_community_execute_query($index, $filters = array(), $sorts = array()) {
+function artist_community_execute_query($index, $filters = array(), $sorts = array(), $rows = null) {
     // Initialize the solr query
     $options = array(
         'search id' => 'artist_community:' . $index,
         'parse mode' => 'terms',
+        'limit' => $rows,
     );
     $query = search_api_query($index, $options);
 

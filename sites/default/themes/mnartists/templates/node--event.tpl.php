@@ -115,7 +115,7 @@ if (isset($node->field_images['und'])) {
   <div class="item-info-container">
     <p class="item-info-title"><a href="<?= $node_url ?>"><?php print $node->title; ?></a></p>
     <p class="item-info-excerpt">
-      <?php print text_summary($node->body['und'][0]['value'], 'html', 200) ?> <a href="<?= $node_url ?>">&gt;</a>
+      <?= text_summary($node->body['und'][0]['value'], 'html', 200) ?> <a href="<?= $node_url ?>">&gt;</a>
     </p>
     <div class="item-info-flag pane-mnartist-collections-mna-collections-star"><?= theme("mnartist_collections_star", array('node_id' => $node->nid)) ?></div>
   </div>
