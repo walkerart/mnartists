@@ -5883,8 +5883,9 @@ tr.odd .form-item, tr.even .form-item {
         width:110px;
         overflow:hidden;
         white-space: nowrap;
-        text-indent:0;
-
+        text-indent:130px;
+        background: url('../images/bg-drag-image-here') no-repeat 0px 0px transparent;
+        min-height:130px;
     }
 
     input[type=file]::-webkit-file-upload-button {
@@ -5898,12 +5899,14 @@ tr.odd .form-item, tr.even .form-item {
         border-radius: 0;
         padding: 10px;
         min-height:130px;
-        background: url('../images/bg-drag-image-here') no-repeat 10px 10px transparent;
+
         outline: none;
         white-space: nowrap;
         -webkit-user-select: none;
         cursor: pointer;
-
+        padding:0;margin:0;
+        text-indent:130px;
+        padding-top:30px;
     }
 
 }
