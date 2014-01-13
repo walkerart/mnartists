@@ -103,6 +103,11 @@
  */
 hide($content['comments']);
 hide($content['links']);
+
+$text_excerpt = '';
+if (isset($node->body['und'])) {
+    $text_excerpt = strip_tags(text_summary($node->body['und'][0]['value'], 'htmlcorrector', 120));
+}
 ?>
 <h3><?php print $type; ?></h3>
 <article id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
@@ -116,6 +121,6 @@ hide($content['links']);
     </header>
   <?php endif; ?>
   <div<?php print $content_attributes; ?>>
-    <?php print strip_tags(text_summary($node->field_body['und'][0]['safe_value'], 'html', 200)) ?> <a href="/node/<?= $node_url ?>">&gt;</a>
+    <?= $text_excerpt ?> <a href="/node/<?= $node_url ?>">&gt;</a>
   </div>
 </article>
