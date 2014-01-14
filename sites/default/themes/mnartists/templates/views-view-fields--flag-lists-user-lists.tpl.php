@@ -9,7 +9,6 @@ $list_id = $row->fid;
 $list_title = $row->flag_lists_flags_title;
 
 ?>
-<h2><a href="/user/<?= $list_uid ?>/flags/lists/<?= $list_id ?>"><?= $list_title ?></a></h2>
 <?php
 
 $user_list_view = views_get_view('flag_lists_user_list', TRUE);

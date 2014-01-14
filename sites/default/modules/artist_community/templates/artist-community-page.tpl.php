@@ -40,10 +40,12 @@
 ?>
 <div class="panel-2col layout-a">
 	<div class="panel-panel panel-col-first main-content">
-		<!-- @TODO only show if unfiltered-->
-		<div class="community-intro">
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ornare ultrices ante, eget ultricies arcu dapibus in. Nunc placerat tincidunt mauris quis rhoncus. Vivamus varius nunc ac tellus egestas ullamcorper. In consectetur, sem non lobortis interdum, erat quam volutpat tellus, in pellentesque ipsum felis vitae neque. Vivamus cursus tempor iaculis. Cras euismod suscipit nunc. Vestibulum viverra hendrerit sem tempor eleifend. Donec at sodales erat. Fusce vel ante ultrices, laoreet lacus at, dictum neque. Nunc vel nunc semper, pulvinar ante eget, interdum sem. Aenean porta viverra magna, sed tempus nisi dictum non. Curabitur at accumsan nibh. Duis convallis neque non bibendum dapibus. Duis non eros turpis.</p>
-		</div>
+		<? /* don't show this block if we're not on the community landing page */ ?>
+		<?php if (count($_GET) <= 1) { ?>
+			<div class="community-intro">
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ornare ultrices ante, eget ultricies arcu dapibus in. Nunc placerat tincidunt mauris quis rhoncus. Vivamus varius nunc ac tellus egestas ullamcorper. In consectetur, sem non lobortis interdum, erat quam volutpat tellus, in pellentesque ipsum felis vitae neque. Vivamus cursus tempor iaculis. Cras euismod suscipit nunc. Vestibulum viverra hendrerit sem tempor eleifend. Donec at sodales erat. Fusce vel ante ultrices, laoreet lacus at, dictum neque. Nunc vel nunc semper, pulvinar ante eget, interdum sem. Aenean porta viverra magna, sed tempus nisi dictum non. Curabitur at accumsan nibh. Duis convallis neque non bibendum dapibus. Duis non eros turpis.</p>
+			</div>
+		<?php } ?>
 		<!-- @TODO create block to replace this based on filter -->
 		<div class="community-logo">
 			logo
@@ -80,39 +82,81 @@
 		<?php } ?>
 		<div class="clear"></div>
 		<div class="search-results content-all">
+
 		    <?php
-		    	foreach($content as $item) {
-		    		$the_thing = $item['item'];
-		    		$the_class_suffix = ($item['type'] === 'user') ? 'users' : $the_thing->type;
-		    ?>
-		    	<div class="item item-<?= $the_class_suffix ?>">
-		    		<?php if ($item['type'] === 'node') { ?>
-	    				<?= render(node_view($the_thing, 'teaser')); ?>
-		    		<?php } else if ($item['type'] === 'user') { ?>
-	    				<?= theme('artist_community_artist_profile', array('user' => $the_thing)) ?>
-		    		<?php } ?>
-		    	</div>
-			<?php }
+		    	if(!is_null($all_event_results)) {
 
-				// check if we need to show the 'show more' anchor, and if so then show it
-				$current_start = (isset($_GET['start'])) ? intval($_GET['start']) : 0;
-				$current_rows = (isset($_GET['rows'])) ? intval($_GET['rows']) : intval(SEARCH_DEFAULT_ROWS);
-				$new_start = (!is_null($current_start) && !is_null($current_rows)) ? $current_start + $current_rows : 0;
+		    		// grab today's date
+		    		$today = new DateTime();
+		    		$today->setTime(0,0,0);
 
-	    		if (count($content) >= $current_rows) {
-					$new_get = array(
-						'og' => (isset($_GET['og'])) ? $_GET['og'] : null,
-						'content' => (isset($_GET['content'])) ? $_GET['content'] : null,
-						'rows' => (isset($_GET['rows'])) ? $_GET['rows'] : SEARCH_DEFAULT_ROWS,
-						'start' => $new_start,
-					);
+		    		// loop through, make blocks by date
+		    		foreach($all_event_results as $date_index => $date_group) {
+		    			$context_date = new DateTime($date_index);
+		    			$date_heading = ($context_date === $today) ? 'Today' : $context_date->format('l M jS');
+		    		?>
+		    			<div class="date-block">
+		    				<h2><?= $date_heading ?></h2>
+		    				<div class="item item-date">
+								<div class="event-date">
+									<span class="date-display-single">
+									<span class="month"><?= $context_date->format('M') ?></span>
+									<?= $context_date->format('j') ?>
+									</span>
+								</div>
+		    				    <ul class="item-event-facets">
+		    				        <li><a href="">Performances (count)</a></li>
+		    				        <li><a href="">Classes (count)</a></li>
+		    				        <li><a href="">Exhibitions (count)</a></li>
+		    				    </ul>
+		    				</div>
+		    				<?php foreach($date_group as $index => $the_thing) { ?>
+								<div class="item item-event">
+									<?= render(node_view($the_thing['item'], 'teaser')); ?>
+								</div>
+		    				<?php } ?>
+		    			</div>
+		    		<?php }
 
-				?>
-				<div class="item item-more"><a href="/community?<?= http_build_query($new_get) ?>">Show me more!</a></div>
-				<?php } ?>
+				} else {
+				    	foreach($content as $item) {
+				    		$the_thing = $item['item'];
+				    		$the_class_suffix = ($item['type'] === 'user') ? 'users' : $the_thing->type;
+				    ?>
+				    	<div class="item item-<?= $the_class_suffix ?>">
+				    		<?php if ($item['type'] === 'node') { ?>
+			    				<?= render(node_view($the_thing, 'teaser')); ?>
+				    		<?php } else if ($item['type'] === 'user') { ?>
+			    				<?= theme('artist_community_artist_profile', array('user' => $the_thing)) ?>
+				    		<?php } ?>
+				    	</div>
+					<?php }
+
+						// check if we need to show the 'show more' anchor, and if so then show it
+						$current_start = (isset($_GET['start'])) ? intval($_GET['start']) : 0;
+						$current_rows = (isset($_GET['rows'])) ? intval($_GET['rows']) : intval(SEARCH_DEFAULT_ROWS);
+						$new_start = (!is_null($current_start) && !is_null($current_rows)) ? $current_start + $current_rows : 0;
+
+			    		if (count($content) >= $current_rows) {
+							$new_get = array(
+								'og' => (isset($_GET['og'])) ? $_GET['og'] : null,
+								'content' => (isset($_GET['content'])) ? $_GET['content'] : null,
+								'rows' => (isset($_GET['rows'])) ? $_GET['rows'] : SEARCH_DEFAULT_ROWS,
+								'start' => $new_start,
+							);
+
+						?>
+						<div class="item item-more"><a href="/community?<?= http_build_query($new_get) ?>">Show me more!</a></div>
+					<?php }
+				} ?>
 		</div>
 	</div>
 	<div class="panel-panel panel-col-last sidebar-right">
+		<?php if(!is_null($all_event_results)) { ?>
+			<div class="widget-standard widget">
+				<a href="/node/add/event">Create an event</a>
+			</div>
+		<?php } ?>
 		<?php if (!empty($latest_users)) { ?>
 			<div class="user-thing widget-standard widget">
 				<h3>Newest Artists</h3>
