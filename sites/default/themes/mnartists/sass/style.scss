@@ -7563,7 +7563,45 @@ body {
 
     }
 }
+.form-type-partial-datetime-element {
+
+    .partial-date-element {
+
+        .partial-date-year {
+
+            .form-item {
+
+                label {
+
+                }
+                input {
+
+                }
+            }
+        }
+        .partial-date-year {
+            .form-item {
+
+                label {
+
+                }
+                select {
+
+                }
+            }
+        }
+    }
+}
 .text-format-wrapper {
+    .tips {
+        display:none;
+    }
+    .form-type-select {
+        padding-left:0;
+    }
+    .filter-help {
+        display:none;
+    }
 
     .form-item {
 
@@ -7580,15 +7618,7 @@ body {
                 width:66%;
                 box-sizing:border-box;
             }
-            .tips {
-                display:none;
-            }
-            .form-type-select {
-                padding-left:0;
-            }
-            .filter-help {
-                display:none;
-            }
+
         }
     }
     fieldset.filter-wrapper {
