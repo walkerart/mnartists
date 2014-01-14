@@ -7,10 +7,12 @@
 reset($rows);
 
 $row_limit = 9;
-$is_singular_view = (arg(4));// check for list id to figure out if we're in the list-of-lists view or single-list view
+$is_singular_view = (is_numeric(arg(2)));// check for list id to figure out if we're in the list-of-lists view or single-list view
 
 ?>
-<h2><a href="/<?= $view->get_url() ?>"><?= $view->get_title() ?></a></h2>
+<?php if ($is_singular_view) { ?>
+<h2><?= $view->get_title() ?></h2>
+<?php } ?>
 <ul class="user-list">
     <?php
         foreach ($rows as $index => $item) {
