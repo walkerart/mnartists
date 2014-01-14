@@ -13,6 +13,7 @@ function artist_community_search_page() {
     $events_data    = array();
     $all_results    = array();
     $kill_content   = false;
+    $filtered_by_events_only = false;
 
     // pull in solarium config
     global $solarium_config;
@@ -98,8 +99,7 @@ function artist_community_search_page() {
             }
             $context_article_data->author = $author_full_name;
             $context_article_data->title = $article->title;
-            // $context_article_data->uri = url(drupal_lookup_path('article', 'node/' . $node->nid), array('absolute' => true));// @TODO how do we get this?
-            $context_article_data->image_uri = isset($article->field_images['und']) ? file_create_url($article->field_images['und'][0]['uri']) : '';// @TODO article image placeholder? or just skip over articles that don't have one?
+            $context_article_data->image_uri = isset($article->field_images['und']) ? file_create_url($article->field_images['und'][0]['uri']) : '';
             $context_article_data->photo_credit = isset($article->field_images['und'][0]['image_field_caption']['value']) ? $article->field_images['und'][0]['image_field_caption']['value'] : '';
             $context_article_data->excerpt = (isset($article->field_body['und'])) ? text_summary($article->field_body['und'][0]['value'], 'html', 300) : '';
             $context_article_data->nid = $article->nid;
@@ -161,5 +161,27 @@ function artist_community_search_page() {
 
     $all_community_results = _artist_community_get_items_query($local_og, $local_content, $start_row, $num_rows);
 
-    return theme('artist_community_page', array('content' => $all_community_results, 'articles' => $articles_data, 'events' => $events_data, 'latest_users' => $latest_users_data));
+    $all_event_results = null;
+    if (isset($_GET['content']) &&
+        count($_GET['content']) === 1 &&
+        !(isset($_GET['og'])) &&
+        isset($_GET['content']['event'])) {
+
+        $filtered_by_events_only = true;
+
+        $all_event_results = array();
+        foreach ($all_community_results as $index => $row) {
+
+            $date_key = date_create($row['item']->field_date['und'][0]['value']);
+            $date_key->setTime(0,0,0);
+            $date_key_string = $date_key->format('Y-m-d');
+            if (isset($all_event_results[$date_key_string])) {
+                $all_event_results[$date_key_string][] = $row;
+            } else {
+                $all_event_results[$date_key_string] = array($row);
+            }
+        }
+    }
+
+    return theme('artist_community_page', array('content' => $all_community_results, 'articles' => $articles_data, 'events' => $events_data, 'latest_users' => $latest_users_data, 'all_event_results' => $all_event_results));
 }

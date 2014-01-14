@@ -29,6 +29,7 @@ define('AC_USER_PRACTICE_FIELD', 'im_practices');
 define('AC_USER_EXPERIENCE_FIELD', 'im_experiences');
 define('AC_CREATED_FIELD', 'ds_created');
 define('AC_USER_LATLNG_FIELD', 'locs_near_me_latlng');
+define('AC_START_DATE_FIELD', 'ds_field_date:value');
 
 // config for solarium
 global $solarium_config;
@@ -198,7 +199,6 @@ function _community_block_community() {
 function _community_block_content() {
     // render content menu;
 
-    // @TODO either sort these or do something on front-end to separate them visually
     $menu_items = array(
         'article' => array(
             'title' => t('Articles'),
@@ -595,6 +595,7 @@ function _artist_community_get_items_query ($local_og = null,
     $filtered_by_type = false;
     $filtered_by_type_and_user = false;
     $filtered_by_location = (isset($_GET['near_me']) && $_GET['near_me'] === '1');
+    $filtered_by_events_only = false;
 
     // instantiate our client and query object
     $client = new Solarium\Client($solarium_config);
@@ -619,6 +620,18 @@ function _artist_community_get_items_query ($local_og = null,
     // Handle content and users
     if ($local_content !== null) {
         $filtered_by_type = true;
+
+        // @TODO reconsider query here, og can be additive as it
+        // is now, should that be the case or should og somehow
+        // filter the events?
+        if (isset($_GET['content']) &&
+            count($_GET['content']) === 1 &&
+            !(isset($_GET['og'])) &&
+            isset($_GET['content']['event'])) {
+
+            $filtered_by_events_only = true;
+        }
+
         foreach($local_content as $type => $value) {
             switch($type) {
                 case 'artwork':
@@ -668,8 +681,6 @@ function _artist_community_get_items_query ($local_og = null,
         if ($geocode_search_string) {
             // @TODO this must not stay here, can't be running this request on every search.
             // Either cache it, or hang it off the profile.
-            // @TODO also, what about other content types? wouldn't we want to add this to
-            // events and so on?
             $point = geocoder('google', $geocode_search_string);
             $geoJSON = $point->out('json');
             $parsedPoint = json_decode($geoJSON);
@@ -710,9 +721,29 @@ function _artist_community_get_items_query ($local_og = null,
     if ($num_rows !== null && is_int($num_rows)) {
         $solarium_query->setRows($num_rows);
     }
-    $solarium_query->addSort(AC_CREATED_FIELD, $solarium_query::SORT_DESC);// @TODO get sort from incoming params?
+
+    // if we're filtered by events, sort by event start date
+    // instead of date created
+    if ($filtered_by_events_only) {
+        $solarium_query->addSort(AC_START_DATE_FIELD, $solarium_query::SORT_DESC);
+
+        // for now at least, since we don't really have
+        // much of a strategy for how to handle pagination
+        // with these dates. so I guess...
+        // @TODO figure that out
+        $solarium_query->setStart(null);
+        $solarium_query->setRows(null);
+    } else {
+        $solarium_query->addSort(AC_CREATED_FIELD, $solarium_query::SORT_DESC);// @TODO get sort from incoming params?
+    }
+
+    // limit to published nodes
+    $solarium_query->createFilterQuery('published_filter')->setQuery('is_status:1');
+
+    // get the result set
     $resultset = $client->select($solarium_query);
 
+    // if we actually want markup back, get it ready
     if ($rendernodes === true) {
         foreach($resultset as $item) {
             $the_element_string = '';
@@ -728,6 +759,7 @@ function _artist_community_get_items_query ($local_og = null,
                     break;
             }
 
+            // yuck, maybe get this into a themed render if time allows
             $element_string_arr = array();
             $element_string_arr[] = "<div class='item item-$the_class_suffix'>";
             $element_string_arr[] = $the_element_string;
@@ -743,8 +775,6 @@ function _artist_community_get_items_query ($local_og = null,
             $current_rows = (isset($_GET['rows'])) ? intval($_GET['rows']) : SEARCH_DEFAULT_ROWS;
             $new_start = (!is_null($current_start) && !is_null($current_rows)) ? $current_start + $current_rows : 0;
 
-            // @TODO make sure you're not losing the nesting here
-            // defaults for start and rows
             $new_get = array(
                 'og' => (isset($_GET['og'])) ? $_GET['og'] : null,
                 'content' => (isset($_GET['content'])) ? $_GET['content'] : null,
@@ -755,6 +785,7 @@ function _artist_community_get_items_query ($local_og = null,
             $all_results[] = '<div class="item item-more"><a href="/communitygetitems?'.http_build_query($new_get).'">Show me more!</a></div>';
         }
 
+    // or, if we just want the data back, get that ready
     } else {
         foreach($resultset as $item) {
             switch ($item->index_id) {
