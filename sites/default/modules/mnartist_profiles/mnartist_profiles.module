@@ -7,6 +7,7 @@
 define('ARTIST_ROLE', 4);
 define('ORG_ROLE', 5);
 define('PUBLIC_ROLE', 6);
+define('FEED_DEFAULT_ROW_LIMIT', '20');
 
 include_once 'mnartist_profiles.features.inc';
 
@@ -23,7 +24,13 @@ function mnartist_profiles_menu() {
     // @TODO pretty sure this belongs somewhere else, move it there
     $items['user/feed'] = array(
         'page callback'     => 'mnartist_profiles_feed',
-        'page arguments'    => array(1),
+        'access callback'   => TRUE,
+        'type'              => MENU_CALLBACK,
+    );
+
+    // @TODO pretty sure this belongs somewhere else, move it there
+    $items['user/feed/more'] = array(
+        'page callback'     => 'mnartist_profiles_feed_more',
         'access callback'   => TRUE,
         'type'              => MENU_CALLBACK,
     );
@@ -32,12 +39,46 @@ function mnartist_profiles_menu() {
 
 }
 
-function mnartist_profiles_feed($start_row = null, $num_rows = null) {
+function mnartist_profiles_feed_more() {
 
-    // $start_row = (isset($_GET['start']) && is_numeric($_GET['start'])) ? intval($_GET['start']) : null;
-    // $num_rows = (isset($_GET['rows']) && is_numeric($_GET['rows'])) ? intval($_GET['rows']) : null;
+    $row_offset = $_GET['offset'];
+
+    $feed_data = _mnartist_profiles_get_feed_data($row_offset, null);
+    echo theme("mna_feed_raw", array('feed_data' => $feed_data));
+    drupal_exit();
+}
+
+
+
+function mnartist_profiles_feed() {
+
+    // include feed js
+    drupal_add_js(drupal_get_path('module', 'mnartist_profiles') .'/js/feed.js');
+
+    // get the data and render it
+    $feed_data = _mnartist_profiles_get_feed_data();
+    return array(
+        '#type' => 'container',
+        '#attributes' => array(),
+        'content' => array(
+            '#type' => 'markup',
+            '#markup' => theme("mna_feed", array('feed_data' => $feed_data)),
+            '#weight' => 0,
+        ),
+    );
+}
+
+function _mnartist_profiles_get_feed_data($row_offset = null, $row_limit = null)  {
+
+    // @TODO deal with user-not-logged-in case here
+    if (!user_is_logged_in()) {
+        return;
+    }
 
     global $user;
+
+    $row_offset = (is_null($row_offset)) ? 0 : intval($row_offset);
+    $row_limit = (is_null($row_limit)) ? FEED_DEFAULT_ROW_LIMIT : $row_limit;
 
     // get users current user has flagged, put it
     // into a unique'd array
@@ -50,15 +91,18 @@ function mnartist_profiles_feed($start_row = null, $num_rows = null) {
     }
     $flagged_users = array_unique($flagged_users);
 
-    // @TODO this is broken if you're not logged in,
-    // make sure you can't get here (or should this
-    // be 'the firehose' if you're not logged in?)
     $sql = "SELECT DISTINCT activity.type, activity.uid, activity.eid, activity.created, activity_messages.message FROM activity
             INNER JOIN activity_targets ON activity.aid = activity_targets.aid
             INNER JOIN activity_messages ON activity_targets.amid = activity_messages.amid
             WHERE ((activity.uid = :my_uid and activity_targets.uid = :my_uid) OR (activity.uid != :my_uid AND activity_targets.uid = 0))
             AND activity.uid in (:flagged_users)
             ORDER BY activity.created DESC";
+    if ($row_limit !== null) {
+        $sql .= " LIMIT $row_limit";
+    }
+    if ($row_offset !== null) {
+        $sql .= " OFFSET $row_offset";
+    }
     $result = db_query($sql, array(':flagged_users' => $flagged_users, ':my_uid' => $user->uid));
 
     // munge the data to send to the template, add user
@@ -74,18 +118,7 @@ function mnartist_profiles_feed($start_row = null, $num_rows = null) {
         $feed_data[] = $context_object;
     }
 
-    // generate output, pass it to render
-    $feed_output = theme("mna_feed", array('feed_data' => $feed_data));
-    $render = array(
-        '#type' => 'container',
-        '#attributes' => array(),
-        'content' => array(
-            '#type' => 'markup',
-            '#markup' => $feed_output,
-            '#weight' => 0,
-        ),
-    );
-    return $render;
+    return $feed_data;
 }
 
 // gives you either the collective name, or fullname, or username
@@ -236,6 +269,13 @@ function mnartist_profiles_theme() {
 
     $themes['mna_feed'] = array(
         'template' => 'templates/mna-feed',
+        'variables' => array(
+            'feed_data' => array()
+        )
+    );
+
+    $themes['mna_feed_raw'] = array(
+        'template' => 'templates/mna-feed-raw',
         'variables' => array(
             'feed_data' => array()
         )
