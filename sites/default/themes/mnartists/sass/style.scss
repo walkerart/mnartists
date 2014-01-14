@@ -6987,13 +6987,7 @@ body {
         }
 
         .view-flag-lists-user-list {
-            background: $mystuff_bg_dark;
-            padding:10px;
-            margin-bottom:20px;
-            color:#fff;
-            position:relative;
-            list-style:none;
-            min-height:80px;
+
         }
     }
 }
@@ -8323,26 +8317,36 @@ td.odd {
 
         .view-content {
 
-            h2 {
-                color:#ccc;
-                border-bottom:1px solid #ccc;
-                font-size:16px;
-                text-transform:none;
-                height:auto;
-                padding-bottom:5px;
+            .user-list-wrap {
+                background: $mystuff_bg_dark;
+                padding:10px;
+                margin-bottom:20px;
+                color:#fff;
+                position:relative;
+                list-style:none;
+                min-height:80px;
 
-                a {
+                h2 {
                     color:#ccc;
+                    border-bottom:1px solid #ccc;
+                    font-size:16px;
                     text-transform:none;
-                }
-            }
-            .user-list {
-                padding:0;
+                    height:auto;
+                    padding-bottom:5px;
 
-                li {
-                    vertical-align:middle;
-                    list-style:none;
-                    display:inline-block;
+                    a {
+                        color:#ccc;
+                        text-transform:none;
+                    }
+                }
+                .user-list {
+                    padding:0;
+
+                    li {
+                        vertical-align:middle;
+                        list-style:none;
+                        display:inline-block;
+                    }
                 }
             }
         }
