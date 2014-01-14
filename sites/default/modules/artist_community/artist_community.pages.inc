@@ -109,32 +109,32 @@ function artist_community_search_page() {
         }
 
         // as above, but with events
-
-        // @TODO - key off of 'promoted to front page' to get a
-        // key event, then two more that are just 'the next ones,
-        // timewise'
-        // query - order by promoted and date, then they query's
-        // always the same
-
+        $start_date = new DateTime();
+        $end_date = date('Y-m-d\TH:i:s\Z', strtotime("+7 days"));
         $event_filters = array();
         $event_filter = new SearchApiQueryFilter;
         $event_filter->condition('type', 'event');
-        // @TODO figure out this date filtering
-        // $today = new DateTime();
-        // $next_week = date_add(clone $today, date_interval_create_from_date_string('7 days'));
-        // $event_filter->condition('field_date', $today->format('Y-m-d\TH:i:s\Z'), '>=');
-        // $event_filter->condition('field_date', $next_week->format('Y-m-d\TH:i:s\Z'), '<=');
+        // $event_filter->condition('field_date:value', $start_date->format('Y-m-d\TH:i:s\Z'), '>=');
+        // $event_filter->condition('field_date:value', $end_date, '<=');
         $event_filters[] = $event_filter;
         if ($local_og !== null) {
             $event_filters = array_merge($event_filters, $filters);
         }
-        $events = artist_community_execute_query(NODE_INDEX, $event_filters, array());
-        foreach ($events as $event) {
+
+        $events = artist_community_execute_query(NODE_INDEX, $event_filters, array(array('promote', 'DESC'), array('field_date:value', 'ASC')), 3);
+        $events_data['others'] = array();
+        foreach ($events as $index => $event) {
             $context_event_data = new StdClass();
             $context_event_data->nid = $event->nid;
             $context_event_data->title = $event->title;
-            $context_event_data->image_uri = image_style_url('thumbnail', $event->field_images['und'][0]['uri']);
-            $events_data[] = $context_event_data;
+            $context_event_data->text = text_summary($event->body['und'][0]['value'], 'html', 300);
+            $context_event_data->image_uri = image_style_url('medium', $event->field_images['und'][0]['uri']);
+
+            if (!(isset($events_data['hero']))) {
+                $events_data['hero'] = $context_event_data;
+            } else {
+                $events_data['others'][] = $context_event_data;
+            }
         }
     }
 

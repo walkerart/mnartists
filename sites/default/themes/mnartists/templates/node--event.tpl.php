@@ -106,17 +106,21 @@ hide($content['links']);
 
 $image_uri = '';
 if (isset($node->field_images['und'])) {
-  $image_uri = $image_uri = image_style_url('medium', $node->field_images['und'][0]['uri']);
+    $image_uri = $image_uri = image_style_url('medium', $node->field_images['und'][0]['uri']);
+}
+$text_excerpt = '';
+if (isset($node->body['und'])) {
+    $text_excerpt = strip_tags(text_summary($node->body['und'][0]['safe_value'], 'htmlcorrector', 120));
 }
 ?>
 <h3><?php print $type; ?></h3>
 <article id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
-  <a href="<?= $node_url ?>" class="item-image"><img src="<?= $image_uri ?>"></a>
-  <div class="item-info-container">
-    <p class="item-info-title"><a href="<?= $node_url ?>"><?php print $node->title; ?></a></p>
-    <p class="item-info-excerpt">
-      <?php print text_summary($node->body['und'][0]['value'], 'html', 200) ?> <a href="<?= $node_url ?>">&gt;</a>
-    </p>
-    <div class="item-info-flag pane-mnartist-collections-mna-collections-star"><?= theme("mnartist_collections_star", array('node_id' => $node->nid)) ?></div>
-  </div>
+    <a href="<?= $node_url ?>" class="item-image"><img src="<?= $image_uri ?>"></a>
+    <div class="item-info-container">
+        <p class="item-info-title"><a href="<?= $node_url ?>"><?php print $node->title; ?></a></p>
+        <p class="item-info-excerpt">
+            <?= $text_excerpt ?> <a href="<?= $node_url ?>">&gt;</a>
+        </p>
+        <div class="item-info-flag pane-mnartist-collections-mna-collections-star"><?= theme("mnartist_collections_star", array('node_id' => $node->nid)) ?></div>
+    </div>
 </article>
