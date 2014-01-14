@@ -5862,9 +5862,7 @@ tr.odd .form-item, tr.even .form-item {
         border-bottom:1px solid #ccc;
 
     }
-    tr.even, tr.odd {
-        background:none!important;
-    }
+
     .sticky-table tbody tr.draggable {
         border-bottom:10px solid #f2f2f2;
         border-top:1px solid #ccc;
@@ -5872,6 +5870,10 @@ tr.odd .form-item, tr.even .form-item {
             border-top:none;
         }
     }
+}
+
+tr.even, tr.odd {
+    background:none!important;
 }
 
 .form-item-files-picture-upload {
