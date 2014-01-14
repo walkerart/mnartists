@@ -30,6 +30,8 @@ if ($node->type === 'artwork') {
     $image_uri = image_style_url('medium', $working_uri);
 }
 ?>
-<a class="user-collection-item" href="<?= $node_uri ?>">
-    <img src="<?= file_create_url($image_uri) ?>">
-</a>
+<li>
+  <a class="user-collection-item" href="<?= $node_uri ?>">
+      <img src="<?= file_create_url($image_uri) ?>">
+  </a>
+</li>
