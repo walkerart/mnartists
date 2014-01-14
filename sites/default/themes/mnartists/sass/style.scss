@@ -7580,6 +7580,15 @@ body {
                 width:66%;
                 box-sizing:border-box;
             }
+            .tips {
+                display:none;
+            }
+            .form-type-select {
+                padding-left:0;
+            }
+            .filter-help {
+                display:none;
+            }
         }
     }
     fieldset.filter-wrapper {
@@ -8052,6 +8061,12 @@ div.entityconnect-edit {
         }
     }
 }
+
+// override white background on odd rows in tables
+td.odd {
+    background:none;
+}
+
 
 
 // ck editor overrides
