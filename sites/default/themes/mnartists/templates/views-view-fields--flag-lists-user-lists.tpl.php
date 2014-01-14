@@ -19,4 +19,3 @@ $user_list_view->execute();
 print $user_list_view->render();
 
 ?>
-<hr>
