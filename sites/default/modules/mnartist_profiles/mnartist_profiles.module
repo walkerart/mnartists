@@ -39,35 +39,50 @@ function mnartist_profiles_menu() {
 
 }
 
+
+// feeds the feed "infinite scroll" more data
 function mnartist_profiles_feed_more() {
 
-    $row_offset = $_GET['offset'];
+    // set up offset and limit
+    $current_offset = (isset($_GET['offset'])) ? intval($_GET['offset']) : null;
+    $current_limit = (isset($_GET['limit'])) ? intval($_GET['limit']) : FEED_DEFAULT_ROW_LIMIT;
 
-    $feed_data = _mnartist_profiles_get_feed_data($row_offset, null);
-    echo theme("mna_feed_raw", array('feed_data' => $feed_data));
+    $feed_data = _mnartist_profiles_get_feed_data($current_offset, $current_limit);
+    echo theme("mna_feed_raw", array('feed_data' => $feed_data,
+                                        'current_offset' => $current_offset,
+                                        'current_limit' => $current_limit));
+
     drupal_exit();
 }
 
 
-
+// feeds the standard page load feed with a page containing feed data
 function mnartist_profiles_feed() {
 
     // include feed js
     drupal_add_js(drupal_get_path('module', 'mnartist_profiles') .'/js/feed.js');
 
+    // set up offset and limit
+    $current_offset = (isset($_GET['offset'])) ? intval($_GET['offset']) : null;
+    $current_limit = (isset($_GET['limit'])) ? intval($_GET['limit']) : FEED_DEFAULT_ROW_LIMIT;
+
     // get the data and render it
-    $feed_data = _mnartist_profiles_get_feed_data();
+    $feed_data = _mnartist_profiles_get_feed_data($current_offset, $current_limit);
     return array(
         '#type' => 'container',
         '#attributes' => array(),
         'content' => array(
             '#type' => 'markup',
-            '#markup' => theme("mna_feed", array('feed_data' => $feed_data)),
+            '#markup' => theme("mna_feed", array('feed_data' => $feed_data,
+                                        'current_offset' => $current_offset,
+                                        'current_limit' => $current_limit)),
             '#weight' => 0,
         ),
     );
 }
 
+
+// gets feed data for regular feed and raw feed
 function _mnartist_profiles_get_feed_data($row_offset = null, $row_limit = null)  {
 
     // @TODO deal with user-not-logged-in case here

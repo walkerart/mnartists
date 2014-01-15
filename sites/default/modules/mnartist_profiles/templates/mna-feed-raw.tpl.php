@@ -9,6 +9,6 @@
 <? } ?>
 <li class="feed-item feed-item-more">
     <div class="user-feed-message-container">
-        <a href="">Show me more</a>
+        <a href="/user/feed?offset=<?= $current_offset + FEED_DEFAULT_ROW_LIMIT ?>">Show me more</a>
     </div>
 </li>
