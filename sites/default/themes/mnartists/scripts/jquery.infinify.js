@@ -1,17 +1,26 @@
 // 'infinify'
-// @IMALab
-// sheesh, what a dumb name.
-// intended to be a super-simple infinite scroll thinger,
-// derived from some custom code written for the community
-// and feed sections of mnartists
-// @TODO document options
+// @IMALab, @ddamico
+//
+// super-simple infinite scroll thinger, derived from some
+// custom code written for the community and feed sections
+// of mnartists
+//
+// options
+//  more_link_container_selector - the element that returned content will be appended to
+//  loading_indicator_selector - the class to look for and apply to the loading indicator
+//  endpoint_stem - the url (no params) that the 'infinite' data comes from, we'll take this url and apply the params from the 'normal' more link to it to use as the url from which we fetch more data
+//  window_offset - offset in pixels from the bottom of window at which we'll trigger our 'load more' event
+//
+//  [more_link_selector] - the selector to check for the 'more data' url that we'll enhance
 (function($) {
     $.fn.infinify = function (options) {
 
         var windowOffset = options.window_offset || 0;
+        var moreLinkSelector = options.more_link_selector || 'a';
+        var terminatorClassSelector = '.infinify-terminator';
 
         if (options.more_link_container_selector &&
-            options.more_link_selector &&
+            moreLinkSelector &&
             options.loading_indicator_selector &&
             options.endpoint_stem) {
 
@@ -22,9 +31,10 @@
 
             if (moreLinkContainer.length !== 0) {
 
-                var moreLink = moreLinkContainer.find(options.more_link_selector);
+                var moreLink = moreLinkContainer.find(moreLinkSelector);
 
-                // do href stuff
+                // do href stuff (by which I mean take the original href,
+                // and graft its params onto the user-provided endpoint url stem)
                 var params = moreLink.attr('href').split('?')[1].split('&');
                 var endpoint = options.endpoint_stem;
                 var newHref = endpoint + '?' + params.join('&');
@@ -35,11 +45,12 @@
                     if($(window).scrollTop() == $(document).height() - ($(window).height() - windowOffset) &&
                         moreContentContainer.attr('data-infinify-load-in-progress') === 'false') {
 
+                        // set 'update in progress' flag to true to avoid multiples
                         moreContentContainer.attr('data-infinify-load-in-progress', 'true');
-
                         var loadingIndicatorEl = $(options.loading_indicator_selector);
                         loadingIndicatorEl.remove();
 
+                        // append the loading indicator
                         moreContentContainer.append($('<div class="' + loadingIndicatorClass + '">loading more content</div>'));
 
                         // get more content
@@ -67,7 +78,7 @@
 
                                         // re-figure-out the href
                                         moreLinkContainer = moreContentContainer.find(options.more_link_container_selector);
-                                        moreLink = moreLinkContainer.find(options.more_link_selector);
+                                        moreLink = moreLinkContainer.find(moreLinkSelector);
                                         params = moreLink.attr('href').split('?')[1].split('&');
                                         endpoint = options.endpoint_stem;
                                         newHref = endpoint + '?' + params.join('&');
@@ -79,6 +90,14 @@
                                         loadingIndicatorEl.remove();
 
                                     } else {
+                                        // we're at the end of the available data, clean up...
+                                        // remove the terminator element we received back
+                                        $(terminatorClassSelector).remove();
+
+                                        // remove the now-orphaned more link
+                                        moreContentContainer.find(options.more_link_container_selector).remove();
+
+                                        // unbind this event
                                         $(window).unbind('scroll');
                                         return;
                                     }
@@ -99,7 +118,7 @@
             }
 
         } else {
-            console.log("Missing options 'more_link_container_selector' or 'more_link_selector' or 'loading_indicator_selector' or 'endpoint_stem'");
+            console.log("Missing options 'more_link_container_selector' or 'loading_indicator_selector' or 'endpoint_stem'");
             return false;
         }
     };
