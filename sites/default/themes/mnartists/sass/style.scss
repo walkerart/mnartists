@@ -8399,13 +8399,12 @@ td.odd {
                     li {
                         vertical-align:middle;
                         list-style:none;
-                        display:inline-block;
-                        margin-right:20px;
+
 
                         @include column(12);
 
                         &:nth-child(3n+3) {
-                            @include omega;
+                            margin-right:0!important;
                         }
                     }
                 }
