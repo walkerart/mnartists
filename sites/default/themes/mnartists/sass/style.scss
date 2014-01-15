@@ -8354,6 +8354,17 @@ td.odd {
         .view-content {
 
             .view-flag-lists-user-list {
+
+            }
+            .user-list-wrap {
+                background: $mystuff_bg_dark;
+                padding:10px;
+                margin-bottom:20px;
+                color:#fff;
+                position:relative;
+                list-style:none;
+                min-height:80px;
+
                 @include column(14);
                 overflow:visible;
                 @media screen and (max-width: $break-mobile) {
@@ -8365,15 +8376,6 @@ td.odd {
                 @media screen and (max-width: $break-desktop-small) {
                     @include column(24);
                 }
-            }
-            .user-list-wrap {
-                background: $mystuff_bg_dark;
-                padding:10px;
-                margin-bottom:20px;
-                color:#fff;
-                position:relative;
-                list-style:none;
-                min-height:80px;
 
                 h2 {
                     color:#ccc;
