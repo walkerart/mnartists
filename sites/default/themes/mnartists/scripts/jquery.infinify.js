@@ -18,9 +18,7 @@
             var moreContentContainer = $(this);
             moreContentContainer.attr('data-infinify-load-in-progress', 'false');
             var moreLinkContainer = moreContentContainer.find(options.more_link_container_selector);
-
             var loadingIndicatorClass = options.loading_indicator_selector.split('.')[1];
-            debugger;
 
             if (moreLinkContainer.length !== 0) {
 
@@ -59,13 +57,11 @@
                                     // we have somehow elsewhere ended up with more than one)
                                     var loadingIndicatorEl = $(options.loading_indicator_selector);
                                     loadingIndicatorEl.remove();
-                                    // console.log(loadingIndicatorEl);
 
                                     // append the incoming markup, then get it parsed so
                                     // we can check it for a 'more' link
                                     moreContentContainer.append(html);
                                     var findContent = $('<output>').append(html);
-                                    console.log(findContent);
 
                                     if (findContent.find(options.more_link_container_selector).length !== 0) {
 
@@ -81,7 +77,6 @@
 
                                         // remove the loading indicator
                                         loadingIndicatorEl.remove();
-                                        console.log('getting here');
 
                                     } else {
                                         $(window).unbind('scroll');
@@ -104,7 +99,8 @@
             }
 
         } else {
-            console.log("Missing options 'more_link_container_selector' and 'more_link_selector'");
+            console.log("Missing options 'more_link_container_selector' or 'more_link_selector' or 'loading_indicator_selector'
+            or 'endpoint_stem'");
             return false;
         }
     };
