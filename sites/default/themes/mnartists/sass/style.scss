@@ -6404,11 +6404,22 @@ body {
 }
 
 .content-artwork {
-	.menu li:hover>ul {
+	.menu li:hover>ul { /* since its top right, right align */
 		top: 100%;
 		right: 0px;
 		left: auto;
 	}
+}
+.node-type-event {
+
+    .inset-wrapper {
+
+        .menu li:hover>ul { /* since its top right, right align */
+            top: 100%;
+            right: 0px;
+            left: auto;
+        }
+    }
 }
 
 .menu li li:hover>ul {  /* 2nd+ levels go on the right side of the parent item */
@@ -6449,6 +6460,14 @@ body {
 /* -- sticky.submenu.END -- */
 
 
+.node-type-event {
+    ..pane-mnartist-collections-mna-collections-star {
+        position: absolute;
+        top: 10px;
+        right: 0px;
+        z-index: 9999;
+    }
+}
 // collection star
 .pane-mnartist-collections-mna-collections-star,
 .user-feed-message-star {
