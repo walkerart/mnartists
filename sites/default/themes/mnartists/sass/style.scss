@@ -5319,6 +5319,7 @@ only screen and (min-device-pixel-ratio: 1.5) {
 	.pane-node-field-date {
 		display:block;
 		text-align:center;
+        margin-bottom:20px;
 	}
 }
 .event-content {
@@ -5481,7 +5482,23 @@ depending on the template so needs unified a bit */
 		}
 	}
 }
+.panel-2col .panel-col-first .inset-wrapper {
+    padding-top:10px;
+}
+.panel-2col .panel-col-last .inside {
+    margin-right:10px;
+    margin-left:0;
 
+
+    .node-title {
+        font-size:20px;
+        color:#B95141;
+
+        a {
+            color:#B95141;
+        }
+    }
+}
 
 /* add to collection flag */
 .flag-wrapper {
