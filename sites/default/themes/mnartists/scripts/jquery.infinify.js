@@ -99,8 +99,7 @@
             }
 
         } else {
-            console.log("Missing options 'more_link_container_selector' or 'more_link_selector' or 'loading_indicator_selector'
-            or 'endpoint_stem'");
+            console.log("Missing options 'more_link_container_selector' or 'more_link_selector' or 'loading_indicator_selector' or 'endpoint_stem'");
             return false;
         }
     };
