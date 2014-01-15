@@ -8392,12 +8392,21 @@ td.odd {
                 }
                 .user-list {
                     padding:0;
+                    @include container;
+
+
 
                     li {
                         vertical-align:middle;
                         list-style:none;
                         display:inline-block;
                         margin-right:20px;
+
+                        @include column(12);
+
+                        &:nth-child(3n+3) {
+                            @include omega;
+                        }
                     }
                 }
             }
