@@ -8352,16 +8352,19 @@ td.odd {
 
 
         .view-content {
-            @include column(14);
-            overflow:visible;
-            @media screen and (max-width: $break-mobile) {
-                @include column(24);
-            }
-            @media screen and (max-width: $break-tablet) {
-                @include column(24);
-            }
-            @media screen and (max-width: $break-desktop-small) {
-                @include column(24);
+
+            .view-flag-lists-user-list {
+                @include column(14);
+                overflow:visible;
+                @media screen and (max-width: $break-mobile) {
+                    @include column(24);
+                }
+                @media screen and (max-width: $break-tablet) {
+                    @include column(24);
+                }
+                @media screen and (max-width: $break-desktop-small) {
+                    @include column(24);
+                }
             }
             .user-list-wrap {
                 background: $mystuff_bg_dark;
