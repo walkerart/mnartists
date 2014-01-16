@@ -7601,7 +7601,12 @@ body {
                 overflow: hidden;
 
                 #NFI-wrapper {
+                    float:none;
 
+                    input[type=text] {
+                        border-left:none;border-right:none;
+                        border-bottom:none;box-shadow:none;
+                    }
                 }
 
                 .form-submit {
