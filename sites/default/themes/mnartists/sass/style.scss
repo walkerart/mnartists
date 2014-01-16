@@ -8451,18 +8451,19 @@ td.odd {
                     background:none;
                 }
             }
-            .chosen-search {
-                display:none;
-            }
 
-            .chosen-results {
+        }
+        .chosen-search {
+            display:none;
+        }
 
-                .active-result {
+        .chosen-results {
 
-                    &.highlighted {
-                        background:#ccc;
-                        box-shadow:none;
-                    }
+            .active-result {
+
+                &.highlighted {
+                    background:#ccc;
+                    box-shadow:none;
                 }
             }
         }
