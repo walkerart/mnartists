@@ -7597,11 +7597,23 @@ body {
 
             .image-widget-data {
                 float:none;
-                background: #fff;
+                /*background: #fff;*/
                 overflow: hidden;
+                line-height:1em;
 
                 .NFI-wrapper {
                     float:none;
+
+                    .NFI-button {
+                        padding:0;
+                        height:110px;
+                        width:110px;
+                        display:block;
+                        overflow:hidden;
+                        text-indent:999px;
+                        white-space:nowrap;
+                        background:url('bg-drag-image-here.png') no-repeat left top transparent;
+                    }
                 }
                 input[type=text] {
                     border-left:none!important;
@@ -7609,6 +7621,7 @@ body {
                     border-bottom:none!important;
                     box-shadow:none!important;
                     padding:4px!important;
+                    background:none;
                 }
 
                 .form-submit {
