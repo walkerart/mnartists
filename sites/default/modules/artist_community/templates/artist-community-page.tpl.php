@@ -121,35 +121,37 @@
 		    		<?php }
 
 				} else {
+                    if (count($content) > 0) {
 				    	foreach($content as $item) {
 				    		$the_thing = $item['item'];
 				    		$the_class_suffix = ($item['type'] === 'user') ? 'users' : $the_thing->type;
-				    ?>
-				    	<div class="item item-<?= $the_class_suffix ?>">
-				    		<?php if ($item['type'] === 'node') { ?>
-			    				<?= render(node_view($the_thing, 'teaser')); ?>
-				    		<?php } else if ($item['type'] === 'user') { ?>
-			    				<?= theme('artist_community_artist_profile', array('user' => $the_thing)) ?>
-				    		<?php } ?>
-				    	</div>
-					<?php }
+				            ?>
+    				    	<div class="item item-<?= $the_class_suffix ?>">
+    				    		<?php if ($item['type'] === 'node') { ?>
+    			    				<?= render(node_view($the_thing, 'teaser')); ?>
+    				    		<?php } else if ($item['type'] === 'user') { ?>
+    			    				<?= theme('artist_community_artist_profile', array('user' => $the_thing)) ?>
+    				    		<?php } ?>
+    				    	</div>
+    					<?php }
 
 						// check if we need to show the 'show more' anchor, and if so then show it
 						$current_start = (isset($_GET['start'])) ? intval($_GET['start']) : 0;
 						$current_rows = (isset($_GET['rows'])) ? intval($_GET['rows']) : intval(SEARCH_DEFAULT_ROWS);
 						$new_start = (!is_null($current_start) && !is_null($current_rows)) ? $current_start + $current_rows : 0;
 
-			    		if (count($content) >= $current_rows) {
-							$new_get = array(
-								'og' => (isset($_GET['og'])) ? $_GET['og'] : null,
-								'content' => (isset($_GET['content'])) ? $_GET['content'] : null,
-								'rows' => (isset($_GET['rows'])) ? $_GET['rows'] : SEARCH_DEFAULT_ROWS,
-								'start' => $new_start,
-							);
+						$new_get = array(
+							'og' => (isset($_GET['og'])) ? $_GET['og'] : null,
+							'content' => (isset($_GET['content'])) ? $_GET['content'] : null,
+							'rows' => (isset($_GET['rows'])) ? $_GET['rows'] : SEARCH_DEFAULT_ROWS,
+							'start' => $new_start,
+						);
 
 						?>
 						<div class="item item-more"><a href="/community?<?= http_build_query($new_get) ?>">Show me more!</a></div>
-					<?php }
+					<?php } else { ?>
+                        <li class="feed-item infinify-terminator"></li>
+                    <?php }
 				} ?>
 		</div>
 	</div>
