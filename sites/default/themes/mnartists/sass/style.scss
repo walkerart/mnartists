@@ -7591,13 +7591,24 @@ body {
             float:left;
         }
         .image-widget {
+            float:left;
+            width:66%;
+            box-sizing:border-box;
+            .image-widget-data {
+                float:none;
 
+                .form-submit {
+                    float:right;
+                    margin:0;
+                }
+            }
         }
         .description {
             margin-left:33%;
             clear:both;
             display:block;
         }
+        .image-widget
     }
     &.form-type-textfield {
         width:100%;
@@ -8551,6 +8562,12 @@ body.wysiwygeditor {
 // nice file input
 .NFI-wrapper {
     // the container div
+    background:#fff;
+    float:right;
+
+    .form-submit {
+
+    }
 }
 .NFI-button {
     // the button div element
