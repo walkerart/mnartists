@@ -85,6 +85,10 @@ function artist_community_theme() {
         'artist_community_menu_search' => array(
             'variables' => array(),
             'template' => 'templates/mna-search-block'
+        ),
+        'artist_community_menu_location_search' => array(
+            'variables' => array(),
+            'template' => 'templates/mna-location-search-block'
         )
     );
 }
@@ -450,6 +454,22 @@ function url_query_master($text, $path, $key, $val, $attributes = array()) {
 
         if ($val === 'artists') {
             $artist_sub_items = array();
+
+            // build location search form
+            $artist_search_class = '';
+            $artist_location_search_string = (isset($_GET['artist_location_search'])) ? $_GET['artist_location_search'] : '';
+            if (isset($_GET['content']['artists']) && $_GET['content']['artists'] == 1
+                    && isset($_GET['artist_location_search'])) {
+                $artist_search_class = 'active-trail selected';
+            }
+            $artist_sub_items[] = theme('artist_community_menu_location_search', array(
+                'action_url' => '/community',
+                'form_class' => $artist_search_class,
+                'related_filters' => isset($_GET['content']) ? $_GET['content'] : array(),
+                'persistent_key' => 'artists',
+                'search_field_value' => $artist_location_search_string,
+            ));
+
             $artist_sub_items[] = '<span class="community-content-menu-subheading">Experience</span>';
             $experience_vocabulary_tree = taxonomy_get_tree(EXPERIENCE_VID);
             foreach($experience_vocabulary_tree as $term) {
@@ -544,6 +564,26 @@ function url_query_master($text, $path, $key, $val, $attributes = array()) {
             if (isset($artwork_sub_items)) {
                 $output .= theme('item_list', array('items' => $artwork_sub_items));
             }
+        } else if ($val === 'event') {
+            $event_sub_items = array();
+
+            // build event location search form
+            $event_search_class = '';
+            $event_location_search_string = (isset($_GET['event_location_search'])) ? $_GET['event_location_search'] : '';
+            if (isset($_GET['content']['event']) && $_GET['content']['event'] == 1
+                    && isset($_GET['event_location_search'])) {
+                $event_search_class = 'active-trail selected';
+            }
+            $event_sub_items[] = theme('artist_community_menu_location_search', array(
+                'action_url' => '/community',
+                'form_class' => $event_search_class,
+                'related_filters' => isset($_GET['content']) ? $_GET['content'] : array(),
+                'persistent_key' => 'event',
+                'search_field_value' => $event_location_search_string,
+            ));
+            if (isset($event_sub_items)) {
+                $output .= theme('item_list', array('items' => $event_sub_items));
+            }
         }
     }
 
@@ -588,8 +628,12 @@ function _artist_community_get_items_query ($local_og = null,
     // couple of filter triggers for the mixed content-type/user-type filtering
     $filtered_by_type = false;
     $filtered_by_type_and_user = false;
-    $filtered_by_location = (isset($_GET['near_me']) && $_GET['near_me'] === '1');
+    // $filtered_by_location = (isset($_GET['near_me']) && $_GET['near_me'] === '1');
     $filtered_by_events_only = false;
+    $filtered_by_events_and_location = (isset($_GET['event_location_search']));
+
+    // $filtered_by_user_only = false;
+    $filtered_by_user_location = false;
 
     // instantiate our client and query object
     $client = new Solarium\Client($solarium_config);
@@ -660,32 +704,15 @@ function _artist_community_get_items_query ($local_og = null,
                     } else {
                         $userQueryBuilder[] = AC_USER_ROLES_FIELD.":".ARTIST_ROLE;
                     }
+                    if (isset($_GET['artist_location_search'])) {
+                        $filtered_by_user_location = true;
+                    }
                     break;
                 case 'organizations':
                     $filtered_by_type_and_user = true;
                     $userQueryBuilder[] = AC_USER_ROLES_FIELD.":".ORG_ROLE;
                     break;
             }
-        }
-    }
-
-    if ($filtered_by_location) {
-        global $user;
-        $geocode_search_string = mnartist_profiles_get_geocoding_search_string_for_uid($user->uid);
-        if ($geocode_search_string) {
-            // @TODO this must not stay here, can't be running this request on every search.
-            // Either cache it, or hang it off the profile.
-            $point = geocoder('google', $geocode_search_string);
-            $geoJSON = $point->out('json');
-            $parsedPoint = json_decode($geoJSON);
-            $lat = $parsedPoint->coordinates[1];
-            $long = $parsedPoint->coordinates[0];
-
-            if (isset($parsedPoint->coordinates)) {
-                $coords = "$lat,$long";
-            }
-
-            $locationSearchString = '{!geofilt sfield='.AC_USER_LATLNG_FIELD." pt=$coords d=".NEAR_ME_RADIUS.'}';
         }
     }
 
@@ -706,9 +733,6 @@ function _artist_community_get_items_query ($local_og = null,
         $finalQueryString = "((index_id:default_node_index AND (ss_type:article OR ss_type:artwork OR ss_type:event))$nodeQueryBuilderString) OR (index_id:users$userQueryBuilderString)";
     }
     $solarium_query->createFilterQuery('the_thing')->setQuery($finalQueryString);
-    if ($filtered_by_location) {
-        $solarium_query->createFilterQuery('location_filter')->setQuery($locationSearchString);
-    }
     if ($start_row !== null && is_int($start_row)) {
         $solarium_query->setStart($start_row);
     }
@@ -727,8 +751,38 @@ function _artist_community_get_items_query ($local_og = null,
         // @TODO figure that out
         $solarium_query->setStart(null);
         $solarium_query->setRows(null);
+
+        if ($filtered_by_events_and_location !== false) {
+            $event_geocode_search_string = urldecode($_GET['event_location_search']);
+            $event_point = geocoder('google', $event_geocode_search_string);
+            $event_geoJSON = $event_point->out('json');
+            $event_parsedPoint = json_decode($event_geoJSON);
+            $event_lat = $event_parsedPoint->coordinates[1];
+            $event_long = $event_parsedPoint->coordinates[0];
+            if (isset($event_parsedPoint->coordinates)) {
+                $coords = "$event_lat,$event_long";
+            }
+            $eventLocationSearchString = '{!geofilt sfield='.AC_USER_LATLNG_FIELD." pt=$coords d=".NEAR_ME_RADIUS.'}';
+            $solarium_query->createFilterQuery('event_location_filter')->setQuery($eventLocationSearchString);
+        }
     } else {
         $solarium_query->addSort(AC_CREATED_FIELD, $solarium_query::SORT_DESC);// @TODO get sort from incoming params?
+    }
+
+    // @TODO by virtue of the way the form is constructed, this should
+    // behave as if it's always mutually exclusive, but should it?
+    if ($filtered_by_user_location !== false) {
+        $user_geocode_search_string = urldecode($_GET['artist_location_search']);
+        $user_point = geocoder('google', $user_geocode_search_string);
+        $user_geoJSON = $user_point->out('json');
+        $user_parsedPoint = json_decode($user_geoJSON);
+        $user_lat = $user_parsedPoint->coordinates[1];
+        $user_long = $user_parsedPoint->coordinates[0];
+        if (isset($user_parsedPoint->coordinates)) {
+            $coords = "$user_lat,$user_long";
+        }
+        $userLocationSearchString = '{!geofilt sfield='.AC_USER_LATLNG_FIELD." pt=$coords d=".NEAR_ME_RADIUS.'}';
+        $solarium_query->createFilterQuery('artist_location_filter')->setQuery($userLocationSearchString);
     }
 
     // limit to published nodes
