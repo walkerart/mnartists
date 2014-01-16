@@ -6091,6 +6091,12 @@ li:focus {
 
 /* form focus goodness */
 form input[type=text],
+form textarea,
+form input {
+    font-family: $sans_regular_font;
+    font-size: 12px;
+}
+form input[type=text],
 form textarea:focus {
     /*-moz-box-shadow: 0 0 1px 1px rgba(210,176,107,1);
     -webkit-box-shadow: 0 0 1px 1px rgba(210,176,107,1);*/
@@ -6103,6 +6109,7 @@ form textarea:focus {
     transition: all .3s ease-in-out;
     outline:1px solid #ccc;
     border:none;
+
 }
 
 form input[type=text]:focus,
@@ -8500,6 +8507,9 @@ td.odd {
                     background:#ddd;
                 }
             }
+        }
+        input {
+            font-size:11px;
         }
     }
     .chosen-drop {
