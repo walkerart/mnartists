@@ -7677,47 +7677,42 @@ body {
                 float:left;
                 width:66%;
                 box-sizing:border-box;
+            }
+            .NFI-wrapper {
+                float:left;
+                width:66%;
+                box-sizing:border-box;
+                background:none;
 
-                .image-widget-data {
-                    float:none;
-                    /*background: #fff;*/
-                    overflow: hidden;
-                    line-height:1em;
-
-                    .NFI-wrapper {
-                        float:left;
-                        background:none;
-
-                        .NFI-button {
-                            padding:0;
-                            height:110px;
-                            width:110px;
-                            display:block;
-                            overflow:hidden;
-                            text-indent:999px;
-                            white-space:nowrap;
-                            background:url('../images/bg-drag-image-here.png') no-repeat left top transparent;
-                        }
-                    }
-                    input[type=text] {
-                        border-left:none!important;
-                        border-right:none!important;
-                        border-bottom:none!important;
-                        box-shadow:none!important;
-                        padding:4px!important;
-                        background:none!important;
-                        clear:both;
-                        float:none;
-                        max-width:110px;
-
-                    }
-
-                    .form-submit {
-                        float:left;
-                        margin:0 0 0 20px;
-                    }
+                .NFI-button {
+                    padding:0;
+                    height:110px;
+                    width:110px;
+                    display:block;
+                    overflow:hidden;
+                    text-indent:999px;
+                    white-space:nowrap;
+                    background:url('../images/bg-drag-image-here.png') no-repeat left top transparent;
                 }
             }
+            input[type=text] {
+                border-left:none!important;
+                border-right:none!important;
+                border-bottom:none!important;
+                box-shadow:none!important;
+                padding:4px!important;
+                background:none!important;
+                clear:both;
+                float:none;
+                max-width:110px;
+
+            }
+
+            .form-submit {
+                float:left;
+                margin:0 0 0 20px;
+            }
+
             .description {
                 margin-left:33%;
                 clear:both;
