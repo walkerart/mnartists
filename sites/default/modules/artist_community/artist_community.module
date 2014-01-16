@@ -261,12 +261,6 @@ function artist_community_form_user_profile_form_alter(&$form, &$form_state) {
  */
 function artist_community_form_artwork_node_form_alter(&$form, &$form_state) {
 
-    // add multiselect javascript and css, we're going to use that to
-    // alter multiselect widget
-    drupal_add_js(drupal_get_path('module', 'artist_community') .'/vendor/jquery.multiselect/jquery.multiselect.min.js');
-    drupal_add_css(drupal_get_path('module', 'artist_community') .'/vendor/jquery.multiselect/jquery.multiselect.css');
-    drupal_add_js(drupal_get_path('module', 'artist_community') .'/js/artwork_form.js');
-
     // Find the communities associated with each term
     $query = db_select('node', 'n');
     $query->leftJoin('field_data_field_medium', 'm', 'n.nid = m.entity_id');
