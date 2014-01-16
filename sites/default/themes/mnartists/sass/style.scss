@@ -8429,9 +8429,9 @@ td.odd {
 // chosen overrides
 .chosen-container {
     box-sizing:border-box;
-    margin-bottom:8px;
+    margin:0 0 8px 0;
     padding:0;
-    border:1px solid #eee;
+    border:none;
     background: url('../images/icon-select-arrow.png') no-repeat 98% center #fff;
 
     &.chosen-container-multi {
@@ -8440,7 +8440,7 @@ td.odd {
     .chosen-choices {
         box-shadow:none;
         border:none;
-        padding:4px;
+        padding:0;
         background:none;
         box-sizing:border-box;
     }
@@ -8453,6 +8453,18 @@ td.odd {
 
         .chosen-choices {
 
+            li {
+
+                &.search-choice {
+                    border-radius:0;
+                    background:#ccc;
+                    border:none;
+
+                    &:hover {
+                        background:#ddd;
+                    }
+                }
+            }
         }
     }
 
