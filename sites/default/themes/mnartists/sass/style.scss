@@ -8451,6 +8451,20 @@ td.odd {
                     background:none;
                 }
             }
+            .chosen-search {
+                display:none;
+            }
+
+            .chosen-results {
+
+                .active-result {
+
+                    &.highlighted {
+                        background:#ccc;
+                        box-shadow:none;
+                    }
+                }
+            }
         }
         &.chosen-container-active {
 
