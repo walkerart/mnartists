@@ -7602,11 +7602,13 @@ body {
 
                 .NFI-wrapper {
                     float:none;
-
-                    input[type=text] {
-                        border-left:none;border-right:none;
-                        border-bottom:none;box-shadow:none;
-                    }
+                }
+                input[type=text] {
+                    border-left:none!important;
+                    border-right:none!important;
+                    border-bottom:none!important;
+                    box-shadow:none!important;
+                    padding:4px!important;
                 }
 
                 .form-submit {
