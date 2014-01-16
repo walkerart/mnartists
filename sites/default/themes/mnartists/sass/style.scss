@@ -5638,6 +5638,19 @@ body.page-node-edit {
             .cke_toolgroup {
                 background-image:none;
                 box-shadow:none;
+
+                .cke_button__underline,
+                .cke_button__numberedlist,
+                .cke_button__undo,
+                .cke_button__redo,
+                .cke_button__unlink,
+                .cke_button__source,
+                .cke_button__cut,
+                .cke_button__copy,
+                .cke_button__paste,
+                .cke_button__undoformat {
+                    display:none;
+                }
             }
         }
         .cke_bottom {
