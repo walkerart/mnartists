@@ -7626,6 +7626,8 @@ body {
 
 
         .partial-date-year {
+            min-width:90px;
+
             .form-item {
                 width:100%;
 
@@ -8449,6 +8451,11 @@ body.wysiwygeditor {
     border:none;
     background: url('../images/icon-select-arrow.png') no-repeat 98% center #fff;
 
+    input.default {
+        font-size:11px;
+        font-family: $sans_regular_font;
+    }
+
     &.chosen-container-multi {
 
     }
@@ -8501,6 +8508,7 @@ body.wysiwygeditor {
         padding:0;
         background:none;
         box-sizing:border-box;
+        font-size:12px;
 
         li {
 
