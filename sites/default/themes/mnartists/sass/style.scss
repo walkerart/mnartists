@@ -8365,66 +8365,87 @@ td.odd {
 // user collections a list of all landing page
 .view-flag-lists-user-lists {
 
+    .view-content {
 
+        .view-flag-lists-user-list {
 
-        .view-content {
+        }
+        .user-list-wrap {
+            background: $mystuff_bg_dark;
+            padding:10px;
+            margin-bottom:20px;
+            color:#fff;
+            position:relative;
+            list-style:none;
+            min-height:80px;
 
-            .view-flag-lists-user-list {
-
+            @include column(14);
+            overflow:visible;
+            @media screen and (max-width: $break-mobile) {
+                @include column(24);
             }
-            .user-list-wrap {
-                background: $mystuff_bg_dark;
-                padding:10px;
-                margin-bottom:20px;
-                color:#fff;
-                position:relative;
-                list-style:none;
-                min-height:80px;
+            @media screen and (max-width: $break-tablet) {
+                @include column(24);
+            }
+            @media screen and (max-width: $break-desktop-small) {
+                @include column(24);
+            }
 
-                @include column(14);
-                overflow:visible;
-                @media screen and (max-width: $break-mobile) {
-                    @include column(24);
-                }
-                @media screen and (max-width: $break-tablet) {
-                    @include column(24);
-                }
-                @media screen and (max-width: $break-desktop-small) {
-                    @include column(24);
-                }
+            h2 {
+                color:#ccc;
+                border-bottom:1px solid #ccc;
+                font-size:16px;
+                text-transform:none;
+                height:auto;
+                padding-bottom:5px;
 
-                h2 {
+                a {
                     color:#ccc;
-                    border-bottom:1px solid #ccc;
-                    font-size:16px;
                     text-transform:none;
-                    height:auto;
-                    padding-bottom:5px;
-
-                    a {
-                        color:#ccc;
-                        text-transform:none;
-                    }
                 }
-                .user-list {
-                    padding:0;
-                    @include container;
+            }
+            .user-list {
+                padding:0;
+                @include container;
 
 
 
-                    li {
-                        vertical-align:middle;
-                        list-style:none;
+                li {
+                    vertical-align:middle;
+                    list-style:none;
 
 
-                        @include column(8);
+                    @include column(8);
 
-                        &:nth-child(3n+3) {
-                            margin-right:0!important;
-                        }
+                    &:nth-child(3n+3) {
+                        margin-right:0!important;
                     }
                 }
             }
         }
+    }
+}
 
+// chosen overrides
+.chosen-container {
+    box-sizing:border-box;
+    margin-bottom:8px;
+    padding:4px;
+    border:1px solid #eee;
+    background: url('../images/icon-select-arrow.png') no-repeat 98% center #fff;
+
+    &.chosen-container-multi {
+
+    }
+
+    &.chosen-container-active {
+
+        .chosen-choices {
+
+        }
+    }
+    .chosen-choices {
+        box-shadow:none;
+        border:none
+    }
 }
