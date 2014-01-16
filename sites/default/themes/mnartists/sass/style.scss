@@ -8443,6 +8443,21 @@ td.odd {
         padding:0;
         background:none;
         box-sizing:border-box;
+
+        li {
+
+            &.search-choice {
+                border-radius:0;
+                background:#ccc;
+                border:none;
+                box-shadow:none;
+                font-size:12px;
+
+                &:hover {
+                    background:#ddd;
+                }
+            }
+        }
     }
     .chosen-drop {
         border:none;
@@ -8453,19 +8468,7 @@ td.odd {
 
         .chosen-choices {
 
-            li {
 
-                &.search-choice {
-                    border-radius:0;
-                    background:#ccc;
-                    border:none;
-                    box-shadow:none;
-
-                    &:hover {
-                        background:#ddd;
-                    }
-                }
-            }
         }
     }
 
