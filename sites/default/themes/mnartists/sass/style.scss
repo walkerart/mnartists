@@ -8430,12 +8430,23 @@ td.odd {
 .chosen-container {
     box-sizing:border-box;
     margin-bottom:8px;
-    padding:4px;
+    padding:0;
     border:1px solid #eee;
     background: url('../images/icon-select-arrow.png') no-repeat 98% center #fff;
 
     &.chosen-container-multi {
 
+    }
+    .chosen-choices {
+        box-shadow:none;
+        border:none;
+        padding:4px;
+        background:none;
+        box-sizing:border-box;
+    }
+    .chosen-drop {
+        border:none;
+        box-shadow:none;
     }
 
     &.chosen-container-active {
@@ -8444,8 +8455,5 @@ td.odd {
 
         }
     }
-    .chosen-choices {
-        box-shadow:none;
-        border:none
-    }
+
 }

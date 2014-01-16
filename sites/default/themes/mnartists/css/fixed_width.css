@@ -9823,14 +9823,22 @@ td.odd {
 .chosen-container {
   box-sizing: border-box;
   margin-bottom: 8px;
-  padding: 4px;
+  padding: 0;
   border: 1px solid #eee;
   background: url("../images/icon-select-arrow.png") no-repeat 98% center white;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000038447}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000038440}}
 .chosen-container .chosen-choices {
   box-shadow: none;
   border: none;
+  padding: 4px;
+  background: none;
+  box-sizing: border-box;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000038447}}
+.chosen-container .chosen-drop {
+  border: none;
+  box-shadow: none;
 }
 
 /* now let's get those layout files */
