@@ -89,6 +89,10 @@ function artist_community_theme() {
         'artist_community_menu_location_search' => array(
             'variables' => array(),
             'template' => 'templates/mna-location-search-block'
+        ),
+        'artist_community_banner' => array(
+            'variables' => array(),
+            'template' => 'templates/mna-communities-banner'
         )
     );
 }
@@ -114,6 +118,13 @@ function artist_community_block_info() {
 
     $blocks['content'] = array(
         'info' => t('Artist Community - Content'),
+        'cache' => DRUPAL_NO_CACHE,
+        'visibility' => BLOCK_VISIBILITY_PHP,
+        'pages' => '<?php return _artist_community_block_visibility(); ?>'
+    );
+
+    $blocks['banner'] = array(
+        'info' => t('Artist Community - Banner'),
         'cache' => DRUPAL_NO_CACHE,
         'visibility' => BLOCK_VISIBILITY_PHP,
         'pages' => '<?php return _artist_community_block_visibility(); ?>'
@@ -150,9 +161,20 @@ function artist_community_block_view($delta = '') {
         case 'menu-search':
             $block['subject'] = t('Search');
             $block['content'] = _community_block_search();
+            break;
+        case 'banner':
+            $block['subject'] = t('Banner');
+            $block['content'] = _community_block_banner();
     }
 
     return $block;
+}
+
+function _community_block_banner() {
+    // @TODO send different data to banner, as appropriate
+    return theme("artist_community_banner", array(
+
+    ));
 }
 
 function _community_block_search() {
@@ -753,6 +775,7 @@ function _artist_community_get_items_query ($local_og = null,
         $solarium_query->setRows(null);
 
         if ($filtered_by_events_and_location !== false) {
+            // @TODO add error handling for a geocoding unavailable state
             $event_geocode_search_string = urldecode($_GET['event_location_search']);
             $event_point = geocoder('google', $event_geocode_search_string);
             $event_geoJSON = $event_point->out('json');
@@ -769,7 +792,7 @@ function _artist_community_get_items_query ($local_og = null,
         $solarium_query->addSort(AC_CREATED_FIELD, $solarium_query::SORT_DESC);// @TODO get sort from incoming params?
     }
 
-    // @TODO by virtue of the way the form is constructed, this should
+    // @TODO by virtue of the way the form is constructed, this will
     // behave as if it's always mutually exclusive, but should it?
     if ($filtered_by_user_location !== false) {
         $user_geocode_search_string = urldecode($_GET['artist_location_search']);

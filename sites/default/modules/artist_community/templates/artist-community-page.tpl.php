@@ -46,10 +46,12 @@
 				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ornare ultrices ante, eget ultricies arcu dapibus in. Nunc placerat tincidunt mauris quis rhoncus. Vivamus varius nunc ac tellus egestas ullamcorper. In consectetur, sem non lobortis interdum, erat quam volutpat tellus, in pellentesque ipsum felis vitae neque. Vivamus cursus tempor iaculis. Cras euismod suscipit nunc. Vestibulum viverra hendrerit sem tempor eleifend. Donec at sodales erat. Fusce vel ante ultrices, laoreet lacus at, dictum neque. Nunc vel nunc semper, pulvinar ante eget, interdum sem. Aenean porta viverra magna, sed tempus nisi dictum non. Curabitur at accumsan nibh. Duis convallis neque non bibendum dapibus. Duis non eros turpis.</p>
 			</div>
 		<?php } ?>
-		<!-- @TODO create block to replace this based on filter -->
-		<div class="community-logo">
-			logo
-		</div>
+
+		<?php 
+            $banner_block = module_invoke('artist_community', 'block_view', 'banner');
+            print($banner_block['content']);
+        ?>
+
 		<?php if (!empty($articles)) { ?>
 			<div class="article-thing widget">
 				<h3>Top Stories</h3>
