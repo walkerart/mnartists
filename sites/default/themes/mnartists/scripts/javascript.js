@@ -181,6 +181,6 @@ jQuery(document).ready(function () {
     jQuery('input').iCheck();
 
     // select boxes
-    jQuery('select.form-select').customSelect();
+    // jQuery('select.form-select').customSelect();
 
 });
