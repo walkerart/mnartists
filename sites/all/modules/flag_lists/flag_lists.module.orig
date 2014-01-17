@@ -979,8 +979,8 @@ function theme_flag_lists_ops($variables) {
   $flag = $variables['flag'];
 
   $links = array(
-    'flags_edit' =>  array('title' => t('edit'), 'href' => 'flags/lists/edit/' . $flag->name, 'query' => drupal_get_destination()),
-    'flags_delete' =>  array('title' => t('delete'), 'href' => 'flags/lists/delete/' . $flag->name, 'query' => drupal_get_destination()),
+    'flags_edit' =>  array('title' => t('edit'), 'href' => 'flags/lists/edit/' . $flag->name, 'query' => _mnartist_collections_fix_community_destination(drupal_get_destination())),
+    'flags_delete' =>  array('title' => t('delete'), 'href' => 'flags/lists/delete/' . $flag->name, 'query' => _mnartist_collections_fix_community_destination(drupal_get_destination())),
   );
   return theme('links', array('links' => $links, 'attributes' => array('class' => 'flag_lists_ops')));
 }

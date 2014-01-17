@@ -15,7 +15,7 @@
                     <li class='flag-this'><?= $row ?></li>
                 <?php }
             } ?>
-            <li class='add-this last'><?= l(t('START A NEW @name', array('@name' => strtoupper(variable_get('flag_lists_name', t('list'))))), 'flag-lists/add/' . $node->type, array('query' => drupal_get_destination())) ?></li>
+            <li class='add-this last'><?= l(t('START A NEW @name', array('@name' => strtoupper(variable_get('flag_lists_name', t('list'))))), 'flag-lists/add/' . $node->type, array('query' => _mnartist_collections_fix_community_destination(drupal_get_destination()))) ?></li>
             <hr>
             <li class='share-this'>SHARE VIA:</li>
             <li class='share-this'><a href='#' onclick='window.open("https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent("<?= $node_url ?>"), "facebook-share-dialog", "width=626,height=436"); return false;'>FACEBOOK</a></li>

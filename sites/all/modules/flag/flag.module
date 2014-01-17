@@ -277,7 +277,7 @@ function flag_flag_link($flag, $action, $content_id) {
   $token = flag_get_token($content_id);
   return array(
     'href' => 'flag/' . ($flag->link_type == 'confirm' ? 'confirm/' : '') . "$action/$flag->name/$content_id",
-    'query' => drupal_get_destination() + ($flag->link_type == 'confirm' ? array() : array('token' => $token)),
+    'query' => _mnartist_collections_fix_community_destination(drupal_get_destination()) + ($flag->link_type == 'confirm' ? array() : array('token' => $token)),
   );
 }
 
