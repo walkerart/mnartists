@@ -450,11 +450,18 @@ p.site-description {
 // near me sidebar filter form
 .nearme-filter  {
 	margin-bottom:10px;
+	box-sizing: border-box;
+	padding-right:10px;
+	width:100%;
+	clear:both;
+	overflow:hidden;
+	display:block;
 
 	label {
 		display:block;
         width:33%;
         float:left;
+        box-sizing: border-box;
 	}
 	input[type="search"] {
 		display:block;
