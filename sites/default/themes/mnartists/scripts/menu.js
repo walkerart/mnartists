@@ -32,6 +32,12 @@
             }
         });
 
+        menu.find(".menu-event-datepicker").datepicker({
+            onSelect: function(dateText, inst) {
+            console.log(dateText);
+            }
+        });
+
         // open menu sub-items that have selections
         $('div.item-list').each(function () {
             var targetEl = $(this);

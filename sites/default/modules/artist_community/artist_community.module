@@ -599,6 +599,7 @@ function url_query_master($text, $path, $key, $val, $attributes = array()) {
                 'persistent_key' => 'event',
                 'search_field_value' => $event_location_search_string,
             ));
+            $event_sub_items[] = '<div class="menu-event-datepicker"></div>';
             if (isset($event_sub_items)) {
                 $output .= theme('item_list', array('items' => $event_sub_items));
             }
