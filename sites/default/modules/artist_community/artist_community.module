@@ -403,10 +403,6 @@ function url_query_master($text, $path, $key, $val, $attributes = array()) {
         $query['content'] = $_GET['content'];
     }
 
-    if (isset($_GET['near_me'])) {
-        $query['near_me'] = $_GET['near_me'];
-    }
-
     if ($key == 'og') {
         if ($node = node_load($val)) {
             if (isset($_GET['og'][$val]) && $_GET['og'][$val] == 1) $attributes['class'][] = 'selected';
@@ -624,18 +620,18 @@ function artist_community_get_items () {
     // get url params, then pass them on
     $local_og = (isset($_GET['og'])) ? $_GET['og'] : null;
     $local_content = (isset($_GET['content'])) ? $_GET['content'] : null;
-    $start_row = (isset($_GET['start']) && is_numeric($_GET['start'])) ? intval($_GET['start']) : null;
-    $num_rows = (isset($_GET['rows']) && is_numeric($_GET['rows'])) ? intval($_GET['rows']) : null;
+    $offset = (isset($_GET['start']) && is_numeric($_GET['start'])) ? intval($_GET['start']) : null;
+    $limit = (isset($_GET['rows']) && is_numeric($_GET['rows'])) ? intval($_GET['rows']) : null;
     $rendernodes = true;
 
-    echo implode('', _artist_community_get_items_query($local_og, $local_content, $start_row, $num_rows, $rendernodes));
+    echo implode('', _artist_community_get_items_query($local_og, $local_content, $offset, $limit, $rendernodes));
     drupal_exit();
 }
 
 function _artist_community_get_items_query ($local_og = null,
                                             $local_content = null,
-                                            $start_row = null,
-                                            $num_rows = null,
+                                            $offset = null,
+                                            $limit = null,
                                             $rendernodes = null) {
 
     global $solarium_config;
@@ -650,7 +646,6 @@ function _artist_community_get_items_query ($local_og = null,
     // couple of filter triggers for the mixed content-type/user-type filtering
     $filtered_by_type = false;
     $filtered_by_type_and_user = false;
-    // $filtered_by_location = (isset($_GET['near_me']) && $_GET['near_me'] === '1');
     $filtered_by_events_only = false;
     $filtered_by_events_and_location = (isset($_GET['event_location_search']));
 
@@ -755,11 +750,11 @@ function _artist_community_get_items_query ($local_og = null,
         $finalQueryString = "((index_id:default_node_index AND (ss_type:article OR ss_type:artwork OR ss_type:event))$nodeQueryBuilderString) OR (index_id:users$userQueryBuilderString)";
     }
     $solarium_query->createFilterQuery('the_thing')->setQuery($finalQueryString);
-    if ($start_row !== null && is_int($start_row)) {
-        $solarium_query->setStart($start_row);
+    if ($offset !== null && is_int($offset)) {
+        $solarium_query->setStart($offset);
     }
-    if ($num_rows !== null && is_int($num_rows)) {
-        $solarium_query->setRows($num_rows);
+    if ($limit !== null && is_int($limit)) {
+        $solarium_query->setRows($limit);
     }
 
     // if we're filtered by events, sort by event start date
@@ -816,32 +811,29 @@ function _artist_community_get_items_query ($local_og = null,
 
     // if we actually want markup back, get it ready
     if ($rendernodes === true) {
-        foreach($resultset as $item) {
-            $the_element_string = '';
-            switch ($item->index_id) {
-                case 'users':
-                    $the_class_suffix = 'user';
-                    $the_element_string = theme('artist_community_artist_profile', array('user' => user_load($item->is_uid)));
-                    break;
-                case 'default_node_index':
-                    $the_node = node_load($item->is_nid);
-                    $the_class_suffix = $the_node->type;
-                    $the_element_string = render(node_view($the_node, 'teaser'));
-                    break;
+        if (count($resultset) > 0) {
+            foreach($resultset as $item) {
+                $the_element_string = '';
+                switch ($item->index_id) {
+                    case 'users':
+                        $the_class_suffix = 'user';
+                        $the_element_string = theme('artist_community_artist_profile', array('user' => user_load($item->is_uid)));
+                        break;
+                    case 'default_node_index':
+                        $the_node = node_load($item->is_nid);
+                        $the_class_suffix = $the_node->type;
+                        $the_element_string = render(node_view($the_node, 'teaser'));
+                        break;
+                }
+
+                // yuck, maybe get this into a themed render if time allows
+                $element_string_arr = array();
+                $element_string_arr[] = "<div class='item item-$the_class_suffix'>";
+                $element_string_arr[] = $the_element_string;
+                $element_string_arr[] = "</div>";
+                $all_results[] = implode('', $element_string_arr);
             }
 
-            // yuck, maybe get this into a themed render if time allows
-            $element_string_arr = array();
-            $element_string_arr[] = "<div class='item item-$the_class_suffix'>";
-            $element_string_arr[] = $the_element_string;
-            $element_string_arr[] = "</div>";
-            $all_results[] = implode('', $element_string_arr);
-        }
-
-        if (count($all_results) === $num_rows) {
-            // build the next 'more' link (if we have
-            // a full set of results, otherwise we're probably
-            // at the end of the line)
             $current_start = (isset($_GET['start'])) ? intval($_GET['start']) : 0;
             $current_rows = (isset($_GET['rows'])) ? intval($_GET['rows']) : SEARCH_DEFAULT_ROWS;
             $new_start = (!is_null($current_start) && !is_null($current_rows)) ? $current_start + $current_rows : 0;
@@ -849,11 +841,12 @@ function _artist_community_get_items_query ($local_og = null,
             $new_get = array(
                 'og' => (isset($_GET['og'])) ? $_GET['og'] : null,
                 'content' => (isset($_GET['content'])) ? $_GET['content'] : null,
-                'near_me' => (isset($_GET['near_me'])) ? $_GET['near_me'] : null,
                 'rows' => (isset($_GET['rows'])) ? $_GET['rows'] : SEARCH_DEFAULT_ROWS,
                 'start' => $new_start,
             );
             $all_results[] = '<div class="item item-more"><a href="/communitygetitems?'.http_build_query($new_get).'">Show me more!</a></div>';
+        } else {
+            $all_results[] = '<li class="feed-item infinify-terminator"></li>';
         }
 
     // or, if we just want the data back, get that ready
