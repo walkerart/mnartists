@@ -52,7 +52,6 @@
 
                         // append the loading indicator
                         moreLinkContainer.replaceWith($('<div>loading more content</div>').addClass(loadingIndicatorClass).attr('id', loadingIndicatorClass));
-                        return;
 
                         // get more content
                         $.ajax({
