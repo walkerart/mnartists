@@ -6967,6 +6967,9 @@ body {
 
 /* @group Events Block */
 .event-thing {
+    .widget-content {
+        padding:0;
+    }
 
     .event-thing-event-block {
         margin-bottom: 1em;
@@ -6974,9 +6977,7 @@ body {
         padding-bottom:1em;
         padding-left:10px;padding-right:10px;
 
-        .widget-content {
-            padding:0;
-        }
+
 
         img {
             margin: 0;
@@ -6990,7 +6991,13 @@ body {
         }
 
         &.event-thing-event-block-hero {
-            border-bottom:none;
+            padding:0 0 1em 0;
+
+            img {
+                width:100%;
+                height:auto;
+                display:block;
+            }
         }
         &:last-child {
             margin-bottom:0;
