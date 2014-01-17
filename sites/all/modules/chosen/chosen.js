@@ -16,7 +16,7 @@
       selector = selector + ', .tabledrag-hide select'
 
       $(selector, context)
-        .not('#field-ui-field-overview-form select, #field-ui-display-overview-form select') //disable chosen on field ui
+        .not('#field-ui-field-overview-form select, #field-ui-display-overview-form select, .wysiwyg') //disable chosen on field ui
         .each(function() {
           var name = $(this).attr('name');
           options = {};
