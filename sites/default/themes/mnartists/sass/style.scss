@@ -6970,6 +6970,13 @@ body {
 
     .event-thing-event-block {
         margin-bottom: 1em;
+        border-bottom: 1px dotted #888888;
+        padding-bottom:1em;
+        padding-left:10px;padding-right:10px;
+
+        .widget-content {
+            padding:0;
+        }
 
         img {
             margin: 0;
@@ -6978,6 +6985,16 @@ body {
         .event-thing-event-title {
             margin: 0;
             padding: 0;
+            font-family: "Apercu Bold", Arial, Helvetica, sans-serif;
+            color:#888;
+        }
+
+        &.event-thing-event-block-hero {
+            border-bottom:none;
+        }
+        &:last-child {
+            margin-bottom:0;
+            padding-bottom:0;
         }
     }
 }
