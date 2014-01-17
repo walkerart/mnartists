@@ -7662,10 +7662,21 @@ body {
 
     }
 }
+
+// privacy checkboxes
+.form-wrapper {
+    .form-item[class*='-field-privacy'] {
+        margin-left:33%;
+    }
+}
+
+// edit profile edit acount page
 #edit-account {
-    .form-item-mail {
+    .form-item-mail,
+    .form-item-name {
         .description {
             display:block;clear:both;float:none;
+            margin-left:33%;
         }
     }
 }
