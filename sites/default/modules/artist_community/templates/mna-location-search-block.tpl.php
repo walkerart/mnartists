@@ -1,4 +1,4 @@
-<form method="get" action="<?= $action_url ?>" class="<?= $form_class ?>">
+<form method="get" action="<?= $action_url ?>" class="nearme-filter <?= $form_class ?>">
     <?php
         if (isset($related_filters[$persistent_key])) {
             if (is_array($related_filters[$persistent_key])) {
