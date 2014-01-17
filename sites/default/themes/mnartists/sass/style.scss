@@ -6003,10 +6003,7 @@ tr.even, tr.odd {
                     float:left;
                 }
                 input {
-                    display:block;
-                    width:66%;
-                    float:left;
-                    box-sizing: border-box;
+
                 }
 
                 &.form-item-title {
@@ -8576,6 +8573,15 @@ body.wysiwygeditor {
                     &:nth-child(3n+3) {
                         margin-right:0!important;
                     }
+                }
+            }
+            .user-list-more-link {
+                display: block;
+                text-align: right;
+                color: #999;
+
+                &:hover {
+                    color:#fff;
                 }
             }
         }
