@@ -478,19 +478,7 @@ p.site-description {
         float:left;
         box-sizing: border-box;
         position:relative;
-
-        &::after {
-        	content:"";
-        	width:9px;
-        	height:9px;
-        	position:absolute;
-        	right:4px;
-        	top:4px;
-        	background: url('../images/icon-magnify.svg') no-repeat center center transparent;
-        	background-size:9px auto;
-        	overflow:hidden;display:block;
-
-        }
+        background: url('../images/icon-magnify.svg') no-repeat 90% center #fff;
 
 	}
 }
