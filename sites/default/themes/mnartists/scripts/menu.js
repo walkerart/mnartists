@@ -32,11 +32,19 @@
             }
         });
 
-        menu.find(".menu-event-datepicker").datepicker({
+        var datePickerContainer = menu.find(".menu-event-datepicker");
+        var incomingDate = new Date(loadPageVar('event_date') + ' 00:00:00 GMT-0500') || null;
+        datePickerContainer.datepicker({
+            defaultDate: incomingDate,
+            dateFormat: "yy-mm-dd",
             onSelect: function(dateText, inst) {
-            console.log(dateText);
+                window.location = '/community?content[event]=1&event_date=' + dateText;
             }
         });
+
+        // @TODO get this working, get 'today' deselected
+        datePickerContainer.find('.ui-datepicker-today').removeClass('ui-datepicker-today').removeClass('ui-datepicker-current-day');
+
 
         // open menu sub-items that have selections
         $('div.item-list').each(function () {

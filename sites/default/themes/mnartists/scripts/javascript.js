@@ -84,6 +84,10 @@ function addJavascript(jsname, pos) {
     th.appendChild(s);
 }
 
+function loadPageVar (sVar) {
+  return decodeURI(window.location.search.replace(new RegExp("^(?:.*[&\\?]" + encodeURI(sVar).replace(/[\.\+\*]/g, "\\$&") + "(?:\\=([^&]*))?)?.*$", "i"), "$1"));
+}
+
 
 jQuery(document).ready(function () {
     jQuery(".field-name-field-media, .view-artist-artworks").fitVids();

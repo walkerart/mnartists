@@ -47,7 +47,7 @@
 			</div>
 		<?php } ?>
 
-		<?php 
+		<?php
             $banner_block = module_invoke('artist_community', 'block_view', 'banner');
             print($banner_block['content']);
         ?>
@@ -86,7 +86,7 @@
 		<div class="search-results content-all">
 
 		    <?php
-		    	if(!is_null($all_event_results)) {
+		    	if(!is_null($all_event_results) && isset($_GET['event_date'])) {
 
 		    		// grab today's date
 		    		$today = new DateTime();
@@ -98,7 +98,6 @@
 		    			$date_heading = ($context_date === $today) ? 'Today' : $context_date->format('l M jS');
 		    		?>
 		    			<div class="date-block">
-		    				<h2><?= $date_heading ?></h2>
 		    				<div class="item item-date">
 								<div class="event-date">
 									<span class="date-display-single">
@@ -123,7 +122,7 @@
 				} else {
                     $current_start = (isset($_GET['start'])) ? intval($_GET['start']) : 0;
                     $current_rows = (isset($_GET['rows'])) ? intval($_GET['rows']) : intval(SEARCH_DEFAULT_ROWS);
-                    
+
                     if (count($content) > 0) {
 				    	foreach($content as $item) {
 				    		$the_thing = $item['item'];
