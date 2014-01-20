@@ -84,42 +84,44 @@
 		<?php } ?>
 		<div class="clear"></div>
 		<div class="search-results content-all">
+		    <?php if(!is_null($all_event_results) && isset($_GET['event_date'])) { ?>
+                    <div class="date-block">
+                        <?php if (!empty($all_event_results) > 0) {
+        		    		// grab today's date
+        		    		$today = new DateTime();
+        		    		$today->setTime(0,0,0);
 
-		    <?php
-		    	if(!is_null($all_event_results) && isset($_GET['event_date'])) {
-
-		    		// grab today's date
-		    		$today = new DateTime();
-		    		$today->setTime(0,0,0);
-
-		    		// loop through, make blocks by date
-		    		foreach($all_event_results as $date_index => $date_group) {
-		    			$context_date = new DateTime($date_index);
-		    			$date_heading = ($context_date === $today) ? 'Today' : $context_date->format('l M jS');
-		    		?>
-		    			<div class="date-block">
-		    				<div class="item item-date">
-								<div class="event-date">
-									<span class="date-display-single">
-									<span class="month"><?= $context_date->format('M') ?></span>
-									<?= $context_date->format('j') ?>
-									</span>
-								</div>
-		    				    <ul class="item-event-facets">
-		    				        <li><a href="">Performances (count)</a></li>
-		    				        <li><a href="">Classes (count)</a></li>
-		    				        <li><a href="">Exhibitions (count)</a></li>
-		    				    </ul>
-		    				</div>
-		    				<?php foreach($date_group as $index => $the_thing) { ?>
-								<div class="item item-event">
-									<?= render(node_view($the_thing['item'], 'teaser')); ?>
-								</div>
-		    				<?php } ?>
-		    			</div>
-		    		<?php }
-
-				} else {
+        		    		// loop through, make blocks by date
+        		    		foreach($all_event_results as $date_index => $date_group) {
+        		    			$context_date = new DateTime($date_index);
+        		    			$date_heading = ($context_date === $today) ? 'Today' : $context_date->format('l M jS');
+        		    		?>
+    		    				<div class="item item-date">
+    								<div class="event-date">
+    									<span class="date-display-single">
+    									<span class="month"><?= $context_date->format('M') ?></span>
+    									<?= $context_date->format('j') ?>
+    									</span>
+    								</div>
+    		    				    <ul class="item-event-facets">
+    		    				        <li><a href="">Performances (count)</a></li>
+    		    				        <li><a href="">Classes (count)</a></li>
+    		    				        <li><a href="">Exhibitions (count)</a></li>
+    		    				    </ul>
+    		    				</div>
+    		    				<?php foreach($date_group as $index => $the_thing) { ?>
+    								<div class="item item-event">
+    									<?= render(node_view($the_thing['item'], 'teaser')); ?>
+    								</div>
+    		    				<?php }
+                            }
+                        } else { ?>
+                            <div class="item item-date">
+                                No events on that day.
+                            </div>
+                        <?php } ?>
+                    </div>
+				<?php } else {
                     $current_start = (isset($_GET['start'])) ? intval($_GET['start']) : 0;
                     $current_rows = (isset($_GET['rows'])) ? intval($_GET['rows']) : intval(SEARCH_DEFAULT_ROWS);
 
