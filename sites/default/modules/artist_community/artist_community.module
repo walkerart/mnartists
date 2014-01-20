@@ -589,7 +589,8 @@ function url_query_master($text, $path, $key, $val, $attributes = array()) {
             $event_search_class = '';
             $event_location_search_string = (isset($_GET['event_location_search'])) ? $_GET['event_location_search'] : '';
             if (isset($_GET['content']['event']) && $_GET['content']['event'] == 1
-                    && isset($_GET['event_location_search'])) {
+                    && (isset($_GET['event_location_search']) ||
+                        isset($_GET['event_date']))) {
                 $event_search_class = 'active-trail selected';
             }
             $event_sub_items[] = theme('artist_community_menu_location_search', array(
@@ -649,6 +650,7 @@ function _artist_community_get_items_query ($local_og = null,
     $filtered_by_type_and_user = false;
     $filtered_by_events_only = false;
     $filtered_by_events_and_location = (isset($_GET['event_location_search']));
+    $filtered_by_event_date = false;
 
     // $filtered_by_user_only = false;
     $filtered_by_user_location = false;
@@ -686,6 +688,18 @@ function _artist_community_get_items_query ($local_og = null,
             isset($_GET['content']['event'])) {
 
             $filtered_by_events_only = true;
+        }
+
+        // okay this is getting ridiculous, reconsider and pull
+        // all this I/O flag shit back into something more
+        // reasonable
+        if (isset($_GET['content']) &&
+            count($_GET['content']) === 1 &&
+            !(isset($_GET['og'])) &&
+            isset($_GET['content']['event']) &&
+            isset($_GET['event_date'])) {
+
+            $filtered_by_event_date = true;
         }
 
         foreach($local_content as $type => $value) {
@@ -783,6 +797,24 @@ function _artist_community_get_items_query ($local_og = null,
             }
             $eventLocationSearchString = '{!geofilt sfield='.AC_USER_LATLNG_FIELD." pt=$coords d=".NEAR_ME_RADIUS.'}';
             $solarium_query->createFilterQuery('event_location_filter')->setQuery($eventLocationSearchString);
+        }
+
+        // @TODO should this be events that START on the
+        // specified day, or where the selected date falls
+        // within the start/end date?
+        if ($filtered_by_event_date === true) {
+
+            // validate date param
+            $incoming_date = date_parse_from_format('Y-m-d', $_GET['event_date']);
+
+            // if it's good, go ahead with the filter,
+            // creating a time range to span the whole day
+            if ($incoming_date !== false) {
+                $the_date = new DateTime($_GET['event_date']);
+                $start = $the_date->format('Y-m-d\T00:00:00\Z');
+                $end = $the_date->format('Y-m-d\T23:59:59\Z');
+                $solarium_query->createFilterQuery('event_date_filter')->setQuery("ds_field_date\:value:[$start TO $end]");
+            }
         }
     } else {
         $solarium_query->addSort(AC_CREATED_FIELD, $solarium_query::SORT_DESC);// @TODO get sort from incoming params?
