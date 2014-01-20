@@ -6,6 +6,7 @@ define('TWITTER_CONSUMER_KEY', variable_get('mnartist_twitter_consumer_key'));
 define('TWITTER_CONSUMER_SECRET', variable_get('mnartist_twitter_consumer_secret'));
 define('TWITTER_ACCESS_TOKEN', variable_get('mnartist_twitter_access_token'));
 define('TWITTER_TOKEN_SECRET', variable_get('mnartist_twitter_token_secret'));
+define('TWITTER_BLOCK_HIDE_THRESHOLD', 2);// number of tweets to display before we do the 'hide' thing
 
 /**
  * @file
@@ -152,6 +153,15 @@ function mnartist_twitter_block_view($delta = '') {
     return $block;
 }
 
+function mnartist_twitter_theme() {
+    return array(
+        'tweets_block' => array(
+            'variables' => array(),
+            'template' => 'templates/tweets',
+        )
+    );
+}
+
 function _mnartist_twitter_block()
 {
 	$url = $_SERVER['REQUEST_URI'];
@@ -218,46 +228,14 @@ function _mnartist_twitter_block()
     if (count($tweets) === 0) {
         return false;
     }
+
 	$output = "";
-	$output .= '<ul id="twitter_update_list">';
-	foreach ( $tweets as $tweet ) {
-		// Set up some variables
-		$tweet_url = 'http://twitter.com/'.$tweet->user->screen_name.'/statuses/'.$tweet->id_str; // tweet url
-		$urls = $tweet->entities->urls; // links
-		$retweet = false;
-		if(!empty($tweet->retweet))
-			print_r($tweet->retweet);
-			//$retweet = $tweet->retweeted_status->user->screen_name; // there is a retweeted user
-		$time = new DateTime($tweet->created_at); // lets grab the date
-		$date = $time->format('M j, g:ia'); // and format it accordingly
-		$url_find = array();
-		$url_links = array();
-		if ( $urls ) {
-		    if ( !is_array( $urls ) ) {
-		        $urls = array();
-		    }
-		    foreach ( $urls as $url ) {
-		        $theurl = $url->url;
-		        if ( $theurl ) {
-		            $url_block = '<a href="'.$theurl.'" target="_blank">'.$theurl.'</a>';
-		            $url_find[] = $theurl; // make array of urls
-		            $url_links[] = $url_block; // make array of replacement link blocks for urls in text
-		        }
-		    }
-		}
-		if ( $retweet ) { // add a class for retweets
-		    $link_class = ' class="retweet"';
-		} else {
-		    $link_class = '';
-		}
-		$output .= '<li'.$link_class.'>';
-		$new_text = preg_replace('#@([\\d\\w]+)#', '<a href="http://twitter.com/$1" target="_blank">$0</a>', $tweet->text); // replace all @mentions with actual links
-		$newer_text = preg_replace('/#([\\d\\w]+)/', '<a href="https://twitter.com/search?q=%23$1&src=hash" target="_blank">$0</a>', $new_text); // replace all #tags with actual links
-		$text = str_replace( $url_find, $url_links, $newer_text); // replace all links with actual links
-		$output .= $text;
-		$output .= '<br /><a class="twt-date" href="'.$tweet_url.'" target="_blank">'.$date.'</a>'; // format the date above
-		$output .= '</li>';
-	}
-	$output .= '</ul>';
+    $visible_tweets = array_slice($tweets, 0, TWITTER_BLOCK_HIDE_THRESHOLD, true);
+    $hidden_tweets = array_slice($tweets, TWITTER_BLOCK_HIDE_THRESHOLD, null, true);
+
+    // write the two blocks of tweets, visible and invisible
+	$output .= theme('tweets_block', array('tweets' => $visible_tweets, 'list_class' => 'twitter-thing-visible', 'show_more_link' => true));
+    $output .= theme('tweets_block', array('tweets' => $hidden_tweets, 'list_class' => 'twitter-thing-hidden', 'show_more_link' => false));
+
 	return $output;
 }
