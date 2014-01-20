@@ -235,7 +235,7 @@ function _mnartist_twitter_block()
 
     // write the two blocks of tweets, visible and invisible
 	$output .= theme('tweets_block', array('tweets' => $visible_tweets, 'list_class' => 'twitter-thing-visible', 'show_more_link' => true));
-    $output .= theme('tweets_block', array('tweets' => $hidden_tweets, 'list_class' => 'twitter-thing-visible', 'show_more_link' => false));
+    $output .= theme('tweets_block', array('tweets' => $hidden_tweets, 'list_class' => 'twitter-thing-hidden', 'show_more_link' => false));
 
 	return $output;
 }
