@@ -3,12 +3,12 @@
 
 /* jquery ui tabs */
 .block-content {
-	
+
 	.ui-tabs {
 		border-radius:0;
 		border:none;
 		padding:0;
-		
+
 		ul.ui-tabs-nav.ui-widget-header {
 			background:none;
 			margin:0 0 10px 0;
@@ -20,7 +20,7 @@
 			font-family:$sans_regular_font;
 			text-transform:uppercase;
 			font-size:12px;
-			
+
 			li.ui-state-default {
 				border-radius:0;
 				background:none;
@@ -29,7 +29,7 @@
 				margin-bottom:0;
 				float:none;
 				position:relative;
-				
+
 				a {
 					float:none;
 					opacity:.5;
@@ -49,19 +49,19 @@
 				display:block;
 				margin:0;padding:0;
 				border-radius:5px;
-				
+
 			}
 			li.ui-state-active {
-			
+
 				a {
 					opacity:1;
-					
+
 				}
 			}
 		}
 		.ui-tabs-panel {
 			font-family: $serif_font;
-			
+
 		}
 	}
 }
@@ -78,9 +78,9 @@
 	padding:0;
 	background: none;
 	@include dashed_border;
-	
+
 	.ui-icon {
-		
+
 	}
 	.ui-datepicker-prev, .ui-datepicker-next {
 		background:none;
@@ -100,10 +100,10 @@
 		background: url('../images/arrow-next.svg') no-repeat center center transparent;
 		background-size:7px auto;
 	}
-	
-	
+
+
 	.ui-icon-circle-triangle-e {
-		
+
 	}
 	.ui-datepicker-header {
 		border:none;
@@ -114,18 +114,18 @@
 	a {
 		padding:0;
 		background-image:none;
-		
+
 	}
 	table.ui-datepicker-calendar {
 		border:none;
-		
+
 		thead {
-		
+
 			tr {
 				background:none;
-				
+
 				th {
-					
+
 					span {
 						color:#111;
 					}
@@ -134,13 +134,13 @@
 		}
 		tbody {
 			border:none;
-		
+
 			tr {
 				border:none;
 				border-width:0;
 				background:none;
 				margin-bottom:5px;
-				
+
 				td {
 					padding:0 0 5px 0;
 					border:none;
@@ -163,6 +163,55 @@
 				}
 			}
 		}
-		
+
 	}
+}
+
+
+
+
+
+
+
+//
+
+//
+
+/*
+ * jQuery UI Dialog 1.8.11
+ *
+ * Copyright 2011, AUTHORS.txt (http://jqueryui.com/about)
+ * Dual licensed under the MIT or GPL Version 2 licenses.
+ * http://jquery.org/license
+ *
+ * http://docs.jquery.com/UI/Dialog#theming
+ */
+.ui-dialog{position:absolute;padding:.2em;width:300px;overflow:hidden;}
+.ui-dialog .ui-dialog-titlebar{padding:.4em 1em;position:relative;}
+.ui-dialog .ui-dialog-title{float:left;margin:.1em 16px .1em 0;}
+.ui-dialog .ui-dialog-titlebar-close{position:absolute;right:.3em;top:50%;width:19px;margin:-10px 0 0 0;padding:1px;height:18px;}
+.ui-dialog .ui-dialog-titlebar-close span{display:block;margin:1px;}
+.ui-dialog .ui-dialog-titlebar-close:hover,.ui-dialog .ui-dialog-titlebar-close:focus{padding:0;}
+.ui-dialog .ui-dialog-content{position:relative;border:0;padding:.5em 1em;background:none;overflow:auto;zoom:1;}
+.ui-dialog .ui-dialog-buttonpane{text-align:left;border-width:1px 0 0 0;background-image:none;margin:.5em 0 0 0;padding:.3em 1em .5em .4em;}
+.ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset{float:right;}
+.ui-dialog .ui-dialog-buttonpane button{margin:.5em .4em .5em 0;cursor:pointer;}
+.ui-dialog .ui-resizable-se{width:14px;height:14px;right:3px;bottom:3px;}
+.ui-draggable .ui-dialog-titlebar{cursor:move;}
+
+
+.ui-corner-all {
+	border-radius:0;
+}
+.ui-widget-content {
+	border:none;
+	background:none;
+
+}
+.ui-widget-header {
+	border:none;
+	background:#f2f2f2;
+}
+#media-browser-page-wrapper {
+	font-size:12px;
 }
