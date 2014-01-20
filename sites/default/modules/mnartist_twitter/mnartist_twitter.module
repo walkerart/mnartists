@@ -230,12 +230,14 @@ function _mnartist_twitter_block()
     }
 
 	$output = "";
-    $visible_tweets = array_slice($tweets, 0, TWITTER_BLOCK_HIDE_THRESHOLD, true);
-    $hidden_tweets = array_slice($tweets, TWITTER_BLOCK_HIDE_THRESHOLD, null, true);
-
-    // write the two blocks of tweets, visible and invisible
-	$output .= theme('tweets_block', array('tweets' => $visible_tweets, 'list_class' => 'twitter-thing-visible', 'show_more_link' => true));
-    $output .= theme('tweets_block', array('tweets' => $hidden_tweets, 'list_class' => 'twitter-thing-hidden', 'show_more_link' => false));
+    if (count($tweets) > TWITTER_BLOCK_HIDE_THRESHOLD) {
+        $visible_tweets = array_slice($tweets, 0, TWITTER_BLOCK_HIDE_THRESHOLD, true);
+        $hidden_tweets = array_slice($tweets, TWITTER_BLOCK_HIDE_THRESHOLD, null, true);
+        $output .= theme('tweets_block', array('tweets' => $visible_tweets, 'list_class' => 'twitter-thing-visible', 'show_more_link' => true));
+        $output .= theme('tweets_block', array('tweets' => $hidden_tweets, 'list_class' => 'twitter-thing-hidden', 'show_more_link' => false));
+    } else {
+        $output .= theme('tweets_block', array('tweets' => $tweets, 'list_class' => 'twitter-thing-visible', 'show_more_link' => false));
+    }
 
 	return $output;
 }
