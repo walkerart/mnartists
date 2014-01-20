@@ -84,22 +84,18 @@
 		<?php } ?>
 		<div class="clear"></div>
 		<div class="search-results content-all">
+		    <?php if(!is_null($all_event_results) && isset($_GET['event_date'])) { ?>
+                    <div class="date-block">
+                        <?php if (!empty($all_event_results) > 0) {
+        		    		// grab today's date
+        		    		$today = new DateTime();
+        		    		$today->setTime(0,0,0);
 
-		    <?php
-
-		    	if(!is_null($all_event_results) && isset($_GET['event_date'])) {
-
-                    if (!empty($all_event_results) > 0) {
-    		    		// grab today's date
-    		    		$today = new DateTime();
-    		    		$today->setTime(0,0,0);
-
-    		    		// loop through, make blocks by date
-    		    		foreach($all_event_results as $date_index => $date_group) {
-    		    			$context_date = new DateTime($date_index);
-    		    			$date_heading = ($context_date === $today) ? 'Today' : $context_date->format('l M jS');
-    		    		?>
-    		    			<div class="date-block">
+        		    		// loop through, make blocks by date
+        		    		foreach($all_event_results as $date_index => $date_group) {
+        		    			$context_date = new DateTime($date_index);
+        		    			$date_heading = ($context_date === $today) ? 'Today' : $context_date->format('l M jS');
+        		    		?>
     		    				<div class="item item-date">
     								<div class="event-date">
     									<span class="date-display-single">
@@ -117,18 +113,15 @@
     								<div class="item item-event">
     									<?= render(node_view($the_thing['item'], 'teaser')); ?>
     								</div>
-    		    				<?php } ?>
-    		    			</div>
-    		    		<?php }
-                    } else { ?>
-                        <div class="date_block">
+    		    				<?php }
+                            }
+                        } else { ?>
                             <div class="item item-date">
                                 No events on that day.
                             </div>
-                        </div>
-                    <?php }
-
-				} else {
+                        <?php } ?>
+                    </div>
+				<?php } else {
                     $current_start = (isset($_GET['start'])) ? intval($_GET['start']) : 0;
                     $current_rows = (isset($_GET['rows'])) ? intval($_GET['rows']) : intval(SEARCH_DEFAULT_ROWS);
 
