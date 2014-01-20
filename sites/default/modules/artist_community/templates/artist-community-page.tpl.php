@@ -120,7 +120,7 @@
     		    				<?php } ?>
     		    			</div>
     		    		<?php }
-                    } else { dpm(empty($all_event_results)); ?>
+                    } else { ?>
                         <div class="date_block">
                             <div class="item item-date">
                                 No events on that day.
