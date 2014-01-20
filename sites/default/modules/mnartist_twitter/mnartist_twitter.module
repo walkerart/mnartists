@@ -229,10 +229,13 @@ function _mnartist_twitter_block()
         return false;
     }
 
+    // add widget js
+    drupal_add_js(drupal_get_path('module', 'mnartist_twitter') .'/js/twitter-thing.js');
+
 	$output = "";
     if (count($tweets) > TWITTER_BLOCK_HIDE_THRESHOLD) {
         $visible_tweets = array_slice($tweets, 0, TWITTER_BLOCK_HIDE_THRESHOLD, true);
-        $hidden_tweets = array_slice($tweets, TWITTER_BLOCK_HIDE_THRESHOLD, null, true);
+        $hidden_tweets = array_slice($tweets, (TWITTER_BLOCK_HIDE_THRESHOLD + 1), null, true);
         $output .= theme('tweets_block', array('tweets' => $visible_tweets, 'list_class' => 'twitter-thing-visible', 'show_more_link' => true));
         $output .= theme('tweets_block', array('tweets' => $hidden_tweets, 'list_class' => 'twitter-thing-hidden', 'show_more_link' => false));
     } else {
