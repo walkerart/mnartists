@@ -193,7 +193,6 @@
 			<div class="twitter-thing widget widget-reverse">
 				<h3>Tweets &amp; Posts</h3>
 				<?= render($block['content']) ?>
-				<a href="#" class="more-link">More...</a>
 			</div>
 		<?php } ?>
 

@@ -112,12 +112,27 @@ $text_excerpt = '';
 if (isset($node->body['und'])) {
     $text_excerpt = strip_tags(text_summary($node->body['und'][0]['safe_value'], 'htmlcorrector', 120));
 }
+
+// get date(s) for this event, make a handy
+// little string out of it
+$start_date = null;
+$end_date = null;
+$date_string = '';
+if (isset($node->field_date['und'])) {
+    $start_date = new DateTime($node->field_date['und'][0]['value']);
+    $date_string .= $start_date->format('D, M jS Y');
+    if (isset($node->field_date['und'][1])) {
+        $end_date = new DateTime($node->field_date['und'][1]['value']);
+        $date_string .= ' &ndash; '.$end_date->format('D, M jS Y');
+    }
+}
 ?>
 <h3><?php print $type; ?></h3>
 <article id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
     <a href="<?= $node_url ?>" class="item-image"><img src="<?= $image_uri ?>"></a>
     <div class="item-info-container">
         <p class="item-info-title"><a href="<?= $node_url ?>"><?php print $node->title; ?></a></p>
+        <?php if (!isset($_GET['event_date'])) { ?><p class="item-info-date"><?= $date_string ?></p><?php } ?>
         <p class="item-info-excerpt">
             <?= $text_excerpt ?> <a href="<?= $node_url ?>">&gt;</a>
         </p>

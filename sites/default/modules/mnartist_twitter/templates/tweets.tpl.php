@@ -39,10 +39,10 @@
             $text = str_replace( $url_find, $url_links, $newer_text); // replace all links with actual links
             ?>
             <?= $text ?>
-            <br /><a class="twt-date" href="'<?= $tweet_url ?>'" target="_blank">'<?= $date ?>'</a>
+            <br /><a class="twt-date" href="<?= $tweet_url ?>" target="_blank"><?= $date ?></a>
         </li>
     <?php } ?>
     <?php if ($show_more_link === true) { ?>
-        <li><a href="">Show more tweets</a></li>
+        <li id="twitter-more-link"><a>More&hellip;</a></li>
     <?php } ?>
 </ul>
