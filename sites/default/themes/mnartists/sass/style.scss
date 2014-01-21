@@ -5839,6 +5839,7 @@ body.page-node-edit {
         box-sizing:border-box;
         padding-left:10px;
         padding-right:10px;
+        background:#fff;
 
         .item {
             @include column(8);
@@ -5863,6 +5864,11 @@ body.page-node-edit {
                 &:nth-child(3n+3) {
                     @include last;
                 }
+            }
+
+            .item-image {
+                width:100%;
+                height:auto;
             }
         }
     }
