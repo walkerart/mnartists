@@ -5756,10 +5756,18 @@ body.page-node-edit {
             }
         }
 
+        &.item-event {
 
+        }
+
+        article {
+            font-size:13px;
+        }
 
         .item-info-container {
             position:relative;
+
+
             p {
                 text-indent:none;
                 margin:0 0 .5em 0;
@@ -5767,6 +5775,14 @@ body.page-node-edit {
 
             .item-info-title {
                 font-weight:bold;
+                font-family: $sans_regular_font;
+
+            }
+            .item-info-date {
+                opacity:.5; /* temp tmp */
+            }
+            .item-info-excerpt {
+
             }
             .item-info-author {
 
