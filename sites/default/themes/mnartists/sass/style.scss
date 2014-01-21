@@ -5818,6 +5818,7 @@ body.page-node-edit {
 		}
 		.username {
 			text-align:center;
+
 			a {
 				display:inline-block;
 				height:auto;width:auto;
@@ -5830,6 +5831,9 @@ body.page-node-edit {
 			}
 		}
 	}
+}
+
+.search-results {
 
     &.content-events {
         box-sizing:border-box;
@@ -5837,38 +5841,35 @@ body.page-node-edit {
         padding-right:10px;
 
         .item {
-        @include column(8);
-        font-size:14px;
-        display:inline-block!important;
-        float:none!important;
-        vertical-align:top;
-        overflow:visible;
+            @include column(8);
+            font-size:14px;
+            display:inline-block!important;
+            float:none!important;
+            vertical-align:top;
+            overflow:visible;
 
-        &:nth-child(3n+3) {
-            @include last;
-        }
-
-        @media screen and (max-width: $break-tablet) {
-            @include column(12);
-
-            &:nth-child(2n+2) {
-                @include last;
-            }
-        }
-        @media screen and (max-width: $break-desktop-small) {
             &:nth-child(3n+3) {
                 @include last;
+            }
+
+            @media screen and (max-width: $break-tablet) {
+                @include column(12);
+
+                &:nth-child(2n+2) {
+                    @include last;
+                }
+            }
+            @media screen and (max-width: $break-desktop-small) {
+                &:nth-child(3n+3) {
+                    @include last;
+                }
             }
         }
     }
 }
 
-
-
 /* user authoring forms */
 #user-profile-form {
-
-
 
 }
 
