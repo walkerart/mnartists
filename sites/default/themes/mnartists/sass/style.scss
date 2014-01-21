@@ -5867,8 +5867,17 @@ body.page-node-edit {
             }
 
             .item-image {
-                width:100%;
-                height:auto;
+                img {
+                    width:100%;
+                    height:auto;
+                }
+            }
+            .item-info-flag {
+                opacity:.4;
+
+                &:hover {
+                    opacity:1;
+                }
             }
         }
     }
