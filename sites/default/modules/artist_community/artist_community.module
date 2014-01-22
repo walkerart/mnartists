@@ -215,8 +215,6 @@ function _community_block_community() {
             }
         }
     }
-    // @TODONEXT your task for tonight is to also add the user count to these facet numbers
-
 
     foreach($results as $result) {
         $community = node_load($result->nid);
@@ -415,6 +413,7 @@ function array_mashinator(&$array, $needle) {
  *  returns an html link
  */
 function url_query_master($text, $path, $key, $val, $attributes = array()) {
+    global $search_facets;
     $query = array();
 
     if (isset($_GET['og'])) {
@@ -491,7 +490,23 @@ function url_query_master($text, $path, $key, $val, $attributes = array()) {
         } else {
             $query['content'][$val] = TRUE;
         }
-        $output = l($text, $path, array('query' => $query, 'attributes' => $attributes));
+
+        // should be able to just use the values for $val as index names and then put that into getFacet,
+        // but to do that better figure out what the facet-exists test is
+        $facet_count = 0;
+        dpm($val);
+        switch ($val) {
+            case 'artists':
+            case 'organizations':
+                $facet_count = intval($search_facets->getFacet($val)->getValue());
+                break;
+            case 'event':
+            case 'artwork':
+            case 'article':
+                $facet_count = intval($search_facets->getFacet($val.'s')->getValue());
+                break;
+        }
+        $output = l($text." ($facet_count)", $path, array('query' => $query, 'attributes' => $attributes));
 
         if ($val === 'artists') {
             $artist_sub_items = array();
@@ -801,10 +816,6 @@ function _artist_community_get_items_query ($local_og = null,
     if ($filtered_by_events_only) {
         $solarium_query->addSort(AC_START_DATE_FIELD, $solarium_query::SORT_DESC);
 
-        // for now at least, since we don't really have
-        // much of a strategy for how to handle pagination
-        // with these dates. so I guess...
-        // @TODO figure that out
         $solarium_query->setStart(null);
         $solarium_query->setRows(null);
 
@@ -864,7 +875,7 @@ function _artist_community_get_items_query ($local_og = null,
     $solarium_query->createFilterQuery('published_filter')->setQuery('is_status:1');
 
     // set the facets
-    // @TODO don't do this here I guess?
+    // @TODO move this into a helper that can run on its own
     $facetSet = $solarium_query->getFacetSet();
     $facetSet->createFacetField('node_medium')->setField('im_field_medium');
     $facetSet->createFacetField('og_node_membership')->setField('im_og_group_ref');
@@ -875,14 +886,17 @@ function _artist_community_get_items_query ($local_og = null,
     $facetSet->createFacetField('node_type')->setField('ss_type');
     $facetSet->createFacetField('node_artwork_subject')->setField('im_field_subject_concept');
 
+    // use constants here for index_id and field and so on
+    $facetSet->createFacetQuery('artists')->setQuery('index_id:users AND im_roles:'.ARTIST_ROLE);
+    $facetSet->createFacetQuery('organizations')->setQuery('index_id:users AND im_roles:'.ORG_ROLE);
+    $facetSet->createFacetQuery('events')->setQuery('index_id:default_node_index AND ss_type:event');
+    $facetSet->createFacetQuery('articles')->setQuery('index_id:default_node_index AND ss_type:article');
+    $facetSet->createFacetQuery('artworks')->setQuery('index_id:default_node_index AND ss_type:artwork');
+    $facetSet->createFacetQuery('opportunities')->setQuery('index_id:default_node_index AND ss_type:opportunity');
 
-
-    // get the result set
+    // get the result set, assign the result's facetset to a global
     $resultset = $client->select($solarium_query);
-    $search_facets = $resultset->getFacetSet();
-
-
-
+    $search_facets = $resultset->getFacetSet();// @TODO think of a good way to make this data available on pages where the query doesn't run, preferably without actually running the query
 
     // if we actually want markup back, get it ready
     if ($rendernodes === true) {
