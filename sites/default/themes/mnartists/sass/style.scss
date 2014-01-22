@@ -5387,7 +5387,7 @@ only screen and (min-device-pixel-ratio: 1.5) {
 		margin-bottom:15px;
 	}
 	.month:last-child {
-		display:none;
+		/* display:none; */ // why?
 	}
 }
 .panel-pane .event-content {
@@ -5791,7 +5791,7 @@ body.page-node-edit {
             .item-info-flag {
                 position:absolute;
                 right:0px;
-                top:0px;
+                top:-5px;
 
             }
         }
@@ -5878,6 +5878,26 @@ body.page-node-edit {
                 &:hover {
                     opacity:1;
                 }
+            }
+        }
+        .item-date {
+            text-align:center;
+            font-family: $sans_bold_font;
+
+            .item-event-facets {
+                padding:0;
+                margin:0;
+
+                li {
+                    list-style:none;
+                    a {
+                        color:#888;
+                    }
+                }
+            }
+
+            .month {
+                color:#888;
             }
         }
     }
