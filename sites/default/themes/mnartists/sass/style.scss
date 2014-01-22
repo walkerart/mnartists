@@ -5376,15 +5376,17 @@ only screen and (min-device-pixel-ratio: 1.5) {
 }
 
 .event-date .date-display-single {
-	font-size:40px;
+	font-size:50px;
 	font-family:$sans_bold_font;
+    line-height:50px;
 
 	.month {
 		text-transform:uppercase;
-		font-size:20px;
+		font-size:24px;
 		display:block;
 		text-align:center;
 		margin-bottom:15px;
+        line-height:20px;
 	}
 	.month:last-child {
 		/* display:none; */ // why?
@@ -5883,6 +5885,11 @@ body.page-node-edit {
         .item-date {
             text-align:center;
             font-family: $sans_bold_font;
+
+            .date-display-single {
+                margin-bottom:30px;
+                display:block;clear:both;float:none;
+            }
 
             .item-event-facets {
                 padding:0;
