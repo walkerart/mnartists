@@ -519,7 +519,7 @@ function _mnartist_profile_my_stuff() {
 
         // check for artist role
         if (_get_role($user) == 'artist') {
-            $links[] = l("My Resume", "user/{$user->uid}/resume/download") . l("edit", "user/{$user->uid}/edit/resume", array("attributes" => array("class" => array("user-edit"))));
+            $links[] = l("My Resume", "user/{$user->uid}/resume/download", array("attributes" => array("target" => "_blank"))) . l("edit", "user/{$user->uid}/edit/resume", array("attributes" => array("class" => array("user-edit"))));
         }
         $links[] = l("Profile", "user") . l("edit", "user/{$user->uid}/edit", array("attributes" => array("class" => array("user-edit"))));
 
