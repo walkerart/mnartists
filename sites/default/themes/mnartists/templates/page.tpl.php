@@ -191,7 +191,7 @@
 	<div class="menu-content">
 		<ul class="mega-tabs">
 			<li><a href="/">MN Artists</a></li>
-			<li class="user-tab"><a href="/user"><?php print user_is_logged_in() ? 'My Stuff' : 'Login/Join'; ?></a></li>
+			<li class="user-tab"><a href="/user/feed"><?php print user_is_logged_in() ? 'My Stuff' : 'Login/Join'; ?></a></li>
 		</ul>
 		<!-- region: Menu -->
 	    <?php print render($page['menu']); ?>
