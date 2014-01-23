@@ -13,6 +13,8 @@ define('USER_INDEX', 'users');
 define('SUBJECT_VID', '8');
 define('EXPERIENCE_VID', '12');
 define('PRACTICE_VID', '13');
+define('ARTICLE_CATEGORY_VID', '6');
+define('EVENT_CATEGORY_VID', '2');
 define('SEARCH_DEFAULT_ROWS', '20');
 define('NEAR_ME_RADIUS', '50');
 
@@ -30,6 +32,8 @@ define('AC_USER_EXPERIENCE_FIELD', 'im_experiences');
 define('AC_CREATED_FIELD', 'ds_created');
 define('AC_USER_LATLNG_FIELD', 'locs_near_me_latlng');
 define('AC_START_DATE_FIELD', 'ds_field_date:value');
+define('AC_CATEGORY_FIELD', 'is_field_category');
+
 
 // config for solarium
 global $solarium_config;
@@ -189,6 +193,8 @@ function _community_block_search() {
  */
 function _community_block_community() {
     global $search_facets;
+    _set_community_query_facets();
+
     $items = array();
 
     // render community menu;
@@ -245,6 +251,8 @@ function _community_block_community() {
 function _community_block_content() {
     // render content menu;
 
+    global $search_facets;
+
     $menu_items = array(
         'article' => array(
             'title' => t('Articles'),
@@ -274,7 +282,8 @@ function _community_block_content() {
 
     $query = (isset($_GET['og'])) ? $_GET['og'] : array();
 
-    $items[] = l('All Content', 'community', array('query' => $query));
+    $all_content_count = $search_facets->getFacet('all_content')->getValue();
+    $items[] = l('All Content'." ($all_content_count)", 'community', array('query' => $query));
 
     foreach($menu_items as $key => $item) {
         $attributes = array();
@@ -414,6 +423,12 @@ function array_mashinator(&$array, $needle) {
  */
 function url_query_master($text, $path, $key, $val, $attributes = array()) {
     global $search_facets;
+    _set_community_query_facets();
+    if (is_null($search_facets)) {
+        _placeholder_community_query_facets();
+    }
+
+
     $query = array();
 
     if (isset($_GET['og'])) {
@@ -440,10 +455,19 @@ function url_query_master($text, $path, $key, $val, $attributes = array()) {
 
             $output = l($text.' ('.$attributes['facet_count'].')', $path, array('query' => $query, 'attributes' => $attributes));
 
+            // we'll need to merge these up with user counts too, right?
+            $medium_facets_rec = array();
+            $medium_facets = $search_facets->getFacet('node_medium');
+            foreach ($medium_facets as $value => $count) {
+                $medium_facets_rec[$value] = $count;
+            }
+
+            // @TODO this one can use util too
             // build sub menu items from the medium taxonomy
             foreach($node->field_medium['und'] as $tid) {
-                //
+
                 $attributes = array();
+                $facet_count = isset($medium_facets_rec[$tid['tid']]) ? intval($medium_facets_rec[$tid['tid']]) : 0;
 
                 // Reset the query so that the community values are included
                 if (isset($_GET['og'][$val])) {
@@ -466,7 +490,7 @@ function url_query_master($text, $path, $key, $val, $attributes = array()) {
                 array_mashinator($query['og'][$val], $tid['tid']);
 
                 // Build a sub menu of taxonomy terms
-                $sub_items[] = l($term->name, 'community', array(
+                $sub_items[] = l($term->name." ($facet_count)", 'community', array(
                     'query' => $query,
                     'attributes' => $attributes,
                 ));
@@ -494,7 +518,6 @@ function url_query_master($text, $path, $key, $val, $attributes = array()) {
         // should be able to just use the values for $val as index names and then put that into getFacet,
         // but to do that better figure out what the facet-exists test is
         $facet_count = 0;
-        dpm($val);
         switch ($val) {
             case 'artists':
             case 'organizations':
@@ -528,95 +551,40 @@ function url_query_master($text, $path, $key, $val, $attributes = array()) {
 
             $artist_sub_items[] = '<span class="community-content-menu-subheading">Experience</span>';
             $experience_vocabulary_tree = taxonomy_get_tree(EXPERIENCE_VID);
-            foreach($experience_vocabulary_tree as $term) {
-                $attributes = array();
 
-                // Reset the query so that the content sub-categories are included
-                if (isset($_GET['content'][$val])) {
-                    $query['content'][$val] = $_GET['content'][$val];
-                } else {
-                    $query['content'][$val] = array();
-                }
-
-                if (isset($_GET['content'][$val]) && is_array($_GET['content'][$val]) && in_array($term->tid, $_GET['content'][$val])) {
-                    $attributes['class'] = array('active-trail','selected');
-                }
-
-                // if the query is true convert it to an array
-                if ($query['content'][$val] == 1) {
-                    $query['content'][$val] = array();
-                }
-
-                array_mashinator($query['content'][$val], $term->tid);
-
-                // Build a sub menu of taxonomy terms
-                $artist_sub_items[] = l($term->name, 'community', array(
-                    'query' => $query,
-                    'attributes' => $attributes,
-                ));
+            $experience_facets_rec = array();
+            $experience_facets = $search_facets->getFacet('user_experiences');
+            foreach ($experience_facets as $value => $count) {
+                $experience_facets_rec[$value] = $count;
             }
+            $experience_sub_items = array();
+            $experience_sub_items = _artist_community_build_subitems_for_item($val, $experience_vocabulary_tree, $experience_facets_rec);
+            $artist_sub_items = array_merge($artist_sub_items, $experience_sub_items);
+
             $artist_sub_items[] = '<span class="community-content-menu-subheading">Practice</span>';
             $practice_vocabulary_tree = taxonomy_get_tree(PRACTICE_VID);
-            foreach($practice_vocabulary_tree as $term) {
-                $attributes = array();
-
-                // Reset the query so that the content sub-categories are included
-                if (isset($_GET['content'][$val])) {
-                    $query['content'][$val] = $_GET['content'][$val];
-                } else {
-                    $query['content'][$val] = array();
-                }
-
-                if (isset($_GET['content'][$val]) && is_array($_GET['content'][$val]) && in_array($term->tid, $_GET['content'][$val])) {
-                    $attributes['class'] = array('active-trail','selected');
-                }
-
-                // if the query is true convert it to an array
-                if ($query['content'][$val] == 1) {
-                    $query['content'][$val] = array();
-                }
-
-                array_mashinator($query['content'][$val], $term->tid);
-
-                // Build a sub menu of taxonomy terms
-                $artist_sub_items[] = l($term->name, 'community', array(
-                    'query' => $query,
-                    'attributes' => $attributes,
-                ));
+            $practice_facets_rec = array();
+            $practice_facets = $search_facets->getFacet('user_practices');
+            foreach ($practice_facets as $value => $count) {
+                $practice_facets_rec[$value] = $count;
             }
+            $practice_sub_items = _artist_community_build_subitems_for_item($val, $practice_vocabulary_tree, $practice_facets_rec);
+            $artist_sub_items = array_merge($artist_sub_items, $practice_sub_items);
+
             if (isset($artist_sub_items)) {
                 $output .= theme('item_list', array('items' => $artist_sub_items));
             }
         } else if ($val === 'artwork') {
             $artwork_sub_items = array();
             $subject_vocabulary_tree = taxonomy_get_tree(SUBJECT_VID);
-            foreach($subject_vocabulary_tree as $term) {
-                $attributes = array();
 
-                // Reset the query so that the content sub-categories are included
-                if (isset($_GET['content'][$val])) {
-                    $query['content'][$val] = $_GET['content'][$val];
-                } else {
-                    $query['content'][$val] = array();
-                }
-
-                if (isset($_GET['content'][$val]) && is_array($_GET['content'][$val]) && in_array($term->tid, $_GET['content'][$val])) {
-                    $attributes['class'] = array('active-trail','selected');
-                }
-
-                // if the query is true convert it to an array
-                if ($query['content'][$val] == 1) {
-                    $query['content'][$val] = array();
-                }
-
-                array_mashinator($query['content'][$val], $term->tid);
-
-                // Build a sub menu of taxonomy terms
-                $artwork_sub_items[] = l($term->name, 'community', array(
-                    'query' => $query,
-                    'attributes' => $attributes,
-                ));
+            // get artwork subject facet counts
+            $artwork_subject_facets_rec = array();
+            $artwork_subject_facets = $search_facets->getFacet('node_artwork_subject');
+            foreach ($artwork_subject_facets as $value => $count) {
+                $artwork_subject_facets_rec[$value] = $count;
             }
+            $artwork_sub_items = _artist_community_build_subitems_for_item($val, $subject_vocabulary_tree, $artwork_subject_facets_rec);
             if (isset($artwork_sub_items)) {
                 $output .= theme('item_list', array('items' => $artwork_sub_items));
             }
@@ -639,6 +607,17 @@ function url_query_master($text, $path, $key, $val, $attributes = array()) {
                 'search_field_value' => $event_location_search_string,
             ));
             $event_sub_items[] = '<div class="menu-event-datepicker"></div>';
+
+            // get event category facet counts
+            $event_category_facets_rec = array();
+            $event_category_facets = $search_facets->getFacet('node_category');
+            foreach ($event_category_facets as $value => $count) {
+                $event_category_facets_rec[$value] = $count;
+            }
+
+            // and build sub-items for categories
+            $event_category_vocab_tree = taxonomy_get_tree(EVENT_CATEGORY_VID);
+            $event_sub_items = _artist_community_build_subitems_for_item($val, $event_category_vocab_tree, $event_category_facets_rec);
             if (isset($event_sub_items)) {
                 $output .= theme('item_list', array('items' => $event_sub_items));
             }
@@ -646,6 +625,44 @@ function url_query_master($text, $path, $key, $val, $attributes = array()) {
     }
 
     return $output;
+}
+
+// used to take a top-level item and its sub-items as
+// an iterable of tid's, and return an array of the
+// sub-items. meant to reduce some duplication above.
+function _artist_community_build_subitems_for_item ($val, $taxonomy_terms, $facets) {
+
+    $sub_items = array();
+    foreach($taxonomy_terms as $term) {
+        $attributes = array();
+        $facet_count = isset($facets[$term->tid]) ? intval($facets[$term->tid]) : 0;
+
+        // Reset the query so that the content sub-categories are included
+        if (isset($_GET['content'][$val])) {
+            $query['content'][$val] = $_GET['content'][$val];
+        } else {
+            $query['content'][$val] = array();
+        }
+
+        if (isset($_GET['content'][$val]) && is_array($_GET['content'][$val]) && in_array($term->tid, $_GET['content'][$val])) {
+            $attributes['class'] = array('active-trail','selected');
+        }
+
+        // if the query is true convert it to an array
+        if ($query['content'][$val] == 1) {
+            $query['content'][$val] = array();
+        }
+
+        array_mashinator($query['content'][$val], $term->tid);
+
+        // Build a sub menu of taxonomy terms
+        $sub_items[] = l($term->name." ($facet_count)", 'community', array(
+            'query' => $query,
+            'attributes' => $attributes,
+        ));
+    }
+    return $sub_items;
+
 }
 
 //Remove extra media values from the teaser view
@@ -676,6 +693,8 @@ function _artist_community_get_items_query ($local_og = null,
 
     global $solarium_config;
     global $search_facets;
+
+    _set_community_query_facets();
 
     // declare container for all results
     $all_results = array();
@@ -712,15 +731,15 @@ function _artist_community_get_items_query ($local_og = null,
             }
             $userQueryBuilder[] = AC_USER_NODE_FIELD.":$og_id";
         }
+    } else {
+        $nodeQueryBuilder[] = '(ss_type:article OR ss_type:artwork OR ss_type:event)';
     }
 
-    // Handle content and users
-    if ($local_content !== null) {
-        $filtered_by_type = true;
+    $nodeQueryBuilderString = (count($nodeQueryBuilder) !== 0) ? ' AND ('.implode(' OR ', $nodeQueryBuilder).')' : '';
+    $userQueryBuilderString = (count($userQueryBuilder) !== 0) ? ' AND ('.implode(' OR ', $userQueryBuilder).')' : '';
 
-        // @TODO reconsider query here, og can be additive as it
-        // is now, should that be the case or should og somehow
-        // filter the events?
+    if ($local_content !== null) {
+
         if (isset($_GET['content']) &&
             count($_GET['content']) === 1 &&
             !(isset($_GET['og'])) &&
@@ -729,9 +748,6 @@ function _artist_community_get_items_query ($local_og = null,
             $filtered_by_events_only = true;
         }
 
-        // okay this is getting ridiculous, reconsider and pull
-        // all this I/O flag shit back into something more
-        // reasonable
         if (isset($_GET['content']) &&
             count($_GET['content']) === 1 &&
             !(isset($_GET['og'])) &&
@@ -741,69 +757,82 @@ function _artist_community_get_items_query ($local_og = null,
             $filtered_by_event_date = true;
         }
 
+        $contentFilters = array(
+            'node' => array(),
+            'user' => array()
+        );
         foreach($local_content as $type => $value) {
+
             switch($type) {
                 case 'artwork':
-                    $nodeQueryBuilder[] = AC_TYPE_FIELD.":$type";
-                    if (isset($local_content['artwork']) &&
-                        is_array($local_content['artwork'])) {
-                        foreach ($local_content['artwork'] as $tid) {
-                            $term = taxonomy_term_load($tid);
-                            $nodeQueryBuilder[] = AC_SUBJECT_FIELD.":$tid";
-                        }
-                        break;
-                    }
                 case 'article':
-                case 'event':
                 case 'opportunity':
-                    $nodeQueryBuilder[] = AC_TYPE_FIELD.":$type";
+                    // subject for artwork, 'is_field_category' for the others
+                    $contextQueryBuilder = array();
+                    $typeQuery = AC_TYPE_FIELD.":$type";
+                    $subQuery = null;
+                    $subQueryTargetField = ($type === 'artwork') ? AC_SUBJECT_FIELD : AC_CATEGORY_FIELD;
+                    if (isset($local_content[$type]) &&
+                        is_array($local_content[$type])) {
+                        $subQuery = implode(' OR ', $local_content[$type]);
+                    }
+                case 'event':
+                    if (isset($_GET['event_location_search'])) {
+                        $event_coords = _get_location_coords_from_search_string(urldecode($_GET['event_location_search']));
+                        $eventLocationSearchString = '{!geofilt sfield='.AC_USER_LATLNG_FIELD." pt=$event_coords d=".NEAR_ME_RADIUS.'}';
+                    }
+                    $contextQueryString = (!is_null($subQuery)) ? "($typeQuery AND ($subQueryTargetField:($subQuery)))" : "($typeQuery)";
+                    if (isset($eventLocationSearchString)) {
+                        $contextQueryString .= " AND $eventLocationSearchString";
+                    }
+                    $contentFilters['node'][] = $contextQueryString;
                     break;
                 case 'artists':
-                    $filtered_by_type_and_user = true;
-                    if (isset($local_content['artists']) &&
-                        is_array($local_content['artists'])) {
-                        foreach ($local_content['artists'] as $tid) {
+                    $roleQuery = AC_USER_ROLES_FIELD.":".ARTIST_ROLE;
+                    $subQuery = array();
+                    if (is_array($local_content[$type])) {
+                        $practices = $experiences = array();
+                        foreach ($local_content[$type] as $tid) {
                             $term = taxonomy_term_load($tid);
-                            $term_target = '';
                             if ($term->vid === EXPERIENCE_VID) {
-                                $term_target = AC_USER_EXPERIENCE_FIELD;
+                                $experiences[] = $tid;
                             } else if ($term->vid === PRACTICE_VID) {
-                                $term_target = AC_USER_PRACTICE_FIELD;
+                                $practices[] = $tid;
                             }
-                            $userQueryBuilder[] = "$term_target:".$tid;
                         }
-                    } else {
-                        $userQueryBuilder[] = AC_USER_ROLES_FIELD.":".ARTIST_ROLE;
+                        if (!empty($experiences)) { $subQuery[] = AC_USER_EXPERIENCE_FIELD.':('.implode(' OR ', $experiences).')'; }
+                        if (!empty($practices)) { $subQuery[] = AC_USER_PRACTICE_FIELD.':('.implode(' OR ', $practices).')'; }
                     }
                     if (isset($_GET['artist_location_search'])) {
-                        $filtered_by_user_location = true;
+                        $artist_coords = _get_location_coords_from_search_string(urldecode($_GET['artist_location_search']));
+                        $userLocationSearchString = '{!geofilt sfield='.AC_USER_LATLNG_FIELD." pt=$artist_coords d=".NEAR_ME_RADIUS.'}';
                     }
+                    $contextQueryString = (!empty($subQuery)) ? "(($roleQuery) AND (".implode(' OR ', $subQuery)."))" : "($roleQuery)";
+                    if (isset($userLocationSearchString)) {
+                        $contextQueryString .= " AND $userLocationSearchString";
+                    }
+                    $contentFilters['user'][] = $contextQueryString;
                     break;
                 case 'organizations':
-                    $filtered_by_type_and_user = true;
-                    $userQueryBuilder[] = AC_USER_ROLES_FIELD.":".ORG_ROLE;
+                    $contentFilters['user'][] = AC_USER_ROLES_FIELD.":".ORG_ROLE;
                     break;
             }
+
         }
+        $contentFilterQueryStrings = array();
+        if (!empty($contentFilters['node'])) {
+            $contentFilterQueryStrings[] = '(index_id:default_node_index AND '.implode(' OR ', $contentFilters['node']).')';
+        }
+        if (!empty($contentFilters['user'])) {
+            $contentFilterQueryStrings[] = '(index_id:users AND '.implode(' OR ', $contentFilters['user']).')';
+        }
+        $contentFilterQueryString = implode(' OR ', $contentFilterQueryStrings);
+        $solarium_query->createFilterQuery($type)->setQuery($contentFilterQueryString);
     }
 
-    // build the solarium query string
-    $nodeQueryBuilderString = (count($nodeQueryBuilder) !== 0) ? ' AND ('.implode(' OR ', $nodeQueryBuilder).')' : '';
-    $userQueryBuilderString = (count($userQueryBuilder) !== 0) ? ' AND ('.implode(' OR ', $userQueryBuilder).')' : '';
+    $communityQueryString = "(index_id:default_node_index$nodeQueryBuilderString) OR (index_id:users$userQueryBuilderString)";
 
-    // if we want users only, switch to that, otherwise build the full query string
-    if (count($nodeQueryBuilder) === 0 && count($userQueryBuilder) > 0) {
-        $finalQueryString = "(index_id:users$userQueryBuilderString)";
-    } else if ($filtered_by_type) {
-        if ($filtered_by_type_and_user === false) {
-            $finalQueryString = "((index_id:default_node_index)$nodeQueryBuilderString)";
-        } else {
-            $finalQueryString = "((index_id:default_node_index)$nodeQueryBuilderString) OR (index_id:users$userQueryBuilderString)";
-        }
-    } else {
-        $finalQueryString = "((index_id:default_node_index AND (ss_type:article OR ss_type:artwork OR ss_type:event))$nodeQueryBuilderString) OR (index_id:users$userQueryBuilderString)";
-    }
-    $solarium_query->createFilterQuery('the_thing')->setQuery($finalQueryString);
+    $solarium_query->createFilterQuery('the_thing')->setQuery($communityQueryString);
     if ($offset !== null && is_int($offset)) {
         $solarium_query->setStart($offset);
     }
@@ -818,21 +847,6 @@ function _artist_community_get_items_query ($local_og = null,
 
         $solarium_query->setStart(null);
         $solarium_query->setRows(null);
-
-        if ($filtered_by_events_and_location !== false) {
-            // @TODO add error handling for a geocoding unavailable state
-            $event_geocode_search_string = urldecode($_GET['event_location_search']);
-            $event_point = geocoder('google', $event_geocode_search_string);
-            $event_geoJSON = $event_point->out('json');
-            $event_parsedPoint = json_decode($event_geoJSON);
-            $event_lat = $event_parsedPoint->coordinates[1];
-            $event_long = $event_parsedPoint->coordinates[0];
-            if (isset($event_parsedPoint->coordinates)) {
-                $coords = "$event_lat,$event_long";
-            }
-            $eventLocationSearchString = '{!geofilt sfield='.AC_USER_LATLNG_FIELD." pt=$coords d=".NEAR_ME_RADIUS.'}';
-            $solarium_query->createFilterQuery('event_location_filter')->setQuery($eventLocationSearchString);
-        }
 
         // @TODO should this be events that START on the
         // specified day, or where the selected date falls
@@ -855,48 +869,11 @@ function _artist_community_get_items_query ($local_og = null,
         $solarium_query->addSort(AC_CREATED_FIELD, $solarium_query::SORT_DESC);// @TODO get sort from incoming params?
     }
 
-    // @TODO by virtue of the way the form is constructed, this will
-    // behave as if it's always mutually exclusive, but should it?
-    if ($filtered_by_user_location !== false) {
-        $user_geocode_search_string = urldecode($_GET['artist_location_search']);
-        $user_point = geocoder('google', $user_geocode_search_string);
-        $user_geoJSON = $user_point->out('json');
-        $user_parsedPoint = json_decode($user_geoJSON);
-        $user_lat = $user_parsedPoint->coordinates[1];
-        $user_long = $user_parsedPoint->coordinates[0];
-        if (isset($user_parsedPoint->coordinates)) {
-            $coords = "$user_lat,$user_long";
-        }
-        $userLocationSearchString = '{!geofilt sfield='.AC_USER_LATLNG_FIELD." pt=$coords d=".NEAR_ME_RADIUS.'}';
-        $solarium_query->createFilterQuery('artist_location_filter')->setQuery($userLocationSearchString);
-    }
-
     // limit to published nodes
     $solarium_query->createFilterQuery('published_filter')->setQuery('is_status:1');
 
-    // set the facets
-    // @TODO move this into a helper that can run on its own
-    $facetSet = $solarium_query->getFacetSet();
-    $facetSet->createFacetField('node_medium')->setField('im_field_medium');
-    $facetSet->createFacetField('og_node_membership')->setField('im_og_group_ref');
-    $facetSet->createFacetField('og_user_group')->setField('im_og_user_node');
-    $facetSet->createFacetField('og_user_membership')->setField('im_og_membership');
-    $facetSet->createFacetField('user_practices')->setField('im_practices');
-    $facetSet->createFacetField('user_experiences')->setField('im_experiences');
-    $facetSet->createFacetField('node_type')->setField('ss_type');
-    $facetSet->createFacetField('node_artwork_subject')->setField('im_field_subject_concept');
-
-    // use constants here for index_id and field and so on
-    $facetSet->createFacetQuery('artists')->setQuery('index_id:users AND im_roles:'.ARTIST_ROLE);
-    $facetSet->createFacetQuery('organizations')->setQuery('index_id:users AND im_roles:'.ORG_ROLE);
-    $facetSet->createFacetQuery('events')->setQuery('index_id:default_node_index AND ss_type:event');
-    $facetSet->createFacetQuery('articles')->setQuery('index_id:default_node_index AND ss_type:article');
-    $facetSet->createFacetQuery('artworks')->setQuery('index_id:default_node_index AND ss_type:artwork');
-    $facetSet->createFacetQuery('opportunities')->setQuery('index_id:default_node_index AND ss_type:opportunity');
-
     // get the result set, assign the result's facetset to a global
     $resultset = $client->select($solarium_query);
-    $search_facets = $resultset->getFacetSet();// @TODO think of a good way to make this data available on pages where the query doesn't run, preferably without actually running the query
 
     // if we actually want markup back, get it ready
     if ($rendernodes === true) {
@@ -954,9 +931,27 @@ function _artist_community_get_items_query ($local_og = null,
     return $all_results;
 }
 
-function _artist_community_set_facet_fields_for_query ($the_query) {
+function _get_location_coords_from_search_string ($search_string) {
+    $point = geocoder('google', $search_string);
+    $geoJSON = $point->out('json');
+    $parsedPoint = json_decode($geoJSON);
+    $lat = $parsedPoint->coordinates[1];
+    $long = $parsedPoint->coordinates[0];
+    if (isset($parsedPoint->coordinates)) {
+        return "$lat,$long";
+    }
+    return false;
+}
 
-    $facetSet = $the_query->getFacetSet();
+function _set_community_query_facets () {
+
+    global $solarium_config;
+    global $search_facets;
+
+    $client = new Solarium\Client($solarium_config);
+    $solarium_query = $client->createSelect();
+
+    $facetSet = $solarium_query->getFacetSet();
     $facetSet->createFacetField('node_medium')->setField('im_field_medium');
     $facetSet->createFacetField('og_node_membership')->setField('im_og_group_ref');
     $facetSet->createFacetField('og_user_group')->setField('im_og_user_node');
@@ -965,7 +960,22 @@ function _artist_community_set_facet_fields_for_query ($the_query) {
     $facetSet->createFacetField('user_experiences')->setField('im_experiences');
     $facetSet->createFacetField('node_type')->setField('ss_type');
     $facetSet->createFacetField('node_artwork_subject')->setField('im_field_subject_concept');
+    $facetSet->createFacetField('node_category')->setField('is_field_category');
 
-    return $the_query;
+    // use constants here for index_id and field and so on
+    $facetSet->createFacetQuery('artists')->setQuery('index_id:users AND im_roles:'.ARTIST_ROLE);
+    $facetSet->createFacetQuery('organizations')->setQuery('index_id:users AND im_roles:'.ORG_ROLE);
+    $facetSet->createFacetQuery('events')->setQuery('index_id:default_node_index AND ss_type:event');
+    $facetSet->createFacetQuery('articles')->setQuery('index_id:default_node_index AND ss_type:article');
+    $facetSet->createFacetQuery('artworks')->setQuery('index_id:default_node_index AND ss_type:artwork');
+    $facetSet->createFacetQuery('opportunities')->setQuery('index_id:default_node_index AND ss_type:opportunity');
+    $facetSet->createFacetQuery('all_content')->setQuery('(index_id:default_node_index AND ((ss_type:article OR ss_type:artwork OR ss_type:event))) OR (index_id:users)');
+
+    $resultset = $client->select($solarium_query);
+    $search_facets = $resultset->getFacetSet();
+
+    // so, if we were to cache this, what could we do with that? would we JUST use that
+    // for the non-query pages? or
+    // cache_set('search_facets', $resultset->getFacetSet(), 'cache', REQUEST_TIME + (60*10));
 
 }
