@@ -42,15 +42,12 @@
             }
         });
 
-        // @TODO get this working, get 'today' deselected
-        datePickerContainer.find('.ui-datepicker-today').removeClass('ui-datepicker-today').removeClass('ui-datepicker-current-day');
-
-
         // open menu sub-items that have selections
         $('div.item-list').each(function () {
             var targetEl = $(this);
             if (targetEl.find('.selected').length > 0) {
                 targetEl.css('display', 'block');
+                targetEl.siblings('.closed').text("-").toggleClass("closed open");
             }
         });
     });
