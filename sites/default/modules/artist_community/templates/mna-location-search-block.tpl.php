@@ -12,5 +12,5 @@
         }
     ?>
     <label>Near Me:</label>
-    <input type="search" name="artist_location_search" placeholder="CITY/ZIP" value="<?= $search_field_value ?>">
+    <input type="search" name="<?= $search_input_name ?>" placeholder="CITY/ZIP" value="<?= $search_field_value ?>">
 </form>

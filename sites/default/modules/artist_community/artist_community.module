@@ -544,6 +544,7 @@ function url_query_master($text, $path, $key, $val, $attributes = array()) {
                 $artist_search_class = 'active-trail selected';
             }
             $artist_sub_items[] = theme('artist_community_menu_location_search', array(
+                'search_input_name' => 'artist_location_search',
                 'action_url' => '/community',
                 'form_class' => $artist_search_class,
                 'related_filters' => isset($_GET['content']) ? $_GET['content'] : array(),
@@ -622,6 +623,7 @@ function url_query_master($text, $path, $key, $val, $attributes = array()) {
                 $event_search_class = 'active-trail selected';
             }
             $event_sub_items[] = theme('artist_community_menu_location_search', array(
+                'search_input_name' => 'event_location_search',
                 'action_url' => '/community',
                 'form_class' => $event_search_class,
                 'related_filters' => isset($_GET['content']) ? $_GET['content'] : array(),
@@ -789,6 +791,7 @@ function _artist_community_get_items_query ($local_og = null,
                 case 'artwork':
                 case 'article':
                 case 'opportunity':
+                case 'event':
                     // subject for artwork, 'is_field_category' for the others
                     $contextQueryBuilder = array();
                     $typeQuery = AC_TYPE_FIELD.":$type";
@@ -802,11 +805,9 @@ function _artist_community_get_items_query ($local_og = null,
                     if (isset($_GET['event_location_search'])) {
                         $event_coords = _get_location_coords_from_search_string(urldecode($_GET['event_location_search']));
                         $eventLocationSearchString = '{!geofilt sfield='.AC_USER_LATLNG_FIELD." pt=$event_coords d=".NEAR_ME_RADIUS.'}';
+                        $solarium_query->createFilterQuery('event_location')->setQuery($eventLocationSearchString);
                     }
                     $contextQueryString = (!is_null($subQuery)) ? "($typeQuery AND ($subQueryTargetField:($subQuery)))" : "($typeQuery)";
-                    if (isset($eventLocationSearchString)) {
-                        $contextQueryString .= " AND $eventLocationSearchString";
-                    }
                     $contentFilters['node'][] = $contextQueryString;
                     break;
                 case 'artists':
@@ -828,11 +829,9 @@ function _artist_community_get_items_query ($local_og = null,
                     if (isset($_GET['artist_location_search'])) {
                         $artist_coords = _get_location_coords_from_search_string(urldecode($_GET['artist_location_search']));
                         $userLocationSearchString = '{!geofilt sfield='.AC_USER_LATLNG_FIELD." pt=$artist_coords d=".NEAR_ME_RADIUS.'}';
+                        $solarium_query->createFilterQuery('artist_location')->setQuery($userLocationSearchString);
                     }
                     $contextQueryString = (!empty($subQuery)) ? "(($roleQuery) AND (".implode(' OR ', $subQuery)."))" : "($roleQuery)";
-                    if (isset($userLocationSearchString)) {
-                        $contextQueryString .= " AND $userLocationSearchString";
-                    }
                     $contentFilters['user'][] = $contextQueryString;
                     break;
                 case 'organizations':
