@@ -33,6 +33,7 @@ define('AC_CREATED_FIELD', 'ds_created');
 define('AC_USER_LATLNG_FIELD', 'locs_near_me_latlng');
 define('AC_START_DATE_FIELD', 'ds_field_date:value');
 define('AC_CATEGORY_FIELD', 'is_field_category');
+define('AC_ARTICLE_CATEGORY_FIELD', 'is_field_article_category');
 
 
 // config for solarium
@@ -532,6 +533,7 @@ function url_query_master($text, $path, $key, $val, $attributes = array()) {
         $output = l($text." ($facet_count)", $path, array('query' => $query, 'attributes' => $attributes));
 
         if ($val === 'artists') {
+
             $artist_sub_items = array();
 
             // build location search form
@@ -574,7 +576,9 @@ function url_query_master($text, $path, $key, $val, $attributes = array()) {
             if (isset($artist_sub_items)) {
                 $output .= theme('item_list', array('items' => $artist_sub_items));
             }
+
         } else if ($val === 'artwork') {
+
             $artwork_sub_items = array();
             $subject_vocabulary_tree = taxonomy_get_tree(SUBJECT_VID);
 
@@ -588,7 +592,25 @@ function url_query_master($text, $path, $key, $val, $attributes = array()) {
             if (isset($artwork_sub_items)) {
                 $output .= theme('item_list', array('items' => $artwork_sub_items));
             }
-        } else if ($val === 'event') {
+
+        } else if ($val === 'article') {
+
+            $article_sub_items = array();
+            $article_category_vocabulary_tree = taxonomy_get_tree(ARTICLE_CATEGORY_VID);
+
+            // get artwork subject facet counts
+            $article_subject_facets_rec = array();
+            $article_subject_facets = $search_facets->getFacet('node_article_category');
+            foreach ($article_subject_facets as $value => $count) {
+                $article_subject_facets_rec[$value] = $count;
+            }
+            $article_sub_items = _artist_community_build_subitems_for_item($val, $article_category_vocabulary_tree, $article_subject_facets_rec);
+            if (isset($article_sub_items)) {
+                $output .= theme('item_list', array('items' => $article_sub_items));
+            }
+
+        }else if ($val === 'event') {
+
             $event_sub_items = array();
 
             // build event location search form
@@ -617,7 +639,7 @@ function url_query_master($text, $path, $key, $val, $attributes = array()) {
 
             // and build sub-items for categories
             $event_category_vocab_tree = taxonomy_get_tree(EVENT_CATEGORY_VID);
-            $event_sub_items = _artist_community_build_subitems_for_item($val, $event_category_vocab_tree, $event_category_facets_rec);
+            $event_sub_items = array_merge($event_sub_items, _artist_community_build_subitems_for_item($val, $event_category_vocab_tree, $event_category_facets_rec));
             if (isset($event_sub_items)) {
                 $output .= theme('item_list', array('items' => $event_sub_items));
             }
@@ -961,6 +983,7 @@ function _set_community_query_facets () {
     $facetSet->createFacetField('node_type')->setField('ss_type');
     $facetSet->createFacetField('node_artwork_subject')->setField('im_field_subject_concept');
     $facetSet->createFacetField('node_category')->setField('is_field_category');
+    $facetSet->createFacetField('node_article_category')->setField(AC_ARTICLE_CATEGORY_FIELD);
 
     // use constants here for index_id and field and so on
     $facetSet->createFacetQuery('artists')->setQuery('index_id:users AND im_roles:'.ARTIST_ROLE);
