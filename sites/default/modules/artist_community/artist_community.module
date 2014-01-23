@@ -205,24 +205,6 @@ function _community_block_community() {
         ->execute()
         ->fetchAll();
 
-    // @TODO null check here and then build the facets from an open query if there's nothing set
-    $facet_reconstructed = array();//@TODO figure out how to actually access these on $facet
-    if (isset($search_facets) && !is_null($search_facets)) {
-        $node_facet = $search_facets->getFacet('og_node_membership');
-        foreach($node_facet as $value => $count) {
-            $facet_reconstructed[$value] = $count;
-        }
-
-        $user_facet = $search_facets->getFacet('og_user_group');
-        foreach($user_facet as $value => $count) {
-            if (isset($facet_reconstructed[$value])) {
-                $facet_reconstructed[$value] += intval($count);
-            } else {
-                $facet_reconstructed[$value] = intval($count);
-            }
-        }
-    }
-
     foreach($results as $result) {
         $community = node_load($result->nid);
 
@@ -230,7 +212,6 @@ function _community_block_community() {
         $attributes = array(
             'class' => (isset($_GET['og'][$result->nid]))
                     ? array('active-trail') : array(),
-            'facet_count' => (isset($facet_reconstructed[intval($community->vid)])) ? $facet_reconstructed[intval($community->vid)] : 0,
         );
         $list = url_query_master($result->title, 'community', 'og', $result->nid, $attributes);
         $items[$result->title] = $list;
@@ -454,13 +435,10 @@ function url_query_master($text, $path, $key, $val, $attributes = array()) {
                 $query['og'][$val] = TRUE;
             }
 
-            $output = l($text.' ('.$attributes['facet_count'].')', $path, array('query' => $query, 'attributes' => $attributes));
-
-            // we'll need to merge these up with user counts too, right?
-            $medium_facets_rec = array();
-            $medium_facets = $search_facets->getFacet('node_medium');
-            foreach ($medium_facets as $value => $count) {
-                $medium_facets_rec[$value] = $count;
+            if (isset($attributes['facet_count'])) {
+                $output = l($text.' ('.$attributes['facet_count'].')', $path, array('query' => $query, 'attributes' => $attributes));
+            } else {
+                $output = l($text, $path, array('query' => $query, 'attributes' => $attributes));
             }
 
             // @TODO this one can use util too
@@ -468,7 +446,6 @@ function url_query_master($text, $path, $key, $val, $attributes = array()) {
             foreach($node->field_medium['und'] as $tid) {
 
                 $attributes = array();
-                $facet_count = isset($medium_facets_rec[$tid['tid']]) ? intval($medium_facets_rec[$tid['tid']]) : 0;
 
                 // Reset the query so that the community values are included
                 if (isset($_GET['og'][$val])) {
@@ -491,7 +468,7 @@ function url_query_master($text, $path, $key, $val, $attributes = array()) {
                 array_mashinator($query['og'][$val], $tid['tid']);
 
                 // Build a sub menu of taxonomy terms
-                $sub_items[] = l($term->name." ($facet_count)", 'community', array(
+                $sub_items[] = l($term->name, 'community', array(
                     'query' => $query,
                     'attributes' => $attributes,
                 ));
