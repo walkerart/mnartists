@@ -9,13 +9,16 @@
             loading_indicator_selector: '.item-loading-indicator',
             endpoint_stem: '/communitygetitems',
             append_callback: function (newContent) {
-                contentContainer.masonry('appended', newContent);
+                contentContainer.isotope('appended', newContent);
+                contentContainer.imagesLoaded(function () {
+                    contentContainer.isotope('reloadItems');
+                });
             }
         });
 
-        if (contentContainer.masonry !== undefined) {
-            $('.content-all:not(.content-events)').masonry({});
-        }
+        contentContainer.imagesLoaded(function() {
+            contentContainer.isotope();
+        });
 
     });
 })(jQuery);
