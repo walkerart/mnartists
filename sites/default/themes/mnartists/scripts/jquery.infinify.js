@@ -12,12 +12,16 @@
 //  window_offset - offset in pixels from the bottom of window at which we'll trigger our 'load more' event
 //
 //  [more_link_selector] - the selector to check for the 'more data' url that we'll enhance
+//  [append_callback(newContent)] - callback to call when append is complete, content that was appended is passed as a param
 (function($) {
     $.fn.infinify = function (options) {
 
         var windowOffset = options.window_offset || 0;
         var moreLinkSelector = options.more_link_selector || 'a';
         var terminatorClassSelector = '.infinify-terminator';
+        var appendCallback = options.append_callback || null;
+        var appendCallbacks = $.Callbacks();
+        if (appendCallback !== null) { appendCallbacks.add(appendCallback); }
 
         if (options.more_link_container_selector &&
             moreLinkSelector &&
@@ -41,7 +45,7 @@
 
                 $(window).scroll(function (evt) {
 
-                    // @TODO think about updating window.location to preserve state?
+                    // @TODO think about doing a pushState here?
                     if($(window).scrollTop() == $(document).height() - ($(window).height() - windowOffset) &&
                         moreContentContainer.attr('data-infinify-load-in-progress') === 'false') {
 
@@ -71,10 +75,11 @@
 
                                     // append the incoming markup, then get it parsed so
                                     // we can check it for a 'more' link
-                                    moreContentContainer.append(html);
-                                    var findContent = $('<output>').append(html);
+                                    var newContent = $(html);
+                                    moreContentContainer.append(newContent);
+                                    appendCallbacks.fire(newContent);
 
-                                    if (findContent.find(options.more_link_container_selector).length !== 0) {
+                                    if (newContent.filter(options.more_link_container_selector).length !== 0) {
 
                                         // re-figure-out the href
                                         moreLinkContainer = moreContentContainer.find(options.more_link_container_selector);
