@@ -3,7 +3,7 @@
     <?php
         if (isset($related_filters[$persistent_key])) {
             if (is_array($related_filters[$persistent_key])) {
-                foreach($related_filters[$persistent_key] as $index => $value) { dpm($index); ?>
+                foreach($related_filters[$persistent_key] as $index => $value) { ?>
                     <input type="hidden" name="content[<?= $persistent_key ?>][<?= $index ?>]" value="<?= $value ?>">
                 <?php }
             } else { ?>

@@ -91,6 +91,18 @@
                             $today = new DateTime();
                             $today->setTime(0,0,0);
 
+                            // get event category info for use below...
+                            // get event category facet counts
+                            global $search_facets;
+                            $event_category_facets_rec = array();
+                            $event_category_facets = $search_facets->getFacet('node_category');
+                            foreach ($event_category_facets as $value => $count) {
+                                $event_category_facets_rec[$value] = $count;
+                            }
+
+                            // and build sub-items for categories
+                            $event_category_vocab_tree = taxonomy_get_tree(EVENT_CATEGORY_VID);
+
                             // loop through, make blocks by date
                             foreach($all_event_results as $date_index => $date_group) {
                                 $context_date = new DateTime($date_index);
@@ -104,9 +116,16 @@
                                         </span>
                                     </div>
                                     <ul class="item-event-facets">
-                                        <li><a href="">Performances (count)</a></li>
-                                        <li><a href="">Classes (count)</a></li>
-                                        <li><a href="">Exhibitions (count)</a></li>
+                                        <?php foreach ($event_category_vocab_tree as $term) {
+                                            if (isset($event_category_facets_rec[intval($term->tid)]) &&
+                                                $event_category_facets_rec[intval($term->tid)] !== 0) { ?>
+                                            <li>
+                                                <a href="/community?content[event][0]=<?= $term->tid ?>">
+                                                    <?= $term->name ?> (<?= $event_category_facets_rec[intval($term->tid)] ?>)
+                                                </a>
+                                            </li>
+                                        <?php }
+                                        } ?>
                                     </ul>
                                 </div>
                                 <?php foreach($date_group as $index => $the_thing) { ?>

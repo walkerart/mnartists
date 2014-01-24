@@ -14,7 +14,7 @@
         });
 
         if (contentContainer.masonry !== undefined) {
-            contentContainer.masonry({});
+            $('.content-all:not(.content-events)').masonry({});
         }
 
     });

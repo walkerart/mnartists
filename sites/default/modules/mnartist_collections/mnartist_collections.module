@@ -117,7 +117,6 @@ function _mnartist_collections_get_user_flags($variables)
 
 function _mnartist_collections_fix_community_destination ($destination) {
     $parsed_dest = parse_url($destination['destination']);
-    //dpm($parsed_dest);
     if ($parsed_dest['path'] === 'communitygetitems') {
         parse_str($parsed_dest['query'], $parsed_query);
         $incoming_offset = intval($parsed_query['start']);
@@ -126,7 +125,6 @@ function _mnartist_collections_fix_community_destination ($destination) {
         $new_destination = "community?start=0&rows=$new_limit";
         $destination['destination'] = $new_destination;
     }
-    //dpm($destination);
     return $destination;
 }
 
