@@ -55,7 +55,8 @@
                         loadingIndicatorEl.remove();
 
                         // append the loading indicator
-                        moreLinkContainer.replaceWith($('<div>loading more content</div>').addClass(loadingIndicatorClass).attr('id', loadingIndicatorClass));
+                        moreLinkContainer.remove();
+                        $('<div>loading more content</div>').addClass(loadingIndicatorClass).attr('id', loadingIndicatorClass).insertAfter(moreContentContainer);
 
                         // get more content
                         $.ajax({
