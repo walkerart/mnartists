@@ -17,7 +17,14 @@
         });
 
         contentContainer.imagesLoaded(function() {
-            contentContainer.isotope();
+            contentContainer.isotope({
+                onLayout: function($elems, instance) {
+                    // Add exponential z-index for dropdown cropping
+                    $elems.each(function(e){
+                        $(this).css({ zIndex: ($elems.length - e) });
+                    });
+                },
+            });
         });
 
     });
