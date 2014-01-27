@@ -871,6 +871,30 @@ function _artist_community_get_items_query ($local_og = null,
     $solarium_query->createFilterQuery('published_filter')->setQuery('is_status:1');
 
     // get the result set, assign the result's facetset to a global
+    $facetSet = $solarium_query->getFacetSet();
+    $facetSet->createFacetField('node_medium')->setField('im_field_medium');
+    $facetSet->createFacetField('og_node_membership')->setField('im_og_group_ref');
+    $facetSet->createFacetField('og_user_group')->setField('im_og_user_node');
+    $facetSet->createFacetField('og_user_membership')->setField('im_og_membership');
+    $facetSet->createFacetField('user_practices')->setField('im_practices');
+    $facetSet->createFacetField('user_experiences')->setField('im_experiences');
+    $facetSet->createFacetField('node_type')->setField('ss_type');
+    $facetSet->createFacetField('node_artwork_subject')->setField('im_field_subject_concept');
+    $facetSet->createFacetField('node_category')->setField('is_field_category');
+    $facetSet->createFacetField('node_article_category')->setField(AC_ARTICLE_CATEGORY_FIELD);
+
+    // use constants here for index_id and field and so on
+    $facetSet->createFacetQuery('artists')->setQuery('index_id:users AND im_roles:'.ARTIST_ROLE);
+    $facetSet->createFacetQuery('organizations')->setQuery('index_id:users AND im_roles:'.ORG_ROLE);
+    $facetSet->createFacetQuery('events')->setQuery('index_id:default_node_index AND ss_type:event');
+    $facetSet->createFacetQuery('articles')->setQuery('index_id:default_node_index AND ss_type:article');
+    $facetSet->createFacetQuery('artworks')->setQuery('index_id:default_node_index AND ss_type:artwork');
+    $facetSet->createFacetQuery('opportunities')->setQuery('index_id:default_node_index AND ss_type:opportunity');
+    $facetSet->createFacetQuery('all_content')->setQuery('(index_id:default_node_index AND ((ss_type:article OR ss_type:artwork OR ss_type:event))) OR (index_id:users)');
+
+    $resultset = $client->select($solarium_query);
+    $search_facets = $resultset->getFacetSet();
+
     $resultset = $client->select($solarium_query);
 
     // if we actually want markup back, get it ready
@@ -946,32 +970,34 @@ function _set_community_query_facets () {
     global $solarium_config;
     global $search_facets;
 
-    $client = new Solarium\Client($solarium_config);
-    $solarium_query = $client->createSelect();
+    if (!isset($search_facets)) {
+        $client = new Solarium\Client($solarium_config);
+        $solarium_query = $client->createSelect();
 
-    $facetSet = $solarium_query->getFacetSet();
-    $facetSet->createFacetField('node_medium')->setField('im_field_medium');
-    $facetSet->createFacetField('og_node_membership')->setField('im_og_group_ref');
-    $facetSet->createFacetField('og_user_group')->setField('im_og_user_node');
-    $facetSet->createFacetField('og_user_membership')->setField('im_og_membership');
-    $facetSet->createFacetField('user_practices')->setField('im_practices');
-    $facetSet->createFacetField('user_experiences')->setField('im_experiences');
-    $facetSet->createFacetField('node_type')->setField('ss_type');
-    $facetSet->createFacetField('node_artwork_subject')->setField('im_field_subject_concept');
-    $facetSet->createFacetField('node_category')->setField('is_field_category');
-    $facetSet->createFacetField('node_article_category')->setField(AC_ARTICLE_CATEGORY_FIELD);
+        $facetSet = $solarium_query->getFacetSet();
+        $facetSet->createFacetField('node_medium')->setField('im_field_medium');
+        $facetSet->createFacetField('og_node_membership')->setField('im_og_group_ref');
+        $facetSet->createFacetField('og_user_group')->setField('im_og_user_node');
+        $facetSet->createFacetField('og_user_membership')->setField('im_og_membership');
+        $facetSet->createFacetField('user_practices')->setField('im_practices');
+        $facetSet->createFacetField('user_experiences')->setField('im_experiences');
+        $facetSet->createFacetField('node_type')->setField('ss_type');
+        $facetSet->createFacetField('node_artwork_subject')->setField('im_field_subject_concept');
+        $facetSet->createFacetField('node_category')->setField('is_field_category');
+        $facetSet->createFacetField('node_article_category')->setField(AC_ARTICLE_CATEGORY_FIELD);
 
-    // use constants here for index_id and field and so on
-    $facetSet->createFacetQuery('artists')->setQuery('index_id:users AND im_roles:'.ARTIST_ROLE);
-    $facetSet->createFacetQuery('organizations')->setQuery('index_id:users AND im_roles:'.ORG_ROLE);
-    $facetSet->createFacetQuery('events')->setQuery('index_id:default_node_index AND ss_type:event');
-    $facetSet->createFacetQuery('articles')->setQuery('index_id:default_node_index AND ss_type:article');
-    $facetSet->createFacetQuery('artworks')->setQuery('index_id:default_node_index AND ss_type:artwork');
-    $facetSet->createFacetQuery('opportunities')->setQuery('index_id:default_node_index AND ss_type:opportunity');
-    $facetSet->createFacetQuery('all_content')->setQuery('(index_id:default_node_index AND ((ss_type:article OR ss_type:artwork OR ss_type:event))) OR (index_id:users)');
+        // use constants here for index_id and field and so on
+        $facetSet->createFacetQuery('artists')->setQuery('index_id:users AND im_roles:'.ARTIST_ROLE);
+        $facetSet->createFacetQuery('organizations')->setQuery('index_id:users AND im_roles:'.ORG_ROLE);
+        $facetSet->createFacetQuery('events')->setQuery('index_id:default_node_index AND ss_type:event');
+        $facetSet->createFacetQuery('articles')->setQuery('index_id:default_node_index AND ss_type:article');
+        $facetSet->createFacetQuery('artworks')->setQuery('index_id:default_node_index AND ss_type:artwork');
+        $facetSet->createFacetQuery('opportunities')->setQuery('index_id:default_node_index AND ss_type:opportunity');
+        $facetSet->createFacetQuery('all_content')->setQuery('(index_id:default_node_index AND ((ss_type:article OR ss_type:artwork OR ss_type:event))) OR (index_id:users)');
 
-    $resultset = $client->select($solarium_query);
-    $search_facets = $resultset->getFacetSet();
+        $resultset = $client->select($solarium_query);
+        $search_facets = $resultset->getFacetSet();
+    }
 
     // so, if we were to cache this, what could we do with that? would we JUST use that
     // for the non-query pages? or
