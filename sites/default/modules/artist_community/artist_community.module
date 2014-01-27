@@ -864,7 +864,8 @@ function _artist_community_get_items_query ($local_og = null,
             }
         }
     } else {
-        $solarium_query->addSort(AC_CREATED_FIELD, $solarium_query::SORT_DESC);// @TODO get sort from incoming params?
+        // ss_full_name
+        $solarium_query->addSort('ss_sort_by_name', $solarium_query::SORT_ASC);// @TODO get sort from incoming params?
     }
 
     // limit to published nodes

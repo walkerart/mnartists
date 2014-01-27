@@ -52,6 +52,21 @@
             print($banner_block['content']);
         ?>
 
+        <div class="sort-thing">
+            <h2>SORT</h2>
+            <?php
+                // take existing query string, if there's a sort replace it, put back together
+                // write 'current sort' string
+            ?>
+            <ul class="sort-thing-sort-options">
+                <li><a href="&sort_by=title&sort_direction=ASC">Alphabetical</a> <a href="&sort_by=title&sort_direction=DESC">&#8595;</a></li>
+                <li><a href="&sort_by=date_created&sort_direction=ASC">Date Created</a> <a href="&sort_by=date_created&sort_direction=DESC">&#8595;</a></li>
+                <li><a href="&sort_by=date_added&sort_direction=ASC">Date Added</a> <a href="&sort_by=date_added&sort_direction=DESC">&#8595;</a></li>
+                <li><a href="&sort_by=most_collected&sort_direction=ASC">Most Collected</a> <a href="&sort_by=most_collected&sort_direction=DESC">&#8595;</a></li>
+            </ul>
+            <div class="sort-thing-current-sort">A&#8594;Z</div>
+        </div>
+
         <?php if (!empty($articles)) { ?>
             <div class="article-thing widget">
                 <h3>Top Stories</h3>
