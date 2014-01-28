@@ -8839,13 +8839,20 @@ body.wysiwygeditor {
 }
 
 
-// community sort filters
+// SORT THING community sort filters
 .sort-thing {
+    max-width:220px;
     h2 {
         background:none;
         height:auto;
-        text-transform:none;
+        font-size: 12px;
+        padding:0;margin:0;
+    }
+    .wrap {
+        margin:0;
         padding:0;
+        background:#fff;
+
     }
     .sort-thing-sort-options {
         margin:0;padding:0;
@@ -8856,6 +8863,8 @@ body.wysiwygeditor {
             display:block;
             a {
                 display: inline-block;
+                font-size: 12px;
+                color: #666;
 
                 &:nth-child(1) {
 
@@ -8863,19 +8872,31 @@ body.wysiwygeditor {
                     padding: 8px 13px 8px 20px;
                     line-height: 1em;
                     text-transform: uppercase;
-                    font-size: 12px;
-                    color: #666;
+
+
                     background: url("../images/mna-circle-hollow.svg") no-repeat left center transparent;
                     background-size: 12px auto;
                 }
                 &:nth-child(2) {
                     float:right;
+                    padding: 8px 5px;
+                    color:#bbb;
                 }
             }
         }
     }
+    .sort-thing-current-sort {
+        float:right;
+        padding: 8px 5px;
+        font-size: 12px;
+
+        &:hover {
+            cursor:pointer;
+        }
+    }
 }
 .layout-a .panel-col-first {
+
     .sort-thing {
 
     }
