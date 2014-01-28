@@ -106,7 +106,10 @@ hide($content['links']);
 
 $image_uri = '';
 if (isset($node->field_images['und'])) {
-    $image_uri = $image_uri = image_style_url('medium', $node->field_images['und'][0]['uri']);
+    $target_image = $node->field_images['und'][0];
+    $image_uri = image_style_url('medium', $target_image['uri']);
+    $known_width = 220;
+    $computed_height = ($known_width * $target_image['height']) / $target_image['width'];
 }
 $text_excerpt = '';
 if (isset($node->body['und'])) {
@@ -129,7 +132,9 @@ if (isset($node->field_date['und'])) {
 ?>
 <h3><?php print $type; ?></h3>
 <article id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
-    <a href="<?= $node_url ?>" class="item-image"><img src="<?= $image_uri ?>"></a>
+    <?php if (isset($node->field_images['und'])) { ?>
+        <a href="<?= $node_url ?>" class="item-image"><img src="<?= $image_uri ?>" width="<?= $known_width ?>" height="<?=$computed_height ?>"></a>
+    <?php } ?>
     <div class="item-info-container">
         <p class="item-info-title"><a href="<?= $node_url ?>"><?php print $node->title; ?></a></p>
         <?php if (!isset($_GET['event_date'])) { ?><p class="item-info-date"><?= $date_string ?></p><?php } ?>

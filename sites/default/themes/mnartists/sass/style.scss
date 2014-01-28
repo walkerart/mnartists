@@ -5731,29 +5731,31 @@ body.page-node-edit {
     padding-top:20px;
 
     .item {
-        @include column(6);
-        font-size:14px;
-        display:inline-block!important;
-        float:none!important;
-        vertical-align:top;
-        overflow:visible;
+        width: 24%;
+        //margin-right: 1%;
+        // @include column(6);
+        // font-size:14px;
+        // display:inline-block!important;
+        // float:none!important;
+        // vertical-align:top;
+        // overflow:visible;
 
-        &:nth-child(4n+4) {
-            @include last;
-        }
+        // &:nth-child(4n+4) {
+        //     @include last;
+        // }
 
-        @media screen and (max-width: $break-tablet) {
-            @include column(12);
+        // @media screen and (max-width: $break-tablet) {
+        //     @include column(12);
 
-            &:nth-child(2n+2) {
-                @include last;
-            }
-        }
-        @media screen and (max-width: $break-desktop-small) {
-            &:nth-child(4n+4) {
-                @include last;
-            }
-        }
+        //     &:nth-child(2n+2) {
+        //         @include last;
+        //     }
+        // }
+        // @media screen and (max-width: $break-desktop-small) {
+        //     &:nth-child(4n+4) {
+        //         @include last;
+        //     }
+        // }
 
         &.item-event {
 
@@ -5841,29 +5843,29 @@ body.page-node-edit {
         background:#fff;
 
         .item {
-            @include column(8);
-            font-size:14px;
-            display:inline-block!important;
-            float:none!important;
-            vertical-align:top;
-            overflow:visible;
+            // @include column(8);
+            // font-size:14px;
+            // display:inline-block!important;
+            // float:none!important;
+            // vertical-align:top;
+            // overflow:visible;
 
-            &:nth-child(3n+3) {
-                @include last;
-            }
+            // &:nth-child(3n+3) {
+            //     @include last;
+            // }
 
-            @media screen and (max-width: $break-tablet) {
-                @include column(12);
+            // @media screen and (max-width: $break-tablet) {
+            //     @include column(12);
 
-                &:nth-child(2n+2) {
-                    @include last;
-                }
-            }
-            @media screen and (max-width: $break-desktop-small) {
-                &:nth-child(3n+3) {
-                    @include last;
-                }
-            }
+            //     &:nth-child(2n+2) {
+            //         @include last;
+            //     }
+            // }
+            // @media screen and (max-width: $break-desktop-small) {
+            //     &:nth-child(3n+3) {
+            //         @include last;
+            //     }
+            // }
 
             .item-image {
                 img {

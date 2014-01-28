@@ -141,7 +141,7 @@ function _mnartist_profiles_get_feed_data($row_offset = null, $row_limit = null)
 function mnartist_profiles_collective_or_fullname_or_username($uid, $prefer_full_name = false) {
     $context_user = user_load($uid);
     $context_profile = profile2_load_by_user($uid, 'main');
-    if (isset($context_profile->field_pseudonym['und']) && $prefer_full_name !== false) {
+    if (isset($context_profile->field_pseudonym['und']) && $prefer_full_name !== true) {
         return $context_profile->field_pseudonym['und'][0]['value'];
     } else if (isset($context_profile->field_full_name['und'])) {
         $entity = field_collection_item_load($context_profile->field_full_name['und'][0]['value']);
@@ -840,6 +840,7 @@ function mnartist_profiles_entity_property_info_alter(&$info) {
         'getter callback' => 'mnartist_profiles_latlng_getter_callback',
     );
 
+
     // this doesn't *really* belong here, but I guess
     // this is the best of a bunch of bad options for placement
     $info['node']['bundles']['event']['properties']['near_me_latlng'] = array(
@@ -847,6 +848,54 @@ function mnartist_profiles_entity_property_info_alter(&$info) {
         'label' => t('Event Latitude/Longitude'),
         'sanitized' => TRUE,
         'getter callback' => 'mnartist_profiles_latlng_getter_callback',
+    );
+
+    // creating a common field between users and nodes that an
+    // all content search can be sorted on
+    $info['user']['bundles']['user']['properties']['sort_by_name'] = array(
+        'type' => 'string',
+        'label' => t('Sort By Name'),
+        'sanitized' => TRUE,
+        'getter callback' => 'mnartist_profiles_sort_by_name_callback',
+    );
+    $info['node']['bundles']['artwork']['properties']['sort_by_name'] = array(
+        'type' => 'string',
+        'label' => t('Sort By Name'),
+        'sanitized' => TRUE,
+        'getter callback' => 'mnartist_profiles_sort_by_name_callback',
+    );
+    $info['node']['bundles']['article']['properties']['sort_by_name'] = array(
+        'type' => 'string',
+        'label' => t('Sort By Name'),
+        'sanitized' => TRUE,
+        'getter callback' => 'mnartist_profiles_sort_by_name_callback',
+    );
+    $info['node']['bundles']['event']['properties']['sort_by_name'] = array(
+        'type' => 'string',
+        'label' => t('Sort By Name'),
+        'sanitized' => TRUE,
+        'getter callback' => 'mnartist_profiles_sort_by_name_callback',
+    );
+
+    // index flag counts for nodes
+    // this (and the above) should move into the community module
+    $info['node']['bundles']['artwork']['properties']['flags_count'] = array(
+        'type' => 'integer',
+        'label' => t('Flags Count'),
+        'sanitized' => TRUE,
+        'getter callback' => 'mnartist_profiles_flags_count_callback',
+    );
+    $info['node']['bundles']['article']['properties']['flags_count'] = array(
+        'type' => 'integer',
+        'label' => t('Flags Count'),
+        'sanitized' => TRUE,
+        'getter callback' => 'mnartist_profiles_flags_count_callback',
+    );
+    $info['node']['bundles']['event']['properties']['flags_count'] = array(
+        'type' => 'integer',
+        'label' => t('Flags Count'),
+        'sanitized' => TRUE,
+        'getter callback' => 'mnartist_profiles_flags_count_callback',
     );
 }
 
@@ -857,6 +906,16 @@ function mnartist_profiles_search_api_data_type_info() {
       'fallback' => 'string',
     ),
   );
+}
+
+function mnartist_profiles_flags_count_callback($item) {
+    $sql = "SELECT count FROM flag_counts WHERE content_id = $item->nid";
+    $result = db_query($sql);
+    $count = 0;
+    foreach ($result as $row) {
+        $count += $row->count;
+    }
+    return $count;
 }
 
 function mnartist_profiles_latlng_getter_callback($item) {
@@ -914,6 +973,14 @@ function mnartist_profiles_experiences_getter_callback($item) {
         }
     }
     return $all_experiences;
+}
+
+function mnartist_profiles_sort_by_name_callback($item) {
+    if (isset($item->type)) {
+        return $item->title;
+    } else {
+        return mnartist_profiles_collective_or_fullname_or_username($item->uid);
+    }
 }
 
 function mnartist_profiles_get_geocoding_search_string_for_uid($uid) {

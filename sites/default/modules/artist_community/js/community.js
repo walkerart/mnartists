@@ -9,13 +9,39 @@
             loading_indicator_selector: '.item-loading-indicator',
             endpoint_stem: '/communitygetitems',
             append_callback: function (newContent) {
-                contentContainer.masonry('appended', newContent);
+                contentContainer.isotope('appended', newContent);
+                contentContainer.imagesLoaded(function () {
+                    contentContainer.isotope('reloadItems');
+                });
             }
         });
 
-        if (contentContainer.masonry !== undefined) {
-            $('.content-all:not(.content-events)').masonry({});
-        }
+
+        var columns = 4;
+        console.log(contentContainer.width() / columns);
+
+        contentContainer.imagesLoaded(function() {
+            contentContainer.isotope({
+                masonry: {
+                    columnWidth: contentContainer.width() / columns,
+                    // gutterWidth: 10
+                },
+                onLayout: function($elems, instance) {
+                    // Add exponential z-index for dropdown cropping
+                    $elems.each(function(e){
+                        $(this).css({ zIndex: ($elems.length - e) });
+                    });
+                },
+            });
+        });
+
+        // update columnWidth on window resize
+        $(window).smartresize(function(){
+            contentContainer.isotope({
+                // update columnWidth to a percentage of container width
+                masonry: { columnWidth: contentContainer.width() / columns }
+            });
+        });
 
     });
 })(jQuery);
