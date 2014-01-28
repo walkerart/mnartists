@@ -10135,7 +10135,7 @@ body.wysiwygeditor {
   background: none;
   height: auto;
   font-size: 12px;
-  padding: 0;
+  padding: 10px 0 0 10px;
   margin: 0;
 }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000038851}}
@@ -10166,10 +10166,10 @@ body.wysiwygeditor {
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000038869}}
 .sort-thing .sort-thing-sort-options li a:nth-child(1) {
   margin: 0;
-  padding: 8px 13px 8px 20px;
+  padding: 8px 13px 8px 30px;
   line-height: 1em;
   text-transform: uppercase;
-  background: url("../images/mna-circle-hollow.svg") no-repeat left center transparent;
+  background: url("../images/mna-circle-hollow.svg") no-repeat 10px center transparent;
   background-size: 12px auto;
 }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000038880}}
@@ -10183,10 +10183,29 @@ body.wysiwygeditor {
   float: right;
   padding: 8px 5px;
   font-size: 12px;
+  font-weight: bold;
+  color: #808080;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000038893}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000038895}}
 .sort-thing .sort-thing-current-sort:hover {
   cursor: pointer;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000038900}}
+.panel-2col.layout-a {
+  position: relative;
+  padding-top: 20px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000038903}}
+.panel-2col.layout-a .sort-thing {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000038910}}
+#block-system-main {
+  margin-bottom: 0;
 }
 
 /* now let's get those layout files */
