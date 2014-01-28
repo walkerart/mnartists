@@ -8854,10 +8854,20 @@ body.wysiwygeditor {
         padding:0;
         background:#fff;
         box-shadow: 0 1px 4px rgba(0,0,0,.2);
-        display:none;
+        height:0;
+        -webkit-transition: all .2s ease-in-out;
+        -moz-transition: all .2s ease-in-out;
+        -o-transition: all .2s ease-in-out;
+        transition: all .2s ease-in-out;
+        overflow:hidden;
 
         &.open {
             display:block;
+            height:auto;
+            -webkit-transition: all .3s ease-in-out;
+            -moz-transition: all .3s ease-in-out;
+            -o-transition: all .3s ease-in-out;
+            transition: all .3s ease-in-out;
         }
     }
     .sort-thing-sort-options {
