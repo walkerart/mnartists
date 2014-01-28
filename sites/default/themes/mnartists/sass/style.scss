@@ -8840,4 +8840,43 @@ body.wysiwygeditor {
 
 
 // community sort filters
+.sort-thing {
+    h2 {
+        background:none;
+        height:auto;
+        text-transform:none;
+        padding:0;
+    }
+    .sort-thing-sort-options {
+        margin:0;padding:0;
+        li {
+            list-style:none;
+            margin:0;padding:.3em 0 .3em 0;
+            border-bottom:1px solid #eee;
+            display:block;
+            a {
+                display: inline-block;
 
+                &:nth-child(1) {
+
+                    margin:0;
+                    padding: 8px 13px 8px 20px;
+                    line-height: 1em;
+                    text-transform: uppercase;
+                    font-size: 12px;
+                    color: #666;
+                    background: url("../images/mna-circle-hollow.svg") no-repeat left center transparent;
+                    background-size: 12px auto;
+                }
+                &:nth-child(2) {
+                    float:right;
+                }
+            }
+        }
+    }
+}
+.layout-a .panel-col-first {
+    .sort-thing {
+
+    }
+}
