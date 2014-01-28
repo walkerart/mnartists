@@ -839,12 +839,7 @@ function mnartist_profiles_entity_property_info_alter(&$info) {
         'sanitized' => TRUE,
         'getter callback' => 'mnartist_profiles_latlng_getter_callback',
     );
-    $info['user']['bundles']['user']['properties']['sort_by_name'] = array(
-        'type' => 'string',
-        'label' => t('Sort By Name'),
-        'sanitized' => TRUE,
-        'getter callback' => 'mnartist_profiles_sort_by_name_callback',
-    );
+
 
     // this doesn't *really* belong here, but I guess
     // this is the best of a bunch of bad options for placement
@@ -855,7 +850,14 @@ function mnartist_profiles_entity_property_info_alter(&$info) {
         'getter callback' => 'mnartist_profiles_latlng_getter_callback',
     );
 
-
+    // creating a common field between users and nodes that an
+    // all content search can be sorted on
+    $info['user']['bundles']['user']['properties']['sort_by_name'] = array(
+        'type' => 'string',
+        'label' => t('Sort By Name'),
+        'sanitized' => TRUE,
+        'getter callback' => 'mnartist_profiles_sort_by_name_callback',
+    );
     $info['node']['bundles']['artwork']['properties']['sort_by_name'] = array(
         'type' => 'string',
         'label' => t('Sort By Name'),
@@ -874,6 +876,27 @@ function mnartist_profiles_entity_property_info_alter(&$info) {
         'sanitized' => TRUE,
         'getter callback' => 'mnartist_profiles_sort_by_name_callback',
     );
+
+    // index flag counts for nodes
+    // this (and the above) should move into the community module
+    $info['node']['bundles']['artwork']['properties']['flags_count'] = array(
+        'type' => 'integer',
+        'label' => t('Flags Count'),
+        'sanitized' => TRUE,
+        'getter callback' => 'mnartist_profiles_flags_count_callback',
+    );
+    $info['node']['bundles']['article']['properties']['flags_count'] = array(
+        'type' => 'integer',
+        'label' => t('Flags Count'),
+        'sanitized' => TRUE,
+        'getter callback' => 'mnartist_profiles_flags_count_callback',
+    );
+    $info['node']['bundles']['event']['properties']['flags_count'] = array(
+        'type' => 'integer',
+        'label' => t('Flags Count'),
+        'sanitized' => TRUE,
+        'getter callback' => 'mnartist_profiles_flags_count_callback',
+    );
 }
 
 function mnartist_profiles_search_api_data_type_info() {
@@ -883,6 +906,16 @@ function mnartist_profiles_search_api_data_type_info() {
       'fallback' => 'string',
     ),
   );
+}
+
+function mnartist_profiles_flags_count_callback($item) {
+    $sql = "SELECT count FROM flag_counts WHERE content_id = $item->nid";
+    $result = db_query($sql);
+    $count = 0;
+    foreach ($result as $row) {
+        $count += $row->count;
+    }
+    return $count;
 }
 
 function mnartist_profiles_latlng_getter_callback($item) {

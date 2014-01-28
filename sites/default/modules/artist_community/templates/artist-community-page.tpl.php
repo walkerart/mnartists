@@ -55,15 +55,24 @@
         <div class="sort-thing">
             <h2>SORT</h2>
             <?php
-                // take existing query string, if there's a sort replace it, put back together
-                // write 'current sort' string
+                // take existing query string, if there's a sort
+                // clean it out
+                $qs = $_SERVER['QUERY_STRING'];
+                if ($qs !== '') {
+                    preg_replace("/&sort=.*(?=&)/u", '', $qs);
+                    preg_replace("/&sort_direction=.*(?=&)/u", '', $qs);
+                }
+                // @TODO date-only sort for events next, right?
             ?>
-            <ul class="sort-thing-sort-options">
-                <li><a href="&sort_by=title&sort_direction=ASC">Alphabetical</a> <a href="&sort_by=title&sort_direction=DESC">&#8595;</a></li>
-                <li><a href="&sort_by=date_created&sort_direction=ASC">Date Created</a> <a href="&sort_by=date_created&sort_direction=DESC">&#8595;</a></li>
-                <li><a href="&sort_by=date_added&sort_direction=ASC">Date Added</a> <a href="&sort_by=date_added&sort_direction=DESC">&#8595;</a></li>
-                <li><a href="&sort_by=most_collected&sort_direction=ASC">Most Collected</a> <a href="&sort_by=most_collected&sort_direction=DESC">&#8595;</a></li>
-            </ul>
+            <?php if(!is_null($all_event_results) && isset($_GET['event_date'])) { ?>
+            <?php } else { ?>
+                <ul class="sort-thing-sort-options">
+                    <li><a href="?<?= $qs ?>&sort_by=alpha&sort_direction=ASC">Alphabetical</a> <a href="?<?= $qs ?>&sort_by=alpha&sort_direction=DESC">&#8595;</a></li>
+                    <li><a href="?<?= $qs ?>&sort_by=created&sort_direction=ASC">Date Created</a> <a href="?<?= $qs ?>&sort_by=created&sort_direction=DESC">&#8595;</a></li>
+                    <li><a href="?<?= $qs ?>&sort_by=added&sort_direction=ASC">Date Added</a> <a href="?<?= $qs ?>&sort_by=added&sort_direction=DESC">&#8595;</a></li>
+                    <li><a href="?<?= $qs ?>&sort_by=collected&sort_direction=ASC">Most Collected</a> <a href="&sort_by=collected&sort_direction=DESC">&#8595;</a></li>
+                </ul>
+            <?php } ?>
             <div class="sort-thing-current-sort">A&#8594;Z</div>
         </div>
 

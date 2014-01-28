@@ -34,6 +34,8 @@ function artist_community_search_page() {
     $local_content = (isset($_GET['content'])) ? $_GET['content'] : null;
     $start_row = (isset($_GET['start']) && is_numeric($_GET['start'])) ? intval($_GET['start']) : null;
     $num_rows = (isset($_GET['rows']) && is_numeric($_GET['rows'])) ? intval($_GET['rows']) : intval(SEARCH_DEFAULT_ROWS);
+    $local_sort = (isset($_GET['sort'])) ? $_GET['sort'] : null;
+    $local_sort_direction = (isset($_GET['sort_direction'])) ? $_GET['sort_direction'] : null;
 
     // Handle Organic groups and taxonomies
     if ($local_og !== null) {
@@ -161,7 +163,7 @@ function artist_community_search_page() {
         $latest_users_data[] = $context_latest_user_data;
     }
 
-    $all_community_results = _artist_community_get_items_query($local_og, $local_content, $start_row, $num_rows);
+    $all_community_results = _artist_community_get_items_query($local_og, $local_content, $start_row, $num_rows, null, $local_sort, $local_sort_direction);
 
     $all_event_results = null;
     if (isset($_GET['content']) &&

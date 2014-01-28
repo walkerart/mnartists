@@ -572,7 +572,6 @@ function url_query_master($text, $path, $key, $val, $attributes = array()) {
             }
 
         } else if ($val === 'article') {
-
             $article_sub_items = array();
             $article_category_vocabulary_tree = taxonomy_get_tree(ARTICLE_CATEGORY_VID);
 
@@ -680,9 +679,11 @@ function artist_community_get_items () {
     $local_content = (isset($_GET['content'])) ? $_GET['content'] : null;
     $offset = (isset($_GET['start']) && is_numeric($_GET['start'])) ? intval($_GET['start']) : null;
     $limit = (isset($_GET['rows']) && is_numeric($_GET['rows'])) ? intval($_GET['rows']) : null;
+    $local_sort = (isset($_GET['sort'])) ? $_GET['sort'] : null;
+    $local_sort_direction = (isset($_GET['sort_direction'])) ? $_GET['sort_direction'] : null;
     $rendernodes = true;
 
-    echo implode('', _artist_community_get_items_query($local_og, $local_content, $offset, $limit, $rendernodes));
+    echo implode('', _artist_community_get_items_query($local_og, $local_content, $offset, $limit, $rendernodes, $local_sort, $local_sort_direction));
     drupal_exit();
 }
 
@@ -690,7 +691,9 @@ function _artist_community_get_items_query ($local_og = null,
                                             $local_content = null,
                                             $offset = null,
                                             $limit = null,
-                                            $rendernodes = null) {
+                                            $rendernodes = null,
+                                            $local_sort = null,
+                                            $local_sort_direction = null) {
 
     global $solarium_config;
     global $search_facets;
@@ -773,7 +776,13 @@ function _artist_community_get_items_query ($local_og = null,
                     $contextQueryBuilder = array();
                     $typeQuery = AC_TYPE_FIELD.":$type";
                     $subQuery = null;
-                    $subQueryTargetField = ($type === 'artwork') ? AC_SUBJECT_FIELD : AC_CATEGORY_FIELD;
+                    if ($type === 'artwork') {
+                        $subQueryTargetField = AC_SUBJECT_FIELD;
+                    } else if ($type = 'article') {
+                        $subQueryTargetField = AC_ARTICLE_CATEGORY_FIELD;
+                    } else {
+                        $subQueryTargetField = AC_CATEGORY_FIELD;
+                    }
                     if (isset($local_content[$type]) &&
                         is_array($local_content[$type])) {
                         $subQuery = implode(' OR ', $local_content[$type]);
@@ -865,7 +874,23 @@ function _artist_community_get_items_query ($local_og = null,
         }
     } else {
         // ss_full_name
-        $solarium_query->addSort('ss_sort_by_name', $solarium_query::SORT_ASC);// @TODO get sort from incoming params?
+        $sort_key = AC_CREATED_FIELD;
+        $sort_direction = $solarium_query::SORT_ASC;
+        if (!is_null($local_sort)) {
+            if ($local_sort === 'alpha') {
+                $sort_key = 'ss_sort_by_name';
+            } else if ($local_sort === 'created') {
+                $sort_key = AC_CREATED_FIELD;
+            } else if ($local_sort === 'added') {
+                $sort_key = 'timestamp';// doesn't really match the text, what is this really?
+            } else if ($local_sort === 'collected') {
+                $sort_key = 'is_flags_count';
+            }
+        }
+        if (!is_null($local_sort_direction) && $local_sort_direction === 'desc') {
+            $sort_direction = $solarium_query::SORT_DESC;
+        }
+        $solarium_query->addSort($sort_key, $sort_direction);
     }
 
     // limit to published nodes
