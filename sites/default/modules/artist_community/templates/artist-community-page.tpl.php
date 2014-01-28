@@ -59,18 +59,20 @@
                 // clean it out
                 $qs = $_SERVER['QUERY_STRING'];
                 if ($qs !== '') {
-                    preg_replace("/&sort=.*(?=&)/u", '', $qs);
-                    preg_replace("/&sort_direction=.*(?=&)/u", '', $qs);
+                    $qs = preg_replace("/(&)?sort=.*((?=&))?/u", '', $qs);
+                    $qs = preg_replace("/(&)?sort_direction=.*((?=&))?/u", '', $qs);
+                    if (!empty($qs)) { $qs .= '&'; }
                 }
-                // @TODO date-only sort for events next, right?
+                // @TODO what are sort options for events?
             ?>
             <?php if(!is_null($all_event_results) && isset($_GET['event_date'])) { ?>
             <?php } else { ?>
                 <ul class="sort-thing-sort-options">
-                    <li><a href="?<?= $qs ?>&sort_by=alpha&sort_direction=ASC">Alphabetical</a> <a href="?<?= $qs ?>&sort_by=alpha&sort_direction=DESC">&#8595;</a></li>
-                    <li><a href="?<?= $qs ?>&sort_by=created&sort_direction=ASC">Date Created</a> <a href="?<?= $qs ?>&sort_by=created&sort_direction=DESC">&#8595;</a></li>
-                    <li><a href="?<?= $qs ?>&sort_by=added&sort_direction=ASC">Date Added</a> <a href="?<?= $qs ?>&sort_by=added&sort_direction=DESC">&#8595;</a></li>
-                    <li><a href="?<?= $qs ?>&sort_by=collected&sort_direction=ASC">Most Collected</a> <a href="&sort_by=collected&sort_direction=DESC">&#8595;</a></li>
+                    <li><a href="?<?= $qs ?>sort=alpha&sort_direction=ASC">Alphabetical</a> <a href="?<?= $qs ?>sort=alpha&sort_direction=DESC">&#8595;</a></li>
+                    <li><a href="?<?= $qs ?>sort=created&sort_direction=ASC">Date Created</a> <a href="?<?= $qs ?>sort=created&sort_direction=DESC">&#8595;</a></li>
+                    <li><a href="?<?= $qs ?>sort=added&sort_direction=ASC">Date Added</a> <a href="?<?= $qs ?>sort=added&sort_direction=DESC">&#8595;</a></li>
+                    <li><a href="?<?= $qs ?>sort=collected&sort_direction=ASC">Most Collected</a> <a href="sort=collected&sort_direction=DESC">&#8595;</a></li>
+                    <!-- @TODO if we're filtered by events, add an option to sort by start date? -->
                 </ul>
             <?php } ?>
             <div class="sort-thing-current-sort">A&#8594;Z</div>

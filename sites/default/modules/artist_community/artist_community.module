@@ -887,7 +887,7 @@ function _artist_community_get_items_query ($local_og = null,
                 $sort_key = 'is_flags_count';
             }
         }
-        if (!is_null($local_sort_direction) && $local_sort_direction === 'desc') {
+        if (!is_null($local_sort_direction) && $local_sort_direction === 'DESC') {
             $sort_direction = $solarium_query::SORT_DESC;
         }
         $solarium_query->addSort($sort_key, $sort_direction);
