@@ -8841,7 +8841,8 @@ body.wysiwygeditor {
 
 // SORT THING community sort filters
 .sort-thing {
-    max-width:220px;
+    max-width:250px;
+    min-width:220px;
     h2 {
         background:none;
         height:auto;
@@ -8852,7 +8853,12 @@ body.wysiwygeditor {
         margin:0;
         padding:0;
         background:#fff;
+        box-shadow: 0 1px 4px rgba(0,0,0,.2);
+        display:none;
 
+        &.open {
+            display:block;
+        }
     }
     .sort-thing-sort-options {
         margin:0;padding:0;
@@ -8883,6 +8889,10 @@ body.wysiwygeditor {
                     color:#bbb;
                 }
             }
+
+            &:last-child {
+                border-bottom:none;
+            }
         }
     }
     .sort-thing-current-sort {
@@ -8891,6 +8901,8 @@ body.wysiwygeditor {
         font-size: 12px;
         font-weight:bold;
         color:#808080;
+        background:#fff;
+        box-shadow: 0 1px 4px rgba(0,0,0,.2);
 
         &:hover {
             cursor:pointer;
