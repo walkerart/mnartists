@@ -8854,15 +8854,17 @@ body.wysiwygeditor {
         padding:0;
         background:#fff;
         box-shadow: 0 1px 4px rgba(0,0,0,.2);
-        height:0;
+        height:1px;
         -webkit-transition: all .2s ease-in-out;
         -moz-transition: all .2s ease-in-out;
         -o-transition: all .2s ease-in-out;
         transition: all .2s ease-in-out;
         overflow:hidden;
+        margin-top:-4px;
 
         &.open {
             display:block;
+            min-height:100px;
             height:auto;
             -webkit-transition: all .3s ease-in-out;
             -moz-transition: all .3s ease-in-out;
@@ -8907,7 +8909,7 @@ body.wysiwygeditor {
     }
     .sort-thing-current-sort {
         float:right;
-        padding: 8px 5px;
+        padding: 12px 5px 8px 5px;
         font-size: 12px;
         font-weight:bold;
         color:#808080;
