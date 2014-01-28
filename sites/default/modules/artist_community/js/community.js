@@ -43,5 +43,9 @@
             });
         });
 
+        $('#sort-thing-opener').click(function (evt) {
+            $(this).siblings('.wrap').toggleClass('open');
+        });
+
     });
 })(jQuery);
