@@ -157,6 +157,9 @@ function _mnartist_collections_star()
 // for a given uid, return a db_query resultset that includes
 // items that a user has favorited that are not in a flag list
 function mnartist_collections_get_uncollected_favorites($uid) {
+
+    // intent is "give me all this user's rows in flag_content,
+    // but only the ones that DON'T intersect with flag_lists_content"
     $sql = "SELECT flag_content.content_id, flag_content.uid, flag_content.content_type
             FROM flag_content
             WHERE uid = $uid
@@ -165,4 +168,5 @@ function mnartist_collections_get_uncollected_favorites($uid) {
                     WHERE content_id = flag_content.content_id
                     AND uid = flag_content.uid) = 0";
     return db_query($sql);
+
 }
