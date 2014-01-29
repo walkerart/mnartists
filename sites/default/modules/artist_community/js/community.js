@@ -2,6 +2,21 @@
     $(document).ready(function() {
 
         var contentContainer = $('.content-all');
+        var columns = 3;
+        var gutter = 20;
+        var isotopeOptions = {
+            // update columnWidth to a percentage of container width
+            masonry: {
+                columnWidth: contentContainer.width() / columns,
+                gutterWidth: gutter
+            },
+            onLayout: function($elems, instance) {
+                // Add exponential z-index for dropdown cropping
+                $elems.each(function(e){
+                    $(this).css({ zIndex: ($elems.length - e) });
+                });
+            },
+        };
 
         // infinite scrolling dealings-with
         $('.content-all').infinify({
@@ -13,35 +28,20 @@
                 contentContainer.imagesLoaded(function () {
                     contentContainer.isotope('reloadItems');
                 });
+                var allItems = contentContainer.find('.item');
+                allItems.each(function(e){
+                    $(this).css({ zIndex: (allItems.length - e) });
+                });
             }
         });
 
-
-        var columns = 3;
-        var gutter = 20;
-        console.log(contentContainer.width() / columns);
-
         contentContainer.imagesLoaded(function() {
-            contentContainer.isotope({
-                masonry: {
-                    columnWidth: contentContainer.width() / columns,
-                    gutterWidth: gutter
-                },
-                onLayout: function($elems, instance) {
-                    // Add exponential z-index for dropdown cropping
-                    $elems.each(function(e){
-                        $(this).css({ zIndex: ($elems.length - e) });
-                    });
-                },
-            });
+            contentContainer.isotope(isotopeOptions);
         });
 
         // update columnWidth on window resize
         $(window).smartresize(function(){
-            contentContainer.isotope({
-                // update columnWidth to a percentage of container width
-                masonry: { columnWidth: contentContainer.width() / columns, gutterWidth: gutter }
-            });
+            contentContainer.isotope(isotopeOptions);
         });
 
         $('#sort-thing-opener').click(function (evt) {
