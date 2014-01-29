@@ -5320,17 +5320,12 @@ only screen and (min-device-pixel-ratio: 1.5) {
             font-family: $serif_font;
             font-size:14px;
             article h1, article h2, article h3,
-            h1, h2, h3 {
+            h1, h2, h3,
+            article h1 a {
                 color:$main_color;
                 font-weight:normal;
                 font-size:14px;
                 font-family: $serif_font;
-            }
-
-            h1 a {
-                color:$main_color;
-                font-weight:normal;
-                font-size:14px;
             }
 
             .node-teaser {
@@ -5360,6 +5355,19 @@ only screen and (min-device-pixel-ratio: 1.5) {
         font-size:14px;
         p {
             line-height:1.4em;
+        }
+    }
+
+    .field-name-field-email {
+        color:$main_color;
+        font-weight:normal;
+        font-size:14px;
+        font-family: $serif_font;
+        h2, a {
+            color:$main_color;
+            font-weight:normal;
+            font-size:14px;
+            font-family: $serif_font;
         }
     }
 }
