@@ -24,9 +24,10 @@
             loading_indicator_selector: '.item-loading-indicator',
             endpoint_stem: '/communitygetitems',
             append_callback: function (newContent) {
-                contentContainer.isotope('appended', newContent);
+                var newElems = $( newContent ).css({ opacity: 0 });
                 contentContainer.imagesLoaded(function () {
-                    contentContainer.isotope('reloadItems');
+                    newElems.animate({ opacity: 1 });
+                    contentContainer.isotope('appended', newElems);
                 });
                 var allItems = contentContainer.find('.item');
                 allItems.each(function(e){
