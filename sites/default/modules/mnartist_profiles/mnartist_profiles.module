@@ -106,6 +106,10 @@ function _mnartist_profiles_get_feed_data($row_offset = null, $row_limit = null)
     }
     $flagged_users = array_unique($flagged_users);
 
+    if (empty($flagged_users)) {
+        return array();
+    }
+
     $sql = "SELECT DISTINCT activity.type, activity.uid, activity.eid, activity.created, activity_messages.message FROM activity
             INNER JOIN activity_targets ON activity.aid = activity_targets.aid
             INNER JOIN activity_messages ON activity_targets.amid = activity_messages.amid

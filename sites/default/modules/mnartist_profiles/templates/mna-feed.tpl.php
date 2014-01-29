@@ -17,6 +17,6 @@
                 </div>
             </li>
     <?php } else { ?>
-        <li class="feed-item infinify-terminator"></li>
+        <li class="feed-item infinify-terminator">There are no items in your feed. Favorite/Star an artist to see updates here.</li>
     <?php } ?>
 </ul>
