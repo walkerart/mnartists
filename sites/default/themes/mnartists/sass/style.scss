@@ -5314,6 +5314,41 @@ only screen and (min-device-pixel-ratio: 1.5) {
 
 /* event page */
 /******************************************/
+.node-type-event {
+    .event-date {
+        .pane-node-field-venue {
+            font-family: $serif_font;
+            font-size:14px;
+            .node-teaser {
+
+                .node-header {
+
+                }
+                .submitted {
+
+                }
+                .node-content {
+                    h2 {
+                        color:$main_color;
+                        font-weight:normal;
+                        font-size:14px;
+                    }
+                }
+                .contextual-links-wrapper {
+
+                }
+            }
+        }
+    }
+
+    .pane-node-body {
+        font-family: $serif_font;
+        font-size:14px;
+        p {
+            line-height:1.4em;
+        }
+    }
+}
 .event-date {
 	padding-top:30px;
 	.pane-node-field-date {
