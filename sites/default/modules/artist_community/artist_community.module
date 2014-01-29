@@ -828,10 +828,10 @@ function _artist_community_get_items_query ($local_og = null,
         }
         $contentFilterQueryStrings = array();
         if (!empty($contentFilters['node'])) {
-            $contentFilterQueryStrings[] = '(index_id:default_node_index AND '.implode(' OR ', $contentFilters['node']).')';
+            $contentFilterQueryStrings[] = '(index_id:default_node_index AND '.implode(' AND ', $contentFilters['node']).')';
         }
         if (!empty($contentFilters['user'])) {
-            $contentFilterQueryStrings[] = '(index_id:users AND '.implode(' OR ', $contentFilters['user']).')';
+            $contentFilterQueryStrings[] = '(index_id:users AND '.implode(' AND ', $contentFilters['user']).')';
         }
         $contentFilterQueryString = implode(' OR ', $contentFilterQueryStrings);
         $solarium_query->createFilterQuery($type)->setQuery($contentFilterQueryString);
