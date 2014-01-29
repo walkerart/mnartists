@@ -62,6 +62,10 @@ function mnartist_activity_token_info() {
           'name' => t("Activity Artwork Node Media Uri"),
           'description' => t("Uri for either the media image itself or, if it's a different media type, its image representation"),
         ),
+        'node-first-image-uri' => array(
+          'name' => t("Activity Non-Artwork Node Image Uri"),
+          'description' => t("Image Uri for first image on a non-artwork node"),
+        ),
         'node-post-text-summary' => array(
           'name' => t("Node Text Summary"),
           'description' => t("A truncated piece of the node's text content"),
@@ -98,6 +102,12 @@ function mnartist_activity_tokens($type, $tokens, array $data = array(), array $
             }
           }
           $first_image_uri = (isset($data['node']->field_media['und'])) ? $data['node']->field_media['und'][0]['uri'] : '';
+          $replacements[$original] = file_create_url($uri);
+          break;
+        case 'node-first-image-uri':
+          if (isset($data['node']->field_images['und'])) {
+            $uri = $data['node']->field_images['und'][0]['uri'];
+          }
           $replacements[$original] = file_create_url($uri);
           break;
         case 'node-post-text-summary':
