@@ -5322,7 +5322,7 @@ only screen and (min-device-pixel-ratio: 1.5) {
             article h1, article h2, article h3,
             h1, h2, h3,
             article h1 a {
-                color:$main_color;
+                color:$lightgray;
                 font-weight:normal;
                 font-size:14px;
                 font-family: $serif_font;
@@ -5338,7 +5338,7 @@ only screen and (min-device-pixel-ratio: 1.5) {
                 }
                 .node-content {
                     h2 {
-                        color:$main_color;
+                        color:$lightgray;
                         font-weight:normal;
                         font-size:14px;
                     }
@@ -5378,6 +5378,11 @@ only screen and (min-device-pixel-ratio: 1.5) {
 		text-align:center;
         margin-bottom:40px!important;
 	}
+    .panel-pane {
+        article {
+            font-size:14px;
+        }
+    }
 }
 .event-content {
 
