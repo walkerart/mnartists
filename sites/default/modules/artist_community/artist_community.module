@@ -999,6 +999,7 @@ function _set_community_query_facets () {
     if (!isset($search_facets)) {
         $client = new Solarium\Client($solarium_config);
         $solarium_query = $client->createSelect();
+        $solarium_query->createFilterQuery('published_filter')->setQuery('is_status:1');
 
         $facetSet = $solarium_query->getFacetSet();
         $facetSet->createFacetField('node_medium')->setField('im_field_medium');
