@@ -153,3 +153,16 @@ function _mnartist_collections_star()
     );
     return $render;
 }
+
+// for a given uid, return a db_query resultset that includes
+// items that a user has favorited that are not in a flag list
+function mnartist_collections_get_uncollected_favorites($uid) {
+    $sql = "SELECT flag_content.content_id, flag_content.uid, flag_content.content_type
+            FROM flag_content
+            WHERE uid = $uid
+            AND (SELECT count(*)
+                    FROM flag_lists_content
+                    WHERE content_id = flag_content.content_id
+                    AND uid = flag_content.uid) = 0";
+    return db_query($sql);
+}

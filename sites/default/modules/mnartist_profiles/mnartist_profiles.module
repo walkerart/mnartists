@@ -913,7 +913,7 @@ function mnartist_profiles_search_api_data_type_info() {
 }
 
 function mnartist_profiles_flags_count_callback($item) {
-    $sql = "SELECT count FROM flag_counts WHERE content_id = $item->nid";
+    $sql = "SELECT count FROM flag_lists_counts WHERE content_id = $item->nid";
     $result = db_query($sql);
     $count = 0;
     foreach ($result as $row) {
