@@ -32,6 +32,7 @@
             moreContentContainer.attr('data-infinify-load-in-progress', 'false');
             var moreLinkContainer = moreContentContainer.find(options.more_link_container_selector);
             var loadingIndicatorClass = options.loading_indicator_selector.split('.')[1];
+            $('<div/>').addClass(loadingIndicatorClass).attr('id', loadingIndicatorClass).insertAfter(moreContentContainer);
 
             if (moreLinkContainer.length !== 0) {
 
@@ -52,11 +53,12 @@
                         // set 'update in progress' flag to true to avoid multiples
                         moreContentContainer.attr('data-infinify-load-in-progress', 'true');
                         var loadingIndicatorEl = $(options.loading_indicator_selector);
-                        loadingIndicatorEl.remove();
+                        //loadingIndicatorEl.remove();
+                        loadingIndicatorEl.toggleClass("loading");
 
                         // append the loading indicator
                         moreLinkContainer.remove();
-                        $('<div/>').addClass(loadingIndicatorClass).attr('id', loadingIndicatorClass).insertAfter(moreContentContainer);
+                        //$('<div/>').addClass(loadingIndicatorClass).attr('id', loadingIndicatorClass).insertAfter(moreContentContainer);
 
                         // get more content
                         $.ajax({
@@ -72,7 +74,8 @@
                                     // kill the loading indicator (by class in case
                                     // we have somehow elsewhere ended up with more than one)
                                     var loadingIndicatorEl = $(options.loading_indicator_selector);
-                                    loadingIndicatorEl.remove();
+                                    loadingIndicatorEl.toggleClass("loading");
+                                    //loadingIndicatorEl.remove();
 
                                     // append the incoming markup, then get it parsed so
                                     // we can check it for a 'more' link
@@ -93,7 +96,7 @@
                                         moreLink.attr('href', newHref);
 
                                         // remove the loading indicator
-                                        loadingIndicatorEl.remove();
+                                        //loadingIndicatorEl.remove();
 
                                     } else {
                                         // we're at the end of the available data, clean up...
