@@ -8843,6 +8843,11 @@ body.wysiwygeditor {
 .sort-thing {
     max-width:250px;
     min-width:220px;
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+    height:auto;
     h2 {
         background:none;
         height:auto;
@@ -8853,7 +8858,7 @@ body.wysiwygeditor {
         margin:0;
         padding:0;
         background:#fff;
-        box-shadow: 0 1px 4px rgba(0,0,0,.2);
+        box-shadow: 0 0px 2px 1px rgba(0, 0, 0, 0.2);
         height:1px;
         -webkit-transition: all .2s ease-in-out;
         -moz-transition: all .2s ease-in-out;
@@ -8861,6 +8866,7 @@ body.wysiwygeditor {
         transition: all .2s ease-in-out;
         overflow:hidden;
         margin-top:-4px;
+        max-height:1px;
 
         &.open {
             display:block;
@@ -8870,6 +8876,7 @@ body.wysiwygeditor {
             -moz-transition: all .3s ease-in-out;
             -o-transition: all .3s ease-in-out;
             transition: all .3s ease-in-out;
+            max-height:400px;
         }
     }
     .sort-thing-sort-options {
@@ -8909,12 +8916,23 @@ body.wysiwygeditor {
     }
     .sort-thing-current-sort {
         float:right;
-        padding: 12px 5px 8px 5px;
+        padding: 12px 8px 8px 8px;
         font-size: 12px;
         font-weight:bold;
         color:#808080;
         background:#fff;
-        box-shadow: 0 1px 4px rgba(0,0,0,.2);
+        box-shadow: 0 0px 2px 1px rgba(0, 0, 0, 0.2);
+        position:relative;
+
+        &:after {
+            content:"";
+            height:4px;
+            width:100%;
+            display:block;
+            background:#fff;
+            position:absolute;top:-4px;
+            left:0;right:0;
+        }
 
         &:hover {
             cursor:pointer;

@@ -10130,8 +10130,13 @@ body.wysiwygeditor {
 .sort-thing {
   max-width: 250px;
   min-width: 220px;
+  -webkit-transition: all .2s ease-in-out;
+  -moz-transition: all .2s ease-in-out;
+  -o-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+  height: auto;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000038846}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000038851}}
 .sort-thing h2 {
   background: none;
   height: auto;
@@ -10139,12 +10144,12 @@ body.wysiwygeditor {
   padding: 10px 0 0 30px;
   margin: 0;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000038852}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000038857}}
 .sort-thing .wrap {
   margin: 0;
   padding: 0;
   background: #fff;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0px 2px 1px rgba(0, 0, 0, 0.2);
   height: 1px;
   -webkit-transition: all .2s ease-in-out;
   -moz-transition: all .2s ease-in-out;
@@ -10152,8 +10157,9 @@ body.wysiwygeditor {
   transition: all .2s ease-in-out;
   overflow: hidden;
   margin-top: -4px;
+  max-height: 1px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000038865}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000038871}}
 .sort-thing .wrap.open {
   display: block;
   min-height: 100px;
@@ -10162,13 +10168,14 @@ body.wysiwygeditor {
   -moz-transition: all .3s ease-in-out;
   -o-transition: all .3s ease-in-out;
   transition: all .3s ease-in-out;
+  max-height: 400px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000038875}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000038882}}
 .sort-thing .sort-thing-sort-options {
   margin: 0;
   padding: 0;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000038877}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000038884}}
 .sort-thing .sort-thing-sort-options li {
   list-style: none;
   margin: 0;
@@ -10176,13 +10183,13 @@ body.wysiwygeditor {
   border-bottom: 1px solid #eee;
   display: block;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000038882}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000038889}}
 .sort-thing .sort-thing-sort-options li a {
   display: inline-block;
   font-size: 12px;
   color: #666;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000038887}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000038894}}
 .sort-thing .sort-thing-sort-options li a:nth-child(1) {
   margin: 0;
   padding: 8px 13px 8px 30px;
@@ -10191,44 +10198,57 @@ body.wysiwygeditor {
   background: url("../images/mna-circle-hollow.svg") no-repeat 10px center transparent;
   background-size: 12px auto;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000038898}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000038905}}
 .sort-thing .sort-thing-sort-options li a:nth-child(2) {
   float: right;
   padding: 8px 5px;
   color: #bbb;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000038905}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000038912}}
 .sort-thing .sort-thing-sort-options li:last-child {
   border-bottom: none;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000038910}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000038917}}
 .sort-thing .sort-thing-current-sort {
   float: right;
-  padding: 12px 5px 8px 5px;
+  padding: 12px 8px 8px 8px;
   font-size: 12px;
   font-weight: bold;
   color: #808080;
   background: #fff;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0px 2px 1px rgba(0, 0, 0, 0.2);
+  position: relative;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000038919}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000038927}}
+.sort-thing .sort-thing-current-sort:after {
+  content: "";
+  height: 4px;
+  width: 100%;
+  display: block;
+  background: #fff;
+  position: absolute;
+  top: -4px;
+  left: 0;
+  right: 0;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000038937}}
 .sort-thing .sort-thing-current-sort:hover {
   cursor: pointer;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000038924}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000038942}}
 .panel-2col.layout-a {
   position: relative;
   padding-top: 20px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000038928}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000038946}}
 .panel-2col.layout-a .sort-thing {
   position: absolute;
   top: 0;
   right: 0;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000038935}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mgipson\/Documents\/Repositories\/mnartists\/sites\/default\/themes\/mnartists\/sass\/style\.scss}line{font-family:\000038953}}
 #block-system-main {
   margin-bottom: 0;
 }
