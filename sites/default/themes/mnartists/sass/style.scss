@@ -5911,7 +5911,11 @@ body.page-node-edit {
 
 /* user authoring forms */
 #user-profile-form {
-
+    .form-item-og-user-node-und-0-default {
+        label, .description {
+            display:none;
+        }
+    }
 }
 
 tr.odd .form-item, tr.even .form-item {
