@@ -9,6 +9,7 @@ $node = node_load($row->nid);
 $user = user_load($node->uid);
 $node_uri = "/node/$node->nid";
 $image_uri = null;
+$working_uri = null;
 
 if ($node->type === 'artwork') {
     // if non-standard media type get image by scheme,
@@ -27,8 +28,12 @@ if ($node->type === 'artwork') {
           break;
       }
     }
-    $image_uri = image_style_url('medium', $working_uri);
+} else {
+  if (isset($node->field_images['und'])) {
+    $working_uri = $node->field_images['und'][0]['uri'];
+  }
 }
+$image_uri = (!is_null($working_uri)) ? image_style_url('medium', $working_uri) : '';
 ?>
 <li>
   <a class="user-collection-item" href="<?= $node_uri ?>">
