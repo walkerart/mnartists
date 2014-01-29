@@ -113,7 +113,7 @@ if (isset($node->field_images['und'])) {
 }
 $text_excerpt = '';
 if (isset($node->body['und'])) {
-    $text_excerpt = strip_tags(text_summary($node->body['und'][0]['safe_value'], 'htmlcorrector', 120));
+    $text_excerpt = trim(strip_tags(text_summary($node->body['und'][0]['safe_value'], 'htmlcorrector', 120)));
 }
 
 // get date(s) for this event, make a handy

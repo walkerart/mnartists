@@ -106,7 +106,7 @@ hide($content['links']);
 
 $text_excerpt = '';
 if (isset($node->body['und'])) {
-    $text_excerpt = strip_tags(text_summary($node->body['und'][0]['value'], 'htmlcorrector', 120));
+    $text_excerpt = trim(strip_tags(text_summary($node->body['und'][0]['value'], 'htmlcorrector', 120)));
 }
 ?>
 <h3><?php print $type; ?></h3>

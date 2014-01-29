@@ -17,14 +17,15 @@
         });
 
 
-        var columns = 4;
+        var columns = 3;
+        var gutter = 20;
         console.log(contentContainer.width() / columns);
 
         contentContainer.imagesLoaded(function() {
             contentContainer.isotope({
                 masonry: {
                     columnWidth: contentContainer.width() / columns,
-                    // gutterWidth: 10
+                    gutterWidth: gutter
                 },
                 onLayout: function($elems, instance) {
                     // Add exponential z-index for dropdown cropping
@@ -39,7 +40,7 @@
         $(window).smartresize(function(){
             contentContainer.isotope({
                 // update columnWidth to a percentage of container width
-                masonry: { columnWidth: contentContainer.width() / columns }
+                masonry: { columnWidth: contentContainer.width() / columns, gutterWidth: gutter }
             });
         });
 
