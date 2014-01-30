@@ -5319,6 +5319,7 @@ only screen and (min-device-pixel-ratio: 1.5) {
         .pane-node-field-venue {
             font-family: $serif_font;
             font-size:14px;
+
             article h1, article h2, article h3,
             h1, h2, h3,
             article h1 a {
@@ -5326,6 +5327,23 @@ only screen and (min-device-pixel-ratio: 1.5) {
                 font-weight:normal;
                 font-size:14px;
                 font-family: $serif_font;
+            }
+
+            .field-item h3 {
+                font-family: $serif_font;
+                text-transform:uppercase;
+            }
+            .field-item header h1 {
+                font-family: $serif_font;
+                text-transform:uppercase;
+            }
+            .field-item .node-content h2 {
+                font-family: $serif_font;
+                text-transform:uppercase;
+            }
+
+            .node-content section h2 {
+
             }
 
             .node-teaser {
@@ -5368,6 +5386,7 @@ only screen and (min-device-pixel-ratio: 1.5) {
             font-weight:normal;
             font-size:14px;
             font-family: $serif_font;
+            text-transform:uppercase;
         }
     }
 }
