@@ -48,14 +48,14 @@
                 $(window).scroll(function (evt) {
 
                     // @TODO think about doing a pushState here?
-                    if($(window).scrollTop() === $(document).height() - ($(window).height() - windowOffset) &&
+                    if($(window).scrollTop() == $(document).height() - ($(window).height() - windowOffset) &&
                         moreContentContainer.attr('data-infinify-load-in-progress') === 'false') {
 
                         // set 'update in progress' flag to true to avoid multiples
                         moreContentContainer.attr('data-infinify-load-in-progress', 'true');
 
                         // switch the loading indicator to loading state
-                        loadingIndicatorEl.addClass("loading");
+                        loadingIndicatorEl.toggleClass("loading");
 
                         // and remove the incoming more link
                         moreLinkContainer.remove();
@@ -74,7 +74,7 @@
                                     // kill the loading indicator (by class in case
                                     // we have somehow elsewhere ended up with more than one)
                                     var loadingIndicatorEl = $(options.loading_indicator_selector);
-                                    loadingIndicatorEl.removeClass("loading");
+                                    loadingIndicatorEl.toggleClass("loading");
 
                                     // append the incoming markup, then get it parsed so
                                     // we can check it for a 'more' link
@@ -100,7 +100,7 @@
                                         $(terminatorClassSelector).remove();
 
                                         // remove the loading indicator so it's not just sitting there...
-                                        loadingIndicatorEl.removeClass('loading');
+                                        loadingIndicatorEl.remove();
 
                                         // remove the now-orphaned more link
                                         moreContentContainer.find(options.more_link_container_selector).remove();
@@ -127,7 +127,7 @@
                 // remove the loading container if we don't need it at all
                 // (would usually reach this case when there's no additional
                 // content on initial load)
-                loadingIndicatorEl.removeClass('loading');
+                loadingIndicatorEl.remove();
             }
 
         } else {
