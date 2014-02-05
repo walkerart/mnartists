@@ -11,10 +11,12 @@
                 if (!empty($url_params_work)) {
                     $url_params = array();
                     foreach ($url_params_work as $item) {
-                        $pair = explode('=', $item);
-                    ?>
-                        <input type="hidden" name="<?= urldecode($pair[0]) ?>" value="<?= urldecode($pair[1]) ?>">
+                        if (!empty($item)) {
+                            $pair = explode('=', $item);
+                        ?>
+                            <input type="hidden" name="<?= urldecode($pair[0]) ?>" value="<?= urldecode($pair[1]) ?>">
                     <?php }
+                    }
                 }
             } ?>
         <input placeholder="Search" type="search" name="global_search" id="search" />

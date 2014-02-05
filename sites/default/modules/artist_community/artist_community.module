@@ -538,7 +538,7 @@ function url_query_master($text, $path, $key, $val, $attributes = array()) {
                 $experience_facets_rec[$value] = $count;
             }
             $experience_sub_items = array();
-            $experience_sub_items = _artist_community_build_subitems_for_item($val, $experience_vocabulary_tree, $experience_facets_rec);
+            $experience_sub_items = _artist_community_build_subitems_for_item($val, $experience_vocabulary_tree, $experience_facets_rec, $query);
             $artist_sub_items = array_merge($artist_sub_items, $experience_sub_items);
 
             $artist_sub_items[] = '<span class="community-content-menu-subheading">Practice</span>';
@@ -548,7 +548,7 @@ function url_query_master($text, $path, $key, $val, $attributes = array()) {
             foreach ($practice_facets as $value => $count) {
                 $practice_facets_rec[$value] = $count;
             }
-            $practice_sub_items = _artist_community_build_subitems_for_item($val, $practice_vocabulary_tree, $practice_facets_rec);
+            $practice_sub_items = _artist_community_build_subitems_for_item($val, $practice_vocabulary_tree, $practice_facets_rec, $query);
             $artist_sub_items = array_merge($artist_sub_items, $practice_sub_items);
 
             if (isset($artist_sub_items)) {
@@ -566,7 +566,7 @@ function url_query_master($text, $path, $key, $val, $attributes = array()) {
             foreach ($artwork_subject_facets as $value => $count) {
                 $artwork_subject_facets_rec[$value] = $count;
             }
-            $artwork_sub_items = _artist_community_build_subitems_for_item($val, $subject_vocabulary_tree, $artwork_subject_facets_rec);
+            $artwork_sub_items = _artist_community_build_subitems_for_item($val, $subject_vocabulary_tree, $artwork_subject_facets_rec, $query);
             if (isset($artwork_sub_items)) {
                 $output .= theme('item_list', array('items' => $artwork_sub_items));
             }
@@ -581,7 +581,7 @@ function url_query_master($text, $path, $key, $val, $attributes = array()) {
             foreach ($article_subject_facets as $value => $count) {
                 $article_subject_facets_rec[$value] = $count;
             }
-            $article_sub_items = _artist_community_build_subitems_for_item($val, $article_category_vocabulary_tree, $article_subject_facets_rec);
+            $article_sub_items = _artist_community_build_subitems_for_item($val, $article_category_vocabulary_tree, $article_subject_facets_rec, $query);
             if (isset($article_sub_items)) {
                 $output .= theme('item_list', array('items' => $article_sub_items));
             }
@@ -617,7 +617,7 @@ function url_query_master($text, $path, $key, $val, $attributes = array()) {
 
             // and build sub-items for categories
             $event_category_vocab_tree = taxonomy_get_tree(EVENT_CATEGORY_VID);
-            $event_sub_items = array_merge($event_sub_items, _artist_community_build_subitems_for_item($val, $event_category_vocab_tree, $event_category_facets_rec));
+            $event_sub_items = array_merge($event_sub_items, _artist_community_build_subitems_for_item($val, $event_category_vocab_tree, $event_category_facets_rec, $query));
             if (isset($event_sub_items)) {
                 $output .= theme('item_list', array('items' => $event_sub_items));
             }
@@ -630,7 +630,7 @@ function url_query_master($text, $path, $key, $val, $attributes = array()) {
 // used to take a top-level item and its sub-items as
 // an iterable of tid's, and return an array of the
 // sub-items. meant to reduce some duplication above.
-function _artist_community_build_subitems_for_item ($val, $taxonomy_terms, $facets) {
+function _artist_community_build_subitems_for_item ($val, $taxonomy_terms, $facets, $query) {
 
     $sub_items = array();
     foreach($taxonomy_terms as $term) {
