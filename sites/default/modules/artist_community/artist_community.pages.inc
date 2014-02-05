@@ -86,7 +86,7 @@ function artist_community_search_page() {
         if ($local_og !== null) {
             $article_filters = array_merge($article_filters, $filters);
         }
-        $articles = artist_community_execute_query(NODE_INDEX, $article_filters, array(array('changed')));
+        $articles = artist_community_execute_query(NODE_INDEX, $article_filters, array(array('promote', 'ASC'), array('changed', 'ASC')));
         foreach($articles as $index => $article) {
             $context_article_data = new StdClass();
             $author_full_name = '';
@@ -123,7 +123,7 @@ function artist_community_search_page() {
             $event_filters = array_merge($event_filters, $filters);
         }
 
-        $events = artist_community_execute_query(NODE_INDEX, $event_filters, array(array('promote', 'DESC'), array('field_date:value', 'ASC')), 3);
+        $events = artist_community_execute_query(NODE_INDEX, $event_filters, array(array('promote', 'ASC'), array('field_date:value', 'ASC')), 3);
         if (!empty($events)) {
             $events_data['others'] = array();
             foreach ($events as $index => $event) {
