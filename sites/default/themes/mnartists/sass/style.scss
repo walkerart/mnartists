@@ -31,6 +31,10 @@ body {
     /* why? why? overflow-y: scroll; */
     text-rendering: optimizeLegibility;
     padding-left:200px;
+    -webkit-font-smoothing: subpixel-antialiased;
+}
+body.admin-menu {
+    -webkit-font-smoothing: subpixel-antialiased;
 }
 body.wysiwygeditor {
 	padding-left:0;
@@ -54,7 +58,7 @@ a {
 
 strong {
     font-family: $sans_bold_font;
-    font-weight: bold;
+    font-weight: normal;
 }
 
 em,
@@ -574,7 +578,7 @@ h1 {
     margin: 11px 0 9px;
     padding: 0 4px;
     font-family: $sans_bold_font;
-    font-weight: bold;
+    font-weight: normal;
     font-size: 19px;
     line-height: 24px;
     -webkit-font-smoothing: antialiased;
@@ -683,7 +687,7 @@ h2 {
     a {
         display: block;
         font-family: $sans_bold_font;
-        font-weight: bold;
+        font-weight: normal;
 
         .view_all {
             color: #999;
@@ -784,7 +788,7 @@ h5,
 h6 {
     margin: 0 5px 8px;
     font-family: $sans_bold_font;
-    font-weight: bold;
+    font-weight: normal;
 
     em {
         font-family: $sans_bold_italic_font;
@@ -1030,14 +1034,14 @@ dl {
 
         a {
             font-family: $sans_bold_font;
-            font-weight: bold;
+            font-weight: normal;
             text-decoration: none;
         }
 
         a em,
         em a {
             font-family: $sans_bold_italic_font;
-            font-weight: bold;
+            font-weight: normal;
         }
     }
 
@@ -1051,7 +1055,7 @@ dl {
         th,
         .important {
             font-family: $sans_bold_font;
-            font-weight: bold;
+            font-weight: normal;
 
             em {
                 font-family: $sans_bold_italic_font;
@@ -1129,7 +1133,7 @@ article {
     strong a,
     a strong {
         font-family: $sans_bold_font;
-        font-weight: bold;
+        font-weight: normal;
         font-size: 14px;
         line-height: 1px;
     }
@@ -1143,7 +1147,7 @@ article {
     em strong a,
     em a strong {
         font-family: $sans_bold_italic_font;
-        font-weight: bold;
+        font-weight: normal;
         font-style: italic;
         font-size: 14px;
         line-height: 1px;
@@ -1260,7 +1264,7 @@ article {
         letter-spacing: 0;
         padding: 0;
         font-family: $sans_bold_font;
-        font-weight: bold;
+        font-weight: normal;
         font-size: 15px;
         line-height: 18px;
         overflow: visible;
@@ -1374,7 +1378,7 @@ article {
             strong a,
             a strong {
                 font-family: $sans_bold_font;
-                font-weight: bold;
+                font-weight: normal;
                 font-size: 12px;
                 line-height: 16px;
             }
@@ -1388,7 +1392,7 @@ article {
             em strong a,
             em a strong {
                 font-family: $sans_bold_italic_font;
-                font-weight: bold;
+                font-weight: normal;
                 font-style: italic;
                 font-size: 12px;
                 line-height: 16px;
@@ -1505,7 +1509,7 @@ a.note {
                 &.static a,
                 &.link a {
                     font-family: $sans_bold_font;
-                    font-weight: bold;
+                    font-weight: normal;
                     padding-right: 5px;
 
                     em {
@@ -1690,7 +1694,7 @@ a.note {
 
     dd.buy a {
         font-family: $sans_bold_font;
-        font-weight: bold;
+        font-weight: normal;
     }
 
     a {
@@ -1722,7 +1726,7 @@ a.note {
     padding: 4px 5px 0;
     @include quiet_type;
     font-family: $sans_bold_font;
-    font-weight: bold;
+    font-weight: normal;
 }
 
 .show_more {
@@ -1857,7 +1861,7 @@ form {
         border: 1px solid $main_color;
         @include quiet_type;
         font-family: $sans_bold_font;
-        font-weight: bold;
+        font-weight: normal;
         @include no_break;
         @include rounded;
         cursor: pointer;
@@ -2313,7 +2317,7 @@ form {
                 font-family: $sans_bold_font;
                 font-size: 72px;
                 line-height: 72px;
-                font-weight: bold;
+                font-weight: normal;
                 text-align: center;
                 letter-spacing: -5px;
                 -webkit-font-smoothing: antialiased;
@@ -2588,7 +2592,7 @@ form {
 
         &.forth {
             font-family: $sans_bold_font;
-            font-weight: bold;
+            font-weight: normal;
 
             a {
                 padding-left: 5px;
@@ -2687,7 +2691,7 @@ form {
             h1 {
                 margin: 0;
                 padding: 0;
-                font-weight: bold;
+                font-weight: normal;
                 font-size: 12px;
                 line-height: 16px;
                 -webkit-font-smoothing: subpixel-antialiased;
@@ -2752,7 +2756,7 @@ form {
 
             .title {
                 font-family: $sans_bold_font;
-                font-weight: bold;
+                font-weight: normal;
 
                 em {
                     font-family: $sans_bold_italic_font;
@@ -3256,7 +3260,7 @@ form {
         width: 300px;
         margin: 0;
         font-family: $serif_font;
-        font-weight: bold;
+        font-weight: normal;
         font-size: 29px;
         line-height: 25px;
         -webkit-font-smoothing: subpixel-antialiased;
@@ -3521,7 +3525,7 @@ form {
 
                 a {
                     font-family: $sans_bold_font;
-                    font-weight: bold;
+                    font-weight: normal;
                     text-decoration: none;
 
                     em {
@@ -3734,7 +3738,7 @@ form {
         border-bottom: none;
         padding: 5px 8px 8px;
         font-family: $sans_bold_font;
-        font-weight: bold;
+        font-weight: normal;
         @include rounded;
 
     }
@@ -3855,7 +3859,7 @@ $admin_light_green: #d5f2cd;
         font-family: $serif_font;
         font-size: 16px;
         line-height: 20px;
-        font-weight: bold;
+        font-weight: normal;
         -webkit-font-smoothing: subpixel-antialiased;
 
         em {
@@ -4134,7 +4138,7 @@ $admin_light_green: #d5f2cd;
     .ui-datepicker-title {
         margin: 0 20px;
         font-family: $sans_bold_font;
-        font-weight: bold;
+        font-weight: normal;
         text-align: center;
 
         &:hover {
@@ -4722,7 +4726,7 @@ $admin_light_green: #d5f2cd;
 
                 .cta {
                     font-family: $sans_bold_font;
-                    font-weight: bold;
+                    font-weight: normal;
                 }
             }
         }
@@ -4772,7 +4776,7 @@ aside.pull_quote_position {
         padding: 0 3px 0 0;
         font-size: 100%;
         font-family: $sans_bold_font;
-        font-weight: bold;
+        font-weight: normal;
     }
     .notebody {
         width: 90%;
@@ -4792,7 +4796,7 @@ aside.pull_quote_position {
     background:none;
     font-size: 70%;
     font-family: $sans_bold_font;
-    font-weight: bold;
+    font-weight: normal;
 }
 
 /* @end */
@@ -5867,8 +5871,8 @@ body.page-node-edit {
             }
 
             .item-info-title {
-                font-weight:bold;
-                font-family: $sans_regular_font;
+                font-weight:normal;
+                font-family: $sans_bold_font;
 
             }
             .item-info-date {
@@ -7112,8 +7116,8 @@ body {
                 float: left;
             }
             .user-thing-name {
-                font-family: "adobe-text-pro", "Times New Roman", Times, serif; /* tmp */
-                font-weight: bold;
+                font-family: $sans_bold_font;
+                font-weight:normal;
             }
             .user-thing-practice {
                 color: #adadad; /* tmp */
@@ -7187,7 +7191,7 @@ body {
         .event-thing-event-title {
             margin: 0;
             padding: 0;
-            font-family: "Apercu Bold", Arial, Helvetica, sans-serif;
+            font-family: $sans_regular_font;
             color:#888;
             text-transform:uppercase;
         }
@@ -9140,7 +9144,7 @@ body.wysiwygeditor {
         float:right;
         padding: 12px 8px 8px 8px;
         font-size: 12px;
-        font-weight:bold;
+        font-family: $sans_bold_font;
         color:#808080;
         background:#fff;
         box-shadow: 0 0px 2px 1px rgba(0, 0, 0, 0.2);
