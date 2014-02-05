@@ -8809,20 +8809,35 @@ body.wysiwygeditor {
         color:#fff;
         position:relative;
 
-        a {
+        @include column(14);
+        overflow:visible;
+        @media screen and (max-width: $break-mobile) {
+            @include column(24);
+        }
+        @media screen and (max-width: $break-tablet) {
+            @include column(24);
+        }
+        @media screen and (max-width: $break-desktop-small) {
+            @include column(24);
+        }
 
+        a {
+            color:#fff;
             &:hover {
 
             }
         }
 
         table {
+            border:none;
+            color:#fff;
             thead {
                 tr {
                     background:none;
                     td {
                         &:first-child {
                             padding-left:0;
+                            width:33%;
                         }
                     }
                 }
@@ -8836,6 +8851,7 @@ body.wysiwygeditor {
 
                         &:first-child {
                             padding-left:0;
+                            width:33%;
                         }
 
                         &:nth-child(3) {
