@@ -1,16 +1,20 @@
 <form method="get" action="<?= $action_url ?>" class="nearme-filter <?= $form_class ?>">
-    <input type="hidden" name="content[<?= $persistent_key ?>]" value="1">
     <?php
-        if (isset($related_filters[$persistent_key])) {
-            if (is_array($related_filters[$persistent_key])) {
-                foreach($related_filters[$persistent_key] as $index => $value) { ?>
-                    <input type="hidden" name="content[<?= $persistent_key ?>][<?= $index ?>]" value="<?= $value ?>">
+        $url_query_string = $_SERVER['QUERY_STRING'];
+        if ($url_query_string !== '') {
+            $url_params_work = explode('&', $url_query_string);
+            dpm($url_params_work);
+            if (!empty($url_params_work)) {
+                $url_params = array();
+                foreach ($url_params_work as $item) {
+                    if (!empty($item)) {
+                        $pair = explode('=', $item);
+                    ?>
+                        <input type="hidden" name="<?= urldecode($pair[0]) ?>" value="<?= urldecode($pair[1]) ?>">
                 <?php }
-            } else { ?>
-                <input type="hidden" name="content[<?= $persistent_key ?>]" value="<?= $related_filters[$persistent_key] ?>">
-            <?php }
-        }
-    ?>
+                }
+            }
+        } ?>
     <label>Near Me:</label>
     <input type="search" name="<?= $search_input_name ?>" placeholder="CITY/ZIP" value="<?= $search_field_value ?>">
 </form>
