@@ -8517,6 +8517,22 @@ tr.even {
     }
 }
 
+// this hides text format option for non-admins - shame tmp temp
+body {
+
+    &.admin-menu {
+        .wysiwyg-toggle-wrapper,
+        .form-type-select {
+            display:block;
+        }
+    }
+    .wysiwyg-toggle-wrapper,
+    .form-type-select {
+        display:none;
+    }
+}
+
+
 // add edit icons on form fields
 .entityconnect-add, .entityconnect-edit {
     width:auto;
