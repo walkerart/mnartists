@@ -28,7 +28,7 @@ body {
     font-size: 12px;
     line-height: 16px;
     overflow-x: hidden;
-    overflow-y: scroll;
+    /* why? why? overflow-y: scroll; */
     text-rendering: optimizeLegibility;
     padding-left:200px;
 }
@@ -8366,9 +8366,20 @@ form {
                 &.field-multiple-drag {
                     border-right:1px solid #ccc;
                     vertical-align:top;
+                    width:33%;
+                }
+                &:nth-child(2) {
+
                 }
                 .media-widget {
                     padding-left:20px;
+
+                    .form-item {
+                        display:inline;
+                        label {
+                            min-width:1px;
+                        }
+                    }
                 }
                 .field-value-url {
                     padding-left:20px;
@@ -8378,6 +8389,11 @@ form {
                 }
             }
         }
+    }
+}
+.field-type-file-form {
+    .field-add-more-submit {
+        margin-left:33%;
     }
 }
 fieldset {
