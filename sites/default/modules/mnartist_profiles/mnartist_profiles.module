@@ -728,9 +728,9 @@ function _mnartist_profile_user_profile() {
             {
                 $fevalue = array_values($edu['value']['entity']['field_collection_item']);
                 $fe = array_shift($fevalue);
-                if(isset($fe['field_year']) && isset($fe['field_degree']) && isset($fe['field_school']) && isset($fe['field_major']))
+                if(isset($fe['field_dates_attended']) && isset($fe['field_degree']) && isset($fe['field_school']) && isset($fe['field_major']))
                 {
-                    $output .= "<p>" . $fe['field_year'][0]['#markup'] . ' ';
+                    $output .= "<p>" . $fe['field_dates_attended'][0]['#markup'] . ' ';
                     $output .= $fe['field_degree'][0]['#markup'] . ', ';
                     $output .= $fe['field_major'][0]['#markup'] . ', ';
                     $output .= $fe['field_school'][0]['#markup'] . '</p>' . PHP_EOL;

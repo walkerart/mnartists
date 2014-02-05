@@ -115,7 +115,7 @@
                 <div class="award-block">
                     <p><label><?=$field['field_award_name']['label']?></label><?=$field['field_award_name']['item'][0]['value']?></p>
                     <p><label><?=$field['field_description']['label']?></label><?=$field['field_description']['item'][0]['value']?></p>
-                    <p><label><?=$field['field_year']['label']?></label><?=date_format(new DateTime($field['field_year']['item'][0]['value']), 'Y')?></p>
+                    <p><label><?=$field['field_award_year']['label']?></label><?=date_format(new DateTime($field['field_award_year']['item'][0]['value']), 'Y')?></p>
                     <p><label><?=$field['field_award_organization']['label']?></label><?=$field['field_award_organization']['item'][0]['value']?></p>
                     <p><label><?=$field['field_url']['label']?></label><?=$field['field_url']['item'][0]['value']?></p>
                 </div>
@@ -132,7 +132,7 @@
                     <p><label><?=$field['field_description']['label']?></label><?=$field['field_description']['item'][0]['value']?></p>
                     <p><label><?=$field['field_url']['label']?></label><?=$field['field_url']['item'][0]['value']?></p>
                     <p><label><?=$field['field_venue_url']['label']?></label><?=$field['field_venue_url']['item'][0]['value']?></p>
-                    <p><label><?=$field['field_year']['label']?></label><?=date_format(new DateTime($field['field_year']['item'][0]['value']), 'Y')?></p>
+                    <p><label><?=$field['field_exhibition_date']['label']?></label><?=date_format(new DateTime($field['field_exhibition_date']['item'][0]['value']), 'Y')?></p>
                     <p><label><?=$field['field_group_individual']['label']?></label><?=$field['field_group_individual']['item'][0]['value']?></p>
                 </div>
             <?}
