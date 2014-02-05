@@ -8393,8 +8393,11 @@ form {
 }
 .field-type-file-form {
     .field-add-more-submit {
-        margin-left:33%;
+        /*margin-left:33%!important;*/
     }
+}
+.sticky-table {
+    margin-bottom:10px;
 }
 fieldset {
     margin:0;
@@ -8796,7 +8799,60 @@ body.wysiwygeditor {
     }
 }
 
+// saved filters page
+.page-user-saved-filters {
 
+    #content {
+        background: $mystuff_bg_dark;
+        padding:10px;
+        margin-bottom:20px;
+        color:#fff;
+        position:relative;
+
+        a {
+
+            &:hover {
+
+            }
+        }
+
+        table {
+            thead {
+                tr {
+                    background:none;
+                    td {
+                        &:first-child {
+                            padding-left:0;
+                        }
+                    }
+                }
+            }
+            tbody {
+                tr {
+                    border-top:none;
+
+                    td {
+                        vertical-align:top;
+
+                        &:first-child {
+                            padding-left:0;
+                        }
+
+                        &:nth-child(3) {
+
+                            a {
+
+                                &:nth-child(2) {
+
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
 // user collections a list of all landing page
 .view-flag-lists-user-lists {
 
