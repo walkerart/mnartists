@@ -763,7 +763,8 @@ function _mnartist_profile_user_profile() {
             {
                 $awardkey = array_values($award1['value']['entity']['field_collection_item']);
                 $award = array_shift($awardkey);
-                $output .= $award['field_year'][0]['#markup'] . ', ' . $award['field_award_name'][0]['#markup'] . ' ' . $award['field_award_organization'][0]['#markup'] . '<br />' . PHP_EOL;
+                $output .= (isset($award['field_award_year'])) ? $award['field_award_year'][0]['#markup'] . ', ' : '';
+                $output .= $award['field_award_name'][0]['#markup'] . ' ' . $award['field_award_organization'][0]['#markup'] . '<br />' . PHP_EOL;
             }
             $output .= "</div>" . PHP_EOL;
         }
