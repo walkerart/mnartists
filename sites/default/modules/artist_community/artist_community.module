@@ -525,7 +525,6 @@ function url_query_master($text, $path, $key, $val, $attributes = array()) {
                 'action_url' => '/community',
                 'form_class' => $artist_search_class,
                 'related_filters' => isset($_GET['content']) ? $_GET['content'] : array(),
-                'persistent_key' => 'artists',
                 'search_field_value' => $artist_location_search_string,
             ));
 
@@ -603,7 +602,6 @@ function url_query_master($text, $path, $key, $val, $attributes = array()) {
                 'action_url' => '/community',
                 'form_class' => $event_search_class,
                 'related_filters' => isset($_GET['content']) ? $_GET['content'] : array(),
-                'persistent_key' => 'event',
                 'search_field_value' => $event_location_search_string,
             ));
             $event_sub_items[] = '<div class="menu-event-datepicker"></div>';
