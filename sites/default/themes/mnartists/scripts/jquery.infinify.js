@@ -75,7 +75,6 @@
                                     // we have somehow elsewhere ended up with more than one)
                                     var loadingIndicatorEl = $(options.loading_indicator_selector);
                                     loadingIndicatorEl.toggleClass("loading");
-                                    //loadingIndicatorEl.remove();
 
                                     // append the incoming markup, then get it parsed so
                                     // we can check it for a 'more' link
@@ -102,6 +101,9 @@
                                         // we're at the end of the available data, clean up...
                                         // remove the terminator element we received back
                                         $(terminatorClassSelector).remove();
+
+                                        // remove the loading indicator so it's not just sitting there...
+                                        loadingIndicatorEl.remove();
 
                                         // remove the now-orphaned more link
                                         moreContentContainer.find(options.more_link_container_selector).remove();
