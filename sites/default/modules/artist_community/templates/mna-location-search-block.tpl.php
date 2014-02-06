@@ -3,7 +3,6 @@
         $url_query_string = $_SERVER['QUERY_STRING'];
         if ($url_query_string !== '') {
             $url_params_work = explode('&', $url_query_string);
-            dpm($url_params_work);
             if (!empty($url_params_work)) {
                 $url_params = array();
                 foreach ($url_params_work as $item) {
