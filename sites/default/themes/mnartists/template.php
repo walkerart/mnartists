@@ -36,7 +36,7 @@ function mnartists_preprocess_html(&$vars) {
   // Browser/platform sniff - adds body classes such as ipad, webkit, chrome etc.
   $vars['classes_array'][] = css_browser_selector();
 
-  if ((!user_is_logged_in() && arg(0) == "user" && is_null(arg(1))) ||
+  if ((!user_is_logged_in() && arg(0) == "user" && (is_null(arg(1)) || in_array(arg(1), array('password', 'register')))) ||
           (arg(0) == "user" && in_array(arg(2), array("edit", "flags"))) ||
           (arg(0) == "node" && in_array(arg(1), array("edit", "add"))) ||
           (arg(0) == "node" && in_array(arg(2), array("edit"))) ||
