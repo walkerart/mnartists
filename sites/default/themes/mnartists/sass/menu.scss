@@ -541,5 +541,21 @@ p.site-description {
         background: url('../images/icon-magnify.svg') no-repeat 95% center #fff;
         background-size:9px auto;
         padding-right:17px;
+
+        &::-webkit-input-placeholder {
+		   color: #888;
+		}
+
+		&:-moz-placeholder { /* Firefox 18- */
+		   color: #888;
+		}
+
+		&::-moz-placeholder {  /* Firefox 19+ */
+		   color: #888;
+		}
+
+		&:-ms-input-placeholder {
+		   color: #888;
+		}
 	}
 }
