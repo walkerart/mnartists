@@ -151,7 +151,12 @@
 
 		}
 		li.first {
-			border-bottom: 1px solid #fff;
+
+		}
+		li {
+			&:first-child {
+				border-bottom: 1px solid #fff;
+			}
 		}
 		.block {
 			margin-bottom:0px;
