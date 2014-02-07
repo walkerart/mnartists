@@ -9220,11 +9220,28 @@ body.wysiwygeditor {
 }
 
 
-/* tabs on .my-stuff pages mainly login*/
+/* login page */
 .my-stuff.not-logged-in.page-user {
+
     #content-column {
+        padding:20px 0;
+        box-sizing:border-box;
+
+        @include column(14);
+        overflow:visible;
+        @media screen and (max-width: $break-mobile) {
+            @include column(24);
+        }
+        @media screen and (max-width: $break-tablet) {
+            @include column(24);
+        }
+        @media screen and (max-width: $break-desktop-small) {
+            @include column(24);
+        }
         #main-content {
+
             #main-content-header {
+
                 #tasks {
                     margin-bottom:0;
 
@@ -9236,6 +9253,7 @@ body.wysiwygeditor {
                         li {
                             border:none;
                             margin:0 3px 0 0;
+
                             a {
                                 background:#ccc;
                                 text-transform:uppercase;
@@ -9243,12 +9261,15 @@ body.wysiwygeditor {
                                 line-height:2em;
                                 height:2em;
                             }
+
                             &.active {
+
                                 a {
                                     background:#f2f2f2;
                                     border:none;
                                 }
                             }
+
                         }
                     }
                 }
