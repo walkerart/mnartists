@@ -9127,6 +9127,7 @@ body.wysiwygeditor {
         height:auto;
         font-size: 12px;
         padding:10px 0 0 30px;margin:0;
+        display:none;
     }
     .wrap {
         margin:0;
@@ -9185,7 +9186,7 @@ body.wysiwygeditor {
             }
 
             &:last-child {
-                border-bottom:none;
+
             }
         }
     }
@@ -9199,6 +9200,7 @@ body.wysiwygeditor {
         box-shadow: 0 0px 2px 1px rgba(0, 0, 0, 0.2);
         position:relative;
         border-radius: 0px 0px 3px 3px;
+        border-top:1px solid #eee;
 
         &:after {
             content:"";
