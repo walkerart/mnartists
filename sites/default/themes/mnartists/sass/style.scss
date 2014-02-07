@@ -9267,6 +9267,7 @@ body.wysiwygeditor {
     #content-column {
         padding:20px 0;
         box-sizing:border-box;
+        overflow:hidden;
 
         @include column(14);
         overflow:visible;
@@ -9321,6 +9322,10 @@ body.wysiwygeditor {
             background:#f2f2f2;
             padding:20px;
             box-sizing:border-box;
+
+            form {
+                padding:75px 100px;
+            }
         }
     }
 }
