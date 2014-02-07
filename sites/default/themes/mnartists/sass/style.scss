@@ -9325,6 +9325,17 @@ body.wysiwygeditor {
 
             form {
                 padding:75px 100px;
+
+                 @media screen and (max-width: $break-mobile) {
+                    padding:20px 0px;
+                }
+                @media screen and (max-width: $break-tablet) {
+                    padding:25px 40px;
+                }
+                @media screen and (max-width: $break-desktop-small) {
+                    padding:40px 50px;
+                }
+
             }
         }
     }
