@@ -30,17 +30,18 @@
 		input {
 			width:100%;
 			border-width:0;
-			padding:0;
+			padding:0 20px 0 0;
 			line-height:20px;
 			margin:0;
 			background:$menu_bg;
-			background: url('../images/icon-magnify-sidebar.png') no-repeat center center $menu_bg;
+			background: url('../images/icon-magnify-sidebar.png') no-repeat right center $menu_bg;
 			text-indent:10px;
 			position:relative;
+			box-sizing:border-box;
 		}
 		input:focus {
 			outline:none;
-			background: url('../images/icon-magnify-sidebar.png') no-repeat center center #ccc;
+			background: url('../images/icon-magnify-sidebar.png') no-repeat right center #ccc;
 		}
 	}
 	ul {
