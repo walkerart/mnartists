@@ -783,7 +783,7 @@ function _artist_community_get_items_query ($local_og = null,
                     }
                     if (isset($local_content[$type]) &&
                         is_array($local_content[$type])) {
-                        $subQuery = implode(' OR ', $local_content[$type]);
+                        $subQuery = implode(' AND ', $local_content[$type]);
                     }
                 case 'event':
                     if (isset($_GET['event_location_search'])) {
@@ -815,7 +815,7 @@ function _artist_community_get_items_query ($local_og = null,
                         $userLocationSearchString = '{!geofilt sfield='.AC_USER_LATLNG_FIELD." pt=$artist_coords d=".NEAR_ME_RADIUS.'}';
                         $solarium_query->createFilterQuery('artist_location')->setQuery($userLocationSearchString);
                     }
-                    $contextQueryString = (!empty($subQuery)) ? "(($roleQuery) AND (".implode(' OR ', $subQuery)."))" : "($roleQuery)";
+                    $contextQueryString = (!empty($subQuery)) ? "(($roleQuery) AND (".implode(' AND ', $subQuery)."))" : "($roleQuery)";
                     $contentFilters['user'][] = $contextQueryString;
                     break;
                 case 'organizations':

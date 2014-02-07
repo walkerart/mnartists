@@ -19,13 +19,39 @@
                     <p><label><?= $field['field_institution_url']['label'] ?></label><?=$field['field_institution_url']['item'][0]['value']?></p>
                     <p><label><?=$field['field_degree']['label']?></label><?=$field['field_degree']['item'][0]['value']?></p>
                     <?php
-                        // @TODO need to do a little experimentation here for empty checking
-                        if ($field['field_dates_attended']['item'] !== null) {
-                            $start_date = $field['field_dates_attended']['item'][0]['from']['month'].' '.$field['field_dates_attended']['item'][0]['from']['year'];
-                            $end_date = $field['field_dates_attended']['item'][0]['to']['month'].' '.$field['field_dates_attended']['item'][0]['to']['year'];
-                            ?>
-                            <p><label><?=$field['field_dates_attended']['label']?></label><?= $start_date ?> &ndash; <?=$end_date ?></p>
-                            <?php
+                        if ($field['field_education_date_range']['item'] !== null) { ?>
+                            <?
+                            $entity = field_collection_item_load($field['field_education_date_range']['item'][0]['value']);
+                            $instances = field_info_instances('field_collection_item', 'field_education_date_range');
+                            $context_data = array();
+                            foreach ($instances as $instance_field_name => $instance_field) {
+                                $context_data[$instance_field_name] = array(
+                                    'label' => $instances[$instance_field_name]['label'],
+                                    'item' => (isset($entity->{$instance_field_name}['und'])) ? $entity->{$instance_field_name}['und'] : null
+                                );
+                            }
+                            if (isset($context_data['field_work_start_date']['item']) &&
+                                    !is_null($context_data['field_work_start_date']['item'])) {
+
+                                    $start_date = $context_data['field_work_start_date']['item'][0]['from'];
+                                    $start_date_string_arr = array();
+                                    if (!is_null($start_date['month'])) { $start_date_string_arr[] = $start_date['month']; }
+                                    if (!is_null($start_date['year'])) { $start_date_string_arr[] = $start_date['year']; }
+                                    $start_date_string = implode('/', $start_date_string_arr);
+
+                                    if ($context_data['field_current_position']['item'][0]['value'] === '1') {
+                                        $end_date_string = 'present';
+                                    } else {
+                                        $end_date = $context_data['field_work_end_date']['item'][0]['from'];
+                                        $end_date_string_arr = array();
+                                        if (!is_null($end_date['month'])) { $end_date_string_arr[] = $end_date['month']; }
+                                        if (!is_null($end_date['year'])) { $end_date_string_arr[] = $end_date['year']; }
+                                        $end_date_string = implode('/', $end_date_string_arr);
+                                    }
+                                ?>
+                                    <label><?=$field['field_education_date_range']['label']?></label>
+                                    <?= $start_date_string ?> &ndash; <?= $end_date_string ?>
+                            <?php }
                         }
                     ?>
                     <p>
@@ -51,10 +77,7 @@
                     <p><label><?=$field['field_employer']['label']?></label><?=$field['field_employer']['item'][0]['value']?></p>
                     <p><label><?=$field['field_position']['label']?></label><?=$field['field_position']['item'][0]['value']?></p>
                     <p>
-                        <label><?=$field['field_work_date_range']['label']?></label>
                         <?php
-                            // @TODO this works okay, but maybe add an extra level of tree-climbing
-                            // in .module so that we aren't digging around in the FC here?
                             $entity = field_collection_item_load($field['field_work_date_range']['item'][0]['value']);
                             $instances = field_info_instances('field_collection_item', 'field_work_date_range');
                             $context_data = array();
@@ -64,10 +87,28 @@
                                     'item' => (isset($entity->{$instance_field_name}['und'])) ? $entity->{$instance_field_name}['und'] : null
                                 );
                             }
-                            $start_date = date_format(new DateTime($context_data['field_work_start_date']['item'][0]['value']), 'Y/m');
-                            $end_date = ($context_data['field_current_position']['item'][0]['value'] === '1') ? 'present' : date_format(new DateTime($context_data['field_work_end_date']['item'][0]['value']), 'Y/m');
-                        ?>
-                        <?= $start_date ?> &ndash; <?= $end_date ?>
+                            if (isset($context_data['field_work_start_date']['item']) &&
+                                !is_null($context_data['field_work_start_date']['item'])) {
+
+                                $start_date = $context_data['field_work_start_date']['item'][0]['from'];
+                                $start_date_string_arr = array();
+                                if (!is_null($start_date['month'])) { $start_date_string_arr[] = $start_date['month']; }
+                                if (!is_null($start_date['year'])) { $start_date_string_arr[] = $start_date['year']; }
+                                $start_date_string = implode('/', $start_date_string_arr);
+
+                                if ($context_data['field_current_position']['item'][0]['value'] === '1') {
+                                    $end_date_string = 'present';
+                                } else {
+                                    $end_date = $context_data['field_work_end_date']['item'][0]['from'];
+                                    $end_date_string_arr = array();
+                                    if (!is_null($end_date['month'])) { $end_date_string_arr[] = $end_date['month']; }
+                                    if (!is_null($end_date['year'])) { $end_date_string_arr[] = $end_date['year']; }
+                                    $end_date_string = implode('/', $end_date_string_arr);
+                                }
+                            ?>
+                                <label><?=$field['field_work_date_range']['label']?></label>
+                                <?= $start_date_string ?> &ndash; <?= $end_date_string ?>
+                        <?php } ?>
                     </p>
                     <p><label><?=$field['field_description_of_position']['label']?></label><?=$field['field_description_of_position']['item'][0]['value']?></p>
                     <p><label><?=$field['field_url']['label']?></label><?=$field['field_url']['item'][0]['value']?></p>
@@ -79,12 +120,11 @@
     <section class="resume-block resume-block-complex teaching-experience">
         <h2><?= $resume_data['field_teaching_experience']['label'] ?></h2>
         <?php
-            foreach ($resume_data['field_teaching_experience']['item'] as $field) {?>
+            foreach ($resume_data['field_teaching_experience']['item'] as $field) { ?>
                 <div class="experience-block">
                     <p><label><?=$field['field__teaching_venue']['label']?></label><?=$field['field__teaching_venue']['item'][0]['value']?></p>
                     <p><label><?=$field['field_course']['label']?></label><?=$field['field_course']['item'][0]['value']?></p>
                     <p>
-                        <label><?=$field['field_work_date_range']['label']?></label>
                         <?php
                             $entity = field_collection_item_load($field['field_work_date_range']['item'][0]['value']);
                             $instances = field_info_instances('field_collection_item', 'field_work_date_range');
@@ -95,10 +135,28 @@
                                     'item' => (isset($entity->{$instance_field_name}['und'])) ? $entity->{$instance_field_name}['und'] : null
                                 );
                             }
-                            $start_date = date_format(new DateTime($context_data['field_work_start_date']['item'][0]['value']), 'Y/m');
-                            $end_date = ($context_data['field_current_position']['item'][0]['value'] === '1') ? 'present' : date_format(new DateTime($context_data['field_work_end_date']['item'][0]['value']), 'Y/m');
-                        ?>
-                        <?= $start_date ?> &ndash; <?= $end_date ?>
+                            if (isset($context_data['field_work_start_date']['item']) &&
+                                !is_null($context_data['field_work_start_date']['item'])) {
+
+                                $start_date = $context_data['field_work_start_date']['item'][0]['from'];
+                                $start_date_string_arr = array();
+                                if (!is_null($start_date['month'])) { $start_date_string_arr[] = $start_date['month']; }
+                                if (!is_null($start_date['year'])) { $start_date_string_arr[] = $start_date['year']; }
+                                $start_date_string = implode('/', $start_date_string_arr);
+
+                                if ($context_data['field_current_position']['item'][0]['value'] === '1') {
+                                    $end_date_string = 'present';
+                                } else {
+                                    $end_date = $context_data['field_work_end_date']['item'][0]['from'];
+                                    $end_date_string_arr = array();
+                                    if (!is_null($end_date['month'])) { $end_date_string_arr[] = $end_date['month']; }
+                                    if (!is_null($end_date['year'])) { $end_date_string_arr[] = $end_date['year']; }
+                                    $end_date_string = implode('/', $end_date_string_arr);
+                                }
+                            ?>
+                                <label><?=$field['field_work_date_range']['label']?></label>
+                                <?= $start_date_string ?> &ndash; <?= $end_date_string ?>
+                        <?php } ?>
                     </p>
                     <p><label><?=$field['field_url']['label']?></label><?=$field['field_url']['item'][0]['value']?></p>
                     <p><label><?=$field['field_description_of_position']['label']?></label><?=$field['field_description_of_position']['item'][0]['value']?></p>
@@ -111,11 +169,11 @@
     <section class="resume-block resume-block-complex awards">
         <h2><?= $resume_data['field_awards']['label'] ?></h2>
         <?php
-            foreach ($resume_data['field_awards']['item'] as $field) {?>
+            foreach ($resume_data['field_awards']['item'] as $field) { ?>
                 <div class="award-block">
                     <p><label><?=$field['field_award_name']['label']?></label><?=$field['field_award_name']['item'][0]['value']?></p>
                     <p><label><?=$field['field_description']['label']?></label><?=$field['field_description']['item'][0]['value']?></p>
-                    <p><label><?=$field['field_award_year']['label']?></label><?=date_format(new DateTime($field['field_award_year']['item'][0]['value']), 'Y')?></p>
+                    <p><label><?=$field['field_award_year']['label']?></label><?=date_format(new DateTime($field['field_award_year']['item'][0]['timestamp']), 'Y')?></p>
                     <p><label><?=$field['field_award_organization']['label']?></label><?=$field['field_award_organization']['item'][0]['value']?></p>
                     <p><label><?=$field['field_url']['label']?></label><?=$field['field_url']['item'][0]['value']?></p>
                 </div>
@@ -132,7 +190,22 @@
                     <p><label><?=$field['field_description']['label']?></label><?=$field['field_description']['item'][0]['value']?></p>
                     <p><label><?=$field['field_url']['label']?></label><?=$field['field_url']['item'][0]['value']?></p>
                     <p><label><?=$field['field_venue_url']['label']?></label><?=$field['field_venue_url']['item'][0]['value']?></p>
-                    <p><label><?=$field['field_exhibition_date']['label']?></label><?=date_format(new DateTime($field['field_exhibition_date']['item'][0]['value']), 'Y')?></p>
+                    <p>
+                        <label><?=$field['field_exhibition_date']['label']?></label>
+                        <?php
+                            $date_string_arr = array();
+                            if (!is_null($field['field_exhibition_date']['item'][0]['from']['day'])) {
+                                $date_string_arr[] = $field['field_exhibition_date']['item'][0]['from']['day'];
+                            }
+                            if (!is_null($field['field_exhibition_date']['item'][0]['from']['month'])) {
+                                $date_string_arr[] = $field['field_exhibition_date']['item'][0]['from']['month'];
+                            }
+                            if (!is_null($field['field_exhibition_date']['item'][0]['from']['year'])) {
+                                $date_string_arr[] = $field['field_exhibition_date']['item'][0]['from']['year'];
+                            }
+                        ?>
+                        <?= implode('/', $date_string_arr) ?>
+                    </p>
                     <p><label><?=$field['field_group_individual']['label']?></label><?=$field['field_group_individual']['item'][0]['value']?></p>
                 </div>
             <?}
@@ -147,6 +220,22 @@
                     <p><label><?=$field['field_publication_title']['label']?></label><?=$field['field_publication_title']['item'][0]['value']?></p>
                     <p><label><?=$field['field_url']['label']?></label><?=$field['field_url']['item'][0]['value']?></p>
                     <p><label><?=$field['field_author_editor']['label']?></label><?=$field['field_author_editor']['item'][0]['value']?></p>
+                    <p>
+                        <label><?=$field['field_publication_date']['label']?></label>
+                        <?php
+                            $date_string_arr = array();
+                            if (!is_null($field['field_publication_date']['item'][0]['from']['day'])) {
+                                $date_string_arr[] = $field['field_publication_date']['item'][0]['from']['day'];
+                            }
+                            if (!is_null($field['field_publication_date']['item'][0]['from']['month'])) {
+                                $date_string_arr[] = $field['field_publication_date']['item'][0]['from']['month'];
+                            }
+                            if (!is_null($field['field_publication_date']['item'][0]['from']['year'])) {
+                                $date_string_arr[] = $field['field_publication_date']['item'][0]['from']['year'];
+                            }
+                        ?>
+                        <?= implode('/', $date_string_arr) ?>
+                    </p>
                     <p><label><?=$field['field_description']['label']?></label><?=$field['field_description']['item'][0]['value']?></p>
                 </div>
             <?}
@@ -181,15 +270,42 @@
     <section class="resume-block resume-block-complex related-organizations">
         <h2><?= $resume_data['field_related_organizations']['label'] ?></h2>
         <?php
-            foreach ($resume_data['field_related_organizations']['item'] as $field) {?>
+            foreach ($resume_data['field_related_organizations']['item'] as $field) { ?>
                 <div class="organization-block">
                     <p><label><?=$field['field_organization']['label']?></label><?=$field['field_organization']['item'][0]['value']?></p>
                     <p>
-                        <label><?=$field['field_years']['label']?></label>
-                        <?=date_format(new DateTime($field['field_years']['item'][0]['value']), 'Y')?>
-                        <?php if (isset($field['field_years']['item'][0]['value2']) &&
-                                    $field['field_years']['item'][0]['value'] !== $field['field_years']['item'][0]['value2']) { ?>
-                            &ndash; <?=date_format(new DateTime($field['field_years']['item'][0]['value2']), 'Y')?></p>
+                        <?php
+                            $entity = field_collection_item_load($field['field_membership_date_range']['item'][0]['value']);
+                            $instances = field_info_instances('field_collection_item', 'field_work_date_range');
+                            $context_data = array();
+                            foreach ($instances as $instance_field_name => $instance_field) {
+                                $context_data[$instance_field_name] = array(
+                                    'label' => $instances[$instance_field_name]['label'],
+                                    'item' => (isset($entity->{$instance_field_name}['und'])) ? $entity->{$instance_field_name}['und'] : null
+                                );
+                            }
+
+                            if (isset($context_data['field_work_start_date']['item']) &&
+                                !is_null($context_data['field_work_start_date']['item'])) {
+
+                                $start_date = $context_data['field_work_start_date']['item'][0]['from'];
+                                $start_date_string_arr = array();
+                                if (!is_null($start_date['month'])) { $start_date_string_arr[] = $start_date['month']; }
+                                if (!is_null($start_date['year'])) { $start_date_string_arr[] = $start_date['year']; }
+                                $start_date_string = implode('/', $start_date_string_arr);
+
+                                if ($context_data['field_current_position']['item'][0]['value'] === '1') {
+                                    $end_date_string = 'present';
+                                } else {
+                                    $end_date = $context_data['field_work_end_date']['item'][0]['from'];
+                                    $end_date_string_arr = array();
+                                    if (!is_null($end_date['month'])) { $end_date_string_arr[] = $end_date['month']; }
+                                    if (!is_null($end_date['year'])) { $end_date_string_arr[] = $end_date['year']; }
+                                    $end_date_string = implode('/', $end_date_string_arr);
+                                }
+                            ?>
+                                <label><?=$field['field_membership_date_range']['label']?></label>
+                                <?= $start_date_string ?> &ndash; <?= $end_date_string ?>
                         <?php } ?>
                     </p>
                 </div>

@@ -49,5 +49,24 @@
             $(this).siblings('.wrap').toggleClass('open');
         });
 
+        var theSortThing = $('.sort-thing');
+        // @TODO in reality, only do this on community landing page
+        theSortThing.addClass('sort-thing-fully-retracted');
+
+        var sortHide_resultsContainer = $('.search-results');
+        var sortHide_targetScroll = $('.search-results').offset().top;
+        $(window).scroll(function (evt) {
+            var scrollTop = $(window).scrollTop();
+            if (scrollTop >= sortHide_targetScroll) {
+                console.log('showing the sort now');
+                theSortThing.removeClass('sort-thing-fully-retracted');
+            } else {
+                console.log('hiding the sort now');
+                theSortThing.addClass('sort-thing-fully-retracted');
+            }
+        });
+
+        $(window).trigger('scroll');
+
     });
 })(jQuery);
