@@ -9221,7 +9221,7 @@ body.wysiwygeditor {
 
 
 /* tabs on .my-stuff pages mainly login*/
-.my-stuff {
+.my-stuff.not-logged-in.page-user {
     #content-column {
         #main-content {
             #main-content-header {
@@ -9230,15 +9230,20 @@ body.wysiwygeditor {
 
                     ul.primary {
                         border-bottom:none;
-                        li {
+                        margin-bottom:0;
+                        padding:0;
 
+                        li {
+                            border:none;
                             a {
                                 background:#ccc;
                                 text-transform:uppercase;
+                                border:none;
                             }
                             &.active {
                                 a {
                                     background:#f2f2f2;
+                                    border:none;
                                 }
                             }
                         }
