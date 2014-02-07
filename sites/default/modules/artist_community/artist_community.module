@@ -222,7 +222,9 @@ function _community_block_community() {
     }
 
     ksort($items);
-    array_unshift($items, l('All Communities', 'community'));
+    $all_community_classes = array('active-trail');
+    if (!isset($_GET['og'])) { $all_community_classes[] = 'selected'; }
+    array_unshift($items, l('All Communities', 'community', array('attributes' => array('class' => $all_community_classes))));
 
     return theme('item_list', array(
         'items' => $items,
@@ -268,8 +270,13 @@ function _community_block_content() {
 
     $query = (isset($_GET['og'])) ? $_GET['og'] : array();
 
+    $all_content_classes = array('active-trail');
+    if (!isset($_GET['content'])) { $all_content_classes[] = 'selected'; }
     $all_content_count = $search_facets->getFacet('all_content')->getValue();
-    $items[] = l('All Content'." ($all_content_count)", 'community', array('query' => $query));
+    $items[] = l('All Content'." ($all_content_count)", 'community', array('query' => $query,
+                                                                            'attributes' => array(
+                                                                                'class' => $all_content_classes)
+                                                                            ));
 
     foreach($menu_items as $key => $item) {
         $attributes = array();
