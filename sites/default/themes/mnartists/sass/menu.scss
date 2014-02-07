@@ -25,6 +25,8 @@
 		width:100%;
 		border-bottom:1px solid #666;
 
+
+
 		input {
 			width:100%;
 			border-width:0;
@@ -33,6 +35,16 @@
 			margin:0;
 			background:$menu_bg;
 			text-indent:10px;
+			position:relative;
+		}
+		input:after {
+			content:"";
+			height:11px;width:11px;display:block;
+			position:absolute;
+			right:4px;
+			top:5px;
+			background: url('../images/icon-magnify-sidebar.png') no-repeat center center transparent;
+			overflow:hidden;
 		}
 		input:focus {
 			outline:none;
