@@ -2,12 +2,14 @@
 @import "base";
 
 #menu {
-	position:absolute;
+	position:fixed;
 	left:0;
 	top:0;
+	bottom:0;
 	width:200px;
 	min-height:100%;
 	height:auto;
+	overflow-y: scroll;
 }
 #menu {
 	.region-inner {
