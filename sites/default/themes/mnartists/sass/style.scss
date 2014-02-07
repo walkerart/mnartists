@@ -9143,6 +9143,8 @@ body.wysiwygeditor {
         margin-top:-4px;
         max-height:1px;
         border-radius: 0px 0px 0px 3px;
+        position:relative;
+        z-index:2;
 
         &.open {
             display:block;
@@ -9157,8 +9159,7 @@ body.wysiwygeditor {
     }
     .sort-thing-sort-options {
         margin:0;padding:0;
-        position:relative;
-        z-index:2;
+
         li {
             list-style:none;
             margin:0;padding:.3em 0 .3em 0;
