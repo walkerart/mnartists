@@ -219,7 +219,7 @@
                 <ul>
                     <?php foreach($latest_users as $context_user) { ?>
                         <li>
-                            <a href="/users/<?= $context_user->username ?>">
+                            <a href="/user/<?= $context_user->uid ?>">
                                 <img src="<?= $context_user->image_uri ?>" width="68" height="68">
                                 <div class="user-thing-labels">
                                     <div class="user-thing-name"><?= $context_user->full_name ?></div>

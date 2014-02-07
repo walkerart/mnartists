@@ -3,7 +3,7 @@
 // this template renders the individual lists in
 // the list of collection lists (it does this by
 // rendering the singular list view)
-
+global $user;
 $list_id = $row->fid;
 $user_list_view = views_get_view('flag_lists_user_list', TRUE);
 $user_list_view->set_display('page_1');
@@ -13,7 +13,7 @@ $user_list_view->execute();
 
 if (count($user_list_view->result) > 0) { ?>
     <div class="user-list-wrap">
-        <h2><a href="/<?= $user_list_view->get_url() ?>"><?= $user_list_view->get_title(); ?></a></h2>
+        <h2><a href="/user/<?= $user->uid ?>/<?= $user_list_view->get_url() ?>"><?= $user_list_view->get_title(); ?></a></h2>
         <?= $user_list_view->render() ?>
     </div>
 <?php } else { ?>
