@@ -6863,6 +6863,18 @@ body {
         }
     }
 }
+li.collect-this, li.add-this {
+    background:none;
+}
+.menu {
+    ul {
+        li.share-this:first-child {
+            &:hover {
+                background:none;
+            }
+        }
+    }
+}
 .user-feed-message-star {
     ul.menu {
         ul {
