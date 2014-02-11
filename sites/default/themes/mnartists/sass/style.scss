@@ -6760,7 +6760,8 @@ body {
             ul {
                 padding:10px;
                 margin:0;
-                width:240px;
+                width:200px;
+                box-sizing:border-box;
 
                 .flag-count {
                     padding: 5px 0;
@@ -9208,13 +9209,20 @@ body.wysiwygeditor {
                     text-transform: uppercase;
 
 
-                    background: url("../images/mna-circle-hollow.svg") no-repeat 10px center transparent;
+                    background: url('../images/mna-circle-hollow.svg') no-repeat 10px center transparent;
                     background-size: 12px auto;
                 }
                 &:nth-child(2) {
                     float:right;
                     padding: 8px 5px;
                     color:#bbb;
+                    text-overflow:hidden;
+                    white-space:nowrap;
+                    text-indent:999px;
+                    width:11px;
+                    height:13px;
+                    display:block;
+                    background: url('../images/icon-filter-arrow-down.png') no-repeat center center transparent;
                 }
             }
 
