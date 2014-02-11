@@ -6845,8 +6845,10 @@ body {
             .star-icon {
                 -webkit-filter: invert(100%);
             }
-            li:hover {
-                background:$mystuff_bg_light;
+            li {
+                a:hover {
+                    background:$mystuff_bg_light;
+                }
             }
         }
 
@@ -6864,11 +6866,13 @@ body {
     }
 }
 li.collect-this, li.add-this {
-    background:none;
+    &:hover {
+       background:none;
+    }
 }
 .menu {
     ul {
-        li.share-this:first-child {
+        li.share-this:nth-child(1) {
             &:hover {
                 background:none;
             }
