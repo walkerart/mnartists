@@ -6841,9 +6841,12 @@ body {
             }
         }
         li:hover {
-            background:#000;
+            background:$mystuff_bg_dark;
             .star-icon {
                 -webkit-filter: invert(100%);
+            }
+            li:hover {
+                background:$mystuff_bg_light;
             }
         }
 
@@ -6917,12 +6920,12 @@ body {
 
 .menu ul li,.menu ul li hr {
         color: #eee;
-        background: #000;
+        background: none;
 }
 
 .menu ul {
         width: 14em;
-        background: #000;
+        background: $mystuff_bg_dark;
 }
 
 .menu a {
