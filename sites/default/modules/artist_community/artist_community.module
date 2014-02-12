@@ -432,6 +432,10 @@ function url_query_master($text, $path, $key, $val, $attributes = array()) {
         $query['content'] = $_GET['content'];
     }
 
+    if (isset($_GET['global_search'])) {
+        $query['global_search'] = $_GET['global_search'];
+    }
+
     if ($key == 'og') {
         if ($node = node_load($val)) {
             if (isset($_GET['og'][$val]) && $_GET['og'][$val] == 1) $attributes['class'][] = 'selected';
@@ -729,6 +733,11 @@ function _artist_community_get_items_query ($local_og = null,
     // instantiate our client and query object
     $client = new Solarium\Client($solarium_config);
     $solarium_query = $client->createSelect();
+
+    // add the search term if a user entered one
+    if (isset($_GET['global_search'])) {
+        $solarium_query->setQuery("tm_search_api_aggregation_1:{$_GET['global_search']}*");
+    }
 
     // Handle Organic groups and taxonomies
     if ($local_og !== null) {
