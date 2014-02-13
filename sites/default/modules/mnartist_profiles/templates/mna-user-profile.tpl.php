@@ -87,20 +87,22 @@
                 $fe = array_shift($fevalue);
                 if(isset($fe['field_education_date_range']) && isset($fe['field_degree']) && isset($fe['field_school']) && isset($fe['field_areas_of_study']))
                 {
-                    $entity = field_collection_item_load($fe['field_education_date_range']['#items'][0]['value']);
-                    $instances = field_info_instances('field_collection_item', 'field_education_date_range');
-                    $context_data = array();
-                    foreach ($instances as $instance_field_name => $instance_field) {
-                        $context_data[$instance_field_name] = array(
-                            'label' => $instances[$instance_field_name]['label'],
-                            'item' => (isset($entity->{$instance_field_name}['und'])) ? $entity->{$instance_field_name}['und'] : null
-                        );
-                    }
-                    $start_year = $context_data['field_work_start_date']['item'][0]['from']['year'];
-                    $end_year = $context_data['field_work_end_date']['item'][0]['from']['year'];
-                    ?>
-                    <p><?= $start_year ?> to <?= $end_year ?>  <?= $fe['field_degree'][0]['#markup'] ?>, <?= $fe['field_areas_of_study'][0]['#markup'] ?>, <?= $fe['field_school'][0]['#markup'] ?></p>
+                    if (!empty($fe['field_education_date_range']['#items'])) {
+                        $entity = field_collection_item_load($fe['field_education_date_range']['#items'][0]['value']);
+                        $instances = field_info_instances('field_collection_item', 'field_education_date_range');
+                        $context_data = array();
+                        foreach ($instances as $instance_field_name => $instance_field) {
+                            $context_data[$instance_field_name] = array(
+                                'label' => $instances[$instance_field_name]['label'],
+                                'item' => (isset($entity->{$instance_field_name}['und'])) ? $entity->{$instance_field_name}['und'] : null
+                            );
+                        }
+                        $start_year = $context_data['field_work_start_date']['item'][0]['from']['year'];
+                        $end_year = $context_data['field_work_end_date']['item'][0]['from']['year'];
+                        ?>
+                        <p><?= $start_year ?> to <?= $end_year ?>  <?= $fe['field_degree'][0]['#markup'] ?>, <?= $fe['field_areas_of_study'][0]['#markup'] ?>, <?= $fe['field_school'][0]['#markup'] ?></p>
                 <?php }
+                }
             } ?>
             </div>
         <?php }
