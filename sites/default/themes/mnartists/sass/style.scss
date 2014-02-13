@@ -5942,6 +5942,8 @@ body.page-node-edit {
         }
         .username {
             text-align:center;
+            font-family: $serif_font;
+            font-weight:bold;
 
             a {
                 display:inline-block;
@@ -5953,6 +5955,11 @@ body.page-node-edit {
                 padding:5px;
                 display:block;
             }
+        }
+        .roles {
+            text-transform:uppercase;
+            color:#888;
+            font-size:12px;
         }
     }
 }
@@ -7211,8 +7218,8 @@ li.collect-this, li.add-this {
                 float: left;
             }
             .user-thing-name {
-                font-family: $sans_bold_font;
-                font-weight:normal;
+                font-family: $serif_font;
+                font-weight:bold;
             }
             .user-thing-practice {
                 color: #adadad; /* tmp */
