@@ -5690,7 +5690,7 @@ body.page-node-edit {
 
         #content {
             background: #f2f2f2;
-            padding:20px;
+            padding:75px 100px;
             margin:20px 0;
             box-sizing:border-box;
             @include column(14);
@@ -5704,10 +5704,12 @@ body.page-node-edit {
             @media screen and (max-width: $break-tablet) {
                 @include column(24);
                 @include last;
+                padding:20px 20px;
             }
             @media screen and (max-width: $break-desktop-small) {
                 @include column(24);
                 @include last;
+                padding:40px 50px;
             }
 
             input[type=text],
