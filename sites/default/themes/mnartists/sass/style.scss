@@ -5686,13 +5686,20 @@ depending on the template so needs unified a bit */
 body.page-node-add,
 body.page-node-edit {
     #main-content {
+        @include container;
+
         #content {
             background: #f2f2f2;
             padding:20px;
             margin:20px 0;
-            @include column(14);
             box-sizing:border-box;
+            @include column(14);
             @include last;
+            margin-left:auto!important;
+            margin-right:auto!important;
+            display:block;float:none;
+            text-align:left;
+
 
             @media screen and (max-width: $break-tablet) {
                 @include column(24);
