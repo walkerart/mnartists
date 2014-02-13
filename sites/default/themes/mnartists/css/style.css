@@ -9895,38 +9895,50 @@ tr.even {
   border-right: 4px solid #fff!important;
   box-shadow: 0px 4px 0 0 #fff;
   border-bottom: 1px dotted #ccc!important;
+  z-index: 42;
+  position: relative;
 }
-/* line 8585, ../sass/style.scss */
-.page-node-add form input[type=text]:before,
-.page-node-add form textarea:before,
-.page-node-add form input[type=password]:before,
-.page-node-edit form input[type=text]:before,
-.page-node-edit form textarea:before,
-.page-node-edit form input[type=password]:before,
-.page-user-edit form input[type=text]:before,
-.page-user-edit form textarea:before,
-.page-user-edit form input[type=password]:before {
+/* line 8587, ../sass/style.scss */
+.page-node-add form input[type=text]::before,
+.page-node-add form textarea::before,
+.page-node-add form input[type=password]::before,
+.page-node-edit form input[type=text]::before,
+.page-node-edit form textarea::before,
+.page-node-edit form input[type=password]::before,
+.page-user-edit form input[type=text]::before,
+.page-user-edit form textarea::before,
+.page-user-edit form input[type=password]::before {
+  background: #fff;
+  width: 4px;
+  display: block;
+  content: "";
+  z-index: 43;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+}
+/* line 8595, ../sass/style.scss */
+.page-node-add form input[type=text]::after,
+.page-node-add form textarea::after,
+.page-node-add form input[type=password]::after,
+.page-node-edit form input[type=text]::after,
+.page-node-edit form textarea::after,
+.page-node-edit form input[type=password]::after,
+.page-user-edit form input[type=text]::after,
+.page-user-edit form textarea::after,
+.page-user-edit form input[type=password]::after {
   background: #fff;
   width: 4px;
   display: inline-block;
   content: "";
+  z-index: 44;
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
 }
-/* line 8590, ../sass/style.scss */
-.page-node-add form input[type=text]:after,
-.page-node-add form textarea:after,
-.page-node-add form input[type=password]:after,
-.page-node-edit form input[type=text]:after,
-.page-node-edit form textarea:after,
-.page-node-edit form input[type=password]:after,
-.page-user-edit form input[type=text]:after,
-.page-user-edit form textarea:after,
-.page-user-edit form input[type=password]:after {
-  background: #fff;
-  width: 4px;
-  display: inline-block;
-  content: "";
-}
-/* line 8599, ../sass/style.scss */
+/* line 8607, ../sass/style.scss */
 .page-node-add form input[type=text]:focus,
 .page-node-add form textarea:focus,
 .page-node-add form input[type=password]:focus,
@@ -9950,76 +9962,76 @@ tr.even {
   border-bottom: 1px solid #ccc!important;
 }
 
-/* line 8618, ../sass/style.scss */
+/* line 8626, ../sass/style.scss */
 .node-venue-form .field-name-field-public-form,
 .node-venue-form .field-type-taxonomy-term-reference-form {
   margin-bottom: 64px;
 }
 
-/* line 8627, ../sass/style.scss */
+/* line 8635, ../sass/style.scss */
 .node-event-form .field-name-field-category-form,
 .node-event-form .field-name-field-date-form,
 .node-event-form .field-type-text-with-summary {
   margin-bottom: 64px;
 }
-/* line 8630, ../sass/style.scss */
+/* line 8638, ../sass/style.scss */
 .node-event-form #edit-submit {
   float: none;
 }
 
-/* line 8638, ../sass/style.scss */
+/* line 8646, ../sass/style.scss */
 .node-artwork-form .field-type-text-with-summary,
 .node-artwork-form .field-name-field-tags-form {
   margin-bottom: 64px;
 }
-/* line 8642, ../sass/style.scss */
+/* line 8650, ../sass/style.scss */
 .node-artwork-form .field-name-field-dimensions-form .form-textarea-wrapper {
   margin-bottom: 64px!important;
 }
-/* line 8646, ../sass/style.scss */
+/* line 8654, ../sass/style.scss */
 .node-artwork-form .ui-multiselect {
   margin-bottom: 8px;
 }
-/* line 8649, ../sass/style.scss */
+/* line 8657, ../sass/style.scss */
 .node-artwork-form .description {
   margin-bottom: 8px;
 }
-/* line 8656, ../sass/style.scss */
+/* line 8664, ../sass/style.scss */
 .node-artwork-form .field-name-field-created-date-form .partial-date-year .description {
   clear: both;
   margin-left: 0;
 }
-/* line 8662, ../sass/style.scss */
+/* line 8670, ../sass/style.scss */
 .node-artwork-form #cke_1_contents {
   height: 210px !important;
 }
-/* line 8667, ../sass/style.scss */
+/* line 8675, ../sass/style.scss */
 .node-artwork-form .field-name-field-roles-form .description {
   margin-left: 33%;
 }
 
-/* line 8678, ../sass/style.scss */
+/* line 8686, ../sass/style.scss */
 body.admin-menu .wysiwyg-toggle-wrapper,
 body.admin-menu .form-type-select {
   display: block;
 }
-/* line 8683, ../sass/style.scss */
+/* line 8691, ../sass/style.scss */
 body .wysiwyg-toggle-wrapper,
 body .form-type-select {
   display: none;
 }
 
-/* line 8690, ../sass/style.scss */
+/* line 8698, ../sass/style.scss */
 .entityconnect-add, .entityconnect-edit {
   width: auto;
 }
 
-/* line 8693, ../sass/style.scss */
+/* line 8701, ../sass/style.scss */
 form div.entityconnect-edit input {
   background: url("../images/icon-small-edit.png") no-repeat center center white !important;
 }
 
-/* line 8697, ../sass/style.scss */
+/* line 8705, ../sass/style.scss */
 .entityconnect-add input {
   width: 16px!important;
   padding: 0;
@@ -10028,13 +10040,13 @@ form div.entityconnect-edit input {
   background: url("../images/icon-small-add.png") no-repeat center center white !important;
   opacity: .8;
 }
-/* line 8705, ../sass/style.scss */
+/* line 8713, ../sass/style.scss */
 .entityconnect-add input:hover {
   background: url("../images/icon-small-add.png") no-repeat center center white !important;
   opacity: 1;
 }
 
-/* line 8712, ../sass/style.scss */
+/* line 8720, ../sass/style.scss */
 div.entityconnect-edit input {
   width: 16px!important;
   padding: 0;
@@ -10043,27 +10055,27 @@ div.entityconnect-edit input {
   background: url("../images/icon-small-edit.png") no-repeat center center white !important;
   opacity: .8;
 }
-/* line 8720, ../sass/style.scss */
+/* line 8728, ../sass/style.scss */
 div.entityconnect-edit input:hover {
   background: url("../images/icon-small-edit.png") no-repeat center center white !important;
   opacity: 1;
 }
 
-/* line 8728, ../sass/style.scss */
+/* line 8736, ../sass/style.scss */
 td.odd {
   background: none;
 }
 
-/* line 8735, ../sass/style.scss */
+/* line 8743, ../sass/style.scss */
 .cke_chrome {
   box-shadow: none!important;
 }
-/* line 8738, ../sass/style.scss */
+/* line 8746, ../sass/style.scss */
 .cke_chrome .cke_top {
   margin: 0;
   padding: 0;
 }
-/* line 8741, ../sass/style.scss */
+/* line 8749, ../sass/style.scss */
 .cke_chrome .cke_top .cke_toolgroup {
   margin: 0;
   padding: 0;
@@ -10071,7 +10083,7 @@ td.odd {
   background: none;
 }
 
-/* line 8748, ../sass/style.scss */
+/* line 8756, ../sass/style.scss */
 body.wysiwygeditor {
   background: #fff;
   box-sizing: border-box;
@@ -10081,7 +10093,7 @@ body.wysiwygeditor {
 
 /* iCheck plugin Minimal skin, grey
 ----------------------------------- */
-/* line 8759, ../sass/style.scss */
+/* line 8767, ../sass/style.scss */
 .icheckbox,
 .iradio {
   display: block;
@@ -10094,61 +10106,61 @@ body.wysiwygeditor {
   cursor: pointer;
 }
 
-/* line 8770, ../sass/style.scss */
+/* line 8778, ../sass/style.scss */
 .icheckbox {
   background-position: 0 0;
 }
 
-/* line 8773, ../sass/style.scss */
+/* line 8781, ../sass/style.scss */
 .icheckbox.hover {
   background-position: -20px 0;
 }
 
-/* line 8776, ../sass/style.scss */
+/* line 8784, ../sass/style.scss */
 .icheckbox.checked {
   background-position: -40px 0;
 }
 
-/* line 8779, ../sass/style.scss */
+/* line 8787, ../sass/style.scss */
 .icheckbox.disabled {
   background-position: -60px 0;
   cursor: default;
 }
 
-/* line 8783, ../sass/style.scss */
+/* line 8791, ../sass/style.scss */
 .icheckbox.checked.disabled {
   background-position: -80px 0;
 }
 
-/* line 8787, ../sass/style.scss */
+/* line 8795, ../sass/style.scss */
 .iradio {
   background-position: -100px 0;
 }
 
-/* line 8790, ../sass/style.scss */
+/* line 8798, ../sass/style.scss */
 .iradio.hover {
   background-position: -120px 0;
 }
 
-/* line 8793, ../sass/style.scss */
+/* line 8801, ../sass/style.scss */
 .iradio.checked {
   background-position: -140px 0;
 }
 
-/* line 8796, ../sass/style.scss */
+/* line 8804, ../sass/style.scss */
 .iradio.disabled {
   background-position: -160px 0;
   cursor: default;
 }
 
-/* line 8800, ../sass/style.scss */
+/* line 8808, ../sass/style.scss */
 .iradio.checked.disabled {
   background-position: -180px 0;
 }
 
 /* Retina support */
 @media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (-moz-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5) {
-  /* line 8810, ../sass/style.scss */
+  /* line 8818, ../sass/style.scss */
   .icheckbox,
   .iradio {
     background-image: url("../images/icheck-sprites_@2x.png");
@@ -10156,30 +10168,30 @@ body.wysiwygeditor {
     background-size: 200px 20px;
   }
 }
-/* line 8821, ../sass/style.scss */
+/* line 8829, ../sass/style.scss */
 .item-loading-indicator {
   width: 100%;
   height: 100px;
   clear: both;
   background: none;
 }
-/* line 8827, ../sass/style.scss */
+/* line 8835, ../sass/style.scss */
 .item-loading-indicator.loading {
   background: url("../images/icon-loader.gif") no-repeat center center transparent;
   background-size: 40px auto;
 }
 
-/* line 8833, ../sass/style.scss */
+/* line 8841, ../sass/style.scss */
 .my-stuff .item-loading-indicator {
   background: none;
 }
-/* line 8836, ../sass/style.scss */
+/* line 8844, ../sass/style.scss */
 .my-stuff .item-loading-indicator.loading {
   background: url("../images/icon-loader-white.gif") no-repeat center center transparent;
   background-size: 40px auto;
 }
 
-/* line 8844, ../sass/style.scss */
+/* line 8852, ../sass/style.scss */
 #ui-datepicker-div {
   background: #F9F9F9;
   border-radius: 0;
@@ -10188,70 +10200,70 @@ body.wysiwygeditor {
   font-family: 'Apercu Regular';
   font-style: normal;
 }
-/* line 8853, ../sass/style.scss */
+/* line 8861, ../sass/style.scss */
 #ui-datepicker-div .ui-datepicker-header {
   border: none;
   border-radius: 0;
   background: #D3D3D3;
 }
-/* line 8858, ../sass/style.scss */
+/* line 8866, ../sass/style.scss */
 #ui-datepicker-div .ui-datepicker-header .ui-datepicker-next {
   background: none;
   height: auto;
   top: 0;
   bottom: 0;
 }
-/* line 8864, ../sass/style.scss */
+/* line 8872, ../sass/style.scss */
 #ui-datepicker-div .ui-datepicker-header .ui-datepicker-next .ui-icon {
   background: url("../images/arrow-next.svg") no-repeat center center transparent;
   background-size: 8px auto;
 }
-/* line 8869, ../sass/style.scss */
+/* line 8877, ../sass/style.scss */
 #ui-datepicker-div .ui-datepicker-header .ui-datepicker-prev {
   background: none;
   height: auto;
   top: 0;
   bottom: 0;
 }
-/* line 8875, ../sass/style.scss */
+/* line 8883, ../sass/style.scss */
 #ui-datepicker-div .ui-datepicker-header .ui-datepicker-prev .ui-icon {
   background: url("../images/arrow-prev.svg") no-repeat center center transparent;
   background-size: 8px auto;
 }
-/* line 8881, ../sass/style.scss */
+/* line 8889, ../sass/style.scss */
 #ui-datepicker-div .ui-datepicker-calendar {
   background: none;
   border: none;
 }
-/* line 8886, ../sass/style.scss */
+/* line 8894, ../sass/style.scss */
 #ui-datepicker-div .ui-datepicker-calendar thead tr {
   background: none;
   border-bottom: none;
 }
-/* line 8890, ../sass/style.scss */
+/* line 8898, ../sass/style.scss */
 #ui-datepicker-div .ui-datepicker-calendar thead tr th {
   background: none;
   font-weight: normal;
   color: #333;
 }
-/* line 8897, ../sass/style.scss */
+/* line 8905, ../sass/style.scss */
 #ui-datepicker-div .ui-datepicker-calendar tbody {
   border: none;
   border-top: none;
 }
-/* line 8901, ../sass/style.scss */
+/* line 8909, ../sass/style.scss */
 #ui-datepicker-div .ui-datepicker-calendar tbody tr {
   background: none;
   border: none;
   border-top: none;
 }
-/* line 8906, ../sass/style.scss */
+/* line 8914, ../sass/style.scss */
 #ui-datepicker-div .ui-datepicker-calendar tbody tr td {
   background: none;
   border: none;
   background-image: none!important;
 }
-/* line 8911, ../sass/style.scss */
+/* line 8919, ../sass/style.scss */
 #ui-datepicker-div .ui-datepicker-calendar tbody tr td .ui-state-default {
   background: none;
   border: 1px solid #ccc;
@@ -10262,19 +10274,19 @@ body.wysiwygeditor {
   padding: 0;
   line-height: 20px;
 }
-/* line 8922, ../sass/style.scss */
+/* line 8930, ../sass/style.scss */
 #ui-datepicker-div .ui-datepicker-calendar tbody tr td .ui-state-default.ui-state-active {
   background: #222222;
   border: 1px solid #222;
   color: #fff;
   padding: 0;
 }
-/* line 8929, ../sass/style.scss */
+/* line 8937, ../sass/style.scss */
 #ui-datepicker-div .ui-datepicker-calendar tbody tr td .ui-state-default:hover {
   padding: 0;
 }
 
-/* line 8942, ../sass/style.scss */
+/* line 8950, ../sass/style.scss */
 .page-user-saved-filters #content {
   background: #323232;
   padding: 10px;
@@ -10290,7 +10302,7 @@ body.wysiwygeditor {
   overflow: visible;
 }
 @media screen and (max-width: 480px) {
-  /* line 8942, ../sass/style.scss */
+  /* line 8950, ../sass/style.scss */
   .page-user-saved-filters #content {
     display: inline;
     float: left;
@@ -10300,7 +10312,7 @@ body.wysiwygeditor {
   }
 }
 @media screen and (max-width: 768px) {
-  /* line 8942, ../sass/style.scss */
+  /* line 8950, ../sass/style.scss */
   .page-user-saved-filters #content {
     display: inline;
     float: left;
@@ -10310,7 +10322,7 @@ body.wysiwygeditor {
   }
 }
 @media screen and (max-width: 960px) {
-  /* line 8942, ../sass/style.scss */
+  /* line 8950, ../sass/style.scss */
   .page-user-saved-filters #content {
     display: inline;
     float: left;
@@ -10319,39 +10331,39 @@ body.wysiwygeditor {
     margin-right: 2.209%;
   }
 }
-/* line 8962, ../sass/style.scss */
+/* line 8970, ../sass/style.scss */
 .page-user-saved-filters #content a {
   color: #fff;
 }
-/* line 8969, ../sass/style.scss */
+/* line 8977, ../sass/style.scss */
 .page-user-saved-filters #content table {
   border: none;
   color: #fff;
 }
-/* line 8973, ../sass/style.scss */
+/* line 8981, ../sass/style.scss */
 .page-user-saved-filters #content table thead tr {
   background: none;
 }
-/* line 8976, ../sass/style.scss */
+/* line 8984, ../sass/style.scss */
 .page-user-saved-filters #content table thead tr td:first-child {
   padding-left: 0;
   width: 33%;
 }
-/* line 8984, ../sass/style.scss */
+/* line 8992, ../sass/style.scss */
 .page-user-saved-filters #content table tbody tr {
   border-top: none;
 }
-/* line 8987, ../sass/style.scss */
+/* line 8995, ../sass/style.scss */
 .page-user-saved-filters #content table tbody tr td {
   vertical-align: top;
 }
-/* line 8990, ../sass/style.scss */
+/* line 8998, ../sass/style.scss */
 .page-user-saved-filters #content table tbody tr td:first-child {
   padding-left: 0;
   width: 33%;
 }
 
-/* line 9013, ../sass/style.scss */
+/* line 9021, ../sass/style.scss */
 .view-flag-lists-user-lists .view-content {
   min-width: none;
   width: 100%;
@@ -10360,7 +10372,7 @@ body.wysiwygeditor {
   *zoom: 1;
   text-align: center;
 }
-/* line 9020, ../sass/style.scss */
+/* line 9028, ../sass/style.scss */
 .view-flag-lists-user-lists .view-content .user-list-wrap {
   background: #323232;
   padding: 10px;
@@ -10383,7 +10395,7 @@ body.wysiwygeditor {
   text-align: left;
 }
 @media screen and (max-width: 480px) {
-  /* line 9020, ../sass/style.scss */
+  /* line 9028, ../sass/style.scss */
   .view-flag-lists-user-lists .view-content .user-list-wrap {
     display: inline;
     float: left;
@@ -10393,7 +10405,7 @@ body.wysiwygeditor {
   }
 }
 @media screen and (max-width: 768px) {
-  /* line 9020, ../sass/style.scss */
+  /* line 9028, ../sass/style.scss */
   .view-flag-lists-user-lists .view-content .user-list-wrap {
     display: inline;
     float: left;
@@ -10403,7 +10415,7 @@ body.wysiwygeditor {
   }
 }
 @media screen and (max-width: 960px) {
-  /* line 9020, ../sass/style.scss */
+  /* line 9028, ../sass/style.scss */
   .view-flag-lists-user-lists .view-content .user-list-wrap {
     display: inline;
     float: left;
@@ -10412,7 +10424,7 @@ body.wysiwygeditor {
     margin-right: 2.209%;
   }
 }
-/* line 9049, ../sass/style.scss */
+/* line 9057, ../sass/style.scss */
 .view-flag-lists-user-lists .view-content .user-list-wrap h2 {
   color: #ccc;
   border-bottom: 1px solid #ccc;
@@ -10421,12 +10433,12 @@ body.wysiwygeditor {
   height: auto;
   padding-bottom: 5px;
 }
-/* line 9057, ../sass/style.scss */
+/* line 9065, ../sass/style.scss */
 .view-flag-lists-user-lists .view-content .user-list-wrap h2 a {
   color: #ccc;
   text-transform: none;
 }
-/* line 9062, ../sass/style.scss */
+/* line 9070, ../sass/style.scss */
 .view-flag-lists-user-lists .view-content .user-list-wrap .user-list {
   padding: 0;
   min-width: none;
@@ -10435,7 +10447,7 @@ body.wysiwygeditor {
   overflow: hidden;
   *zoom: 1;
 }
-/* line 9068, ../sass/style.scss */
+/* line 9076, ../sass/style.scss */
 .view-flag-lists-user-lists .view-content .user-list-wrap .user-list li {
   vertical-align: middle;
   list-style: none;
@@ -10445,22 +10457,22 @@ body.wysiwygeditor {
   width: 31.463%;
   margin-right: 2.209%;
 }
-/* line 9075, ../sass/style.scss */
+/* line 9083, ../sass/style.scss */
 .view-flag-lists-user-lists .view-content .user-list-wrap .user-list li:nth-child(3n+3) {
   margin-right: 0!important;
 }
-/* line 9080, ../sass/style.scss */
+/* line 9088, ../sass/style.scss */
 .view-flag-lists-user-lists .view-content .user-list-wrap .user-list-more-link {
   display: block;
   text-align: right;
   color: #999;
 }
-/* line 9085, ../sass/style.scss */
+/* line 9093, ../sass/style.scss */
 .view-flag-lists-user-lists .view-content .user-list-wrap .user-list-more-link:hover {
   color: #fff;
 }
 
-/* line 9094, ../sass/style.scss */
+/* line 9102, ../sass/style.scss */
 .chosen-container {
   box-sizing: border-box;
   margin: 0 0 8px 0;
@@ -10468,12 +10480,12 @@ body.wysiwygeditor {
   border: none;
   background: url("../images/icon-select-arrow.png") no-repeat 98% center white;
 }
-/* line 9101, ../sass/style.scss */
+/* line 9109, ../sass/style.scss */
 .chosen-container input.default {
   font-size: 11px !important;
   font-family: "Apercu Regular", Arial, Helvetica, sans-serif !important;
 }
-/* line 9111, ../sass/style.scss */
+/* line 9119, ../sass/style.scss */
 .chosen-container.chosen-container-single .chosen-single {
   border-radius: 0;
   border: none;
@@ -10481,24 +10493,24 @@ body.wysiwygeditor {
   background: none;
   font-size: 12px;
 }
-/* line 9119, ../sass/style.scss */
+/* line 9127, ../sass/style.scss */
 .chosen-container.chosen-container-single .chosen-single div b {
   background: none;
 }
-/* line 9125, ../sass/style.scss */
+/* line 9133, ../sass/style.scss */
 .chosen-container.chosen-container-single .chosen-search {
   display: none;
 }
-/* line 9133, ../sass/style.scss */
+/* line 9141, ../sass/style.scss */
 .chosen-container.chosen-container-single .chosen-results .active-result.highlighted {
   background: #ccc;
   box-shadow: none;
 }
-/* line 9145, ../sass/style.scss */
+/* line 9153, ../sass/style.scss */
 .chosen-container.chosen-container-single.chosen-container-active .chosen-single div b {
   background: none;
 }
-/* line 9152, ../sass/style.scss */
+/* line 9160, ../sass/style.scss */
 .chosen-container .chosen-choices {
   box-shadow: none;
   border: none;
@@ -10507,7 +10519,7 @@ body.wysiwygeditor {
   box-sizing: border-box;
   font-size: 12px!important;
 }
-/* line 9162, ../sass/style.scss */
+/* line 9170, ../sass/style.scss */
 .chosen-container .chosen-choices li.search-choice {
   border-radius: 0;
   background: #ccc;
@@ -10515,27 +10527,27 @@ body.wysiwygeditor {
   box-shadow: none;
   font-size: 12px;
 }
-/* line 9169, ../sass/style.scss */
+/* line 9177, ../sass/style.scss */
 .chosen-container .chosen-choices li.search-choice:hover {
   background: #ddd;
 }
-/* line 9174, ../sass/style.scss */
+/* line 9182, ../sass/style.scss */
 .chosen-container .chosen-choices input {
   font-size: 11px;
 }
-/* line 9178, ../sass/style.scss */
+/* line 9186, ../sass/style.scss */
 .chosen-container .chosen-drop {
   border: none;
   box-shadow: none;
 }
 
-/* line 9193, ../sass/style.scss */
+/* line 9201, ../sass/style.scss */
 .NFI-wrapper {
   background: #fff;
   float: right;
 }
 
-/* line 9211, ../sass/style.scss */
+/* line 9219, ../sass/style.scss */
 .sort-thing {
   max-width: 250px;
   min-width: 220px;
@@ -10545,7 +10557,7 @@ body.wysiwygeditor {
   transition: all .2s ease-in-out;
   height: auto;
 }
-/* line 9219, ../sass/style.scss */
+/* line 9227, ../sass/style.scss */
 .sort-thing h2 {
   background: none;
   height: auto;
@@ -10554,7 +10566,7 @@ body.wysiwygeditor {
   margin: 0;
   display: none;
 }
-/* line 9226, ../sass/style.scss */
+/* line 9234, ../sass/style.scss */
 .sort-thing .wrap {
   margin: 0;
   padding: 0;
@@ -10572,7 +10584,7 @@ body.wysiwygeditor {
   position: relative;
   z-index: 2;
 }
-/* line 9243, ../sass/style.scss */
+/* line 9251, ../sass/style.scss */
 .sort-thing .wrap.open {
   display: block;
   min-height: 100px;
@@ -10583,12 +10595,12 @@ body.wysiwygeditor {
   transition: all .3s ease-in-out;
   max-height: 400px;
 }
-/* line 9254, ../sass/style.scss */
+/* line 9262, ../sass/style.scss */
 .sort-thing .sort-thing-sort-options {
   margin: 0;
   padding: 0;
 }
-/* line 9257, ../sass/style.scss */
+/* line 9265, ../sass/style.scss */
 .sort-thing .sort-thing-sort-options li {
   list-style: none;
   margin: 0;
@@ -10596,13 +10608,13 @@ body.wysiwygeditor {
   border-bottom: 1px solid #eee;
   display: block;
 }
-/* line 9262, ../sass/style.scss */
+/* line 9270, ../sass/style.scss */
 .sort-thing .sort-thing-sort-options li a {
   display: inline-block;
   font-size: 12px;
   color: #666;
 }
-/* line 9267, ../sass/style.scss */
+/* line 9275, ../sass/style.scss */
 .sort-thing .sort-thing-sort-options li a:nth-child(1) {
   margin: 0;
   padding: 8px 13px 8px 30px;
@@ -10611,7 +10623,7 @@ body.wysiwygeditor {
   background: url("../images/mna-circle-hollow.svg") no-repeat 10px center transparent;
   background-size: 12px auto;
 }
-/* line 9278, ../sass/style.scss */
+/* line 9286, ../sass/style.scss */
 .sort-thing .sort-thing-sort-options li a:nth-child(2) {
   float: right;
   padding: 8px 5px;
@@ -10625,7 +10637,7 @@ body.wysiwygeditor {
   background: url("../images/icon-filter-arrow-down.png") no-repeat center center transparent;
   background-size: 7px 8px;
 }
-/* line 9298, ../sass/style.scss */
+/* line 9306, ../sass/style.scss */
 .sort-thing .sort-thing-current-sort {
   float: right;
   padding: 12px 8px 8px 8px;
@@ -10638,7 +10650,7 @@ body.wysiwygeditor {
   border-radius: 0px 0px 3px 3px;
   z-index: 1;
 }
-/* line 9310, ../sass/style.scss */
+/* line 9318, ../sass/style.scss */
 .sort-thing .sort-thing-current-sort:after {
   content: "";
   height: 4px;
@@ -10651,49 +10663,49 @@ body.wysiwygeditor {
   right: 0;
   z-index: 3;
 }
-/* line 9321, ../sass/style.scss */
+/* line 9329, ../sass/style.scss */
 .sort-thing .sort-thing-current-sort:hover {
   cursor: pointer;
 }
 
-/* line 9326, ../sass/style.scss */
+/* line 9334, ../sass/style.scss */
 .panel-2col.layout-a {
   position: relative;
   padding-top: 20px;
 }
-/* line 9330, ../sass/style.scss */
+/* line 9338, ../sass/style.scss */
 .panel-2col.layout-a .sort-thing {
   position: absolute;
   top: 0;
   right: 0;
 }
 
-/* line 9337, ../sass/style.scss */
+/* line 9345, ../sass/style.scss */
 #block-system-main {
   margin-bottom: 0;
 }
 
-/* line 9348, ../sass/style.scss */
+/* line 9356, ../sass/style.scss */
 .item-loading-indicator {
   width: 100%;
   height: 100px;
   clear: both;
   background: none;
 }
-/* line 9354, ../sass/style.scss */
+/* line 9362, ../sass/style.scss */
 .item-loading-indicator.loading {
   background: url("../images/icon-loader.gif") no-repeat center center transparent;
   background-size: 40px auto;
 }
 
-/* line 9360, ../sass/style.scss */
+/* line 9368, ../sass/style.scss */
 .my-stuff .item-loading-indicator.loading {
   background: url("../images/icon-loader-white.gif") no-repeat center center transparent;
   background-size: 40px auto;
 }
 
 /* login page */
-/* line 9375, ../sass/style.scss */
+/* line 9383, ../sass/style.scss */
 .my-stuff.not-logged-in.page-user #content-column,
 .my-stuff.not-logged-in.page-user-register #content-column,
 .my-stuff.not-logged-in.page-user-password #content-column,
@@ -10711,7 +10723,7 @@ body.wysiwygeditor {
   overflow: visible;
 }
 @media screen and (max-width: 480px) {
-  /* line 9375, ../sass/style.scss */
+  /* line 9383, ../sass/style.scss */
   .my-stuff.not-logged-in.page-user #content-column,
   .my-stuff.not-logged-in.page-user-register #content-column,
   .my-stuff.not-logged-in.page-user-password #content-column,
@@ -10726,7 +10738,7 @@ body.wysiwygeditor {
   }
 }
 @media screen and (max-width: 768px) {
-  /* line 9375, ../sass/style.scss */
+  /* line 9383, ../sass/style.scss */
   .my-stuff.not-logged-in.page-user #content-column,
   .my-stuff.not-logged-in.page-user-register #content-column,
   .my-stuff.not-logged-in.page-user-password #content-column,
@@ -10741,7 +10753,7 @@ body.wysiwygeditor {
   }
 }
 @media screen and (max-width: 960px) {
-  /* line 9375, ../sass/style.scss */
+  /* line 9383, ../sass/style.scss */
   .my-stuff.not-logged-in.page-user #content-column,
   .my-stuff.not-logged-in.page-user-register #content-column,
   .my-stuff.not-logged-in.page-user-password #content-column,
@@ -10755,7 +10767,7 @@ body.wysiwygeditor {
     margin-right: 2.209%;
   }
 }
-/* line 9395, ../sass/style.scss */
+/* line 9403, ../sass/style.scss */
 .my-stuff.not-logged-in.page-user #content-column #main-content #main-content-header #tasks,
 .my-stuff.not-logged-in.page-user-register #content-column #main-content #main-content-header #tasks,
 .my-stuff.not-logged-in.page-user-password #content-column #main-content #main-content-header #tasks,
@@ -10764,7 +10776,7 @@ body.wysiwygeditor {
 .not-logged-in.page-user-password #content-column #main-content #main-content-header #tasks {
   margin-bottom: 0;
 }
-/* line 9398, ../sass/style.scss */
+/* line 9406, ../sass/style.scss */
 .my-stuff.not-logged-in.page-user #content-column #main-content #main-content-header #tasks ul.primary,
 .my-stuff.not-logged-in.page-user-register #content-column #main-content #main-content-header #tasks ul.primary,
 .my-stuff.not-logged-in.page-user-password #content-column #main-content #main-content-header #tasks ul.primary,
@@ -10775,7 +10787,7 @@ body.wysiwygeditor {
   margin-bottom: 0;
   padding: 0;
 }
-/* line 9403, ../sass/style.scss */
+/* line 9411, ../sass/style.scss */
 .my-stuff.not-logged-in.page-user #content-column #main-content #main-content-header #tasks ul.primary li,
 .my-stuff.not-logged-in.page-user-register #content-column #main-content #main-content-header #tasks ul.primary li,
 .my-stuff.not-logged-in.page-user-password #content-column #main-content #main-content-header #tasks ul.primary li,
@@ -10785,7 +10797,7 @@ body.wysiwygeditor {
   border: none;
   margin: 0 3px 0 0;
 }
-/* line 9407, ../sass/style.scss */
+/* line 9415, ../sass/style.scss */
 .my-stuff.not-logged-in.page-user #content-column #main-content #main-content-header #tasks ul.primary li a,
 .my-stuff.not-logged-in.page-user-register #content-column #main-content #main-content-header #tasks ul.primary li a,
 .my-stuff.not-logged-in.page-user-password #content-column #main-content #main-content-header #tasks ul.primary li a,
@@ -10798,7 +10810,7 @@ body.wysiwygeditor {
   line-height: 2em;
   height: 2em;
 }
-/* line 9417, ../sass/style.scss */
+/* line 9425, ../sass/style.scss */
 .my-stuff.not-logged-in.page-user #content-column #main-content #main-content-header #tasks ul.primary li.active a,
 .my-stuff.not-logged-in.page-user-register #content-column #main-content #main-content-header #tasks ul.primary li.active a,
 .my-stuff.not-logged-in.page-user-password #content-column #main-content #main-content-header #tasks ul.primary li.active a,
@@ -10808,7 +10820,7 @@ body.wysiwygeditor {
   background: #f2f2f2;
   border: none;
 }
-/* line 9429, ../sass/style.scss */
+/* line 9437, ../sass/style.scss */
 .my-stuff.not-logged-in.page-user #content-column #content,
 .my-stuff.not-logged-in.page-user-register #content-column #content,
 .my-stuff.not-logged-in.page-user-password #content-column #content,
@@ -10819,7 +10831,7 @@ body.wysiwygeditor {
   padding: 20px;
   box-sizing: border-box;
 }
-/* line 9434, ../sass/style.scss */
+/* line 9442, ../sass/style.scss */
 .my-stuff.not-logged-in.page-user #content-column #content form,
 .my-stuff.not-logged-in.page-user-register #content-column #content form,
 .my-stuff.not-logged-in.page-user-password #content-column #content form,
@@ -10829,7 +10841,7 @@ body.wysiwygeditor {
   padding: 75px 100px;
 }
 @media screen and (max-width: 960px) {
-  /* line 9434, ../sass/style.scss */
+  /* line 9442, ../sass/style.scss */
   .my-stuff.not-logged-in.page-user #content-column #content form,
   .my-stuff.not-logged-in.page-user-register #content-column #content form,
   .my-stuff.not-logged-in.page-user-password #content-column #content form,
@@ -10840,7 +10852,7 @@ body.wysiwygeditor {
   }
 }
 @media screen and (max-width: 768px) {
-  /* line 9434, ../sass/style.scss */
+  /* line 9442, ../sass/style.scss */
   .my-stuff.not-logged-in.page-user #content-column #content form,
   .my-stuff.not-logged-in.page-user-register #content-column #content form,
   .my-stuff.not-logged-in.page-user-password #content-column #content form,
@@ -10851,7 +10863,7 @@ body.wysiwygeditor {
   }
 }
 @media screen and (max-width: 480px) {
-  /* line 9434, ../sass/style.scss */
+  /* line 9442, ../sass/style.scss */
   .my-stuff.not-logged-in.page-user #content-column #content form,
   .my-stuff.not-logged-in.page-user-register #content-column #content form,
   .my-stuff.not-logged-in.page-user-password #content-column #content form,
@@ -10862,32 +10874,32 @@ body.wysiwygeditor {
   }
 }
 
-/* line 9455, ../sass/style.scss */
+/* line 9463, ../sass/style.scss */
 .password-strength {
   display: none;
 }
 
-/* line 9459, ../sass/style.scss */
+/* line 9467, ../sass/style.scss */
 #main-content {
   margin-left: 40px;
   margin-right: 40px;
 }
 @media screen and (max-width: 960px) {
-  /* line 9459, ../sass/style.scss */
+  /* line 9467, ../sass/style.scss */
   #main-content {
     margin-left: 40px;
     margin-right: 40px;
   }
 }
 @media screen and (max-width: 768px) {
-  /* line 9459, ../sass/style.scss */
+  /* line 9467, ../sass/style.scss */
   #main-content {
     margin-left: 20px;
     margin-right: 20px;
   }
 }
 @media screen and (max-width: 480px) {
-  /* line 9459, ../sass/style.scss */
+  /* line 9467, ../sass/style.scss */
   #main-content {
     margin-left: 10px;
     margin-right: 10px;
