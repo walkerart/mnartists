@@ -7534,12 +7534,15 @@ li.collect-this, li.add-this {
 
     #block-system-main {
         @include container;
+        text-align:center;
 
         .user-feed {
             padding:20px 0;
+            text-align:left;
             @include column(14);
             @include last;
-            @include push(2);
+            margin-left:auto!important;
+            margin-right:auto!important;
 
             overflow:visible;
             @media screen and (max-width: $break-mobile) {
