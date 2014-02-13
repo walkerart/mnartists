@@ -5704,11 +5704,13 @@ body.page-node-edit {
                 @include column(24);
                 @include last;
                 padding:40px 50px;
+                margin-left:20px!important;margin-right:20px!important;
             }
             @media screen and (max-width: $break-tablet) {
                 @include column(24);
                 @include last;
                 padding:20px 20px;
+                margin-left:20px!important;margin-right:20px!important;
             }
             @media screen and (max-width: $break-mobile) {
                 margin-left:10px!important;margin-right:10px!important;
@@ -6057,14 +6059,26 @@ tr.odd .form-item, tr.even .form-item {
             margin-top:20px;
             margin-bottom:20px;
             @include column(14);
-            @media screen and (max-width: $break-mobile) {
+            @include last;
+            margin-left:auto!important;
+            margin-right:auto!important;
+            display:block;float:none;
+            text-align:left;
+
+            @media screen and (max-width: $break-desktop-small) {
                 @include column(24);
+                @include last;
+                padding:40px 50px;
+                margin-left:20px!important;margin-right:20px!important;
             }
             @media screen and (max-width: $break-tablet) {
                 @include column(24);
+                @include last;
+                padding:20px 20px;
+                margin-left:20px!important;margin-right:20px!important;
             }
-            @media screen and (max-width: $break-desktop-small) {
-                @include column(24);
+            @media screen and (max-width: $break-mobile) {
+                margin-left:10px!important;margin-right:10px!important;
             }
         }
     }
