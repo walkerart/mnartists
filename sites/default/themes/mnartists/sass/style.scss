@@ -9444,5 +9444,22 @@ body.wysiwygeditor {
 .password-strength {
     display:none;
 }
-// hide it
+// this might need defined more specifically but for now
+#main-content {
+    margin-left:40px;
+    margin-right:40px;
+
+    @media screen and (max-width: $break-desktop-small) {
+        margin-left:40px;
+        margin-right:40px;
+    }
+    @media screen and (max-width: $break-tablet) {
+        margin-left:20px;
+        margin-right:20px;
+    }
+    @media screen and (max-width: $break-mobile) {
+        margin-left:10px;
+        margin-right:10px;
+    }
+}
 
