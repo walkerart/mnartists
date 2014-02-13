@@ -7538,12 +7538,12 @@ li.collect-this, li.add-this {
 
         .user-feed {
             padding:20px 0;
-            text-align:left;
             @include column(14);
             @include last;
             margin-left:auto!important;
             margin-right:auto!important;
             display:block;float:none;
+            text-align:left;
 
             overflow:visible;
             @media screen and (max-width: $break-mobile) {
@@ -8976,6 +8976,8 @@ body.wysiwygeditor {
 .view-flag-lists-user-lists {
 
     .view-content {
+        @include container;
+        text-align:center;
 
         .view-flag-lists-user-list {
 
@@ -8988,9 +8990,17 @@ body.wysiwygeditor {
             position:relative;
             list-style:none;
             min-height:80px;
+            overflow:visible;
 
             @include column(14);
-            overflow:visible;
+            @include last;
+            margin-left:auto!important;
+            margin-right:auto!important;
+            display:block;float:none;
+            text-align:left;
+
+
+
             @media screen and (max-width: $break-mobile) {
                 @include column(24);
             }
