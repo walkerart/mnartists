@@ -7538,20 +7538,24 @@ li.collect-this, li.add-this {
         .user-feed {
             padding:20px 0;
             @include column(14);
-
+            @include last;
+            @include pull(5);
 
             overflow:visible;
             @media screen and (max-width: $break-mobile) {
                 @include column(24);
                 @include push(0);
+                @include pull(0);
             }
             @media screen and (max-width: $break-tablet) {
                 @include column(24);
                 @include push(0);
+                @include pull(0);
             }
             @media screen and (max-width: $break-desktop-small) {
                 @include column(24);
                 @include push(0);
+                @include pull(0);
             }
 
             li.feed-item {
