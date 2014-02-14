@@ -16,4 +16,5 @@
         } ?>
     <label>Near Me:</label>
     <input type="search" name="<?= $search_input_name ?>" placeholder="CITY/ZIP" value="<?= $search_field_value ?>">
+    <button type="submit"></button>
 </form>
