@@ -135,7 +135,7 @@
                 $award = array_shift($awardkey);
                 ?>
                 <?= (isset($award['field_award_year'])) ? $award['field_award_year']['#items'][0]['from']['year'] . ', ' : '' ?>
-                <?= $award['field_award_name'][0]['#markup'] ?>
+                <?= (isset($award['field_award_name'])) ? $award['field_award_name'][0]['#markup'] : '' ?>
                 <?= (isset($award['field_award_organization'])) ? ' ' . $award['field_award_organization'][0]['#markup'] . '<br />' . PHP_EOL : '' ?>
             <?php } ?>
         </div>
