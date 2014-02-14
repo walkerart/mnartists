@@ -714,6 +714,13 @@ function mnartist_profiles_entity_property_info_alter(&$info) {
         'sanitized' => TRUE,
         'getter callback' => 'mnartist_profiles_latlng_getter_callback',
     );
+    $info['user']['bundles']['user']['properties']['mnartist_profile2_search'] = array(
+        'type' => 'list<text>',
+        'label' => t('All Profile Content'),
+        'sanitized' => TRUE,
+        'getter callback' => 'mnartist_profiles_profile2_search_getter_callback',
+    );
+
 
 
     // this doesn't *really* belong here, but I guess
@@ -772,6 +779,32 @@ function mnartist_profiles_entity_property_info_alter(&$info) {
         'sanitized' => TRUE,
         'getter callback' => 'mnartist_profiles_flags_count_callback',
     );
+}
+
+function mnartist_profiles_profile2_search_getter_callback($item) {
+
+    $return_terms = array();
+    $main_profile = profile2_load_by_user($item->uid, 'main');
+
+    // none of these fields can be private, so we don't
+    // do privacy checks on them. may need to revisit
+    // if/as other fields are added to the indexing
+    if (isset($main_profile->field_pseudonym['und'])) {
+        $return_terms[] = $main_profile->field_pseudonym['und'][0]['value'];
+    }
+    if (isset($main_profile->field_bio['und'])) {
+        $return_terms[] = strip_tags($main_profile->field_bio['und'][0]['value']);
+    }
+    if (isset($main_profile->field_full_name['und'])) {
+        $entity = field_collection_item_load($main_profile->field_full_name['und'][0]['value']);
+        if (isset($entity->field_first_name['und'])) {
+            $return_terms[] = $entity->field_first_name['und'][0]['value'];
+        }
+        if (isset($entity->field_last_name['und'])) {
+            $return_terms[] = $entity->field_last_name['und'][0]['value'];
+        }
+    }
+    return $return_terms;
 }
 
 function mnartist_profiles_search_api_data_type_info() {
