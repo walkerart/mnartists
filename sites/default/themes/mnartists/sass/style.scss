@@ -5961,7 +5961,7 @@ body.page-node-edit {
         .roles {
             text-transform:uppercase;
             color:#888;
-            font-size:12px;
+            font-size:11px;
         }
     }
 }
@@ -7226,7 +7226,14 @@ li.collect-this, li.add-this {
             }
             .user-thing-practice {
                 color: #adadad; /* tmp */
-
+                text-transform:uppercase;
+                color:#888;
+                font-size:11px;
+            }
+            .user-thing-roles {
+                text-transform:uppercase;
+                color:#888;
+                font-size:11px;
             }
         }
     }
@@ -8594,21 +8601,23 @@ tr.even {
         z-index:42;
         position:relative;
 
-        &::before {
+        &:before {
             background:#fff;
-            width:4px;display:block;
+            width:4px;height:10px;display:block;
             content:"thsi akes no esens";
             z-index:43;
             position:absolute;
-            left:0;top:0;bottom:0;
+            left:0;bottom:0;
+            z-index:998;
         }
-        &::after {
+        &:after {
             background:#fff;
-            width:4px;display:inline-block;
+            width:4px;height:10px;display:inline-block;
             content:"thsi akes no esens";
             z-index:44;
             position:absolute;
-            right:0;top:0;bottom:0;
+            right:0;bottom:0;
+            z-index:999;
         }
     }
 
