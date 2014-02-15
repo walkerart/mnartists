@@ -45,28 +45,45 @@
             contentContainer.isotope(isotopeOptions);
         });
 
+
+        // sort-thing dealings-with
         $('#sort-thing-opener').click(function (evt) {
             $(this).siblings('.wrap').toggleClass('open');
+            $(window).trigger('scroll');
         });
 
+        // grab the sorter, add the retracted class to start
         var theSortThing = $('.sort-thing');
-        // @TODO in reality, only do this on community landing page
         theSortThing.addClass('sort-thing-fully-retracted');
 
+        // on plain community page, we want to hide the sorter
+        // until the search results container enters the viewport,
+        // so here we set up a scroll event to add/remove the
+        // sort-thing-fully-retracted class based on its position
+        var percentageOfContentInViewport = 5; // reveal sort-thing when search results are this far into viewport
         var sortHide_resultsContainer = $('.search-results');
-        var sortHide_targetScroll = $('.search-results').offset().top;
+        var sortHide_targetScroll = $('.search-results').offset().top - ($(window).height() * (1 - (percentageOfContentInViewport/100)));
         $(window).scroll(function (evt) {
             var scrollTop = $(window).scrollTop();
             if (scrollTop >= sortHide_targetScroll) {
-                console.log('showing the sort now');
                 theSortThing.removeClass('sort-thing-fully-retracted');
             } else {
-                console.log('hiding the sort now');
-                theSortThing.addClass('sort-thing-fully-retracted');
+                // if the user has opened the sorter but then scrolled
+                // back past retract point, respect their wishes
+                if (theSortThing.find('.wrap.open').length === 0) {
+                    theSortThing.addClass('sort-thing-fully-retracted');
+                }
             }
         });
 
+        // trigger scroll on load, so that we get
+        // the initial state right
         $(window).trigger('scroll');
+
+        // NB: this is intended to "just work" on the non-plain
+        // community pages, because the search results should
+        // never be able to get low enough in the viewport to
+        // trigger the disappearing sorter
 
     });
 })(jQuery);

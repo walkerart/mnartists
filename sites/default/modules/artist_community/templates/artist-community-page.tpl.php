@@ -52,7 +52,7 @@
             print($banner_block['content']);
         ?>
 
-        <div class="sort-thing">
+        <div class="sort-thing sort-thing-fully-retracted">
             <div class="wrap">
                 <h2>SORT</h2>
                 <?php

@@ -9230,6 +9230,7 @@ body.wysiwygeditor {
 
 // SORT THING community sort filters
 .sort-thing {
+
     max-width:250px;
     min-width:220px;
     -webkit-transition: all .2s ease-in-out;
@@ -9349,8 +9350,23 @@ body.wysiwygeditor {
     padding-top:20px;
 
     .sort-thing {
-        position:absolute;
-        top:0;right:0;
+        position: fixed;
+        top: 0px;
+        right: 40px;
+    }
+    .sort-thing-fully-retracted {
+        top: -100px;
+    }
+}
+
+.logged-in {
+    .panel-2col.layout-a {
+        .sort-thing {
+            top: 21px;
+        }
+        .sort-thing-fully-retracted {
+            top: -100px;
+        }
     }
 }
 
