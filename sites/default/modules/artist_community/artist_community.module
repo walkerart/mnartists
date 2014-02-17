@@ -38,6 +38,8 @@ define('AC_USER_LATLNG_FIELD', 'locs_near_me_latlng');
 define('AC_START_DATE_FIELD', 'ds_field_date:value');
 define('AC_CATEGORY_FIELD', 'is_field_category');
 define('AC_ARTICLE_CATEGORY_FIELD', 'is_field_article_category');
+define('AC_GLOBAL_SEARCH_FIELD', 'tm_search_api_aggregation_1');
+define('AC_PROFILE_SEARCH_FIELD', 'tm_mnartist_profile2_search');
 
 
 // config for solarium
@@ -736,7 +738,14 @@ function _artist_community_get_items_query ($local_og = null,
 
     // add the search term if a user entered one
     if (isset($_GET['global_search'])) {
-        $solarium_query->setQuery("tm_search_api_aggregation_1:{$_GET['global_search']}*");
+        // @ddamico: there is surely a better way to do this,
+        // but I couldn't get exact term searches to work unless
+        // I included the search term both with and without
+        // the wildcard (it's as if the * is behaving as 1 or more
+        // instead of 0 or more)
+        $globalQs = '(('.AC_GLOBAL_SEARCH_FIELD.":{$_GET['global_search']}* OR ".AC_GLOBAL_SEARCH_FIELD.":{$_GET['global_search']}) OR ";
+        $globalQs .= '('.AC_PROFILE_SEARCH_FIELD.":{$_GET['global_search']}* OR ".AC_PROFILE_SEARCH_FIELD.":{$_GET['global_search']}))";
+        $solarium_query->setQuery($globalQs);
     }
 
     // Handle Organic groups and taxonomies

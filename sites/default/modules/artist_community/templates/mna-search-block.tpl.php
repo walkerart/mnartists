@@ -25,5 +25,6 @@
                 }
             } ?>
         <input placeholder="Search" type="search" name="global_search" id="search" value="<?php print $globalSearchValue; ?>"/>
+        <button type="submit"></button>
     </form>
 </div>
