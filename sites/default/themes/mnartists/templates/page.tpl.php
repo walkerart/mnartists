@@ -88,7 +88,6 @@
  * @see adaptivetheme_process_page()
  */
 ?>
-<div id="sb-site">
 <div id="page" class="container <?php print $classes; ?>">
 
   <!-- region: Leaderboard -->
@@ -185,9 +184,7 @@
       <?php print render($page['footer']); ?>
     </footer>
   <?php endif; ?>
-
 </div> <!-- end page -->
-</div> <!-- end sb-site wapper -->
 <div id="menu" class="sb-slidebar sb-left">
 	<a href="#" class="menu-trigger">menu</a>
 	<div class="menu-content">
