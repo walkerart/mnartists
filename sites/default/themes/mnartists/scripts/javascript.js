@@ -190,4 +190,7 @@ jQuery(document).ready(function () {
     // nice file input
     jQuery('input[type=file]').nicefileinput();
 
+    // slidebar
+    jQuery.slidebars();
+
 });
