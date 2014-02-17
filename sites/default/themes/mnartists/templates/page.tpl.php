@@ -184,9 +184,8 @@
       <?php print render($page['footer']); ?>
     </footer>
   <?php endif; ?>
-
 </div> <!-- end page -->
-<div id="menu">
+<div id="menu" class="sb-slidebar sb-left">
 	<a href="#" class="menu-trigger">menu</a>
 	<div class="menu-content">
 		<ul class="mega-tabs">
