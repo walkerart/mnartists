@@ -293,7 +293,11 @@
 
 body.admin-menu #menu {
 	top:20px;
+	@media screen and (max-width: $break-mobile) {
+        top:0px;
+    }
 }
+
 #menu:before {
 	position:absolute;
 	left:0;
