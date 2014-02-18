@@ -1,716 +1,90 @@
-/* now let's get those layout files */
-/* LAYOUT A ************************************/
-/* community and homepage template stuff */
-/* line 6, ../sass/layout-a.scss */
-.layout-a .panel-col-first {
-  float: left;
-  width: 75%;
-  box-sizing: border-box;
-  padding-right: 20px;
-}
-/* line 12, ../sass/layout-a.scss */
-.layout-a .panel-col-first .inside {
-  margin: 0 .5em 1em 0;
-}
-/* line 15, ../sass/layout-a.scss */
-.layout-a .panel-col-first .inside .article-thing {
-  margin-right: 20px;
-}
-/* line 18, ../sass/layout-a.scss */
-.layout-a .panel-col-first .inside .search-results {
-  margin-right: 20px;
-}
-/* line 22, ../sass/layout-a.scss */
-.layout-a .panel-col-first .inset-left {
-  float: left;
-  width: 75%;
-}
-/* line 26, ../sass/layout-a.scss */
-.layout-a .panel-col-first .inset-right {
-  float: left;
-  width: 25%;
-}
-/* line 32, ../sass/layout-a.scss */
-.layout-a .panel-col-last {
-  float: left;
-  width: 25%;
-  box-sizing: border-box;
-}
-/* line 37, ../sass/layout-a.scss */
-.layout-a .panel-col-last .inside {
-  margin: 0 0 1em .5em;
-}
-/* line 41, ../sass/layout-a.scss */
-.layout-a .panel-separator {
-  margin: 0 0 1em 0;
-}
+/*
+Syntax error: Undefined mixin 'media'.
+        on line 575 of /Users/mgipson/mnartists/sites/default/themes/mnartists/sass/menu.scss, in `media'
+        from line 575 of /Users/mgipson/mnartists/sites/default/themes/mnartists/sass/menu.scss
 
-/* line 46, ../sass/layout-a.scss */
-* html .panel-2col.layout-a .panel-col-first {
-  width: 74.9%;
-}
-
-/* line 49, ../sass/layout-a.scss */
-* html .panel-2col.layout-a .panel-col-last {
-  width: 24.9%;
-}
-
-/* insets */
-/* line 53, ../sass/layout-a.scss */
-* html .panel-2col.layout-a .panel-col-first .panel-col-first.inset-left {
-  width: 74.9%;
-}
-
-/* line 56, ../sass/layout-a.scss */
-* html .panel-2col.layout-a .panel-col-first .panel-col-last.inset-right {
-  width: 24.9%;
-}
-
-/* LAYOUT G artwork **************************/
-/* line 5, ../sass/layout-g.scss */
-.layout-g .title-artwork .block {
-  margin: 0;
-}
-/* line 8, ../sass/layout-g.scss */
-.layout-g .title-artwork .block .block-inner .block-content {
-  background: none;
-}
-/* line 10, ../sass/layout-g.scss */
-.layout-g .title-artwork .block .block-inner .block-content h2 {
-  padding: 0 0 5px 0;
-  margin: 0;
-  height: 15px;
-  background: none;
-}
-/* line 19, ../sass/layout-g.scss */
-.layout-g .panel-col.content-artwork {
-  position: relative;
-}
-/* line 27, ../sass/layout-g.scss */
-.layout-g .panel-col.content-artwork .content-bottom .inset-left {
-  font-family: "adobe-text-pro", "Times New Roman", Times, serif;
-}
-/* line 38, ../sass/layout-g.scss */
-.layout-g .panel-col.content-artwork .pane-node-title h2 {
-  background: none;
-  padding: 15px 0 10px 0;
-  margin: 0 0 10px 0;
-  border-bottom: 1px solid #888888;
-  font-size: 18px;
-  height: auto;
-  line-height: auto;
-  text-transform: none;
-  letter-spacing: normal;
-}
-/* line 49, ../sass/layout-g.scss */
-.layout-g .panel-col.content-artwork .pane-node-title h2 a {
-  font-family: "adobe-text-pro", "Times New Roman", Times, serif;
-  font-weight: normal;
-  height: auto;
-}
-/* line 55, ../sass/layout-g.scss */
-.layout-g .panel-col.content-artwork .pane-node-links {
-  position: absolute;
-  display: inline-block;
-  right: 10px;
-  top: 10px;
-  text-align: right;
-}
-/* line 64, ../sass/layout-g.scss */
-.layout-g .panel-col.content-artwork .pane-node-author a {
-  font-size: 24px;
-  font-weight: bold;
-  line-height: 24px;
-  margin-bottom: 10px;
-  padding-top: 5px;
-  display: block;
-}
-/* line 73, ../sass/layout-g.scss */
-.layout-g .panel-col.content-artwork .pane-mnartist-collections-mna-collections-star {
-  position: absolute;
-  top: 10px;
-  right: 0px;
-  z-index: 9999;
-}
-
-/* line 4, ../sass/menu.scss */
-#menu {
-  position: fixed;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 200px;
-  min-height: 100%;
-  height: auto;
-  overflow-y: auto;
-}
-
-/* line 15, ../sass/menu.scss */
-#menu .region-inner {
-  position: relative;
-}
-/* line 18, ../sass/menu.scss */
-#menu .block-mnartist-filter {
-  margin-bottom: 0;
-}
-/* line 21, ../sass/menu.scss */
-#menu .search-container {
-  display: block;
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  border-bottom: 1px solid #808080;
-  position: relative;
-}
-/* line 30, ../sass/menu.scss */
-#menu .search-container input {
-  width: 100%;
-  border-width: 0;
-  padding: 0 20px 0 0;
-  line-height: 20px;
-  margin: 0;
-  background: #e5e5e5;
-  background: url("../images/icon-magnify-sidebar.png") no-repeat right center #e5e5e5;
-  text-indent: 10px;
-  position: relative;
-  box-sizing: border-box;
-  color: #808080;
-}
-/* line 43, ../sass/menu.scss */
-#menu .search-container input:focus {
-  outline: none;
-  background: url("../images/icon-magnify-sidebar.png") no-repeat right center #cccccc;
-  color: #808080;
-}
-/* line 48, ../sass/menu.scss */
-#menu .search-container button {
-  position: absolute;
-  right: 0px;
-  top: 0px;
-  bottom: 0px;
-  width: 20px;
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  border: none;
-  outline: none;
-  background: none;
-  display: block;
-}
-/* line 59, ../sass/menu.scss */
-#menu .search-container button:hover, #menu .search-container button:focus {
-  border: none;
-  outline: none;
-  background: none;
-}
-/* line 65, ../sass/menu.scss */
-#menu ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-/* line 70, ../sass/menu.scss */
-#menu ul li {
-  margin: 0;
-  padding: 0;
-  position: relative;
-}
-/* line 75, ../sass/menu.scss */
-#menu ul li a {
-  display: block;
-  margin: 0 10px;
-  padding: 8px 13px 8px 20px;
-  line-height: 1em;
-  text-transform: uppercase;
-  font-size: 12px;
-  color: #666;
-  background: url("../images/mna-circle-hollow.svg") no-repeat left center transparent;
-  background-size: 10px auto;
-}
-/* line 87, ../sass/menu.scss */
-#menu ul li a.active-trail {
-  /*background: url('../images/mna-circle-filled.svg') no-repeat left center transparent;*/
-  background: url("../images/icon-check-solid.svg") no-repeat left center transparent;
-  background-size: 9px auto;
-}
-/* line 93, ../sass/menu.scss */
-#menu ul li a.active-trail.active {
-  background: url("../images/icon-check-hollow.svg") no-repeat left center transparent;
-  background-size: 9px auto;
-}
-/* line 97, ../sass/menu.scss */
-#menu ul li a.active-trail.active.selected {
-  background: url("../images/icon-check-solid.svg") no-repeat left center transparent;
-  background-size: 9px auto;
-  color: #111;
-                /*@include sans_bold_font;
-				font-weight:bold;*/
-  font-weight: normal;
-  font-family: "Apercu Bold", Arial, Helvetica, sans-serif;
-}
-/* line 106, ../sass/menu.scss */
-#menu ul li a.expand {
-  line-height: 1em;
-  margin: 0;
-  padding: 8px 10px 0 8px;
-  right: 0;
-  top: 0;
-  position: absolute;
-  background: none;
-}
-/* line 114, ../sass/menu.scss */
-#menu ul li .item-list {
-  display: none;
-}
-/* line 117, ../sass/menu.scss */
-#menu ul li .item-list ul {
-  background: #eaeaea;
-  display: block;
-  padding: 8px 0;
-}
-/* line 122, ../sass/menu.scss */
-#menu ul li .item-list ul li {
-  padding: 0 0 0 30px;
-  display: block;
-}
-/* line 126, ../sass/menu.scss */
-#menu ul li .item-list ul li a {
-  margin: 0;
-  /*
-  	padding:5px 5px 5px 0px;
-  	background:none;
-  */
-  line-height: 1em;
-  text-transform: none;
-  border-bottom: none;
-  padding: 8px 0 8px 20px;
-}
-/* line 138, ../sass/menu.scss */
-#menu ul li .item-list ul li a.active-trail.active.selected {
-  font-weight: normal;
-}
-/* line 142, ../sass/menu.scss */
-#menu ul li .item-list ul li.first {
-  border-bottom: none;
-}
-/* line 149, ../sass/menu.scss */
-#menu ul li .item-list .menu-event-datepicker {
-  display: block;
-}
-/* line 155, ../sass/menu.scss */
-#menu ul li .item-list .menu-event-datepicker table tr td a {
-  padding: 0;
-  font-size: 10px;
-  background-image: none;
-}
-/* line 160, ../sass/menu.scss */
-#menu ul li .item-list .menu-event-datepicker table tr td a.ui-state-highlight {
-  background: #fff;
-  border: 1px solid #999;
-}
-/* line 170, ../sass/menu.scss */
-#menu ul li .item-list .menu-event-datepicker .ui-datepicker th {
-  font-weight: normal;
-}
-/* line 183, ../sass/menu.scss */
-#menu ul li:first-child {
-  border-bottom: 1px solid #fff;
-}
-/* line 186, ../sass/menu.scss */
-#menu ul li:first-child a.active {
-  /*background: url('../images/mna-circle-half.svg') no-repeat left center transparent;
-  background-size: 10px auto;
-  background: url('../images/mna-circle-filled.svg') no-repeat left center transparent;
-  background-size: 10px auto;*/
-}
-/* line 195, ../sass/menu.scss */
-#menu ul .block {
-  margin-bottom: 0px;
-}
-/* line 200, ../sass/menu.scss */
-#menu .menu-event-datepicker {
-  max-width: 200px;
-  margin: 0 0 0 -30px !important;
-  box-sizing: border-box;
-  padding: 0 10px;
-  clear: both;
-  float: none;
-  display: block;
-}
-/* line 210, ../sass/menu.scss */
-#menu .menu-event-datepicker .ui-datepicker-prev,
-#menu .menu-event-datepicker .ui-datepicker-next {
-  padding: 0;
-}
-/* line 214, ../sass/menu.scss */
-#menu .menu-event-datepicker .ui-datepicker-inline {
-  padding: 0 0 10px 0;
-}
-
-/* line 221, ../sass/menu.scss */
-#block-artist-community-menu-search .block-inner {
-  margin: 0;
-  padding: 0;
-}
-
-/* line 228, ../sass/menu.scss */
-#menu #block-mnartist-filter-mna-filter-create {
-  position: absolute;
-  top: 5px;
-  right: 0px;
-}
-/* line 235, ../sass/menu.scss */
-#menu #block-mnartist-filter-mna-filter-create ul.menu li {
-  border: none;
-}
-/* line 237, ../sass/menu.scss */
-#menu #block-mnartist-filter-mna-filter-create ul.menu li a {
-  background: none;
-  margin: 0;
-  padding: 0;
-}
-/* line 243, ../sass/menu.scss */
-#menu #block-mnartist-filter-mna-filter-create ul.menu li ul {
-  width: 12em;
-  right: 0;
-  left: auto;
-}
-/* line 249, ../sass/menu.scss */
-#menu #block-mnartist-filter-mna-filter-create ul.menu li ul li a {
-  background: none;
-  padding: 5px 0;
-}
-/* line 257, ../sass/menu.scss */
-#menu #block-mnartist-filter-mna-filter-create hr {
-  display: none;
-}
-
-/* line 262, ../sass/menu.scss */
-#menu ul.mega-tabs {
-  width: 100%;
-  position: relative;
-  display: table;
-}
-/* line 267, ../sass/menu.scss */
-#menu ul.mega-tabs li {
-  width: 50%;
-  display: table-cell;
-  border-bottom: none!important;
-}
-/* line 273, ../sass/menu.scss */
-#menu ul.mega-tabs li a {
-  display: block;
-  line-height: 2.4em;
-  font-weight: bold;
-  padding: 0;
-  text-align: center;
-  background-image: none;
-  margin: 0;
-}
-/* line 284, ../sass/menu.scss */
-#menu ul.mega-tabs li.user-tab {
-  background: #323232;
-}
-/* line 287, ../sass/menu.scss */
-#menu ul.mega-tabs li.user-tab a {
-  color: #e5e5e5;
-}
-
-/* line 294, ../sass/menu.scss */
-body.admin-menu #menu {
-  top: 20px;
-}
-
-/* line 297, ../sass/menu.scss */
-#menu:before {
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 200px;
-  background: #e5e5e5;
-  position: fixed;
-  min-height: 100%;
-  content: "";
-  z-index: -1;
-}
-
-/* line 309, ../sass/menu.scss */
-p.site-description {
-  position: relative;
-  padding: 0;
-  margin: 10px;
-  font-size: 12px;
-  color: #888;
-  float: none;
-  display: block;
-}
-
-/* line 318, ../sass/menu.scss */
-.menu-content {
-  display: block;
-}
-
-/* line 321, ../sass/menu.scss */
-.menu-trigger {
-  display: none;
-  position: relative;
-}
-
-/* */
-/* date picker on menu bar (this might not need to be defined) */
-/* date picker on page ****************/
-/* line 330, ../sass/menu.scss */
-.menu-event-datepicker {
-  display: none;
-}
-
-/* line 333, ../sass/menu.scss */
-#menu ul li .ui-datepicker-inline a {
-  padding: 0;
-  background-image: none;
-}
-
-/* line 337, ../sass/menu.scss */
-#menu ul li .menu-event-datepicker {
-  margin: 0 -10px;
-  background: #ebebeb;
-}
-
-/* */
-/* favorite filter star */
-/* line 344, ../sass/menu.scss */
-#create-filter {
-  width: 17px;
-  height: 16px;
-  overflow: hidden;
-  display: block;
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: url("../images/fav-star.svg") no-repeat left top transparent;
-  text-indent: 100%;
-  white-space: nowrap;
-  z-index: 999;
-  opacity: .4;
-}
-
-/* my stuff menu bar */
-/* line 361, ../sass/menu.scss */
-.my-stuff {
-  background: #3f3f3f;
-}
-/* line 364, ../sass/menu.scss */
-.my-stuff #menu {
-  background: #323232;
-}
-/* line 369, ../sass/menu.scss */
-.my-stuff #menu ul.mega-tabs {
-  background: #323232;
-}
-/* line 372, ../sass/menu.scss */
-.my-stuff #menu ul.mega-tabs li {
-  background: #f2f2f2;
-  border: none;
-}
-/* line 376, ../sass/menu.scss */
-.my-stuff #menu ul.mega-tabs li a {
-  color: #323232;
-  padding: 0;
-}
-/* line 382, ../sass/menu.scss */
-.my-stuff #menu ul.mega-tabs li.user-tab {
-  background: #323232;
-}
-/* line 386, ../sass/menu.scss */
-.my-stuff #menu ul.mega-tabs li.user-tab a {
-  color: #e5e5e5;
-}
-/* line 393, ../sass/menu.scss */
-.my-stuff #menu ul li {
-  border-bottom: 1px solid #3f3f3f;
-}
-/* line 395, ../sass/menu.scss */
-.my-stuff #menu ul li a {
-  color: #e3e3e3;
-  background: none;
-  padding: 8px 13px 8px 8px;
-  margin: 0;
-}
-/* line 402, ../sass/menu.scss */
-.my-stuff #menu ul li .item-list {
-  background: #4d4d4d;
-  margin-left: 0;
-  margin-right: 0;
-  padding-bottom: 10px;
-  padding-top: 5px;
-}
-/* line 411, ../sass/menu.scss */
-.my-stuff #menu ul li .item-list ul {
-  background: #4d4d4d;
-}
-/* line 414, ../sass/menu.scss */
-.my-stuff #menu ul li .item-list ul li {
-  padding: 0 0 0 0;
-}
-/* line 418, ../sass/menu.scss */
-.my-stuff #menu ul li .item-list ul li a {
-  color: #ccc;
-  padding: 5px 0;
-  margin: 0 10px;
-  border-bottom: 1px solid #404040;
-}
-/* line 424, ../sass/menu.scss */
-.my-stuff #menu ul li .item-list ul li a.active {
-  color: #fff;
-}
-/* line 428, ../sass/menu.scss */
-.my-stuff #menu ul li .item-list ul li.last {
-  margin-bottom: 0px!important;
-}
-/* line 440, ../sass/menu.scss */
-.my-stuff #menu ul li.first {
-  border-bottom: 1px solid #3f3f3f;
-  border-top: 1px solid #3f3f3f;
-}
-/* line 447, ../sass/menu.scss */
-.my-stuff #menu ul.my-stuff-menu li.last {
-  margin-bottom: 20px !important;
-  position: relative;
-  border-bottom: 1px solid #3f3f3f !important;
-}
-/* line 453, ../sass/menu.scss */
-.my-stuff #menu ul.my-stuff-menu li.last a {
-  /* border:1px solid #666;
-  margin-bottom:5px; */
-}
-/* line 461, ../sass/menu.scss */
-.my-stuff #menu ul.my-stuff-menu li a.user-edit {
-  position: absolute;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  border: none;
-  margin: 0;
-  background: url("../images/icon-pencil-white.svg") no-repeat left center transparent;
-  padding: 0;
-  height: auto;
-  width: 18px;
-  overflow: hidden;
-  display: block;
-  text-indent: 100%;
-  white-space: nowrap;
-}
-/* line 476, ../sass/menu.scss */
-.my-stuff #menu ul.my-stuff-menu li a.user-edit.active {
-  background: url("../images/icon-pencil-white.svg") no-repeat left center transparent;
-  opacity: .6;
-}
-/* line 482, ../sass/menu.scss */
-.my-stuff #menu ul.my-stuff-menu li a.user-edit:hover {
-  opacity: .6;
-}
-/* line 485, ../sass/menu.scss */
-.my-stuff #menu ul.my-stuff-menu li a.active {
-  background: #3f3f3f;
-}
-/* line 488, ../sass/menu.scss */
-.my-stuff #menu ul.my-stuff-menu li li.last {
-  padding-top: 0;
-}
-/* line 490, ../sass/menu.scss */
-.my-stuff #menu ul.my-stuff-menu li li.last a {
-  border: none;
-  margin-bottom: 0;
-}
-/* line 498, ../sass/menu.scss */
-.my-stuff #menu ul.my-stuff-edit-menu li {
-  border: none;
-  margin-bottom: 5px;
-}
-/* line 502, ../sass/menu.scss */
-.my-stuff #menu ul.my-stuff-edit-menu li a {
-  border: 1px solid #666;
-  margin: 0 5px 5px 5px;
-  padding-left: 5px;
-}
-/* line 510, ../sass/menu.scss */
-.my-stuff #menu:before {
-  background: #323232;
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 200px;
-  background: #323232;
-  position: fixed;
-  min-height: 100%;
-  content: "";
-  z-index: -1;
-}
-/* line 525, ../sass/menu.scss */
-.my-stuff .panel-pane .block-inner .block-content {
-  background: #323232;
-  color: #8f8f8f;
-}
-
-/* line 534, ../sass/menu.scss */
-.nearme-filter {
-  margin-bottom: 10px;
-  box-sizing: border-box;
-  padding-right: 10px;
-  width: 100%;
-  clear: both;
-  overflow: hidden;
-  display: block;
-  padding-top: 10px;
-}
-/* line 544, ../sass/menu.scss */
-.nearme-filter label {
-  display: block;
-  width: 40%;
-  float: left;
-  box-sizing: border-box;
-  padding-left: 0;
-  padding-right: 0;
-  font-family: 'Apercu Regular';
-  font-style: normal;
-  font-weight: normal;
-  line-height: 16px;
-  font-size: 12px;
-  color: #222;
-  padding-left: 0;
-}
-/* line 558, ../sass/menu.scss */
-.nearme-filter input[type="search"] {
-  display: block;
-  width: 60%;
-  float: left;
-  box-sizing: border-box;
-  position: relative;
-  background: url("../images/icon-magnify.svg") no-repeat 95% center white;
-  background-size: 9px auto;
-  padding-right: 17px;
-}
-
-/* line 571, ../sass/menu.scss */
-::-webkit-input-placeholder {
-  color: #888;
-}
-
-/* line 575, ../sass/menu.scss */
-:-moz-placeholder {
-  /* Firefox 18- */
-  color: #888;
-}
-
-/* line 579, ../sass/menu.scss */
-::-moz-placeholder {
-  /* Firefox 19+ */
-  color: #888;
-}
-
-/* line 583, ../sass/menu.scss */
-:-ms-input-placeholder {
-  color: #888;
-}
+Backtrace:
+/Users/mgipson/mnartists/sites/default/themes/mnartists/sass/menu.scss:575:in `media'
+/Users/mgipson/mnartists/sites/default/themes/mnartists/sass/menu.scss:575
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/tree/visitors/perform.rb:249:in `visit_mixin'
+org/jruby/RubyKernel.java:2096:in `send'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/tree/visitors/base.rb:37:in `visit'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/tree/visitors/perform.rb:98:in `visit'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/tree/visitors/base.rb:53:in `visit_children'
+org/jruby/RubyArray.java:2336:in `collect'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/tree/visitors/base.rb:53:in `visit_children'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/tree/visitors/perform.rb:107:in `visit_children'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/tree/visitors/perform.rb:119:in `with_environment'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/tree/visitors/perform.rb:106:in `visit_children'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/tree/visitors/base.rb:37:in `visit'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/tree/visitors/perform.rb:316:in `visit_rule'
+org/jruby/RubyKernel.java:2096:in `send'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/tree/visitors/base.rb:37:in `visit'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/tree/visitors/perform.rb:98:in `visit'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/tree/visitors/base.rb:53:in `visit_children'
+org/jruby/RubyArray.java:2336:in `collect'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/tree/visitors/base.rb:53:in `visit_children'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/tree/visitors/perform.rb:107:in `visit_children'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/tree/visitors/perform.rb:119:in `with_environment'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/tree/visitors/perform.rb:106:in `visit_children'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/tree/visitors/base.rb:37:in `visit'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/tree/visitors/perform.rb:316:in `visit_rule'
+org/jruby/RubyKernel.java:2096:in `send'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/tree/visitors/base.rb:37:in `visit'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/tree/visitors/perform.rb:98:in `visit'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/tree/visitors/base.rb:53:in `visit_children'
+org/jruby/RubyArray.java:2336:in `collect'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/tree/visitors/base.rb:53:in `visit_children'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/tree/visitors/perform.rb:107:in `visit_children'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/tree/visitors/perform.rb:119:in `with_environment'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/tree/visitors/perform.rb:106:in `visit_children'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/tree/visitors/base.rb:37:in `visit'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/tree/visitors/perform.rb:126:in `visit_root'
+org/jruby/RubyKernel.java:2096:in `send'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/tree/visitors/base.rb:37:in `visit'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/tree/visitors/perform.rb:98:in `visit'
+org/jruby/RubyKernel.java:2096:in `send'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/tree/visitors/perform.rb:7:in `visit'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/tree/root_node.rb:20:in `render'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/engine.rb:315:in `_render'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/engine.rb:262:in `render'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/lib/compass/compiler.rb:140:in `compile'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/lib/compass/compiler.rb:126:in `timed'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/lib/compass/compiler.rb:139:in `compile'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/lib/compass/logger.rb:45:in `red'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/lib/compass/compiler.rb:138:in `compile'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/lib/compass/compiler.rb:118:in `compile_if_required'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/lib/compass/compiler.rb:103:in `run'
+org/jruby/RubyArray.java:1603:in `each'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/lib/compass/compiler.rb:101:in `run'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/lib/compass/compiler.rb:126:in `timed'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/lib/compass/compiler.rb:100:in `run'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/lib/compass/commands/watch_project.rb:147:in `recompile'
+org/jruby/RubyMethod.java:133:in `call'
+org/jruby/RubyProc.java:268:in `call'
+org/jruby/RubyProc.java:228:in `call'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/fssm-0.2.9/lib/fssm/path.rb:73:in `run_callback'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/fssm-0.2.9/lib/fssm/path.rb:55:in `callback_action'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/fssm-0.2.9/lib/fssm/path.rb:35:in `update'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/fssm-0.2.9/lib/fssm/state/directory.rb:39:in `modified'
+org/jruby/RubyArray.java:1603:in `each'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/fssm-0.2.9/lib/fssm/state/directory.rb:37:in `modified'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/fssm-0.2.9/lib/fssm/state/directory.rb:18:in `refresh'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/fssm-0.2.9/lib/fssm/backends/polling.rb:17:in `run'
+org/jruby/RubyArray.java:1603:in `each'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/fssm-0.2.9/lib/fssm/backends/polling.rb:17:in `run'
+org/jruby/RubyKernel.java:1419:in `loop'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/fssm-0.2.9/lib/fssm/backends/polling.rb:15:in `run'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/fssm-0.2.9/lib/fssm/monitor.rb:26:in `run'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/fssm-0.2.9/lib/fssm.rb:70:in `monitor'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/lib/compass/commands/watch_project.rb:87:in `perform'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/lib/compass/commands/base.rb:18:in `execute'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/lib/compass/commands/project_base.rb:19:in `execute'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/lib/compass/exec/sub_command_ui.rb:43:in `perform!'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/lib/compass/exec/sub_command_ui.rb:15:in `run!'
+/Applications/Scout.app/Contents/Resources/bin/compass:12:in `(root)'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Syntax error: Undefined mixin 'media'.\A         on line 575 of /Users/mgipson/mnartists/sites/default/themes/mnartists/sass/menu.scss, in `media'\A         from line 575 of /Users/mgipson/mnartists/sites/default/themes/mnartists/sass/menu.scss"; }

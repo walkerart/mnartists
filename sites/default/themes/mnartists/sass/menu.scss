@@ -566,6 +566,30 @@ p.site-description {
         padding-right:17px;
 	}
 }
+body {
+	overflow:hidden;
+
+	&.sidebar-show {
+		padding-left:200px;
+
+		@include media($tablet) {
+			#page {
+				margin-right:-200px;
+			}
+			#menu {
+				display:block;
+				width:200px;
+			}
+		}
+	}
+}
+// sidebar menu toggle button
+.sidebar-button {
+	display:none;
+	@include media($tablet) {
+		display:block;
+	}
+}
 
 // placeholder text color
 ::-webkit-input-placeholder {
