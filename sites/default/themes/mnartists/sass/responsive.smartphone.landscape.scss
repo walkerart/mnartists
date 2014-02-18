@@ -14,7 +14,7 @@
 
 /* Increase the body font size on small devices */
 html {
-  font-size: 112.5%; 
+  font-size: 112.5%;
 }
 
 .sidebar-right, .main-content {
@@ -26,28 +26,30 @@ html {
 	float:none!important;
 	width:auto!important;
 }
-.menu-trigger { 
-	display: block; 
+.menu-trigger {
+	display: block;
 }
-#menu:before,
-#menu,
+
 #admin-menu,
-.menu-content { 
-	display:none; 
+.menu-content {
+	display:none;
 }
-body { 
-	padding-left: 0px; 
-	
+#menu, #menu:before {
+	width:0px;
+}
+body {
+	padding-left: 0px;
+
 }
 
 .content-bottom {
 	display:block;
 	margin-bottom:0;
-	
+
 	.one-third {
 		@include full_width;
 	}
-	
+
 	.one-third.panel-col-last {
 		border-left:none;
 	}
@@ -61,10 +63,10 @@ form input.text-full {
 	@include full_width;
 }
 .panel-2col {
-	
+
 	.panel-col-first, .panel-col-first {
 		@include full_width;
-		
+
 	}
 }
 .panel-2col .panel-col-last,

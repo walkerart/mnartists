@@ -164,42 +164,45 @@ html {
   display: block;
 }
 
-/* line 35, ../sass/responsive.smartphone.landscape.scss */
-#menu:before,
-#menu,
+/* line 34, ../sass/responsive.smartphone.landscape.scss */
 #admin-menu,
 .menu-content {
   display: none;
 }
 
-/* line 38, ../sass/responsive.smartphone.landscape.scss */
+/* line 37, ../sass/responsive.smartphone.landscape.scss */
+#menu, #menu:before {
+  width: 0px;
+}
+
+/* line 40, ../sass/responsive.smartphone.landscape.scss */
 body {
   padding-left: 0px;
 }
 
-/* line 43, ../sass/responsive.smartphone.landscape.scss */
+/* line 45, ../sass/responsive.smartphone.landscape.scss */
 .content-bottom {
   display: block;
   margin-bottom: 0;
 }
-/* line 47, ../sass/responsive.smartphone.landscape.scss */
+/* line 49, ../sass/responsive.smartphone.landscape.scss */
 .content-bottom .one-third {
   display: block;
   width: auto!important;
   float: none!important;
   clear: both;
 }
-/* line 51, ../sass/responsive.smartphone.landscape.scss */
+/* line 53, ../sass/responsive.smartphone.landscape.scss */
 .content-bottom .one-third.panel-col-last {
   border-left: none;
 }
 
-/* line 56, ../sass/responsive.smartphone.landscape.scss */
+/* line 58, ../sass/responsive.smartphone.landscape.scss */
 form input.text-full {
   max-width: 300px;
 }
 
-/* line 60, ../sass/responsive.smartphone.landscape.scss */
+/* line 62, ../sass/responsive.smartphone.landscape.scss */
 .panel-1col .panel-col .one-third {
   display: block;
   width: auto!important;
@@ -207,7 +210,7 @@ form input.text-full {
   clear: both;
 }
 
-/* line 65, ../sass/responsive.smartphone.landscape.scss */
+/* line 67, ../sass/responsive.smartphone.landscape.scss */
 .panel-2col .panel-col-first, .panel-2col .panel-col-first {
   display: block;
   width: auto!important;
@@ -215,7 +218,7 @@ form input.text-full {
   clear: both;
 }
 
-/* line 71, ../sass/responsive.smartphone.landscape.scss */
+/* line 73, ../sass/responsive.smartphone.landscape.scss */
 .panel-2col .panel-col-last,
 .panel-2col .panel-col-first {
   display: block;
@@ -224,14 +227,14 @@ form input.text-full {
   clear: both;
 }
 
-/* line 76, ../sass/responsive.smartphone.landscape.scss */
+/* line 78, ../sass/responsive.smartphone.landscape.scss */
 .fieldset-wrapper .date-no-float {
   display: block;
   width: auto;
   clear: both;
 }
 
-/* line 82, ../sass/responsive.smartphone.landscape.scss */
+/* line 84, ../sass/responsive.smartphone.landscape.scss */
 body.my-stuff {
   background: #3f3f3f;
 }
