@@ -697,47 +697,52 @@ p.site-description {
 body {
   overflow: hidden;
 }
-@media screen and (max-width: 768px) {
-  /* line 576, ../sass/menu.scss */
+@media screen and (max-width: 480px) {
+  /* line 577, ../sass/menu.scss */
   body.sidebar-show #page {
     margin-right: -200px;
   }
-  /* line 579, ../sass/menu.scss */
+  /* line 580, ../sass/menu.scss */
   body.sidebar-show #menu {
     display: block;
     width: 200px;
   }
 }
 
-/* line 587, ../sass/menu.scss */
+/* line 588, ../sass/menu.scss */
 .sidebar-button {
   display: none;
 }
-@media screen and (max-width: 768px) {
-  /* line 587, ../sass/menu.scss */
+@media screen and (max-width: 480px) {
+  /* line 588, ../sass/menu.scss */
   .sidebar-button {
     display: block;
+    display: block;
+    padding: 5px;
+    margin: 10px;
+    background: rgba(0, 0, 0, 0.2);
+    text-align: center;
   }
 }
 
-/* line 595, ../sass/menu.scss */
+/* line 601, ../sass/menu.scss */
 ::-webkit-input-placeholder {
   color: #888;
 }
 
-/* line 599, ../sass/menu.scss */
+/* line 605, ../sass/menu.scss */
 :-moz-placeholder {
   /* Firefox 18- */
   color: #888;
 }
 
-/* line 603, ../sass/menu.scss */
+/* line 609, ../sass/menu.scss */
 ::-moz-placeholder {
   /* Firefox 19+ */
   color: #888;
 }
 
-/* line 607, ../sass/menu.scss */
+/* line 613, ../sass/menu.scss */
 :-ms-input-placeholder {
   color: #888;
 }

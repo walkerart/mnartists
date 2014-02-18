@@ -572,7 +572,8 @@ body {
 	&.sidebar-show {
 
 
-		@media screen and (max-width: $break-tablet) {
+		@media screen and (max-width: $break-mobile) {
+
 			#page {
 				margin-right:-200px;
 			}
@@ -586,8 +587,13 @@ body {
 // sidebar menu toggle button
 .sidebar-button {
 	display:none;
-	@media screen and (max-width: $break-tablet) {
+	@media screen and (max-width: $break-mobile) {
 		display:block;
+		display: block;
+padding: 5px;
+margin: 10px;
+background: rgba(0,0,0,.2);
+text-align: center;
 	}
 }
 
