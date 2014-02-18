@@ -70,7 +70,6 @@
                 <?php } else { ?>
                     <ul class="sort-thing-sort-options">
                         <?php
-                            if (isset($_GET['sort'])) {
                                 $sort_terms = array(
                                     'alpha' => 'Alphabetical',
                                     'created' => 'Date Created',
@@ -81,15 +80,15 @@
 
                                 foreach ($sort_terms as $sort_term => $sort_label) {
                                     $class = '';
-                                    if ($_GET['sort'] === $sort_term) {
+                                    if (isset($_GET['sort']) && $_GET['sort'] === $sort_term) {
                                         $class = "active";
-                                        $st_href = $qs.'sort='.$sort_term;
-                                    } ?>
+                                    }
+                                    $st_href = $qs.'sort='.$sort_term;
+                                    ?>
                                     <li class="<?= $class ?>">
                                         <a href="?<?= $st_href ?>&sort_direction=ASC"><?= $sort_label ?></a> <a href="?<?= $st_href ?>&sort_direction=DESC">&#8595;</a>
                                     </li>
                                 <?php }
-                            }
                         ?>
                     </ul>
                 <?php } ?>

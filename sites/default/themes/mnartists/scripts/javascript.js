@@ -190,5 +190,12 @@ jQuery(document).ready(function () {
     // nice file input
     jQuery('input[type=file]').nicefileinput();
 
+    // attach to sidebar button
+    var sidebarButton = jQuery('.sidebar-button');
+    sidebarButton.click(function (evt) {
+        evt.preventDefault();
+        jQuery('body').toggleClass('sidebar-show');
+    });
+
 
 });
