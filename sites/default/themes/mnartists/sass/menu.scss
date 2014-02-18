@@ -572,7 +572,7 @@ body {
 	&.sidebar-show {
 		padding-left:200px;
 
-		@include media($tablet) {
+		@media screen and (max-width: $break-tablet) {
 			#page {
 				margin-right:-200px;
 			}
@@ -586,7 +586,7 @@ body {
 // sidebar menu toggle button
 .sidebar-button {
 	display:none;
-	@include media($tablet) {
+	@media screen and (max-width: $break-tablet) {
 		display:block;
 	}
 }
