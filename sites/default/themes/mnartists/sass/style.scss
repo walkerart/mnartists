@@ -5349,7 +5349,7 @@ only screen and (min-device-pixel-ratio: 1.5) {
                     article {
 
                         .node-header {
-
+                            margin-bottom:8px;
                             h1 {
 
                                 a {
@@ -5369,6 +5369,7 @@ only screen and (min-device-pixel-ratio: 1.5) {
                                     font-size:14px;
                                     font-family: $serif_font;
                                     text-transform:uppercase;
+                                    padding-bottom:0px;
                                 }
                                 .field-items {
 
@@ -5380,6 +5381,14 @@ only screen and (min-device-pixel-ratio: 1.5) {
 
                                     }
                                 }
+                            }
+                            .field-name-field-city,
+                            .field-name-field-state,
+                            .field-name-field-zip {
+                                line-height:1em;
+                            }
+                            .field-name-field-zip {
+                                margin-bottom:8px;
                             }
                         }
                     }
