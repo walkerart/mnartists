@@ -1672,7 +1672,7 @@ fieldset {
  */
 a.button {
   /*@include appearance(button);*/
-  height: 19px;
+  /*height: 19px;
   padding: 1px 5px 0;
   border: 1px solid $main_color;
   @include quiet_type;
@@ -1685,6 +1685,31 @@ a.button {
  	&:hover {
         background: $main_color;
         color: $inverse_color;
+    }*/
+    float: left;
+    height: auto;
+    padding: 5px 10px;
+    border: 1px solid #333;
+    font-family: "Apercu Bold", Arial, Helvetica, sans-serif;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-border-radius: 1px;
+    -moz-border-radius: 1px;
+    border-radius: 1px;
+    cursor: pointer;
+    margin-left: 0;
+    margin-right: 10px;
+    background: #333;
+    color: #fff;
+    text-transform: capitalize;
+    font-size: 12px;
+    font-weight: normal;
+    letter-spacing: 0;
+
+    &:hover {
+      background: #222;
+      color: #fff;
     }
 }
 

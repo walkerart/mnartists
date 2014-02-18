@@ -1155,17 +1155,25 @@ fieldset {
 /* line 1673, ../sass/global.styles.scss */
 a.button {
   /*@include appearance(button);*/
-  height: 19px;
+  /*height: 19px;
   padding: 1px 5px 0;
-  border: 1px solid #222222;
-  font-family: "Apercu Regular", Arial, Helvetica, sans-serif;
-  font-weight: normal;
-  font-size: 9px;
-  line-height: 12px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  font-family: "Apercu Bold", Arial, Helvetica, sans-serif;
+  border: 1px solid $main_color;
+  @include quiet_type;
+  font-family: $sans_bold_font;
   font-weight: bold;
+  @include no_break;
+  @include rounded;
+  cursor: pointer;
+
+ 	&:hover {
+        background: $main_color;
+        color: $inverse_color;
+    }*/
+  float: left;
+  height: auto;
+  padding: 5px 10px;
+  border: 1px solid #333;
+  font-family: "Apercu Bold", Arial, Helvetica, sans-serif;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -1173,17 +1181,25 @@ a.button {
   -moz-border-radius: 1px;
   border-radius: 1px;
   cursor: pointer;
+  margin-left: 0;
+  margin-right: 10px;
+  background: #333;
+  color: #fff;
+  text-transform: capitalize;
+  font-size: 12px;
+  font-weight: normal;
+  letter-spacing: 0;
 }
-/* line 1685, ../sass/global.styles.scss */
+/* line 1710, ../sass/global.styles.scss */
 a.button:hover {
-  background: #222222;
-  color: #f9f9f9;
+  background: #222;
+  color: #fff;
 }
 
 /*
  * Password confirmation
  */
-/* line 1696, ../sass/global.styles.scss */
+/* line 1721, ../sass/global.styles.scss */
 .password-parent,
 .confirm-parent {
   margin: 0;
@@ -1192,18 +1208,18 @@ a.button:hover {
 /* =============================================================================
  *   Tables
  * ========================================================================== */
-/* line 1705, ../sass/global.styles.scss */
+/* line 1730, ../sass/global.styles.scss */
 table {
   margin: 10px 0;
   padding: 0;
   width: 100%;
 }
-/* line 1710, ../sass/global.styles.scss */
+/* line 1735, ../sass/global.styles.scss */
 table.sticky-header {
   z-index: 10;
 }
 
-/* line 1721, ../sass/global.styles.scss */
+/* line 1746, ../sass/global.styles.scss */
 table,
 thead,
 tbody,
@@ -1213,27 +1229,27 @@ td {
   border-color: #cccccc;
 }
 
-/* line 1728, ../sass/global.styles.scss */
+/* line 1753, ../sass/global.styles.scss */
 table,
 td,
 th {
   vertical-align: middle;
 }
 
-/* line 1735, ../sass/global.styles.scss */
+/* line 1760, ../sass/global.styles.scss */
 caption,
 th,
 td {
   text-align: left;
 }
 
-/* line 1740, ../sass/global.styles.scss */
+/* line 1765, ../sass/global.styles.scss */
 thead tr {
   font-weight: 700;
   background-color: #e5e5e5;
 }
 
-/* line 1747, ../sass/global.styles.scss */
+/* line 1772, ../sass/global.styles.scss */
 td,
 th {
   border-bottom: 0;
@@ -1241,24 +1257,24 @@ th {
   padding: 5px 7px;
 }
 
-/* line 1757, ../sass/global.styles.scss */
+/* line 1782, ../sass/global.styles.scss */
 tbody tr {
   border-top: 1px solid #cccccc;
 }
 
-/* line 1762, ../sass/global.styles.scss */
+/* line 1787, ../sass/global.styles.scss */
 tr {
   /* Table row striping */
 }
-/* line 1764, ../sass/global.styles.scss */
+/* line 1789, ../sass/global.styles.scss */
 tr.odd {
   background: white;
 }
-/* line 1771, ../sass/global.styles.scss */
+/* line 1796, ../sass/global.styles.scss */
 tr.info, tr.even, tr:nth-child(2n+2) {
   border-bottom: 0;
 }
-/* line 1780, ../sass/global.styles.scss */
+/* line 1805, ../sass/global.styles.scss */
 tr.odd td.active {
   background-color: #eeeeee;
 }
@@ -1267,7 +1283,7 @@ tr.odd td.active {
  * Forum tables
  * Core sets white-space to nowrap, which makes no sense
  */
-/* line 1812, ../sass/global.styles.scss */
+/* line 1837, ../sass/global.styles.scss */
 #forum td .created,
 #forum td .posts,
 #forum td .topics,
@@ -1280,12 +1296,12 @@ tr.odd td.active {
 /* =============================================================================
  *   Messages
  * ========================================================================== */
-/* line 1823, ../sass/global.styles.scss */
+/* line 1848, ../sass/global.styles.scss */
 div.messages {
   margin-bottom: 10px;
   margin-top: 10px;
 }
-/* line 1828, ../sass/global.styles.scss */
+/* line 1853, ../sass/global.styles.scss */
 div.messages ul {
   margin-top: 0;
   margin-bottom: 0;
@@ -1294,7 +1310,7 @@ div.messages ul {
 /*
  * Unpublished nodes
  */
-/* line 1869, ../sass/global.styles.scss */
+/* line 1894, ../sass/global.styles.scss */
 .node-unpublished p.unpublished,
 .comment-unpublished p.unpublished {
   color: pink;
@@ -1320,28 +1336,28 @@ div.messages ul {
 /* =============================================================================
  *    Maintenance pages
  * ========================================================================== */
-/* line 1880, ../sass/global.styles.scss */
+/* line 1905, ../sass/global.styles.scss */
 .maintenance-page .container {
   padding: 40px 0;
 }
-/* line 1885, ../sass/global.styles.scss */
+/* line 1910, ../sass/global.styles.scss */
 .maintenance-page #site-name,
 .maintenance-page #page-title {
   margin: 0;
 }
 
-/* line 1892, ../sass/global.styles.scss */
+/* line 1917, ../sass/global.styles.scss */
 .db-offline .container {
   margin: 0 auto;
   padding: 40px 0;
   width: 100%;
   max-width: 960px;
 }
-/* line 1899, ../sass/global.styles.scss */
+/* line 1924, ../sass/global.styles.scss */
 .db-offline div.messages {
   margin: 20px 0 0;
 }
-/* line 1903, ../sass/global.styles.scss */
+/* line 1928, ../sass/global.styles.scss */
 .db-offline #content {
   padding: 20px 0;
 }
@@ -1352,7 +1368,7 @@ div.messages ul {
 /*
  * Admin menu overrides
  */
-/* line 1916, ../sass/global.styles.scss */
+/* line 1941, ../sass/global.styles.scss */
 #admin-menu {
   margin: 0;
   padding: 0;
@@ -1361,7 +1377,7 @@ div.messages ul {
 /*
  * Devel Module
  */
-/* line 1925, ../sass/global.styles.scss */
+/* line 1950, ../sass/global.styles.scss */
 .dev-query {
   background: #eeeeee;
   padding: 30px;
@@ -1370,11 +1386,11 @@ div.messages ul {
 /*
  * Styleguide module tweaks
  */
-/* line 1934, ../sass/global.styles.scss */
+/* line 1959, ../sass/global.styles.scss */
 #styleguide-header {
   padding: 0 10px;
 }
-/* line 1937, ../sass/global.styles.scss */
+/* line 1962, ../sass/global.styles.scss */
 #styleguide-header .item-list {
   font-family: inherit;
   margin: 0 20px 20px 0;
