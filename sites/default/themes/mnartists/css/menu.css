@@ -702,29 +702,35 @@ body {
   body.sidebar-show #page {
     margin-left: 200px;
     min-width: 300px;
+    -moz-transition: all .3s ease-in-out;
+    -webkit-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
   }
-  /* line 581, ../sass/menu.scss */
+  /* line 584, ../sass/menu.scss */
   body.sidebar-show #menu {
     display: block;
     width: 200px;
     background: #e5e5e5;
+    -moz-transition: all .3s ease-in-out;
+    -webkit-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
   }
-  /* line 585, ../sass/menu.scss */
+  /* line 588, ../sass/menu.scss */
   body.sidebar-show #menu .menu-trigger {
     display: none;
   }
-  /* line 586, ../sass/menu.scss */
+  /* line 589, ../sass/menu.scss */
   body.sidebar-show #menu .menu-content {
     display: block;
   }
 }
 
-/* line 594, ../sass/menu.scss */
+/* line 600, ../sass/menu.scss */
 .sidebar-button {
   display: none;
 }
 @media screen and (max-width: 480px) {
-  /* line 594, ../sass/menu.scss */
+  /* line 600, ../sass/menu.scss */
   .sidebar-button {
     display: block;
     display: block;
@@ -735,24 +741,24 @@ body {
   }
 }
 
-/* line 607, ../sass/menu.scss */
+/* line 613, ../sass/menu.scss */
 ::-webkit-input-placeholder {
   color: #888;
 }
 
-/* line 611, ../sass/menu.scss */
+/* line 617, ../sass/menu.scss */
 :-moz-placeholder {
   /* Firefox 18- */
   color: #888;
 }
 
-/* line 615, ../sass/menu.scss */
+/* line 621, ../sass/menu.scss */
 ::-moz-placeholder {
   /* Firefox 19+ */
   color: #888;
 }
 
-/* line 619, ../sass/menu.scss */
+/* line 625, ../sass/menu.scss */
 :-ms-input-placeholder {
   color: #888;
 }
