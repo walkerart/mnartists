@@ -1,246 +1,62 @@
-/* now let's get those layout files */
-/* LAYOUT A ************************************/
-/* community and homepage template stuff */
-/* line 6, ../sass/layout-a.scss */
-.layout-a .panel-col-first {
-  float: left;
-  width: 75%;
-  box-sizing: border-box;
-  padding-right: 20px;
-}
-/* line 12, ../sass/layout-a.scss */
-.layout-a .panel-col-first .inside {
-  margin: 0 .5em 1em 0;
-}
-/* line 15, ../sass/layout-a.scss */
-.layout-a .panel-col-first .inside .article-thing {
-  margin-right: 20px;
-}
-/* line 18, ../sass/layout-a.scss */
-.layout-a .panel-col-first .inside .search-results {
-  margin-right: 20px;
-}
-/* line 22, ../sass/layout-a.scss */
-.layout-a .panel-col-first .inset-left {
-  float: left;
-  width: 75%;
-}
-/* line 26, ../sass/layout-a.scss */
-.layout-a .panel-col-first .inset-right {
-  float: left;
-  width: 25%;
-}
-/* line 32, ../sass/layout-a.scss */
-.layout-a .panel-col-last {
-  float: left;
-  width: 25%;
-  box-sizing: border-box;
-}
-/* line 37, ../sass/layout-a.scss */
-.layout-a .panel-col-last .inside {
-  margin: 0 0 1em .5em;
-}
-/* line 41, ../sass/layout-a.scss */
-.layout-a .panel-separator {
-  margin: 0 0 1em 0;
-}
-
-/* line 46, ../sass/layout-a.scss */
-* html .panel-2col.layout-a .panel-col-first {
-  width: 74.9%;
-}
-
-/* line 49, ../sass/layout-a.scss */
-* html .panel-2col.layout-a .panel-col-last {
-  width: 24.9%;
-}
-
-/* insets */
-/* line 53, ../sass/layout-a.scss */
-* html .panel-2col.layout-a .panel-col-first .panel-col-first.inset-left {
-  width: 74.9%;
-}
-
-/* line 56, ../sass/layout-a.scss */
-* html .panel-2col.layout-a .panel-col-first .panel-col-last.inset-right {
-  width: 24.9%;
-}
-
-/* LAYOUT G artwork **************************/
-/* line 5, ../sass/layout-g.scss */
-.layout-g .title-artwork .block {
-  margin: 0;
-}
-/* line 8, ../sass/layout-g.scss */
-.layout-g .title-artwork .block .block-inner .block-content {
-  background: none;
-}
-/* line 10, ../sass/layout-g.scss */
-.layout-g .title-artwork .block .block-inner .block-content h2 {
-  padding: 0 0 5px 0;
-  margin: 0;
-  height: 15px;
-  background: none;
-}
-/* line 19, ../sass/layout-g.scss */
-.layout-g .panel-col.content-artwork {
-  position: relative;
-}
-/* line 27, ../sass/layout-g.scss */
-.layout-g .panel-col.content-artwork .content-bottom .inset-left {
-  font-family: "adobe-text-pro", "Times New Roman", Times, serif;
-}
-/* line 38, ../sass/layout-g.scss */
-.layout-g .panel-col.content-artwork .pane-node-title h2 {
-  background: none;
-  padding: 15px 0 10px 0;
-  margin: 0 0 10px 0;
-  border-bottom: 1px solid #888888;
-  font-size: 18px;
-  height: auto;
-  line-height: auto;
-  text-transform: none;
-  letter-spacing: normal;
-}
-/* line 49, ../sass/layout-g.scss */
-.layout-g .panel-col.content-artwork .pane-node-title h2 a {
-  font-family: "adobe-text-pro", "Times New Roman", Times, serif;
-  font-weight: normal;
-  height: auto;
-}
-/* line 55, ../sass/layout-g.scss */
-.layout-g .panel-col.content-artwork .pane-node-links {
-  position: absolute;
-  display: inline-block;
-  right: 10px;
-  top: 10px;
-  text-align: right;
-}
-/* line 64, ../sass/layout-g.scss */
-.layout-g .panel-col.content-artwork .pane-node-author a {
-  font-size: 24px;
-  font-weight: bold;
-  line-height: 24px;
-  margin-bottom: 10px;
-  padding-top: 5px;
-  display: block;
-}
-/* line 73, ../sass/layout-g.scss */
-.layout-g .panel-col.content-artwork .pane-mnartist-collections-mna-collections-star {
-  position: absolute;
-  top: 10px;
-  right: 0px;
-  z-index: 9999;
-}
-
 /*
- *   Important Information about this CSS File
- *
- * - Do not delete or rename this file, if you do not use it leave it blank (delete
- *   everything) and the file will be skipped when you enable Production Mode in
- *   the Global theme settings.
- *
- * - Read the _README file in this directory, it contains useful help and other information.
- */
-/* Increase the body font size on small devices */
-/* line 16, ../sass/responsive.smartphone.landscape.scss */
-html {
-  font-size: 112.5%;
-}
+Syntax error: Invalid CSS after "body.": expected class name, was " body.admin-menu {"
+        on line 43 of /Users/mgipson/mnartists/sites/default/themes/mnartists/sass/responsive.smartphone.landscape.scss
 
-/* line 20, ../sass/responsive.smartphone.landscape.scss */
-.sidebar-right, .main-content {
-  margin-left: 0;
-  margin-right: 0;
-  display: block;
-  clear: both;
-  margin-bottom: 20px;
-  float: none!important;
-  width: auto!important;
-}
-
-/* line 29, ../sass/responsive.smartphone.landscape.scss */
-.menu-trigger {
-  display: block;
-}
-
-/* line 34, ../sass/responsive.smartphone.landscape.scss */
-#admin-menu,
-.menu-content {
-  display: none;
-}
-
-/* line 37, ../sass/responsive.smartphone.landscape.scss */
-#menu, #menu:before {
-  width: 0px;
-  overflow: hidden;
-}
-/* line 40, ../sass/responsive.smartphone.landscape.scss */
-#menu .menu-content, #menu:before .menu-content {
-  width: 200px;
-}
-
-/* line 44, ../sass/responsive.smartphone.landscape.scss */
-body {
-  padding-left: 0px;
-  margin-top: 0!important;
-}
-
-/* line 49, ../sass/responsive.smartphone.landscape.scss */
-.content-bottom {
-  display: block;
-  margin-bottom: 0;
-}
-/* line 53, ../sass/responsive.smartphone.landscape.scss */
-.content-bottom .one-third {
-  display: block;
-  width: auto!important;
-  float: none!important;
-  clear: both;
-}
-/* line 57, ../sass/responsive.smartphone.landscape.scss */
-.content-bottom .one-third.panel-col-last {
-  border-left: none;
-}
-
-/* line 62, ../sass/responsive.smartphone.landscape.scss */
-form input.text-full {
-  max-width: 300px;
-}
-
-/* line 66, ../sass/responsive.smartphone.landscape.scss */
-.panel-1col .panel-col .one-third {
-  display: block;
-  width: auto!important;
-  float: none!important;
-  clear: both;
-}
-
-/* line 71, ../sass/responsive.smartphone.landscape.scss */
-.panel-2col .panel-col-first, .panel-2col .panel-col-first {
-  display: block;
-  width: auto!important;
-  float: none!important;
-  clear: both;
-}
-
-/* line 77, ../sass/responsive.smartphone.landscape.scss */
-.panel-2col .panel-col-last,
-.panel-2col .panel-col-first {
-  display: block;
-  width: auto!important;
-  float: none!important;
-  clear: both;
-}
-
-/* line 82, ../sass/responsive.smartphone.landscape.scss */
-.fieldset-wrapper .date-no-float {
-  display: block;
-  width: auto;
-  clear: both;
-}
-
-/* line 88, ../sass/responsive.smartphone.landscape.scss */
-body.my-stuff {
-  background: #3f3f3f;
-}
+Backtrace:
+/Users/mgipson/mnartists/sites/default/themes/mnartists/sass/responsive.smartphone.landscape.scss:43
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/scss/parser.rb:1129:in `expected'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/scss/parser.rb:1066:in `expected'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/scss/parser.rb:1048:in `expr!'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/scss/parser.rb:693:in `class_selector'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/scss/parser.rb:663:in `simple_selector_sequence'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/scss/parser.rb:623:in `_selector'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/scss/parser.rb:602:in `selector'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/scss/parser.rb:586:in `selector_sequence'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/scss/parser.rb:511:in `ruleset'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/scss/parser.rb:536:in `block_child'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/scss/parser.rb:529:in `block_contents'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/scss/parser.rb:70:in `stylesheet'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/scss/parser.rb:27:in `parse'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/engine.rb:342:in `_to_tree'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/engine.rb:315:in `_render'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/sass-3.2.1/lib/sass/engine.rb:262:in `render'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/lib/compass/compiler.rb:140:in `compile'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/lib/compass/compiler.rb:126:in `timed'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/lib/compass/compiler.rb:139:in `compile'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/lib/compass/logger.rb:45:in `red'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/lib/compass/compiler.rb:138:in `compile'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/lib/compass/compiler.rb:118:in `compile_if_required'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/lib/compass/compiler.rb:103:in `run'
+org/jruby/RubyArray.java:1603:in `each'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/lib/compass/compiler.rb:101:in `run'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/lib/compass/compiler.rb:126:in `timed'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/lib/compass/compiler.rb:100:in `run'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/lib/compass/commands/watch_project.rb:147:in `recompile'
+org/jruby/RubyMethod.java:133:in `call'
+org/jruby/RubyProc.java:268:in `call'
+org/jruby/RubyProc.java:228:in `call'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/fssm-0.2.9/lib/fssm/path.rb:73:in `run_callback'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/fssm-0.2.9/lib/fssm/path.rb:55:in `callback_action'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/fssm-0.2.9/lib/fssm/path.rb:35:in `update'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/fssm-0.2.9/lib/fssm/state/directory.rb:39:in `modified'
+org/jruby/RubyArray.java:1603:in `each'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/fssm-0.2.9/lib/fssm/state/directory.rb:37:in `modified'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/fssm-0.2.9/lib/fssm/state/directory.rb:18:in `refresh'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/fssm-0.2.9/lib/fssm/backends/polling.rb:17:in `run'
+org/jruby/RubyArray.java:1603:in `each'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/fssm-0.2.9/lib/fssm/backends/polling.rb:17:in `run'
+org/jruby/RubyKernel.java:1419:in `loop'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/fssm-0.2.9/lib/fssm/backends/polling.rb:15:in `run'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/fssm-0.2.9/lib/fssm/monitor.rb:26:in `run'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/fssm-0.2.9/lib/fssm.rb:70:in `monitor'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/lib/compass/commands/watch_project.rb:87:in `perform'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/lib/compass/commands/base.rb:18:in `execute'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/lib/compass/commands/project_base.rb:19:in `execute'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/lib/compass/exec/sub_command_ui.rb:43:in `perform!'
+/Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/lib/compass/exec/sub_command_ui.rb:15:in `run!'
+/Applications/Scout.app/Contents/Resources/bin/compass:12:in `(root)'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Syntax error: Invalid CSS after \"body.\": expected class name, was \" body.admin-menu {\"\A         on line 43 of /Users/mgipson/mnartists/sites/default/themes/mnartists/sass/responsive.smartphone.landscape.scss"; }

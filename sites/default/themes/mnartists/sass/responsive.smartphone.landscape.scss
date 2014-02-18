@@ -30,8 +30,7 @@ html {
 	display: block;
 }
 
-#admin-menu,
-.menu-content {
+#admin-menu {
 	display:none;
 }
 #menu, #menu:before {
@@ -41,10 +40,14 @@ html {
 		width:200px;
 	}
 }
-body {
+body. body.admin-menu {
 	padding-left: 0px;
 	margin-top:0!important;
 }
+body.admin-menu #menu {
+	top:0px;
+}
+
 
 .content-bottom {
 	display:block;
