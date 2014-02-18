@@ -580,6 +580,10 @@ body {
 			#menu {
 				display:block;
 				width:200px;
+				.menu-trigger { display:none; }
+				.menu-content {
+					display:block;
+				}
 			}
 		}
 	}
@@ -590,10 +594,10 @@ body {
 	@media screen and (max-width: $break-mobile) {
 		display:block;
 		display: block;
-padding: 5px;
-margin: 10px;
-background: rgba(0,0,0,.2);
-text-align: center;
+		padding: 5px;
+		margin: 10px;
+		background: rgba(0,0,0,.2);
+		text-align: center;
 	}
 }
 
