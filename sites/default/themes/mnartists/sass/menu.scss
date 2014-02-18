@@ -10,6 +10,9 @@
 	min-height:100%;
 	height:auto;
 	overflow-y: auto;
+	-moz-transition: all .3s ease-in-out;
+    -webkit-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
 }
 #menu {
 	.region-inner {
@@ -574,7 +577,6 @@ body {
 	overflow:hidden;
 
 	&.sidebar-show {
-
 
 		@media screen and (max-width: $break-mobile) {
 
