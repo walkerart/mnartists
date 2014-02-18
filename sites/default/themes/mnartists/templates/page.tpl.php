@@ -186,7 +186,6 @@
   <?php endif; ?>
 </div> <!-- end page -->
 <div id="menu" class="sb-slidebar sb-left">
-	<a href="#" class="menu-trigger">menu</a>
 	<div class="menu-content">
 		<ul class="mega-tabs">
 			<li><a href="/">MN Artists</a></li>
