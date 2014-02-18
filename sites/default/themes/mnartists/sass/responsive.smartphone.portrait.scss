@@ -14,7 +14,7 @@
 
 /* Increase the default font size on small devices */
 html {
-  font-size: 112.5%; 
+  font-size: 112.5%;
 }
 
 .sidebar-right, .main-content {
@@ -27,28 +27,29 @@ html {
 	width:auto!important;
 }
 
-.menu-trigger { 
-	display: block; 
+#menu, #menu:before {
+	width:0px;
+	overflow:hidden;
+	.menu-content {
+		width:200px;
+	}
 }
-#menu:before,
-#menu,
-#admin-menu,
-.menu-content { 
-	display:none; 
+body, body.admin-menu {
+	padding-left: 0px;
+	margin-top:0!important;
 }
-body { 
-	padding-left: 0px; 
-	
+body.admin-menu #menu {
+	top:0px;
 }
 
 .content-bottom {
 	display:block;
 	margin-bottom:0;
-	
+
 	.one-third {
 		@include full_width;
 	}
-	
+
 	.one-third.panel-col-last {
 		border-left:none;
 	}
@@ -62,10 +63,10 @@ form input.text-full {
 	@include full_width;
 }
 .panel-2col {
-	
+
 	.panel-col-first, .panel-col-first {
 		@include full_width;
-		
+
 	}
 }
 .panel-2col .panel-col-last,
