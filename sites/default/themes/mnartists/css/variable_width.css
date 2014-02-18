@@ -9804,7 +9804,7 @@ form .description {
 .sticky-table tbody tr td.field-multiple-drag {
   border-right: 1px solid #ccc;
   vertical-align: top;
-  width: 33%;
+  /*width:33%;*/
 }
 /* line 8514, ../sass/style.scss */
 .sticky-table tbody tr td .media-widget {
@@ -9837,17 +9837,46 @@ form .description {
   margin-bottom: 10px;
 }
 
-/* line 8542, ../sass/style.scss */
+/* line 8543, ../sass/style.scss */
+form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
+  padding-right: 0;
+}
+
+/* line 8546, ../sass/style.scss */
+.draggable a.tabledrag-handle {
+  cursor: move;
+  float: left;
+  height: 20px;
+  margin-left: 0;
+  overflow: hidden;
+  text-decoration: none;
+}
+
+/* line 8554, ../sass/style.scss */
+.handle {
+  /*background: url(../../misc/draggable.png) no-repeat 6px 9px;*/
+  background-position: center center;
+  height: 13px;
+  margin: 0;
+  padding: 0;
+  width: 13px;
+  oveflow: hidden;
+  display: block;
+  text-indent: 999px;
+}
+
+/* end draggable */
+/* line 8567, ../sass/style.scss */
 fieldset {
   margin: 0;
 }
 
-/* line 8545, ../sass/style.scss */
+/* line 8570, ../sass/style.scss */
 tr.even {
   background: none;
 }
 
-/* line 8555, ../sass/style.scss */
+/* line 8580, ../sass/style.scss */
 .page-node-add input.ajax-processed, .page-node-add input#edit-submit, .page-node-add input#edit-preview,
 .page-node-edit input.ajax-processed,
 .page-node-edit input#edit-submit,
@@ -9876,7 +9905,7 @@ tr.even {
   font-weight: normal;
   letter-spacing: 0;
 }
-/* line 8573, ../sass/style.scss */
+/* line 8598, ../sass/style.scss */
 .page-node-add input.ajax-processed:hover, .page-node-add input#edit-submit:hover, .page-node-add input#edit-preview:hover,
 .page-node-edit input.ajax-processed:hover,
 .page-node-edit input#edit-submit:hover,
@@ -9887,7 +9916,7 @@ tr.even {
   background: #222;
   color: #fff;
 }
-/* line 8581, ../sass/style.scss */
+/* line 8606, ../sass/style.scss */
 .page-node-add form input[type=text],
 .page-node-add form textarea,
 .page-node-add form input[type=password],
@@ -9915,7 +9944,7 @@ tr.even {
   position: relative;
   background: url("../images/bg-input-dots.gif") repeat-x left bottom white !important;
 }
-/* line 8601, ../sass/style.scss */
+/* line 8626, ../sass/style.scss */
 .page-node-add form input[type=text]:before,
 .page-node-add form textarea:before,
 .page-node-add form input[type=password]:before,
@@ -9936,7 +9965,7 @@ tr.even {
   bottom: 0;
   z-index: 998;
 }
-/* line 8610, ../sass/style.scss */
+/* line 8635, ../sass/style.scss */
 .page-node-add form input[type=text]:after,
 .page-node-add form textarea:after,
 .page-node-add form input[type=password]:after,
@@ -9957,7 +9986,7 @@ tr.even {
   bottom: 0;
   z-index: 999;
 }
-/* line 8623, ../sass/style.scss */
+/* line 8648, ../sass/style.scss */
 .page-node-add form input[type=text]:focus,
 .page-node-add form textarea:focus,
 .page-node-add form input[type=password]:focus,
@@ -9976,76 +10005,76 @@ tr.even {
   background: url("../images/bg-input-dots.gif") repeat-x left bottom white !important;
 }
 
-/* line 8639, ../sass/style.scss */
+/* line 8664, ../sass/style.scss */
 .node-venue-form .field-name-field-public-form,
 .node-venue-form .field-type-taxonomy-term-reference-form {
   margin-bottom: 64px;
 }
 
-/* line 8648, ../sass/style.scss */
+/* line 8673, ../sass/style.scss */
 .node-event-form .field-name-field-category-form,
 .node-event-form .field-name-field-date-form,
 .node-event-form .field-type-text-with-summary {
   margin-bottom: 64px;
 }
-/* line 8651, ../sass/style.scss */
+/* line 8676, ../sass/style.scss */
 .node-event-form #edit-submit {
   float: none;
 }
 
-/* line 8659, ../sass/style.scss */
+/* line 8684, ../sass/style.scss */
 .node-artwork-form .field-type-text-with-summary,
 .node-artwork-form .field-name-field-tags-form {
   margin-bottom: 64px;
 }
-/* line 8663, ../sass/style.scss */
+/* line 8688, ../sass/style.scss */
 .node-artwork-form .field-name-field-dimensions-form .form-textarea-wrapper {
   margin-bottom: 64px!important;
 }
-/* line 8667, ../sass/style.scss */
+/* line 8692, ../sass/style.scss */
 .node-artwork-form .ui-multiselect {
   margin-bottom: 8px;
 }
-/* line 8670, ../sass/style.scss */
+/* line 8695, ../sass/style.scss */
 .node-artwork-form .description {
   margin-bottom: 8px;
 }
-/* line 8677, ../sass/style.scss */
+/* line 8702, ../sass/style.scss */
 .node-artwork-form .field-name-field-created-date-form .partial-date-year .description {
   clear: both;
   margin-left: 0;
 }
-/* line 8683, ../sass/style.scss */
+/* line 8708, ../sass/style.scss */
 .node-artwork-form #cke_1_contents {
   height: 210px !important;
 }
-/* line 8688, ../sass/style.scss */
+/* line 8713, ../sass/style.scss */
 .node-artwork-form .field-name-field-roles-form .description {
   margin-left: 33%;
 }
 
-/* line 8699, ../sass/style.scss */
+/* line 8724, ../sass/style.scss */
 body.admin-menu .wysiwyg-toggle-wrapper,
 body.admin-menu .form-type-select {
   display: block;
 }
-/* line 8704, ../sass/style.scss */
+/* line 8729, ../sass/style.scss */
 body .wysiwyg-toggle-wrapper,
 body .form-type-select {
   display: none;
 }
 
-/* line 8711, ../sass/style.scss */
+/* line 8736, ../sass/style.scss */
 .entityconnect-add, .entityconnect-edit {
   width: auto;
 }
 
-/* line 8714, ../sass/style.scss */
+/* line 8739, ../sass/style.scss */
 form div.entityconnect-edit input {
   background: url("../images/icon-small-edit.png") no-repeat center center white !important;
 }
 
-/* line 8718, ../sass/style.scss */
+/* line 8743, ../sass/style.scss */
 .entityconnect-add input {
   width: 16px!important;
   padding: 0;
@@ -10054,13 +10083,13 @@ form div.entityconnect-edit input {
   background: url("../images/icon-small-add.png") no-repeat center center white !important;
   opacity: .8;
 }
-/* line 8726, ../sass/style.scss */
+/* line 8751, ../sass/style.scss */
 .entityconnect-add input:hover {
   background: url("../images/icon-small-add.png") no-repeat center center white !important;
   opacity: 1;
 }
 
-/* line 8733, ../sass/style.scss */
+/* line 8758, ../sass/style.scss */
 div.entityconnect-edit input {
   width: 16px!important;
   padding: 0;
@@ -10069,27 +10098,27 @@ div.entityconnect-edit input {
   background: url("../images/icon-small-edit.png") no-repeat center center white !important;
   opacity: .8;
 }
-/* line 8741, ../sass/style.scss */
+/* line 8766, ../sass/style.scss */
 div.entityconnect-edit input:hover {
   background: url("../images/icon-small-edit.png") no-repeat center center white !important;
   opacity: 1;
 }
 
-/* line 8749, ../sass/style.scss */
+/* line 8774, ../sass/style.scss */
 td.odd {
   background: none;
 }
 
-/* line 8756, ../sass/style.scss */
+/* line 8781, ../sass/style.scss */
 .cke_chrome {
   box-shadow: none!important;
 }
-/* line 8759, ../sass/style.scss */
+/* line 8784, ../sass/style.scss */
 .cke_chrome .cke_top {
   margin: 0;
   padding: 0;
 }
-/* line 8762, ../sass/style.scss */
+/* line 8787, ../sass/style.scss */
 .cke_chrome .cke_top .cke_toolgroup {
   margin: 0;
   padding: 0;
@@ -10097,7 +10126,7 @@ td.odd {
   background: none;
 }
 
-/* line 8769, ../sass/style.scss */
+/* line 8794, ../sass/style.scss */
 body.wysiwygeditor {
   background: #fff;
   box-sizing: border-box;
@@ -10107,7 +10136,7 @@ body.wysiwygeditor {
 
 /* iCheck plugin Minimal skin, grey
 ----------------------------------- */
-/* line 8780, ../sass/style.scss */
+/* line 8805, ../sass/style.scss */
 .icheckbox,
 .iradio {
   display: block;
@@ -10120,61 +10149,61 @@ body.wysiwygeditor {
   cursor: pointer;
 }
 
-/* line 8791, ../sass/style.scss */
+/* line 8816, ../sass/style.scss */
 .icheckbox {
   background-position: 0 0;
 }
 
-/* line 8794, ../sass/style.scss */
+/* line 8819, ../sass/style.scss */
 .icheckbox.hover {
   background-position: -20px 0;
 }
 
-/* line 8797, ../sass/style.scss */
+/* line 8822, ../sass/style.scss */
 .icheckbox.checked {
   background-position: -40px 0;
 }
 
-/* line 8800, ../sass/style.scss */
+/* line 8825, ../sass/style.scss */
 .icheckbox.disabled {
   background-position: -60px 0;
   cursor: default;
 }
 
-/* line 8804, ../sass/style.scss */
+/* line 8829, ../sass/style.scss */
 .icheckbox.checked.disabled {
   background-position: -80px 0;
 }
 
-/* line 8808, ../sass/style.scss */
+/* line 8833, ../sass/style.scss */
 .iradio {
   background-position: -100px 0;
 }
 
-/* line 8811, ../sass/style.scss */
+/* line 8836, ../sass/style.scss */
 .iradio.hover {
   background-position: -120px 0;
 }
 
-/* line 8814, ../sass/style.scss */
+/* line 8839, ../sass/style.scss */
 .iradio.checked {
   background-position: -140px 0;
 }
 
-/* line 8817, ../sass/style.scss */
+/* line 8842, ../sass/style.scss */
 .iradio.disabled {
   background-position: -160px 0;
   cursor: default;
 }
 
-/* line 8821, ../sass/style.scss */
+/* line 8846, ../sass/style.scss */
 .iradio.checked.disabled {
   background-position: -180px 0;
 }
 
 /* Retina support */
 @media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (-moz-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5) {
-  /* line 8831, ../sass/style.scss */
+  /* line 8856, ../sass/style.scss */
   .icheckbox,
   .iradio {
     background-image: url("../images/icheck-sprites_@2x.png");
@@ -10182,30 +10211,30 @@ body.wysiwygeditor {
     background-size: 200px 20px;
   }
 }
-/* line 8842, ../sass/style.scss */
+/* line 8867, ../sass/style.scss */
 .item-loading-indicator {
   width: 100%;
   height: 100px;
   clear: both;
   background: none;
 }
-/* line 8848, ../sass/style.scss */
+/* line 8873, ../sass/style.scss */
 .item-loading-indicator.loading {
   background: url("../images/icon-loader.gif") no-repeat center center transparent;
   background-size: 40px auto;
 }
 
-/* line 8854, ../sass/style.scss */
+/* line 8879, ../sass/style.scss */
 .my-stuff .item-loading-indicator {
   background: none;
 }
-/* line 8857, ../sass/style.scss */
+/* line 8882, ../sass/style.scss */
 .my-stuff .item-loading-indicator.loading {
   background: url("../images/icon-loader-white.gif") no-repeat center center transparent;
   background-size: 40px auto;
 }
 
-/* line 8865, ../sass/style.scss */
+/* line 8890, ../sass/style.scss */
 #ui-datepicker-div {
   background: #F9F9F9;
   border-radius: 0;
@@ -10214,70 +10243,70 @@ body.wysiwygeditor {
   font-family: 'Apercu Regular';
   font-style: normal;
 }
-/* line 8874, ../sass/style.scss */
+/* line 8899, ../sass/style.scss */
 #ui-datepicker-div .ui-datepicker-header {
   border: none;
   border-radius: 0;
   background: #D3D3D3;
 }
-/* line 8879, ../sass/style.scss */
+/* line 8904, ../sass/style.scss */
 #ui-datepicker-div .ui-datepicker-header .ui-datepicker-next {
   background: none;
   height: auto;
   top: 0;
   bottom: 0;
 }
-/* line 8885, ../sass/style.scss */
+/* line 8910, ../sass/style.scss */
 #ui-datepicker-div .ui-datepicker-header .ui-datepicker-next .ui-icon {
   background: url("../images/arrow-next.svg") no-repeat center center transparent;
   background-size: 8px auto;
 }
-/* line 8890, ../sass/style.scss */
+/* line 8915, ../sass/style.scss */
 #ui-datepicker-div .ui-datepicker-header .ui-datepicker-prev {
   background: none;
   height: auto;
   top: 0;
   bottom: 0;
 }
-/* line 8896, ../sass/style.scss */
+/* line 8921, ../sass/style.scss */
 #ui-datepicker-div .ui-datepicker-header .ui-datepicker-prev .ui-icon {
   background: url("../images/arrow-prev.svg") no-repeat center center transparent;
   background-size: 8px auto;
 }
-/* line 8902, ../sass/style.scss */
+/* line 8927, ../sass/style.scss */
 #ui-datepicker-div .ui-datepicker-calendar {
   background: none;
   border: none;
 }
-/* line 8907, ../sass/style.scss */
+/* line 8932, ../sass/style.scss */
 #ui-datepicker-div .ui-datepicker-calendar thead tr {
   background: none;
   border-bottom: none;
 }
-/* line 8911, ../sass/style.scss */
+/* line 8936, ../sass/style.scss */
 #ui-datepicker-div .ui-datepicker-calendar thead tr th {
   background: none;
   font-weight: normal;
   color: #333;
 }
-/* line 8918, ../sass/style.scss */
+/* line 8943, ../sass/style.scss */
 #ui-datepicker-div .ui-datepicker-calendar tbody {
   border: none;
   border-top: none;
 }
-/* line 8922, ../sass/style.scss */
+/* line 8947, ../sass/style.scss */
 #ui-datepicker-div .ui-datepicker-calendar tbody tr {
   background: none;
   border: none;
   border-top: none;
 }
-/* line 8927, ../sass/style.scss */
+/* line 8952, ../sass/style.scss */
 #ui-datepicker-div .ui-datepicker-calendar tbody tr td {
   background: none;
   border: none;
   background-image: none!important;
 }
-/* line 8932, ../sass/style.scss */
+/* line 8957, ../sass/style.scss */
 #ui-datepicker-div .ui-datepicker-calendar tbody tr td .ui-state-default {
   background: none;
   border: 1px solid #ccc;
@@ -10288,19 +10317,19 @@ body.wysiwygeditor {
   padding: 0;
   line-height: 20px;
 }
-/* line 8943, ../sass/style.scss */
+/* line 8968, ../sass/style.scss */
 #ui-datepicker-div .ui-datepicker-calendar tbody tr td .ui-state-default.ui-state-active {
   background: #222222;
   border: 1px solid #222;
   color: #fff;
   padding: 0;
 }
-/* line 8950, ../sass/style.scss */
+/* line 8975, ../sass/style.scss */
 #ui-datepicker-div .ui-datepicker-calendar tbody tr td .ui-state-default:hover {
   padding: 0;
 }
 
-/* line 8963, ../sass/style.scss */
+/* line 8988, ../sass/style.scss */
 .page-user-saved-filters #content {
   background: #323232;
   padding: 10px;
@@ -10316,7 +10345,7 @@ body.wysiwygeditor {
   overflow: visible;
 }
 @media screen and (max-width: 480px) {
-  /* line 8963, ../sass/style.scss */
+  /* line 8988, ../sass/style.scss */
   .page-user-saved-filters #content {
     display: inline;
     float: left;
@@ -10326,7 +10355,7 @@ body.wysiwygeditor {
   }
 }
 @media screen and (max-width: 768px) {
-  /* line 8963, ../sass/style.scss */
+  /* line 8988, ../sass/style.scss */
   .page-user-saved-filters #content {
     display: inline;
     float: left;
@@ -10336,7 +10365,7 @@ body.wysiwygeditor {
   }
 }
 @media screen and (max-width: 960px) {
-  /* line 8963, ../sass/style.scss */
+  /* line 8988, ../sass/style.scss */
   .page-user-saved-filters #content {
     display: inline;
     float: left;
@@ -10345,39 +10374,39 @@ body.wysiwygeditor {
     margin-right: 2.209%;
   }
 }
-/* line 8983, ../sass/style.scss */
+/* line 9008, ../sass/style.scss */
 .page-user-saved-filters #content a {
   color: #fff;
 }
-/* line 8990, ../sass/style.scss */
+/* line 9015, ../sass/style.scss */
 .page-user-saved-filters #content table {
   border: none;
   color: #fff;
 }
-/* line 8994, ../sass/style.scss */
+/* line 9019, ../sass/style.scss */
 .page-user-saved-filters #content table thead tr {
   background: none;
 }
-/* line 8997, ../sass/style.scss */
+/* line 9022, ../sass/style.scss */
 .page-user-saved-filters #content table thead tr td:first-child {
   padding-left: 0;
   width: 33%;
 }
-/* line 9005, ../sass/style.scss */
+/* line 9030, ../sass/style.scss */
 .page-user-saved-filters #content table tbody tr {
   border-top: none;
 }
-/* line 9008, ../sass/style.scss */
+/* line 9033, ../sass/style.scss */
 .page-user-saved-filters #content table tbody tr td {
   vertical-align: top;
 }
-/* line 9011, ../sass/style.scss */
+/* line 9036, ../sass/style.scss */
 .page-user-saved-filters #content table tbody tr td:first-child {
   padding-left: 0;
   width: 33%;
 }
 
-/* line 9034, ../sass/style.scss */
+/* line 9059, ../sass/style.scss */
 .view-flag-lists-user-lists .view-content {
   min-width: none;
   width: 100%;
@@ -10386,7 +10415,7 @@ body.wysiwygeditor {
   *zoom: 1;
   text-align: center;
 }
-/* line 9041, ../sass/style.scss */
+/* line 9066, ../sass/style.scss */
 .view-flag-lists-user-lists .view-content .user-list-wrap {
   background: #323232;
   padding: 10px;
@@ -10409,7 +10438,7 @@ body.wysiwygeditor {
   text-align: left;
 }
 @media screen and (max-width: 480px) {
-  /* line 9041, ../sass/style.scss */
+  /* line 9066, ../sass/style.scss */
   .view-flag-lists-user-lists .view-content .user-list-wrap {
     display: inline;
     float: left;
@@ -10419,7 +10448,7 @@ body.wysiwygeditor {
   }
 }
 @media screen and (max-width: 768px) {
-  /* line 9041, ../sass/style.scss */
+  /* line 9066, ../sass/style.scss */
   .view-flag-lists-user-lists .view-content .user-list-wrap {
     display: inline;
     float: left;
@@ -10429,7 +10458,7 @@ body.wysiwygeditor {
   }
 }
 @media screen and (max-width: 960px) {
-  /* line 9041, ../sass/style.scss */
+  /* line 9066, ../sass/style.scss */
   .view-flag-lists-user-lists .view-content .user-list-wrap {
     display: inline;
     float: left;
@@ -10438,7 +10467,7 @@ body.wysiwygeditor {
     margin-right: 2.209%;
   }
 }
-/* line 9070, ../sass/style.scss */
+/* line 9095, ../sass/style.scss */
 .view-flag-lists-user-lists .view-content .user-list-wrap h2 {
   color: #ccc;
   border-bottom: 1px solid #ccc;
@@ -10447,12 +10476,12 @@ body.wysiwygeditor {
   height: auto;
   padding-bottom: 5px;
 }
-/* line 9078, ../sass/style.scss */
+/* line 9103, ../sass/style.scss */
 .view-flag-lists-user-lists .view-content .user-list-wrap h2 a {
   color: #ccc;
   text-transform: none;
 }
-/* line 9083, ../sass/style.scss */
+/* line 9108, ../sass/style.scss */
 .view-flag-lists-user-lists .view-content .user-list-wrap .user-list {
   padding: 0;
   min-width: none;
@@ -10461,7 +10490,7 @@ body.wysiwygeditor {
   overflow: hidden;
   *zoom: 1;
 }
-/* line 9089, ../sass/style.scss */
+/* line 9114, ../sass/style.scss */
 .view-flag-lists-user-lists .view-content .user-list-wrap .user-list li {
   vertical-align: middle;
   list-style: none;
@@ -10471,22 +10500,22 @@ body.wysiwygeditor {
   width: 31.463%;
   margin-right: 2.209%;
 }
-/* line 9096, ../sass/style.scss */
+/* line 9121, ../sass/style.scss */
 .view-flag-lists-user-lists .view-content .user-list-wrap .user-list li:nth-child(3n+3) {
   margin-right: 0!important;
 }
-/* line 9101, ../sass/style.scss */
+/* line 9126, ../sass/style.scss */
 .view-flag-lists-user-lists .view-content .user-list-wrap .user-list-more-link {
   display: block;
   text-align: right;
   color: #999;
 }
-/* line 9106, ../sass/style.scss */
+/* line 9131, ../sass/style.scss */
 .view-flag-lists-user-lists .view-content .user-list-wrap .user-list-more-link:hover {
   color: #fff;
 }
 
-/* line 9115, ../sass/style.scss */
+/* line 9140, ../sass/style.scss */
 .chosen-container {
   box-sizing: border-box;
   margin: 0 0 8px 0;
@@ -10494,12 +10523,12 @@ body.wysiwygeditor {
   border: none;
   background: url("../images/icon-select-arrow.png") no-repeat 98% center white;
 }
-/* line 9122, ../sass/style.scss */
+/* line 9147, ../sass/style.scss */
 .chosen-container input.default {
   font-size: 11px !important;
   font-family: "Apercu Regular", Arial, Helvetica, sans-serif !important;
 }
-/* line 9132, ../sass/style.scss */
+/* line 9157, ../sass/style.scss */
 .chosen-container.chosen-container-single .chosen-single {
   border-radius: 0;
   border: none;
@@ -10507,24 +10536,24 @@ body.wysiwygeditor {
   background: none;
   font-size: 12px;
 }
-/* line 9140, ../sass/style.scss */
+/* line 9165, ../sass/style.scss */
 .chosen-container.chosen-container-single .chosen-single div b {
   background: none;
 }
-/* line 9146, ../sass/style.scss */
+/* line 9171, ../sass/style.scss */
 .chosen-container.chosen-container-single .chosen-search {
   display: none;
 }
-/* line 9154, ../sass/style.scss */
+/* line 9179, ../sass/style.scss */
 .chosen-container.chosen-container-single .chosen-results .active-result.highlighted {
   background: #ccc;
   box-shadow: none;
 }
-/* line 9166, ../sass/style.scss */
+/* line 9191, ../sass/style.scss */
 .chosen-container.chosen-container-single.chosen-container-active .chosen-single div b {
   background: none;
 }
-/* line 9173, ../sass/style.scss */
+/* line 9198, ../sass/style.scss */
 .chosen-container .chosen-choices {
   box-shadow: none;
   border: none;
@@ -10533,7 +10562,7 @@ body.wysiwygeditor {
   box-sizing: border-box;
   font-size: 12px!important;
 }
-/* line 9183, ../sass/style.scss */
+/* line 9208, ../sass/style.scss */
 .chosen-container .chosen-choices li.search-choice {
   border-radius: 0;
   background: #ccc;
@@ -10541,27 +10570,27 @@ body.wysiwygeditor {
   box-shadow: none;
   font-size: 12px;
 }
-/* line 9190, ../sass/style.scss */
+/* line 9215, ../sass/style.scss */
 .chosen-container .chosen-choices li.search-choice:hover {
   background: #ddd;
 }
-/* line 9195, ../sass/style.scss */
+/* line 9220, ../sass/style.scss */
 .chosen-container .chosen-choices input {
   font-size: 11px;
 }
-/* line 9199, ../sass/style.scss */
+/* line 9224, ../sass/style.scss */
 .chosen-container .chosen-drop {
   border: none;
   box-shadow: none;
 }
 
-/* line 9214, ../sass/style.scss */
+/* line 9239, ../sass/style.scss */
 .NFI-wrapper {
   background: #fff;
   float: right;
 }
 
-/* line 9232, ../sass/style.scss */
+/* line 9257, ../sass/style.scss */
 .sort-thing {
   max-width: 250px;
   min-width: 220px;
@@ -10571,7 +10600,7 @@ body.wysiwygeditor {
   transition: all .2s ease-in-out;
   height: auto;
 }
-/* line 9241, ../sass/style.scss */
+/* line 9266, ../sass/style.scss */
 .sort-thing h2 {
   background: none;
   height: auto;
@@ -10580,7 +10609,7 @@ body.wysiwygeditor {
   margin: 0;
   display: none;
 }
-/* line 9248, ../sass/style.scss */
+/* line 9273, ../sass/style.scss */
 .sort-thing .wrap {
   margin: 0;
   padding: 0;
@@ -10598,7 +10627,7 @@ body.wysiwygeditor {
   position: relative;
   z-index: 2;
 }
-/* line 9265, ../sass/style.scss */
+/* line 9290, ../sass/style.scss */
 .sort-thing .wrap.open {
   display: block;
   min-height: 100px;
@@ -10609,12 +10638,12 @@ body.wysiwygeditor {
   transition: all .3s ease-in-out;
   max-height: 400px;
 }
-/* line 9276, ../sass/style.scss */
+/* line 9301, ../sass/style.scss */
 .sort-thing .sort-thing-sort-options {
   margin: 0;
   padding: 0;
 }
-/* line 9279, ../sass/style.scss */
+/* line 9304, ../sass/style.scss */
 .sort-thing .sort-thing-sort-options li {
   list-style: none;
   margin: 0;
@@ -10622,13 +10651,13 @@ body.wysiwygeditor {
   border-bottom: 1px solid #eee;
   display: block;
 }
-/* line 9284, ../sass/style.scss */
+/* line 9309, ../sass/style.scss */
 .sort-thing .sort-thing-sort-options li a {
   display: inline-block;
   font-size: 12px;
   color: #666;
 }
-/* line 9289, ../sass/style.scss */
+/* line 9314, ../sass/style.scss */
 .sort-thing .sort-thing-sort-options li a:nth-child(1) {
   margin: 0;
   padding: 8px 13px 8px 30px;
@@ -10637,7 +10666,7 @@ body.wysiwygeditor {
   background: url("../images/mna-circle-hollow.svg") no-repeat 10px center transparent;
   background-size: 12px auto;
 }
-/* line 9300, ../sass/style.scss */
+/* line 9325, ../sass/style.scss */
 .sort-thing .sort-thing-sort-options li a:nth-child(2) {
   float: right;
   padding: 8px 5px;
@@ -10651,11 +10680,11 @@ body.wysiwygeditor {
   background: url("../images/icon-filter-arrow-down.png") no-repeat center center transparent;
   background-size: 7px 8px;
 }
-/* line 9321, ../sass/style.scss */
+/* line 9346, ../sass/style.scss */
 .sort-thing .sort-thing-sort-options li.active a:first-child {
   background: url("../images/mna-circle-filled.svg") no-repeat 10px center transparent;
 }
-/* line 9329, ../sass/style.scss */
+/* line 9354, ../sass/style.scss */
 .sort-thing .sort-thing-current-sort {
   float: right;
   padding: 12px 8px 8px 8px;
@@ -10668,7 +10697,7 @@ body.wysiwygeditor {
   border-radius: 0px 0px 3px 3px;
   z-index: 1;
 }
-/* line 9341, ../sass/style.scss */
+/* line 9366, ../sass/style.scss */
 .sort-thing .sort-thing-current-sort:after {
   content: "";
   height: 4px;
@@ -10681,62 +10710,62 @@ body.wysiwygeditor {
   right: 0;
   z-index: 3;
 }
-/* line 9352, ../sass/style.scss */
+/* line 9377, ../sass/style.scss */
 .sort-thing .sort-thing-current-sort:hover {
   cursor: pointer;
 }
 
-/* line 9357, ../sass/style.scss */
+/* line 9382, ../sass/style.scss */
 .panel-2col.layout-a {
   position: relative;
   padding-top: 20px;
 }
-/* line 9361, ../sass/style.scss */
+/* line 9386, ../sass/style.scss */
 .panel-2col.layout-a .sort-thing {
   position: fixed;
   top: 0px;
   right: 40px;
 }
-/* line 9366, ../sass/style.scss */
+/* line 9391, ../sass/style.scss */
 .panel-2col.layout-a .sort-thing-fully-retracted {
   top: -100px;
 }
 
-/* line 9373, ../sass/style.scss */
+/* line 9398, ../sass/style.scss */
 .logged-in .panel-2col.layout-a .sort-thing {
   top: 21px;
 }
-/* line 9376, ../sass/style.scss */
+/* line 9401, ../sass/style.scss */
 .logged-in .panel-2col.layout-a .sort-thing-fully-retracted {
   top: -100px;
 }
 
-/* line 9383, ../sass/style.scss */
+/* line 9408, ../sass/style.scss */
 #block-system-main {
   margin-bottom: 0;
 }
 
-/* line 9394, ../sass/style.scss */
+/* line 9419, ../sass/style.scss */
 .item-loading-indicator {
   width: 100%;
   height: 100px;
   clear: both;
   background: none;
 }
-/* line 9400, ../sass/style.scss */
+/* line 9425, ../sass/style.scss */
 .item-loading-indicator.loading {
   background: url("../images/icon-loader.gif") no-repeat center center transparent;
   background-size: 40px auto;
 }
 
-/* line 9406, ../sass/style.scss */
+/* line 9431, ../sass/style.scss */
 .my-stuff .item-loading-indicator.loading {
   background: url("../images/icon-loader-white.gif") no-repeat center center transparent;
   background-size: 40px auto;
 }
 
 /* login page */
-/* line 9421, ../sass/style.scss */
+/* line 9446, ../sass/style.scss */
 .my-stuff.not-logged-in.page-user #content-column,
 .my-stuff.not-logged-in.page-user-register #content-column,
 .my-stuff.not-logged-in.page-user-password #content-column,
@@ -10754,7 +10783,7 @@ body.wysiwygeditor {
   overflow: visible;
 }
 @media screen and (max-width: 480px) {
-  /* line 9421, ../sass/style.scss */
+  /* line 9446, ../sass/style.scss */
   .my-stuff.not-logged-in.page-user #content-column,
   .my-stuff.not-logged-in.page-user-register #content-column,
   .my-stuff.not-logged-in.page-user-password #content-column,
@@ -10769,7 +10798,7 @@ body.wysiwygeditor {
   }
 }
 @media screen and (max-width: 768px) {
-  /* line 9421, ../sass/style.scss */
+  /* line 9446, ../sass/style.scss */
   .my-stuff.not-logged-in.page-user #content-column,
   .my-stuff.not-logged-in.page-user-register #content-column,
   .my-stuff.not-logged-in.page-user-password #content-column,
@@ -10784,7 +10813,7 @@ body.wysiwygeditor {
   }
 }
 @media screen and (max-width: 960px) {
-  /* line 9421, ../sass/style.scss */
+  /* line 9446, ../sass/style.scss */
   .my-stuff.not-logged-in.page-user #content-column,
   .my-stuff.not-logged-in.page-user-register #content-column,
   .my-stuff.not-logged-in.page-user-password #content-column,
@@ -10798,7 +10827,7 @@ body.wysiwygeditor {
     margin-right: 2.209%;
   }
 }
-/* line 9441, ../sass/style.scss */
+/* line 9466, ../sass/style.scss */
 .my-stuff.not-logged-in.page-user #content-column #main-content #main-content-header #tasks,
 .my-stuff.not-logged-in.page-user-register #content-column #main-content #main-content-header #tasks,
 .my-stuff.not-logged-in.page-user-password #content-column #main-content #main-content-header #tasks,
@@ -10807,7 +10836,7 @@ body.wysiwygeditor {
 .not-logged-in.page-user-password #content-column #main-content #main-content-header #tasks {
   margin-bottom: 0;
 }
-/* line 9444, ../sass/style.scss */
+/* line 9469, ../sass/style.scss */
 .my-stuff.not-logged-in.page-user #content-column #main-content #main-content-header #tasks ul.primary,
 .my-stuff.not-logged-in.page-user-register #content-column #main-content #main-content-header #tasks ul.primary,
 .my-stuff.not-logged-in.page-user-password #content-column #main-content #main-content-header #tasks ul.primary,
@@ -10818,7 +10847,7 @@ body.wysiwygeditor {
   margin-bottom: 0;
   padding: 0;
 }
-/* line 9449, ../sass/style.scss */
+/* line 9474, ../sass/style.scss */
 .my-stuff.not-logged-in.page-user #content-column #main-content #main-content-header #tasks ul.primary li,
 .my-stuff.not-logged-in.page-user-register #content-column #main-content #main-content-header #tasks ul.primary li,
 .my-stuff.not-logged-in.page-user-password #content-column #main-content #main-content-header #tasks ul.primary li,
@@ -10828,7 +10857,7 @@ body.wysiwygeditor {
   border: none;
   margin: 0 3px 0 0;
 }
-/* line 9453, ../sass/style.scss */
+/* line 9478, ../sass/style.scss */
 .my-stuff.not-logged-in.page-user #content-column #main-content #main-content-header #tasks ul.primary li a,
 .my-stuff.not-logged-in.page-user-register #content-column #main-content #main-content-header #tasks ul.primary li a,
 .my-stuff.not-logged-in.page-user-password #content-column #main-content #main-content-header #tasks ul.primary li a,
@@ -10841,7 +10870,7 @@ body.wysiwygeditor {
   line-height: 2em;
   height: 2em;
 }
-/* line 9463, ../sass/style.scss */
+/* line 9488, ../sass/style.scss */
 .my-stuff.not-logged-in.page-user #content-column #main-content #main-content-header #tasks ul.primary li.active a,
 .my-stuff.not-logged-in.page-user-register #content-column #main-content #main-content-header #tasks ul.primary li.active a,
 .my-stuff.not-logged-in.page-user-password #content-column #main-content #main-content-header #tasks ul.primary li.active a,
@@ -10851,7 +10880,7 @@ body.wysiwygeditor {
   background: #f2f2f2;
   border: none;
 }
-/* line 9475, ../sass/style.scss */
+/* line 9500, ../sass/style.scss */
 .my-stuff.not-logged-in.page-user #content-column #content,
 .my-stuff.not-logged-in.page-user-register #content-column #content,
 .my-stuff.not-logged-in.page-user-password #content-column #content,
@@ -10862,7 +10891,7 @@ body.wysiwygeditor {
   padding: 20px;
   box-sizing: border-box;
 }
-/* line 9480, ../sass/style.scss */
+/* line 9505, ../sass/style.scss */
 .my-stuff.not-logged-in.page-user #content-column #content form,
 .my-stuff.not-logged-in.page-user-register #content-column #content form,
 .my-stuff.not-logged-in.page-user-password #content-column #content form,
@@ -10872,7 +10901,7 @@ body.wysiwygeditor {
   padding: 75px 100px;
 }
 @media screen and (max-width: 960px) {
-  /* line 9480, ../sass/style.scss */
+  /* line 9505, ../sass/style.scss */
   .my-stuff.not-logged-in.page-user #content-column #content form,
   .my-stuff.not-logged-in.page-user-register #content-column #content form,
   .my-stuff.not-logged-in.page-user-password #content-column #content form,
@@ -10883,7 +10912,7 @@ body.wysiwygeditor {
   }
 }
 @media screen and (max-width: 768px) {
-  /* line 9480, ../sass/style.scss */
+  /* line 9505, ../sass/style.scss */
   .my-stuff.not-logged-in.page-user #content-column #content form,
   .my-stuff.not-logged-in.page-user-register #content-column #content form,
   .my-stuff.not-logged-in.page-user-password #content-column #content form,
@@ -10894,7 +10923,7 @@ body.wysiwygeditor {
   }
 }
 @media screen and (max-width: 480px) {
-  /* line 9480, ../sass/style.scss */
+  /* line 9505, ../sass/style.scss */
   .my-stuff.not-logged-in.page-user #content-column #content form,
   .my-stuff.not-logged-in.page-user-register #content-column #content form,
   .my-stuff.not-logged-in.page-user-password #content-column #content form,
@@ -10905,39 +10934,39 @@ body.wysiwygeditor {
   }
 }
 
-/* line 9501, ../sass/style.scss */
+/* line 9526, ../sass/style.scss */
 .password-strength {
   display: none;
 }
 
-/* line 9505, ../sass/style.scss */
+/* line 9530, ../sass/style.scss */
 #main-content {
   margin-left: 40px;
   margin-right: 40px;
 }
 @media screen and (max-width: 960px) {
-  /* line 9505, ../sass/style.scss */
+  /* line 9530, ../sass/style.scss */
   #main-content {
     margin-left: 40px;
     margin-right: 40px;
   }
 }
 @media screen and (max-width: 768px) {
-  /* line 9505, ../sass/style.scss */
+  /* line 9530, ../sass/style.scss */
   #main-content {
     margin-left: 20px;
     margin-right: 20px;
   }
 }
 @media screen and (max-width: 480px) {
-  /* line 9505, ../sass/style.scss */
+  /* line 9530, ../sass/style.scss */
   #main-content {
     margin-left: 10px;
     margin-right: 10px;
   }
 }
 
-/* line 9523, ../sass/style.scss */
+/* line 9548, ../sass/style.scss */
 #page {
   margin-left: 0;
   -moz-transition: all .3s ease-in-out;

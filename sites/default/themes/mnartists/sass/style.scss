@@ -8506,7 +8506,7 @@ form {
                 &.field-multiple-drag {
                     border-right:1px solid #ccc;
                     vertical-align:top;
-                    width:33%;
+                    /*width:33%;*/
                 }
                 &:nth-child(2) {
 
@@ -8539,6 +8539,31 @@ form {
 .sticky-table {
     margin-bottom:10px;
 }
+// draggable sticky grab icon
+form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
+    padding-right: 0;
+}
+.draggable a.tabledrag-handle {
+    cursor: move;
+    float: left;
+    height: 20px;
+    margin-left: 0;
+    overflow: hidden;
+    text-decoration: none;
+}
+.handle {
+    /*background: url(../../misc/draggable.png) no-repeat 6px 9px;*/
+    background-position:center center;
+    height: 13px;
+    margin: 0;
+    padding: 0;
+    width: 13px;
+    oveflow:hidden;
+    display:block;
+    text-indent:999px;
+}
+/* end draggable */
+
 fieldset {
     margin:0;
 }
