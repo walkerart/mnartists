@@ -36,10 +36,14 @@ html {
 }
 #menu, #menu:before {
 	width:0px;
+	overflow:hidden;
+	.menu-content {
+		width:200px;
+	}
 }
 body {
 	padding-left: 0px;
-
+	margin-top:0!important;
 }
 
 .content-bottom {
