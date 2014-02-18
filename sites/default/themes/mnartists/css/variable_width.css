@@ -10651,11 +10651,11 @@ body.wysiwygeditor {
   background: url("../images/icon-filter-arrow-down.png") no-repeat center center transparent;
   background-size: 7px 8px;
 }
-/* line 9320, ../sass/style.scss */
-.sort-thing .sort-thing-sort-options li.active a {
+/* line 9321, ../sass/style.scss */
+.sort-thing .sort-thing-sort-options li.active a:first-child {
   background: url("../images/mna-circle-filled.svg") no-repeat 10px center transparent;
 }
-/* line 9326, ../sass/style.scss */
+/* line 9329, ../sass/style.scss */
 .sort-thing .sort-thing-current-sort {
   float: right;
   padding: 12px 8px 8px 8px;
@@ -10668,7 +10668,7 @@ body.wysiwygeditor {
   border-radius: 0px 0px 3px 3px;
   z-index: 1;
 }
-/* line 9338, ../sass/style.scss */
+/* line 9341, ../sass/style.scss */
 .sort-thing .sort-thing-current-sort:after {
   content: "";
   height: 4px;
@@ -10681,62 +10681,62 @@ body.wysiwygeditor {
   right: 0;
   z-index: 3;
 }
-/* line 9349, ../sass/style.scss */
+/* line 9352, ../sass/style.scss */
 .sort-thing .sort-thing-current-sort:hover {
   cursor: pointer;
 }
 
-/* line 9354, ../sass/style.scss */
+/* line 9357, ../sass/style.scss */
 .panel-2col.layout-a {
   position: relative;
   padding-top: 20px;
 }
-/* line 9358, ../sass/style.scss */
+/* line 9361, ../sass/style.scss */
 .panel-2col.layout-a .sort-thing {
   position: fixed;
   top: 0px;
   right: 40px;
 }
-/* line 9363, ../sass/style.scss */
+/* line 9366, ../sass/style.scss */
 .panel-2col.layout-a .sort-thing-fully-retracted {
   top: -100px;
 }
 
-/* line 9370, ../sass/style.scss */
+/* line 9373, ../sass/style.scss */
 .logged-in .panel-2col.layout-a .sort-thing {
   top: 21px;
 }
-/* line 9373, ../sass/style.scss */
+/* line 9376, ../sass/style.scss */
 .logged-in .panel-2col.layout-a .sort-thing-fully-retracted {
   top: -100px;
 }
 
-/* line 9380, ../sass/style.scss */
+/* line 9383, ../sass/style.scss */
 #block-system-main {
   margin-bottom: 0;
 }
 
-/* line 9391, ../sass/style.scss */
+/* line 9394, ../sass/style.scss */
 .item-loading-indicator {
   width: 100%;
   height: 100px;
   clear: both;
   background: none;
 }
-/* line 9397, ../sass/style.scss */
+/* line 9400, ../sass/style.scss */
 .item-loading-indicator.loading {
   background: url("../images/icon-loader.gif") no-repeat center center transparent;
   background-size: 40px auto;
 }
 
-/* line 9403, ../sass/style.scss */
+/* line 9406, ../sass/style.scss */
 .my-stuff .item-loading-indicator.loading {
   background: url("../images/icon-loader-white.gif") no-repeat center center transparent;
   background-size: 40px auto;
 }
 
 /* login page */
-/* line 9418, ../sass/style.scss */
+/* line 9421, ../sass/style.scss */
 .my-stuff.not-logged-in.page-user #content-column,
 .my-stuff.not-logged-in.page-user-register #content-column,
 .my-stuff.not-logged-in.page-user-password #content-column,
@@ -10754,7 +10754,7 @@ body.wysiwygeditor {
   overflow: visible;
 }
 @media screen and (max-width: 480px) {
-  /* line 9418, ../sass/style.scss */
+  /* line 9421, ../sass/style.scss */
   .my-stuff.not-logged-in.page-user #content-column,
   .my-stuff.not-logged-in.page-user-register #content-column,
   .my-stuff.not-logged-in.page-user-password #content-column,
@@ -10769,7 +10769,7 @@ body.wysiwygeditor {
   }
 }
 @media screen and (max-width: 768px) {
-  /* line 9418, ../sass/style.scss */
+  /* line 9421, ../sass/style.scss */
   .my-stuff.not-logged-in.page-user #content-column,
   .my-stuff.not-logged-in.page-user-register #content-column,
   .my-stuff.not-logged-in.page-user-password #content-column,
@@ -10784,7 +10784,7 @@ body.wysiwygeditor {
   }
 }
 @media screen and (max-width: 960px) {
-  /* line 9418, ../sass/style.scss */
+  /* line 9421, ../sass/style.scss */
   .my-stuff.not-logged-in.page-user #content-column,
   .my-stuff.not-logged-in.page-user-register #content-column,
   .my-stuff.not-logged-in.page-user-password #content-column,
@@ -10798,7 +10798,7 @@ body.wysiwygeditor {
     margin-right: 2.209%;
   }
 }
-/* line 9438, ../sass/style.scss */
+/* line 9441, ../sass/style.scss */
 .my-stuff.not-logged-in.page-user #content-column #main-content #main-content-header #tasks,
 .my-stuff.not-logged-in.page-user-register #content-column #main-content #main-content-header #tasks,
 .my-stuff.not-logged-in.page-user-password #content-column #main-content #main-content-header #tasks,
@@ -10807,7 +10807,7 @@ body.wysiwygeditor {
 .not-logged-in.page-user-password #content-column #main-content #main-content-header #tasks {
   margin-bottom: 0;
 }
-/* line 9441, ../sass/style.scss */
+/* line 9444, ../sass/style.scss */
 .my-stuff.not-logged-in.page-user #content-column #main-content #main-content-header #tasks ul.primary,
 .my-stuff.not-logged-in.page-user-register #content-column #main-content #main-content-header #tasks ul.primary,
 .my-stuff.not-logged-in.page-user-password #content-column #main-content #main-content-header #tasks ul.primary,
@@ -10818,7 +10818,7 @@ body.wysiwygeditor {
   margin-bottom: 0;
   padding: 0;
 }
-/* line 9446, ../sass/style.scss */
+/* line 9449, ../sass/style.scss */
 .my-stuff.not-logged-in.page-user #content-column #main-content #main-content-header #tasks ul.primary li,
 .my-stuff.not-logged-in.page-user-register #content-column #main-content #main-content-header #tasks ul.primary li,
 .my-stuff.not-logged-in.page-user-password #content-column #main-content #main-content-header #tasks ul.primary li,
@@ -10828,7 +10828,7 @@ body.wysiwygeditor {
   border: none;
   margin: 0 3px 0 0;
 }
-/* line 9450, ../sass/style.scss */
+/* line 9453, ../sass/style.scss */
 .my-stuff.not-logged-in.page-user #content-column #main-content #main-content-header #tasks ul.primary li a,
 .my-stuff.not-logged-in.page-user-register #content-column #main-content #main-content-header #tasks ul.primary li a,
 .my-stuff.not-logged-in.page-user-password #content-column #main-content #main-content-header #tasks ul.primary li a,
@@ -10841,7 +10841,7 @@ body.wysiwygeditor {
   line-height: 2em;
   height: 2em;
 }
-/* line 9460, ../sass/style.scss */
+/* line 9463, ../sass/style.scss */
 .my-stuff.not-logged-in.page-user #content-column #main-content #main-content-header #tasks ul.primary li.active a,
 .my-stuff.not-logged-in.page-user-register #content-column #main-content #main-content-header #tasks ul.primary li.active a,
 .my-stuff.not-logged-in.page-user-password #content-column #main-content #main-content-header #tasks ul.primary li.active a,
@@ -10851,7 +10851,7 @@ body.wysiwygeditor {
   background: #f2f2f2;
   border: none;
 }
-/* line 9472, ../sass/style.scss */
+/* line 9475, ../sass/style.scss */
 .my-stuff.not-logged-in.page-user #content-column #content,
 .my-stuff.not-logged-in.page-user-register #content-column #content,
 .my-stuff.not-logged-in.page-user-password #content-column #content,
@@ -10862,7 +10862,7 @@ body.wysiwygeditor {
   padding: 20px;
   box-sizing: border-box;
 }
-/* line 9477, ../sass/style.scss */
+/* line 9480, ../sass/style.scss */
 .my-stuff.not-logged-in.page-user #content-column #content form,
 .my-stuff.not-logged-in.page-user-register #content-column #content form,
 .my-stuff.not-logged-in.page-user-password #content-column #content form,
@@ -10872,7 +10872,7 @@ body.wysiwygeditor {
   padding: 75px 100px;
 }
 @media screen and (max-width: 960px) {
-  /* line 9477, ../sass/style.scss */
+  /* line 9480, ../sass/style.scss */
   .my-stuff.not-logged-in.page-user #content-column #content form,
   .my-stuff.not-logged-in.page-user-register #content-column #content form,
   .my-stuff.not-logged-in.page-user-password #content-column #content form,
@@ -10883,7 +10883,7 @@ body.wysiwygeditor {
   }
 }
 @media screen and (max-width: 768px) {
-  /* line 9477, ../sass/style.scss */
+  /* line 9480, ../sass/style.scss */
   .my-stuff.not-logged-in.page-user #content-column #content form,
   .my-stuff.not-logged-in.page-user-register #content-column #content form,
   .my-stuff.not-logged-in.page-user-password #content-column #content form,
@@ -10894,7 +10894,7 @@ body.wysiwygeditor {
   }
 }
 @media screen and (max-width: 480px) {
-  /* line 9477, ../sass/style.scss */
+  /* line 9480, ../sass/style.scss */
   .my-stuff.not-logged-in.page-user #content-column #content form,
   .my-stuff.not-logged-in.page-user-register #content-column #content form,
   .my-stuff.not-logged-in.page-user-password #content-column #content form,
@@ -10905,39 +10905,39 @@ body.wysiwygeditor {
   }
 }
 
-/* line 9498, ../sass/style.scss */
+/* line 9501, ../sass/style.scss */
 .password-strength {
   display: none;
 }
 
-/* line 9502, ../sass/style.scss */
+/* line 9505, ../sass/style.scss */
 #main-content {
   margin-left: 40px;
   margin-right: 40px;
 }
 @media screen and (max-width: 960px) {
-  /* line 9502, ../sass/style.scss */
+  /* line 9505, ../sass/style.scss */
   #main-content {
     margin-left: 40px;
     margin-right: 40px;
   }
 }
 @media screen and (max-width: 768px) {
-  /* line 9502, ../sass/style.scss */
+  /* line 9505, ../sass/style.scss */
   #main-content {
     margin-left: 20px;
     margin-right: 20px;
   }
 }
 @media screen and (max-width: 480px) {
-  /* line 9502, ../sass/style.scss */
+  /* line 9505, ../sass/style.scss */
   #main-content {
     margin-left: 10px;
     margin-right: 10px;
   }
 }
 
-/* line 9520, ../sass/style.scss */
+/* line 9523, ../sass/style.scss */
 #page {
   margin-left: 0;
   -moz-transition: all .3s ease-in-out;

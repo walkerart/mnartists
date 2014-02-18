@@ -9318,7 +9318,10 @@ body.wysiwygeditor {
 
             &.active {
                 a {
-                    background: url('../images/mna-circle-filled.svg') no-repeat 10px center transparent;
+                    &:first-child {
+                        background: url('../images/mna-circle-filled.svg') no-repeat 10px center transparent;
+                    }
+
                 }
             }
         }
