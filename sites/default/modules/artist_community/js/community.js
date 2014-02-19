@@ -29,7 +29,7 @@
 
         // ** main content area (search results)
         var contentContainer = $('.content-all');
-        var columns = 3;
+        var columns = 4;
         var gutter = 20;
         var isotopeOptions = {
             // update columnWidth to a percentage of container width
