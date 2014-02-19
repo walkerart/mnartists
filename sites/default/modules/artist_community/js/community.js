@@ -42,6 +42,7 @@
                 $elems.each(function(e){
                     $(this).css({ zIndex: ($elems.length - e) });
                 });
+                $('.sort-thing').css({ zIndex: ($elems.length + 100)});// here and below, make sure sorter stays at the top of the heap
             },
         };
 
@@ -60,6 +61,7 @@
                 allItems.each(function(e){
                     $(this).css({ zIndex: (allItems.length - e) });
                 });
+                $('.sort-thing').css({ zIndex: (allItems.length + 100)})
             }
         });
 
