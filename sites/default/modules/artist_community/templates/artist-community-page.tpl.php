@@ -44,8 +44,7 @@
                         <?php
                                 $sort_terms = array(
                                     'alpha' => 'Alphabetical',
-                                    'created' => 'Date Created',
-                                    'added' => 'Date Added',
+                                    'date' => 'Date',
                                     'collected' => 'Most Collected'
                                     // @TODO could add event sorting class conditionally right here
                                 );

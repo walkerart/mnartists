@@ -767,6 +767,34 @@ function mnartist_profiles_entity_property_info_alter(&$info) {
         'getter callback' => 'mnartist_profiles_sort_by_name_callback',
     );
 
+
+    // creating a common date sort field between users and nodes
+    $info['user']['bundles']['user']['properties']['sort_by_date'] = array(
+        'type' => 'date',
+        'label' => t('Sort By Date'),
+        'sanitized' => TRUE,
+        'getter callback' => 'mnartist_profiles_sort_by_date_callback',
+    );
+    $info['node']['bundles']['artwork']['properties']['sort_by_date'] = array(
+        'type' => 'date',
+        'label' => t('Sort By Date'),
+        'sanitized' => TRUE,
+        'getter callback' => 'mnartist_profiles_sort_by_date_callback',
+    );
+    $info['node']['bundles']['article']['properties']['sort_by_date'] = array(
+        'type' => 'date',
+        'label' => t('Sort By Date'),
+        'sanitized' => TRUE,
+        'getter callback' => 'mnartist_profiles_sort_by_date_callback',
+    );
+    $info['node']['bundles']['event']['properties']['sort_by_date'] = array(
+        'type' => 'date',
+        'label' => t('Sort By Date'),
+        'sanitized' => TRUE,
+        'getter callback' => 'mnartist_profiles_sort_by_date_callback',
+    );
+
+
     // index flag counts for nodes
     // this (and the above) should move into the community module
     $info['node']['bundles']['artwork']['properties']['flags_count'] = array(
@@ -790,6 +818,29 @@ function mnartist_profiles_entity_property_info_alter(&$info) {
 }
 
 
+
+function mnartist_profiles_sort_by_date_callback($item) {
+
+    if (isset($item->type)) {
+        // if this is an event, try to use start date,
+        // otherwise date changed
+        if ($item->type === 'event') {
+            if (isset($item->field_date['und'])
+                && isset($item->field_date['und'][0]['value'])) {
+                return $item->field_date['und'][0]['value'];
+            } else {
+                return $item->changed;
+            }
+        // or if this is a non-event node, just use
+        // date changed
+        } else {
+            return $item->changed;
+        }
+    // and if it's a user, use date created
+    } else {
+        return $item->created;
+    }
+}
 
 function mnartist_profiles_profile2_search_getter_callback($item) {
     $return_terms = array();

@@ -40,6 +40,7 @@ define('AC_CATEGORY_FIELD', 'is_field_category');
 define('AC_ARTICLE_CATEGORY_FIELD', 'is_field_article_category');
 define('AC_GLOBAL_SEARCH_FIELD', 'tm_search_api_aggregation_1');
 define('AC_PROFILE_SEARCH_FIELD', 'tm_mnartist_profile2_search');
+define('AC_SORT_BY_DATE_FIELD', 'ds_sort_by_date');
 
 
 // config for solarium
@@ -879,7 +880,7 @@ function _artist_community_get_items_query ($local_og = null,
     // if we're filtered by events, sort by event start date
     // instead of date created
     if ($filtered_by_events_only) {
-        $solarium_query->addSort(AC_START_DATE_FIELD, $solarium_query::SORT_DESC);
+        $solarium_query->addSort(AC_SORT_BY_DATE_FIELD, $solarium_query::SORT_DESC);
 
         $solarium_query->setStart(null);
         $solarium_query->setRows(null);
@@ -908,10 +909,8 @@ function _artist_community_get_items_query ($local_og = null,
         if (!is_null($local_sort)) {
             if ($local_sort === 'alpha') {
                 $sort_key = 'ss_sort_by_name';
-            } else if ($local_sort === 'created') {
-                $sort_key = AC_CREATED_FIELD;
-            } else if ($local_sort === 'added') {
-                $sort_key = 'timestamp';// doesn't really match the text, what is this really?
+            } else if ($local_sort === 'date') {
+                $sort_key = AC_SORT_BY_DATE_FIELD;
             } else if ($local_sort === 'collected') {
                 $sort_key = 'is_flags_count';
             }
