@@ -7,7 +7,7 @@
         var allTopStoryLinks = articleThing.find('.the-list-of-articles-container ul li');
         var articleBlocks = articleThing.find('.article-detail');
         var startingArticle = $(articleBlocks[0]);
-        var pairedLink = articleThing.find('li[data-target-article=' + startingArticle.attr('id') + ']').parent();
+        var pairedLink = articleThing.find('li[data-target-article=' + startingArticle.attr('id') + ']');
 
         // attach click events for the list items
         allTopStoryLinks.hover(function (evt) {
@@ -29,7 +29,7 @@
 
         // ** main content area (search results)
         var contentContainer = $('.content-all');
-        var columns = 3;
+        var columns = 4;
         var gutter = 20;
         var isotopeOptions = {
             // update columnWidth to a percentage of container width
