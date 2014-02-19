@@ -7238,8 +7238,12 @@ li.collect-this, li.add-this {
                 h4 {
                     margin: 0; padding: 0;
                     text-transform:uppercase;
-                    font-size:11px;
+                    font-size:9px;
                     font-weight:normal;
+                    font-family: $sans_regular_font;
+                    letter-spacing:1px;
+                    line-height:12px;
+                    text-align:center;
                 }
                 p {
                     margin: 0; padding: 0;
@@ -7248,6 +7252,7 @@ li.collect-this, li.add-this {
                     text-decoration:none;
                     font-size:16px;
                     font-weight:bold;
+                    text-align:center;
                 }
                 a {
                     text-decoration: none;
@@ -7267,7 +7272,7 @@ li.collect-this, li.add-this {
                     position:relative;
                     color:$main_color;
 
-                    a {
+                    a, h4, p {
                         color:$main_color;
                     }
 
