@@ -7023,7 +7023,7 @@ li.collect-this, li.add-this {
         padding:0px;
 
         li:hover {
-            background:#000;
+            background:$mystuff_bg_dark;
 
             .star-icon {
                 -webkit-filter: invert(100%);
@@ -7035,7 +7035,7 @@ li.collect-this, li.add-this {
                 padding:5px!important;
             }
             ul {
-                padding:10px;
+
 
                 li {
 
@@ -7046,6 +7046,11 @@ li.collect-this, li.add-this {
                     }
                     a:hover {
                         opacity:1;
+                        background:none;
+                    }
+
+                    &:hover {
+                        $mystuff_bg_dark
                     }
                 }
             }
