@@ -584,11 +584,19 @@ p.site-description {
   border-bottom: 1px solid #3f3f3f;
   border-top: 1px solid #3f3f3f;
 }
-/* line 450, ../sass/menu.scss */
+/* line 447, ../sass/menu.scss */
+.my-stuff #menu ul li.last {
+  border-bottom: 1px solid #3f3f3f;
+}
+/* line 451, ../sass/menu.scss */
+.my-stuff #menu ul.my-stuff-menu {
+  margin-bottom: 10px;
+}
+/* line 453, ../sass/menu.scss */
 .my-stuff #menu ul.my-stuff-menu li.last {
   position: relative;
 }
-/* line 458, ../sass/menu.scss */
+/* line 464, ../sass/menu.scss */
 .my-stuff #menu ul.my-stuff-menu li a.user-edit {
   position: absolute;
   right: 0;
@@ -605,40 +613,40 @@ p.site-description {
   text-indent: 100%;
   white-space: nowrap;
 }
-/* line 473, ../sass/menu.scss */
+/* line 479, ../sass/menu.scss */
 .my-stuff #menu ul.my-stuff-menu li a.user-edit.active {
   background: url("../images/icon-pencil-white.svg") no-repeat left center transparent;
   opacity: .6;
 }
-/* line 479, ../sass/menu.scss */
+/* line 485, ../sass/menu.scss */
 .my-stuff #menu ul.my-stuff-menu li a.user-edit:hover {
   opacity: .6;
 }
-/* line 482, ../sass/menu.scss */
+/* line 488, ../sass/menu.scss */
 .my-stuff #menu ul.my-stuff-menu li a.active {
   background: #3f3f3f;
 }
-/* line 485, ../sass/menu.scss */
+/* line 491, ../sass/menu.scss */
 .my-stuff #menu ul.my-stuff-menu li li.last {
   padding-top: 0;
 }
-/* line 487, ../sass/menu.scss */
+/* line 493, ../sass/menu.scss */
 .my-stuff #menu ul.my-stuff-menu li li.last a {
   border: none;
   margin-bottom: 0;
 }
-/* line 495, ../sass/menu.scss */
+/* line 501, ../sass/menu.scss */
 .my-stuff #menu ul.my-stuff-edit-menu li {
   border: none;
   margin-bottom: 5px;
 }
-/* line 499, ../sass/menu.scss */
+/* line 505, ../sass/menu.scss */
 .my-stuff #menu ul.my-stuff-edit-menu li a {
   border: 1px solid #666;
   margin: 0 5px 5px 5px;
-  padding-left: 5px;
+  padding: 10px;
 }
-/* line 507, ../sass/menu.scss */
+/* line 513, ../sass/menu.scss */
 .my-stuff #menu:before {
   background: #323232;
   position: absolute;
@@ -652,13 +660,13 @@ p.site-description {
   content: "";
   z-index: -1;
 }
-/* line 522, ../sass/menu.scss */
+/* line 528, ../sass/menu.scss */
 .my-stuff .panel-pane .block-inner .block-content {
   background: #323232;
   color: #8f8f8f;
 }
 
-/* line 531, ../sass/menu.scss */
+/* line 537, ../sass/menu.scss */
 .nearme-filter {
   margin-bottom: 10px;
   box-sizing: border-box;
@@ -669,7 +677,7 @@ p.site-description {
   display: block;
   padding-top: 10px;
 }
-/* line 541, ../sass/menu.scss */
+/* line 547, ../sass/menu.scss */
 .nearme-filter label {
   display: block;
   width: 40%;
@@ -685,7 +693,7 @@ p.site-description {
   color: #222;
   padding-left: 0;
 }
-/* line 555, ../sass/menu.scss */
+/* line 561, ../sass/menu.scss */
 .nearme-filter input[type="search"] {
   display: block;
   width: 60%;
@@ -697,12 +705,12 @@ p.site-description {
   padding-right: 17px;
 }
 
-/* line 566, ../sass/menu.scss */
+/* line 572, ../sass/menu.scss */
 body {
   overflow: hidden;
 }
 @media screen and (max-width: 480px) {
-  /* line 573, ../sass/menu.scss */
+  /* line 579, ../sass/menu.scss */
   body.sidebar-show #page {
     margin-left: 200px;
     min-width: 300px;
@@ -710,7 +718,7 @@ body {
     -webkit-transition: all .3s ease-in-out;
     transition: all .3s ease-in-out;
   }
-  /* line 580, ../sass/menu.scss */
+  /* line 586, ../sass/menu.scss */
   body.sidebar-show #menu {
     display: block;
     width: 200px;
@@ -719,18 +727,18 @@ body {
     -webkit-transition: all .3s ease-in-out;
     transition: all .3s ease-in-out;
   }
-  /* line 585, ../sass/menu.scss */
+  /* line 591, ../sass/menu.scss */
   body.sidebar-show #menu .menu-content {
     display: block;
   }
 }
 
-/* line 596, ../sass/menu.scss */
+/* line 602, ../sass/menu.scss */
 .sidebar-button {
   display: none;
 }
 @media screen and (max-width: 480px) {
-  /* line 596, ../sass/menu.scss */
+  /* line 602, ../sass/menu.scss */
   .sidebar-button {
     display: block;
     display: block;
@@ -741,24 +749,24 @@ body {
   }
 }
 
-/* line 609, ../sass/menu.scss */
+/* line 615, ../sass/menu.scss */
 ::-webkit-input-placeholder {
   color: #888;
 }
 
-/* line 613, ../sass/menu.scss */
+/* line 619, ../sass/menu.scss */
 :-moz-placeholder {
   /* Firefox 18- */
   color: #888;
 }
 
-/* line 617, ../sass/menu.scss */
+/* line 623, ../sass/menu.scss */
 ::-moz-placeholder {
   /* Firefox 19+ */
   color: #888;
 }
 
-/* line 621, ../sass/menu.scss */
+/* line 627, ../sass/menu.scss */
 :-ms-input-placeholder {
   color: #888;
 }

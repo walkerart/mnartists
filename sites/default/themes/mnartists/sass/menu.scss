@@ -444,9 +444,12 @@ p.site-description {
 				border-bottom: 1px solid $mystuff_bg_light;
 				border-top: 1px solid $mystuff_bg_light;
 			}
+			li.last {
+				border-bottom: 1px solid $mystuff_bg_light;
+			}
 		}
 		ul.my-stuff-menu {
-
+			margin-bottom:10px;
 			li.last {
 				position:relative;
 
@@ -455,6 +458,9 @@ p.site-description {
 				}
 			}
 			li {
+				a {
+
+				}
 				a.user-edit {
 					position:absolute;
 					right: 0;
@@ -499,7 +505,7 @@ p.site-description {
 				a {
 					border:1px solid #666;
 					margin:0 5px 5px 5px;
-					padding-left:5px;
+					padding:10px;
 				}
 			}
 		}
