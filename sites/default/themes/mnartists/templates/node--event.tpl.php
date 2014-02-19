@@ -139,7 +139,7 @@ if (isset($node->field_date['und'])) {
         <p class="item-info-title"><a href="<?= $node_url ?>"><?php print $node->title; ?></a></p>
         <?php if (!isset($_GET['event_date'])) { ?><p class="item-info-date"><?= $date_string ?></p><?php } ?>
         <p class="item-info-excerpt">
-            <?= $text_excerpt ?> <a href="<?= $node_url ?>">&gt;</a>
+            <?= $text_excerpt ?> <a href="<?= $node_url ?>" class="item-more-button-link-indicator">&gt;</a>
         </p>
         <div class="item-info-flag pane-mnartist-collections-mna-collections-star"><?= theme("mnartist_collections_star", array('node_id' => $node->nid)) ?></div>
     </div>
