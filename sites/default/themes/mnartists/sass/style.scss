@@ -6897,7 +6897,7 @@ body {
                 li {
                     padding:0 10px;
                     hr {
-                        margin:0;
+                        margin:0!important;
                     }
                     a {
                         padding:5px 0;
@@ -6977,12 +6977,18 @@ body {
                 -webkit-filter: invert(100%);
             }
             li {
-                background:$mystuff_bg_light;
+
                 a:hover {
 
                 }
 
             }
+        }
+        li:hover li {
+            background:none;
+        }
+        li li:hover {
+            background:$mystuff_bg_light;
         }
         li.share-this:first-child:hover, li.collect-this:hover {
             background:none;
