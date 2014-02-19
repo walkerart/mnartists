@@ -9681,3 +9681,17 @@ body.wysiwygeditor {
         background:url('../images/icon-more-chevron.png') no-repeat center bottom transparent;
     }
 }
+
+
+
+// getting rid of required collage
+#field-media-add-more-wrapper {
+    tbody {
+        .form-required {
+            display:none;
+        }
+        tr {
+            border-bottom:10px solid $main_bg;
+        }
+    }
+}
