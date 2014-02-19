@@ -68,94 +68,104 @@
             <div class="sort-thing-current-sort" id="sort-thing-opener">A&#8594;Z</div>
         </div>
 
-        <?php if (!empty($articles)) { ?>
-            <div class="article-thing widget">
-                <h3>Top Stories</h3>
-                <?php foreach($articles as $article) { ?>
-                    <div class="article-detail" id="article-detail-<?= $article->nid ?>" style="display: none;">
-                        <img src="<?= $article->image_uri ?>">
-                        <div class="article-content">
-                            <div class="article-detail-byline">by <?= $article->author ?></div>
-                            <div class="article-detail-flag pane-mnartist-collections-mna-collections-star"><?= theme("mnartist_collections_star", array('node_id' => $article->nid)) ?></div>
-                            <div class="article-detail-excerpt"><?= trim($article->excerpt) ?>&hellip;</div>
-                            <a class="article-detail-excerpt-more" href="/node/<?= $article->nid ?>">More &gt;</a>
-                            <div class="article-detail-photo-credit"><?= $article->photo_credit ?></div>
+        <?php if (!isset($_GET['global_search'])) { ?>
+            <?php if (!empty($articles)) { ?>
+                <div class="article-thing widget">
+                    <h3>Top Stories</h3>
+                    <?php foreach($articles as $article) { ?>
+                        <div class="article-detail" id="article-detail-<?= $article->nid ?>" style="display: none;">
+                            <img src="<?= $article->image_uri ?>">
+                            <div class="article-content">
+                                <div class="article-detail-byline">by <?= $article->author ?></div>
+                                <div class="article-detail-flag pane-mnartist-collections-mna-collections-star"><?= theme("mnartist_collections_star", array('node_id' => $article->nid)) ?></div>
+                                <div class="article-detail-excerpt"><?= trim($article->excerpt) ?>&hellip;</div>
+                                <a class="article-detail-excerpt-more" href="/node/<?= $article->nid ?>">More &gt;</a>
+                                <div class="article-detail-photo-credit"><?= $article->photo_credit ?></div>
+                            </div>
                         </div>
-                    </div>
-                <?php } ?>
+                    <?php } ?>
 
-                <div class="the-list-of-articles-container">
+                    <div class="the-list-of-articles-container">
+                        <ul>
+                            <?php foreach($articles as $article) { ?>
+                                <li class="<?= strtolower($article->category) ?>" data-target-article="article-detail-<?= $article->nid ?>">
+                                    <h4><?= $article->category ?></h4>
+                                    <p><?= $article->title ?></p>
+                                </li>
+                            <?php } ?>
+                        </ul>
+                    </div>
+                </div>
+            <?php }
+        } ?>
+    </div>
+    <?php if (!isset($_GET['global_search'])) { ?>
+        <div class="panel-panel panel-col-last sidebar-right">
+            <?php if(!is_null($all_event_results)) { ?>
+                <div class="widget-standard widget">
+                    <a href="/node/add/event">Create an event</a>
+                </div>
+            <?php } ?>
+            <?php if (!empty($latest_users)) { ?>
+                <div class="user-thing widget-standard widget">
+                    <h3>Newest Artists</h3>
+                    <div class="widget-content">
                     <ul>
-                        <?php foreach($articles as $article) { ?>
-                            <li class="<?= strtolower($article->category) ?>" data-target-article="article-detail-<?= $article->nid ?>">
-                                <h4><?= $article->category ?></h4>
-                                <p><?= $article->title ?></p>
+                        <?php foreach($latest_users as $context_user) { ?>
+                            <li>
+                                <a href="/user/<?= $context_user->uid ?>">
+                                    <img src="<?= $context_user->image_uri ?>" width="68" height="68">
+                                    <div class="user-thing-labels">
+                                        <div class="user-thing-name"><?= $context_user->full_name ?></div>
+                                        <div class="user-thing-roles"><?= implode(', ', mnartist_profiles_get_artwork_roles_for_user($context_user->uid)) ?></div>
+                                    </div>
+                                </a>
                             </li>
                         <?php } ?>
+                        <li class="user-thing-more"><a href="/community?content[0]=artists<?php if ($og_get_string != '') { echo "&$og_get_string"; } ?>" style="font-size: 4em;">&#709;</a></li>
                     </ul>
-                </div>
-            </div>
-        <?php } ?>
-    </div>
-    <div class="panel-panel panel-col-last sidebar-right">
-        <?php if(!is_null($all_event_results)) { ?>
-            <div class="widget-standard widget">
-                <a href="/node/add/event">Create an event</a>
-            </div>
-        <?php } ?>
-        <?php if (!empty($latest_users)) { ?>
-            <div class="user-thing widget-standard widget">
-                <h3>Newest Artists</h3>
-                <div class="widget-content">
-                <ul>
-                    <?php foreach($latest_users as $context_user) { ?>
-                        <li>
-                            <a href="/user/<?= $context_user->uid ?>">
-                                <img src="<?= $context_user->image_uri ?>" width="68" height="68">
-                                <div class="user-thing-labels">
-                                    <div class="user-thing-name"><?= $context_user->full_name ?></div>
-                                    <div class="user-thing-roles"><?= implode(', ', mnartist_profiles_get_artwork_roles_for_user($context_user->uid)) ?></div>
-                                </div>
-                            </a>
-                        </li>
-                    <?php } ?>
-                    <li class="user-thing-more"><a href="/community?content[0]=artists<?php if ($og_get_string != '') { echo "&$og_get_string"; } ?>" style="font-size: 4em;">&#709;</a></li>
-                </ul>
-                </div>
-            </div>
-        <?php } ?>
-
-        <?php
-        $block = module_invoke('mnartist_twitter', 'block_view', 'mna_twitter_create');
-        if ($block['content'] !== false) { ?>
-            <div class="twitter-thing widget widget-reverse">
-                <h3>Tweets &amp; Posts</h3>
-                <?= render($block['content']) ?>
-            </div>
-        <?php } ?>
-
-        <?php if (!empty($events)) { ?>
-            <div class="event-thing widget-standard widget">
-                <h3>This Week</h3>
-                <div class="widget-content">
-                    <div class="event-thing-event-block event-thing-event-block-hero">
-                        <a href="/node/<?= $events['hero']->nid ?>">
-                            <img src="<?= $events['hero']->image_uri ?>">
-                            <div class="event-thing-event-title"><?= $events['hero']->title ?></div>
-                        </a>
                     </div>
-                    <?php foreach ($events['others'] as $event) { ?>
-                        <div class="event-thing-event-block">
-                            <a href="/node/<?= $event->nid ?>">
-                                <div class="event-thing-event-title"><?= $event->title ?></div>
+                </div>
+            <?php } ?>
+
+            <?php
+            $block = module_invoke('mnartist_twitter', 'block_view', 'mna_twitter_create');
+            if ($block['content'] !== false) { ?>
+                <div class="twitter-thing widget widget-reverse">
+                    <h3>Tweets &amp; Posts</h3>
+                    <?= render($block['content']) ?>
+                </div>
+            <?php } ?>
+
+            <?php if (!empty($events)) { ?>
+                <div class="event-thing widget-standard widget">
+                    <h3>This Week</h3>
+                    <div class="widget-content">
+                        <div class="event-thing-event-block event-thing-event-block-hero">
+                            <a href="/node/<?= $events['hero']->nid ?>">
+                                <img src="<?= $events['hero']->image_uri ?>">
+                                <div class="event-thing-event-title"><?= $events['hero']->title ?></div>
                             </a>
                         </div>
-                    <?php } ?>
+                        <?php foreach ($events['others'] as $event) { ?>
+                            <div class="event-thing-event-block">
+                                <a href="/node/<?= $event->nid ?>">
+                                    <div class="event-thing-event-title"><?= $event->title ?></div>
+                                </a>
+                            </div>
+                        <?php } ?>
+                    </div>
                 </div>
-            </div>
-        <?php } ?>
-    </div>
+            <?php } ?>
+        </div>
+    <?php } ?>
     <div class="clear"></div>
+    <?php if (isset($_GET['global_search'])) { ?>
+        <h2>Search Results (<?= $total_num_results ?>)</h2>
+        <?php if ($total_num_results === 0) { ?>
+            <div>Your search returned no results.</div>
+        <?php } ?>
+    <? } ?>
     <div class="search-results content-all<?= (isset($_GET['content']['event'])) ? ' content-events' : '' ?>">
         <?php if(!is_null($all_event_results) && isset($_GET['event_date'])) { ?>
                 <div class="date-block">

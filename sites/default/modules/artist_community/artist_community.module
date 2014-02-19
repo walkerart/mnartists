@@ -350,6 +350,7 @@ function gid_by_tid($tid) {
     $result = db_select('field_data_field_medium', 'm')
         ->fields('m', array('entity_id'))
         ->condition('field_medium_tid', $tid)
+        ->condition('bundle', 'community')
         ->execute()
         ->fetchAssoc();
     return $result['entity_id'];
@@ -698,7 +699,8 @@ function artist_community_get_items () {
     $local_sort_direction = (isset($_GET['sort_direction'])) ? $_GET['sort_direction'] : null;
     $rendernodes = true;
 
-    echo implode('', _artist_community_get_items_query($local_og, $local_content, $offset, $limit, $rendernodes, $local_sort, $local_sort_direction));
+    $resultset = _artist_community_get_items_query($local_og, $local_content, $offset, $limit, $rendernodes, $local_sort, $local_sort_direction);
+    echo implode('', $resultset['results']);
     drupal_exit();
 }
 
@@ -1003,7 +1005,10 @@ function _artist_community_get_items_query ($local_og = null,
             }
         }
     }
-    return $all_results;
+    return array(
+        'results' => $all_results,
+        'total_num_results' => $resultset->getNumFound()
+    );
 }
 
 function _get_location_coords_from_search_string ($search_string) {

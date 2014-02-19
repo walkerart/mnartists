@@ -187,5 +187,10 @@ function artist_community_search_page() {
         }
     }
 
-    return theme('artist_community_page', array('content' => $all_community_results, 'articles' => $articles_data, 'events' => $events_data, 'latest_users' => $latest_users_data, 'all_event_results' => $all_event_results));
+    return theme('artist_community_page', array('content' => $all_community_results['results'],
+                                                'total_num_results' => $all_community_results['total_num_results'],
+                                                'articles' => $articles_data,
+                                                'events' => $events_data,
+                                                'latest_users' => $latest_users_data,
+                                                'all_event_results' => $all_event_results));
 }
