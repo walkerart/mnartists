@@ -16,7 +16,8 @@
 
 <?php
 global $user;
-
+// include the collections js
+ctools_add_js('collections', 'mnartist_collections');
 // get uncollected content
 $uncollected_result = mnartist_collections_get_uncollected_favorites($user->uid);
 

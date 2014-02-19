@@ -7,6 +7,7 @@ define('TWITTER_CONSUMER_SECRET', variable_get('mnartist_twitter_consumer_secret
 define('TWITTER_ACCESS_TOKEN', variable_get('mnartist_twitter_access_token'));
 define('TWITTER_TOKEN_SECRET', variable_get('mnartist_twitter_token_secret'));
 define('TWITTER_BLOCK_HIDE_THRESHOLD', 2);// number of tweets to display before we do the 'hide' thing
+define('TWITTER_BLOCK_MAX_POSTS', 8);
 
 /**
  * @file
@@ -235,7 +236,7 @@ function _mnartist_twitter_block()
 	$output = "";
     if (count($tweets) > TWITTER_BLOCK_HIDE_THRESHOLD) {
         $visible_tweets = array_slice($tweets, 0, TWITTER_BLOCK_HIDE_THRESHOLD, true);
-        $hidden_tweets = array_slice($tweets, (TWITTER_BLOCK_HIDE_THRESHOLD + 1), null, true);
+        $hidden_tweets = array_slice($tweets, (TWITTER_BLOCK_HIDE_THRESHOLD + 1), (TWITTER_BLOCK_MAX_POSTS - TWITTER_BLOCK_HIDE_THRESHOLD), true);
         $output .= theme('tweets_block', array('tweets' => $visible_tweets, 'list_class' => 'twitter-thing-visible', 'show_more_link' => true));
         $output .= theme('tweets_block', array('tweets' => $hidden_tweets, 'list_class' => 'twitter-thing-hidden', 'show_more_link' => false));
     } else {

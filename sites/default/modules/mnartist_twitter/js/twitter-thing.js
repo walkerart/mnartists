@@ -12,7 +12,7 @@
         $('#twitter-more-link').find('a').click(function (evt) {
             $(this).closest('.twitter-thing').addClass('expanded');
             $(this).parent().remove();
-            hiddenTweetBlock.show();
+            hiddenTweetBlock.slideDown(1000);
         });
 
     });
