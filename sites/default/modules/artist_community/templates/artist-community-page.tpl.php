@@ -1,31 +1,3 @@
-<script>
-(function($) {
-    $(function () {
-        // setup, grab the relevant elements
-        var articleThing = $('.article-thing');
-        var allTopStoryLinks = articleThing.find('.the-list-of-articles-container ul li a');
-        var articleBlocks = articleThing.find('.article-detail');
-        var startingArticle = $(articleBlocks[0]);
-        var pairedLink = articleThing.find('a[href=#' + startingArticle.attr('id') + ']').parent();
-
-        // attach click events for the list items
-        allTopStoryLinks.click(function (evt) {
-            evt.preventDefault();
-            var targetElId = evt.currentTarget.href.split('#')[1];
-            var articleBlocks = $('.article-thing').find('.article-detail');
-            var articleListEls = $('.article-thing').find('.the-list-of-articles-container ul li');
-            articleListEls.removeClass('active');
-            $(evt.currentTarget).parent().addClass('active');
-            articleBlocks.hide();
-            $('#' + targetElId).show();
-        });
-
-        // show/make active the first item
-        startingArticle.show();
-        pairedLink.addClass('active');
-    });
-}(jQuery));
-</script>
 <?php
     // if there are any, get og params from url to
     // preserve them in links below
@@ -115,11 +87,9 @@
                 <div class="the-list-of-articles-container">
                     <ul>
                         <?php foreach($articles as $article) { ?>
-                            <li>
-                                <a href="#article-detail-<?= $article->nid ?>">
-                                    <h4><?= $article->category ?></h4>
-                                    <p><?= $article->title ?></p>
-                                </a>
+                            <li class="<?= strtolower($article->category) ?>" data-target-article="article-detail-<?= $article->nid ?>">
+                                <h4><?= $article->category ?></h4>
+                                <p><?= $article->title ?></p>
                             </li>
                         <?php } ?>
                     </ul>

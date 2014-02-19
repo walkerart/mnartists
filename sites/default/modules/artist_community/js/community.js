@@ -1,6 +1,33 @@
 (function($) {
     $(document).ready(function() {
 
+        // ** top articles
+        // setup, grab the relevant elements
+        var articleThing = $('.article-thing');
+        var allTopStoryLinks = articleThing.find('.the-list-of-articles-container ul li');
+        var articleBlocks = articleThing.find('.article-detail');
+        var startingArticle = $(articleBlocks[0]);
+        var pairedLink = articleThing.find('li[data-target-article=' + startingArticle.attr('id') + ']').parent();
+
+        // attach click events for the list items
+        allTopStoryLinks.hover(function (evt) {
+            evt.preventDefault();
+            var currentTarget = $(evt.currentTarget);
+            var targetElId = currentTarget.attr('data-target-article');
+            var articleBlocks = $('.article-thing').find('.article-detail');
+            var articleListEls = $('.article-thing').find('.the-list-of-articles-container ul li');
+            articleListEls.removeClass('active');
+            currentTarget.addClass('active');
+            articleBlocks.hide();
+            $('#' + targetElId).show();
+        });
+
+        // show/make active the first item
+        startingArticle.show();
+        pairedLink.addClass('active');
+
+
+        // ** main content area (search results)
         var contentContainer = $('.content-all');
         var columns = 3;
         var gutter = 20;
