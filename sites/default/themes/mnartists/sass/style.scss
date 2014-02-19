@@ -6871,7 +6871,9 @@ body {
 // collection star
 .pane-mnartist-collections-mna-collections-star,
 .user-feed-message-star {
-
+    hr {
+        margin:0!important;
+    }
     ul.menu {
         margin:0;
         padding:0 !important;
@@ -6896,9 +6898,7 @@ body {
 
                 li {
                     padding:0 10px;
-                    hr {
-                        margin:0!important;
-                    }
+
                     a {
                         padding:5px 0;
                     }
@@ -6925,6 +6925,11 @@ body {
                     a {
                         padding:5px 0 5px 15px;
                     }
+                    &:first-child {
+                        &:hover {
+                            background:none!important;
+                        }
+                    }
                 }
                 li.add-this.last {
                     a {
@@ -6936,6 +6941,11 @@ body {
 
                     a {
                         padding:5px 0 5px 15px;
+                    }
+                    &:first-child {
+                        &:hover {
+                            background:none!important;
+                        }
                     }
                 }
                 li.flag-this {
