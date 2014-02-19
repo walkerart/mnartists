@@ -518,6 +518,14 @@ function _mnartist_profile_my_stuff() {
         $account = user_load($user->uid);
         $flagLists = flag_lists_get_user_flags(NULL, $account);
         $flags = array();
+        $flags[] = l('Start A New Collection',
+                    "flag-lists/add/artwork",
+                    array(
+                        'query' => array(
+                            'destination' => "user/{$user->uid}/flags/lists"// @TODO this would be even better if it could also take you to the specific list you just created
+                        )
+                    )
+                );
         foreach($flagLists as $flag) {
             $flags[] = l($flag->title, "user/{$user->uid}/flags/lists/{$flag->fid}");
         }
