@@ -6381,10 +6381,18 @@ tr.even, tr.odd {
             font-family: $sans_regular_font;
         }
 
-        .form-type-checkbox {
+    }
+}
+.form-type-checkboxes {
+    label {
+        font-family: $sans_bold_font;
+    }
+    .form-type-checkbox {
+        clear:both;
 
+        label {
+            font-family: $sans_regular_font;
         }
-
     }
 }
 
