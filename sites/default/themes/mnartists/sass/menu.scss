@@ -78,10 +78,11 @@
 			a {
 				display:block;
 				margin:0 10px;
-				padding:8px 13px 8px 20px;
+				padding:10px 13px 10px 20px;
 				line-height:1em;
 				text-transform:uppercase;
-				font-size:12px;
+				font-size:11px;
+				letter-spacing:1px;
 				color:#666;
 				background: url('../images/mna-circle-hollow.svg') no-repeat left center transparent;
 				background-size: 10px auto;
@@ -325,10 +326,7 @@ p.site-description {
 .menu-content {
 	display:block;
 }
-.menu-trigger {
-	display: none;
-	position:relative;
-}
+
 /* */
 
 
@@ -402,7 +400,6 @@ p.site-description {
 				a {
 					color:#e3e3e3;
 					background:none;
-					padding:8px 13px 8px 8px;
 					margin:0;
 
 				}
@@ -413,20 +410,18 @@ p.site-description {
 					padding-bottom:10px;
 					padding-top:5px;
 
-
-
 					ul {
 						background:#4d4d4d;
 
 						li {
 							padding:0 0 0 0;
-
+							border-bottom: 1px solid $mystuff_bg_light;
 
 							a {
 								color:#ccc;
 								padding:5px 0;
 								margin:0 10px;
-								border-bottom:1px solid #404040;
+
 							}
 							a.active {
 								color:#fff;
@@ -591,7 +586,7 @@ body {
 				display:block;
 				width:200px;
 				background:#e5e5e5;
-				.menu-trigger { display:none; }
+
 				.menu-content {
 					display:block;
 				}

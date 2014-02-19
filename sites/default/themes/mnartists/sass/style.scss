@@ -5344,6 +5344,11 @@ only screen and (min-device-pixel-ratio: 1.5) {
                 color:$divider_color;
             }
         }
+        .node-title {
+            a {
+                text-decoration:none;
+            }
+        }
     }
 }
 
@@ -5383,9 +5388,12 @@ only screen and (min-device-pixel-ratio: 1.5) {
                             }
                         }
                         .node-content {
+                            .field-name-field-email {
 
-                            .field-name-field-address {
-                                h2 {
+                            }
+                            .field-name-field-address,
+                            .field-name-field-email {
+                                h2, label {
                                     color:$lightgray;
                                     font-weight:normal;
                                     font-size:14px;
