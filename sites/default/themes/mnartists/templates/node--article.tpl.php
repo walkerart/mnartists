@@ -121,6 +121,6 @@ if (isset($node->body['und'])) {
     </header>
   <?php endif; ?>
   <div<?php print $content_attributes; ?>>
-    <?= $text_excerpt ?> <a href="/node/<?= $node_url ?>">&gt;</a>
+    <?= $text_excerpt ?> <a href="<?= $node_url ?>" class="item-more-button-link-indicator">&gt;</a>
   </div>
 </article>
