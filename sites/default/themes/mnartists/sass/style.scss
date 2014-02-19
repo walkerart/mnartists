@@ -7238,6 +7238,7 @@ li.collect-this, li.add-this {
                 h4 {
                     margin: 0; padding: 0;
                     text-transform:uppercase;
+                    font-size:11px;
                 }
                 p {
                     margin: 0; padding: 0;
@@ -9657,3 +9658,12 @@ body.wysiwygeditor {
     display: block !important;// booooooo!
 }
 
+
+.item-more-button-link-indicator {
+    display:inline-block;
+    oveflow:hidden;
+    max-width:15px;
+    min-width:10px;
+    background:url('../images/icon-more-chevron.png') no-repeat center center transparent;
+    text-indent:20px;
+}
