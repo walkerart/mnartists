@@ -408,15 +408,17 @@ p.site-description {
 					background:#4d4d4d;
 					margin-left:0;
 					margin-right:0;
-					padding-bottom:10px;
-					padding-top:5px;
+					padding:0;
 
 					ul {
 						background:#4d4d4d;
+						margin:0;
+						padding:0;
 
 						li {
 							padding:0 0 0 0;
 							border-bottom: 1px solid $mystuff_bg_light;
+							margin:0 0 0 0;
 
 							a {
 								color:#ccc;
@@ -429,6 +431,9 @@ p.site-description {
 							&.last {
 								border-bottom:none;
 								margin-bottom:0;
+							}
+							&:last-child {
+								border-bottom:none;
 							}
 						}
 
@@ -443,10 +448,7 @@ p.site-description {
 		ul.my-stuff-menu {
 
 			li.last {
-
-				margin-bottom:20px !important;
 				position:relative;
-				border-bottom: 1px solid $mystuff_bg_light !important;
 
 				a {
 
