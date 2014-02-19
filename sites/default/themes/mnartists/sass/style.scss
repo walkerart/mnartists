@@ -6885,7 +6885,7 @@ body {
                 font-size:12px;
             }
             ul {
-                padding:10px;
+                padding:10px 0;
                 margin:0;
                 width:200px;
                 box-sizing:border-box;
@@ -6895,7 +6895,7 @@ body {
                 }
 
                 li {
-
+                    padding:0 10px;
                     a {
                         padding:5px 0;
                     }
@@ -6969,15 +6969,18 @@ body {
             }
         }
         li:hover {
-            background:$mystuff_bg_dark;
+            background:$mystuff_bg_light;
             .star-icon {
                 -webkit-filter: invert(100%);
             }
             li {
                 a:hover {
-                    background:$mystuff_bg_light;
+
                 }
             }
+        }
+        li.share-this:first-child:hover, li.collect-this:hover {
+            background:none;
         }
 
         a.star-link {
