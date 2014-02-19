@@ -1188,8 +1188,9 @@ a.button {
   font-size: 12px;
   font-weight: normal;
   letter-spacing: 0;
+  -webkit-font-smoothing: subpixel-antialiased;
 }
-/* line 1709, ../sass/global.styles.scss */
+/* line 1710, ../sass/global.styles.scss */
 a.button:hover {
   background: #222;
   color: #fff;
@@ -1198,7 +1199,7 @@ a.button:hover {
 /*
  * Password confirmation
  */
-/* line 1720, ../sass/global.styles.scss */
+/* line 1721, ../sass/global.styles.scss */
 .password-parent,
 .confirm-parent {
   margin: 0;
@@ -1207,18 +1208,18 @@ a.button:hover {
 /* =============================================================================
  *   Tables
  * ========================================================================== */
-/* line 1729, ../sass/global.styles.scss */
+/* line 1730, ../sass/global.styles.scss */
 table {
   margin: 10px 0;
   padding: 0;
   width: 100%;
 }
-/* line 1734, ../sass/global.styles.scss */
+/* line 1735, ../sass/global.styles.scss */
 table.sticky-header {
   z-index: 10;
 }
 
-/* line 1745, ../sass/global.styles.scss */
+/* line 1746, ../sass/global.styles.scss */
 table,
 thead,
 tbody,
@@ -1228,26 +1229,26 @@ td {
   border-color: #cccccc;
 }
 
-/* line 1752, ../sass/global.styles.scss */
+/* line 1753, ../sass/global.styles.scss */
 table,
 td,
 th {
   vertical-align: middle;
 }
 
-/* line 1759, ../sass/global.styles.scss */
+/* line 1760, ../sass/global.styles.scss */
 caption,
 th,
 td {
   text-align: left;
 }
 
-/* line 1764, ../sass/global.styles.scss */
+/* line 1765, ../sass/global.styles.scss */
 thead tr {
   background-color: #e5e5e5;
 }
 
-/* line 1770, ../sass/global.styles.scss */
+/* line 1771, ../sass/global.styles.scss */
 td,
 th {
   border-bottom: 0;
@@ -1255,24 +1256,24 @@ th {
   padding: 5px 7px;
 }
 
-/* line 1780, ../sass/global.styles.scss */
+/* line 1781, ../sass/global.styles.scss */
 tbody tr {
   border-top: 1px solid #cccccc;
 }
 
-/* line 1785, ../sass/global.styles.scss */
+/* line 1786, ../sass/global.styles.scss */
 tr {
   /* Table row striping */
 }
-/* line 1787, ../sass/global.styles.scss */
+/* line 1788, ../sass/global.styles.scss */
 tr.odd {
   background: white;
 }
-/* line 1794, ../sass/global.styles.scss */
+/* line 1795, ../sass/global.styles.scss */
 tr.info, tr.even, tr:nth-child(2n+2) {
   border-bottom: 0;
 }
-/* line 1803, ../sass/global.styles.scss */
+/* line 1804, ../sass/global.styles.scss */
 tr.odd td.active {
   background-color: #eeeeee;
 }
@@ -1281,7 +1282,7 @@ tr.odd td.active {
  * Forum tables
  * Core sets white-space to nowrap, which makes no sense
  */
-/* line 1835, ../sass/global.styles.scss */
+/* line 1836, ../sass/global.styles.scss */
 #forum td .created,
 #forum td .posts,
 #forum td .topics,
@@ -1294,12 +1295,12 @@ tr.odd td.active {
 /* =============================================================================
  *   Messages
  * ========================================================================== */
-/* line 1846, ../sass/global.styles.scss */
+/* line 1847, ../sass/global.styles.scss */
 div.messages {
   margin-bottom: 10px;
   margin-top: 10px;
 }
-/* line 1851, ../sass/global.styles.scss */
+/* line 1852, ../sass/global.styles.scss */
 div.messages ul {
   margin-top: 0;
   margin-bottom: 0;
@@ -1308,7 +1309,7 @@ div.messages ul {
 /*
  * Unpublished nodes
  */
-/* line 1892, ../sass/global.styles.scss */
+/* line 1893, ../sass/global.styles.scss */
 .node-unpublished p.unpublished,
 .comment-unpublished p.unpublished {
   color: pink;
@@ -1334,28 +1335,28 @@ div.messages ul {
 /* =============================================================================
  *    Maintenance pages
  * ========================================================================== */
-/* line 1903, ../sass/global.styles.scss */
+/* line 1904, ../sass/global.styles.scss */
 .maintenance-page .container {
   padding: 40px 0;
 }
-/* line 1908, ../sass/global.styles.scss */
+/* line 1909, ../sass/global.styles.scss */
 .maintenance-page #site-name,
 .maintenance-page #page-title {
   margin: 0;
 }
 
-/* line 1915, ../sass/global.styles.scss */
+/* line 1916, ../sass/global.styles.scss */
 .db-offline .container {
   margin: 0 auto;
   padding: 40px 0;
   width: 100%;
   max-width: 960px;
 }
-/* line 1922, ../sass/global.styles.scss */
+/* line 1923, ../sass/global.styles.scss */
 .db-offline div.messages {
   margin: 20px 0 0;
 }
-/* line 1926, ../sass/global.styles.scss */
+/* line 1927, ../sass/global.styles.scss */
 .db-offline #content {
   padding: 20px 0;
 }
@@ -1366,7 +1367,7 @@ div.messages ul {
 /*
  * Admin menu overrides
  */
-/* line 1939, ../sass/global.styles.scss */
+/* line 1940, ../sass/global.styles.scss */
 #admin-menu {
   margin: 0;
   padding: 0;
@@ -1375,7 +1376,7 @@ div.messages ul {
 /*
  * Devel Module
  */
-/* line 1948, ../sass/global.styles.scss */
+/* line 1949, ../sass/global.styles.scss */
 .dev-query {
   background: #eeeeee;
   padding: 30px;
@@ -1384,11 +1385,11 @@ div.messages ul {
 /*
  * Styleguide module tweaks
  */
-/* line 1957, ../sass/global.styles.scss */
+/* line 1958, ../sass/global.styles.scss */
 #styleguide-header {
   padding: 0 10px;
 }
-/* line 1960, ../sass/global.styles.scss */
+/* line 1961, ../sass/global.styles.scss */
 #styleguide-header .item-list {
   font-family: inherit;
   margin: 0 20px 20px 0;
