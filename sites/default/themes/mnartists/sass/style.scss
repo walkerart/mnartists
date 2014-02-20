@@ -835,7 +835,7 @@ h6 {
 }
 
 .label {
-    color: #a3a3a3;
+    color:$label_color;
     @include quiet_type;
 }
 
@@ -1770,7 +1770,7 @@ form {
     label {
         display: inline-block;
         padding: 1px 5px;
-        color: #a3a3a3;
+        color:$label_color;
         /*@include quiet_type;*/
     }
 
@@ -3780,7 +3780,7 @@ form {
 
         .label a {
             padding-left: 1px;
-            color: #a3a3a3;
+            color:$label_color;
         }
     }
 }
@@ -5396,7 +5396,7 @@ only screen and (min-device-pixel-ratio: 1.5) {
                             .field-name-field-address,
                             .field-name-field-email {
                                 h2, label {
-                                    color:$lightgray;
+                                    color:$label_color;
                                     font-weight:normal;
                                     font-size:14px;
                                     font-family: $sans_regular_font;
@@ -8304,6 +8304,8 @@ input {
             width:33%;
             float:left;
             min-width:none;
+            font-family: $sans_regular_font;
+            color:$label_color;
         }
         input {
             float:left;
