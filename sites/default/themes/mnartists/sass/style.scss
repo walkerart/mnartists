@@ -7961,6 +7961,17 @@ input {
 .form-item table thead label {
     padding-left:0!important;
 }
+// legends inside of form wrappers inside of fieldsets
+.form-wrapper {
+    legend {
+        .fieldset-legend {
+            font-family: $sans_bold_font;
+                font-weight:normal;
+                color:$divider_color;
+        }
+    }
+
+}
 
 // this is the image upload form (on the venue page for instance)
 .field-widget-image-image {
@@ -7972,7 +7983,7 @@ input {
             legend {
                 font-family: $sans_bold_font;
                 font-weight:normal;
-                color:$lightgray;
+                color:$divider_color;
             }
 
             table.sticky-table {
@@ -7993,6 +8004,9 @@ input {
 
                     tr {
 
+                        &.draggable {
+                            border-bottom:1px solid #ccc;
+                        }
                         &:first-child {
 
                         }
