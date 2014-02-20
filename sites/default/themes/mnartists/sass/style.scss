@@ -9772,7 +9772,6 @@ body.wysiwygeditor {
         box-sizing:border-box;
         text-align:center;
 
-
         #main-content {
             @include column(14);
             margin-right:auto!important;
@@ -9780,6 +9779,7 @@ body.wysiwygeditor {
             text-align:left;
             overflow:visible;
             float:none!important;
+            display:block;
             @media screen and (max-width: $break-mobile) {
                 @include column(24);
             }
