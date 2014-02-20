@@ -9768,32 +9768,20 @@ body.wysiwygeditor {
 .not-logged-in.page-user-password {
 
     #content-column {
-        overflow:hidden;
-        background: $main_bg;
-        padding:75px 100px;
-        margin:20px 0;
+        padding:20px 0;
         box-sizing:border-box;
-        @include column(14);
-        @include last;
-        margin-left:auto!important;
-        margin-right:auto!important;
-        display:block;float:none;
-        text-align:left;
+        overflow:hidden;
 
-        @media screen and (max-width: $break-desktop-small) {
+        @include column(14);
+        overflow:visible;
+        @media screen and (max-width: $break-mobile) {
             @include column(24);
-            @include last;
-            padding:40px 50px;
-            margin-left:20px!important;margin-right:20px!important;
         }
         @media screen and (max-width: $break-tablet) {
             @include column(24);
-            @include last;
-            padding:20px 20px;
-            margin-left:20px!important;margin-right:20px!important;
         }
-        @media screen and (max-width: $break-mobile) {
-            margin-left:10px!important;margin-right:10px!important;
+        @media screen and (max-width: $break-desktop-small) {
+            @include column(24);
         }
         #main-content {
 
