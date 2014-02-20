@@ -8018,42 +8018,44 @@ input {
 
                         }
 
-                        .image-widget-data {
 
-                            .file {
-                                img {
-                                    margin-right:10px;
-                                    margin-bottom:0;
-                                }
-                                a {
-
-                                }
-                            }
-                            .file-size {
-
-                            }
-                            input[type=submit] {
-                                margin-left:0!important;
-                            }
-                        }
-                        input {
-
-                            &[type=file] {
-                                margin-bottom:8px;
-                            }
-                            &[id$=remove-button] {
-                                border-radius:50%;
-                                text-overflow:hidden;
-                                height:21px;
-                                width:21px;
-                                background: url('../images/icon-form-edit.png') no-repeat center center transparent;
-                                text-indent:50px;
-                                white-space:nowrap;
-                                padding:0;
-                                border:none;outline:none;
-                            }
-                        }
                     }
+                }
+            }
+
+            .image-widget-data {
+
+                .file {
+                    img {
+                        margin-right:10px;
+                        margin-bottom:0;
+                    }
+                    a {
+
+                    }
+                }
+                .file-size {
+
+                }
+                input[type=submit] {
+                    margin-left:0!important;
+                }
+            }
+            input {
+
+                &[type=file] {
+                    margin-bottom:8px;
+                }
+                &[id$=remove-button] {
+                    border-radius:50%;
+                    text-overflow:hidden;
+                    height:21px;
+                    width:21px;
+                    background: url('../images/icon-form-edit.png') no-repeat center center transparent;
+                    text-indent:50px;
+                    white-space:nowrap;
+                    padding:0;
+                    border:none;outline:none;
                 }
             }
         }
