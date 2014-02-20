@@ -8182,7 +8182,8 @@ input {
         }
 
     }
-    &.form-type-password {
+    &.form-type-password,
+    &.form-item-field-tags-und {
         .description {
             margin-left:33%;
             clear:both;
@@ -8712,8 +8713,8 @@ input {
 }
 form {
     .description {
-        color:#999;
-        font-size:10px;
+        color:$label_color;
+        font-size:10px!important;
     }
 }
 .field-name-field-birthdate {
