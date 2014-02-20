@@ -7962,6 +7962,78 @@ input {
     padding-left:0!important;
 }
 
+// this is the image upload form (on the venue page for instance)
+.field-widget-image-image {
+
+    fieldset {
+
+        &.form-wrapper {
+
+            legend {
+                font-family: $sans_bold_font;
+                font-weight:normal;
+                color:$lightgray;
+            }
+
+            table.sticky-table {
+
+                thead {
+                    tr {
+                        border: none;
+                        border-bottom: 1px solid #ccc;
+                        background: none;
+                        th {
+                            border: none;
+                            box-sizing: border-box;
+                            padding: 5px 0;
+                        }
+                    }
+                }
+                tbody {
+
+                    tr {
+
+                        &:first-child {
+
+                        }
+                        &:nth-child(2) {
+
+                        }
+
+                        td {
+
+                        }
+
+                        .image-widget-data {
+
+                            .file {
+                                img {
+                                    margin-right:10px;
+                                }
+                                a {
+
+                                }
+                            }
+                            .file-size {
+
+                            }
+                            input {
+                                &.form-submit {
+                                    margin-left:0;
+                                }
+                                &[type=file] {
+                                    margin-bottom:8px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+}
+
 
 /* form things agian this will need to be organized heavily soon but
     doing some rapid testing work */
