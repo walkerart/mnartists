@@ -9770,23 +9770,25 @@ body.wysiwygeditor {
     #content-column {
         padding:20px 0;
         box-sizing:border-box;
-        overflow:hidden;
+        text-align:center;
 
-        @include column(14);
-        margin-right:auto!important;
-        margin-left:auto!important;
-        text-align:left;
-        overflow:visible;
-        @media screen and (max-width: $break-mobile) {
-            @include column(24);
-        }
-        @media screen and (max-width: $break-tablet) {
-            @include column(24);
-        }
-        @media screen and (max-width: $break-desktop-small) {
-            @include column(24);
-        }
+
         #main-content {
+            @include column(14);
+            margin-right:auto!important;
+            margin-left:auto!important;
+            text-align:left;
+            overflow:visible;
+            float:none!important;
+            @media screen and (max-width: $break-mobile) {
+                @include column(24);
+            }
+            @media screen and (max-width: $break-tablet) {
+                @include column(24);
+            }
+            @media screen and (max-width: $break-desktop-small) {
+                @include column(24);
+            }
 
             #main-content-header {
 
