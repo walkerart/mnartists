@@ -9772,7 +9772,9 @@ body.wysiwygeditor {
         box-sizing:border-box;
         overflow:hidden;
 
+
         @include column(14);
+        margin-right:0px!important;
         overflow:visible;
         @media screen and (max-width: $break-mobile) {
             @include column(24);
