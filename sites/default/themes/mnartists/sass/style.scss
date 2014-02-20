@@ -8033,12 +8033,24 @@ input {
 
                             }
                             input {
-                                &.form-submit {
-                                    margin-left:0!important;
-                                }
+
                                 &[type=file] {
                                     margin-bottom:8px;
                                 }
+                                &[id^=edit-field-images] {
+                                    border-radius:50%;
+                                    text-overflow:hidden;
+                                    height:21px;
+                                    width:21px;
+                                    background: url('../images/icon-form-edit.png') no-repeat center center transparent;
+                                    text-indent:50px;
+                                    white-space:nowrap;
+                                    padding:0;
+                                    border:none;outline:none;
+                                }
+                            }
+                            input.form-submit {
+                                margin-left:0!important;
                             }
                         }
                     }
