@@ -7879,6 +7879,61 @@ li.collect-this, li.add-this {
     clear: both;
 }
 
+// FORMS FORMS FORMS
+.form-item {
+    .button {
+        &.launcher {
+            border-radius:50%;
+            text-overflow:hidden;
+            height:21px;
+            width:21px;
+            background: url('../images/icon-form-add.png') no-repeat center center transparent;
+            text-indent:50px;
+            white-space:nowrap;
+            padding:0;
+        }
+        &.remove {
+            border-radius:50%;
+            text-overflow:hidden;
+            height:21px;
+            width:21px;
+            background: url('../images/icon-form-remove.png') no-repeat center center transparent;
+            text-indent:50px;
+            white-space:nowrap;
+            padding:0;
+        }
+    }
+}
+input {
+    &.field-add-more-submit {
+        &.form-submit {
+
+
+        }
+    }
+}
+
+/* media wrapper (when uploading an image on a from u see this) */
+.media-widget .preview .media-item .label-wrapper label {
+    color: $lightgray;
+}
+.media-item {
+    background: #FFFFFF;
+    border: 1px solid #CCCCCC;
+    padding: 5px;
+    width: 100px;
+
+    &:hover {
+        border:1px solid #999;
+    }
+}
+
+// hide more requireds
+.media-widget .form-required {
+    display:none;
+}
+
+
 /* form things agian this will need to be organized heavily soon but
     doing some rapid testing work */
 .form-item {
