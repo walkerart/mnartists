@@ -8911,8 +8911,6 @@ tr.even {
     form input[type=text],
     form textarea,
     form input[type=password] {
-        /*-moz-box-shadow: 0 0 1px 1px rgba(210,176,107,1);
-        -webkit-box-shadow: 0 0 1px 1px rgba(210,176,107,1);*/
         -moz-transition: all .3s ease-in-out;
         -webkit-transition: all .3s ease-in-out;
         transition: all .3s ease-in-out;
@@ -9770,20 +9768,32 @@ body.wysiwygeditor {
 .not-logged-in.page-user-password {
 
     #content-column {
-        padding:20px 0;
-        box-sizing:border-box;
         overflow:hidden;
-
+        background: $main_bg;
+        padding:75px 100px;
+        margin:20px 0;
+        box-sizing:border-box;
         @include column(14);
-        overflow:visible;
-        @media screen and (max-width: $break-mobile) {
+        @include last;
+        margin-left:auto!important;
+        margin-right:auto!important;
+        display:block;float:none;
+        text-align:left;
+
+        @media screen and (max-width: $break-desktop-small) {
             @include column(24);
+            @include last;
+            padding:40px 50px;
+            margin-left:20px!important;margin-right:20px!important;
         }
         @media screen and (max-width: $break-tablet) {
             @include column(24);
+            @include last;
+            padding:20px 20px;
+            margin-left:20px!important;margin-right:20px!important;
         }
-        @media screen and (max-width: $break-desktop-small) {
-            @include column(24);
+        @media screen and (max-width: $break-mobile) {
+            margin-left:10px!important;margin-right:10px!important;
         }
         #main-content {
 
