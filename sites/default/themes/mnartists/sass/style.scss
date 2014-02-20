@@ -8072,6 +8072,7 @@ input {
     doing some rapid testing work  here */
 .form-item {
     margin-bottom:8px;
+    color:$label_color;
 
     &.form-type-checkbox {
         margin-bottom:8px;
@@ -8080,6 +8081,12 @@ input {
         .icheckbox {
             float:left;
             margin-right:15px;
+
+            &.checked {
+                label {
+                    color:$main_color!important;
+                }
+            }
         }
         label {
 
