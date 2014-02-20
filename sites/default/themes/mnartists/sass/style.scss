@@ -9038,30 +9038,40 @@ form div.entityconnect-edit input {
 }
 .entityconnect-add {
     input {
-        width:16px!important;
+        border-radius:50%;
+        text-overflow:hidden;
+        height:21px;
+        width:21px;
+        background: url('../images/icon-form-add.png') no-repeat center center transparent!important;
+        text-indent:50px;
+        white-space:nowrap;
         padding:0;
+        border:none;outline:none;
         margin:0;
-        border:none;
-        background: url('../images/icon-small-add.png') no-repeat center center #fff !important;
         opacity:.8;
 
         &:hover {
-            background: url('../images/icon-small-add.png') no-repeat center center #fff !important;
+            background: url('../images/icon-form-add.png') no-repeat center center transparent !important;
             opacity:1;
         }
     }
 }
 div.entityconnect-edit {
     input {
-        width:16px!important;
+        border-radius:50%;
+        text-overflow:hidden;
+        height:21px;
+        width:21px;
+        background: url('../images/icon-form-edit.png') no-repeat center center transparent!important;
+        text-indent:50px;
+        white-space:nowrap;
         padding:0;
+        border:none;outline:none;
         margin:0;
-        border:none;
-        background: url('../images/icon-small-edit.png') no-repeat center center #fff !important;
         opacity:.8;
 
         &:hover {
-            background: url('../images/icon-small-edit.png') no-repeat center center #fff !important;
+            background: url('../images/icon-form-edit.png') no-repeat center center transparent !important;
             opacity:1;
         }
     }
