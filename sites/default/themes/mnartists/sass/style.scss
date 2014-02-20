@@ -6506,7 +6506,7 @@ form select.form-select:active {
 }
 
 .sticky-table tbody tr td:nth-child(2) {
-    padding-top:15px;
+    padding-top:6px;
 }
 
 
@@ -7882,6 +7882,7 @@ li.collect-this, li.add-this {
 // FORMS FORMS FORMS
 .form-item {
     .button {
+
         &.launcher {
             border-radius:50%;
             text-overflow:hidden;
@@ -7891,6 +7892,7 @@ li.collect-this, li.add-this {
             text-indent:50px;
             white-space:nowrap;
             padding:0;
+            border:none;outline:none;
         }
         &.remove {
             border-radius:50%;
@@ -7901,6 +7903,18 @@ li.collect-this, li.add-this {
             text-indent:50px;
             white-space:nowrap;
             padding:0;
+            border:none;outline:none;
+        }
+        &.edit {
+            border-radius:50%;
+            text-overflow:hidden;
+            height:21px;
+            width:21px;
+            background: url('../images/icon-form-edit.png') no-repeat center center transparent;
+            text-indent:50px;
+            white-space:nowrap;
+            padding:0;
+            border:none;outline:none;
         }
     }
 }
@@ -7931,6 +7945,13 @@ input {
 // hide more requireds
 .media-widget .form-required {
     display:none;
+}
+
+// draggable multiple separators
+.field-multiple-table {
+    tr.draggable {
+        border-bottom:10px solid $main_bg;
+    }
 }
 
 
