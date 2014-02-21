@@ -1065,3 +1065,12 @@ function _set_community_query_facets () {
     // cache_set('search_facets', $resultset->getFacetSet(), 'cache', REQUEST_TIME + (60*10));
 
 }
+
+
+// hook to add css to media iframe
+function artist_community_library_alter(&$libraries, $module) {
+    if ($module == 'media') {
+        $path = drupal_get_path('theme', 'mnartists');
+        $libraries['media_browser_page']['css'][$path . '/css/jquery-ui.css']['group'] = CSS_DEFAULT;
+    }
+}
