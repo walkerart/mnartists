@@ -6390,9 +6390,12 @@ tr.even, tr.odd {
     .form-type-checkbox {
         position:relative;
         clear:both;
+        margin-bottom: 8px;
+        overflow:hidden;
         .icheckbox {
             position:absolute;
             left:0;
+            margin:0;
         }
         label {
             font-family: $sans_regular_font;
