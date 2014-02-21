@@ -247,12 +247,19 @@ h5.profile-title {
 							width: 45%;
 							vertical-align:top;
 							font-family: $serif_font;
+							position:relative;
 
 							a {
 								font-size:18px;
 								display:block;
 								border-bottom:1px solid #999;
 								margin-bottom:10px;
+							}
+
+							.user-profile-slideshow-star {
+								position:absolute;
+								right: 0;
+								top: -10px;
 							}
 
 							.menu {
@@ -263,6 +270,11 @@ h5.profile-title {
 									border-bottom:none;
 								}
 
+							}
+							.views-field-title {
+								a {
+									padding-bottom:8px;
+								}
 							}
 						}
 						.right {

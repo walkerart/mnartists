@@ -384,8 +384,9 @@ h5.profile-title {
   width: 45%;
   vertical-align: top;
   font-family: "adobe-text-pro", "Times New Roman", Times, serif;
+  position: relative;
 }
-/* line 251, ../sass/user-profile.scss */
+/* line 252, ../sass/user-profile.scss */
 .pane-user-mnartist-profiles-artworks .block-inner .block-content dd .large-display .slide .left a {
   font-size: 18px;
   display: block;
@@ -393,26 +394,36 @@ h5.profile-title {
   margin-bottom: 10px;
 }
 /* line 259, ../sass/user-profile.scss */
+.pane-user-mnartist-profiles-artworks .block-inner .block-content dd .large-display .slide .left .user-profile-slideshow-star {
+  position: absolute;
+  right: 0;
+  top: -10px;
+}
+/* line 266, ../sass/user-profile.scss */
 .pane-user-mnartist-profiles-artworks .block-inner .block-content dd .large-display .slide .left .menu a {
   font-size: 12px;
   display: inline-block;
   margin: 0;
   border-bottom: none;
 }
-/* line 268, ../sass/user-profile.scss */
+/* line 275, ../sass/user-profile.scss */
+.pane-user-mnartist-profiles-artworks .block-inner .block-content dd .large-display .slide .left .views-field-title a {
+  padding-bottom: 8px;
+}
+/* line 280, ../sass/user-profile.scss */
 .pane-user-mnartist-profiles-artworks .block-inner .block-content dd .large-display .slide .right {
   float: right;
   width: 45%;
   vertical-align: top;
 }
-/* line 273, ../sass/user-profile.scss */
+/* line 285, ../sass/user-profile.scss */
 .pane-user-mnartist-profiles-artworks .block-inner .block-content dd .large-display .slide .right:after {
   content: "";
   display: block;
   float: none;
   clear: both;
 }
-/* line 280, ../sass/user-profile.scss */
+/* line 292, ../sass/user-profile.scss */
 .pane-user-mnartist-profiles-artworks .block-inner .block-content dd .large-display .slide:after {
   content: "";
   clear: both;
@@ -422,7 +433,7 @@ h5.profile-title {
 
 /* end artwork widgeet */
 /* artist bio stuff (in the tabs( */
-/* line 296, ../sass/user-profile.scss */
+/* line 308, ../sass/user-profile.scss */
 .profile-label {
   display: block;
   font-family: "Apercu Regular", Arial, Helvetica, sans-serif;
@@ -433,7 +444,7 @@ h5.profile-title {
   text-transform: uppercase;
 }
 
-/* line 301, ../sass/user-profile.scss */
+/* line 313, ../sass/user-profile.scss */
 .profile-city-state {
   font-family: "Apercu Regular", Arial, Helvetica, sans-serif;
   text-transform: uppercase;
