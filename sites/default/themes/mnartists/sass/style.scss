@@ -6845,7 +6845,7 @@ body {
 .user-feed-message-star,
 .user-profile-slideshow-star {
     hr {
-        margin:0!important;
+        margin:0 10px 5px 10px !important;
     }
     ul.menu {
         margin:0;
@@ -6968,7 +6968,7 @@ body {
             li {
 
                 a:hover {
-
+                    color:$divider_color;
                 }
 
             }
@@ -6977,7 +6977,10 @@ body {
             background:none;
         }
         li li:hover {
-            background:$mystuff_bg_light;
+            /*background:$mystuff_bg_light;*/
+        }
+        li li a:hover {
+
         }
         li.share-this:first-child:hover, li.collect-this:hover {
             background:none;
