@@ -6413,6 +6413,19 @@ tr.even, tr.odd {
     }
 }
 
+.form-type-textarea {
+    div[class$="-format"] {
+        display:none;
+    }
+}
+.logged-in.admin-menu {
+    .form-type-textarea {
+        div[class$="-format"] {
+            display:block;
+        }
+    }
+}
+
 .vertical-tabs {
 
     .vertical-tabs-panes {
