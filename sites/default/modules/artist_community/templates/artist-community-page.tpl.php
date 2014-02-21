@@ -36,33 +36,30 @@
                         $qs = preg_replace("/(&)?sort_direction=.*((?=&))?/u", '', $qs);
                         if (!empty($qs)) { $qs .= '&'; }
                     }
-                    // @TODO what are sort options for events?
                 ?>
-                <?php if(!is_null($all_event_results) && isset($_GET['event_date'])) { ?>
-                <?php } else { ?>
-                    <ul class="sort-thing-sort-options">
-                        <?php
-                                $sort_terms = array(
-                                    'alpha' => 'Alphabetical',
-                                    'date' => 'Date',
-                                    'collected' => 'Most Collected'
-                                    // @TODO could add event sorting class conditionally right here
-                                );
 
-                                foreach ($sort_terms as $sort_term => $sort_label) {
-                                    $class = '';
-                                    if (isset($_GET['sort']) && $_GET['sort'] === $sort_term) {
-                                        $class = "active";
-                                    }
-                                    $st_href = $qs.'sort='.$sort_term;
-                                    ?>
-                                    <li class="<?= $class ?>">
-                                        <a href="?<?= $st_href ?>&sort_direction=ASC"><?= $sort_label ?></a> <a href="?<?= $st_href ?>&sort_direction=DESC">&#8595;</a>
-                                    </li>
-                                <?php }
-                        ?>
-                    </ul>
-                <?php } ?>
+                <ul class="sort-thing-sort-options">
+                    <?php
+                        $sort_terms = array(
+                            'alpha' => 'Alphabetical',
+                            'date' => 'Date',
+                            'recent' => 'New/Recent',
+                            'collected' => 'Most Collected'
+                        );
+
+                        foreach ($sort_terms as $sort_term => $sort_label) {
+                            $class = '';
+                            if (isset($_GET['sort']) && $_GET['sort'] === $sort_term) {
+                                $class = "active";
+                            }
+                            $st_href = $qs.'sort='.$sort_term;
+                            ?>
+                            <li class="<?= $class ?>">
+                                <a href="?<?= $st_href ?>&sort_direction=ASC"><?= $sort_label ?></a> <a href="?<?= $st_href ?>&sort_direction=DESC">&#8595;</a>
+                            </li>
+                    <?php } ?>
+                </ul>
+
             </div>
             <div class="sort-thing-current-sort" id="sort-thing-opener">A&#8594;Z</div>
         </div>
