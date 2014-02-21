@@ -6291,7 +6291,12 @@ tr.even, tr.odd {
     }
 
 }
-
+.node-form-artwork {
+    .field-name-field-subject-concept-form {
+        oveflow:hidden;
+        margin-bottom:60px;
+    }
+}
 .node-form {
     font-size:13px;
 
@@ -6395,7 +6400,7 @@ tr.even, tr.odd {
         .icheckbox {
             position:absolute;
             left:0;
-            margin:0;
+            margin:0!important;
         }
         label {
             font-family: $sans_regular_font;
