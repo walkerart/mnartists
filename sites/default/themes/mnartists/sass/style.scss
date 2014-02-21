@@ -6392,23 +6392,24 @@ tr.even, tr.odd {
     label {
         font-family: $sans_regular_font;
     }
-    .form-type-checkbox {
-        position:relative;
-        clear:both;
-        margin-bottom: 8px!important;
-        overflow:hidden;
 
-        .icheckbox {
-            position:absolute;
-            left:0;
-            margin:0!important;
-            pointer-events:none;
-        }
-        label {
-            font-family: $sans_regular_font;
-            width:100%;
-            padding-left:30px;
-        }
+}
+.form-type-checkbox {
+    position:relative;
+    clear:both;
+    margin-bottom: 8px!important;
+    overflow:hidden;
+
+    .icheckbox {
+        position:absolute;
+        left:0;
+        margin:0!important;
+        pointer-events:none;
+    }
+    label {
+        font-family: $sans_regular_font;
+        width:100%;
+        padding-left:30px;
     }
 }
 
