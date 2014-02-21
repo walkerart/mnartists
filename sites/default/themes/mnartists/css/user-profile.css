@@ -244,9 +244,10 @@
   line-height: 12px;
   letter-spacing: 1px;
   text-transform: uppercase;
+  color: #888888;
 }
 
-/* line 120, ../sass/user-profile.scss */
+/* line 121, ../sass/user-profile.scss */
 h5.profile-title {
   text-transform: uppercase;
   text-align: center;
@@ -257,17 +258,17 @@ h5.profile-title {
 }
 
 /* activity widget */
-/* line 134, ../sass/user-profile.scss */
+/* line 135, ../sass/user-profile.scss */
 .pane-mnartist-activity-activity .item-list {
   font-family: "adobe-text-pro", "Times New Roman", Times, serif;
   padding: 10px;
 }
-/* line 137, ../sass/user-profile.scss */
+/* line 138, ../sass/user-profile.scss */
 .pane-mnartist-activity-activity .item-list ul {
   margin: 0;
   padding: 0;
 }
-/* line 141, ../sass/user-profile.scss */
+/* line 142, ../sass/user-profile.scss */
 .pane-mnartist-activity-activity .item-list ul li {
   list-style: none;
   border-bottom: 1px solid #ccc;
@@ -275,7 +276,7 @@ h5.profile-title {
   padding: 0 0 10px 0;
   margin: 0 0 10px 0;
 }
-/* line 148, ../sass/user-profile.scss */
+/* line 149, ../sass/user-profile.scss */
 .pane-mnartist-activity-activity .item-list ul li .feed-update-node-text {
   width: 100%;
   text-overflow: ellipsis;
@@ -283,22 +284,22 @@ h5.profile-title {
   display: block;
   white-space: nowrap;
 }
-/* line 156, ../sass/user-profile.scss */
+/* line 157, ../sass/user-profile.scss */
 .pane-mnartist-activity-activity .item-list ul li .left a {
   display: none;
 }
-/* line 161, ../sass/user-profile.scss */
+/* line 162, ../sass/user-profile.scss */
 .pane-mnartist-activity-activity .item-list ul li .feed-update-description a {
   font-weight: bold;
 }
-/* line 168, ../sass/user-profile.scss */
+/* line 169, ../sass/user-profile.scss */
 .pane-mnartist-activity-activity .username {
   font-weight: bold;
 }
 
 /* */
 /* art widget on artist page */
-/* line 176, ../sass/user-profile.scss */
+/* line 177, ../sass/user-profile.scss */
 .pane-user-mnartist-profiles-artworks {
   -webkit-transition: all .2s ease-in-out;
   -moz-transition: all .2s ease-in-out;
@@ -306,11 +307,11 @@ h5.profile-title {
   transition: all .2s ease-in-out;
   max-height: 9999px;
 }
-/* line 185, ../sass/user-profile.scss */
+/* line 186, ../sass/user-profile.scss */
 .pane-user-mnartist-profiles-artworks .block-inner .block-content {
   background: none;
 }
-/* line 188, ../sass/user-profile.scss */
+/* line 189, ../sass/user-profile.scss */
 .pane-user-mnartist-profiles-artworks .block-inner .block-content dt {
   font-family: "Apercu Regular", Arial, Helvetica, sans-serif;
   font-weight: normal;
@@ -321,7 +322,7 @@ h5.profile-title {
   padding: 0 0 5px 0;
   margin: 0;
 }
-/* line 193, ../sass/user-profile.scss */
+/* line 194, ../sass/user-profile.scss */
 .pane-user-mnartist-profiles-artworks .block-inner .block-content dd {
   padding: 10px;
   background: #fff;
@@ -333,7 +334,7 @@ h5.profile-title {
   max-height: 9999px;
   height: auto;
 }
-/* line 204, ../sass/user-profile.scss */
+/* line 205, ../sass/user-profile.scss */
 .pane-user-mnartist-profiles-artworks .block-inner .block-content dd .thumbs {
   overflow-x: scroll;
   white-space: nowrap;
@@ -343,13 +344,13 @@ h5.profile-title {
   clear: both;
   float: none;
 }
-/* line 213, ../sass/user-profile.scss */
+/* line 214, ../sass/user-profile.scss */
 .pane-user-mnartist-profiles-artworks .block-inner .block-content dd .thumbs img {
   margin-right: 20px;
   height: 120px;
   width: auto;
 }
-/* line 220, ../sass/user-profile.scss */
+/* line 221, ../sass/user-profile.scss */
 .pane-user-mnartist-profiles-artworks .block-inner .block-content dd .large-display {
   -webkit-transition: all .2s ease-in-out;
   -moz-transition: all .2s ease-in-out;
@@ -358,7 +359,7 @@ h5.profile-title {
   max-height: 999px;
   height: auto;
 }
-/* line 228, ../sass/user-profile.scss */
+/* line 229, ../sass/user-profile.scss */
 .pane-user-mnartist-profiles-artworks .block-inner .block-content dd .large-display .slide {
   width: 100%;
   -webkit-transition: all .2s ease-in-out;
@@ -367,44 +368,44 @@ h5.profile-title {
   transition: all .2s ease-in-out;
   max-height: 999px;
 }
-/* line 236, ../sass/user-profile.scss */
+/* line 237, ../sass/user-profile.scss */
 .pane-user-mnartist-profiles-artworks .block-inner .block-content dd .large-display .slide .content {
   clear: both;
   margin-bottom: 20px;
 }
-/* line 240, ../sass/user-profile.scss */
+/* line 241, ../sass/user-profile.scss */
 .pane-user-mnartist-profiles-artworks .block-inner .block-content dd .large-display .slide .content img {
   width: 100%;
   height: auto;
 }
-/* line 245, ../sass/user-profile.scss */
+/* line 246, ../sass/user-profile.scss */
 .pane-user-mnartist-profiles-artworks .block-inner .block-content dd .large-display .slide .left {
   float: left;
   width: 45%;
   vertical-align: top;
   font-family: "adobe-text-pro", "Times New Roman", Times, serif;
 }
-/* line 251, ../sass/user-profile.scss */
+/* line 252, ../sass/user-profile.scss */
 .pane-user-mnartist-profiles-artworks .block-inner .block-content dd .large-display .slide .left a {
   font-size: 18px;
   display: block;
   border-bottom: 1px solid #999;
   margin-bottom: 10px;
 }
-/* line 258, ../sass/user-profile.scss */
+/* line 259, ../sass/user-profile.scss */
 .pane-user-mnartist-profiles-artworks .block-inner .block-content dd .large-display .slide .right {
   float: right;
   width: 45%;
   vertical-align: top;
 }
-/* line 263, ../sass/user-profile.scss */
+/* line 264, ../sass/user-profile.scss */
 .pane-user-mnartist-profiles-artworks .block-inner .block-content dd .large-display .slide .right:after {
   content: "";
   display: block;
   float: none;
   clear: both;
 }
-/* line 270, ../sass/user-profile.scss */
+/* line 271, ../sass/user-profile.scss */
 .pane-user-mnartist-profiles-artworks .block-inner .block-content dd .large-display .slide:after {
   content: "";
   clear: both;
@@ -414,7 +415,7 @@ h5.profile-title {
 
 /* end artwork widgeet */
 /* artist bio stuff (in the tabs( */
-/* line 286, ../sass/user-profile.scss */
+/* line 287, ../sass/user-profile.scss */
 .profile-label {
   display: block;
   font-family: "Apercu Regular", Arial, Helvetica, sans-serif;
@@ -425,7 +426,7 @@ h5.profile-title {
   text-transform: uppercase;
 }
 
-/* line 291, ../sass/user-profile.scss */
+/* line 292, ../sass/user-profile.scss */
 .profile-city-state {
   font-family: "Apercu Regular", Arial, Helvetica, sans-serif;
   text-transform: uppercase;
