@@ -6413,13 +6413,13 @@ tr.even, tr.odd {
     }
 }
 
-.form-type-textarea {
-    div[class*="-format"] {
+.text-format-wrapper {
+    div[class$="-format"] {
         display:none;
     }
 }
-.logged-in.admin-menu {
-    .form-type-textarea {
+.admin-menu {
+    .text-format-wrapper {
         div[class$="-format"] {
             display:block;
         }
