@@ -818,9 +818,7 @@ function mnartist_profiles_entity_property_info_alter(&$info) {
 }
 
 
-
 function mnartist_profiles_sort_by_date_callback($item) {
-
     if (isset($item->type)) {
         // if this is an event, try to use start date,
         // otherwise date changed
@@ -829,16 +827,20 @@ function mnartist_profiles_sort_by_date_callback($item) {
                 && isset($item->field_date['und'][0]['value'])) {
                 return $item->field_date['und'][0]['value'];
             } else {
-                return $item->changed;
+                return $item->created;
             }
         // or if this is a non-event node, just use
         // date changed
         } else {
-            return $item->changed;
+            return $item->created;
         }
-    // and if it's a user, use date created
+    // and if it's a user, use date of birth (or today? if no value is in there?)
     } else {
-        return $item->created;
+        $main_profile = profile2_load_by_user($item->uid, 'main');
+        if (isset($main_profile->field_birthdate['und'])) {
+            return $main_profile->field_birthdate['und'][0]['value'];
+        }
+        return new DateTime();
     }
 }
 

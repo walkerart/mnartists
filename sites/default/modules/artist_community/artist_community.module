@@ -41,6 +41,7 @@ define('AC_ARTICLE_CATEGORY_FIELD', 'is_field_article_category');
 define('AC_GLOBAL_SEARCH_FIELD', 'tm_search_api_aggregation_1');
 define('AC_PROFILE_SEARCH_FIELD', 'tm_mnartist_profile2_search');
 define('AC_SORT_BY_DATE_FIELD', 'ds_sort_by_date');
+define('AC_SORT_BY_RECENT_FIELD', 'ds_created');
 
 
 // config for solarium
@@ -911,6 +912,8 @@ function _artist_community_get_items_query ($local_og = null,
                 $sort_key = 'ss_sort_by_name';
             } else if ($local_sort === 'date') {
                 $sort_key = AC_SORT_BY_DATE_FIELD;
+            } else if ($local_sort === 'recent') {
+                $sort_key = AC_SORT_BY_RECENT_FIELD;
             } else if ($local_sort === 'collected') {
                 $sort_key = 'is_flags_count';
             }
