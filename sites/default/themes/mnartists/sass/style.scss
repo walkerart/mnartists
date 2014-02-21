@@ -6388,10 +6388,16 @@ tr.even, tr.odd {
         font-family: $sans_regular_font;
     }
     .form-type-checkbox {
+        position:relative;
         clear:both;
-
+        .icheckbox {
+            position:absolute;
+            left:0;
+        }
         label {
             font-family: $sans_regular_font;
+            width:100%;
+            padding-left:30px;
         }
     }
 }
