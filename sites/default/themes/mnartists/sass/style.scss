@@ -5379,9 +5379,13 @@ only screen and (min-device-pixel-ratio: 1.5) {
                 .field-item {
 
                     article {
+                        margin-bottom:30px;
+                        padding-bottom:0;
 
                         .node-header {
-                            margin-bottom:12px;
+                            margin-bottom:30px;
+                            padding-bottom:0;
+
                             h1 {
 
                                 a {
@@ -5942,7 +5946,8 @@ body.page-node-edit {
     }
 }
 
-.node-type-artwork.page-node {
+.node-type-artwork.page-node,
+.node-type-event {
     #main-content {
         margin-top:20px;
         margin-bottom:20px;
