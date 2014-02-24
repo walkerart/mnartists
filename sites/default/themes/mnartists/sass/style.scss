@@ -5377,12 +5377,18 @@ only screen and (min-device-pixel-ratio: 1.5) {
                 font-size:14px;
                 font-family: $serif_font;
             }
+
             .block-content {
 
                 .field-item {
-
+                    h3 {
+                        margin:0;
+                    }
+                    article h1:first-child, article h2:first-child, article h3:first-child, article h4:first-child, article h5:first-child, article h6:first-child {
+                        margin-top: 0px;
+                    }
                     article {
-                        margin-bottom:30px;
+                        margin:0 0 30px 0;
                         padding-bottom:0;
 
                         .node-header {
