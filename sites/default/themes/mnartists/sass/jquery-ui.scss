@@ -176,9 +176,17 @@
 .ui-dialog {
 
 }
+
 .page-media-browser {
-	background: $main_bg;
+	background: $mystuff_bg_dark;
+
 	font-family: "Verdana", Arial, Helvetica, sans-serif;
+
+	#media-browser-tabset {
+		background:none;
+		padding:0;
+		border:none;
+	}
 
 	.media-browser-page-wrapper {
 
@@ -186,7 +194,7 @@
 
 		}
 		.ui-tabs-panel {
-
+			background:$main_bg;
 		}
 	}
 }

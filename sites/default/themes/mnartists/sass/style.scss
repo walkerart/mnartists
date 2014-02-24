@@ -5357,6 +5357,9 @@ only screen and (min-device-pixel-ratio: 1.5) {
 /******************************************/
 .node-type-event {
     .event-date {
+        .panel-separator {
+            display:none;
+        }
         .pane-node-field-venue {
             h2 {
                 color:$lightgray;
@@ -5374,14 +5377,24 @@ only screen and (min-device-pixel-ratio: 1.5) {
                 font-size:14px;
                 font-family: $serif_font;
             }
+
             .block-content {
 
                 .field-item {
-
+                    h3 {
+                        margin:0;
+                    }
+                    article h1:first-child, article h2:first-child, article h3:first-child, article h4:first-child, article h5:first-child, article h6:first-child {
+                        margin-top: 0px;
+                    }
                     article {
+                        margin:0 0 30px 0;
+                        padding-bottom:0;
 
                         .node-header {
-                            margin-bottom:12px;
+                            margin-bottom:30px;
+                            padding-bottom:0;
+
                             h1 {
 
                                 a {
@@ -5489,6 +5502,7 @@ only screen and (min-device-pixel-ratio: 1.5) {
             font-size:14px;
             font-family: $sans_regular_font;
             text-transform:uppercase;
+            margin:0;
         }
     }
 }
@@ -5942,7 +5956,8 @@ body.page-node-edit {
     }
 }
 
-.node-type-artwork.page-node {
+.node-type-artwork.page-node,
+.node-type-event {
     #main-content {
         margin-top:20px;
         margin-bottom:20px;

@@ -295,13 +295,23 @@
   border: 1px solid #111 !important;
 }
 
-/* line 179, ../sass/jquery-ui.scss */
+/* line 180, ../sass/jquery-ui.scss */
 .page-media-browser {
-  background: #f2f2f2;
+  background: #323232;
   font-family: "Verdana", Arial, Helvetica, sans-serif;
 }
+/* line 185, ../sass/jquery-ui.scss */
+.page-media-browser #media-browser-tabset {
+  background: none;
+  padding: 0;
+  border: none;
+}
+/* line 196, ../sass/jquery-ui.scss */
+.page-media-browser .media-browser-page-wrapper .ui-tabs-panel {
+  background: #f2f2f2;
+}
 
-/* line 194, ../sass/jquery-ui.scss */
+/* line 202, ../sass/jquery-ui.scss */
 .ui-widget-overlay {
   /*background: #aaa url(images/ui-bg_flat_0_aaaaaa_40x100.png) 50% 50% repeat-x;*/
   background: #000;
