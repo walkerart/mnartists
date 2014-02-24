@@ -9957,3 +9957,19 @@ a.tabledrag-handle .handle {
         }
     }
 }
+
+// artwork slideshow
+
+.content-artwork {
+    .slidesjs-navigation {
+        height:26px;width:16px;
+        overflow:hidden;display:block;
+        white-space:nowrap;text-indent:30px;
+        &.slidesjs-previous  {
+            background: url('../images/icon-sprite-slider-arrows.png') no-repeat left top transparent;
+        }
+        &.slidesjs-next  {
+            background: url('../images/icon-sprite-slider-arrows.png') no-repeat -50px top transparent;
+        }
+    }
+}
