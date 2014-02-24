@@ -5357,6 +5357,9 @@ only screen and (min-device-pixel-ratio: 1.5) {
 /******************************************/
 .node-type-event {
     .event-date {
+        .panel-separator {
+            display:none;
+        }
         .pane-node-field-venue {
             h2 {
                 color:$lightgray;
@@ -5493,6 +5496,7 @@ only screen and (min-device-pixel-ratio: 1.5) {
             font-size:14px;
             font-family: $sans_regular_font;
             text-transform:uppercase;
+            margin:0;
         }
     }
 }
