@@ -227,7 +227,6 @@
 
 // inputs
 input[type=submit] {
-	float: left;
     height: auto;
     padding: 5px 10px;
     border: 1px solid #333;
@@ -248,6 +247,9 @@ input[type=submit] {
         background: #222;
         color:#fff;
     }
+}
+.ui-state-default a, .ui-state-default a:link, .ui-state-default a:visited {
+	color:$lightgray;
 }
 
 

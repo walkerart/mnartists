@@ -339,7 +339,6 @@
 
 /* line 229, ../sass/jquery-ui.scss */
 input[type=submit] {
-  float: left;
   height: auto;
   padding: 5px 10px;
   border: 1px solid #333;
@@ -360,8 +359,13 @@ input[type=submit] {
   font-weight: normal;
   letter-spacing: 0;
 }
-/* line 247, ../sass/jquery-ui.scss */
+/* line 246, ../sass/jquery-ui.scss */
 input[type=submit]:hover {
   background: #222;
   color: #fff;
+}
+
+/* line 251, ../sass/jquery-ui.scss */
+.ui-state-default a, .ui-state-default a:link, .ui-state-default a:visited {
+  color: #888888;
 }
