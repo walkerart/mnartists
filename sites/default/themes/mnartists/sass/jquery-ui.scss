@@ -179,10 +179,9 @@
 
 .page-media-browser {
 	background: $mystuff_bg_dark;
-
-	font-family: "Verdana", Arial, Helvetica, sans-serif;
-
-
+	font-family: $sans_regular_font;
+    font-size: 13px;
+    line-height: 16px;
 
 	#media-browser-tabset {
 		background:none;
@@ -253,7 +252,10 @@ input[type=submit] {
     }
 }
 .ui-state-default a, .ui-state-default a:link, .ui-state-default a:visited {
-	color:$lightgray;
+	color:$main_color;
+}
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+	background:#ccc;
 }
 
 

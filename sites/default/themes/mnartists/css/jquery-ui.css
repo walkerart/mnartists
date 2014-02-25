@@ -298,33 +298,35 @@
 /* line 180, ../sass/jquery-ui.scss */
 .page-media-browser {
   background: #323232;
-  font-family: "Verdana", Arial, Helvetica, sans-serif;
+  font-family: "Apercu Regular", Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  line-height: 16px;
 }
-/* line 187, ../sass/jquery-ui.scss */
+/* line 186, ../sass/jquery-ui.scss */
 .page-media-browser #media-browser-tabset {
   background: none;
   padding: 0;
   border: none;
 }
-/* line 199, ../sass/jquery-ui.scss */
+/* line 198, ../sass/jquery-ui.scss */
 .page-media-browser .ui-tabs {
   background: none;
 }
-/* line 201, ../sass/jquery-ui.scss */
+/* line 200, ../sass/jquery-ui.scss */
 .page-media-browser .ui-tabs .ui-tabs-nav {
   background: none;
   padding: 0;
 }
-/* line 206, ../sass/jquery-ui.scss */
+/* line 205, ../sass/jquery-ui.scss */
 .page-media-browser .ui-state-active, .page-media-browser .ui-widget-content .ui-state-active, .page-media-browser .ui-widget-header .ui-state-active {
   background: #f2f2f2;
 }
-/* line 209, ../sass/jquery-ui.scss */
+/* line 208, ../sass/jquery-ui.scss */
 .page-media-browser .ui-tabs-panel {
   background: #f2f2f2;
 }
 
-/* line 214, ../sass/jquery-ui.scss */
+/* line 213, ../sass/jquery-ui.scss */
 .ui-widget-overlay {
   /*background: #aaa url(images/ui-bg_flat_0_aaaaaa_40x100.png) 50% 50% repeat-x;*/
   background: #000;
@@ -332,17 +334,17 @@
   filter: Alpha(Opacity=60);
 }
 
-/* line 223, ../sass/jquery-ui.scss */
+/* line 222, ../sass/jquery-ui.scss */
 .page-node-add .ui-widget-content {
   background: #323232;
   height: 60%!important;
 }
-/* line 226, ../sass/jquery-ui.scss */
+/* line 225, ../sass/jquery-ui.scss */
 .page-node-add .ui-widget-content iframe {
   height: 100%!important;
 }
 
-/* line 233, ../sass/jquery-ui.scss */
+/* line 232, ../sass/jquery-ui.scss */
 input[type=submit] {
   height: auto;
   padding: 5px 10px;
@@ -364,13 +366,18 @@ input[type=submit] {
   font-weight: normal;
   letter-spacing: 0;
 }
-/* line 250, ../sass/jquery-ui.scss */
+/* line 249, ../sass/jquery-ui.scss */
 input[type=submit]:hover {
   background: #222;
   color: #fff;
 }
 
-/* line 255, ../sass/jquery-ui.scss */
+/* line 254, ../sass/jquery-ui.scss */
 .ui-state-default a, .ui-state-default a:link, .ui-state-default a:visited {
-  color: #888888;
+  color: #222222;
+}
+
+/* line 257, ../sass/jquery-ui.scss */
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+  background: #ccc;
 }
