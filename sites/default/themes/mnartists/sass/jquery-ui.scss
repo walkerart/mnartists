@@ -182,6 +182,8 @@
 
 	font-family: "Verdana", Arial, Helvetica, sans-serif;
 
+
+
 	#media-browser-tabset {
 		background:none;
 		padding:0;
@@ -214,6 +216,38 @@
 	background:#000;
 	opacity: .6;
 	filter: Alpha(Opacity=60);
+}
+
+// modal on these pages only
+.page-node-add {
+	.ui-widget-content {
+		background: $mystuff_bg_dark;
+	}
+}
+
+// inputs
+input[type=submit] {
+	float: left;
+    height: auto;
+    padding: 5px 10px;
+    border: 1px solid #333;
+    font-family: $sans_bold_font;
+    @include no_break;
+    @include rounded;
+    cursor: pointer;
+    margin-left:0;
+    margin-right:10px;
+    background: #333;
+    color:#fff;
+    text-transform:capitalize;
+    font-size:12px;
+    font-weight:normal;
+    letter-spacing:0;
+
+    &:hover {
+        background: #222;
+        color:#fff;
+    }
 }
 
 

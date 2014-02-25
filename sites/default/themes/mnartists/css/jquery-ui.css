@@ -300,34 +300,68 @@
   background: #323232;
   font-family: "Verdana", Arial, Helvetica, sans-serif;
 }
-/* line 185, ../sass/jquery-ui.scss */
+/* line 187, ../sass/jquery-ui.scss */
 .page-media-browser #media-browser-tabset {
   background: none;
   padding: 0;
   border: none;
 }
-/* line 197, ../sass/jquery-ui.scss */
+/* line 199, ../sass/jquery-ui.scss */
 .page-media-browser .ui-tabs {
   background: none;
 }
-/* line 199, ../sass/jquery-ui.scss */
+/* line 201, ../sass/jquery-ui.scss */
 .page-media-browser .ui-tabs .ui-tabs-nav {
   background: none;
   padding: 0;
 }
-/* line 204, ../sass/jquery-ui.scss */
+/* line 206, ../sass/jquery-ui.scss */
 .page-media-browser .ui-state-active, .page-media-browser .ui-widget-content .ui-state-active, .page-media-browser .ui-widget-header .ui-state-active {
   background: #f2f2f2;
 }
-/* line 207, ../sass/jquery-ui.scss */
+/* line 209, ../sass/jquery-ui.scss */
 .page-media-browser .ui-tabs-panel {
   background: #f2f2f2;
 }
 
-/* line 212, ../sass/jquery-ui.scss */
+/* line 214, ../sass/jquery-ui.scss */
 .ui-widget-overlay {
   /*background: #aaa url(images/ui-bg_flat_0_aaaaaa_40x100.png) 50% 50% repeat-x;*/
   background: #000;
   opacity: .6;
   filter: Alpha(Opacity=60);
+}
+
+/* line 223, ../sass/jquery-ui.scss */
+.page-node-add .ui-widget-content {
+  background: #323232;
+}
+
+/* line 229, ../sass/jquery-ui.scss */
+input[type=submit] {
+  float: left;
+  height: auto;
+  padding: 5px 10px;
+  border: 1px solid #333;
+  font-family: "Apercu Bold", Arial, Helvetica, sans-serif;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-border-radius: 1px;
+  -moz-border-radius: 1px;
+  border-radius: 1px;
+  cursor: pointer;
+  margin-left: 0;
+  margin-right: 10px;
+  background: #333;
+  color: #fff;
+  text-transform: capitalize;
+  font-size: 12px;
+  font-weight: normal;
+  letter-spacing: 0;
+}
+/* line 247, ../sass/jquery-ui.scss */
+input[type=submit]:hover {
+  background: #222;
+  color: #fff;
 }
