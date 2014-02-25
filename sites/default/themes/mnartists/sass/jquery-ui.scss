@@ -193,10 +193,19 @@
 		.item-list {
 
 		}
-		.ui-tabs-panel {
-			background:$main_bg;
-
+	}
+	.ui-tabs {
+		background:none;
+		.ui-tabs-nav {
+			background:none;
+			padding:0;
 		}
+	}
+	.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active {
+		background:$main_bg;
+	}
+	.ui-tabs-panel {
+		background:$main_bg;
 	}
 }
 

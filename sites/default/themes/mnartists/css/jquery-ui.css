@@ -306,12 +306,25 @@
   padding: 0;
   border: none;
 }
-/* line 196, ../sass/jquery-ui.scss */
-.page-media-browser .media-browser-page-wrapper .ui-tabs-panel {
+/* line 197, ../sass/jquery-ui.scss */
+.page-media-browser .ui-tabs {
+  background: none;
+}
+/* line 199, ../sass/jquery-ui.scss */
+.page-media-browser .ui-tabs .ui-tabs-nav {
+  background: none;
+  padding: 0;
+}
+/* line 204, ../sass/jquery-ui.scss */
+.page-media-browser .ui-state-active, .page-media-browser .ui-widget-content .ui-state-active, .page-media-browser .ui-widget-header .ui-state-active {
+  background: #f2f2f2;
+}
+/* line 207, ../sass/jquery-ui.scss */
+.page-media-browser .ui-tabs-panel {
   background: #f2f2f2;
 }
 
-/* line 203, ../sass/jquery-ui.scss */
+/* line 212, ../sass/jquery-ui.scss */
 .ui-widget-overlay {
   /*background: #aaa url(images/ui-bg_flat_0_aaaaaa_40x100.png) 50% 50% repeat-x;*/
   background: #000;
