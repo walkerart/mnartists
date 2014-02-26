@@ -6147,19 +6147,32 @@ tr.odd .form-item, tr.even .form-item {
 .page-user-edit {
     #content {
         form {
-                padding:75px 100px;
+            padding:75px 100px;
 
-                @media screen and (max-width: $break-desktop-small) {
-                    padding:40px 50px;
-                }
-                @media screen and (max-width: $break-tablet) {
-                    padding:25px 40px;
-                }
-                @media screen and (max-width: $break-mobile) {
-                    padding:20px 0px;
-                }
-
+            @media screen and (max-width: $break-desktop-small) {
+                padding:40px 50px;
             }
+            @media screen and (max-width: $break-tablet) {
+                padding:25px 40px;
+            }
+            @media screen and (max-width: $break-mobile) {
+                padding:20px 0px;
+            }
+
+            .og-user-node-add-more-wrapper--2,
+            .field-name-field-featured-artist,
+            #edit-picture,
+            .form-item-status,
+            .field-name-field-general-statement,
+            .field-name-field-biography,
+            .field-type-text-long,
+            .field-type-field-collection {
+                margin-bottom:64px;
+                overflow:hidden;
+            }
+
+        }
+
     }
 }
 .page-user-edit #columns {
@@ -8800,6 +8813,9 @@ input {
     &.field-name-field-media-form {
         margin-bottom:64px;
     }
+    &.field-name-og-group-ref {
+        overflow:hidden;
+    }
     &.field-name-field-dimensions-form {
 
         .form-textarea-wrapper {
@@ -9083,7 +9099,8 @@ tr.even {
 .node-event-form {
     .field-name-field-category-form,
     .field-name-field-date-form,
-    .field-type-text-with-summary {
+    .field-type-text-with-summary,
+    .field-name-field-community-user-select-form {
         margin-bottom:64px;
     }
     .field-name-field-category-form {
