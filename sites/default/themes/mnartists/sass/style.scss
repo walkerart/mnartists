@@ -6142,6 +6142,26 @@ body.page-node-edit {
 tr.odd .form-item, tr.even .form-item {
     margin-bottom:10px;
 }
+
+// page user edit
+.page-user-edit {
+    #content {
+        form {
+                padding:75px 100px;
+
+                @media screen and (max-width: $break-desktop-small) {
+                    padding:40px 50px;
+                }
+                @media screen and (max-width: $break-tablet) {
+                    padding:25px 40px;
+                }
+                @media screen and (max-width: $break-mobile) {
+                    padding:20px 0px;
+                }
+
+            }
+    }
+}
 .page-user-edit #columns {
 
     .content-inner {
@@ -8939,11 +8959,7 @@ fieldset {
 tr.even {
     background:none;
 }
-.page-node-add-article {
-    .field-type-taxonomy-term-reference-form {
-        margin-bottom:64px;
-    }
-}
+
 .page-node-add,
 .page-node-edit,
 .page-user-edit {
@@ -9038,10 +9054,27 @@ tr.even {
     }
 }
 
+// add article page form
+.page-node-add-article {
+    .field-type-taxonomy-term-reference-form {
+        margin-bottom:64px;
+    }
+    .field-name-field-contact-name-form {
+        overflow:hidden;
+    }
+    .field-type-taxonomy-term-reference-form {
+        overflow:hidden;
+    }
+}
+
 // add venue only
 .node-venue-form {
     .field-name-field-public-form,
     .field-type-taxonomy-term-reference-form {
+        margin-bottom:64px;
+    }
+    .field-name-field-contact-name-form {
+        overflow:hidden;
         margin-bottom:64px;
     }
 }
@@ -9053,6 +9086,9 @@ tr.even {
     .field-type-text-with-summary {
         margin-bottom:64px;
     }
+    .field-name-field-category-form {
+        overflow:hidden;
+    }
     #edit-submit {
         float:none;
     }
@@ -9061,8 +9097,12 @@ tr.even {
 // add artwork form only
 .node-artwork-form {
     .field-type-text-with-summary,
-    .field-name-field-tags-form {
+    .field-name-field-tags-form,
+    .field-name-field-public-form {
         margin-bottom:64px;
+    }
+    .field-name-field-tags-form {
+        overflow:hidden;
     }
     .field-name-field-dimensions-form {
         .form-textarea-wrapper {
