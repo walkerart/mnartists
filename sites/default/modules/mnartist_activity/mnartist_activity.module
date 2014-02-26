@@ -76,6 +76,19 @@ function mnartist_activity_token_info() {
 }
 
 /**
+ * Implements hook_node_inserts().
+ * We call node update POST node insert, to
+ * make sure that field_media is there for
+ * hook_tokens to use when generating activity
+ * messages. Don't try this at home, kids, you
+ * will regret it.
+ */
+
+function mnartist_activity_node_insert($node) {
+  activity_node_update($node);
+}
+
+/**
  * Implements hook_tokens().
  */
 function mnartist_activity_tokens($type, $tokens, array $data = array(), array $options = array()) {
@@ -85,6 +98,7 @@ function mnartist_activity_tokens($type, $tokens, array $data = array(), array $
     foreach ($tokens as $name => $original) {
       switch ($name) {
         case 'node-post-artwork-media-image-uri':
+          $uri = '';
           if (isset($data['node']->field_media['und'])) {
             $uri = $data['node']->field_media['und'][0]['uri'];
             $scheme = file_uri_scheme($uri);
@@ -101,14 +115,17 @@ function mnartist_activity_tokens($type, $tokens, array $data = array(), array $
                 break;
             }
           }
-          $first_image_uri = (isset($data['node']->field_media['und'])) ? $data['node']->field_media['und'][0]['uri'] : '';
-          $replacements[$original] = file_create_url($uri);
+          if (isset($uri)) {
+            $replacements[$original] = file_create_url($uri);
+          }
           break;
         case 'node-first-image-uri':
           if (isset($data['node']->field_images['und'])) {
             $uri = $data['node']->field_images['und'][0]['uri'];
           }
-          $replacements[$original] = file_create_url($uri);
+          if (isset($uri)) {
+            $replacements[$original] = file_create_url($uri);
+          }
           break;
         case 'node-post-text-summary':
           $limit = 500;
