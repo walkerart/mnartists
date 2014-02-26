@@ -6167,16 +6167,28 @@ tr.odd .form-item, tr.even .form-item {
             .field-name-field-biography,
             .field-type-text-long,
             .field-type-field-collection,
-            .field-name-field-additional-links {
+            .field-name-field-additional-links,
+            .field-name-field-practice,
+            .field-name-field-gender,
+            .field-name-field-phone {
                 margin-bottom:64px;
                 overflow:hidden;
+            }
+            .form-item-profile-main-field-gender-profile2-field-privacy {
+                margin-top:0;margin-bottom:0;
+            }
+            .form-item-status {
+                .form-item-status {
+                    margin-bottom:8px;
+                }
             }
 
         }
 
     }
 }
-.page-user-edit-main {
+.page-user-edit-main,
+.page-user-edit-organization {
     .field-name-field-facebook {
         margin-bottom:64px;
         overflow:hidden;
