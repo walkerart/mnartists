@@ -6032,7 +6032,9 @@ body.page-node-edit {
             .item-info-title {
                 font-weight:normal;
                 font-family: $sans_bold_font;
-
+            }
+            h3 {
+                @include quiet_type_label;
             }
             .item-info-date {
                 opacity:.5; /* temp tmp */
