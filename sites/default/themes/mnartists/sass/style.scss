@@ -5934,7 +5934,30 @@ body.page-node-edit {
     }
 }
 .content-artwork {
-
+    .pane-node-title {
+        h2 {
+            font-family: "adobe-text-pro", "Times New Roman", Times, serif;
+            font-weight: normal;
+            height: auto;
+            a {
+                display:inline-block;
+            }
+            span {
+                display:inline-block;
+            }
+        }
+    }
+    .layout-g .panel-col.content-artwork .pane-node-title h2 {
+  background: none;
+  padding: 15px 0 10px 0;
+  margin: 0 0 10px 0;
+  border-bottom: 1px solid #888888;
+  font-size: 18px;
+  height: auto;
+  line-height: auto;
+  text-transform: none;
+  letter-spacing: normal;
+}
     .field-type-taxonomy-term-reference {
         margin-bottom:0;
 
