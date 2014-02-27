@@ -6000,6 +6000,10 @@ body.page-node-edit {
         width: 24%;
         font-size:14px;
 
+        h3 {
+            @include quiet_type_label;
+        }
+
         &.item-event {
 
         }
@@ -6033,9 +6037,7 @@ body.page-node-edit {
                 font-weight:normal;
                 font-family: $sans_bold_font;
             }
-            h3 {
-                @include quiet_type_label;
-            }
+
             .item-info-date {
                 opacity:.5; /* temp tmp */
             }
