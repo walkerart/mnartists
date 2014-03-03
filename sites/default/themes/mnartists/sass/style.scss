@@ -6172,6 +6172,34 @@ tr.odd .form-item, tr.even .form-item {
 
 // page user edit
 .page-user-edit {
+    #tasks {
+        margin:-20px -20px 0 -20px;
+        background: $mystuff_bg_light;
+        .primary {
+            display:none;
+        }
+        .secondary {
+            margin:0;
+            li {
+                border:none;
+                margin:0 3px 0 0;
+
+                a {
+                    background:#ccc;
+                    text-transform:uppercase;
+                    border:none;
+                    line-height:2em;
+                    height:2em;
+                }
+                &.active {
+                    a {
+                        background:#f2f2f2;
+                        border:none;
+                    }
+                }
+            }
+        }
+    }
     #content {
         form {
             padding:75px 100px;
