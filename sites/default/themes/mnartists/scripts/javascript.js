@@ -183,7 +183,13 @@ jQuery(document).ready(function () {
     // jQuery('.form-checkbox').prettyCheckable();
     // jQuery('.form-radio').prettyCheckable();
     jQuery('input').iCheck().on("ifChanged",function(e){
-        console.log("test");
+        var isChecked = jQuery(e.delegateTarget).is(":checked");
+        var checkedLabel = jQuery(e.delegateTarget).parents(".form-item:first").find("label");
+        if (isChecked) {
+            checkedLabel.addClass("active");
+        } else {
+            checkedLabel.removeClass("active");
+        }
     });
 
     // select boxes
