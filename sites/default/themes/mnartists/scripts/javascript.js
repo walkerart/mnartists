@@ -182,7 +182,7 @@ jQuery(document).ready(function () {
     });
     // jQuery('.form-checkbox').prettyCheckable();
     // jQuery('.form-radio').prettyCheckable();
-    jQuery('input').iCheck().on("ifChanged",function(e){
+    jQuery('.form-type-checkbox input, .form-type-radio input').iCheck().on("ifChanged",function(e){
         var isChecked = jQuery(e.delegateTarget).is(":checked");
         var checkedLabel = jQuery(e.delegateTarget).parents(".form-item:first").find("label");
         if (isChecked) {
@@ -190,6 +190,8 @@ jQuery(document).ready(function () {
         } else {
             checkedLabel.removeClass("active");
         }
+    }).on("ifCreated",function(e){
+        console.log("test");
     });
 
     // select boxes
