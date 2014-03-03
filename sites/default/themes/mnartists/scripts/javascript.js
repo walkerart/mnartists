@@ -190,8 +190,10 @@ jQuery(document).ready(function () {
         } else {
             checkedLabel.removeClass("active");
         }
-    }).on("ifCreated",function(e){
-        console.log("test");
+    });
+    jQuery('.form-type-checkbox input:checked, .form-type-radio input:checked').each(function(){
+        jQuery(this).parents(".form-item:first").find("label").addClass("active");
+
     });
 
     // select boxes
