@@ -9,6 +9,16 @@
         box-sizing:border-box;
         padding-right:20px;
 
+        @media screen and (max-width: $break-mobile) {
+            padding-right:0;
+        }
+        @media screen and (max-width: $break-tablet) {
+            padding-right:0;
+        }
+        @media screen and (max-width: $break-desktop-small) {
+            padding-right:0;
+        }
+
         .inside {
             margin: 0 .5em 1em 0;
 

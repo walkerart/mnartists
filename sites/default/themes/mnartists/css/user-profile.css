@@ -8,60 +8,78 @@
   box-sizing: border-box;
   padding-right: 20px;
 }
-/* line 12, ../sass/layout-a.scss */
+@media screen and (max-width: 480px) {
+  /* line 6, ../sass/layout-a.scss */
+  .layout-a .panel-col-first {
+    padding-right: 0;
+  }
+}
+@media screen and (max-width: 768px) {
+  /* line 6, ../sass/layout-a.scss */
+  .layout-a .panel-col-first {
+    padding-right: 0;
+  }
+}
+@media screen and (max-width: 960px) {
+  /* line 6, ../sass/layout-a.scss */
+  .layout-a .panel-col-first {
+    padding-right: 0;
+  }
+}
+/* line 22, ../sass/layout-a.scss */
 .layout-a .panel-col-first .inside {
   margin: 0 .5em 1em 0;
 }
-/* line 15, ../sass/layout-a.scss */
+/* line 25, ../sass/layout-a.scss */
 .layout-a .panel-col-first .inside .article-thing {
   margin-right: 20px;
 }
-/* line 18, ../sass/layout-a.scss */
+/* line 28, ../sass/layout-a.scss */
 .layout-a .panel-col-first .inside .search-results {
   margin-right: 20px;
 }
-/* line 22, ../sass/layout-a.scss */
+/* line 32, ../sass/layout-a.scss */
 .layout-a .panel-col-first .inset-left {
   float: left;
   width: 75%;
 }
-/* line 26, ../sass/layout-a.scss */
+/* line 36, ../sass/layout-a.scss */
 .layout-a .panel-col-first .inset-right {
   float: left;
   width: 25%;
 }
-/* line 32, ../sass/layout-a.scss */
+/* line 42, ../sass/layout-a.scss */
 .layout-a .panel-col-last {
   float: left;
   width: 25%;
   box-sizing: border-box;
 }
-/* line 37, ../sass/layout-a.scss */
+/* line 47, ../sass/layout-a.scss */
 .layout-a .panel-col-last .inside {
   margin: 0 0 1em .5em;
 }
-/* line 41, ../sass/layout-a.scss */
+/* line 51, ../sass/layout-a.scss */
 .layout-a .panel-separator {
   margin: 0 0 1em 0;
 }
 
-/* line 46, ../sass/layout-a.scss */
+/* line 56, ../sass/layout-a.scss */
 * html .panel-2col.layout-a .panel-col-first {
   width: 74.9%;
 }
 
-/* line 49, ../sass/layout-a.scss */
+/* line 59, ../sass/layout-a.scss */
 * html .panel-2col.layout-a .panel-col-last {
   width: 24.9%;
 }
 
 /* insets */
-/* line 53, ../sass/layout-a.scss */
+/* line 63, ../sass/layout-a.scss */
 * html .panel-2col.layout-a .panel-col-first .panel-col-first.inset-left {
   width: 74.9%;
 }
 
-/* line 56, ../sass/layout-a.scss */
+/* line 66, ../sass/layout-a.scss */
 * html .panel-2col.layout-a .panel-col-first .panel-col-last.inset-right {
   width: 24.9%;
 }
