@@ -6180,9 +6180,11 @@ tr.odd .form-item, tr.even .form-item {
         }
         .secondary {
             margin:0;
+            padding:0;
             li {
                 border:none;
                 margin:0 3px 0 0;
+                display:inline-block;
 
                 a {
                     background:#ccc;
@@ -6190,6 +6192,7 @@ tr.odd .form-item, tr.even .form-item {
                     border:none;
                     line-height:2em;
                     height:2em;
+                    display:block;
                 }
                 &.active {
                     a {
