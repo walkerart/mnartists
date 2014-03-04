@@ -9526,7 +9526,14 @@ body.wysiwygeditor {
 
 // saved filters page
 .page-user-saved-filters {
-
+    #content-column {
+        text-align:center;
+        #main-content {
+            display:inline-block;
+            margin:0 auto;
+            text-align:left;
+        }
+    }
     #content {
         background: $mystuff_bg_dark;
         padding:10px;
