@@ -9529,7 +9529,7 @@ body.wysiwygeditor {
     #content-column {
         text-align:center;
         #main-content {
-            text-align:left;
+            text-align:center;
         }
     }
     #content {
@@ -9540,11 +9540,10 @@ body.wysiwygeditor {
         color:#fff;
         position:relative;
         text-align:left;
+        @include column(14);
         display:inline-block;
         margin-left:auto;margin-right:auto;
         float:none;
-
-        @include column(14);
         overflow:visible;
         @media screen and (max-width: $break-mobile) {
             @include column(24);
