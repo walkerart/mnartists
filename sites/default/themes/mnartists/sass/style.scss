@@ -9529,8 +9529,6 @@ body.wysiwygeditor {
     #content-column {
         text-align:center;
         #main-content {
-            display:inline-block;
-            margin:0 auto;
             text-align:left;
         }
     }
@@ -9541,6 +9539,10 @@ body.wysiwygeditor {
         margin-top:20px;
         color:#fff;
         position:relative;
+        text-align:left;
+        display:inline-block;
+        margin-left:auto;margin-right:auto;
+        float:none;
 
         @include column(14);
         overflow:visible;
