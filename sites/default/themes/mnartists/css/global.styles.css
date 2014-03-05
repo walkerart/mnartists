@@ -319,13 +319,14 @@ var {
 }
 /* line 335, ../sass/global.styles.scss */
 #site-name a:hover, #site-name a:focus {
-  text-decoration: underline;
+  /*text-decoration: underline;*/
+  color: #888888;
 }
 
 /*
  * Site slogan (h2)
  */
-/* line 345, ../sass/global.styles.scss */
+/* line 346, ../sass/global.styles.scss */
 #site-slogan {
   margin: 0;
 }
@@ -339,7 +340,7 @@ var {
 /*
  * The main page title (h1)
  */
-/* line 363, ../sass/global.styles.scss */
+/* line 364, ../sass/global.styles.scss */
 #page-title {
   margin: 0;
 }
@@ -353,14 +354,14 @@ var {
 /*
  * Aggregator feed source
  */
-/* line 381, ../sass/global.styles.scss */
+/* line 382, ../sass/global.styles.scss */
 #aggregator .feed-source .feed-icon {
   display: inline;
   float: none;
   margin-right: 10px;
 }
 
-/* line 389, ../sass/global.styles.scss */
+/* line 390, ../sass/global.styles.scss */
 .feed-details dt,
 .feed-details dd {
   display: inline;
@@ -373,16 +374,16 @@ var {
 /*
  * Generic styles for links. See the ul.links declaration in node and comment stylesheets
  */
-/* line 404, ../sass/global.styles.scss */
+/* line 405, ../sass/global.styles.scss */
 ul.links {
   margin: 0;
   padding: 0;
 }
-/* line 408, ../sass/global.styles.scss */
+/* line 409, ../sass/global.styles.scss */
 ul.links.inline {
   display: block;
 }
-/* line 412, ../sass/global.styles.scss */
+/* line 413, ../sass/global.styles.scss */
 ul.links li {
   display: inline;
   list-style: none;
@@ -392,7 +393,7 @@ ul.links li {
 /*
  * Search results are an ordered list so reset the margin
  */
-/* line 423, ../sass/global.styles.scss */
+/* line 424, ../sass/global.styles.scss */
 .search-results {
   margin: 0;
 }
@@ -442,11 +443,11 @@ ul.links li {
 /* =============================================================================
  *   Links
  * ========================================================================== */
-/* line 514, ../sass/global.styles.scss */
+/* line 515, ../sass/global.styles.scss */
 a {
   text-decoration: none;
 }
-/* line 524, ../sass/global.styles.scss */
+/* line 525, ../sass/global.styles.scss */
 a:hover, a:focus {
   text-decoration: underline;
 }
@@ -461,18 +462,18 @@ a:hover, a:focus {
  *  - #secondary-menu (secondary/user menu)
  * You can target all of these with .nav or div[id$="menu-bar"]
  */
-/* line 542, ../sass/global.styles.scss */
+/* line 543, ../sass/global.styles.scss */
 .nav {
   clear: both;
   margin: 10px 0;
 }
-/* line 547, ../sass/global.styles.scss */
+/* line 548, ../sass/global.styles.scss */
 .nav ul,
 .nav ul.menu {
   margin: 0;
   padding: 0;
 }
-/* line 553, ../sass/global.styles.scss */
+/* line 554, ../sass/global.styles.scss */
 .nav li,
 .nav ul.menu li {
   display: inline;
@@ -481,14 +482,14 @@ a:hover, a:focus {
   margin: 0;
   padding: 0;
 }
-/* line 562, ../sass/global.styles.scss */
+/* line 563, ../sass/global.styles.scss */
 .nav li a,
 .nav ul.menu li a {
   display: block;
   white-space: nowrap;
   padding: 0 10px;
 }
-/* line 573, ../sass/global.styles.scss */
+/* line 574, ../sass/global.styles.scss */
 .nav .block {
   margin-bottom: 0;
 }
@@ -496,11 +497,11 @@ a:hover, a:focus {
 /* =============================================================================
  *   Superfish
  * ========================================================================== */
-/* line 583, ../sass/global.styles.scss */
+/* line 584, ../sass/global.styles.scss */
 ul.sf-menu {
   margin-bottom: 0;
 }
-/* line 586, ../sass/global.styles.scss */
+/* line 587, ../sass/global.styles.scss */
 ul.sf-menu a {
   border-left: 0;
   border-top: 0;
@@ -509,11 +510,11 @@ ul.sf-menu a {
   height: 2.5em;
   line-height: 2.5em;
 }
-/* line 600, ../sass/global.styles.scss */
+/* line 601, ../sass/global.styles.scss */
 ul.sf-menu li:hover, ul.sf-menu li.sfHover {
   outline: 0;
 }
-/* line 608, ../sass/global.styles.scss */
+/* line 609, ../sass/global.styles.scss */
 ul.sf-menu a:focus, ul.sf-menu a:hover, ul.sf-menu a:active {
   outline: 0;
 }
@@ -521,12 +522,12 @@ ul.sf-menu a:focus, ul.sf-menu a:hover, ul.sf-menu a:active {
 /*
  * Superfish blocks
  */
-/* line 622, ../sass/global.styles.scss */
+/* line 623, ../sass/global.styles.scss */
 .block-superfish ul {
   margin: 0 !important;
   padding: 0 !important;
 }
-/* line 633, ../sass/global.styles.scss */
+/* line 634, ../sass/global.styles.scss */
 .block-superfish li {
   margin: 0 !important;
   padding: 0 !important;
@@ -535,22 +536,22 @@ ul.sf-menu a:focus, ul.sf-menu a:hover, ul.sf-menu a:active {
 /*
  * Vertical style
  */
-/* line 643, ../sass/global.styles.scss */
+/* line 644, ../sass/global.styles.scss */
 .sf-vertical {
   width: 100%;
 }
-/* line 646, ../sass/global.styles.scss */
+/* line 647, ../sass/global.styles.scss */
 .sf-vertical li {
   width: 100%;
 }
-/* line 652, ../sass/global.styles.scss */
+/* line 653, ../sass/global.styles.scss */
 .sf-vertical li:hover ul, .sf-vertical li.sfHover ul {
   left: 100%;
   top: 0;
   margin: 0;
   padding: 0;
 }
-/* line 659, ../sass/global.styles.scss */
+/* line 660, ../sass/global.styles.scss */
 .sf-vertical li a {
   padding: 0 10px;
 }
@@ -558,7 +559,7 @@ ul.sf-menu a:focus, ul.sf-menu a:hover, ul.sf-menu a:active {
 /*
  * Navbar style
  */
-/* line 669, ../sass/global.styles.scss */
+/* line 670, ../sass/global.styles.scss */
 .sf-navbar {
   padding-bottom: 0 !important;
 }
@@ -566,7 +567,7 @@ ul.sf-menu a:focus, ul.sf-menu a:hover, ul.sf-menu a:active {
 /*
  * Sensible padding for the default style
  */
-/* line 677, ../sass/global.styles.scss */
+/* line 678, ../sass/global.styles.scss */
 .sf-menu.sf-style-default a {
   padding: 0 10px;
 }
@@ -574,21 +575,21 @@ ul.sf-menu a:focus, ul.sf-menu a:hover, ul.sf-menu a:active {
 /* =============================================================================
  *   Menus, usually blocks
  * ========================================================================== */
-/* line 686, ../sass/global.styles.scss */
+/* line 687, ../sass/global.styles.scss */
 ul.menu {
   padding-left: 15px;
 }
-/* line 689, ../sass/global.styles.scss */
+/* line 690, ../sass/global.styles.scss */
 ul.menu ul {
   padding-left: 15px;
 }
-/* line 697, ../sass/global.styles.scss */
+/* line 698, ../sass/global.styles.scss */
 ul.menu li {
   margin: 0;
 }
 
 /* If li.content exists it's a problem, so reset the padding */
-/* line 726, ../sass/global.styles.scss */
+/* line 727, ../sass/global.styles.scss */
 .block .menu li.content {
   padding: 0;
 }
@@ -596,13 +597,13 @@ ul.menu li {
 /* =============================================================================
  *   Book navigation menu
  * ========================================================================== */
-/* line 743, ../sass/global.styles.scss */
+/* line 744, ../sass/global.styles.scss */
 .book-navigation .page-up {
   /* Prevent text wrapping to a new line, assumes English "up" is used (two characters) */
   min-width: 2em;
   white-space: nowrap;
 }
-/* line 749, ../sass/global.styles.scss */
+/* line 750, ../sass/global.styles.scss */
 .book-navigation .menu {
   margin-left: 0;
 }
@@ -610,31 +611,31 @@ ul.menu li {
 /* =============================================================================
  *   Breadcrumbs
  * ========================================================================== */
-/* line 759, ../sass/global.styles.scss */
+/* line 760, ../sass/global.styles.scss */
 #breadcrumb {
   margin: 10px 0;
   /* If the label is set to show in theme settings the label class is added */
 }
-/* line 763, ../sass/global.styles.scss */
+/* line 764, ../sass/global.styles.scss */
 #breadcrumb .breadcrumb-label {
   font-size: 1em;
   display: inline;
   padding-right: 10px;
 }
-/* line 768, ../sass/global.styles.scss */
+/* line 769, ../sass/global.styles.scss */
 #breadcrumb .breadcrumb-label:after {
   content: ":";
 }
-/* line 773, ../sass/global.styles.scss */
+/* line 774, ../sass/global.styles.scss */
 #breadcrumb ol {
   margin: 0;
   padding: 0;
 }
-/* line 778, ../sass/global.styles.scss */
+/* line 779, ../sass/global.styles.scss */
 #breadcrumb .with-breadcrumb-label ol {
   display: inline;
 }
-/* line 782, ../sass/global.styles.scss */
+/* line 783, ../sass/global.styles.scss */
 #breadcrumb li {
   list-style: none;
   display: inline;
@@ -643,31 +644,31 @@ ul.menu li {
 /* =============================================================================
  *   Pagers
  * ========================================================================== */
-/* line 809, ../sass/global.styles.scss */
+/* line 810, ../sass/global.styles.scss */
 ul.pager {
   clear: both;
   margin: 0;
   text-align: center;
 }
 
-/* line 816, ../sass/global.styles.scss */
+/* line 817, ../sass/global.styles.scss */
 .item-list ul.pager li {
   margin: 0;
 }
 
-/* line 821, ../sass/global.styles.scss */
+/* line 822, ../sass/global.styles.scss */
 ul.pager li {
   background-image: none;
   display: inline;
   list-style-type: none;
   padding: .5em;
 }
-/* line 827, ../sass/global.styles.scss */
+/* line 828, ../sass/global.styles.scss */
 ul.pager li.pager-current {
   /*font-weight: 700;*/
 }
 
-/* line 833, ../sass/global.styles.scss */
+/* line 834, ../sass/global.styles.scss */
 .block ul.pager li {
   margin: 0;
 }
@@ -678,7 +679,7 @@ ul.pager li.pager-current {
 /* =============================================================================
  *   Skip Navigation
  * ========================================================================== */
-/* line 870, ../sass/global.styles.scss */
+/* line 871, ../sass/global.styles.scss */
 #skip-link {
   left: 50%;
   margin-left: -6.5em;
@@ -688,7 +689,7 @@ ul.pager li.pager-current {
   width: 12em;
   z-index: 50;
 }
-/* line 879, ../sass/global.styles.scss */
+/* line 880, ../sass/global.styles.scss */
 #skip-link a {
   background: #444;
   background: rgba(0, 0, 0, 0.6);
@@ -699,7 +700,7 @@ ul.pager li.pager-current {
   text-align: center;
   text-decoration: none;
 }
-/* line 890, ../sass/global.styles.scss */
+/* line 891, ../sass/global.styles.scss */
 #skip-link a:link, #skip-link a:visited {
   background: #444;
   background: rgba(0, 0, 0, 0.6);
@@ -710,7 +711,7 @@ ul.pager li.pager-current {
   text-align: center;
   text-decoration: none;
 }
-/* line 902, ../sass/global.styles.scss */
+/* line 903, ../sass/global.styles.scss */
 #skip-link a:hover, #skip-link a:focus, #skip-link a:active {
   outline: 0;
 }
@@ -718,24 +719,24 @@ ul.pager li.pager-current {
 /* =============================================================================
  *   Tabs (local tasks)
  * ========================================================================== */
-/* line 913, ../sass/global.styles.scss */
+/* line 914, ../sass/global.styles.scss */
 #tasks {
   margin-bottom: 15px;
 }
 
-/* line 918, ../sass/global.styles.scss */
+/* line 919, ../sass/global.styles.scss */
 ul.primary {
   border-bottom-color: #cccccc;
   margin: 20px 0;
   padding: 0 0 0 5px;
 }
-/* line 923, ../sass/global.styles.scss */
+/* line 924, ../sass/global.styles.scss */
 ul.primary li {
   display: block;
   float: left;
   margin: 0 1px -1px;
 }
-/* line 928, ../sass/global.styles.scss */
+/* line 929, ../sass/global.styles.scss */
 ul.primary li a {
   background-color: whitesmoke;
   border-color: #cccccc;
@@ -746,12 +747,12 @@ ul.primary li a {
   height: 1.5em;
   line-height: 1.5em;
 }
-/* line 939, ../sass/global.styles.scss */
+/* line 940, ../sass/global.styles.scss */
 ul.primary li a:hover, ul.primary li a:focus {
   background-color: #eeeeee;
   border-color: #cccccc;
 }
-/* line 949, ../sass/global.styles.scss */
+/* line 950, ../sass/global.styles.scss */
 ul.primary li.active a,
 ul.primary li.active a:hover,
 ul.primary li.active a:focus {
@@ -759,19 +760,19 @@ ul.primary li.active a:focus {
   border-bottom-color: white;
 }
 
-/* line 957, ../sass/global.styles.scss */
+/* line 958, ../sass/global.styles.scss */
 ul.secondary {
   border-bottom: 1px solid #cccccc;
   margin: 1em 0 0;
   padding: 0 .3em 1em;
 }
-/* line 962, ../sass/global.styles.scss */
+/* line 963, ../sass/global.styles.scss */
 ul.secondary li {
   border-right: 0;
   list-style: none;
   padding: 0 10px 0 0;
 }
-/* line 969, ../sass/global.styles.scss */
+/* line 970, ../sass/global.styles.scss */
 ul.secondary li a:hover, ul.secondary li a.active {
   border-bottom: none;
   text-decoration: underline;
@@ -780,7 +781,7 @@ ul.secondary li a:hover, ul.secondary li a.active {
 /* =============================================================================
  *   Action links
  * ========================================================================== */
-/* line 982, ../sass/global.styles.scss */
+/* line 983, ../sass/global.styles.scss */
 ul.action-links {
   margin: 20px 0 0;
   list-style: none;
@@ -801,7 +802,7 @@ ul.action-links {
 /*
  * Labels are h2 in Adaptivetheme. Use a strong selector to mitigate unwanted ineritance issues
  */
-/* line 1015, ../sass/global.styles.scss */
+/* line 1016, ../sass/global.styles.scss */
 .field-label {
   font-size: 1em;
   font-family: inherit;
@@ -818,17 +819,17 @@ ul.action-links {
 /*
  * Taxonomy
  */
-/* line 1043, ../sass/global.styles.scss */
+/* line 1044, ../sass/global.styles.scss */
 .field-type-taxonomy-term-reference {
   /* The same bottom margin as p, blockquote, ul, ol and dl */
   margin-bottom: 1.5em;
 }
-/* line 1048, ../sass/global.styles.scss */
+/* line 1049, ../sass/global.styles.scss */
 .field-type-taxonomy-term-reference.field-label-inline .field-items {
   margin: 0;
   padding: 0;
 }
-/* line 1053, ../sass/global.styles.scss */
+/* line 1054, ../sass/global.styles.scss */
 .field-type-taxonomy-term-reference.field-label-inline .field-item {
   display: inline;
   list-style: none;
@@ -886,7 +887,7 @@ ul.action-links {
 /*
  * Float left setting
  */
-/* line 1168, ../sass/global.styles.scss */
+/* line 1169, ../sass/global.styles.scss */
 .ia-l .field-type-image figure,
 .iat-l .field-type-image figure {
   margin: 5px 20px 15px 0;
@@ -895,7 +896,7 @@ ul.action-links {
 /*
  * Centered setting
  */
-/* line 1177, ../sass/global.styles.scss */
+/* line 1178, ../sass/global.styles.scss */
 .ia-c .field-type-image figure,
 .iat-c .field-type-image figure {
   margin: 5px auto 15px;
@@ -904,7 +905,7 @@ ul.action-links {
 /*
  * Float right setting
  */
-/* line 1186, ../sass/global.styles.scss */
+/* line 1187, ../sass/global.styles.scss */
 .ia-r .field-type-image figure,
 .iat-r .field-type-image figure {
   margin: 5px 0 15px 20px;
@@ -916,7 +917,7 @@ ul.action-links {
 /*
  * Main wrapper for most blocks, block_system_main does not have it
  */
-/* line 1199, ../sass/global.styles.scss */
+/* line 1200, ../sass/global.styles.scss */
 .block {
   margin-bottom: 20px;
 }
@@ -939,7 +940,7 @@ ul.action-links {
 /*
  * Block title
  */
-/* line 1237, ../sass/global.styles.scss */
+/* line 1238, ../sass/global.styles.scss */
 .block-title {
   margin: 0;
 }
@@ -950,12 +951,12 @@ ul.action-links {
 /*
  * Match item list and block menu margin and padding
  */
-/* line 1254, ../sass/global.styles.scss */
+/* line 1255, ../sass/global.styles.scss */
 .block-content ul,
 .block-content ol {
   padding: 0 0 0 15px;
 }
-/* line 1258, ../sass/global.styles.scss */
+/* line 1259, ../sass/global.styles.scss */
 .block-content li {
   margin: 0;
   padding: 0;
@@ -1045,11 +1046,11 @@ ul.action-links {
 /* =============================================================================
  *   Node Styling
  * ========================================================================== */
-/* line 1431, ../sass/global.styles.scss */
+/* line 1432, ../sass/global.styles.scss */
 .node {
   margin-bottom: 20px;
 }
-/* line 1448, ../sass/global.styles.scss */
+/* line 1449, ../sass/global.styles.scss */
 .node .node-title {
   margin: 0;
 }
@@ -1065,15 +1066,15 @@ ul.action-links {
 /*
  * Wrapper for the list of comments and its titles
  */
-/* line 1506, ../sass/global.styles.scss */
+/* line 1507, ../sass/global.styles.scss */
 #comments {
   margin: 1.5em 0;
 }
-/* line 1510, ../sass/global.styles.scss */
+/* line 1511, ../sass/global.styles.scss */
 #comments h2.comment-title {
   margin: 0;
 }
-/* line 1514, ../sass/global.styles.scss */
+/* line 1515, ../sass/global.styles.scss */
 #comments h2.comment-form {
   margin: 0;
 }
@@ -1081,7 +1082,7 @@ ul.action-links {
 /*
  * Wrapper for a single comment
  */
-/* line 1524, ../sass/global.styles.scss */
+/* line 1525, ../sass/global.styles.scss */
 .comment {
   margin-bottom: 20px;
 }
@@ -1089,7 +1090,7 @@ ul.action-links {
 /*
  * Comment title
  */
-/* line 1555, ../sass/global.styles.scss */
+/* line 1556, ../sass/global.styles.scss */
 .comment-title {
   margin: 0;
 }
@@ -1103,7 +1104,7 @@ ul.action-links {
 /*
  * "New" marker for comments that are new for the current user
  */
-/* line 1587, ../sass/global.styles.scss */
+/* line 1588, ../sass/global.styles.scss */
 .new {
   color: #cc0000;
 }
@@ -1111,7 +1112,7 @@ ul.action-links {
 /*
  * Nested comments are indented
  */
-/* line 1595, ../sass/global.styles.scss */
+/* line 1596, ../sass/global.styles.scss */
 .indented {
   margin-left: 40px;
 }
@@ -1122,17 +1123,17 @@ ul.action-links {
 /*
  * Wrapper for a form element (or group of form elements) and its label
  */
-/* line 1611, ../sass/global.styles.scss */
+/* line 1612, ../sass/global.styles.scss */
 .form-item input.error,
 .form-item textarea.error,
 .form-item select.error {
   border: 1px solid #cc0000;
 }
-/* line 1615, ../sass/global.styles.scss */
+/* line 1616, ../sass/global.styles.scss */
 .form-item label {
   font-weight: normal;
 }
-/* line 1622, ../sass/global.styles.scss */
+/* line 1623, ../sass/global.styles.scss */
 .form-item .description {
   font-size: 0.85em;
 }
@@ -1140,7 +1141,7 @@ ul.action-links {
 /*
  * Highlight marks and form required mark
  */
-/* line 1636, ../sass/global.styles.scss */
+/* line 1637, ../sass/global.styles.scss */
 .marker,
 .form-required {
   color: #cc0000;
@@ -1149,7 +1150,7 @@ ul.action-links {
 /*
  * The submit button
  */
-/* line 1650, ../sass/global.styles.scss */
+/* line 1651, ../sass/global.styles.scss */
 .container-inline div,
 .container-inline label {
   display: inline;
@@ -1158,7 +1159,7 @@ ul.action-links {
 /*
  * Define consistent borders
  */
-/* line 1658, ../sass/global.styles.scss */
+/* line 1659, ../sass/global.styles.scss */
 fieldset {
   border: 1px solid #cccccc;
 }
@@ -1169,7 +1170,7 @@ fieldset {
 /*
  * Buttons used by contrib modules like Media
  */
-/* line 1672, ../sass/global.styles.scss */
+/* line 1673, ../sass/global.styles.scss */
 a.button {
   /*@include appearance(button);*/
   /*height: 19px;
@@ -1208,7 +1209,7 @@ a.button {
   letter-spacing: 0;
   -webkit-font-smoothing: subpixel-antialiased;
 }
-/* line 1710, ../sass/global.styles.scss */
+/* line 1711, ../sass/global.styles.scss */
 a.button:hover {
   background: #222;
   color: #fff;
@@ -1217,7 +1218,7 @@ a.button:hover {
 /*
  * Password confirmation
  */
-/* line 1721, ../sass/global.styles.scss */
+/* line 1722, ../sass/global.styles.scss */
 .password-parent,
 .confirm-parent {
   margin: 0;
@@ -1226,18 +1227,18 @@ a.button:hover {
 /* =============================================================================
  *   Tables
  * ========================================================================== */
-/* line 1730, ../sass/global.styles.scss */
+/* line 1731, ../sass/global.styles.scss */
 table {
   margin: 10px 0;
   padding: 0;
   width: 100%;
 }
-/* line 1735, ../sass/global.styles.scss */
+/* line 1736, ../sass/global.styles.scss */
 table.sticky-header {
   z-index: 10;
 }
 
-/* line 1746, ../sass/global.styles.scss */
+/* line 1747, ../sass/global.styles.scss */
 table,
 thead,
 tbody,
@@ -1247,26 +1248,26 @@ td {
   border-color: #cccccc;
 }
 
-/* line 1753, ../sass/global.styles.scss */
+/* line 1754, ../sass/global.styles.scss */
 table,
 td,
 th {
   vertical-align: middle;
 }
 
-/* line 1760, ../sass/global.styles.scss */
+/* line 1761, ../sass/global.styles.scss */
 caption,
 th,
 td {
   text-align: left;
 }
 
-/* line 1765, ../sass/global.styles.scss */
+/* line 1766, ../sass/global.styles.scss */
 thead tr {
   background-color: #e5e5e5;
 }
 
-/* line 1771, ../sass/global.styles.scss */
+/* line 1772, ../sass/global.styles.scss */
 td,
 th {
   border-bottom: 0;
@@ -1274,24 +1275,24 @@ th {
   padding: 5px 7px;
 }
 
-/* line 1781, ../sass/global.styles.scss */
+/* line 1782, ../sass/global.styles.scss */
 tbody tr {
   border-top: 1px solid #cccccc;
 }
 
-/* line 1786, ../sass/global.styles.scss */
+/* line 1787, ../sass/global.styles.scss */
 tr {
   /* Table row striping */
 }
-/* line 1788, ../sass/global.styles.scss */
+/* line 1789, ../sass/global.styles.scss */
 tr.odd {
   background: white;
 }
-/* line 1795, ../sass/global.styles.scss */
+/* line 1796, ../sass/global.styles.scss */
 tr.info, tr.even, tr:nth-child(2n+2) {
   border-bottom: 0;
 }
-/* line 1804, ../sass/global.styles.scss */
+/* line 1805, ../sass/global.styles.scss */
 tr.odd td.active {
   background-color: #eeeeee;
 }
@@ -1300,7 +1301,7 @@ tr.odd td.active {
  * Forum tables
  * Core sets white-space to nowrap, which makes no sense
  */
-/* line 1836, ../sass/global.styles.scss */
+/* line 1837, ../sass/global.styles.scss */
 #forum td .created,
 #forum td .posts,
 #forum td .topics,
@@ -1313,12 +1314,12 @@ tr.odd td.active {
 /* =============================================================================
  *   Messages
  * ========================================================================== */
-/* line 1847, ../sass/global.styles.scss */
+/* line 1848, ../sass/global.styles.scss */
 div.messages {
   margin-bottom: 10px;
   margin-top: 10px;
 }
-/* line 1852, ../sass/global.styles.scss */
+/* line 1853, ../sass/global.styles.scss */
 div.messages ul {
   margin-top: 0;
   margin-bottom: 0;
@@ -1327,7 +1328,7 @@ div.messages ul {
 /*
  * Unpublished nodes
  */
-/* line 1893, ../sass/global.styles.scss */
+/* line 1894, ../sass/global.styles.scss */
 .node-unpublished p.unpublished,
 .comment-unpublished p.unpublished {
   color: pink;
@@ -1353,28 +1354,28 @@ div.messages ul {
 /* =============================================================================
  *    Maintenance pages
  * ========================================================================== */
-/* line 1904, ../sass/global.styles.scss */
+/* line 1905, ../sass/global.styles.scss */
 .maintenance-page .container {
   padding: 40px 0;
 }
-/* line 1909, ../sass/global.styles.scss */
+/* line 1910, ../sass/global.styles.scss */
 .maintenance-page #site-name,
 .maintenance-page #page-title {
   margin: 0;
 }
 
-/* line 1916, ../sass/global.styles.scss */
+/* line 1917, ../sass/global.styles.scss */
 .db-offline .container {
   margin: 0 auto;
   padding: 40px 0;
   width: 100%;
   max-width: 960px;
 }
-/* line 1923, ../sass/global.styles.scss */
+/* line 1924, ../sass/global.styles.scss */
 .db-offline div.messages {
   margin: 20px 0 0;
 }
-/* line 1927, ../sass/global.styles.scss */
+/* line 1928, ../sass/global.styles.scss */
 .db-offline #content {
   padding: 20px 0;
 }
@@ -1385,7 +1386,7 @@ div.messages ul {
 /*
  * Admin menu overrides
  */
-/* line 1940, ../sass/global.styles.scss */
+/* line 1941, ../sass/global.styles.scss */
 #admin-menu {
   margin: 0;
   padding: 0;
@@ -1394,7 +1395,7 @@ div.messages ul {
 /*
  * Devel Module
  */
-/* line 1949, ../sass/global.styles.scss */
+/* line 1950, ../sass/global.styles.scss */
 .dev-query {
   background: #eeeeee;
   padding: 30px;
@@ -1403,11 +1404,11 @@ div.messages ul {
 /*
  * Styleguide module tweaks
  */
-/* line 1958, ../sass/global.styles.scss */
+/* line 1959, ../sass/global.styles.scss */
 #styleguide-header {
   padding: 0 10px;
 }
-/* line 1961, ../sass/global.styles.scss */
+/* line 1962, ../sass/global.styles.scss */
 #styleguide-header .item-list {
   font-family: inherit;
   margin: 0 20px 20px 0;
