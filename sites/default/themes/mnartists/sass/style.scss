@@ -9564,12 +9564,18 @@ body.wysiwygeditor {
         overflow:visible;
         @media screen and (max-width: $break-mobile) {
             @include column(24);
+            display:block;width:100%;
+            padding:0;margin:0;float:none;
         }
         @media screen and (max-width: $break-tablet) {
             @include column(24);
+            display:block;width:100%;
+            padding:0;margin:0;float:none;
         }
         @media screen and (max-width: $break-desktop-small) {
             @include column(24);
+            display:block;width:100%;
+            padding:0;margin:0;float:none;
         }
 
         a {
