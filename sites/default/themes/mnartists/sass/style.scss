@@ -10256,3 +10256,19 @@ body {
     line-height:1.6em;
   }
 }
+
+
+// lets fix teh admin menu
+#admin-menu {
+  opacity:0;
+  -webkit-transition: all .3s ease-in-out;
+  -moz-transition: all .3s ease-in-out;
+  -o-transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out;
+  &:hover {
+    opacity:1;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+  }
