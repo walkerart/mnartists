@@ -42,7 +42,13 @@ function twitterCache($endpointUrl, array $urlParams, $reset = FALSE)
         $oauth->setToken(TWITTER_ACCESS_TOKEN, TWITTER_TOKEN_SECRET);
 
         // do the request
-        $oauth->fetch($fetchUrl);
+        try {
+            $oauth->fetch($fetchUrl);
+        } catch (Exception $ex) {
+            watchdog('mnartist_twitter', 'OAuth with Twitter failed', WATCHDOG_ERROR);
+            return false;
+        }
+
         $tweets = json_decode($oauth->getLastResponse());
 
         // if endpoint returned errors, log them and return false
@@ -217,11 +223,15 @@ function _mnartist_twitter_block()
         $mention_tweets = twitterCache(TWITTER_SEARCH_ENDPOINT, $mention_tweets_options);
 
         // interleave the user tweets and mentions
-        foreach ($user_tweets as $tweet) {
-            $tweets[$tweet->id_str] = $tweet;
+        if ($user_tweets !== false) {
+            foreach ($user_tweets as $tweet) {
+                $tweets[$tweet->id_str] = $tweet;
+            }
         }
-        foreach ($mention_tweets as $tweet) {
-            $tweets[$tweet->id_str] = $tweet;
+        if ($mention_tweets !== false) {
+            foreach ($mention_tweets as $tweet) {
+                $tweets[$tweet->id_str] = $tweet;
+            }
         }
         krsort($tweets);
     }
