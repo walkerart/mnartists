@@ -792,8 +792,9 @@ body {
     -moz-transition: all .3s ease-in-out;
     -webkit-transition: all .3s ease-in-out;
     transition: all .3s ease-in-out;
+    padding-top: 60px;
   }
-  /* line 584, ../sass/menu.scss */
+  /* line 585, ../sass/menu.scss */
   body.sidebar-show #menu {
     display: block;
     width: 200px;
@@ -801,18 +802,18 @@ body {
     -webkit-transition: all .3s ease-in-out;
     transition: all .3s ease-in-out;
   }
-  /* line 588, ../sass/menu.scss */
+  /* line 589, ../sass/menu.scss */
   body.sidebar-show #menu .menu-content {
     display: block;
   }
 }
-/* line 596, ../sass/menu.scss */
+/* line 597, ../sass/menu.scss */
 body.sidebar-show .sidebar-button {
   left: 200px;
   background: url("../images/bg-mobile-menu-button.gif") no-repeat left -45px #e5e5e5;
 }
 
-/* line 603, ../sass/menu.scss */
+/* line 604, ../sass/menu.scss */
 .sidebar-button {
   display: none;
   background: url("../images/bg-mobile-menu-button.gif") no-repeat left top #e5e5e5;
@@ -825,7 +826,7 @@ body.sidebar-show .sidebar-button {
   line-height: 45px;
 }
 @media screen and (max-width: 480px) {
-  /* line 603, ../sass/menu.scss */
+  /* line 604, ../sass/menu.scss */
   .sidebar-button {
     display: block;
     display: block;
@@ -850,33 +851,33 @@ body.sidebar-show .sidebar-button {
   }
 }
 
-/* line 628, ../sass/menu.scss */
+/* line 629, ../sass/menu.scss */
 .my-stuff .sidebar-button {
   background: url("../images/bg-mobile-menu-button.gif") no-repeat left -45px #e5e5e5;
 }
-/* line 632, ../sass/menu.scss */
+/* line 633, ../sass/menu.scss */
 .my-stuff.sidebar-show .sidebar-button {
   background: url("../images/bg-mobile-menu-button.gif") no-repeat left top #e5e5e5;
 }
 
-/* line 640, ../sass/menu.scss */
+/* line 641, ../sass/menu.scss */
 ::-webkit-input-placeholder {
   color: #888;
 }
 
-/* line 644, ../sass/menu.scss */
+/* line 645, ../sass/menu.scss */
 :-moz-placeholder {
   /* Firefox 18- */
   color: #888;
 }
 
-/* line 648, ../sass/menu.scss */
+/* line 649, ../sass/menu.scss */
 ::-moz-placeholder {
   /* Firefox 19+ */
   color: #888;
 }
 
-/* line 652, ../sass/menu.scss */
+/* line 653, ../sass/menu.scss */
 :-ms-input-placeholder {
   color: #888;
 }
