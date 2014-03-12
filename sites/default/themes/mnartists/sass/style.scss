@@ -5790,6 +5790,10 @@ body.page-node-edit {
     #main-content {
         @include container;
 
+        @media screen and (max-width: $break-mobile) {
+          margin-top:0px;
+        }
+
         #content {
             background: #f2f2f2;
             padding:75px 100px;
@@ -5989,6 +5993,9 @@ body.page-node-edit {
     #main-content {
         margin-top:20px;
         margin-bottom:20px;
+        @media screen and (max-width: $break-mobile) {
+            margin-top:0px;
+        }
     }
 }
 
@@ -9969,10 +9976,13 @@ body.wysiwygeditor {
 .panel-2col.layout-a {
     position:relative;
     padding-top:20px;
+    @media screen and (max-width: $break-mobile) {
+        padding-top:0px;
+    }
 
     .sort-thing {
         position: fixed;
-        top: 0px;
+        top: -1px;
         right: 40px;
     }
     .sort-thing-fully-retracted {
@@ -9984,6 +9994,10 @@ body.wysiwygeditor {
     .panel-2col.layout-a {
         .sort-thing {
             top: 21px;
+            @media screen and (max-width: $break-mobile) {
+                padding-top:-1px;
+            }
+
         }
         .sort-thing-fully-retracted {
             top: -100px;

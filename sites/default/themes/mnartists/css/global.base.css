@@ -149,57 +149,58 @@
   position: relative;
   padding: 20px;
   background: #fff;
+  margin-right: 0px;
 }
-/* line 8, ../sass/layout-b.scss */
+/* line 10, ../sass/layout-b.scss */
 .layout-b .main-content .inside .block-inner {
   margin-right: 0px;
   margin-left: 0px;
 }
 
-/* line 21, ../sass/layout-b.scss */
+/* line 23, ../sass/layout-b.scss */
 .panel-2col {
   /*  overflow: hidden;  */
 }
 
-/* line 25, ../sass/layout-b.scss */
+/* line 27, ../sass/layout-b.scss */
 .panel-2col .panel-col-first {
   float: left;
   width: 75%;
 }
 
-/* line 29, ../sass/layout-b.scss */
+/* line 31, ../sass/layout-b.scss */
 * html .panel-2col .panel-col-first {
   width: 74.9%;
 }
 
-/* line 33, ../sass/layout-b.scss */
+/* line 35, ../sass/layout-b.scss */
 .panel-2col .panel-col-first .inside {
   margin: 0 .5em 1em 0;
 }
 
-/* line 37, ../sass/layout-b.scss */
+/* line 39, ../sass/layout-b.scss */
 .panel-2col .panel-col-last {
   float: left;
   width: 25%;
 }
 
-/* line 41, ../sass/layout-b.scss */
+/* line 43, ../sass/layout-b.scss */
 * html .panel-2col .panel-col-last {
   width: 24.9%;
 }
 
-/* line 45, ../sass/layout-b.scss */
+/* line 47, ../sass/layout-b.scss */
 .panel-2col .panel-col-last .inside {
   margin: 0 0 1em .5em;
 }
 
-/* line 50, ../sass/layout-b.scss */
+/* line 52, ../sass/layout-b.scss */
 #panels-edit-display .panel-pane,
 #panels-edit-display .helperclass {
   margin: .5em;
 }
 
-/* line 54, ../sass/layout-b.scss */
+/* line 56, ../sass/layout-b.scss */
 .panel-2col .panel-separator {
   margin: 0 0 1em 0;
 }
@@ -754,8 +755,8 @@ div.messages {
 /* line 563, ../sass/global.base.scss */
 #content .panel-display,
 #content .panel-flexible {
-  margin-left: -10px;
-  margin-right: -10px;
+  /*margin-left: -$gutter-width;
+  margin-right: -$gutter-width;*/
 }
 
 /* =============================================================================
