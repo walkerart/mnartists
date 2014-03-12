@@ -624,6 +624,9 @@ body {
  	 @include transition-property(left);
 	  @include transition-timing-function(ease-in-out);
 	}
+	&:hover {
+		text-decoration:none;
+	}
 }
 .my-stuff {
 	.sidebar-button {
