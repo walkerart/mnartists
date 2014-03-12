@@ -809,13 +809,13 @@ body {
 /* line 596, ../sass/menu.scss */
 body.sidebar-show .sidebar-button {
   left: 200px;
-  background: url("../images/bg-mobile-menu-button.gif") no-repeat left top transparent;
+  background: url("../images/bg-mobile-menu-button.gif") no-repeat left -45px transparent;
 }
 
 /* line 603, ../sass/menu.scss */
 .sidebar-button {
   display: none;
-  background: url("../images/bg-mobile-menu-button.gif") no-repeat left -45px transparent;
+  background: url("../images/bg-mobile-menu-button.gif") no-repeat left top transparent;
   height: 45px;
   width: 45px;
   overflow: hidden;
@@ -850,31 +850,31 @@ body.sidebar-show .sidebar-button {
 
 /* line 625, ../sass/menu.scss */
 .my-stuff .sidebar-button {
-  background: url("../images/bg-mobile-menu-button.gif") no-repeat left top transparent;
-}
-/* line 628, ../sass/menu.scss */
-.my-stuff.sidebar-show {
   background: url("../images/bg-mobile-menu-button.gif") no-repeat left -45px transparent;
 }
+/* line 629, ../sass/menu.scss */
+.my-stuff.sidebar-show .sidebar-button {
+  background: url("../images/bg-mobile-menu-button.gif") no-repeat left top transparent;
+}
 
-/* line 634, ../sass/menu.scss */
+/* line 637, ../sass/menu.scss */
 ::-webkit-input-placeholder {
   color: #888;
 }
 
-/* line 638, ../sass/menu.scss */
+/* line 641, ../sass/menu.scss */
 :-moz-placeholder {
   /* Firefox 18- */
   color: #888;
 }
 
-/* line 642, ../sass/menu.scss */
+/* line 645, ../sass/menu.scss */
 ::-moz-placeholder {
   /* Firefox 19+ */
   color: #888;
 }
 
-/* line 646, ../sass/menu.scss */
+/* line 649, ../sass/menu.scss */
 :-ms-input-placeholder {
   color: #888;
 }
