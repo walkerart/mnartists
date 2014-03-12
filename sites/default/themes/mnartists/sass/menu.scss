@@ -613,6 +613,9 @@ body {
 		position:absolute;
 		top:0;
 		left:0;
+		@include transition-duration(0.3s);
+ 	 @include transition-property(left);
+	  @include transition-timing-function(ease-in-out);
 	}
 }
 
