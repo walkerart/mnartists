@@ -11682,13 +11682,19 @@ body {
   -webkit-transition: all .3s ease-in-out;
   transition: all .3s ease-in-out;
 }
+@media screen and (max-width: 480px) {
+  /* line 10129, ../sass/style.scss */
+  #page {
+    padding-top: 60px;
+  }
+}
 
-/* line 10140, ../sass/style.scss */
+/* line 10143, ../sass/style.scss */
 .form-item-account-type {
   display: block !important;
 }
 
-/* line 10145, ../sass/style.scss */
+/* line 10148, ../sass/style.scss */
 .item-more-button-link-indicator {
   display: inline-block;
   overflow: hidden;
@@ -11697,25 +11703,25 @@ body {
   background: url("../images/icon-more-chevron.png") no-repeat center bottom transparent;
   text-indent: 20px;
 }
-/* line 10153, ../sass/style.scss */
+/* line 10156, ../sass/style.scss */
 .item-more-button-link-indicator:hover {
   background: url("../images/icon-more-chevron.png") no-repeat center bottom transparent;
 }
 
-/* line 10163, ../sass/style.scss */
+/* line 10166, ../sass/style.scss */
 #field-media-add-more-wrapper tbody .form-required {
   display: none;
 }
-/* line 10166, ../sass/style.scss */
+/* line 10169, ../sass/style.scss */
 #field-media-add-more-wrapper tbody tr {
   border-bottom: 10px solid #f2f2f2;
 }
 
-/* line 10174, ../sass/style.scss */
+/* line 10177, ../sass/style.scss */
 .content-artwork .pane-node-field-media {
   position: relative;
 }
-/* line 10176, ../sass/style.scss */
+/* line 10179, ../sass/style.scss */
 .content-artwork .pane-node-field-media .slidesjs-navigation {
   height: 26px;
   width: 16px;
@@ -11725,21 +11731,21 @@ body {
   text-indent: 30px;
   position: absolute;
 }
-/* line 10181, ../sass/style.scss */
+/* line 10184, ../sass/style.scss */
 .content-artwork .pane-node-field-media .slidesjs-navigation.slidesjs-previous {
   background: url("../images/icon-sprite-slider-arrows.png") no-repeat left top transparent;
   left: -40px;
   top: 50%;
   margin-top: -13px;
 }
-/* line 10186, ../sass/style.scss */
+/* line 10189, ../sass/style.scss */
 .content-artwork .pane-node-field-media .slidesjs-navigation.slidesjs-next {
   background: url("../images/icon-sprite-slider-arrows.png") no-repeat -50px top transparent;
   right: -40px;
   top: 50%;
   margin-top: -13px;
 }
-/* line 10192, ../sass/style.scss */
+/* line 10195, ../sass/style.scss */
 .content-artwork .pane-node-field-media .slidesjs-pagination {
   display: block;
   text-align: center;
@@ -11747,30 +11753,30 @@ body {
   padding: 10px 0 0 0;
 }
 
-/* line 10204, ../sass/style.scss */
+/* line 10207, ../sass/style.scss */
 .article-page .pane-node-title {
   font-size: 36px;
   line-height: 1.2em;
   padding-right: 40px;
 }
-/* line 10208, ../sass/style.scss */
+/* line 10211, ../sass/style.scss */
 .article-page .pane-node-title .block-content a {
   text-decoration: none !important;
 }
-/* line 10214, ../sass/style.scss */
+/* line 10217, ../sass/style.scss */
 .article-page .pane-mnartist-collections-mna-collections-star {
   position: absolute;
   top: 20px;
   right: 20px;
 }
-/* line 10220, ../sass/style.scss */
+/* line 10223, ../sass/style.scss */
 .article-page .pane-node-author {
   font-size: 13px;
   width: 45%;
   float: left;
   margin-bottom: 15px;
 }
-/* line 10227, ../sass/style.scss */
+/* line 10230, ../sass/style.scss */
 .article-page .pane-node-created {
   font-size: 13px;
   width: 45%;
@@ -11778,11 +11784,11 @@ body {
   text-align: right;
   margin-bottom: 15px;
 }
-/* line 10236, ../sass/style.scss */
+/* line 10239, ../sass/style.scss */
 .article-page .pane-node-field-images .field-label {
   display: none;
 }
-/* line 10241, ../sass/style.scss */
+/* line 10244, ../sass/style.scss */
 .article-page .field-name-field-body {
   font-size: 17px;
   font-family: "adobe-text-pro", "Times New Roman", Times, serif;

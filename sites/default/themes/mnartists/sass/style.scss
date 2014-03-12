@@ -10133,6 +10133,9 @@ body {
     -moz-transition: all .3s ease-in-out;
     -webkit-transition: all .3s ease-in-out;
     transition: all .3s ease-in-out;
+    @media screen and (max-width: $break-mobile) {
+      padding-top:60px;
+    }
 }
 
 // make sure we don't hide the account
