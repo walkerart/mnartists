@@ -699,3 +699,17 @@ header[role=banner],
 .element-hidden {
   display: none;
 }
+
+
+/* messages */
+.message {
+  &.error {
+    background:#df362b;
+    background-image:none;
+    color:#fff;
+    border:none;
+    .error {
+      color:#fff;
+    }
+  }
+}
