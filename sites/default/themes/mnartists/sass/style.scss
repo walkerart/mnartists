@@ -6271,7 +6271,7 @@ tr.odd .form-item, tr.even .form-item {
 .page-user-edit #columns {
 
     .content-inner {
-        margin-right:10px;
+        margin-right:0px;
         #main-content {
             background:#f2f2f2;
             padding:20px;
@@ -6285,20 +6285,24 @@ tr.odd .form-item, tr.even .form-item {
             display:block;float:none;
             text-align:left;
 
+
             @media screen and (max-width: $break-desktop-small) {
                 @include column(24);
                 @include last;
                 padding:40px 50px;
                 margin-left:20px!important;margin-right:20px!important;
+                width:auto;
             }
             @media screen and (max-width: $break-tablet) {
                 @include column(24);
                 @include last;
                 padding:20px 20px;
                 margin-left:20px!important;margin-right:20px!important;
+                width:auto;
             }
             @media screen and (max-width: $break-mobile) {
                 margin-left:10px!important;margin-right:10px!important;
+                width:auto;
             }
         }
     }
