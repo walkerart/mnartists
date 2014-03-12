@@ -5807,15 +5807,21 @@ body.page-node-edit {
                 @include last;
                 padding:40px 50px;
                 margin-left:20px!important;margin-right:20px!important;
+                display:block;float:none;
+                width:auto;
             }
             @media screen and (max-width: $break-tablet) {
                 @include column(24);
                 @include last;
                 padding:20px 20px;
                 margin-left:20px!important;margin-right:20px!important;
+                display:block;float:none;
+                width:auto;
             }
             @media screen and (max-width: $break-mobile) {
                 margin-left:10px!important;margin-right:10px!important;
+                display:block;float:none;
+                width:auto;
             }
 
             input[type=text],
