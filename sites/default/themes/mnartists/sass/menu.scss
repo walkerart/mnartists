@@ -601,6 +601,11 @@ body {
 // sidebar menu toggle button
 .sidebar-button {
 	display:none;
+	background: url('../images/bg-mobile-menu-button.gif') no-repeat left top transparent;
+	height:45px;width:45px;
+	overflow:hidden;
+	text-indent:50px;
+	white-space:nowrap;
 	@media screen and (max-width: $break-mobile) {
 		display:block;
 		display: block;
@@ -608,14 +613,18 @@ body {
 		margin: 0px;
 		background: rgba(0,0,0,.2);
 		text-align: center;
-		height:45px;width:45px;
-		overflow:hidden;
+
 		position:absolute;
 		top:0;
 		left:0;
 		@include transition-duration(0.3s);
  	 @include transition-property(left);
 	  @include transition-timing-function(ease-in-out);
+	}
+}
+.my-stuff {
+	.sidebar-button {
+		background: url('../images/bg-mobile-menu-button.gif') no-repeat left -45px transparent;
 	}
 }
 

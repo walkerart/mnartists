@@ -814,6 +814,12 @@ body.sidebar-show .sidebar-button {
 /* line 602, ../sass/menu.scss */
 .sidebar-button {
   display: none;
+  background: url("../images/bg-mobile-menu-button.gif") no-repeat left top transparent;
+  height: 45px;
+  width: 45px;
+  overflow: hidden;
+  text-indent: 50px;
+  white-space: nowrap;
 }
 @media screen and (max-width: 480px) {
   /* line 602, ../sass/menu.scss */
@@ -824,9 +830,6 @@ body.sidebar-show .sidebar-button {
     margin: 0px;
     background: rgba(0, 0, 0, 0.2);
     text-align: center;
-    height: 45px;
-    width: 45px;
-    overflow: hidden;
     position: absolute;
     top: 0;
     left: 0;
@@ -845,24 +848,29 @@ body.sidebar-show .sidebar-button {
   }
 }
 
-/* line 623, ../sass/menu.scss */
+/* line 626, ../sass/menu.scss */
+.my-stuff .sidebar-button {
+  background: url("../images/bg-mobile-menu-button.gif") no-repeat left -45px transparent;
+}
+
+/* line 632, ../sass/menu.scss */
 ::-webkit-input-placeholder {
   color: #888;
 }
 
-/* line 627, ../sass/menu.scss */
+/* line 636, ../sass/menu.scss */
 :-moz-placeholder {
   /* Firefox 18- */
   color: #888;
 }
 
-/* line 631, ../sass/menu.scss */
+/* line 640, ../sass/menu.scss */
 ::-moz-placeholder {
   /* Firefox 19+ */
   color: #888;
 }
 
-/* line 635, ../sass/menu.scss */
+/* line 644, ../sass/menu.scss */
 :-ms-input-placeholder {
   color: #888;
 }
