@@ -595,7 +595,7 @@ body {
 		}
 		.sidebar-button {
 			left:200px;
-			background: url('../images/bg-mobile-menu-button.gif') no-repeat left -45px transparent;
+			background: url('../images/bg-mobile-menu-button.gif') no-repeat left -45px #e5e5e5;
 		}
 	}
 }
@@ -603,10 +603,13 @@ body {
 .sidebar-button {
 	display:none;
 	background: url('../images/bg-mobile-menu-button.gif') no-repeat left top #e5e5e5;
-	height:45px;width:100%;
+	height:45px;
+	right:0px;
 	overflow:hidden;
 	text-indent:50px;
 	white-space:nowrap;
+	font-size:24px;
+	line-height:45px;
 	@media screen and (max-width: $break-mobile) {
 		display:block;
 		display: block;
@@ -623,11 +626,11 @@ body {
 }
 .my-stuff {
 	.sidebar-button {
-		background: url('../images/bg-mobile-menu-button.gif') no-repeat left -45px transparent;
+		background: url('../images/bg-mobile-menu-button.gif') no-repeat left -45px #e5e5e5;
 	}
 	&.sidebar-show {
 		.sidebar-button {
-			background: url('../images/bg-mobile-menu-button.gif') no-repeat left top transparent;
+			background: url('../images/bg-mobile-menu-button.gif') no-repeat left top #e5e5e5;
 		}
 
 	}

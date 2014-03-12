@@ -72,6 +72,6 @@
   <?php print $page_top; ?>
   <?php print $page; ?>
   <?php print $page_bottom; ?>
-  <a href="" class="sidebar-button">sidebar</a>
+  <a href="" class="sidebar-button">MN Artists</a>
 </body>
 </html>

@@ -809,7 +809,7 @@ body {
 /* line 596, ../sass/menu.scss */
 body.sidebar-show .sidebar-button {
   left: 200px;
-  background: url("../images/bg-mobile-menu-button.gif") no-repeat left -45px transparent;
+  background: url("../images/bg-mobile-menu-button.gif") no-repeat left -45px #e5e5e5;
 }
 
 /* line 603, ../sass/menu.scss */
@@ -817,10 +817,12 @@ body.sidebar-show .sidebar-button {
   display: none;
   background: url("../images/bg-mobile-menu-button.gif") no-repeat left top #e5e5e5;
   height: 45px;
-  width: 100%;
+  right: 0px;
   overflow: hidden;
   text-indent: 50px;
   white-space: nowrap;
+  font-size: 24px;
+  line-height: 45px;
 }
 @media screen and (max-width: 480px) {
   /* line 603, ../sass/menu.scss */
@@ -848,33 +850,33 @@ body.sidebar-show .sidebar-button {
   }
 }
 
-/* line 625, ../sass/menu.scss */
+/* line 628, ../sass/menu.scss */
 .my-stuff .sidebar-button {
-  background: url("../images/bg-mobile-menu-button.gif") no-repeat left -45px transparent;
+  background: url("../images/bg-mobile-menu-button.gif") no-repeat left -45px #e5e5e5;
 }
-/* line 629, ../sass/menu.scss */
+/* line 632, ../sass/menu.scss */
 .my-stuff.sidebar-show .sidebar-button {
-  background: url("../images/bg-mobile-menu-button.gif") no-repeat left top transparent;
+  background: url("../images/bg-mobile-menu-button.gif") no-repeat left top #e5e5e5;
 }
 
-/* line 637, ../sass/menu.scss */
+/* line 640, ../sass/menu.scss */
 ::-webkit-input-placeholder {
   color: #888;
 }
 
-/* line 641, ../sass/menu.scss */
+/* line 644, ../sass/menu.scss */
 :-moz-placeholder {
   /* Firefox 18- */
   color: #888;
 }
 
-/* line 645, ../sass/menu.scss */
+/* line 648, ../sass/menu.scss */
 ::-moz-placeholder {
   /* Firefox 19+ */
   color: #888;
 }
 
-/* line 649, ../sass/menu.scss */
+/* line 652, ../sass/menu.scss */
 :-ms-input-placeholder {
   color: #888;
 }
