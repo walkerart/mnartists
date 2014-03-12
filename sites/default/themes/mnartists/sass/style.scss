@@ -6174,6 +6174,9 @@ tr.odd .form-item, tr.even .form-item {
     #tasks {
         margin:-20px -20px 0 -20px;
         background: $mystuff_bg_light;
+        @media screen and (max-width: $break-desktop-small) {
+          margin:-40px -40px 0 -40px;
+        }
         .primary {
             display:none;
         }
