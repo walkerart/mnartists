@@ -595,6 +595,7 @@ body {
 		}
 		.sidebar-button {
 			left:200px;
+			background: url('../images/bg-mobile-menu-button.gif') no-repeat left top transparent;
 		}
 	}
 }
@@ -623,6 +624,9 @@ body {
 .my-stuff {
 	.sidebar-button {
 		background: url('../images/bg-mobile-menu-button.gif') no-repeat left top transparent;
+	}
+	&.sidebar-show {
+		background: url('../images/bg-mobile-menu-button.gif') no-repeat left -45px transparent;
 	}
 }
 
