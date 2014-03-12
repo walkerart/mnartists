@@ -10203,13 +10203,37 @@ body {
 .article-page {
   .pane-node-title {
     font-size:36px;
+    line-height:1.2em;
+    padding-right:40px;
+    a { text-decoration:none; }
+
   }
+
+  .pane-mnartist-collections-mna-collections-star {
+    position:absolute;
+    top:20px;
+    right:20px;
+  }
+
   .pane-node-author {
     font-size:13px;
+    width:45%;
+    float:left;
   }
-  .pane-node-date {
+
+  .pane-node-created {
     font-size:13px;
+    width:45%;
+    float:right;
+    text-align:right;
   }
+
+  .pane-node-field-images {
+    .field-label {
+      display:none;
+    }
+  }
+
   .field-name-field-body {
     font-size:17px;
     font-family: $serif_font;
