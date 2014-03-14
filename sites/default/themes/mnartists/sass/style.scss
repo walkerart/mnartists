@@ -9571,7 +9571,7 @@ body.wysiwygeditor {
     }
     #content {
         background: $mystuff_bg_dark;
-        padding:10px;
+        padding:20px;
         margin-bottom:20px;
         margin-top:20px;
         color:#fff;
@@ -9582,20 +9582,22 @@ body.wysiwygeditor {
         margin-left:auto;margin-right:auto;
         float:none;
         overflow:visible;
+        box-sizing:border-box;
+
         @media screen and (max-width: $break-mobile) {
             @include column(24);
             display:block;width:100%;
-            padding:0;margin:20px 0;float:none;
+            padding:20px;margin:20px 0;float:none;
         }
         @media screen and (max-width: $break-tablet) {
             @include column(24);
             display:block;width:100%;
-            padding:0;margin:20px 0;float:none;
+            padding:20px;margin:20px 0;float:none;
         }
         @media screen and (max-width: $break-desktop-small) {
             @include column(24);
             display:block;width:100%;
-            padding:0;margin:20px 0;float:none;
+            padding:20px;margin:20px 0;float:none;
         }
 
         a {
@@ -9625,7 +9627,7 @@ body.wysiwygeditor {
 
                     td {
                         vertical-align:top;
-                        line-height:.5em;
+
 
                         &:first-child {
                             padding-left:0;
@@ -9635,6 +9637,7 @@ body.wysiwygeditor {
                         &:nth-child(3) {
                           color:transparent;
                           text-align:center;
+                          line-height:.5em;
 
                             a {
                               border-radius:50%;
@@ -9652,22 +9655,9 @@ body.wysiwygeditor {
 
                             a:first-child {
                               background: url('../images/icon-form-add.png') no-repeat center center transparent;
-                              margin-bottom:5px;
-
                             }
                             a:last-child {
-                              border-radius:50%;
-                              text-overflow:hidden;
-                              height:21px;
-                              width:21px;
                               background: url('../images/icon-form-remove.png') no-repeat center center transparent;
-                              text-indent:50px;
-                              white-space:nowrap;
-                              padding:0;
-                              border:1px solid #666;
-                              outline:none;
-                              display:block;
-                              float:left;
                             }
                             a:hover {
                               border:1px solid #999;
