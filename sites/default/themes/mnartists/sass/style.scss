@@ -8283,7 +8283,7 @@ input {
                     text-overflow:hidden;
                     height:21px;
                     width:21px;
-                    background: url('../images/icon-form-edit.png') no-repeat center center transparent;
+                    background: url('../images/icon-form-remove.png') no-repeat center center transparent;
                     text-indent:50px;
                     white-space:nowrap;
                     padding:0;
@@ -9213,7 +9213,9 @@ tr.even {
         overflow:hidden;
     }
     .field-type-taxonomy-term-reference-form {
-        overflow:hidden;
+        label {
+          margin-bottom:64px;
+        }
     }
 }
 
@@ -9221,7 +9223,9 @@ tr.even {
 .node-venue-form {
     .field-name-field-public-form,
     .field-type-taxonomy-term-reference-form {
-        margin-bottom:64px;
+        label {
+          margin-bottom:64px;
+        }
     }
     .field-name-field-contact-name-form {
         overflow:hidden;
@@ -9238,7 +9242,9 @@ tr.even {
         margin-bottom:64px;
     }
     .field-name-field-category-form {
-        overflow:hidden;
+        label {
+          margin-bottom:64px;
+        }
     }
     #edit-submit {
         float:none;
@@ -9375,6 +9381,7 @@ body.wysiwygeditor {
     box-sizing: border-box;
     padding: 5px;
     overflow: auto;
+    text-align:left;
 }
 
 // iCheck //
