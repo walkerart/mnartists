@@ -9625,6 +9625,7 @@ body.wysiwygeditor {
 
                     td {
                         vertical-align:top;
+                        line-height:.5em;
 
                         &:first-child {
                             padding-left:0;
@@ -9633,16 +9634,26 @@ body.wysiwygeditor {
 
                         &:nth-child(3) {
                           color:transparent;
-                            a:first-child {
+                          text-align:center;
+
+                            a {
                               border-radius:50%;
-                              text-overflow:hidden;
+                              overflow:hidden;
                               height:21px;
                               width:21px;
-                              background: url('../images/icon-form-add.png') no-repeat center center transparent;
                               text-indent:50px;
                               white-space:nowrap;
                               padding:0;
-                              border:none;outline:none;
+                              border:1px solid #666;
+                              outline:none;
+                              display:block;
+                              margin:0 auto;
+                            }
+
+                            a:first-child {
+                              background: url('../images/icon-form-add.png') no-repeat center center transparent;
+                              margin-bottom:5px;
+
                             }
                             a:last-child {
                               border-radius:50%;
@@ -9653,7 +9664,13 @@ body.wysiwygeditor {
                               text-indent:50px;
                               white-space:nowrap;
                               padding:0;
-                              border:none;outline:none;
+                              border:1px solid #666;
+                              outline:none;
+                              display:block;
+                              float:left;
+                            }
+                            a:hover {
+                              border:1px solid #999;
                             }
                         }
                     }
