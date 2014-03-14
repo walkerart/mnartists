@@ -9632,12 +9632,28 @@ body.wysiwygeditor {
                         }
 
                         &:nth-child(3) {
-
-                            a {
-
-                                &:nth-child(2) {
-
-                                }
+                          color:transparent;
+                            a:first-child {
+                              border-radius:50%;
+                              text-overflow:hidden;
+                              height:21px;
+                              width:21px;
+                              background: url('../images/icon-form-add.png') no-repeat center center transparent;
+                              text-indent:50px;
+                              white-space:nowrap;
+                              padding:0;
+                              border:none;outline:none;
+                            }
+                            a:last-child {
+                              border-radius:50%;
+                              text-overflow:hidden;
+                              height:21px;
+                              width:21px;
+                              background: url('../images/icon-form-remove.png') no-repeat center center transparent;
+                              text-indent:50px;
+                              white-space:nowrap;
+                              padding:0;
+                              border:none;outline:none;
                             }
                         }
                     }
