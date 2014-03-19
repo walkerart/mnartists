@@ -65,19 +65,27 @@
       float:none;
       clear:both;
       overflow:hidden;
-      
-      .left {
+
+      .panel-col-first {
         width:75%;
         float:left;
         .inside {
           background:#ccc;
+          margin:0 20px 0;
+          padding:10px;
         }
       }
-      .right {
+      .panel-col-last {
         width:25%;
         float:left;
         .inside {
-          background:#ccc;
+          background:#fff;
+          margin:0;
+
+          .widget {
+            background:#fff;
+            padding:10px;
+          }
         }
       }
     }
@@ -86,6 +94,7 @@
       .inside {
         width:100%;
         background:#ccc;
+        margin:0;
       }
     }
   }

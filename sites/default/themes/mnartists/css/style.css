@@ -80,50 +80,59 @@
   overflow: hidden;
 }
 /* line 69, ../sass/layout-a.scss */
-.layout-a .panel-2col .panel-col-top .left {
+.layout-a .panel-2col .panel-col-top .panel-col-first {
   width: 75%;
   float: left;
 }
 /* line 72, ../sass/layout-a.scss */
-.layout-a .panel-2col .panel-col-top .left .inside {
+.layout-a .panel-2col .panel-col-top .panel-col-first .inside {
   background: #ccc;
+  margin: 0 20px 0;
+  padding: 10px;
 }
-/* line 76, ../sass/layout-a.scss */
-.layout-a .panel-2col .panel-col-top .right {
+/* line 78, ../sass/layout-a.scss */
+.layout-a .panel-2col .panel-col-top .panel-col-last {
   width: 25%;
   float: left;
 }
-/* line 79, ../sass/layout-a.scss */
-.layout-a .panel-2col .panel-col-top .right .inside {
-  background: #ccc;
+/* line 81, ../sass/layout-a.scss */
+.layout-a .panel-2col .panel-col-top .panel-col-last .inside {
+  background: #fff;
+  margin: 0;
 }
-/* line 84, ../sass/layout-a.scss */
+/* line 85, ../sass/layout-a.scss */
+.layout-a .panel-2col .panel-col-top .panel-col-last .inside .widget {
+  background: #fff;
+  padding: 10px;
+}
+/* line 92, ../sass/layout-a.scss */
 .layout-a .panel-2col .panel-col-full {
   width: 100%;
 }
-/* line 86, ../sass/layout-a.scss */
+/* line 94, ../sass/layout-a.scss */
 .layout-a .panel-2col .panel-col-full .inside {
   width: 100%;
   background: #ccc;
+  margin: 0;
 }
 
-/* line 95, ../sass/layout-a.scss */
+/* line 104, ../sass/layout-a.scss */
 * html .panel-2col.layout-a .panel-col-first {
   width: 74.9%;
 }
 
-/* line 98, ../sass/layout-a.scss */
+/* line 107, ../sass/layout-a.scss */
 * html .panel-2col.layout-a .panel-col-last {
   width: 24.9%;
 }
 
 /* insets */
-/* line 102, ../sass/layout-a.scss */
+/* line 111, ../sass/layout-a.scss */
 * html .panel-2col.layout-a .panel-col-first .panel-col-first.inset-left {
   width: 74.9%;
 }
 
-/* line 105, ../sass/layout-a.scss */
+/* line 114, ../sass/layout-a.scss */
 * html .panel-2col.layout-a .panel-col-first .panel-col-last.inset-right {
   width: 24.9%;
 }
