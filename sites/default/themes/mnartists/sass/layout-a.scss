@@ -57,6 +57,39 @@
     }
 }
 
+
+.layout-a {
+  .panel-2col {
+    .panel-col-top {
+      width:100%;
+      .left {
+        width:75%;
+        float:left;
+        .inside {
+          background:#ccc;
+        }
+      }
+      .right {
+        width:25%;
+        float:left;
+        .inside {
+          background:#ccc;
+        }
+      }
+    }
+    .panel-col-full {
+      width:100%;
+      .inside {
+        width:100%;
+        background:#ccc;
+      }
+    }
+  }
+}
+
+
+
+
 * html .panel-2col.layout-a .panel-col-first {
   width: 74.9%;
 }

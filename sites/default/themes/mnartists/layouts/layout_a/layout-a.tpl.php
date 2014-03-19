@@ -23,6 +23,9 @@
       <div class="inside"><?php print $content['top_right']; ?></div>
     </div>
   </div>
+  <div class="panel-pane panel-col-full">
+      <div class="inside"><?php print $content['community_full']; ?></div>
+  </div>
   <div class="panel-panel panel-col-first main-content">
     <div class="inside"><?php print $content['left']; ?></div>
 

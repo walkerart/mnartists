@@ -10,6 +10,7 @@ $plugin = array(
   'regions' => array(
     'top_left' => t('Top left'),
     'top_right' => t('Top right'),
+    'community_full' => t('Community full'),
     'left' => t('Left side'),
     'right' => t('Right side'),
     'inset_left' => t('Inset Left side'),

@@ -72,23 +72,55 @@
   margin: 0 0 1em 0;
 }
 
-/* line 60, ../sass/layout-a.scss */
+/* line 63, ../sass/layout-a.scss */
+.layout-a .panel-2col .panel-col-top {
+  width: 100%;
+}
+/* line 65, ../sass/layout-a.scss */
+.layout-a .panel-2col .panel-col-top .left {
+  width: 75%;
+  float: left;
+}
+/* line 68, ../sass/layout-a.scss */
+.layout-a .panel-2col .panel-col-top .left .inside {
+  background: #ccc;
+}
+/* line 72, ../sass/layout-a.scss */
+.layout-a .panel-2col .panel-col-top .right {
+  width: 25%;
+  float: left;
+}
+/* line 75, ../sass/layout-a.scss */
+.layout-a .panel-2col .panel-col-top .right .inside {
+  background: #ccc;
+}
+/* line 80, ../sass/layout-a.scss */
+.layout-a .panel-2col .panel-col-full {
+  width: 100%;
+}
+/* line 82, ../sass/layout-a.scss */
+.layout-a .panel-2col .panel-col-full .inside {
+  width: 100%;
+  background: #ccc;
+}
+
+/* line 93, ../sass/layout-a.scss */
 * html .panel-2col.layout-a .panel-col-first {
   width: 74.9%;
 }
 
-/* line 63, ../sass/layout-a.scss */
+/* line 96, ../sass/layout-a.scss */
 * html .panel-2col.layout-a .panel-col-last {
   width: 24.9%;
 }
 
 /* insets */
-/* line 67, ../sass/layout-a.scss */
+/* line 100, ../sass/layout-a.scss */
 * html .panel-2col.layout-a .panel-col-first .panel-col-first.inset-left {
   width: 74.9%;
 }
 
-/* line 70, ../sass/layout-a.scss */
+/* line 103, ../sass/layout-a.scss */
 * html .panel-2col.layout-a .panel-col-first .panel-col-last.inset-right {
   width: 24.9%;
 }
