@@ -174,8 +174,7 @@ function artist_community_search_page() {
         $filtered_by_events_only = true;
 
         $all_event_results = array();
-        foreach ($all_community_results as $index => $row) {
-
+        foreach ($all_community_results['results'] as $index => $row) {
             $date_key = date_create($row['item']->field_date['und'][0]['value']);
             $date_key->setTime(0,0,0);
             $date_key_string = $date_key->format('Y-m-d');
