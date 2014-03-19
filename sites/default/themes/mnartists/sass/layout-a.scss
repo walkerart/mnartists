@@ -2,7 +2,11 @@
 /* community and homepage template stuff */
 
 .layout-a {
-
+  .panel-2col .panel-col-first {
+    display:block;clear:both;
+    float:none;margin:0 0 30px 0;
+    padding:0;
+  }
     .panel-col-first {
         float: left;
         width: 75%;
@@ -52,6 +56,37 @@
         margin: 0 0 1em 0;
     }
 }
+
+
+.layout-a {
+  .panel-2col {
+    .panel-col-top {
+      width:100%;
+      .left {
+        width:75%;
+        float:left;
+        .inside {
+          background:#ccc;
+        }
+      }
+      .right {
+        width:25%;
+        float:left;
+        .inside {
+          background:#ccc;
+        }
+      }
+    }
+    .panel-col-full {
+      width:100%;
+      .inside {
+        width:100%;
+        background:#ccc;
+      }
+    }
+  }
+}
+
 
 * html .panel-2col.layout-a .panel-col-first {
   width: 74.9%;
