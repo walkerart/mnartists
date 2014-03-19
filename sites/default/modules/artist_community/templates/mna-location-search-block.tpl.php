@@ -1,4 +1,5 @@
 <form method="get" action="<?= $action_url ?>" class="nearme-filter <?= $form_class ?>">
+    <input type="hidden" name="content[<?= $content_type ?>]" value="1">
     <?php
         $url_query_string = $_SERVER['QUERY_STRING'];
         if ($url_query_string !== '') {

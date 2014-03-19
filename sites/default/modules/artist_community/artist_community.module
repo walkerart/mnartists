@@ -545,6 +545,7 @@ function url_query_master($text, $path, $key, $val, $attributes = array()) {
                 'action_url' => '/community',
                 'form_class' => $artist_search_class,
                 'related_filters' => isset($_GET['content']) ? $_GET['content'] : array(),
+                'content_type' => 'artists',
                 'search_field_value' => $artist_location_search_string,
             ));
 
@@ -605,7 +606,7 @@ function url_query_master($text, $path, $key, $val, $attributes = array()) {
                 $output .= theme('item_list', array('items' => $article_sub_items));
             }
 
-        }else if ($val === 'event') {
+        } else if ($val === 'event') {
 
             $event_sub_items = array();
 
@@ -622,6 +623,7 @@ function url_query_master($text, $path, $key, $val, $attributes = array()) {
                 'action_url' => '/community',
                 'form_class' => $event_search_class,
                 'related_filters' => isset($_GET['content']) ? $_GET['content'] : array(),
+                'content_type' => 'event',
                 'search_field_value' => $event_location_search_string,
             ));
             $event_sub_items[] = '<div class="menu-event-datepicker"></div>';
@@ -796,6 +798,7 @@ function _artist_community_get_items_query ($local_og = null,
             'node' => array(),
             'user' => array()
         );
+
         foreach($local_content as $type => $value) {
 
             switch($type) {
@@ -818,6 +821,7 @@ function _artist_community_get_items_query ($local_og = null,
                         is_array($local_content[$type])) {
                         $subQuery = implode(' AND ', $local_content[$type]);
                     }
+
                 case 'event':
                     if (isset($_GET['event_location_search'])) {
                         $event_coords = _get_location_coords_from_search_string(urldecode($_GET['event_location_search']));
@@ -893,6 +897,8 @@ function _artist_community_get_items_query ($local_og = null,
 
             // validate date param
             $incoming_date = date_parse_from_format('Y-m-d', $_GET['event_date']);
+
+
 
             // if it's good, go ahead with the filter,
             // creating a time range to span the whole day
