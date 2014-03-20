@@ -263,10 +263,25 @@
 /* line 5, ../sass/layout-c.scss */
 .layout-c .panel-2col .panel-col-first {
   width: 50%;
+  box-border: border-box;
+  padding-right: 10px;
 }
-/* line 9, ../sass/layout-c.scss */
+@media screen and (max-width: 480px) {
+  /* line 5, ../sass/layout-c.scss */
+  .layout-c .panel-2col .panel-col-first {
+    padding-right: 0;
+  }
+}
+/* line 14, ../sass/layout-c.scss */
 .layout-c .panel-2col .panel-col-last {
   width: 50%;
+  padding-left: 10px;
+}
+@media screen and (max-width: 480px) {
+  /* line 14, ../sass/layout-c.scss */
+  .layout-c .panel-2col .panel-col-last {
+    padding-left: 0;
+  }
 }
 
 /* line 2, ../sass/_forms.scss */
@@ -12228,10 +12243,25 @@ body {
 /* line 5, ../sass/layout-c.scss */
 .layout-c .panel-2col .panel-col-first {
   width: 50%;
+  box-border: border-box;
+  padding-right: 10px;
 }
-/* line 9, ../sass/layout-c.scss */
+@media screen and (max-width: 480px) {
+  /* line 5, ../sass/layout-c.scss */
+  .layout-c .panel-2col .panel-col-first {
+    padding-right: 0;
+  }
+}
+/* line 14, ../sass/layout-c.scss */
 .layout-c .panel-2col .panel-col-last {
   width: 50%;
+  padding-left: 10px;
+}
+@media screen and (max-width: 480px) {
+  /* line 14, ../sass/layout-c.scss */
+  .layout-c .panel-2col .panel-col-last {
+    padding-left: 0;
+  }
 }
 
 /* line 2, ../sass/_forms.scss */

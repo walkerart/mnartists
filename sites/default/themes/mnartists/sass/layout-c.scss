@@ -4,10 +4,19 @@
 
     .panel-col-first {
       width:50%;
+      box-border:border-box;
+      padding-right:10px;
+      @media screen and (max-width: $break-mobile) {
+        padding-right:0;
+      }
     }
 
     .panel-col-last {
       width:50%;
+      padding-left:10px;
+      @media screen and (max-width: $break-mobile) {
+        padding-left:0;
+      }
     }
   }
 }
