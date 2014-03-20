@@ -14,20 +14,22 @@
  *   - $content['right']: Content in the right column.
  */
 ?>
-<div class="panel-display panel-2col clearfix" <?php if (!empty($css_id)) { print "id=\"$css_id\""; } ?>>
-  <div class="panel-panel panel-col-first">
-    <div class="inside"><?php print $content['left']; ?></div>
-  </div>
+<div class="layout-c">
+  <div class="panel-display panel-2col clearfix" <?php if (!empty($css_id)) { print "id=\"$css_id\""; } ?>>
+    <div class="panel-panel panel-col-first">
+      <div class="inside"><?php print $content['left']; ?></div>
+    </div>
 
-  <div class="panel-panel panel-col-last">
-    <div class="inside"><?php print $content['right']; ?></div>
-    
-    <div class="panel-panel panel-col-first inset-left">
-    	<div class="inside"><?php print $content['inset_left']; ?></div>
+    <div class="panel-panel panel-col-last">
+      <div class="inside"><?php print $content['right']; ?></div>
+
+      <div class="panel-panel panel-col-first inset-left">
+      	<div class="inside"><?php print $content['inset_left']; ?></div>
+      </div>
+      <div class="panel-panel panel-col-last inset-right">
+      	<div class="inside"><?php print $content['inset_right']; ?></div>
+      </div>
+
     </div>
-    <div class="panel-panel panel-col-last inset-right">
-    	<div class="inside"><?php print $content['inset_right']; ?></div>
-    </div>
-    
   </div>
 </div>
