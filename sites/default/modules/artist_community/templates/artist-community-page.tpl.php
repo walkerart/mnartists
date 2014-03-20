@@ -10,28 +10,6 @@
         $og_get_string = implode('&', $og_get_string_arr);
     }
 ?>
-<div class="layout-a">
-  <div class="panel-display panel-2col clearfix" <?php if (!empty($css_id)) { print "id=\"$css_id\""; } ?>>
-    <div class="panel-pane panel-col-top">
-      <div class="panel-col-first">
-        <div class="inside">
-          test
-        </div>
-      </div>
-      <div class="panel-col-last">
-        <div class="inside">
-          test
-        </div>
-      </div>
-    </div>
-    <div class="panel-pane panel-col-full">
-        <div class="inside">
-          test
-        </div>
-    </div>
-  </div>
-</div>
-
 <div class="panel-2col layout-a">
     <div class="panel-panel panel-col-first main-content">
         <? /* don't show this block if we're not on the community landing page */ ?>
