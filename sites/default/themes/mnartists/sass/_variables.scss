@@ -1,0 +1,86 @@
+$main_color: #222;
+$main_bg: #f2f2f2;
+$secondary_color: #d4d4d4;
+$secondary_bg: #d4d4d4 url(http://www.walkerart.org/static/img/bg_gray.jpg);
+$inverse_color: #f9f9f9;
+$inverse_bg: #222;
+$divider_color: #a3a3a3;
+$divider_color_dark: #9d9d9d;
+$divider_bg: url(http://www.walkerart.org/static/img/line_dotted.png);
+$menu_bg: #e5e5e5;
+$darkgray: #333;
+$lightgray:#888;
+$red_color: #e30000;
+$light_border: rgba(0,0,0,.15);
+$mystuff_bg_light: #3F3F3F;
+$mystuff_bg_dark: #323232;
+$label_color:#808080;
+
+$highlight: #f9f5bf;
+$secondary_highlight: #e4e0af;
+
+$design_color: #e93abe;
+$design_color_dark: $design_color;
+$design_bg: desaturate(lighten($design_color, 32%), 60%);
+
+$education_color: #e30000;
+$education_color_dark: $education_color;
+$education_bg: desaturate(lighten($education_color, 42%), 60%);
+
+$film_color: #d7d700;
+$film_color_dark: saturate(darken($film_color, 10%), 50%);
+$film_bg: desaturate(lighten($film_color, 45%), 50%);
+
+$new_media_color: #00e300;
+$new_media_color_dark: saturate(darken($new_media_color, 4%), 50%);;
+$new_media_bg: desaturate(lighten($new_media_color, 45%), 70%);
+
+$performing_arts_color: #00d7d7;
+$performing_arts_color_dark: saturate(darken($performing_arts_color, 8%), 50%);
+$performing_arts_bg: desaturate(lighten($performing_arts_color, 45%), 50%);
+
+$visual_arts_color: #0000f4;
+$visual_arts_color_dark: $visual_arts_color;
+$visual_arts_bg: desaturate(lighten($visual_arts_color, 42%), 60%);
+
+$sans_regular_font: 'Apercu Regular', Arial, Helvetica, sans-serif;
+$sans_bold_font: 'Apercu Bold', Arial, Helvetica, sans-serif;
+$sans_italic_font: 'Apercu Italic', Arial, Helvetica, sans-serif;
+$sans_bold_italic_font: 'Apercu Bold Italic', Arial, Helvetica, sans-serif;
+$serif_font: 'adobe-text-pro', 'Times New Roman', Times, serif;
+
+// break points
+$break-desktop-small: 960px;
+$break-tablet: 768px;
+$break-mobile: 480px;
+
+//
+// Legacy IE support
+//
+// These variables are used by many mixins to add additional CSS to support
+// specific versions of IE or specific vendor prefixes.
+//
+// To turn off support for IE6 or IE7, set those variables to false.
+//
+// AdaptiveTheme does not require special handling for IE8 or later. But Compass
+// defines more Legacy IE variables that you might find useful for your theme.
+// See the documentation at http://compass-style.org/reference/compass/support/
+//
+
+$legacy-support-for-ie6: true;
+$legacy-support-for-ie7: true;
+
+
+//
+// Blueprint grid definitions
+//
+
+// $blueprint-grid-columns : 24;
+// $blueprint-grid-width   : 30px;
+// $blueprint-grid-margin  : 10px;
+
+$blueprint-liquid-grid-columns: 24;
+$blueprint-liquid-grid-width: 1.8%;
+$blueprint-liquid-grid-margin: 2.409%;
+$blueprint-liquid-container-width: 100%;
+$blueprint-liquid-container-min-width: none;

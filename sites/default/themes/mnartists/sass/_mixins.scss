@@ -1,0 +1,116 @@
+//
+// Mixins //
+//
+@mixin quiet_type {
+    font-family: $sans_regular_font;
+    font-weight: normal;
+    font-size: 9px;
+    line-height: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+@mixin quiet_type_label {
+    font-family: $sans_regular_font;
+    font-weight: normal;
+    font-size: 9px;
+    line-height: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+@mixin widget_title {
+    padding: 0 0 5px 0;
+    margin: 0;
+    height: 15px;
+    background:none;
+}
+
+@mixin feature_type {
+    font-family: $serif_font;
+    font-size: 16px;
+    line-height: 16px;
+    font-weight: bold;
+    text-align: center;
+    -webkit-font-smoothing: subpixel-antialiased;
+}
+
+@mixin no_break {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@mixin rounded {
+    -webkit-border-radius: 1px;
+    -moz-border-radius: 1px;
+    border-radius: 1px;
+}
+
+@mixin not_rounded {
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+}
+@mixin dashed_border {
+  border-bottom: 1px dashed $lightgray;
+}
+
+@mixin program_coloring($color, $bg) {
+    background: $bg;
+    color: $color;
+
+    * {
+        color: $color;
+    }
+
+    .alternate,
+    .date_connector {
+        border-color: $color !important;
+    }
+}
+
+@mixin program($color) {
+    border-color: $color !important;
+    color: $color !important;
+}
+
+@mixin program_tiles($color, $bg) {
+    background: $bg !important;
+    color: $color !important;
+    border-color: $color !important;
+
+    h1,
+    h3,
+    .date,
+    .date_connector,
+    .overflowed {
+        background: $bg !important;
+        color: $color !important;
+        border-color: $color !important;
+    }
+}
+
+@mixin program_highlighted($color) {
+    *,
+    span,
+    h1 {
+        color: $color !important;
+    }
+
+    .program {
+        display: block;
+    }
+}
+
+@mixin full_width {
+  display:block;
+  width:auto!important;
+  float:none!important;
+  clear:both;
+}
+
+@mixin icon_bg {
+  overflow:hidden;
+  text-indent:100%;
+  white-space: nowrap;
+  display:inline-block;
+}

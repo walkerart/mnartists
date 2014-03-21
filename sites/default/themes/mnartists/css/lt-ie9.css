@@ -1,7 +1,282 @@
+/* jquery ui tabs */
+/* line 5, ../sass/_jquery-ui.scss */
+.block-content .ui-tabs {
+  border-radius: 0;
+  border: none;
+  padding: 0;
+}
+/* line 10, ../sass/_jquery-ui.scss */
+.block-content .ui-tabs ul.ui-tabs-nav.ui-widget-header {
+  background: none;
+  margin: 0 0 10px 0;
+  padding: 0;
+  border-radius: 0;
+  text-align: center;
+  background: #e5e5e5;
+  border: none;
+  font-family: "Apercu Regular", Arial, Helvetica, sans-serif;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+/* line 22, ../sass/_jquery-ui.scss */
+.block-content .ui-tabs ul.ui-tabs-nav.ui-widget-header li.ui-state-default {
+  border-radius: 0;
+  background: none;
+  border: none;
+  display: inline-block;
+  margin-bottom: 0;
+  float: none;
+  position: relative;
+}
+/* line 31, ../sass/_jquery-ui.scss */
+.block-content .ui-tabs ul.ui-tabs-nav.ui-widget-header li.ui-state-default a {
+  float: none;
+  opacity: .5;
+  color: #333333;
+  display: block;
+}
+/* line 38, ../sass/_jquery-ui.scss */
+.block-content .ui-tabs ul.ui-tabs-nav.ui-widget-header li.ui-state-default.ui-tabs-selected {
+  z-index: 2;
+}
+/* line 41, ../sass/_jquery-ui.scss */
+.block-content .ui-tabs ul.ui-tabs-nav.ui-widget-header li.ui-state-default.ui-tabs-selected:after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  margin-left: -5px;
+  height: 10px;
+  width: 10px;
+  overflow: hidden;
+  background: #e5e5e5;
+  display: block;
+  padding: 0;
+  border-radius: 5px;
+  z-index: 1;
+}
+/* line 58, ../sass/_jquery-ui.scss */
+.block-content .ui-tabs ul.ui-tabs-nav.ui-widget-header li.ui-state-active a {
+  opacity: 1;
+}
+/* line 64, ../sass/_jquery-ui.scss */
+.block-content .ui-tabs .ui-tabs-panel {
+  font-family: "adobe-text-pro", "Times New Roman", Times, serif;
+}
+
+/* line 70, ../sass/_jquery-ui.scss */
+.ui-tabs-nav {
+  margin-bottom: 20px;
+}
+
+/* date picker on page ****************/
+/* line 77, ../sass/_jquery-ui.scss */
+.ui-datepicker-inline {
+  border: none;
+  border-width: 0;
+  padding: 0;
+  background: none;
+  border-bottom: 1px dashed #888888;
+}
+/* line 87, ../sass/_jquery-ui.scss */
+.ui-datepicker-inline .ui-datepicker-prev, .ui-datepicker-inline .ui-datepicker-next {
+  background: none;
+  top: 4px;
+}
+/* line 91, ../sass/_jquery-ui.scss */
+.ui-datepicker-inline .ui-datepicker-prev {
+  left: 10px;
+}
+/* line 94, ../sass/_jquery-ui.scss */
+.ui-datepicker-inline .ui-datepicker-next {
+  right: 10px;
+}
+/* line 97, ../sass/_jquery-ui.scss */
+.ui-datepicker-inline .ui-datepicker-prev .ui-icon {
+  background: url("../images/arrow-prev.svg") no-repeat center center transparent;
+  background-size: 7px auto;
+}
+/* line 101, ../sass/_jquery-ui.scss */
+.ui-datepicker-inline .ui-datepicker-next .ui-icon {
+  background: url("../images/arrow-next.svg") no-repeat center center transparent;
+  background-size: 7px auto;
+}
+/* line 110, ../sass/_jquery-ui.scss */
+.ui-datepicker-inline .ui-datepicker-header {
+  border: none;
+  border-width: 0;
+  border-radius: 0;
+  background: none;
+}
+/* line 116, ../sass/_jquery-ui.scss */
+.ui-datepicker-inline a {
+  padding: 0;
+  background-image: none;
+}
+/* line 121, ../sass/_jquery-ui.scss */
+.ui-datepicker-inline table.ui-datepicker-calendar {
+  border: none;
+}
+/* line 126, ../sass/_jquery-ui.scss */
+.ui-datepicker-inline table.ui-datepicker-calendar thead tr {
+  background: none;
+}
+/* line 131, ../sass/_jquery-ui.scss */
+.ui-datepicker-inline table.ui-datepicker-calendar thead tr th span {
+  color: #111;
+}
+/* line 137, ../sass/_jquery-ui.scss */
+.ui-datepicker-inline table.ui-datepicker-calendar tbody {
+  border: none;
+}
+/* line 140, ../sass/_jquery-ui.scss */
+.ui-datepicker-inline table.ui-datepicker-calendar tbody tr {
+  border: none;
+  border-width: 0;
+  background: none;
+  margin-bottom: 5px;
+}
+/* line 146, ../sass/_jquery-ui.scss */
+.ui-datepicker-inline table.ui-datepicker-calendar tbody tr td {
+  padding: 0 0 5px 0;
+  border: none;
+  border-width: 0;
+}
+/* line 150, ../sass/_jquery-ui.scss */
+.ui-datepicker-inline table.ui-datepicker-calendar tbody tr td a {
+  line-height: 22px!important;
+  height: 22px;
+  width: 22px;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  padding: 0;
+  margin: 0;
+}
+/* line 160, ../sass/_jquery-ui.scss */
+.ui-datepicker-inline table.ui-datepicker-calendar tbody tr td a.ui-state-active {
+  background: #111 !important;
+  color: #fff !important;
+  border: 1px solid #111 !important;
+}
+
+/* line 171, ../sass/_jquery-ui.scss */
+.ui-widget {
+  background: #323232;
+  font-family: "Apercu Regular", Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  line-height: 16px;
+}
+
+/* line 184, ../sass/_jquery-ui.scss */
+.page-media-browser {
+  background: #323232;
+  font-family: "Apercu Regular", Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  line-height: 16px;
+}
+/* line 190, ../sass/_jquery-ui.scss */
+.page-media-browser #media-browser-tabset {
+  background: none;
+  padding: 0;
+  border: none;
+}
+/* line 202, ../sass/_jquery-ui.scss */
+.page-media-browser .ui-tabs {
+  background: none;
+}
+/* line 204, ../sass/_jquery-ui.scss */
+.page-media-browser .ui-tabs .ui-tabs-nav {
+  background: none;
+  padding: 0;
+}
+/* line 209, ../sass/_jquery-ui.scss */
+.page-media-browser .ui-state-active, .page-media-browser .ui-widget-content .ui-state-active, .page-media-browser .ui-widget-header .ui-state-active {
+  background: #f2f2f2;
+}
+/* line 212, ../sass/_jquery-ui.scss */
+.page-media-browser .ui-tabs-panel {
+  background: #f2f2f2;
+}
+
+/* line 216, ../sass/_jquery-ui.scss */
+.media-browser-tab {
+  color: #888888;
+}
+/* line 218, ../sass/_jquery-ui.scss */
+.media-browser-tab label {
+  color: #222222;
+  font-family: "Apercu Bold", Arial, Helvetica, sans-serif;
+}
+/* line 223, ../sass/_jquery-ui.scss */
+.media-browser-tab a:hover {
+  color: #888888;
+}
+
+/* line 228, ../sass/_jquery-ui.scss */
+.ui-tabs .ui-tabs-nav li a {
+  text-transform: uppercase;
+}
+
+/* line 231, ../sass/_jquery-ui.scss */
+.ui-widget-overlay {
+  /*background: #aaa url(images/ui-bg_flat_0_aaaaaa_40x100.png) 50% 50% repeat-x;*/
+  background: #000;
+  opacity: .6;
+  filter: Alpha(Opacity=60);
+}
+
+/* line 240, ../sass/_jquery-ui.scss */
+.page-node-add .ui-widget-content {
+  background: #323232;
+}
+/* line 243, ../sass/_jquery-ui.scss */
+.page-node-add .ui-widget-content iframe {
+  height: 100%!important;
+}
+
+/* line 250, ../sass/_jquery-ui.scss */
+input[type=submit] {
+  height: auto;
+  padding: 5px 10px;
+  border: 1px solid #333;
+  font-family: "Apercu Regular", Arial, Helvetica, sans-serif;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-border-radius: 1px;
+  -moz-border-radius: 1px;
+  border-radius: 1px;
+  cursor: pointer;
+  margin-left: 0;
+  margin-right: 10px;
+  background: #333;
+  color: #fff;
+  text-transform: capitalize;
+  font-size: 12px;
+  font-weight: normal;
+  letter-spacing: 0;
+}
+/* line 267, ../sass/_jquery-ui.scss */
+input[type=submit]:hover {
+  background: #222;
+  color: #fff;
+}
+
+/* line 272, ../sass/_jquery-ui.scss */
+.ui-state-default a, .ui-state-default a:link, .ui-state-default a:visited {
+  color: #222222;
+}
+
+/* line 275, ../sass/_jquery-ui.scss */
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+  background: #ccc;
+}
+
 /* now let's get those layout files */
 /* LAYOUT A ************************************/
 /* community and homepage template stuff */
-/* line 5, ../sass/layout-a.scss */
+/* line 5, ../sass/_layout-a.scss */
 .layout-a .panel-2col .panel-col-first {
   display: block;
   clear: both;
@@ -9,7 +284,7 @@
   margin: 0 0 30px 0;
   padding: 0;
 }
-/* line 10, ../sass/layout-a.scss */
+/* line 10, ../sass/_layout-a.scss */
 .layout-a .panel-col-first {
   float: left;
   width: 75%;
@@ -17,145 +292,231 @@
   padding-right: 20px;
 }
 @media screen and (max-width: 480px) {
-  /* line 10, ../sass/layout-a.scss */
+  /* line 10, ../sass/_layout-a.scss */
   .layout-a .panel-col-first {
     padding-right: 0;
   }
 }
 @media screen and (max-width: 768px) {
-  /* line 10, ../sass/layout-a.scss */
+  /* line 10, ../sass/_layout-a.scss */
   .layout-a .panel-col-first {
     padding-right: 0;
   }
 }
 @media screen and (max-width: 960px) {
-  /* line 10, ../sass/layout-a.scss */
+  /* line 10, ../sass/_layout-a.scss */
   .layout-a .panel-col-first {
     padding-right: 0;
   }
 }
-/* line 26, ../sass/layout-a.scss */
+/* line 26, ../sass/_layout-a.scss */
 .layout-a .panel-col-first .inside {
   margin: 0 0 1em 0;
 }
-/* line 29, ../sass/layout-a.scss */
+/* line 29, ../sass/_layout-a.scss */
 .layout-a .panel-col-first .inside .article-thing {
   margin-right: 20px;
 }
-/* line 32, ../sass/layout-a.scss */
+/* line 32, ../sass/_layout-a.scss */
 .layout-a .panel-col-first .inside .search-results {
   margin-right: 20px;
 }
-/* line 36, ../sass/layout-a.scss */
+/* line 36, ../sass/_layout-a.scss */
 .layout-a .panel-col-first .inset-left {
   float: left;
   width: 75%;
 }
-/* line 40, ../sass/layout-a.scss */
+/* line 40, ../sass/_layout-a.scss */
 .layout-a .panel-col-first .inset-right {
   float: left;
   width: 25%;
 }
-/* line 46, ../sass/layout-a.scss */
+/* line 46, ../sass/_layout-a.scss */
 .layout-a .panel-col-last {
   float: left;
   width: 25%;
   box-sizing: border-box;
 }
-/* line 51, ../sass/layout-a.scss */
+/* line 51, ../sass/_layout-a.scss */
 .layout-a .panel-col-last .inside {
   margin: 0 0 1em 0;
 }
-/* line 55, ../sass/layout-a.scss */
+/* line 55, ../sass/_layout-a.scss */
 .layout-a .panel-separator {
   margin: 0 0 1em 0;
 }
 
-/* line 63, ../sass/layout-a.scss */
+/* line 63, ../sass/_layout-a.scss */
 .layout-a .panel-2col .panel-col-top {
   width: 100%;
   float: none;
   clear: both;
   overflow: hidden;
 }
-/* line 69, ../sass/layout-a.scss */
+/* line 69, ../sass/_layout-a.scss */
 .layout-a .panel-2col .panel-col-top .panel-col-first {
   width: 75%;
   float: left;
   vertical-align: top;
 }
-/* line 74, ../sass/layout-a.scss */
+/* line 74, ../sass/_layout-a.scss */
 .layout-a .panel-2col .panel-col-top .panel-col-first .inside {
   background: #ccc;
   margin: 0 20px 0 0;
   padding: 10px;
 }
-/* line 80, ../sass/layout-a.scss */
+/* line 80, ../sass/_layout-a.scss */
 .layout-a .panel-2col .panel-col-top .panel-col-last {
   width: 25%;
   float: left;
   vertical-align: top;
 }
-/* line 85, ../sass/layout-a.scss */
+/* line 85, ../sass/_layout-a.scss */
 .layout-a .panel-2col .panel-col-top .panel-col-last .inside {
   background: #fff;
   margin: 0;
 }
-/* line 89, ../sass/layout-a.scss */
+/* line 89, ../sass/_layout-a.scss */
 .layout-a .panel-2col .panel-col-top .panel-col-last .inside .widget {
   background: #fff;
   padding: 10px;
 }
-/* line 96, ../sass/layout-a.scss */
+/* line 96, ../sass/_layout-a.scss */
 .layout-a .panel-2col .panel-col-full {
   width: 100%;
 }
-/* line 98, ../sass/layout-a.scss */
+/* line 98, ../sass/_layout-a.scss */
 .layout-a .panel-2col .panel-col-full .inside {
   width: 100%;
   background: #ccc;
   margin: 0;
 }
 
-/* line 108, ../sass/layout-a.scss */
+/* line 108, ../sass/_layout-a.scss */
 * html .panel-2col.layout-a .panel-col-first {
   width: 74.9%;
 }
 
-/* line 111, ../sass/layout-a.scss */
+/* line 111, ../sass/_layout-a.scss */
 * html .panel-2col.layout-a .panel-col-last {
   width: 24.9%;
 }
 
 /* insets */
-/* line 115, ../sass/layout-a.scss */
+/* line 115, ../sass/_layout-a.scss */
 * html .panel-2col.layout-a .panel-col-first .panel-col-first.inset-left {
   width: 74.9%;
 }
 
-/* line 118, ../sass/layout-a.scss */
+/* line 118, ../sass/_layout-a.scss */
 * html .panel-2col.layout-a .panel-col-first .panel-col-last.inset-right {
   width: 24.9%;
 }
 
+/* line 4, ../sass/_layout-b.scss */
+.layout-b .main-content .inside {
+  position: relative;
+  padding: 20px;
+  background: #fff;
+  margin-right: 0px;
+}
+/* line 10, ../sass/_layout-b.scss */
+.layout-b .main-content .inside .block-inner {
+  margin-right: 0px;
+  margin-left: 0px;
+}
+
+/* line 23, ../sass/_layout-b.scss */
+.panel-2col {
+  /*  overflow: hidden;  */
+}
+
+/* line 27, ../sass/_layout-b.scss */
+.panel-2col .panel-col-first {
+  float: left;
+  width: 75%;
+}
+
+/* line 31, ../sass/_layout-b.scss */
+* html .panel-2col .panel-col-first {
+  width: 74.9%;
+}
+
+/* line 35, ../sass/_layout-b.scss */
+.panel-2col .panel-col-first .inside {
+  margin: 0 0 1em 0;
+}
+
+/* line 39, ../sass/_layout-b.scss */
+.panel-2col .panel-col-last {
+  float: left;
+  width: 25%;
+}
+
+/* line 43, ../sass/_layout-b.scss */
+* html .panel-2col .panel-col-last {
+  width: 24.9%;
+}
+
+/* line 47, ../sass/_layout-b.scss */
+.panel-2col .panel-col-last .inside {
+  margin: 0 0 1em 0;
+}
+
+/* line 52, ../sass/_layout-b.scss */
+#panels-edit-display .panel-pane,
+#panels-edit-display .helperclass {
+  margin: .5em;
+}
+
+/* line 56, ../sass/_layout-b.scss */
+.panel-2col .panel-separator {
+  margin: 0 0 1em 0;
+}
+
+/* line 5, ../sass/_layout-c.scss */
+.layout-c .panel-2col .panel-col-first {
+  width: 50%;
+  box-sizing: border-box;
+  padding-right: 10px;
+}
+@media screen and (max-width: 480px) {
+  /* line 5, ../sass/_layout-c.scss */
+  .layout-c .panel-2col .panel-col-first {
+    padding-right: 0;
+  }
+}
+/* line 15, ../sass/_layout-c.scss */
+.layout-c .panel-2col .panel-col-last {
+  width: 50%;
+  padding-left: 10px;
+  box-sizing: border-box;
+}
+@media screen and (max-width: 480px) {
+  /* line 15, ../sass/_layout-c.scss */
+  .layout-c .panel-2col .panel-col-last {
+    padding-left: 0;
+  }
+}
+
 /* LAYOUT G artwork **************************/
-/* line 5, ../sass/layout-g.scss */
+/* line 5, ../sass/_layout-g.scss */
 .layout-g .title-artwork .block {
   margin: 0;
 }
-/* line 8, ../sass/layout-g.scss */
+/* line 8, ../sass/_layout-g.scss */
 .layout-g .title-artwork .block .block-inner .block-content {
   background: none;
 }
-/* line 19, ../sass/layout-g.scss */
+/* line 19, ../sass/_layout-g.scss */
 .layout-g .panel-col.content-artwork {
   position: relative;
 }
-/* line 27, ../sass/layout-g.scss */
+/* line 27, ../sass/_layout-g.scss */
 .layout-g .panel-col.content-artwork .content-bottom .inset-left {
   /*font-family: $serif_font;*/
 }
-/* line 39, ../sass/layout-g.scss */
+/* line 39, ../sass/_layout-g.scss */
 .layout-g .panel-col.content-artwork .pane-node-title h2 {
   background: none;
   padding: 15px 0 10px 0;
@@ -167,13 +528,13 @@
   text-transform: none;
   letter-spacing: normal;
 }
-/* line 50, ../sass/layout-g.scss */
+/* line 50, ../sass/_layout-g.scss */
 .layout-g .panel-col.content-artwork .pane-node-title h2 a {
   font-family: "adobe-text-pro", "Times New Roman", Times, serif;
   font-weight: normal;
   height: auto;
 }
-/* line 56, ../sass/layout-g.scss */
+/* line 56, ../sass/_layout-g.scss */
 .layout-g .panel-col.content-artwork .pane-node-links {
   position: absolute;
   display: inline-block;
@@ -181,7 +542,7 @@
   top: 10px;
   text-align: right;
 }
-/* line 65, ../sass/layout-g.scss */
+/* line 65, ../sass/_layout-g.scss */
 .layout-g .panel-col.content-artwork .pane-node-author a {
   font-size: 24px;
   font-weight: bold;
@@ -190,98 +551,12 @@
   padding-top: 5px;
   display: block;
 }
-/* line 74, ../sass/layout-g.scss */
+/* line 74, ../sass/_layout-g.scss */
 .layout-g .panel-col.content-artwork .pane-mnartist-collections-mna-collections-star {
   position: absolute;
   top: 10px;
   right: 0px;
   z-index: 9999;
-}
-
-/* line 4, ../sass/layout-b.scss */
-.layout-b .main-content .inside {
-  position: relative;
-  padding: 20px;
-  background: #fff;
-  margin-right: 0px;
-}
-/* line 10, ../sass/layout-b.scss */
-.layout-b .main-content .inside .block-inner {
-  margin-right: 0px;
-  margin-left: 0px;
-}
-
-/* line 23, ../sass/layout-b.scss */
-.panel-2col {
-  /*  overflow: hidden;  */
-}
-
-/* line 27, ../sass/layout-b.scss */
-.panel-2col .panel-col-first {
-  float: left;
-  width: 75%;
-}
-
-/* line 31, ../sass/layout-b.scss */
-* html .panel-2col .panel-col-first {
-  width: 74.9%;
-}
-
-/* line 35, ../sass/layout-b.scss */
-.panel-2col .panel-col-first .inside {
-  margin: 0 0 1em 0;
-}
-
-/* line 39, ../sass/layout-b.scss */
-.panel-2col .panel-col-last {
-  float: left;
-  width: 25%;
-}
-
-/* line 43, ../sass/layout-b.scss */
-* html .panel-2col .panel-col-last {
-  width: 24.9%;
-}
-
-/* line 47, ../sass/layout-b.scss */
-.panel-2col .panel-col-last .inside {
-  margin: 0 0 1em 0;
-}
-
-/* line 52, ../sass/layout-b.scss */
-#panels-edit-display .panel-pane,
-#panels-edit-display .helperclass {
-  margin: .5em;
-}
-
-/* line 56, ../sass/layout-b.scss */
-.panel-2col .panel-separator {
-  margin: 0 0 1em 0;
-}
-
-/* line 5, ../sass/layout-c.scss */
-.layout-c .panel-2col .panel-col-first {
-  width: 50%;
-  box-sizing: border-box;
-  padding-right: 10px;
-}
-@media screen and (max-width: 480px) {
-  /* line 5, ../sass/layout-c.scss */
-  .layout-c .panel-2col .panel-col-first {
-    padding-right: 0;
-  }
-}
-/* line 15, ../sass/layout-c.scss */
-.layout-c .panel-2col .panel-col-last {
-  width: 50%;
-  padding-left: 10px;
-  box-sizing: border-box;
-}
-@media screen and (max-width: 480px) {
-  /* line 15, ../sass/layout-c.scss */
-  .layout-c .panel-2col .panel-col-last {
-    padding-left: 0;
-  }
 }
 
 /* line 2, ../sass/_forms.scss */
@@ -1732,6 +2007,326 @@ body .wysiwyg-toggle-wrapper {
   display: none;
 }
 
+/* user profile page */
+/* line 6, ../sass/_user-profile.scss */
+.user-picture a {
+  display: block;
+  width: 220px;
+  height: 220px;
+  overflow: hidden;
+  border-radius: 50%;
+  background: #f2f2f2;
+}
+
+/* line 20, ../sass/_user-profile.scss */
+.form-wrapper .user-picture a {
+  overflow: visible;
+  border-radius: 0;
+}
+
+/* line 29, ../sass/_user-profile.scss */
+.pane-user-mnartist-profiles-collections .block-inner .block-content {
+  background: none;
+}
+/* line 33, ../sass/_user-profile.scss */
+.pane-user-mnartist-profiles-collections .block-inner .block-content h3 {
+  font-family: "Apercu Regular", Arial, Helvetica, sans-serif;
+  font-weight: normal;
+  font-size: 9px;
+  line-height: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 0 0 5px 0;
+  margin: 0;
+  line-height: 12px;
+  /*height:15px;*/
+}
+/* line 40, ../sass/_user-profile.scss */
+.pane-user-mnartist-profiles-collections .block-inner .block-content dl {
+  background: #fff;
+  padding: 0;
+  margin: 0;
+}
+
+/* line 50, ../sass/_user-profile.scss */
+.pane-user-flag-usercollections-link .panel-pane .block-inner {
+  background: none;
+}
+
+/* line 57, ../sass/_user-profile.scss */
+.pane-mnartist-profiles-mna-user-profile .block-content {
+  position: relative;
+}
+/* line 59, ../sass/_user-profile.scss */
+.pane-mnartist-profiles-mna-user-profile .block-content .flag-wrapper {
+  position: absolute;
+  top: 10px;
+  right: 5px;
+}
+/* line 64, ../sass/_user-profile.scss */
+.pane-mnartist-profiles-mna-user-profile .block-content .flag-wrapper .flag-count {
+  display: none;
+}
+/* line 69, ../sass/_user-profile.scss */
+.pane-mnartist-profiles-mna-user-profile h1 {
+  margin: 0 10px 20px 10px;
+  border-bottom: 1px solid #888888;
+  font-size: 30px;
+  padding: 20px 0 10px 0;
+}
+/* line 75, ../sass/_user-profile.scss */
+.pane-mnartist-profiles-mna-user-profile .user-profile {
+  padding: 10px;
+}
+/* line 78, ../sass/_user-profile.scss */
+.pane-mnartist-profiles-mna-user-profile .user-profile .user-profile-data {
+  display: table;
+}
+/* line 81, ../sass/_user-profile.scss */
+.pane-mnartist-profiles-mna-user-profile .user-profile .user-profile-data .left {
+  display: table-cell;
+  width: 50%;
+  vertical-align: top;
+  padding-right: 20px;
+}
+/* line 87, ../sass/_user-profile.scss */
+.pane-mnartist-profiles-mna-user-profile .user-profile .user-profile-data .left .profile-image-wrapper {
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+/* line 92, ../sass/_user-profile.scss */
+.pane-mnartist-profiles-mna-user-profile .user-profile .user-profile-data .left .profile-image-wrapper img {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+/* line 102, ../sass/_user-profile.scss */
+.pane-mnartist-profiles-mna-user-profile .user-profile .user-profile-data .right {
+  display: table-cell;
+  width: 50%;
+  vertical-align: top;
+  padding-left: 20px;
+}
+/* line 111, ../sass/_user-profile.scss */
+.pane-mnartist-profiles-mna-user-profile .user-profile .profile-title {
+  font-family: "Apercu Regular", Arial, Helvetica, sans-serif;
+  font-weight: normal;
+  font-size: 9px;
+  line-height: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #888888;
+}
+
+/* line 118, ../sass/_user-profile.scss */
+h5.profile-title {
+  text-transform: uppercase;
+  text-align: center;
+  border-bottom: 1px solid #888888;
+  margin: 0 0 10px 0;
+  font-family: "adobe-text-pro", "Times New Roman", Times, serif;
+  font-weight: normal;
+}
+
+/* activity widget */
+/* line 132, ../sass/_user-profile.scss */
+.pane-mnartist-activity-activity .item-list {
+  font-family: "adobe-text-pro", "Times New Roman", Times, serif;
+  padding: 10px;
+}
+/* line 135, ../sass/_user-profile.scss */
+.pane-mnartist-activity-activity .item-list ul {
+  margin: 0;
+  padding: 0;
+}
+/* line 139, ../sass/_user-profile.scss */
+.pane-mnartist-activity-activity .item-list ul li {
+  list-style: none;
+  border-bottom: 1px solid #ccc;
+  display: block;
+  padding: 0 0 10px 0;
+  margin: 0 0 10px 0;
+}
+/* line 146, ../sass/_user-profile.scss */
+.pane-mnartist-activity-activity .item-list ul li .feed-update-node-text {
+  width: 100%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: block;
+  white-space: nowrap;
+}
+/* line 154, ../sass/_user-profile.scss */
+.pane-mnartist-activity-activity .item-list ul li .left a {
+  display: none;
+}
+/* line 159, ../sass/_user-profile.scss */
+.pane-mnartist-activity-activity .item-list ul li .feed-update-description a {
+  font-weight: bold;
+}
+/* line 166, ../sass/_user-profile.scss */
+.pane-mnartist-activity-activity .username {
+  font-weight: bold;
+}
+
+/* */
+/* art widget on artist page */
+/* line 174, ../sass/_user-profile.scss */
+.pane-user-mnartist-profiles-artworks {
+  -webkit-transition: all .2s ease-in-out;
+  -moz-transition: all .2s ease-in-out;
+  -o-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+  max-height: 9999px;
+}
+/* line 183, ../sass/_user-profile.scss */
+.pane-user-mnartist-profiles-artworks .block-inner .block-content {
+  background: none;
+}
+/* line 186, ../sass/_user-profile.scss */
+.pane-user-mnartist-profiles-artworks .block-inner .block-content dt {
+  font-family: "Apercu Regular", Arial, Helvetica, sans-serif;
+  font-weight: normal;
+  font-size: 9px;
+  line-height: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 0 0 5px 0;
+  margin: 0;
+}
+/* line 191, ../sass/_user-profile.scss */
+.pane-user-mnartist-profiles-artworks .block-inner .block-content dd {
+  padding: 10px;
+  background: #fff;
+  margin: 0;
+  -webkit-transition: all .2s ease-in-out;
+  -moz-transition: all .2s ease-in-out;
+  -o-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+  max-height: 9999px;
+  height: auto;
+}
+/* line 202, ../sass/_user-profile.scss */
+.pane-user-mnartist-profiles-artworks .block-inner .block-content dd .thumbs {
+  overflow-x: scroll;
+  white-space: nowrap;
+  padding-top: 20px;
+  margin-top: 20px;
+  border-top: 1px solid #999;
+  clear: both;
+  float: none;
+}
+/* line 211, ../sass/_user-profile.scss */
+.pane-user-mnartist-profiles-artworks .block-inner .block-content dd .thumbs img {
+  margin-right: 20px;
+  height: 120px;
+  width: auto;
+}
+/* line 218, ../sass/_user-profile.scss */
+.pane-user-mnartist-profiles-artworks .block-inner .block-content dd .large-display {
+  -webkit-transition: all .2s ease-in-out;
+  -moz-transition: all .2s ease-in-out;
+  -o-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+  max-height: 999px;
+  height: auto;
+}
+/* line 226, ../sass/_user-profile.scss */
+.pane-user-mnartist-profiles-artworks .block-inner .block-content dd .large-display .slide {
+  width: 100%;
+  -webkit-transition: all .2s ease-in-out;
+  -moz-transition: all .2s ease-in-out;
+  -o-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+  max-height: 999px;
+}
+/* line 234, ../sass/_user-profile.scss */
+.pane-user-mnartist-profiles-artworks .block-inner .block-content dd .large-display .slide .content {
+  clear: both;
+  margin-bottom: 20px;
+}
+/* line 238, ../sass/_user-profile.scss */
+.pane-user-mnartist-profiles-artworks .block-inner .block-content dd .large-display .slide .content img {
+  width: 100%;
+  height: auto;
+}
+/* line 243, ../sass/_user-profile.scss */
+.pane-user-mnartist-profiles-artworks .block-inner .block-content dd .large-display .slide .left {
+  float: left;
+  width: 45%;
+  vertical-align: top;
+  font-family: "adobe-text-pro", "Times New Roman", Times, serif;
+  position: relative;
+}
+/* line 250, ../sass/_user-profile.scss */
+.pane-user-mnartist-profiles-artworks .block-inner .block-content dd .large-display .slide .left a {
+  font-size: 18px;
+  display: block;
+  border-bottom: 1px solid #999;
+  margin-bottom: 10px;
+}
+/* line 257, ../sass/_user-profile.scss */
+.pane-user-mnartist-profiles-artworks .block-inner .block-content dd .large-display .slide .left .user-profile-slideshow-star {
+  position: absolute;
+  right: 0;
+  top: -6px;
+}
+/* line 264, ../sass/_user-profile.scss */
+.pane-user-mnartist-profiles-artworks .block-inner .block-content dd .large-display .slide .left .menu a {
+  font-size: 12px;
+  display: inline-block;
+  margin: 0;
+  border-bottom: none;
+}
+/* line 273, ../sass/_user-profile.scss */
+.pane-user-mnartist-profiles-artworks .block-inner .block-content dd .large-display .slide .left .views-field-title a {
+  padding-bottom: 8px;
+  padding-right: 25px;
+}
+/* line 279, ../sass/_user-profile.scss */
+.pane-user-mnartist-profiles-artworks .block-inner .block-content dd .large-display .slide .right {
+  float: right;
+  width: 45%;
+  vertical-align: top;
+}
+/* line 284, ../sass/_user-profile.scss */
+.pane-user-mnartist-profiles-artworks .block-inner .block-content dd .large-display .slide .right:after {
+  content: "";
+  display: block;
+  float: none;
+  clear: both;
+}
+/* line 291, ../sass/_user-profile.scss */
+.pane-user-mnartist-profiles-artworks .block-inner .block-content dd .large-display .slide:after {
+  content: "";
+  clear: both;
+  float: none;
+  display: block;
+}
+
+/* end artwork widgeet */
+/* artist bio stuff (in the tabs( */
+/* line 307, ../sass/_user-profile.scss */
+.profile-label {
+  display: block;
+  font-family: "Apercu Regular", Arial, Helvetica, sans-serif;
+  font-weight: normal;
+  font-size: 9px;
+  line-height: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* line 312, ../sass/_user-profile.scss */
+.profile-city-state {
+  font-family: "Apercu Regular", Arial, Helvetica, sans-serif;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+/* */
 /*
  * Target IE 6, 7 and 8 (less than IE9)
  */
