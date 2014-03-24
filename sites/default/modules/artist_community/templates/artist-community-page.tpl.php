@@ -5,7 +5,13 @@
     if (!(empty($_GET['og']))) {
         $og_get_string_arr = array();
         foreach($_GET['og'] as $og_id => $terms) {
-            $og_get_string_arr[] = "og[$og_id]=$terms";
+            if (is_array($terms)) {
+                for ($n = 0; $n < count($terms); $n++) {
+                    $og_get_string_arr[] = "og[$og_id][$n]=$terms[$n]";
+                }
+            } else {
+                $og_get_string_arr[] = "og[$og_id]=$terms";
+            }
         }
         $og_get_string = implode('&', $og_get_string_arr);
     }
@@ -118,7 +124,7 @@
                                 </a>
                             </li>
                         <?php } ?>
-                        <li class="user-thing-more"><a href="/community?content[0]=artists<?php if ($og_get_string != '') { echo "&$og_get_string"; } ?>" style="font-size: 4em;">&#709;</a></li>
+                        <li class="user-thing-more"><a href="/community?content[artists]=1<?php if ($og_get_string != '') { echo "&$og_get_string"; } ?>" style="font-size: 4em;">&#709;</a></li>
                     </ul>
                     </div>
                 </div>
