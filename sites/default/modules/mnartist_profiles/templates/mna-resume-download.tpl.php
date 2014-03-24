@@ -22,7 +22,10 @@
                     <div class="education-block">
                         <p><label><?= $field['field_school']['label'] ?></label><?=$field['field_school']['item'][0]['value']?></p>
                         <?php if (!empty($field['field_institution_url']['item'])) { ?>
-                            <p><label><?= $field['field_institution_url']['label'] ?></label><?=$field['field_institution_url']['item'][0]['value']?></p>
+                            <p>
+                                <label><?= $field['field_institution_url']['label'] ?></label>
+                                <a href="<?=$field['field_institution_url']['item'][0]['value']?>"><?=$field['field_institution_url']['item'][0]['value']?></a>
+                            </p>
                         <?php } ?>
                         <?php if (!empty($field['field_degree']['item'])) { ?>
                             <p><label><?=$field['field_degree']['label']?></label><?=$field['field_degree']['item'][0]['value']?></p>
@@ -127,7 +130,10 @@
                             <p><label><?=$field['field_description_of_position']['label']?></label><?=$field['field_description_of_position']['item'][0]['value']?></p>
                         <?php } ?>
                         <?php if (!empty($field['field_url']['item'])) { ?>
-                            <p><label><?=$field['field_url']['label']?></label><?=$field['field_url']['item'][0]['value']?></p>
+                            <p>
+                                <label><?=$field['field_url']['label']?></label>
+                                <a href="<?=$field['field_url']['item'][0]['value']?>"><?=$field['field_url']['item'][0]['value']?></a>
+                            </p>
                         <?php } ?>
                     </div>
                 <?}
@@ -182,7 +188,10 @@
                             </p>
                         <?php } ?>
                         <?php if(!empty($field['field_url']['item'])) { ?>
-                            <p><label><?=$field['field_url']['label']?></label><?=$field['field_url']['item'][0]['value']?></p>
+                            <p>
+                                <label><?=$field['field_url']['label']?></label>
+                                <a href="<?=$field['field_url']['item'][0]['value']?>"><?=$field['field_url']['item'][0]['value']?></a>
+                            </p>
                         <?php } ?>
                         <?php if(!empty($field['field_description_of_position']['item'])) { ?>
                             <p><label><?=$field['field_description_of_position']['label']?></label><?=$field['field_description_of_position']['item'][0]['value']?></p>
@@ -214,7 +223,10 @@
                                 <p><label><?=$field['field_award_organization']['label']?></label><?=$field['field_award_organization']['item'][0]['value']?></p>
                             <?php } ?>
                             <?php if(!empty($field['field_url']['item'])) { ?>
-                                <p><label><?=$field['field_url']['label']?></label><?=$field['field_url']['item'][0]['value']?></p>
+                                <p>
+                                    <label><?=$field['field_url']['label']?></label>
+                                    <a href="<?=$field['field_url']['item'][0]['value']?>"><?=$field['field_url']['item'][0]['value']?></a>
+                                </p>
                             <?php } ?>
                         </div>
                     <?php }
@@ -235,10 +247,16 @@
                                 <p><label><?=$field['field_description']['label']?></label><?=$field['field_description']['item'][0]['value']?></p>
                             <?php } ?>
                             <?php if(!empty($field['field_url']['item'])) { ?>
-                                <p><label><?=$field['field_url']['label']?></label><?=$field['field_url']['item'][0]['value']?></p>
+                                <p>
+                                    <label><?=$field['field_url']['label']?></label>
+                                    <a href="<?=$field['field_url']['item'][0]['value']?>"><?=$field['field_url']['item'][0]['value']?></a>
+                                </p>
                             <?php } ?>
                             <?php if(!empty($field['field_venue_url']['item'])) { ?>
-                                <p><label><?=$field['field_venue_url']['label']?></label><?=$field['field_venue_url']['item'][0]['value']?></p>
+                                <p>
+                                    <label><?=$field['field_venue_url']['label']?></label>
+                                    <a href="<?=$field['field_venue_url']['item'][0]['value']?>"><?=$field['field_venue_url']['item'][0]['value']?></a>
+                                </p>
                             <?php } ?>
                             <?php if(!empty($field['field_exhibition_date']['item'])) { ?>
                                 <p>
@@ -277,7 +295,10 @@
                         <div class="publication-block">
                             <p><label><?=$field['field_publication_title']['label']?></label><?=$field['field_publication_title']['item'][0]['value']?></p>
                             <?php if(!empty($field['field_url']['item'])) { ?>
-                                <p><label><?=$field['field_url']['label']?></label><?=$field['field_url']['item'][0]['value']?></p>
+                                <p>
+                                    <label><?=$field['field_url']['label']?></label>
+                                    <a href="<?=$field['field_url']['item'][0]['value']?>"><?=$field['field_url']['item'][0]['value']?></a>
+                                </p>
                             <?php } ?>
                             <?php if(!empty($field['field_author_editor']['item'])) { ?>
                                 <p><label><?=$field['field_author_editor']['label']?></label><?=$field['field_author_editor']['item'][0]['value']?></p>
@@ -321,7 +342,10 @@
                           <p><label><?=$field['field_contact_name']['label']?></label><?=$field['field_contact_name']['item'][0]['value']?></p>
                         <?php } ?>
                         <?php if(!empty($field['field_url']['item'])) { ?>
-                            <p><label><?=$field['field_url']['label']?></label><?=$field['field_url']['item'][0]['value']?></p>
+                            <p>
+                                <label><?=$field['field_url']['label']?></label>
+                                <a href="<?=$field['field_url']['item'][0]['value']?>"><?=$field['field_url']['item'][0]['value']?></a>
+                            </p>
                         <?php } ?>
                     </div>
                 <?php }
@@ -338,7 +362,10 @@
                         <div class="collection-block">
                             <p><label><?=$field['field_collection_name']['label']?></label><?=$field['field_collection_name']['item'][0]['value']?></p>
                             <?php if(!empty($field['field_url']['item'])) { ?>
-                                <p><label><?=$field['field_url']['label']?></label><?=$field['field_url']['item'][0]['value']?></p>
+                                <p>
+                                    <label><?=$field['field_url']['label']?></label>
+                                    <a href="<?=$field['field_url']['item'][0]['value']?>"><?=$field['field_url']['item'][0]['value']?></a>
+                                </p>
                             <?php } ?>
                         </div>
                 <?php }
