@@ -177,15 +177,12 @@
         </div>
     <?php } ?>
     <div class="clear"></div>
-    <?php if (isset($_GET['global_search'])) { ?>
+    <div class="search-results-status">
         <h2>Search Results (<?= $total_num_results ?>)</h2>
         <?php if ($total_num_results === 0) { ?>
             <div>Your search returned no results.</div>
         <?php } ?>
-    <? } else if (count($content) === 0 && is_null($all_event_results)) { ?>
-        <h2>Search Results</h2>
-        <div>Your filters returned no results.</div>
-    <?php } ?>
+    </div>
     <div class="search-results content-all<?= (isset($_GET['content']['event'])) ? ' content-events' : '' ?>">
         <?php if(!is_null($all_event_results) && isset($_GET['event_date'])) { ?>
                 <div class="date-block">
