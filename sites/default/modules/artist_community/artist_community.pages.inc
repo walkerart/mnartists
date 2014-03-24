@@ -123,6 +123,33 @@ function artist_community_search_page() {
             $event_filters = array_merge($event_filters, $filters);
         }
 
+        $from_the_network_filters = array();
+        $from_the_network_filter = new SearchApiQueryFilter;
+        $from_the_network_filter->condition('type', 'from_the_network_item');
+        $from_the_network_filters[] = $from_the_network_filter;
+        if ($local_og !== null) {
+            $from_the_network_filters = array_merge($from_the_network_filters, $filters);
+        }
+        $from_the_network_result = artist_community_execute_query(NODE_INDEX, $from_the_network_filters, array(array('promote', 'ASC'), array('changed', 'ASC')));
+        $from_the_network_limit = 4;
+        $from_the_network_posts = array();
+        $from_the_network_i = 0;
+        foreach ($from_the_network_result as $index => $post) {
+            if ($from_the_network_i >= $from_the_network_limit) {
+                break;
+            }
+            $post_data = new StdClass();
+            $context_post->nid = $post->nid;
+            $context_post->title = $post->title;
+            if (isset($post->field_images['und'])) {
+                $context_post->image_url = image_style_url('medium', $post->field_images['und'][0]['uri']);
+            }
+            $context_post->subheader = (isset($post->field_subheader['und'])) ? $post->field_subheader['und'][0]['value'] : '';
+            $context_post->url = (isset($post->field_url['und'])) ? $post->field_url['und'][0]['value'] : '';
+            $from_the_network_posts[] = $context_post;
+            $from_the_network_i++;
+        }
+
         $events = artist_community_execute_query(NODE_INDEX, $event_filters, array(array('promote', 'ASC'), array('field_date:value', 'ASC')), 3);
         if (!empty($events)) {
             $events_data['others'] = array();
@@ -190,6 +217,7 @@ function artist_community_search_page() {
                                                 'total_num_results' => $all_community_results['total_num_results'],
                                                 'articles' => $articles_data,
                                                 'events' => $events_data,
+                                                'from_the_network_posts' => $from_the_network_posts,
                                                 'latest_users' => $latest_users_data,
                                                 'all_event_results' => $all_event_results));
 }

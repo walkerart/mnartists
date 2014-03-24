@@ -99,6 +99,18 @@
                     </div>
                 </div>
             <?php }
+            if (!empty($from_the_network_posts)) { ?>
+                <div class="from-the-network-thing widget">
+                    <h3>From The Network</h3>
+                    <?php foreach($from_the_network_posts as $post) { ?>
+                        <div class="network-post">
+                            <a href="<?= $post->url ?>">
+                                <img src="<?= $post->image_url ?>" title="<?= $post->title ?>">
+                            </a>
+                        </div>
+                    <?php } ?>
+                </div>
+            <?php }
         } ?>
     </div>
     <?php if (!isset($_GET['global_search'])) { ?>
