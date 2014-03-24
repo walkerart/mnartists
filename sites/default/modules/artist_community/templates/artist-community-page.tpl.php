@@ -120,35 +120,38 @@
                     <a href="/node/add/event">Create an event</a>
                 </div>
             <?php } ?>
-            <?php if (!empty($latest_users)) { ?>
-                <div class="user-thing widget-standard widget">
-                    <h3>Newest Artists</h3>
-                    <div class="widget-content">
-                    <ul>
-                        <?php foreach($latest_users as $context_user) { ?>
-                            <li>
-                                <a href="/user/<?= $context_user->uid ?>">
-                                    <img src="<?= $context_user->image_uri ?>" width="68" height="68">
-                                    <div class="user-thing-labels">
-                                        <div class="user-thing-name"><?= $context_user->full_name ?></div>
-                                        <div class="user-thing-roles"><?= implode(', ', mnartist_profiles_get_artwork_roles_for_user($context_user->uid)) ?></div>
-                                    </div>
-                                </a>
-                            </li>
-                        <?php } ?>
-                        <li class="user-thing-more"><a href="/community?content[artists]=1&?sort=recent&sort_direction=DESC<?php if ($og_get_string != '') { echo "&$og_get_string"; } ?>" style="font-size: 4em;">&#709;</a></li>
-                    </ul>
-                    </div>
-                </div>
-            <?php } ?>
 
-            <?php
-            $block = module_invoke('mnartist_twitter', 'block_view', 'mna_twitter_create');
-            if ($block['content'] !== false) { ?>
-                <div class="twitter-thing widget widget-reverse">
-                    <h3>Tweets &amp; Posts</h3>
-                    <?= render($block['content']) ?>
-                </div>
+            <?php if (is_null($all_event_results)) { ?>
+                <?php if (!empty($latest_users)) { ?>
+                    <div class="user-thing widget-standard widget">
+                        <h3>Newest Artists</h3>
+                        <div class="widget-content">
+                        <ul>
+                            <?php foreach($latest_users as $context_user) { ?>
+                                <li>
+                                    <a href="/user/<?= $context_user->uid ?>">
+                                        <img src="<?= $context_user->image_uri ?>" width="68" height="68">
+                                        <div class="user-thing-labels">
+                                            <div class="user-thing-name"><?= $context_user->full_name ?></div>
+                                            <div class="user-thing-roles"><?= implode(', ', mnartist_profiles_get_artwork_roles_for_user($context_user->uid)) ?></div>
+                                        </div>
+                                    </a>
+                                </li>
+                            <?php } ?>
+                            <li class="user-thing-more"><a href="/community?content[artists]=1&?sort=recent&sort_direction=DESC<?php if ($og_get_string != '') { echo "&$og_get_string"; } ?>" style="font-size: 4em;">&#709;</a></li>
+                        </ul>
+                        </div>
+                    </div>
+                <?php } ?>
+
+                <?php
+                $block = module_invoke('mnartist_twitter', 'block_view', 'mna_twitter_create');
+                if ($block['content'] !== false) { ?>
+                    <div class="twitter-thing widget widget-reverse">
+                        <h3>Tweets &amp; Posts</h3>
+                        <?= render($block['content']) ?>
+                    </div>
+                <?php } ?>
             <?php } ?>
 
             <?php if (!empty($event_widget_items)) { ?>
