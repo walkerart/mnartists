@@ -67,7 +67,7 @@
                 </ul>
 
             </div>
-            <div class="sort-thing-current-sort" id="sort-thing-opener">A&#8594;Z</div>
+            <div class="sort-thing-current-sort" id="sort-thing-opener">SORT</div>
         </div>
 
         <?php if (!isset($_GET['global_search'])) { ?>
