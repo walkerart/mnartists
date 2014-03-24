@@ -812,7 +812,7 @@ function _artist_community_get_items_query ($local_og = null,
                     $subQuery = null;
                     if ($type === 'artwork') {
                         $subQueryTargetField = AC_SUBJECT_FIELD;
-                    } else if ($type = 'article') {
+                    } else if ($type === 'article') {
                         $subQueryTargetField = AC_ARTICLE_CATEGORY_FIELD;
                     } else {
                         $subQueryTargetField = AC_CATEGORY_FIELD;
@@ -829,6 +829,7 @@ function _artist_community_get_items_query ($local_og = null,
                         $solarium_query->createFilterQuery('event_location')->setQuery($eventLocationSearchString);
                     }
                     $contextQueryString = (!is_null($subQuery)) ? "($typeQuery AND ($subQueryTargetField:($subQuery)))" : "($typeQuery)";
+
                     $contentFilters['node'][] = $contextQueryString;
                     break;
                 case 'artists':
@@ -897,8 +898,6 @@ function _artist_community_get_items_query ($local_og = null,
 
             // validate date param
             $incoming_date = date_parse_from_format('Y-m-d', $_GET['event_date']);
-
-
 
             // if it's good, go ahead with the filter,
             // creating a time range to span the whole day
