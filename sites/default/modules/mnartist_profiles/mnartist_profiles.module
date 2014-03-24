@@ -163,15 +163,18 @@ function mnartist_profiles_collective_or_fullname_or_username($uid, $prefer_full
 function mnartist_profiles_get_artwork_roles_for_user($uid) {
     $all_roles = array();
     $user_artworks = mnartist_profiles_get_artworks_for_user($uid);
+
     if (!(empty($user_artworks))) {
+        $artwork_ids = array();
         foreach ($user_artworks as $artwork_node) {
-            $sql = "SELECT * FROM field_revision_field_roles where entity_id = :target_node";
-            $result = db_query($sql, array(':target_node' => $artwork_node->nid));
-            foreach ($result as $row) {
-                if (isset($row->field_roles_tid)) {
-                    $term = taxonomy_term_load($row->field_roles_tid);
-                    $all_roles[] = $term->name;
-                }
+            $artwork_ids[] = $artwork_node->nid;
+        }
+        $sql = "SELECT DISTINCT field_roles_tid FROM field_revision_field_roles where entity_id IN (:target_nodes)";
+        $result = db_query($sql, array(':target_nodes' => $artwork_ids));
+        foreach ($result as $row) {
+            if (isset($row->field_roles_tid)) {
+                $term = taxonomy_term_load($row->field_roles_tid);
+                $all_roles[] = $term->name;
             }
         }
     }
