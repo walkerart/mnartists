@@ -151,17 +151,17 @@
                 </div>
             <?php } ?>
 
-            <?php if (!empty($events)) { ?>
+            <?php if (!empty($event_widget_items)) { ?>
                 <div class="event-thing widget-standard widget">
                     <h3>This Week</h3>
                     <div class="widget-content">
                         <div class="event-thing-event-block event-thing-event-block-hero">
-                            <a href="/node/<?= $events['hero']->nid ?>">
-                                <img src="<?= $events['hero']->image_uri ?>">
-                                <div class="event-thing-event-title"><?= $events['hero']->title ?></div>
+                            <a href="/node/<?= $event_widget_items['hero']->nid ?>">
+                                <img src="<?= $event_widget_items['hero']->image_uri ?>">
+                                <div class="event-thing-event-title"><?= $event_widget_items['hero']->title ?></div>
                             </a>
                         </div>
-                        <?php foreach ($events['others'] as $event) { ?>
+                        <?php foreach ($event_widget_items['others'] as $event) { ?>
                             <div class="event-thing-event-block">
                                 <a href="/node/<?= $event->nid ?>">
                                     <div class="event-thing-event-title"><?= $event->title ?></div>
@@ -179,7 +179,7 @@
         <?php if ($total_num_results === 0) { ?>
             <div>Your search returned no results.</div>
         <?php } ?>
-    <? } else if (count($content) === 0 && !isset($all_event_results)) { ?>
+    <? } else if (count($content) === 0 && is_null($all_event_results)) { ?>
         <h2>Search Results</h2>
         <div>Your filters returned no results.</div>
     <?php } ?>
