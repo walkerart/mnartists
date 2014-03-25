@@ -142,7 +142,7 @@ function mnartist_filter_rename() {
         $result = db_update('mnartist_filter')->fields(array('title' => $newtitle))->condition('fid', $target_fid, '=')->execute();
 
         if ($result === 1) {
-            dpm("Filter title updated.");
+            drupal_set_message("Filter title updated.");
         }
     }
     header('Location: /user/saved-filters');
