@@ -14,6 +14,10 @@ function mnartist_filter_menu() {
         'page callback' => 'mnartist_filter_user_view',
         'access callback' => 'user_is_logged_in'
     );
+    $items['user/saved-filters/rename'] = array(
+        'page callback' => 'mnartist_filter_rename',
+        'access callback' => 'user_is_logged_in'
+    );
     $items['user/saved-filters/delete'] = array(
         'page callback' => 'mnartist_filter_user_delete',
         'access callback' => 'user_is_logged_in'
@@ -60,19 +64,22 @@ function mnartist_filter_user_view()
     {
         global $user;
 
+        ctools_add_js('filter', 'mnartist_filter');
+
         $result = db_query("SELECT mn.fid, mn.title, mn.url FROM {mnartist_filter} mn WHERE mn.uid = :uid", array(':uid' => $user->uid));
         $results = db_select('node', 'n')->fields('n', array('nid', 'title'))->condition('type', 'community')->execute()->fetchAll();
+
+        $template_results = array();
+
         $menu = array();
         foreach($results as $row)
         {
             $menu[$row->nid] = $row->title;
         }
-        $output = "";
-        $output .= "<table>" . PHP_EOL;
-        $output .= "<thead><tr><td>Name</td><td>Filters</td><td>Options</td></tr></thead>" . PHP_EOL;
-        $output .= "<tbody>" . PHP_EOL;
         while ($row = $result->fetchAssoc())
         {
+            $context_row = new StdClass();
+
             $url = parse_url(urldecode($row['url']));
             $string = '';
             if(isset($url['query']))
@@ -114,13 +121,31 @@ function mnartist_filter_user_view()
             } else {
                 $string = '<b>All Communites</b>';
             }
-            $output .= '<tr><td><a href="' . urldecode($row['url']) . '">' . $row['title'] . '</a></td><td><a href="' . urldecode($row['url']) . '">' . $string . '</a></td><td><a href="' . urldecode($row['url']) . '">Go</a> - <a href="/user/saved-filters/delete?fid=' . $row['fid'] . '">Delete</a></td>';
+
+            $context_row->communities_fragment = $string;
+            $context_row->fid = $row['fid'];
+            $context_row->title = $row['title'];
+            $context_row->url = $row['url'];
+            $template_results[] = $context_row;
         }
-        $output .= "</tbody>" . PHP_EOL;
-        $output .= "</table>";
-        return $output;
+        return theme('mnartist_filter_saved_filters', array(
+                        'filters' => $template_results,
+                    ));
     }
 
+}
+
+function mnartist_filter_rename() {
+    if (isset($_POST['fid']) && isset($_POST['newtitle'])) {
+        $target_fid = $_POST['fid'];
+        $newtitle = $_POST['newtitle'];
+        $result = db_update('mnartist_filter')->fields(array('title' => $newtitle))->condition('fid', $target_fid, '=')->execute();
+
+        if ($result === 1) {
+            dpm("Filter title updated.");
+        }
+    }
+    header('Location: /user/saved-filters');
 }
 
 function _mnartist_filter_block_visibility() {
@@ -165,6 +190,16 @@ function mnartist_filter_block_view($delta = '') {
         */
     }
     return $block;
+}
+
+function mnartist_filter_theme()
+{
+    return array(
+        'mnartist_filter_saved_filters' => array(
+            'variables' => array(),
+            'template' => 'templates/mna-saved-filters',
+        )
+    );
 }
 
 function _mnartist_filter_create_filter()
