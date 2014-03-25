@@ -26,22 +26,36 @@
 
         // basic event handlers for in-place filter title
         // editing buttons
-        $(".rename-filter-rename-link").click(function (evt) {
+        $(".filter-rename-button").click(function (evt) {
+
+            evt.preventDefault();
+
             // get the elements we'll be working with
-            var staticState = $(this).closest('.rename-filter-static-state');
-            var editingState = $($(this).parent().siblings('.rename-filter-editing-state'));
+            var parentRow = $(this).closest('tr');
+            var staticState = parentRow.find('.rename-filter-static-state');
+            var editingState = parentRow.find('.rename-filter-editing-state');
+            var editButton = $(this);
 
             staticState.hide();
+            editButton.hide();
             editingState.show();
+
         });
 
         $(".rename-filter-cancel-button").click(function (evt) {
-            // get the elements we'll be working with
-            var editingState = $(this).closest('.rename-filter-editing-state');
-            var staticState = $($(this).parent().parent().siblings('.rename-filter-static-state'));
 
+            // get the elements we'll be working with
+            var parentRow = $(this).closest('tr');
+            var staticState = parentRow.find('.rename-filter-static-state');
+            var editingState = parentRow.find('.rename-filter-editing-state');
+            var editButton = parentRow.find('.filter-rename-button');
+            var editingForm = parentRow.find('form')[0];
+
+            editingForm.reset();
             editingState.hide();
             staticState.show();
+            editButton.show();
+
         });
 
 

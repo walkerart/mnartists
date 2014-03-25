@@ -14,7 +14,6 @@
                 <td>
                     <div class="rename-filter-static-state">
                         <a class="rename-filter-static-title" href="<?= urldecode($filter->url) ?>"><?= $filter->title ?></a>
-                        <a class="rename-filter-rename-link">rename</a>
                     </div>
                     <div class="rename-filter-editing-state" style="display: none">
                         <form action="/user/saved-filters/rename" method="post">
@@ -29,7 +28,8 @@
                     <a href="<?= urldecode($filter->url) ?>"><?= $filter->communities_fragment ?></a>
                 </td>
                 <td>
-                    <a href="<?= urldecode($filter->url) ?>">Go</a> - <a href="/user/saved-filters/delete?fid=<?= $filter->fid ?>">Delete</a>
+                    <a href="#" class="filter-rename-button">Rename</a>
+                    <a href="/user/saved-filters/delete?fid=<?= $filter->fid ?>">Delete</a>
                 </td>
         <?php } ?>
 
