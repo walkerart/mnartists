@@ -131,15 +131,22 @@ function mnartist_activity_tokens($type, $tokens, array $data = array(), array $
           $limit = 500;
           $final = '';
           if (isset($data['node']->body['und'])) {
-            $safe_body =  $data['node']->body['und'][0]['safe_value'];
+            $safe_body =  $data['node']->body['und'][0]['value'];
             $stripped_safe_body = trim(strip_tags($safe_body));
+          } else if (isset($data['node']->field_body['und'])) {
+            $safe_body = $data['node']->field_body['und'][0]['value'];
+            $stripped_safe_body = trim(strip_tags($safe_body));
+          } else {
+            break;
+          }
+          if (isset($stripped_safe_body)) {
             if (strlen($stripped_safe_body) > $limit) {
               $final = substr($stripped_safe_body, 0, $limit).'&hellip;';
             } else {
               $final = $stripped_safe_body;
             }
+            $replacements[$original] = $final;
           }
-          $replacements[$original] = $final;
       }
     }
   }
