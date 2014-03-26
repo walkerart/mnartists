@@ -14,4 +14,5 @@
         </a>
     </div>
     <div class="roles"><?php print implode(', ', mnartist_profiles_get_artwork_roles_for_user($user->uid)); ?></div>
+    <?= flag_create_link('usercollections', $user->uid) ?>
 </div>
