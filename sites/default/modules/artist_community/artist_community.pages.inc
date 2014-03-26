@@ -7,6 +7,7 @@ function artist_community_search_page() {
 
     // declare some empty stuff
     $filters        = array();
+    $user_filters   = array();
     $content        = array();
     $output         = '';
     $articles_data  = array();
@@ -43,12 +44,17 @@ function artist_community_search_page() {
         $filter = new SearchApiQueryFilter;
         $filter->setConjunction('OR');
 
+        $user_filter = new SearchApiQueryFilter;
+        $user_filter->setConjunction('OR');
+
         foreach($local_og as $og_id => $terms) {
             $filter->condition('og_group_ref', $og_id);
+            $user_filter->condition('og_user_node', $og_id);
 
             // Add taxonomy filters for a specific taxonomy
             if (is_array($terms)) {
                 $sub_filter = new SearchApiQueryFilter;
+                $user_sub_filter = new SearchApiQueryFilter;
                 foreach($terms as $term) {
                     $sub_filter->condition('field_medium', $term);
                 }
@@ -57,6 +63,7 @@ function artist_community_search_page() {
             }
         }
         $filters[] = $filter;
+        $user_filters[] = $user_filter;
     }
 
     // Handle content and users
@@ -117,8 +124,6 @@ function artist_community_search_page() {
         $event_filters = array();
         $event_filter = new SearchApiQueryFilter;
         $event_filter->condition('type', 'event');
-        // $event_filter->condition('field_date:value', $start_date->format('Y-m-d\TH:i:s\Z'), '>=');
-        // $event_filter->condition('field_date:value', $end_date, '<=');
         $event_filters[] = $event_filter;
         if ($local_og !== null) {
             $event_filters = array_merge($event_filters, $filters);
@@ -170,9 +175,14 @@ function artist_community_search_page() {
     }
 
     // get latest users data, format data for template
+    $latest_user_filters = array();
     $latest_user_filter = new SearchApiQueryFilter;
     $latest_user_filter->condition('roles', ARTIST_ROLE);
-    $latest_users = artist_community_execute_query(USER_INDEX, array($latest_user_filter), array(array('created', 'DESC')));
+    $latest_user_filters[] = $latest_user_filter;
+    if ($local_og !== null) {
+        $latest_user_filters = array_merge($latest_user_filters, $user_filters);
+    }
+    $latest_users = artist_community_execute_query(USER_INDEX, $latest_user_filters, array(array('created', 'DESC')));
     $user_keys = array_keys($latest_users);
     $latest_users_data = array();
     foreach($user_keys as $index => $value) {
