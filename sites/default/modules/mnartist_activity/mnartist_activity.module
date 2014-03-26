@@ -70,6 +70,10 @@ function mnartist_activity_token_info() {
           'name' => t("Node Text Summary"),
           'description' => t("A truncated piece of the node's text content"),
         ),
+        'node-revision-author-full-name' => array(
+          'name' => t("Node Author Full Name"),
+          'description' => t("First Last or Collective name of node author"),
+        ),
       ),
     ),
   );
@@ -126,6 +130,9 @@ function mnartist_activity_tokens($type, $tokens, array $data = array(), array $
           if (isset($uri)) {
             $replacements[$original] = file_create_url($uri);
           }
+          break;
+        case 'node-revision-author-full-name':
+          $replacements[$original] = mnartist_profiles_collective_or_fullname_or_username($data['node']->revision_uid);
           break;
         case 'node-post-text-summary':
           $limit = 500;
