@@ -104,7 +104,7 @@
                     <h3>From The Network</h3>
                     <?php foreach($from_the_network_posts as $post) { ?>
                         <div class="network-post">
-                            <a href="<?= $post->url ?>">
+                            <a href="<?= $post->url ?>" target="_blank">
                                 <img src="<?= $post->image_url ?>" title="<?= $post->title ?>">
                             </a>
                         </div>
