@@ -1,11 +1,15 @@
 <?php
+    $is_flagged = false;
     if (isset($node_id)) {
         $node = node_load($node_id);
         if ($node) {
             $node_url = url("node/$node->nid", array('absolute' => TRUE));
             $flags = _mnartist_collections_get_user_flags(array('node' => $node, 'create' => false, 'use_flags' => false, 'ops' => false));
+
+            $flag = flag_get_flag('collections');
+            $is_flagged = (_mnartist_collections_node_has_been_collected($node->nid) || $flag->is_flagged($node->nid));
         ?>
-        <ul class='menu<?= _mnartist_collections_node_has_been_collected($node->nid) ? " collected" : "" ?>'>
+        <ul class='menu<?= $is_flagged ? " collected" : "" ?>'>
             <li class='first'>
                 <a href='#' class='star-link'><img src='/sites/default/themes/mnartists/images/fav-star.svg' class='star-icon' alt="flag this" /></a>
                 <ul>

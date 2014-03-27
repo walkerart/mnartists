@@ -209,5 +209,21 @@ jQuery(document).ready(function () {
         jQuery('body').toggleClass('sidebar-show');
     });
 
+    // attach to flag link click events to toggle a
+    // used collected class on the container
+    // @TODO assess whether this is interfering with
+    // other handlers for clicks on these
+    jQuery('ul.menu .flag').click(function (evt) {
+        var parentMenu = jQuery(this).closest('ul.menu');
+        if (parentMenu) {
+            var hasUnflagLinks = (parentMenu.find('a.unflag-action').length > 0);
+            if (hasUnflagLinks) {
+                parentMenu.addClass('collected');
+            } else {
+                parentMenu.removeClass('collected');
+            }
+        }
+    });
+
 
 });
