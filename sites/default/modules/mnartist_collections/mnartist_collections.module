@@ -36,6 +36,38 @@ function mnartist_collections_block_view($delta = '') {
     return $block;
 }
 
+function _mnartist_collections_node_has_been_collected ($nid)
+{
+    global $user;
+    $node = node_load($nid);
+    if (is_object($node)) {
+        $content_type = $node->type;
+        $content_id = $node->nid;
+        if ($flags = flag_lists_get_user_flags($content_type, $user, false)) {
+            // Build the list of lists for this node.
+            foreach ($flags as $flag) {
+                if(isset($flag->module)) {
+                    if ($flag->module == 'flag_lists') {
+                        if (_flag_lists_is_flagged($flag, $content_id, $user->uid, 0)) {
+                            return true;
+                        }
+                    } else {
+                        if ($flag->is_flagged($content_id)) {
+                            return true;
+                        }
+                    }
+                } else {
+                    if ($flag->is_flagged($content_id)) {
+                        return true;
+                    }
+                }
+            }
+        }
+    }
+
+    return false;
+}
+
 function _mnartist_collections_get_user_flags($variables)
 {
     $node = $variables['node'];

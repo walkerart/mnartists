@@ -5,7 +5,7 @@
             $node_url = url("node/$node->nid", array('absolute' => TRUE));
             $flags = _mnartist_collections_get_user_flags(array('node' => $node, 'create' => false, 'use_flags' => false, 'ops' => false));
         ?>
-        <ul class='menu'>
+        <ul class='menu<?= _mnartist_collections_node_has_been_collected($node->nid) ? " collected" : "" ?>'>
             <li class='first'>
                 <a href='#' class='star-link'><img src='/sites/default/themes/mnartists/images/fav-star.svg' class='star-icon' alt="flag this" /></a>
                 <ul>
