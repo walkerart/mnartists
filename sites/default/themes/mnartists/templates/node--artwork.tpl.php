@@ -131,7 +131,7 @@ if (isset($node->field_media['und'])) {
   $image_uri = image_style_url('medium', $working_uri);
   $image_info = image_get_info($working_uri);
   $known_width = 220;
-  $computed_height = ($known_width * $image_info['height']) / $image_info['width'];
+  $computed_height = (!empty($image_info['width'])) ? ($known_width * $image_info['height']) / $image_info['width'] : 0;
 }
 
 
