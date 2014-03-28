@@ -1,3 +1,6 @@
+<?php
+    // template for the download view of a user's resume
+?>
 <div class="container">
 
     <?php if (!empty($resume_data['field_general_statement']['item'])) { ?>
@@ -28,8 +31,22 @@
                             </p>
                         <?php } ?>
                         <?php if (!empty($field['field_degree']['item'])) { ?>
-                            <p><label><?=$field['field_degree']['label']?></label><?=$field['field_degree']['item'][0]['value']?></p>
+                            <p>
+                                <label><?=$field['field_degree']['label']?></label>
+                                <?=$field['field_degree']['item'][0]['value']?>
+                                <?php if (isset($field['field_areas_of_study']['item']) &&
+                                        !empty($field['field_areas_of_study']['item'])) {
+
+                                        $aos = array();
+                                        foreach ($field['field_areas_of_study']['item'] as $inner_field) {
+                                            $aos[] = $inner_field['value'];
+                                        }
+                                ?>
+                                    in <?= implode(', ', $aos) ?>
+                                <?php } ?>
+                            </p>
                         <?php } ?>
+
                         <?php
                             if ($field['field_education_date_range']['item'] !== null) { ?>
                                 <?
@@ -66,18 +83,6 @@
                                 <?php }
                             }
                         ?>
-                        <?php if (!empty($field['field_areas_of_study']['item'])) { ?>
-                            <p>
-                                <label><?=$field['field_areas_of_study']['label']?></label><ul>
-                                <?php
-                                    if (isset($field['field_areas_of_study']['item']) &&
-                                        !(empty($field['field_areas_of_study']['item']))) {
-                                        foreach ($field['field_areas_of_study']['item'] as $inner_field) {?>
-                                            <li><?=$inner_field['value']?></li>
-                                    <?}}
-                                ?>
-                            </ul></p>
-                        <?php } ?>
                     </div>
                 <?php } ?>
         </section>

@@ -1,4 +1,6 @@
-<!-- @TODO: think about what you want to actually go here -->
+<?php
+    // template for rendering a user's feed
+?>
 <ul class="user-feed">
     <?php
         if (count($feed_data) > 0) {

@@ -1,3 +1,8 @@
+<?php
+    // template for rendering the 'raw' view of a user's feed,
+    // this is the segment that would get returned for the
+    // feed page's infinite scroll async request
+?>
 <?php if (count($feed_data) > 0) {
     foreach ($feed_data as $feed_event) { ?>
         <li class="feed-item">
