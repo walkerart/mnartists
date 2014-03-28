@@ -182,19 +182,28 @@ jQuery(document).ready(function () {
     });
     // jQuery('.form-checkbox').prettyCheckable();
     // jQuery('.form-radio').prettyCheckable();
-    jQuery('.form-type-checkbox input, .form-type-radio input').iCheck().on("ifChanged",function(e){
-        var isChecked = jQuery(e.delegateTarget).is(":checked");
-        var checkedLabel = jQuery(e.delegateTarget).parents(".form-item:first").find("label");
-        if (isChecked) {
-            checkedLabel.addClass("active");
-        } else {
-            checkedLabel.removeClass("active");
-        }
-    });
-    jQuery('.form-type-checkbox input:checked, .form-type-radio input:checked').each(function(){
-        jQuery(this).parents(".form-item:first").find("label").addClass("active");
 
-    });
+    // Set a limit on how many checkbox/radio elements
+    // we'll apply iCheck to. Mostly meant to improve
+    // performance on admin pages with lots of checkboxes,
+    // though maybe we want to expand this a bit?
+    var maxCheckboxAndRadioElements = 50;
+    var targetCheckboxAndRadioElements = jQuery('.form-type-checkbox input, .form-type-radio input');
+    if (targetCheckboxAndRadioElements.length < maxCheckboxAndRadioElements) {
+        targetCheckboxAndRadioElements.iCheck().on("ifChanged",function(e){
+            var isChecked = jQuery(e.delegateTarget).is(":checked");
+            var checkedLabel = jQuery(e.delegateTarget).parents(".form-item:first").find("label");
+            if (isChecked) {
+                checkedLabel.addClass("active");
+            } else {
+                checkedLabel.removeClass("active");
+            }
+        });
+        jQuery('.form-type-checkbox input:checked, .form-type-radio input:checked').each(function(){
+            jQuery(this).parents(".form-item:first").find("label").addClass("active");
+
+        });
+    }
 
     // select boxes
     // jQuery('select.form-select').customSelect();
