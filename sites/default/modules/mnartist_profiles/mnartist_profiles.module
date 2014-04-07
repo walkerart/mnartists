@@ -697,6 +697,17 @@ function mnartist_profiles_form_alter(&$form, $form_state, $form_id) {
     }
 }
 
+function mnartist_profiles_form_venue_node_form_alter(&$form, &$form_state, $form_id) {
+    global $user;
+
+    // we only want administrator users to be able to
+    // publish venues, so if the context user is NOT
+    // an admin, 'take care of' field_public.
+    if (!in_array('administrator', $user->roles)) {
+        $form['field_public']['#access'] = FALSE;
+    }
+}
+
 function _mnartist_profiles_disable_vertical_tabs(&$form){
     if(isset($form['additional_settings']['#type']) && ($form['additional_settings']['#type'] === 'vertical_tabs')) {
         $form['additional_settings']['#access'] = FALSE;
