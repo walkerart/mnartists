@@ -715,9 +715,13 @@ function _mnartist_profiles_disable_vertical_tabs(&$form){
 }
 
 
-// entity property info alter and callbacks to make practices
-// and experiences accessible to solr searches
+// entity property info alter and callbacks to make a bunch
+// of nested and composed fields accessible to solr
 function mnartist_profiles_entity_property_info_alter(&$info) {
+
+    // @TODO practices and experiences could be moved out into
+    // the through-the-searchapi-gui indexing (we figured this out
+    // late in the game), consider it.
     $info['user']['bundles']['user']['properties']['practices'] = array(
         'type' => 'list<integer>',
         'label' => t('Practices references'),
@@ -948,10 +952,14 @@ function mnartist_profiles_latlng_getter_callback($item) {
     if ($search_string && $search_string !== '') {
         $coords_array = array();
         $point = geocoder('google', $search_string);
-        $geoJSON = $point->out('json');
-        $parsedPoint = json_decode($geoJSON);
-        $lat = $parsedPoint->coordinates[1];
-        $long = $parsedPoint->coordinates[0];
+        try {
+            $geoJSON = $point->out('json');
+            $parsedPoint = json_decode($geoJSON);
+            $lat = $parsedPoint->coordinates[1];
+            $long = $parsedPoint->coordinates[0];
+        } catch (Exception $ex) {
+            watchdog('mnartist_profiles', 'Geocoding failed during solr indexing: '.$ex->message, WATCHDOG_ERROR);
+        }
 
         if (isset($parsedPoint->coordinates)) {
             $coords_array = array("$lat,$long");

@@ -17,6 +17,7 @@ define('EXPERIENCE_VID', '12');
 define('PRACTICE_VID', '13');
 define('ARTICLE_CATEGORY_VID', '6');
 define('EVENT_CATEGORY_VID', '2');
+define('ORGANIZATIONS_CATEGORY_VID', '7');
 
 // default limits for search
 define('SEARCH_DEFAULT_ROWS', '20');
@@ -42,6 +43,7 @@ define('AC_GLOBAL_SEARCH_FIELD', 'tm_search_api_aggregation_1');
 define('AC_PROFILE_SEARCH_FIELD', 'tm_mnartist_profile2_search');
 define('AC_SORT_BY_DATE_FIELD', 'ds_sort_by_date');
 define('AC_SORT_BY_RECENT_FIELD', 'ds_created');
+define('AC_ORG_CATEGORY_FIELD', 'is_profile_organization:field_organization_type');// colon escaped
 
 
 // config for solarium
@@ -605,7 +607,20 @@ function url_query_master($text, $path, $key, $val, $attributes = array()) {
             if (isset($article_sub_items)) {
                 $output .= theme('item_list', array('items' => $article_sub_items));
             }
+        } else if ($val === 'organizations') {
+            $organizations_sub_items = array();
+            $organizations_category_vocabulary_tree = taxonomy_get_tree(ORGANIZATIONS_CATEGORY_VID);
 
+            // get facet counts
+            $organizations_category_facets_rec = array();
+            $organizations_category_facets = $search_facets->getFacet('organizations_type');
+            foreach ($organizations_category_facets as $value => $count) {
+                $organizations_category_facets_rec[$value] = $count;
+            }
+            $organizations_sub_items = _artist_community_build_subitems_for_item($val, $organizations_category_vocabulary_tree, $organizations_category_facets_rec, $query);
+            if (isset($organizations_sub_items)) {
+                $output .= theme('item_list', array('items' => $organizations_sub_items));
+            }
         } else if ($val === 'event') {
 
             $event_sub_items = array();
@@ -857,7 +872,18 @@ function _artist_community_get_items_query ($local_og = null,
                     $contentFilters['user'][] = $contextQueryString;
                     break;
                 case 'organizations':
-                    $contentFilters['user'][] = AC_USER_ROLES_FIELD.":".ORG_ROLE;
+                    $roleQuery = AC_USER_ROLES_FIELD.":".ORG_ROLE;
+                    $subQuery = array();
+                    if (is_array($local_content[$type])) {
+                        $org_categories = array();
+                        foreach ($local_content[$type] as $tid) {
+                            $org_categories[] = $tid;
+                        }
+                        $escapedFieldName = str_replace(':', '\:', AC_ORG_CATEGORY_FIELD);
+                        if (!empty($org_categories)) { $subQuery[] = $escapedFieldName.':('.implode(' OR ', $org_categories).')'; }
+                    }
+                    $contextQueryString = (!empty($subQuery)) ? "(($roleQuery) AND (".implode(' AND ', $subQuery)."))" : "($roleQuery)";
+                    $contentFilters['user'][] = $contextQueryString;
                     break;
             }
 
@@ -944,6 +970,7 @@ function _artist_community_get_items_query ($local_og = null,
     $facetSet->createFacetField('node_artwork_subject')->setField('im_field_subject_concept');
     $facetSet->createFacetField('node_category')->setField('is_field_category');
     $facetSet->createFacetField('node_article_category')->setField(AC_ARTICLE_CATEGORY_FIELD);
+    $facetSet->createFacetField('organizations_type')->setField(AC_ORG_CATEGORY_FIELD);
 
     // use constants here for index_id and field and so on
     $facetSet->createFacetQuery('artists')->setQuery('index_id:users AND im_roles:'.ARTIST_ROLE);
@@ -1051,6 +1078,7 @@ function _set_community_query_facets () {
         $facetSet->createFacetField('node_artwork_subject')->setField('im_field_subject_concept');
         $facetSet->createFacetField('node_category')->setField('is_field_category');
         $facetSet->createFacetField('node_article_category')->setField(AC_ARTICLE_CATEGORY_FIELD);
+        $facetSet->createFacetField('organizations_type')->setField(AC_ORG_CATEGORY_FIELD);
 
         // use constants here for index_id and field and so on
         $facetSet->createFacetQuery('artists')->setQuery('index_id:users AND im_roles:'.ARTIST_ROLE);
