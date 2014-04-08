@@ -715,9 +715,13 @@ function _mnartist_profiles_disable_vertical_tabs(&$form){
 }
 
 
-// entity property info alter and callbacks to make practices
-// and experiences accessible to solr searches
+// entity property info alter and callbacks to make a bunch
+// of nested and composed fields accessible to solr
 function mnartist_profiles_entity_property_info_alter(&$info) {
+
+    // @TODO practices and experiences could be moved out into
+    // the through-the-searchapi-gui indexing (we figured this out
+    // late in the game), consider it.
     $info['user']['bundles']['user']['properties']['practices'] = array(
         'type' => 'list<integer>',
         'label' => t('Practices references'),
