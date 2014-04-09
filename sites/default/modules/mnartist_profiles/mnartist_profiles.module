@@ -952,10 +952,14 @@ function mnartist_profiles_latlng_getter_callback($item) {
     if ($search_string && $search_string !== '') {
         $coords_array = array();
         $point = geocoder('google', $search_string);
-        $geoJSON = $point->out('json');
-        $parsedPoint = json_decode($geoJSON);
-        $lat = $parsedPoint->coordinates[1];
-        $long = $parsedPoint->coordinates[0];
+        try {
+            $geoJSON = $point->out('json');
+            $parsedPoint = json_decode($geoJSON);
+            $lat = $parsedPoint->coordinates[1];
+            $long = $parsedPoint->coordinates[0];
+        } catch (Exception $ex) {
+            watchdog('mnartist_profiles', 'Geocoding failed during solr indexing: '.$ex->message, WATCHDOG_ERROR);
+        }
 
         if (isset($parsedPoint->coordinates)) {
             $coords_array = array("$lat,$long");

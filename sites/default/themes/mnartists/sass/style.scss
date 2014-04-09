@@ -7542,13 +7542,17 @@ li.collect-this, li.add-this {
             list-style: none;
             margin: 0 0 1em 0; padding: 0;
             clear: both;
+            min-height:68px;
 
             img {
                 border-radius: 50%;
                 float: left;
+                position:absolute;
             }
             .user-thing-labels {
-                float: left;
+                display:block;
+                float:none;
+                padding-left:80px;
             }
             .user-thing-name {
                 font-family: $serif_font;
