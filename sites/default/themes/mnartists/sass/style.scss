@@ -8862,6 +8862,10 @@ body {
     width:45%;
     float:left;
     margin-bottom:15px;
+
+    @media screen and (max-width: $break-mobile) {
+      margin-bottom:5px;
+    }
   }
   .pane-custom {
     width:35%;
@@ -8873,6 +8877,10 @@ body {
     float:right;
     text-align:right;
     margin-bottom:15px;
+
+    @media screen and (max-width: $break-mobile) {
+      text-align:left;
+    }
   }
 
   .pane-node-field-images {

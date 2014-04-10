@@ -12589,12 +12589,18 @@ body {
   float: left;
   margin-bottom: 15px;
 }
-/* line 8866, ../sass/style.scss */
+@media screen and (max-width: 480px) {
+  /* line 8860, ../sass/style.scss */
+  .article-page .pane-node-author {
+    margin-bottom: 5px;
+  }
+}
+/* line 8870, ../sass/style.scss */
 .article-page .pane-custom {
   width: 35%;
   float: left;
 }
-/* line 8870, ../sass/style.scss */
+/* line 8874, ../sass/style.scss */
 .article-page .pane-node-created {
   font-size: 13px;
   width: 55%;
@@ -12602,11 +12608,17 @@ body {
   text-align: right;
   margin-bottom: 15px;
 }
-/* line 8879, ../sass/style.scss */
+@media screen and (max-width: 480px) {
+  /* line 8874, ../sass/style.scss */
+  .article-page .pane-node-created {
+    text-align: left;
+  }
+}
+/* line 8887, ../sass/style.scss */
 .article-page .pane-node-field-images .field-label {
   display: none;
 }
-/* line 8884, ../sass/style.scss */
+/* line 8892, ../sass/style.scss */
 .article-page .field-name-field-body {
   font-size: 17px;
   font-family: "adobe-text-pro", "Times New Roman", Times, serif;
