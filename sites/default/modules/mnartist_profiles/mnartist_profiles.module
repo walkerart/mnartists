@@ -719,21 +719,6 @@ function _mnartist_profiles_disable_vertical_tabs(&$form){
 // of nested and composed fields accessible to solr
 function mnartist_profiles_entity_property_info_alter(&$info) {
 
-    // @TODO practices and experiences could be moved out into
-    // the through-the-searchapi-gui indexing (we figured this out
-    // late in the game), consider it.
-    $info['user']['bundles']['user']['properties']['practices'] = array(
-        'type' => 'list<integer>',
-        'label' => t('Practices references'),
-        'sanitized' => TRUE,
-        'getter callback' => 'mnartist_profiles_practices_getter_callback',
-    );
-    $info['user']['bundles']['user']['properties']['experiences'] = array(
-        'type' => 'list<integer>',
-        'label' => t('Experiences references'),
-        'sanitized' => TRUE,
-        'getter callback' => 'mnartist_profiles_experiences_getter_callback',
-    );
     $info['user']['bundles']['user']['properties']['near_me_latlng'] = array(
         'type' => 'string',
         'label' => t('User Latitude/Longitude'),
@@ -746,7 +731,6 @@ function mnartist_profiles_entity_property_info_alter(&$info) {
         'sanitized' => TRUE,
         'getter callback' => 'mnartist_profiles_profile2_search_getter_callback',
     );
-
 
 
     // this doesn't *really* belong here, but I guess
@@ -969,27 +953,6 @@ function mnartist_profiles_latlng_getter_callback($item) {
     return null;
 }
 
-function mnartist_profiles_practices_getter_callback($item) {
-    $main_profile = profile2_load_by_user($item->uid, 'main');
-    $all_practices = array();
-    if (!(empty($main_profile->field_practice))) {
-        foreach ($main_profile->field_practice['und'] as $practice) {
-            $all_practices[] = $practice['tid'];
-        }
-    }
-    return $all_practices;
-}
-
-function mnartist_profiles_experiences_getter_callback($item) {
-    $main_profile = profile2_load_by_user($item->uid, 'main');
-    $all_experiences = array();
-    if (!(empty($main_profile->field_experience))) {
-        foreach ($main_profile->field_experience['und'] as $experience) {
-            $all_experiences[] = $experience['tid'];
-        }
-    }
-    return $all_experiences;
-}
 
 function mnartist_profiles_sort_by_name_callback($item) {
     if (isset($item->type)) {

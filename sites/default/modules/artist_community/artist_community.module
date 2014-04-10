@@ -32,8 +32,8 @@ define('AC_SUBJECT_FIELD', 'im_field_subject_concept');
 define('AC_USER_NODE_FIELD', 'im_og_user_node');
 define('AC_TYPE_FIELD', 'ss_type');
 define('AC_USER_ROLES_FIELD', 'im_roles');
-define('AC_USER_PRACTICE_FIELD', 'im_practices');
-define('AC_USER_EXPERIENCE_FIELD', 'im_experiences');
+define('AC_USER_PRACTICE_FIELD', 'im_profile_main:field_practice');
+define('AC_USER_EXPERIENCE_FIELD', 'is_profile_main:field_experience');
 define('AC_CREATED_FIELD', 'ds_created');
 define('AC_USER_LATLNG_FIELD', 'locs_near_me_latlng');
 define('AC_START_DATE_FIELD', 'ds_field_date:value');
@@ -43,8 +43,7 @@ define('AC_GLOBAL_SEARCH_FIELD', 'tm_search_api_aggregation_1');
 define('AC_PROFILE_SEARCH_FIELD', 'tm_mnartist_profile2_search');
 define('AC_SORT_BY_DATE_FIELD', 'ds_sort_by_date');
 define('AC_SORT_BY_RECENT_FIELD', 'ds_created');
-define('AC_ORG_CATEGORY_FIELD', 'is_profile_organization:field_organization_type');// colon escaped
-
+define('AC_ORG_CATEGORY_FIELD', 'is_profile_organization:field_organization_type');
 
 // config for solarium
 global $solarium_config;
@@ -860,8 +859,8 @@ function _artist_community_get_items_query ($local_og = null,
                                 $practices[] = $tid;
                             }
                         }
-                        if (!empty($experiences)) { $subQuery[] = AC_USER_EXPERIENCE_FIELD.':('.implode(' OR ', $experiences).')'; }
-                        if (!empty($practices)) { $subQuery[] = AC_USER_PRACTICE_FIELD.':('.implode(' OR ', $practices).')'; }
+                        if (!empty($experiences)) { $subQuery[] = str_replace(':','\:',AC_USER_EXPERIENCE_FIELD).':('.implode(' OR ', $experiences).')'; }
+                        if (!empty($practices)) { $subQuery[] = str_replace(':','\:',AC_USER_PRACTICE_FIELD).':('.implode(' OR ', $practices).')'; }
                     }
                     if (isset($_GET['artist_location_search'])) {
                         $artist_coords = _get_location_coords_from_search_string(urldecode($_GET['artist_location_search']));
@@ -964,8 +963,8 @@ function _artist_community_get_items_query ($local_og = null,
     $facetSet->createFacetField('og_node_membership')->setField('im_og_group_ref');
     $facetSet->createFacetField('og_user_group')->setField('im_og_user_node');
     $facetSet->createFacetField('og_user_membership')->setField('im_og_membership');
-    $facetSet->createFacetField('user_practices')->setField('im_practices');
-    $facetSet->createFacetField('user_experiences')->setField('im_experiences');
+    $facetSet->createFacetField('user_practices')->setField(AC_USER_PRACTICE_FIELD);
+    $facetSet->createFacetField('user_experiences')->setField(AC_USER_EXPERIENCE_FIELD);
     $facetSet->createFacetField('node_type')->setField('ss_type');
     $facetSet->createFacetField('node_artwork_subject')->setField('im_field_subject_concept');
     $facetSet->createFacetField('node_category')->setField('is_field_category');
@@ -1072,8 +1071,8 @@ function _set_community_query_facets () {
         $facetSet->createFacetField('og_node_membership')->setField('im_og_group_ref');
         $facetSet->createFacetField('og_user_group')->setField('im_og_user_node');
         $facetSet->createFacetField('og_user_membership')->setField('im_og_membership');
-        $facetSet->createFacetField('user_practices')->setField('im_practices');
-        $facetSet->createFacetField('user_experiences')->setField('im_experiences');
+        $facetSet->createFacetField('user_practices')->setField(AC_USER_PRACTICE_FIELD);
+        $facetSet->createFacetField('user_experiences')->setField(AC_USER_EXPERIENCE_FIELD);
         $facetSet->createFacetField('node_type')->setField('ss_type');
         $facetSet->createFacetField('node_artwork_subject')->setField('im_field_subject_concept');
         $facetSet->createFacetField('node_category')->setField('is_field_category');
