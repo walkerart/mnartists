@@ -5300,6 +5300,13 @@ only screen and (min-device-pixel-ratio: 1.5) {
     a:hover {
 
     }
+    .inset-wrapper {
+      margin:0;
+      .event-date {
+        margin-left:10px;
+        margin-right:10px;
+      }
+    }
 
 }
 .panel-pane .block-inner .block-content {
@@ -5963,7 +5970,7 @@ body.page-node-edit {
             }
         }
     }
-    .layout-g .panel-col.content-artwork .pane-node-title h2 {
+.layout-g .panel-col.content-artwork .pane-node-title h2 {
   background: none;
   padding: 15px 0 10px 0;
   margin: 0 0 10px 0;
@@ -6826,6 +6833,12 @@ ul.slidesjs-pagination {
             p {
                 display:inline;
             }
+        }
+        .form-textarea-wrapper {
+          outline:1px solid #ccc;
+        }
+        .cke_contents.cke_reset {
+          height:200px!important;
         }
     }
 }
@@ -8782,8 +8795,6 @@ body {
 }
 
 
-
-
 .item-more-button-link-indicator {
     display:inline-block;
     overflow:hidden;
@@ -8796,9 +8807,6 @@ body {
         background:url('../images/icon-more-chevron.png') no-repeat center bottom transparent;
     }
 }
-
-
-
 
 
 // artwork slideshow
