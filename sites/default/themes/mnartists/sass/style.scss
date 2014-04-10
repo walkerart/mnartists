@@ -8469,7 +8469,7 @@ li.collect-this, li.add-this {
 
 // SORT THING community sort filters
 .admin-menu .panel-2col.layout-a .sort-thing {
-  @include media($mobile) {
+  @media screen and (max-width: $break-mobile) {
     top:-2px;
   }
 }
