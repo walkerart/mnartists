@@ -8468,6 +8468,11 @@ li.collect-this, li.add-this {
 
 
 // SORT THING community sort filters
+.admin-menu .panel-2col.layout-a .sort-thing {
+  @include media($mobile) {
+    top:-2px;
+  }
+}
 .sort-thing {
 
     max-width:250px;
