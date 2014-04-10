@@ -8832,7 +8832,13 @@ body {
 
 
 // article page
+.panel-2col.article-page .panel-separator {
+  display:none;
+}
 .article-page {
+  .panel-pane .block-inner .block-content {
+    background:none;
+  }
   .pane-node-title {
     font-size:36px;
     line-height:1.2em;
@@ -8848,14 +8854,19 @@ body {
     top:20px;
     right:20px;
   }
-
+  .pane-node-field-subheader {
+    margin-bottom:1em;
+  }
   .pane-node-author {
     font-size:13px;
     width:45%;
     float:left;
     margin-bottom:15px;
   }
-
+  .pane-custom {
+    width:45%;
+    float:left;
+  }
   .pane-node-created {
     font-size:13px;
     width:45%;
