@@ -13,14 +13,15 @@ $row_limit = 9;
 $is_singular_view = ((arg(0) === 'user' && is_numeric(arg(4))) || (arg(0) === 'flags' && is_numeric(arg(2))));
 $link_url = 'user/'.$user->uid.'/'.$view->get_url();
 $list_id = $view->args[0];
+$dest_url = "user/$user->uid/flags/lists";
 
 ?>
 <?php if ($is_singular_view) { ?>
 <h2><?= $view->get_title() ?></h2>
 <?php } ?>
 <ul class="edit-controls">
-    <li class="edit"><a href="/flags/lists/edit/<?= $list_id ?>">edit</a></li>
-    <li class="delete"><a href="/flags/lists/delete/<?= $list_id ?>">delete</a></li>
+    <li class="edit"><a href="/flags/lists/edit/<?= $list_id ?>?destination=<?= $dest_url ?>">edit</a></li>
+    <li class="delete"><a href="/flags/lists/delete/<?= $list_id ?>?destination=<?= $dest_url ?>">delete</a></li>
 </ul>
 <ul class="user-list">
     <?php
