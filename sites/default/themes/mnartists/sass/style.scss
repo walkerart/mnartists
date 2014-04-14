@@ -8422,7 +8422,13 @@ li.collect-this, li.add-this {
             text-align:left;
 
             .edit-controls {
+              style-type:none;
+              
               li {
+                list-style:none;
+                margin:0;
+                padding:0;
+                display:inline-block;
 
                 &.edit {
                   a{
@@ -8431,7 +8437,7 @@ li.collect-this, li.add-this {
                 }
                 &.delete {
                   a{
-                    background: url('../images/icon-form-edit.png') no-repeat center center transparent;
+                    background: url('../images/icon-form-delete.png') no-repeat center center transparent;
                   }
                 }
 
@@ -8443,6 +8449,7 @@ li.collect-this, li.add-this {
                   overflow:hidden;
                   text-indent:40px;
                   white-space:nowrap;
+                  display:block;
                 }
               }
             }
