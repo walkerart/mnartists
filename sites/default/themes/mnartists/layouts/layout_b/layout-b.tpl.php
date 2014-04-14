@@ -16,7 +16,7 @@
 ?>
 <div class="panel-display panel-2col clearfix layout-b article-page" <?php if (!empty($css_id)) { print "id=\"$css_id\""; } ?>>
   <div class="panel-pane panel-col-top">
-    <div class="panel-col-first panel-col-last">
+    <div class="panel-col">
       <div class="inside"><?php print $content['tip_top']; ?></div>
     </div>
   </div>
