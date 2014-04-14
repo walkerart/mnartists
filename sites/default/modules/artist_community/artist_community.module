@@ -112,6 +112,10 @@ function artist_community_theme() {
         'artist_community_other_articles_by_this_author' => array(
             'variables' => array(),
             'template' => 'templates/mna-communities-other-articles'
+        ),
+        'artist_community_other_articles_in_this_category' => array(
+            'variables' => array(),
+            'template' => 'templates/mna-communities-other-articles-cat'
         )
     );
 }
@@ -153,12 +157,15 @@ function artist_community_block_info() {
         'info' => t('Artist Community - Other Articles By This Author'),
         'cache' => DRUPAL_NO_CACHE,
         'visibility' => BLOCK_VISIBILITY_PHP,
-        'pages' => true,
+        'pages' => true,// @TODO decide if this value is acceptable
     );
 
-    // @TODO find out more about
-    // 'MORE IN {CATEGORY}'
-    // and add block
+    $blocks['other_articles_in_this_category'] = array(
+        'info' => t('Artist Community - Other Articles In This Category'),
+        'cache' => DRUPAL_NO_CACHE,
+        'visibility' => BLOCK_VISIBILITY_PHP,
+        'pages' => true,// @TODO decide if this value is acceptable
+    );
 
     return $blocks;
 }
@@ -199,6 +206,10 @@ function artist_community_block_view($delta = '') {
         case 'other_articles_by_this_author':
             $block['subject'] = t('Other Articles By This Author');
             $block['content'] = _community_block_other_articles_by_this_author();
+            break;
+        case 'other_articles_in_this_category':
+            $block['subject'] = t('Other Articles In This Category');
+            $block['content'] = _community_block_other_articles_in_this_category();
     }
 
     return $block;
@@ -217,42 +228,81 @@ function _community_block_search() {
     ));
 }
 
+/**
+ * @return
+ * returns a sidebar block for use in single article
+ * view containing (max) three other articles by
+ * context author
+ */
 function _community_block_other_articles_by_this_author () {
     $node_id = arg(1);
+    $other_articles = array();
+
     if (!is_null($node_id)) {
         $article_node = node_load($node_id);
+        if ($article_node) {
+            // @TODO check with jehra on whether this should
+            // also surface promoted articles
+            // @TODO limit to 3, maybe add a range param to artist_community_execute_query
+            // @TODO doublecheck result directly against SOLR, why is only 1 coming back? is that possibly all there is? doesn't seem so
+            $other_articles_filters = array();
+            $other_articles_filter = new SearchApiQueryFilter;
+            $other_articles_filter->condition('status', '1');
+            $other_articles_filter->condition('author', $article_node->uid);
+            $other_articles_filter->condition('type', 'article');
+            $other_articles_filter->condition('nid', $node_id, '!=');
+            $other_articles_filters[] = $other_articles_filter;
+            $other_articles_result = artist_community_execute_query(NODE_INDEX, $other_articles_filters, array(array('changed', 'ASC')));
 
-        $other_articles = array();
+            foreach($other_articles_result as $result) {
+                $context_node = node_load($result->nid);
 
-        // @TODO check with jehra on whether this should
-        // also surface promoted articles
-        $other_article_results = db_select('node', 'n')
-                                    ->fields('n', array('nid', 'title'))
-                                    ->condition('nid', $node_id, '!=')
-                                    ->condition('uid', $article_node->uid)
-                                    ->condition('type', 'article')
-                                    ->orderBy('created', 'DESC')
-                                    ->range(0,2)
-                                    ->execute()
-                                    ->fetchAll();
-
-        foreach($other_article_results as $result) {
-            $context_node = node_load($result->nid);
-
-            // build an object for the template with
-            // just what we need
-            $context_article = new StdClass;
-            $context_article->title = $context_node->title;
-            $context_article->created = $context_node->created;
-            $context_article->node_uri = "/node/$context_node->nid";
-            if (isset($context_node->field_images['und'])) {
-                $context_article->image_uri = image_style_url('medium', $context_node->field_images['und'][0]['uri']);
+                // build an object for the template with
+                // just what we need
+                $context_article = new StdClass;
+                $context_article->title = $context_node->title;
+                $context_article->created = $context_node->created;
+                $context_article->node_uri = "/node/$context_node->nid";
+                if (isset($context_node->field_images['und'])) {
+                    $context_article->image_uri = image_style_url('medium', $context_node->field_images['und'][0]['uri']);
+                }
+                $other_articles[] = $context_article;
             }
-            dpm($context_node);
-            $other_articles[] = $context_article;
         }
     }
     return theme('artist_community_other_articles_by_this_author', array('other_articles' => $other_articles));
+}
+
+
+/**
+ * @return
+ * returns a sidebar block for use in single article
+ * view containing other articles in the same category
+ * as the context article
+ */
+function _community_block_other_articles_in_this_category () {
+    $node_id = arg(1);
+    $other_articles = array();
+    if (!is_null($node_id)) {
+        $article_node = node_load($node_id);
+        if ($article_node) {
+            if (isset($article_node->field_article_category['und'])) {
+                $article_category = $article_node->field_article_category['und'][0]['tid'];// @TODO can we have multiples?
+
+                $other_articles_cat_filters = array();
+                $other_articles_cat_filter = new SearchApiQueryFilter;
+                $other_articles_cat_filter->condition('status', '1');
+                $other_articles_cat_filter->condition('field_article_category', $article_category);
+                $other_articles_cat_filter->condition('type', 'article');
+                $other_articles_cat_filter->condition('nid', $node_id, '!=');
+                $other_articles_cat_filters[] = $other_articles_cat_filter;
+                $other_articles_cat_result = artist_community_execute_query(NODE_INDEX, $other_articles_cat_filters, array(array('promote', 'ASC'), array('changed', 'ASC')));
+
+                // @TODO limit to 3?
+                // @TODO complete template
+            }
+        }
+    }
 }
 
 /**
