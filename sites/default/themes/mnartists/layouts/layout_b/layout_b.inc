@@ -8,6 +8,7 @@ $plugin = array(
   'theme' => 'layout_b',
   'css' => 'layout_b.css',
   'regions' => array(
+    'tip_top' => t('Tippy top'),
     'left' => t('Left side'),
     'right' => t('Right side')
   ),
