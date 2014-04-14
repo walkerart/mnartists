@@ -8379,7 +8379,7 @@ li.collect-this, li.add-this {
                             }
 
                             a:first-child {
-                              background: url('../images/icon-form-add.png') no-repeat center center transparent;
+                              background: url('../images/icon-form-edit.png') no-repeat center center transparent;
                             }
                             a:last-child {
                               background: url('../images/icon-form-remove.png') no-repeat center center transparent;
@@ -8421,7 +8421,28 @@ li.collect-this, li.add-this {
             display:block;float:none;
             text-align:left;
 
+            .edit-controls {
+              li {
 
+                &.edit {
+                  a{
+                    background: url('../images/icon-form-edit.png') no-repeat center center transparent;
+                  }
+                }
+                &.delete {
+                  a{
+                    background: url('../images/icon-form-edit.png') no-repeat center center transparent;
+                  }
+                }
+
+                a {
+                  height:21px;
+                  width:21px;
+                  border:1px solid #666;
+                  border-radius:50%;
+                }
+              }
+            }
 
             @media screen and (max-width: $break-mobile) {
                 @include column(24);
