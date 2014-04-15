@@ -5,16 +5,25 @@
         position:relative;
         padding:20px;
         background:#fff;
-        margin-right:0px;
+        margin-right:20px;
+
+        @media screen and (max-width: $break-mobile) {
+            margin-right:0px;
+        }
 
         .block-inner {
           margin-right:0px;margin-left:0px;
         }
       }
    }
+   .panel-col-first {
+     .inside {
+
+     }
+   }
    .sidebar-right {
      .inside {
-       
+
      }
    }
 }
