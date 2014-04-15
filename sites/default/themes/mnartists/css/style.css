@@ -452,8 +452,9 @@ input[type=submit]:hover {
   border-radius: 50%;
   width: 80%;
   height: auto;
+  margin: 0 auto 20px auto;
 }
-/* line 44, ../sass/_layout-b.scss */
+/* line 45, ../sass/_layout-b.scss */
 .layout-b .sidebar-right .article-author .widget-content a span {
   font-size: 18px;
   font-family: "adobe-text-pro", "Times New Roman", Times, serif;
@@ -462,60 +463,92 @@ input[type=submit]:hover {
   display: block;
   float: none;
 }
-/* line 57, ../sass/_layout-b.scss */
+/* line 59, ../sass/_layout-b.scss */
+.layout-b .sidebar-right .pane-artist-community-other-articles-by-this-author .widget-content,
+.layout-b .sidebar-right .pane-artist-community-other-articles-in-this-category .widget-content {
+  padding: 0px;
+}
+/* line 62, ../sass/_layout-b.scss */
+.layout-b .sidebar-right .pane-artist-community-other-articles-by-this-author ul,
+.layout-b .sidebar-right .pane-artist-community-other-articles-in-this-category ul {
+  padding: 0px;
+  margin: 0px;
+}
+/* line 65, ../sass/_layout-b.scss */
+.layout-b .sidebar-right .pane-artist-community-other-articles-by-this-author ul li,
+.layout-b .sidebar-right .pane-artist-community-other-articles-in-this-category ul li {
+  list-style: none;
+}
+/* line 68, ../sass/_layout-b.scss */
+.layout-b .sidebar-right .pane-artist-community-other-articles-by-this-author ul li a img,
+.layout-b .sidebar-right .pane-artist-community-other-articles-in-this-category ul li a img {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 0px;
+}
+/* line 74, ../sass/_layout-b.scss */
+.layout-b .sidebar-right .pane-artist-community-other-articles-by-this-author ul li a span,
+.layout-b .sidebar-right .pane-artist-community-other-articles-in-this-category ul li a span {
+  display: block;
+  width: 100%;
+  float: none;
+  padding: 5px;
+}
+/* line 86, ../sass/_layout-b.scss */
 .layout-b .panel-col-top .block {
   margin: 0px;
 }
-/* line 60, ../sass/_layout-b.scss */
+/* line 89, ../sass/_layout-b.scss */
 .layout-b .panel-col-top .block h2 {
   padding: 0 0 5px 0;
   margin: 0px;
 }
 
-/* line 69, ../sass/_layout-b.scss */
+/* line 98, ../sass/_layout-b.scss */
 .panel-2col {
   /*  overflow: hidden;  */
 }
 
-/* line 73, ../sass/_layout-b.scss */
+/* line 102, ../sass/_layout-b.scss */
 .panel-2col .panel-col-first {
   float: left;
   width: 75%;
 }
 
-/* line 77, ../sass/_layout-b.scss */
+/* line 106, ../sass/_layout-b.scss */
 * html .panel-2col .panel-col-first {
   width: 74.9%;
 }
 
-/* line 81, ../sass/_layout-b.scss */
+/* line 110, ../sass/_layout-b.scss */
 .panel-2col .panel-col-first .inside {
   margin: 0 0 1em 0;
 }
 
-/* line 85, ../sass/_layout-b.scss */
+/* line 114, ../sass/_layout-b.scss */
 .panel-2col .panel-col-last {
   float: left;
   width: 25%;
 }
 
-/* line 89, ../sass/_layout-b.scss */
+/* line 118, ../sass/_layout-b.scss */
 * html .panel-2col .panel-col-last {
   width: 24.9%;
 }
 
-/* line 93, ../sass/_layout-b.scss */
+/* line 122, ../sass/_layout-b.scss */
 .panel-2col .panel-col-last .inside {
   margin: 0 0 1em 0;
 }
 
-/* line 98, ../sass/_layout-b.scss */
+/* line 127, ../sass/_layout-b.scss */
 #panels-edit-display .panel-pane,
 #panels-edit-display .helperclass {
   margin: .5em;
 }
 
-/* line 102, ../sass/_layout-b.scss */
+/* line 131, ../sass/_layout-b.scss */
 .panel-2col .panel-separator {
   margin: 0 0 1em 0;
 }
