@@ -419,58 +419,73 @@ input[type=submit]:hover {
   position: relative;
   padding: 20px;
   background: #fff;
-  margin-right: 0px;
+  margin-right: 20px !important;
 }
-/* line 10, ../sass/_layout-b.scss */
+@media screen and (max-width: 480px) {
+  /* line 4, ../sass/_layout-b.scss */
+  .layout-b .main-content .inside {
+    margin-right: 0px!important;
+  }
+}
+/* line 14, ../sass/_layout-b.scss */
 .layout-b .main-content .inside .block-inner {
   margin-right: 0px;
   margin-left: 0px;
 }
+/* line 30, ../sass/_layout-b.scss */
+.layout-b .panel-col-top .block {
+  margin: 0px;
+}
+/* line 33, ../sass/_layout-b.scss */
+.layout-b .panel-col-top .block h2 {
+  padding: 0 0 5px 0;
+  margin: 0px;
+}
 
-/* line 23, ../sass/_layout-b.scss */
+/* line 42, ../sass/_layout-b.scss */
 .panel-2col {
   /*  overflow: hidden;  */
 }
 
-/* line 27, ../sass/_layout-b.scss */
+/* line 46, ../sass/_layout-b.scss */
 .panel-2col .panel-col-first {
   float: left;
   width: 75%;
 }
 
-/* line 31, ../sass/_layout-b.scss */
+/* line 50, ../sass/_layout-b.scss */
 * html .panel-2col .panel-col-first {
   width: 74.9%;
 }
 
-/* line 35, ../sass/_layout-b.scss */
+/* line 54, ../sass/_layout-b.scss */
 .panel-2col .panel-col-first .inside {
   margin: 0 0 1em 0;
 }
 
-/* line 39, ../sass/_layout-b.scss */
+/* line 58, ../sass/_layout-b.scss */
 .panel-2col .panel-col-last {
   float: left;
   width: 25%;
 }
 
-/* line 43, ../sass/_layout-b.scss */
+/* line 62, ../sass/_layout-b.scss */
 * html .panel-2col .panel-col-last {
   width: 24.9%;
 }
 
-/* line 47, ../sass/_layout-b.scss */
+/* line 66, ../sass/_layout-b.scss */
 .panel-2col .panel-col-last .inside {
   margin: 0 0 1em 0;
 }
 
-/* line 52, ../sass/_layout-b.scss */
+/* line 71, ../sass/_layout-b.scss */
 #panels-edit-display .panel-pane,
 #panels-edit-display .helperclass {
   margin: .5em;
 }
 
-/* line 56, ../sass/_layout-b.scss */
+/* line 75, ../sass/_layout-b.scss */
 .panel-2col .panel-separator {
   margin: 0 0 1em 0;
 }
@@ -12060,6 +12075,10 @@ li.collect-this:hover, li.add-this:hover {
   white-space: nowrap;
   display: block;
 }
+/* line 8459, ../sass/style.scss */
+.view-flag-lists-user-lists .view-content .user-list-wrap .edit-controls li a:hover {
+  border: 1px solid #999;
+}
 @media screen and (max-width: 480px) {
   /* line 8407, ../sass/style.scss */
   .view-flag-lists-user-lists .view-content .user-list-wrap {
@@ -12090,7 +12109,7 @@ li.collect-this:hover, li.add-this:hover {
     margin-right: 2.409%;
   }
 }
-/* line 8472, ../sass/style.scss */
+/* line 8476, ../sass/style.scss */
 .view-flag-lists-user-lists .view-content .user-list-wrap h2 {
   color: #ccc;
   border-bottom: 1px solid #ccc;
@@ -12099,12 +12118,12 @@ li.collect-this:hover, li.add-this:hover {
   height: auto;
   padding-bottom: 5px;
 }
-/* line 8480, ../sass/style.scss */
+/* line 8484, ../sass/style.scss */
 .view-flag-lists-user-lists .view-content .user-list-wrap h2 a {
   color: #ccc;
   text-transform: none;
 }
-/* line 8485, ../sass/style.scss */
+/* line 8489, ../sass/style.scss */
 .view-flag-lists-user-lists .view-content .user-list-wrap .user-list {
   padding: 0;
   min-width: none;
@@ -12113,7 +12132,7 @@ li.collect-this:hover, li.add-this:hover {
   overflow: hidden;
   *zoom: 1;
 }
-/* line 8491, ../sass/style.scss */
+/* line 8495, ../sass/style.scss */
 .view-flag-lists-user-lists .view-content .user-list-wrap .user-list li {
   vertical-align: middle;
   list-style: none;
@@ -12124,29 +12143,29 @@ li.collect-this:hover, li.add-this:hover {
   width: 31.263%;
   margin-right: 2.409%;
 }
-/* line 8499, ../sass/style.scss */
+/* line 8503, ../sass/style.scss */
 .view-flag-lists-user-lists .view-content .user-list-wrap .user-list li:nth-child(3n+3) {
   margin-right: 0!important;
 }
-/* line 8504, ../sass/style.scss */
+/* line 8508, ../sass/style.scss */
 .view-flag-lists-user-lists .view-content .user-list-wrap .user-list-more-link {
   display: block;
   text-align: right;
   color: #999;
 }
-/* line 8509, ../sass/style.scss */
+/* line 8513, ../sass/style.scss */
 .view-flag-lists-user-lists .view-content .user-list-wrap .user-list-more-link:hover {
   color: #fff;
 }
 
 @media screen and (max-width: 480px) {
-  /* line 8523, ../sass/style.scss */
+  /* line 8527, ../sass/style.scss */
   .admin-menu .panel-2col.layout-a .sort-thing {
     top: -2px !important;
   }
 }
 
-/* line 8528, ../sass/style.scss */
+/* line 8532, ../sass/style.scss */
 .sort-thing {
   max-width: 250px;
   min-width: 220px;
@@ -12156,7 +12175,7 @@ li.collect-this:hover, li.add-this:hover {
   transition: all .2s ease-in-out;
   height: auto;
 }
-/* line 8537, ../sass/style.scss */
+/* line 8541, ../sass/style.scss */
 .sort-thing h2 {
   background: none;
   height: auto;
@@ -12165,7 +12184,7 @@ li.collect-this:hover, li.add-this:hover {
   margin: 0;
   display: none;
 }
-/* line 8544, ../sass/style.scss */
+/* line 8548, ../sass/style.scss */
 .sort-thing .wrap {
   margin: 0;
   padding: 0;
@@ -12183,7 +12202,7 @@ li.collect-this:hover, li.add-this:hover {
   position: relative;
   z-index: 2;
 }
-/* line 8561, ../sass/style.scss */
+/* line 8565, ../sass/style.scss */
 .sort-thing .wrap.open {
   display: block;
   min-height: 100px;
@@ -12194,12 +12213,12 @@ li.collect-this:hover, li.add-this:hover {
   transition: all .3s ease-in-out;
   max-height: 400px;
 }
-/* line 8572, ../sass/style.scss */
+/* line 8576, ../sass/style.scss */
 .sort-thing .sort-thing-sort-options {
   margin: 0;
   padding: 0;
 }
-/* line 8575, ../sass/style.scss */
+/* line 8579, ../sass/style.scss */
 .sort-thing .sort-thing-sort-options li {
   list-style: none;
   margin: 0;
@@ -12207,13 +12226,13 @@ li.collect-this:hover, li.add-this:hover {
   border-bottom: 1px solid #eee;
   display: block;
 }
-/* line 8580, ../sass/style.scss */
+/* line 8584, ../sass/style.scss */
 .sort-thing .sort-thing-sort-options li a {
   display: inline-block;
   font-size: 12px;
   color: #666;
 }
-/* line 8585, ../sass/style.scss */
+/* line 8589, ../sass/style.scss */
 .sort-thing .sort-thing-sort-options li a:nth-child(1) {
   margin: 0;
   padding: 8px 13px 8px 30px;
@@ -12222,7 +12241,7 @@ li.collect-this:hover, li.add-this:hover {
   background: url("../images/mna-circle-hollow.svg") no-repeat 10px center transparent;
   background-size: 12px auto;
 }
-/* line 8596, ../sass/style.scss */
+/* line 8600, ../sass/style.scss */
 .sort-thing .sort-thing-sort-options li a:nth-child(2) {
   float: right;
   padding: 8px 5px;
@@ -12236,11 +12255,11 @@ li.collect-this:hover, li.add-this:hover {
   background: url("../images/icon-filter-arrow-down.png") no-repeat center center transparent;
   background-size: 7px 8px;
 }
-/* line 8617, ../sass/style.scss */
+/* line 8621, ../sass/style.scss */
 .sort-thing .sort-thing-sort-options li.active a:first-child {
   background: url("../images/mna-circle-filled.svg") no-repeat 10px center transparent;
 }
-/* line 8625, ../sass/style.scss */
+/* line 8629, ../sass/style.scss */
 .sort-thing .sort-thing-current-sort {
   float: right;
   padding: 12px 8px 8px 8px;
@@ -12253,7 +12272,7 @@ li.collect-this:hover, li.add-this:hover {
   border-radius: 0px 0px 3px 3px;
   z-index: 1;
 }
-/* line 8637, ../sass/style.scss */
+/* line 8641, ../sass/style.scss */
 .sort-thing .sort-thing-current-sort:after {
   content: "";
   height: 4px;
@@ -12266,74 +12285,74 @@ li.collect-this:hover, li.add-this:hover {
   right: 0;
   z-index: 3;
 }
-/* line 8648, ../sass/style.scss */
+/* line 8652, ../sass/style.scss */
 .sort-thing .sort-thing-current-sort:hover {
   cursor: pointer;
 }
 
-/* line 8653, ../sass/style.scss */
+/* line 8657, ../sass/style.scss */
 .panel-2col.layout-a {
   position: relative;
   padding-top: 20px;
 }
 @media screen and (max-width: 480px) {
-  /* line 8653, ../sass/style.scss */
+  /* line 8657, ../sass/style.scss */
   .panel-2col.layout-a {
     padding-top: 0px;
   }
 }
-/* line 8660, ../sass/style.scss */
+/* line 8664, ../sass/style.scss */
 .panel-2col.layout-a .sort-thing {
   position: fixed;
   top: -1px;
   right: 40px;
 }
-/* line 8665, ../sass/style.scss */
+/* line 8669, ../sass/style.scss */
 .panel-2col.layout-a .sort-thing-fully-retracted {
   top: -100px;
 }
 
-/* line 8671, ../sass/style.scss */
+/* line 8675, ../sass/style.scss */
 .admin-menu .panel-2col.layout-a .sort-thing {
   top: 21px;
 }
 @media screen and (max-width: 480px) {
-  /* line 8671, ../sass/style.scss */
+  /* line 8675, ../sass/style.scss */
   .admin-menu .panel-2col.layout-a .sort-thing {
     padding-top: -1px;
   }
 }
-/* line 8677, ../sass/style.scss */
+/* line 8681, ../sass/style.scss */
 .admin-menu .panel-2col.layout-a .sort-thing-fully-retracted {
   top: -100px;
 }
 
-/* line 8684, ../sass/style.scss */
+/* line 8688, ../sass/style.scss */
 #block-system-main {
   margin-bottom: 0;
 }
 
-/* line 8690, ../sass/style.scss */
+/* line 8694, ../sass/style.scss */
 .item-loading-indicator {
   width: 100%;
   height: 100px;
   clear: both;
   background: none;
 }
-/* line 8696, ../sass/style.scss */
+/* line 8700, ../sass/style.scss */
 .item-loading-indicator.loading {
   background: url("../images/icon-loader.gif") no-repeat center center transparent;
   background-size: 44px auto;
 }
 
-/* line 8702, ../sass/style.scss */
+/* line 8706, ../sass/style.scss */
 .my-stuff .item-loading-indicator.loading {
   background: url("../images/icon-loader-white.gif") no-repeat center center transparent;
   background-size: 44px auto;
 }
 
 /* login page */
-/* line 8717, ../sass/style.scss */
+/* line 8721, ../sass/style.scss */
 .my-stuff.not-logged-in.page-user #content-column,
 .my-stuff.not-logged-in.page-user-register #content-column,
 .my-stuff.not-logged-in.page-user-password #content-column,
@@ -12344,7 +12363,7 @@ li.collect-this:hover, li.add-this:hover {
   box-sizing: border-box;
   text-align: center;
 }
-/* line 8722, ../sass/style.scss */
+/* line 8726, ../sass/style.scss */
 .my-stuff.not-logged-in.page-user #content-column #main-content,
 .my-stuff.not-logged-in.page-user-register #content-column #main-content,
 .my-stuff.not-logged-in.page-user-password #content-column #main-content,
@@ -12364,7 +12383,7 @@ li.collect-this:hover, li.add-this:hover {
   display: block;
 }
 @media screen and (max-width: 480px) {
-  /* line 8722, ../sass/style.scss */
+  /* line 8726, ../sass/style.scss */
   .my-stuff.not-logged-in.page-user #content-column #main-content,
   .my-stuff.not-logged-in.page-user-register #content-column #main-content,
   .my-stuff.not-logged-in.page-user-password #content-column #main-content,
@@ -12379,7 +12398,7 @@ li.collect-this:hover, li.add-this:hover {
   }
 }
 @media screen and (max-width: 768px) {
-  /* line 8722, ../sass/style.scss */
+  /* line 8726, ../sass/style.scss */
   .my-stuff.not-logged-in.page-user #content-column #main-content,
   .my-stuff.not-logged-in.page-user-register #content-column #main-content,
   .my-stuff.not-logged-in.page-user-password #content-column #main-content,
@@ -12394,7 +12413,7 @@ li.collect-this:hover, li.add-this:hover {
   }
 }
 @media screen and (max-width: 960px) {
-  /* line 8722, ../sass/style.scss */
+  /* line 8726, ../sass/style.scss */
   .my-stuff.not-logged-in.page-user #content-column #main-content,
   .my-stuff.not-logged-in.page-user-register #content-column #main-content,
   .my-stuff.not-logged-in.page-user-password #content-column #main-content,
@@ -12408,7 +12427,7 @@ li.collect-this:hover, li.add-this:hover {
     margin-right: 2.409%;
   }
 }
-/* line 8742, ../sass/style.scss */
+/* line 8746, ../sass/style.scss */
 .my-stuff.not-logged-in.page-user #content-column #main-content #main-content-header #tasks,
 .my-stuff.not-logged-in.page-user-register #content-column #main-content #main-content-header #tasks,
 .my-stuff.not-logged-in.page-user-password #content-column #main-content #main-content-header #tasks,
@@ -12417,7 +12436,7 @@ li.collect-this:hover, li.add-this:hover {
 .not-logged-in.page-user-password #content-column #main-content #main-content-header #tasks {
   margin-bottom: 0;
 }
-/* line 8745, ../sass/style.scss */
+/* line 8749, ../sass/style.scss */
 .my-stuff.not-logged-in.page-user #content-column #main-content #main-content-header #tasks ul.primary,
 .my-stuff.not-logged-in.page-user-register #content-column #main-content #main-content-header #tasks ul.primary,
 .my-stuff.not-logged-in.page-user-password #content-column #main-content #main-content-header #tasks ul.primary,
@@ -12428,7 +12447,7 @@ li.collect-this:hover, li.add-this:hover {
   margin-bottom: 0;
   padding: 0;
 }
-/* line 8750, ../sass/style.scss */
+/* line 8754, ../sass/style.scss */
 .my-stuff.not-logged-in.page-user #content-column #main-content #main-content-header #tasks ul.primary li,
 .my-stuff.not-logged-in.page-user-register #content-column #main-content #main-content-header #tasks ul.primary li,
 .my-stuff.not-logged-in.page-user-password #content-column #main-content #main-content-header #tasks ul.primary li,
@@ -12438,7 +12457,7 @@ li.collect-this:hover, li.add-this:hover {
   border: none;
   margin: 0 3px 0 0;
 }
-/* line 8754, ../sass/style.scss */
+/* line 8758, ../sass/style.scss */
 .my-stuff.not-logged-in.page-user #content-column #main-content #main-content-header #tasks ul.primary li a,
 .my-stuff.not-logged-in.page-user-register #content-column #main-content #main-content-header #tasks ul.primary li a,
 .my-stuff.not-logged-in.page-user-password #content-column #main-content #main-content-header #tasks ul.primary li a,
@@ -12451,7 +12470,7 @@ li.collect-this:hover, li.add-this:hover {
   line-height: 2em;
   height: 2em;
 }
-/* line 8764, ../sass/style.scss */
+/* line 8768, ../sass/style.scss */
 .my-stuff.not-logged-in.page-user #content-column #main-content #main-content-header #tasks ul.primary li.active a,
 .my-stuff.not-logged-in.page-user-register #content-column #main-content #main-content-header #tasks ul.primary li.active a,
 .my-stuff.not-logged-in.page-user-password #content-column #main-content #main-content-header #tasks ul.primary li.active a,
@@ -12461,7 +12480,7 @@ li.collect-this:hover, li.add-this:hover {
   background: #f2f2f2;
   border: none;
 }
-/* line 8776, ../sass/style.scss */
+/* line 8780, ../sass/style.scss */
 .my-stuff.not-logged-in.page-user #content-column #content,
 .my-stuff.not-logged-in.page-user-register #content-column #content,
 .my-stuff.not-logged-in.page-user-password #content-column #content,
@@ -12472,7 +12491,7 @@ li.collect-this:hover, li.add-this:hover {
   padding: 20px;
   box-sizing: border-box;
 }
-/* line 8781, ../sass/style.scss */
+/* line 8785, ../sass/style.scss */
 .my-stuff.not-logged-in.page-user #content-column #content form,
 .my-stuff.not-logged-in.page-user-register #content-column #content form,
 .my-stuff.not-logged-in.page-user-password #content-column #content form,
@@ -12482,7 +12501,7 @@ li.collect-this:hover, li.add-this:hover {
   padding: 75px 100px;
 }
 @media screen and (max-width: 960px) {
-  /* line 8781, ../sass/style.scss */
+  /* line 8785, ../sass/style.scss */
   .my-stuff.not-logged-in.page-user #content-column #content form,
   .my-stuff.not-logged-in.page-user-register #content-column #content form,
   .my-stuff.not-logged-in.page-user-password #content-column #content form,
@@ -12493,7 +12512,7 @@ li.collect-this:hover, li.add-this:hover {
   }
 }
 @media screen and (max-width: 768px) {
-  /* line 8781, ../sass/style.scss */
+  /* line 8785, ../sass/style.scss */
   .my-stuff.not-logged-in.page-user #content-column #content form,
   .my-stuff.not-logged-in.page-user-register #content-column #content form,
   .my-stuff.not-logged-in.page-user-password #content-column #content form,
@@ -12504,7 +12523,7 @@ li.collect-this:hover, li.add-this:hover {
   }
 }
 @media screen and (max-width: 480px) {
-  /* line 8781, ../sass/style.scss */
+  /* line 8785, ../sass/style.scss */
   .my-stuff.not-logged-in.page-user #content-column #content form,
   .my-stuff.not-logged-in.page-user-register #content-column #content form,
   .my-stuff.not-logged-in.page-user-password #content-column #content form,
@@ -12515,39 +12534,39 @@ li.collect-this:hover, li.add-this:hover {
   }
 }
 
-/* line 8803, ../sass/style.scss */
+/* line 8807, ../sass/style.scss */
 #main-content {
   margin-left: 20px;
   margin-right: 20px;
 }
 @media screen and (max-width: 960px) {
-  /* line 8803, ../sass/style.scss */
+  /* line 8807, ../sass/style.scss */
   #main-content {
     margin-left: 20px;
     margin-right: 20px;
   }
 }
 @media screen and (max-width: 768px) {
-  /* line 8803, ../sass/style.scss */
+  /* line 8807, ../sass/style.scss */
   #main-content {
     margin-left: 20px;
     margin-right: 20px;
   }
 }
 @media screen and (max-width: 480px) {
-  /* line 8803, ../sass/style.scss */
+  /* line 8807, ../sass/style.scss */
   #main-content {
     margin-left: 10px;
     margin-right: 10px;
   }
 }
 
-/* line 8820, ../sass/style.scss */
+/* line 8824, ../sass/style.scss */
 body {
   text-align: center;
 }
 
-/* line 8824, ../sass/style.scss */
+/* line 8828, ../sass/style.scss */
 #page {
   margin-left: 0;
   margin-left: auto;
@@ -12558,13 +12577,13 @@ body {
   transition: all .3s ease-in-out;
 }
 @media screen and (max-width: 480px) {
-  /* line 8824, ../sass/style.scss */
+  /* line 8828, ../sass/style.scss */
   #page {
     padding-top: 60px;
   }
 }
 
-/* line 8837, ../sass/style.scss */
+/* line 8841, ../sass/style.scss */
 .item-more-button-link-indicator {
   display: inline-block;
   overflow: hidden;
@@ -12573,16 +12592,16 @@ body {
   background: url("../images/icon-more-chevron.png") no-repeat center bottom transparent;
   text-indent: 20px;
 }
-/* line 8845, ../sass/style.scss */
+/* line 8849, ../sass/style.scss */
 .item-more-button-link-indicator:hover {
   background: url("../images/icon-more-chevron.png") no-repeat center bottom transparent;
 }
 
-/* line 8853, ../sass/style.scss */
+/* line 8857, ../sass/style.scss */
 .content-artwork .pane-node-field-media {
   position: relative;
 }
-/* line 8855, ../sass/style.scss */
+/* line 8859, ../sass/style.scss */
 .content-artwork .pane-node-field-media .slidesjs-navigation {
   height: 26px;
   width: 16px;
@@ -12592,21 +12611,21 @@ body {
   text-indent: 30px;
   position: absolute;
 }
-/* line 8860, ../sass/style.scss */
+/* line 8864, ../sass/style.scss */
 .content-artwork .pane-node-field-media .slidesjs-navigation.slidesjs-previous {
   background: url("../images/icon-sprite-slider-arrows.png") no-repeat left top transparent;
   left: -40px;
   top: 50%;
   margin-top: -13px;
 }
-/* line 8865, ../sass/style.scss */
+/* line 8869, ../sass/style.scss */
 .content-artwork .pane-node-field-media .slidesjs-navigation.slidesjs-next {
   background: url("../images/icon-sprite-slider-arrows.png") no-repeat -50px top transparent;
   right: -40px;
   top: 50%;
   margin-top: -13px;
 }
-/* line 8871, ../sass/style.scss */
+/* line 8875, ../sass/style.scss */
 .content-artwork .pane-node-field-media .slidesjs-pagination {
   display: block;
   text-align: center;
@@ -12614,36 +12633,36 @@ body {
   padding: 10px 0 0 0;
 }
 
-/* line 8882, ../sass/style.scss */
+/* line 8886, ../sass/style.scss */
 .panel-2col.article-page .panel-separator {
   display: none;
 }
 
-/* line 8886, ../sass/style.scss */
+/* line 8890, ../sass/style.scss */
 .article-page .panel-pane .block-inner .block-content {
   background: none;
 }
-/* line 8889, ../sass/style.scss */
+/* line 8893, ../sass/style.scss */
 .article-page .pane-node-title {
   font-size: 36px;
   line-height: 1.2em;
   padding-right: 40px;
 }
-/* line 8893, ../sass/style.scss */
+/* line 8897, ../sass/style.scss */
 .article-page .pane-node-title .block-content a {
   text-decoration: none !important;
 }
-/* line 8899, ../sass/style.scss */
+/* line 8903, ../sass/style.scss */
 .article-page .pane-mnartist-collections-mna-collections-star {
   position: absolute;
   top: 20px;
   right: 20px;
 }
-/* line 8904, ../sass/style.scss */
+/* line 8908, ../sass/style.scss */
 .article-page .pane-node-field-subheader {
   margin-bottom: 1em;
 }
-/* line 8907, ../sass/style.scss */
+/* line 8911, ../sass/style.scss */
 .article-page .pane-node-author {
   font-size: 13px;
   width: 45%;
@@ -12651,17 +12670,17 @@ body {
   margin-bottom: 15px;
 }
 @media screen and (max-width: 480px) {
-  /* line 8907, ../sass/style.scss */
+  /* line 8911, ../sass/style.scss */
   .article-page .pane-node-author {
     margin-bottom: 5px;
   }
 }
-/* line 8917, ../sass/style.scss */
+/* line 8921, ../sass/style.scss */
 .article-page .pane-custom {
   width: 35%;
   float: left;
 }
-/* line 8921, ../sass/style.scss */
+/* line 8925, ../sass/style.scss */
 .article-page .pane-node-created {
   font-size: 13px;
   width: 55%;
@@ -12670,16 +12689,16 @@ body {
   margin-bottom: 15px;
 }
 @media screen and (max-width: 480px) {
-  /* line 8921, ../sass/style.scss */
+  /* line 8925, ../sass/style.scss */
   .article-page .pane-node-created {
     text-align: left;
   }
 }
-/* line 8934, ../sass/style.scss */
+/* line 8938, ../sass/style.scss */
 .article-page .pane-node-field-images .field-label {
   display: none;
 }
-/* line 8939, ../sass/style.scss */
+/* line 8943, ../sass/style.scss */
 .article-page .field-name-field-body {
   font-size: 17px;
   font-family: "adobe-text-pro", "Times New Roman", Times, serif;
