@@ -25,6 +25,33 @@
      .inside {
 
      }
+     .article-author {
+       width:100%;
+
+       .widget-content {
+         background:none;
+
+         a {
+           text-align:center;
+           img {
+             display:block;
+             clear:both;
+             float:none;
+             border-radius:50%;
+             width:80%;
+             height:auto;
+           }
+           span {
+             font-size:18px;
+             font-family: $serif-font;
+             font-weight:bold;
+             clear:both;
+             display:block;
+             float:none;
+           }
+         }
+       }
+     }
    }
    .panel-col-top {
      .block {
