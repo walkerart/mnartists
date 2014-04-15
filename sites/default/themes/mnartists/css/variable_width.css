@@ -419,12 +419,12 @@ input[type=submit]:hover {
   position: relative;
   padding: 20px;
   background: #fff;
-  margin-right: 20px;
+  margin-right: 20px !important;
 }
 @media screen and (max-width: 480px) {
   /* line 4, ../sass/_layout-b.scss */
   .layout-b .main-content .inside {
-    margin-right: 0px;
+    margin-right: 0px!important;
   }
 }
 /* line 14, ../sass/_layout-b.scss */
@@ -432,51 +432,60 @@ input[type=submit]:hover {
   margin-right: 0px;
   margin-left: 0px;
 }
+/* line 30, ../sass/_layout-b.scss */
+.layout-b .panel-col-top .block {
+  margin: 0px;
+}
+/* line 33, ../sass/_layout-b.scss */
+.layout-b .panel-col-top .block h2 {
+  padding: 0 0 5px 0;
+  margin: 0px;
+}
 
-/* line 32, ../sass/_layout-b.scss */
+/* line 42, ../sass/_layout-b.scss */
 .panel-2col {
   /*  overflow: hidden;  */
 }
 
-/* line 36, ../sass/_layout-b.scss */
+/* line 46, ../sass/_layout-b.scss */
 .panel-2col .panel-col-first {
   float: left;
   width: 75%;
 }
 
-/* line 40, ../sass/_layout-b.scss */
+/* line 50, ../sass/_layout-b.scss */
 * html .panel-2col .panel-col-first {
   width: 74.9%;
 }
 
-/* line 44, ../sass/_layout-b.scss */
+/* line 54, ../sass/_layout-b.scss */
 .panel-2col .panel-col-first .inside {
   margin: 0 0 1em 0;
 }
 
-/* line 48, ../sass/_layout-b.scss */
+/* line 58, ../sass/_layout-b.scss */
 .panel-2col .panel-col-last {
   float: left;
   width: 25%;
 }
 
-/* line 52, ../sass/_layout-b.scss */
+/* line 62, ../sass/_layout-b.scss */
 * html .panel-2col .panel-col-last {
   width: 24.9%;
 }
 
-/* line 56, ../sass/_layout-b.scss */
+/* line 66, ../sass/_layout-b.scss */
 .panel-2col .panel-col-last .inside {
   margin: 0 0 1em 0;
 }
 
-/* line 61, ../sass/_layout-b.scss */
+/* line 71, ../sass/_layout-b.scss */
 #panels-edit-display .panel-pane,
 #panels-edit-display .helperclass {
   margin: .5em;
 }
 
-/* line 65, ../sass/_layout-b.scss */
+/* line 75, ../sass/_layout-b.scss */
 .panel-2col .panel-separator {
   margin: 0 0 1em 0;
 }
@@ -13116,12 +13125,12 @@ input[type=submit]:hover {
   position: relative;
   padding: 20px;
   background: #fff;
-  margin-right: 20px;
+  margin-right: 20px !important;
 }
 @media screen and (max-width: 480px) {
   /* line 4, ../sass/_layout-b.scss */
   .layout-b .main-content .inside {
-    margin-right: 0px;
+    margin-right: 0px!important;
   }
 }
 /* line 14, ../sass/_layout-b.scss */
@@ -13129,51 +13138,60 @@ input[type=submit]:hover {
   margin-right: 0px;
   margin-left: 0px;
 }
+/* line 30, ../sass/_layout-b.scss */
+.layout-b .panel-col-top .block {
+  margin: 0px;
+}
+/* line 33, ../sass/_layout-b.scss */
+.layout-b .panel-col-top .block h2 {
+  padding: 0 0 5px 0;
+  margin: 0px;
+}
 
-/* line 32, ../sass/_layout-b.scss */
+/* line 42, ../sass/_layout-b.scss */
 .panel-2col {
   /*  overflow: hidden;  */
 }
 
-/* line 36, ../sass/_layout-b.scss */
+/* line 46, ../sass/_layout-b.scss */
 .panel-2col .panel-col-first {
   float: left;
   width: 75%;
 }
 
-/* line 40, ../sass/_layout-b.scss */
+/* line 50, ../sass/_layout-b.scss */
 * html .panel-2col .panel-col-first {
   width: 74.9%;
 }
 
-/* line 44, ../sass/_layout-b.scss */
+/* line 54, ../sass/_layout-b.scss */
 .panel-2col .panel-col-first .inside {
   margin: 0 0 1em 0;
 }
 
-/* line 48, ../sass/_layout-b.scss */
+/* line 58, ../sass/_layout-b.scss */
 .panel-2col .panel-col-last {
   float: left;
   width: 25%;
 }
 
-/* line 52, ../sass/_layout-b.scss */
+/* line 62, ../sass/_layout-b.scss */
 * html .panel-2col .panel-col-last {
   width: 24.9%;
 }
 
-/* line 56, ../sass/_layout-b.scss */
+/* line 66, ../sass/_layout-b.scss */
 .panel-2col .panel-col-last .inside {
   margin: 0 0 1em 0;
 }
 
-/* line 61, ../sass/_layout-b.scss */
+/* line 71, ../sass/_layout-b.scss */
 #panels-edit-display .panel-pane,
 #panels-edit-display .helperclass {
   margin: .5em;
 }
 
-/* line 65, ../sass/_layout-b.scss */
+/* line 75, ../sass/_layout-b.scss */
 .panel-2col .panel-separator {
   margin: 0 0 1em 0;
 }
