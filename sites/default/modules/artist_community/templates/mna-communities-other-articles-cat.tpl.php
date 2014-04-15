@@ -1,3 +1,8 @@
+<?php
+    // template for rendering the 'other articles in this category'
+    // block in the sidebar on the single article view
+if (count($other_articles) > 0) {
+?>
 <div class="widget">
     <h2>More In <?= $community_title ?></h2>
     <div class="widget-content">
@@ -13,3 +18,4 @@
         </ul>
     </div>
 </div>
+<?php } ?>
