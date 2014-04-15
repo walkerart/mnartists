@@ -56,6 +56,12 @@
 
      .pane-artist-community-other-articles-by-this-author,
      .pane-artist-community-other-articles-in-this-category {
+       margin-bottom:1em;
+       
+       h2 {
+         margin:0;
+         padding:0 0 5px 0;
+       }
        .widget-content {
          padding:0px;
        }
@@ -75,7 +81,16 @@
                display:block;
                width:100%;
                float:none;
-               padding:5px;
+               padding:10px;
+               border-bottom:1px dashed #999;
+               box-sizing:border-box;
+             }
+           }
+           &:last-child {
+             a {
+               span {
+                 border-bottom:none;
+               }
              }
            }
          }

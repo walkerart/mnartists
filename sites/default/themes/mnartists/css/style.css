@@ -463,23 +463,34 @@ input[type=submit]:hover {
   display: block;
   float: none;
 }
-/* line 59, ../sass/_layout-b.scss */
+/* line 58, ../sass/_layout-b.scss */
+.layout-b .sidebar-right .pane-artist-community-other-articles-by-this-author,
+.layout-b .sidebar-right .pane-artist-community-other-articles-in-this-category {
+  margin-bottom: 1em;
+}
+/* line 61, ../sass/_layout-b.scss */
+.layout-b .sidebar-right .pane-artist-community-other-articles-by-this-author h2,
+.layout-b .sidebar-right .pane-artist-community-other-articles-in-this-category h2 {
+  margin: 0;
+  padding: 0 0 5px 0;
+}
+/* line 65, ../sass/_layout-b.scss */
 .layout-b .sidebar-right .pane-artist-community-other-articles-by-this-author .widget-content,
 .layout-b .sidebar-right .pane-artist-community-other-articles-in-this-category .widget-content {
   padding: 0px;
 }
-/* line 62, ../sass/_layout-b.scss */
+/* line 68, ../sass/_layout-b.scss */
 .layout-b .sidebar-right .pane-artist-community-other-articles-by-this-author ul,
 .layout-b .sidebar-right .pane-artist-community-other-articles-in-this-category ul {
   padding: 0px;
   margin: 0px;
 }
-/* line 65, ../sass/_layout-b.scss */
+/* line 71, ../sass/_layout-b.scss */
 .layout-b .sidebar-right .pane-artist-community-other-articles-by-this-author ul li,
 .layout-b .sidebar-right .pane-artist-community-other-articles-in-this-category ul li {
   list-style: none;
 }
-/* line 68, ../sass/_layout-b.scss */
+/* line 74, ../sass/_layout-b.scss */
 .layout-b .sidebar-right .pane-artist-community-other-articles-by-this-author ul li a img,
 .layout-b .sidebar-right .pane-artist-community-other-articles-in-this-category ul li a img {
   width: 100%;
@@ -487,68 +498,75 @@ input[type=submit]:hover {
   display: block;
   margin: 0px;
 }
-/* line 74, ../sass/_layout-b.scss */
+/* line 80, ../sass/_layout-b.scss */
 .layout-b .sidebar-right .pane-artist-community-other-articles-by-this-author ul li a span,
 .layout-b .sidebar-right .pane-artist-community-other-articles-in-this-category ul li a span {
   display: block;
   width: 100%;
   float: none;
-  padding: 5px;
+  padding: 10px;
+  border-bottom: 1px dashed #999;
+  box-sizing: border-box;
 }
-/* line 86, ../sass/_layout-b.scss */
+/* line 91, ../sass/_layout-b.scss */
+.layout-b .sidebar-right .pane-artist-community-other-articles-by-this-author ul li:last-child a span,
+.layout-b .sidebar-right .pane-artist-community-other-articles-in-this-category ul li:last-child a span {
+  border-bottom: none;
+}
+/* line 101, ../sass/_layout-b.scss */
 .layout-b .panel-col-top .block {
   margin: 0px;
 }
-/* line 89, ../sass/_layout-b.scss */
+/* line 104, ../sass/_layout-b.scss */
 .layout-b .panel-col-top .block h2 {
   padding: 0 0 5px 0;
   margin: 0px;
 }
 
-/* line 98, ../sass/_layout-b.scss */
+/* line 113, ../sass/_layout-b.scss */
 .panel-2col {
   /*  overflow: hidden;  */
 }
 
-/* line 102, ../sass/_layout-b.scss */
+/* line 117, ../sass/_layout-b.scss */
 .panel-2col .panel-col-first {
   float: left;
   width: 75%;
 }
 
-/* line 106, ../sass/_layout-b.scss */
+/* line 121, ../sass/_layout-b.scss */
 * html .panel-2col .panel-col-first {
   width: 74.9%;
 }
 
-/* line 110, ../sass/_layout-b.scss */
+/* line 125, ../sass/_layout-b.scss */
 .panel-2col .panel-col-first .inside {
   margin: 0 0 1em 0;
 }
 
-/* line 114, ../sass/_layout-b.scss */
+/* line 129, ../sass/_layout-b.scss */
 .panel-2col .panel-col-last {
   float: left;
   width: 25%;
 }
 
-/* line 118, ../sass/_layout-b.scss */
+/* line 133, ../sass/_layout-b.scss */
 * html .panel-2col .panel-col-last {
   width: 24.9%;
 }
 
-/* line 122, ../sass/_layout-b.scss */
+/* line 137, ../sass/_layout-b.scss */
 .panel-2col .panel-col-last .inside {
   margin: 0 0 1em 0;
 }
 
-/* line 127, ../sass/_layout-b.scss */
+/* line 142, ../sass/_layout-b.scss */
 #panels-edit-display .panel-pane,
 #panels-edit-display .helperclass {
   margin: .5em;
 }
 
-/* line 131, ../sass/_layout-b.scss */
+/* line 146, ../sass/_layout-b.scss */
 .panel-2col .panel-separator {
   margin: 0 0 1em 0;
 }
