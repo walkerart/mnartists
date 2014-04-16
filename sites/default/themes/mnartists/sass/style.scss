@@ -8397,17 +8397,22 @@ li.collect-this, li.add-this {
 .rename-filter-editing-state {
   form {
     form input[type=text] {
-      outline:none;
-      border:none;
-      background:#999;
+      outline:none!important;
+      border:none!important;
+      background:#999!important;
       color:#fff;
-      padding:5px;
+      padding:5px!important;
       margin:0;
+      background-image:none;
+      box-shadow:none!important;
     }
     button {
       border-radius:0px;
       color:#fff;
       background:#222;
+      border:none;
+      outline:none;
+      text-transform:uppercase;
     }
   }
 }
