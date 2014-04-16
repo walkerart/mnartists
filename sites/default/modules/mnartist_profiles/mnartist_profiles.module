@@ -616,6 +616,30 @@ function _mnartist_profile_user_profile() {
                 }
             }
         }
+    } else if (isset($user->content['profile_organization'])) {
+        $org_array = array_values($user->content['profile_organization']['view']['profile2']);
+        $org_pid = array_keys($user->content['profile_organization']['view']['profile2']);
+        $org = array_shift($org_array);
+        foreach($org as $data)
+        {
+            if(is_array($data)) {
+                if(isset($data['#theme']))
+                {
+                    $field_data = field_info_field($data['#field_name']);
+                    $privacy = (bool) _profile2_field_privacy_value($field_data['id'], $org_pid);
+                    if($privacy != '1')
+                    {
+                        foreach($data['#items'] as $key => $value)
+                        {
+                            $fieldset[$data['#field_name']][] = array(
+                                'name' => $data['#field_name'],
+                                'value' => $data[$key]
+                            );
+                        }
+                    }
+                }
+            }
+        }
     } else {
         $main = NULL;
     }
@@ -657,7 +681,7 @@ function _mnartist_profile_user_profile() {
     } else {
         if(isset($fieldset['field_pseudo']))
         {
-            $top_name = 'toast';
+            $top_name = 'toast';// @TODO ???
         } else {
             $top_name = $user->name;
         }
