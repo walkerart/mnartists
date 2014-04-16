@@ -17,6 +17,22 @@
         .block-inner {
           margin-right:0px;margin-left:0px;
         }
+        .pane-custom {
+
+          &.pane-1 {
+            width:50%;
+          }
+          &.pane-2 {
+            width:50%;
+            text-align:right;
+          }
+        }
+        .pane-1 {
+
+        }
+        .pane-2 {
+
+        }
       }
    }
    .panel-col-first {
@@ -57,8 +73,8 @@
        }
      }
 
-     .pane-artist-community-other-articles-by-this-author,
-     .pane-artist-community-other-articles-in-this-category {
+     .pane-mnartist-article-other-articles-by-this-author,
+     .pane-mnartist-article-other-articles-in-this-category{
        margin-bottom:20px;
 
        h2 {
