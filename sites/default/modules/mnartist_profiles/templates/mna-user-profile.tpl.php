@@ -176,16 +176,16 @@
         <ul>
             <li><a href='#tabs-1'>About <?= $top_name ?></a></li>
         </ul>
-    </div>
-    <div id="tabs-1">
-    <?php if(isset($fieldset['field_description'])) { ?>
-        <div class='wrap org-statement'>
-            <h5 class='profile-title'>Organization Description/Mission</h5>
-            <p><?= $fieldset['field_description'][0]['value']['#markup'] ?></p></div>
+        <div id="tabs-1">
+            <?php if(isset($fieldset['field_description'])) { ?>
+                <div class='wrap org-statement'>
+                    <h5 class='profile-title'>Organization Description/Mission</h5>
+                    <p><?= $fieldset['field_description'][0]['value']['#markup'] ?></p>
+                </div>
+            <?php } ?>
         </div>
-    <?php }
-} ?>
-
+    </div>
+<?php } ?>
 <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/themes/base/jquery-ui.css" type="text/css" media="all" />
 <script>
 jQuery(function() {
