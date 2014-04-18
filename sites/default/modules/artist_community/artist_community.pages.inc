@@ -4,6 +4,7 @@ function artist_community_search_page() {
 
     // include the community js
     ctools_add_js('community', 'artist_community');
+    drupal_add_js(drupal_get_path('module', 'artist_community') .'/banner/javascripts/src/main.js');
 
     // declare some empty stuff
     $filters        = array();
@@ -229,5 +230,6 @@ function artist_community_search_page() {
                                                 'event_widget_items' => $events_data,
                                                 'from_the_network_posts' => $from_the_network_posts,
                                                 'latest_users' => $latest_users_data,
-                                                'all_event_results' => $all_event_results));
+                                                'all_event_results' => $all_event_results,
+                                                'banner_string' => artist_community_current_filters_as_banner_string()));
 }

@@ -105,10 +105,6 @@ function artist_community_theme() {
             'variables' => array(),
             'template' => 'templates/mna-location-search-block'
         ),
-        'artist_community_banner' => array(
-            'variables' => array(),
-            'template' => 'templates/mna-communities-banner'
-        ),
     );
 }
 
@@ -133,13 +129,6 @@ function artist_community_block_info() {
 
     $blocks['content'] = array(
         'info' => t('Artist Community - Content'),
-        'cache' => DRUPAL_NO_CACHE,
-        'visibility' => BLOCK_VISIBILITY_PHP,
-        'pages' => '<?php return _artist_community_block_visibility(); ?>'
-    );
-
-    $blocks['banner'] = array(
-        'info' => t('Artist Community - Banner'),
         'cache' => DRUPAL_NO_CACHE,
         'visibility' => BLOCK_VISIBILITY_PHP,
         'pages' => '<?php return _artist_community_block_visibility(); ?>'
@@ -177,20 +166,9 @@ function artist_community_block_view($delta = '') {
             $block['subject'] = t('Search');
             $block['content'] = _community_block_search();
             break;
-        case 'banner':
-            $block['subject'] = t('Banner');
-            $block['content'] = _community_block_banner();
-            break;
     }
 
     return $block;
-}
-
-function _community_block_banner() {
-    // @TODO send different data to banner, as appropriate
-    return theme("artist_community_banner", array(
-
-    ));
 }
 
 function _community_block_search() {
@@ -1093,11 +1071,6 @@ function _set_community_query_facets () {
         $resultset = $client->select($solarium_query);
         $search_facets = $resultset->getFacetSet();
     }
-
-    // so, if we were to cache this, what could we do with that? would we JUST use that
-    // for the non-query pages? or
-    // cache_set('search_facets', $resultset->getFacetSet(), 'cache', REQUEST_TIME + (60*10));
-
 }
 
 
@@ -1107,4 +1080,47 @@ function artist_community_library_alter(&$libraries, $module) {
         $path = drupal_get_path('theme', 'mnartists');
         $libraries['media_browser_page']['css'][$path . '/css/jquery-ui.css']['group'] = CSS_DEFAULT;
     }
+}
+
+
+function artist_community_current_filters_as_banner_string () {
+
+    $og_arr = $content_arr = $final_arr = array();
+    $local_og = (isset($_GET['og'])) ? $_GET['og'] : null;
+    $local_content = (isset($_GET['content'])) ? $_GET['content'] : null;
+    if ($local_og !== null) {
+        foreach($local_og as $og_id => $terms) {
+            if (is_array($terms)) {
+                foreach($terms as $term) {
+                    $og_arr[] = taxonomy_term_load($term)->name;
+                }
+            } else {
+                $og_arr[] = node_load($og_id)->title;
+            }
+        }
+    }
+
+    if ($local_content !== null) {
+        foreach($local_content as $type => $value) {
+            $context_content_arr = array();
+            $content_header = ucwords($type);
+            $content_header .= (substr($content_header, (strlen($content_header) - 1), 1) !== 's') ? 's' : '';
+
+            if (is_array($value)) {
+                foreach ($local_content[$type] as $tid) {
+                    $context_content_arr[] = taxonomy_term_load($tid)->name;
+                }
+            }
+            if ($type === 'artists' && isset($_GET['artist_location_search'])) {
+                $context_content_arr[] = $_GET['artist_location_search'];
+            } else if ($type === 'event' && isset($_GET['event_location_search'])) {
+                $context_content_arr[] = $_GET['event_location_search'];
+            }
+            $content_arr[] = (!empty($context_content_arr)) ? sprintf('(%s / %s)', $content_header, implode(' + ', $context_content_arr)) : "($content_header)";
+        }
+    }
+    if (!empty($og_arr)) { $final_arr[] = '('.implode(' + ', $og_arr).')'; }
+    if (!empty($content_arr)) { $final_arr[] = '('.implode(' + ', $content_arr).')'; }
+    return implode(' x ', $final_arr);
+
 }

@@ -18,17 +18,23 @@
 ?>
 <div class="panel-2col layout-a">
     <div class="panel-panel panel-col-first main-content">
+
+        <!-- banner -->
+        <header class="organization-header<?php if (count($_GET) <= 1) { ?> has-taglines<?php } ?>">
+            <ul class="logo-parts">
+                <li class="logo-m"></li>
+                <li class="logo-n"></li>
+                <li class="logo-a"></li>
+            </ul>
+            <h1><a class="organization" href="/">Mn Artists<?= (isset($banner_string) && $banner_string !== '') ? " $banner_string" : '' ?></a></h1>
+        </header>
+
         <? /* don't show this block if we're not on the community landing page */ ?>
         <?php if (count($_GET) <= 1) { ?>
             <div class="community-intro">
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ornare ultrices ante, eget ultricies arcu dapibus in. Nunc placerat tincidunt mauris quis rhoncus. Vivamus varius nunc ac tellus egestas ullamcorper. In consectetur, sem non lobortis interdum, erat quam volutpat tellus, in pellentesque ipsum felis vitae neque. Vivamus cursus tempor iaculis. Cras euismod suscipit nunc. Vestibulum viverra hendrerit sem tempor eleifend. Donec at sodales erat. Fusce vel ante ultrices, laoreet lacus at, dictum neque. Nunc vel nunc semper, pulvinar ante eget, interdum sem. Aenean porta viverra magna, sed tempus nisi dictum non. Curabitur at accumsan nibh. Duis convallis neque non bibendum dapibus. Duis non eros turpis.</p>
             </div>
         <?php } ?>
-
-        <?php
-            $banner_block = module_invoke('artist_community', 'block_view', 'banner');
-            print($banner_block['content']);
-        ?>
 
         <div class="sort-thing sort-thing-fully-retracted">
             <div class="wrap">
