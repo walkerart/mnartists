@@ -1,0 +1,152 @@
+@font-face {
+  font-family: 'Circular';
+  font-weight: normal;
+  font-style: normal;
+  src: url("fonts/circamodern-webfont.eot");
+  src: url("fonts/circamodern-webfont.eot?#iefix") format("embedded-opentype"), url("fonts/circamodern-webfont.woff") format("woff"), url("fonts/circamodern-webfont.ttf") format("truetype");
+}
+.organization-header {
+  position: relative;
+  max-width: 700px;
+  height: 96px;
+  color: #bbb;
+  font-size: 20px;
+  line-height: 24px;
+  font-family: "Circular", sans-serif;
+}
+@media (min-width: 680px) {
+  .organization-header {
+    font-size: 37px;
+    line-height: 40px;
+    height: 160px;
+  }
+}
+@media (min-width: 920px) {
+  .organization-header {
+    font-size: 45px;
+    line-height: 48px;
+    height: 192px;
+  }
+}
+.organization-header a {
+  text-decoration: none;
+}
+.organization-header h1 a {
+  color: #333;
+}
+.organization-header h1 a:hover {
+  border-bottom: 1px solid #111111;
+}
+@media (min-width: 680px) {
+  .organization-header h1 a:hover {
+    border-bottom-width: 2px;
+  }
+}
+@media (min-width: 920px) {
+  .organization-header h1 a:hover {
+    border-bottom-width: 3px;
+  }
+}
+.organization-header .logo-parts {
+  position: absolute;
+  right: 0;
+  left: 0;
+  z-index: 999;
+}
+@media (min-width: max-width 679px) {
+  .organization-header .logo-parts {
+    display: none;
+  }
+}
+.organization-header .logo-parts li {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 120px;
+  height: 70px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  opacity: 0;
+  overflow: hidden;
+  -webkit-transition: top 0.3s ease-out, opacity 0.2s ease-in-out;
+  -moz-transition: top 0.3s ease-out, opacity 0.2s ease-in-out;
+  transition: top 0.3s ease-out, opacity 0.2s ease-in-out;
+}
+.organization-header .logo-parts li:before {
+  content: "";
+  display: block;
+  width: 0;
+  height: 100%;
+}
+.organization-header .logo-parts li.visible {
+  opacity: 1;
+}
+.organization-header .logo-parts li.draggable {
+  -webkit-transition: none;
+  -moz-transition: none;
+  transition: none;
+}
+.organization-header .logo-parts.logo-parts-1 li.logo-m {
+  background-image: url(images/logo-1-m.svg);
+}
+.organization-header .logo-parts.logo-parts-1 li.logo-n {
+  background-image: url(images/logo-1-n.svg);
+}
+.organization-header .logo-parts.logo-parts-1 li.logo-a {
+  background-image: url(images/logo-1-a.svg);
+}
+.organization-header .logo-parts.logo-parts-2 li.logo-m {
+  background-image: url(images/logo-2-m.svg);
+}
+.organization-header .logo-parts.logo-parts-2 li.logo-n {
+  background-image: url(images/logo-2-n.svg);
+}
+.organization-header .logo-parts.logo-parts-2 li.logo-a {
+  background-image: url(images/logo-2-a.svg);
+}
+.organization-header .logo-parts.logo-parts-3 li.logo-m {
+  background-image: url(images/logo-3-m.svg);
+}
+.organization-header .logo-parts.logo-parts-3 li.logo-n {
+  background-image: url(images/logo-3-n.svg);
+}
+.organization-header .logo-parts.logo-parts-3 li.logo-a {
+  background-image: url(images/logo-3-a.svg);
+}
+.organization-header .logo-parts.logo-parts-4 li.logo-m {
+  background-image: url(images/logo-4-m.svg);
+}
+.organization-header .logo-parts.logo-parts-4 li.logo-n {
+  background-image: url(images/logo-4-n.svg);
+}
+.organization-header .logo-parts.logo-parts-4 li.logo-a {
+  background-image: url(images/logo-4-a.svg);
+}
+.organization-header .logo-parts.logo-parts-5 li.logo-m {
+  background-image: url(images/logo-5-m.svg);
+}
+.organization-header .logo-parts.logo-parts-5 li.logo-n {
+  background-image: url(images/logo-5-n.svg);
+}
+.organization-header .logo-parts.logo-parts-5 li.logo-a {
+  background-image: url(images/logo-5-a.svg);
+}
+.organization-header .logo-parts.logo-parts-6 li.logo-m {
+  background-image: url(images/logo-6-m.svg);
+}
+.organization-header .logo-parts.logo-parts-6 li.logo-n {
+  background-image: url(images/logo-6-n.svg);
+}
+.organization-header .logo-parts.logo-parts-6 li.logo-a {
+  background-image: url(images/logo-6-a.svg);
+}
+.organization-header h1, .organization-header .taglines, .organization-header p {
+  display: inline;
+}
+.organization-header .communities {
+  display: inline;
+}
+.organization-header .communities li {
+  display: inline;
+}
