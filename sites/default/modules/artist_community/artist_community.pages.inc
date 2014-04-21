@@ -4,7 +4,10 @@ function artist_community_search_page() {
 
     // include the community js
     ctools_add_js('community', 'artist_community');
+
+    // include the banner stuff
     drupal_add_js(drupal_get_path('module', 'artist_community') .'/banner/javascripts/src/main.js');
+    drupal_add_css(drupal_get_path('module', 'artist_community') .'/banner/banner_style.css');
 
     // declare some empty stuff
     $filters        = array();
