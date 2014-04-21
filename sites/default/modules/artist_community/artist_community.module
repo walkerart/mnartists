@@ -1120,7 +1120,7 @@ function artist_community_current_filters_as_banner_string () {
         }
     }
     if (!empty($og_arr)) { $final_arr[] = '('.implode(' + ', $og_arr).')'; }
-    if (!empty($content_arr)) { $final_arr[] = '('.implode(' + ', $content_arr).')'; }
+    if (!empty($content_arr)) { $final_arr[] = (count($content_arr) > 1) ? '('.implode(' + ', $content_arr).')' : implode(' + ', $content_arr); }
     return implode(' x ', $final_arr);
 
 }
