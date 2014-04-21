@@ -144,6 +144,8 @@ if (isset($node->field_media['und'])) {
   <div class="item-info-container">
     <p class="item-info-author"><?php print mnartist_profiles_collective_or_fullname_or_username($node->uid, true); ?></p>
     <p class="item-info-title"><a href="<?= $node_url ?>"><?php print $node->title; ?></a></p>
-    <div class="item-info-flag pane-mnartist-collections-mna-collections-star"><?= theme("mnartist_collections_star", array('node_id' => $node->nid)) ?></div>
+    <?php if(user_is_logged_in()) { ?>
+      <div class="item-info-flag pane-mnartist-collections-mna-collections-star"><?= theme("mnartist_collections_star", array('node_id' => $node->nid)) ?></div>
+    <?php } ?>
   </div>
 </article>

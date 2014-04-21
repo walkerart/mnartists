@@ -141,6 +141,8 @@ if (isset($node->field_date['und'])) {
         <p class="item-info-excerpt">
             <?= $text_excerpt ?> <a href="<?= $node_url ?>" class="item-more-button-link-indicator">&gt;</a>
         </p>
-        <div class="item-info-flag pane-mnartist-collections-mna-collections-star"><?= theme("mnartist_collections_star", array('node_id' => $node->nid)) ?></div>
+        <?php if(user_is_logged_in()) { ?>
+            <div class="item-info-flag pane-mnartist-collections-mna-collections-star"><?= theme("mnartist_collections_star", array('node_id' => $node->nid)) ?></div>
+        <?php } ?>
     </div>
 </article>
