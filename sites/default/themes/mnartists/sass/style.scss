@@ -8909,6 +8909,35 @@ body {
 .panel-2col.article-page .panel-separator {
   display:none;
 }
+// image caption
+.image-field-caption {
+  margin:0;
+}
+.article-page {
+  .field-type-image {
+    margin-bottom:1.5em;
+
+    .field-item {
+      text-align:center;
+
+      img {
+        margin:0 auto;
+        display:block;
+        max-width:100%;
+        width:auto;
+        height:auto;
+        max-height:400px;
+        margin-bottom:5px;
+      }
+      blockquote {
+        text-align:left;
+        p {
+          margin:0;
+        }
+      }
+    }
+  }
+}
 .article-page {
   .panel-pane .block-inner .block-content {
     background:none;
