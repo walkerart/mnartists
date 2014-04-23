@@ -207,6 +207,7 @@ function artist_community_search_page() {
     $all_community_results = _artist_community_get_items_query($local_og, $local_content, $start_row, $num_rows, null, $local_sort, $local_sort_direction);
 
     $all_event_results = null;
+    $highlighted_event = null;
     if (isset($_GET['content']) &&
         count($_GET['content']) === 1 &&
         !(isset($_GET['og'])) &&
@@ -225,6 +226,17 @@ function artist_community_search_page() {
                 $all_event_results[$date_key_string] = array($row);
             }
         }
+
+        $highlighted_event_node = node_load(6726);// @TODO get real node based on criteria specified by mn
+        $highlighted_event_node_venue = node_load($highlighted_event_node->field_venue['und'][0]['target_id']);
+        $highlighted_event = new StdClass;
+        $highlighted_event->nid = $highlighted_event_node->nid;
+        $highlighted_event->title = $highlighted_event_node->title;
+        $highlighted_event->body = (isset($highlighted_event_node->body['und'])) ? $highlighted_event_node->body['und'][0]['value'] : null;
+        $highlighted_event->uri = "/node/{$highlighted_event_node->nid}";
+        $highlighted_event->venue_name = $highlighted_event_node_venue->title;
+        $highlighted_event->date = (isset($highlighted_event_node->field_date['und'])) ? new DateTime($highlighted_event_node->field_date['und'][0]['value']) : null;
+        $highlighted_event->image_uri = (isset($highlighted_event_node->field_images['und'])) ? image_style_url('medium', $highlighted_event_node->field_images['und'][0]['uri']) : null;
     }
 
     return theme('artist_community_page', array('content' => $all_community_results['results'],
@@ -234,5 +246,6 @@ function artist_community_search_page() {
                                                 'from_the_network_posts' => $from_the_network_posts,
                                                 'latest_users' => $latest_users_data,
                                                 'all_event_results' => $all_event_results,
+                                                'highlighted_event' => $highlighted_event,
                                                 'banner_string' => artist_community_current_filters_as_banner_string()));
 }
