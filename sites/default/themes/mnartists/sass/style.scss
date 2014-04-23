@@ -8914,6 +8914,24 @@ body {
   margin:0;
 }
 .article-page {
+  .field-type-image {
+    .field-item {
+      text-align:center;
+      img {
+        margin:0 auto;
+        display:block;
+        max-width:100%;
+        width:auto;
+        height:auto;
+        max-height:400px;
+      }
+      blockquote {
+        text-align:left;
+      }
+    }
+  }
+}
+.article-page {
   .panel-pane .block-inner .block-content {
     background:none;
   }
