@@ -1,4 +1,17 @@
 <?php
+/**
+* hook theme for custom form template
+* http://www.wdtutorials.com/2013/01/22/drupal-7-how-override-forms-using-custom-template#.U01LXeZdWDo
+*/
+function mnartists_theme() {
+  return array(
+    'opportunity_node_form' => array(
+      'arguments' => array('form' => NULL),
+      'template' => 'templates/opportunity-node-form',
+      'render element' => 'form'
+    ),
+  );
+}
 
 /**
  * @file
