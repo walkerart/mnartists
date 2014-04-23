@@ -610,17 +610,21 @@ function _mnartist_profile_my_stuff() {
 
 function _mnartist_profile_user_collections() {
     $user_id = arg(1);
+    $collection_items_limit = 4;
+
     if (is_numeric($user_id)) {
         $context_user = user_load($user_id);
         $collections_data = array();
 
         $user_collections = flag_lists_get_user_flags(NULL, $context_user);
         foreach ($user_collections as $collection) {
+
             // @TODO add public check, once that's in here
             $fid = $collection->fid;
             $content = flag_lists_get_flagged_content($fid, $user_id);
             $context_items = array();
-            foreach ($content as $item) {
+            foreach ($content as $index => $item) {
+                if ($index > $collection_items_limit - 1) { break ; }
                 $context_node = node_load($item->content_id);
                 $context_item = new StdClass;
                 $context_item->title = $context_node->title;
@@ -656,8 +660,9 @@ function _mnartist_profile_user_collections() {
 
             $context_collection = new StdClass;
             $context_collection->title = $collection->title;
-            $context_collection->uri = sprintf('/user/%i/flags/lists/%i', $user_id, $collection->fid);
+            $context_collection->uri = "/user/$user_id/flags/lists/{$collection->fid}";
             $context_collection->items = $context_items;
+            $context_collection->has_more = (count($content) > $collection_items_limit);
 
             $collections_data[] = $context_collection;
         }
