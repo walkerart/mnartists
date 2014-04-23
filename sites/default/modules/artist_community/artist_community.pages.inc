@@ -232,7 +232,7 @@ function artist_community_search_page() {
         $highlighted_event = new StdClass;
         $highlighted_event->nid = $highlighted_event_node->nid;
         $highlighted_event->title = $highlighted_event_node->title;
-        $highlighted_event->body = (isset($highlighted_event_node->body['und'])) ? $highlighted_event_node->body['und'][0]['value'] : null;
+        $highlighted_event->body = (isset($highlighted_event_node->body['und'])) ? text_summary($highlighted_event_node->body['und'][0]['value'], NULL, 800) : null;
         $highlighted_event->uri = "/node/{$highlighted_event_node->nid}";
         $highlighted_event->venue_name = $highlighted_event_node_venue->title;
         $highlighted_event->date = (isset($highlighted_event_node->field_date['und'])) ? new DateTime($highlighted_event_node->field_date['und'][0]['value']) : null;
