@@ -39,6 +39,13 @@ function mnartist_profiles_menu() {
 
 }
 
+function mnartist_profiles_menu_alter(&$items) {
+    // override menu type for mailchimp settings page
+    // to suppress tab on profile page
+    $items['user/%user/mailchimp']['type'] = MENU_CALLBACK;
+    return $items;
+}
+
 
 // feeds the feed "infinite scroll" more data
 function mnartist_profiles_feed_more() {
@@ -465,7 +472,7 @@ function _get_role($user = NULL) {
 function _mnartist_profile_block_visibility() {
     global $user;
 
-    if ((arg(0) == 'user' && in_array(arg(2), array('edit', 'flags'))) ||
+    if ((arg(0) == 'user' && in_array(arg(2), array('edit', 'flags', 'mailchimp'))) ||
             (arg(0) == 'user' && !user_is_logged_in()) ||
             (arg(0) == "node" && in_array(arg(1), array("edit", "add"))) ||
             (arg(0) == "node" && in_array(arg(2), array("edit"))) ||
@@ -560,13 +567,14 @@ function _mnartist_profile_my_stuff() {
         );
 
         // check for artist role
-        $links[] = l("My Profile (needs to be renamed relative to Main Profile)", "user") . l("edit", "user/{$user->uid}/edit", array("attributes" => array("class" => array("user-edit"))));
-        $links[] = l("Main Profile", "user/{$user->uid}/edit/main") . l("edit", "user/{$user->uid}/edit/main", array("attributes" => array("class" => array("user-edit"))));
+        $links[] = l("Account", "user/{$user->uid}/edit");
         if (_get_role($user) === 'org') {
-            $links[] = l("Organization", "user") . l("edit", "user/{$user->uid}/edit/organization", array("attributes" => array("class" => array("user-edit"))));
+            $links[] = l("Organization", "user") . l("edit", "user/{$user->uid}/edit/organization", array("attributes" => array("class" => array("user-view"))));
+        } else {
+            $links[] = l("Profile", "user/{$user->uid}/edit/main") . l("View", "user/{$user->uid}", array("attributes" => array("class" => array("user-view"))));
         }
         if (_get_role($user) === 'artist') {
-            $links[] = l("My Résumé", "user/{$user->uid}/resume/download", array("attributes" => array("target" => "_blank"))) . l("edit", "user/{$user->uid}/edit/resume", array("attributes" => array("class" => array("user-edit"))));
+            $links[] = l("Résumé", "user/{$user->uid}/edit/resume", array("attributes" => array("target" => "_blank"))) . l("View", "user/{$user->uid}/resume/download", array("attributes" => array("class" => array("user-view"))));
         }
 
         $renderedLinks = theme_item_list(array(
