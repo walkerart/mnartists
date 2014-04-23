@@ -8915,8 +8915,11 @@ body {
 }
 .article-page {
   .field-type-image {
+    margin-bottom:1.5em;
+
     .field-item {
       text-align:center;
+
       img {
         margin:0 auto;
         display:block;
@@ -8924,9 +8927,13 @@ body {
         width:auto;
         height:auto;
         max-height:400px;
+        margin-bottom:5px;
       }
       blockquote {
         text-align:left;
+        p {
+          margin:0;
+        }
       }
     }
   }
