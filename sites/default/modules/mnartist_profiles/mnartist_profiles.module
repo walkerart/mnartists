@@ -312,6 +312,11 @@ function mnartist_profiles_theme() {
         )
     );
 
+    $themes['mna_user_collections'] = array(
+        'template' => 'templates/mna-user-collections',
+        'variables' => array()
+    );
+
     return $themes;
 }
 
@@ -487,7 +492,16 @@ function mnartist_profiles_block_info() {
             'cache' => DRUPAL_NO_CACHE,
             'visibility' => BLOCK_VISIBILITY_PHP,
             'pages' => '<?php return _mnartist_profile_block_visibility(); ?>'
+        ),
+
+        'mna_user_collections' => array(
+            'info' => t('User Collections'),
+            'cache' => DRUPAL_NO_CACHE,
+            'visibility' => BLOCK_VISIBILITY_PHP,
+            'pages' => '<?php return _mnartist_profile_block_visibility(); ?>'
         )
+
+        // @TODO next add block, start with just a list of user's collections, replace that in current thing
     );
 }
 
@@ -500,6 +514,10 @@ function mnartist_profiles_block_view($delta = '') {
         case 'mna_user_profile':
             $block['subject'] = 'User Profile';
             $block['content'] = _mnartist_profile_user_profile();
+        break;
+        case 'mna_user_collections':
+            $block['subject'] = 'User Collections';
+            $block['content'] = _mnartist_profile_user_collections();
         break;
     }
 
@@ -584,6 +602,63 @@ function _mnartist_profile_my_stuff() {
         ));
     }
     return $output;
+}
+
+function _mnartist_profile_user_collections() {
+    $user_id = arg(1);
+    if (is_numeric($user_id)) {
+        $context_user = user_load($user_id);
+        $collections_data = array();
+
+        $user_collections = flag_lists_get_user_flags(NULL, $context_user);
+        foreach ($user_collections as $collection) {
+            // @TODO add public check, once that's in here
+            $fid = $collection->fid;
+            $content = flag_lists_get_flagged_content($fid, $user_id);
+            $context_items = array();
+            foreach ($content as $item) {
+                $context_node = node_load($item->content_id);
+                $context_item = new StdClass;
+                $context_item->title = $context_node->title;
+                $context_item->uri = "/node/{$context_node->nid}";
+                if ($context_node->type === 'artwork') {
+                    if (isset($context_node->field_media['und'])) {
+                        // check what kind of media we're dealing with
+                        $working_uri = $context_node->field_media['und'][0]['uri'];
+                        $scheme = file_uri_scheme($working_uri);
+                        switch ($scheme) {
+                          case ('soundcloud'):
+                          case ('youtube'):
+                          case ('vimeo'):
+                            $wrapper = file_stream_wrapper_get_instance_by_uri($working_uri);
+                            $working_uri = $wrapper->getLocalThumbnailPath();
+                            break;
+                          case ('public'):
+                            break;
+                        }
+                        $context_item->image_uri = image_style_url('square_thumbnail', $working_uri);
+                    } else {
+                        $context_item->image_uri = null;
+                    }
+                } else {
+                    $context_item->image_uri = (isset($context_node->field_images['und'])) ? image_style_url('square_thumbnail', $context_node->field_images['und'][0]['uri']) : null;
+                }
+
+                // only add this item if we have gotten an image
+                if (!is_null($context_item->image_uri)) {
+                    $context_items[] = $context_item;
+                }
+            }
+
+            $context_collection = new StdClass;
+            $context_collection->title = $collection->title;
+            $context_collection->uri = sprintf('/user/%i/flags/lists/%i', $user_id, $collection->fid);
+            $context_collection->items = $context_items;
+
+            $collections_data[] = $context_collection;
+        }
+        return theme('mna_user_collections', array('collections' => $collections_data));
+    }
 }
 
 function _mnartist_profile_user_profile() {
