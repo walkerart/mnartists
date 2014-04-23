@@ -560,10 +560,14 @@ function _mnartist_profile_my_stuff() {
         );
 
         // check for artist role
-        if (_get_role($user) == 'artist') {
+        $links[] = l("My Profile (needs to be renamed relative to Main Profile)", "user") . l("edit", "user/{$user->uid}/edit", array("attributes" => array("class" => array("user-edit"))));
+        $links[] = l("Main Profile", "user/{$user->uid}/edit/main") . l("edit", "user/{$user->uid}/edit/main", array("attributes" => array("class" => array("user-edit"))));
+        if (_get_role($user) === 'org') {
+            $links[] = l("Organization", "user") . l("edit", "user/{$user->uid}/edit/organization", array("attributes" => array("class" => array("user-edit"))));
+        }
+        if (_get_role($user) === 'artist') {
             $links[] = l("My Résumé", "user/{$user->uid}/resume/download", array("attributes" => array("target" => "_blank"))) . l("edit", "user/{$user->uid}/edit/resume", array("attributes" => array("class" => array("user-edit"))));
         }
-        $links[] = l("Profile", "user") . l("edit", "user/{$user->uid}/edit", array("attributes" => array("class" => array("user-edit"))));
 
         $renderedLinks = theme_item_list(array(
             'items' => $links,
@@ -773,7 +777,6 @@ function mnartist_profiles_form_alter(&$form, $form_state, $form_id) {
     global $user;
     if ($form_id == 'user_profile_form') {
         if (isset($form["#user_category"]) && $form["#user_category"] == 'resume') {
-
             // include form js
             drupal_add_js(drupal_get_path('module', 'mnartist_profiles') .'/js/resume_form.js');
 
@@ -788,6 +791,11 @@ function mnartist_profiles_form_alter(&$form, $form_state, $form_id) {
         $form['account']['status']['#options'][0] = "Inactive";
         $form['picture']['#title'] = "Profile Picture";
         $form['picture']['picture_upload']['#title'] = "Upload Profile Picture";
+
+        // add link to nl sub to user form at bottom of form
+        $form['mailchimp_link']['#markup'] = "<a href='/user/{$user->uid}/mailchimp'>Edit My Newsletter Subscriptions</a>";
+        $form['mailchimp_link']['#weight'] = 100;
+
     } else if (in_array($form_id, array('article_node_form', 'artwork_node_form', 'community_node_form', 'event_node_form', 'program_node_form', 'venue_node_form')) &&
         !(in_array('administrator', array_values($user->roles)))) {
             // disable additional options if we're on the appropriate

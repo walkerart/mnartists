@@ -20,14 +20,20 @@
         </li>
     </ul>
 <?php } else { ?>
-    <h2>Now that you've joing MN Artists, here are some fun ways to start exploring and better using the site</h2>
-    <ul>
-        <li>Find new artists in your area</li>
-        <li>Start collecting artists, artworks, or articles</li>
-        <li>Read up on current arts articles</li>
-        <li>Add new work to your profile</li>
-        <li>Find Opportunities to advance your career</li>
-        <li>Learn about what art events are happening this week</li>
-    </ul>
-    <a class="done-link">I've tried all these things</a>
+    <!--
+        handle the I've tried all these things thing somehow? and then go back to showing old messge
+        <li class="feed-item infinify-terminator">There are no items in your feed. Favorite/Star an artist to see updates here.</li>
+    -->
+    <div class="user-welcome">
+        <h2>Now that you've joing MN Artists, here are some fun ways to start exploring and better using the site</h2>
+        <ul>
+            <li>Find new artists in your area</li>
+            <li>Start collecting artists, artworks, or articles</li>
+            <li>Read up on current arts articles</li>
+            <li>Add new work to your profile</li>
+            <li>Find Opportunities to advance your career</li>
+            <li>Learn about what art events are happening this week</li>
+        </ul>
+        <a class="done-link"><input type="checkbox" name="no-welcome">I've tried all these things</a></a>
+    </div>
 <?php } ?>
