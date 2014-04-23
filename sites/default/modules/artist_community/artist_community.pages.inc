@@ -113,7 +113,7 @@ function artist_community_search_page() {
             }
             $context_article_data->author = $author_full_name;
             $context_article_data->title = $article->title;
-            $context_article_data->image_uri = isset($article->field_images['und']) ? file_create_url($article->field_images['und'][0]['uri']) : '';
+            $context_article_data->image_uri = isset($article->field_images['und']) ? image_style_url('featured_article', $article->field_images['und'][0]['uri']) : '';
             $context_article_data->photo_credit = isset($article->field_images['und'][0]['image_field_caption']['value']) ? $article->field_images['und'][0]['image_field_caption']['value'] : '';
             $context_article_data->excerpt = (isset($article->field_body['und'])) ? strip_tags(text_summary($article->field_body['und'][0]['value'], 'html', 300)) : '';
             $context_article_data->nid = $article->nid;
