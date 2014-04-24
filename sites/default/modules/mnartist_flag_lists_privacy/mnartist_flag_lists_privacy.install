@@ -1,0 +1,42 @@
+<?php
+
+/**
+ * Implementation of hook_schema().
+ */
+function mnartist_flag_lists_privacy_schema() {
+    $schema['mnartist_flag_lists_privacy'] = array(
+        'description' => 'Provides a place to store privacy settings for flag lists.',
+        'fields' => array(
+            'pid' => array(
+                'description' => 'The primary identifier for a privacy setting.',
+                'type' => 'serial',
+                'not null' => TRUE,
+                'unsigned' => TRUE,
+            ),
+            'fid' => array(
+                'description' => 'The fid of the flag list to which the privacy setting is being applied.',
+                'type' => 'int',
+                'not null' => TRUE,
+                'unsigned' => TRUE,
+            ),
+            'private' => array(
+                'description' => '0/1 representing whether or not privacy is turned on for this list.',
+                'type' => 'int',
+                'length' => '1',
+                'not null' => TRUE,
+                'default' => '0',
+            )
+        ),
+        'unique keys' => array(
+            'pid_fid' => array('pid', 'fid'),
+        ),
+        'foreign keys' => array(
+            'fid' => array(
+                'table' => 'flag_lists_flags',
+                'columns' => array('fid' => 'fid'),
+            ),
+        ),
+        'primary key' => array('pid'),
+    );
+    return $schema;
+}
