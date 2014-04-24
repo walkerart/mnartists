@@ -14,7 +14,7 @@
 
 /* Increase the body font size on small devices */
 html {
-  font-size: 81.3%; 
+  font-size: 81.3%;
 }
 
 .sidebar-right, .main-content {
@@ -29,11 +29,11 @@ html {
 .content-bottom {
 	display:block;
 	margin-bottom:0;
-	
+
 	.one-third {
 		@include full_width;
 	}
-	
+
 	.one-third.panel-col-last {
 		border-left:none;
 	}
@@ -47,9 +47,10 @@ form input.text-full {
 }
 
 .panel-2col {
-	
+
 	.panel-col-first, .panel-col-first {
 		@include full_width;
+    padding-right:0px;padding-left:0px;
 	}
 }
 .panel-2col .panel-col-last,
@@ -57,6 +58,8 @@ form input.text-full {
 .panel-2col .panel-col-last .panel-col-first.inset-left,
 .panel-2col .panel-col-last .panel-col-last.inset-right {
 	@include full_width;
+  padding-right:0px;
+  padding-left:0px;
 }
 
 .fieldset-wrapper {
