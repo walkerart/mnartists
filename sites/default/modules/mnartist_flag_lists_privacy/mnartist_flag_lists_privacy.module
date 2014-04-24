@@ -6,3 +6,46 @@
  *
  * Extends flag lists to add a private/public setting to them.
  */
+
+// I guess we'll have to alter the form to get the public/private
+// switch into it?
+function mnartist_flag_lists_privacy_form_alter(&$form, &$form_state) {
+    if ($form['#form_id'] === 'flag_lists_form') {
+
+        // @TODO better way to get fid?
+        $fid = arg(3);
+
+        // get the privacy state for the current fid, db_select
+        $query = db_select('mnartist_flag_lists_privacy', 'p');
+        $result = $query->fields('p', array('pid', 'fid', 'private'))
+            ->condition('fid', $fid)
+            ->execute()->fetchAll();
+        $collection_is_private = ((count($result) > 0) && $result[0]['private'] === 1);
+
+        // add a privacy field to the form for the front-end, set state
+        // based on above result
+        $form['collection_privacy'] = array(
+            '#type'     => 'checkbox',
+            '#title'    => t('Keep this collection private'),
+            '#default_value' => $collection_is_private,
+            '#weight'   => 0,
+        );
+
+    }
+}
+
+function mnartist_flag_lists_privacy_form_submit(&$form, &$form_state) {
+    if ($form['#form_id'] === 'flag_lists_form') {
+
+        if (!empty($form_state['values']['edit'])) {
+            // Editing the title.
+            $flag = flag_lists_get_flag($form_state['values']['name']);
+            $fid = $flag->fid;
+            $query = db_merge('mnartist_flag_lists_privacy')
+                        ->key(array('fid' => $fid))
+                        ->fields(array('private' => $form_state['values']['collection_privacy']))
+                        ->execute();
+        }
+
+    }
+}
