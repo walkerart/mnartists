@@ -20,7 +20,7 @@ function mnartist_flag_lists_privacy_form_alter(&$form, &$form_state) {
         $result = $query->fields('p', array('pid', 'fid', 'private'))
             ->condition('fid', $fid)
             ->execute()->fetchAll();
-        $collection_is_private = ((count($result) > 0) && $result[0]['private'] === 1);
+        $collection_is_private = ((count($result) > 0) && intval($result[0]->private) === 1);
 
         // add a privacy field to the form for the front-end, set state
         // based on above result
@@ -30,13 +30,14 @@ function mnartist_flag_lists_privacy_form_alter(&$form, &$form_state) {
             '#default_value' => $collection_is_private,
             '#weight'   => 0,
         );
-
+        $form['#submit'][] = 'mnartist_flag_lists_privacy_form_submit';
     }
 }
 
 function mnartist_flag_lists_privacy_form_submit(&$form, &$form_state) {
     if ($form['#form_id'] === 'flag_lists_form') {
 
+        // @TODO check for completion? try/catch?
         if (!empty($form_state['values']['edit'])) {
             // Editing the title.
             $flag = flag_lists_get_flag($form_state['values']['name']);
@@ -46,6 +47,78 @@ function mnartist_flag_lists_privacy_form_submit(&$form, &$form_state) {
                         ->fields(array('private' => $form_state['values']['collection_privacy']))
                         ->execute();
         }
-
     }
+}
+
+// alter query for views_flag_lists_user_lists view so that
+// if we're asking for somebody else's lists they take the
+// lists privacy settings into account
+function mnartist_flag_lists_privacy_query_alter(QueryAlterableInterface $query) {
+    global $user;
+    if ($user->uid !== arg(1) &&
+        isset($query->alterMetaData) &&
+        isset($query->alterMetaData['view']) &&
+        $query->alterMetaData['view']->name == "flag_lists_user_lists") {
+
+        $query->leftJoin('mnartist_flag_lists_privacy', 'p', 'flag_lists_flags.fid = p.fid');
+        $query->where("private = 0 OR private IS NULL");
+    }
+}
+
+function _mnartist_flag_lists_privacy_is_collection_private($fid) {
+    // get the privacy state for the current fid, db_select
+    $query = db_select('mnartist_flag_lists_privacy', 'p');
+    $result = $query->fields('p', array('pid', 'fid', 'private'))
+        ->condition('fid', $fid)
+        ->execute()->fetchAll();
+    return ((count($result) > 0) && intval($result[0]->private) === 1);
+}
+
+// reimplementation of flag_lists_get_user_flags in flag_lists module,
+// which takes list privacy into account
+function mnartist_flag_lists_privacy_flag_lists_get_user_flags($content_type = NULL, $account = NULL, $use_flags = FALSE) {
+
+    global $user;
+    $flags = $lists = array();
+    $query = db_select('flag_lists_flags', 'fl')
+        ->fields('fl')
+        ->condition('fl.uid', $account->uid);
+    $query->leftJoin('flags', 'f', 'fl.pfid = f.fid');
+    $query->leftJoin('flag_lists_types', 'ft', 'ft.name = f.name');
+    if ($account->uid !== $user->uid) {
+        $query->leftJoin('mnartist_flag_lists_privacy', 'p', 'fl.fid = p.fid');
+    }
+    $query->addField('ft', 'type');
+    if ($content_type) {
+      $query->condition('ft.type', $content_type);
+    }
+    if ($account->uid !== $user->uid) {
+        $query->where("private = 0 OR private IS NULL");
+    }
+
+    $result = $query->execute();
+    foreach ($result as $row) {
+        if (!isset($lists[$row->name])) {
+            $lists[$row->name] = flag_flag::factory_by_row($row);
+            $lists[$row->name]->module = 'flag_lists';
+        }
+        else {
+            $lists[$row->name]->types[] = $row->type;
+        }
+    }
+    // Get regular flags.
+    if ($use_flags) {
+        $flags = flag_get_flags('node', $content_type, $account);
+
+        // Strip out any list templates
+        foreach ($flags as $key => $flag) {
+            if (stristr($flag->name, 'fl_template') !== FALSE) {
+                unset($flags[$key]);
+            }
+        }
+    }
+
+    $flags = array_merge($lists, $flags);
+    return $flags;
+
 }

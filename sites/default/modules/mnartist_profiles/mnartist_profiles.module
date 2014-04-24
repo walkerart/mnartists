@@ -624,7 +624,9 @@ function _mnartist_profile_user_collections() {
         $context_user = user_load($user_id);
         $collections_data = array();
 
-        $user_collections = flag_lists_get_user_flags(NULL, $context_user);
+        // calls mnartist_flag_lists_privacy_flag_lists_get_user_flags instead of
+        // flag_lists_get_user_flags so that we get results filtered for privacy
+        $user_collections = mnartist_flag_lists_privacy_flag_lists_get_user_flags(NULL, $context_user);
         foreach ($user_collections as $collection) {
 
             // @TODO add public check, once that's in here
