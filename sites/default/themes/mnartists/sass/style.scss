@@ -8914,6 +8914,14 @@ body {
   margin:0;
 }
 .article-page {
+  .panel-2col .main-content,
+  .panel-2col .sidebar-right {
+    padding-top:20px;
+
+    @media screen and (max-width: $break-mobile) {
+        padding-top:0px;
+    }
+  }
   .field-type-image {
     margin-bottom:1.5em;
 
@@ -8926,8 +8934,8 @@ body {
         max-width:100%;
         width:auto;
         height:auto;
-        max-height:400px;
-        margin-bottom:5px;
+        max-height:600px;
+        margin-bottom:10px;
       }
       blockquote {
         text-align:left;
