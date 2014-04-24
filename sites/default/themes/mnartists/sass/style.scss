@@ -7096,6 +7096,8 @@ body {
                 margin:0;
                 width:200px;
                 box-sizing:border-box;
+                right:0px;
+                left:auto;
 
                 .flag-count {
                     padding: 4px 0;
@@ -8964,9 +8966,13 @@ body {
     position:absolute;
     top:20px;
     right:20px;
+    width:auto!important;
   }
   .pane-node-field-subheader {
     margin-bottom:1em;
+    padding-top:5px;
+    max-width:90%;
+    font-size:14px;
   }
   .pane-node-author {
     font-size:13px;
