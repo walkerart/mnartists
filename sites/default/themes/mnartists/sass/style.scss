@@ -8396,12 +8396,15 @@ li.collect-this, li.add-this {
     input[type=text] {
       outline:none!important;
       border:none!important;
-      background:#999!important;
-      color:#fff;
+      background:#f2f2f2!important;
+      color:$main_color;
       padding:5px!important;
       margin:0;
       background-image:none;
       box-shadow:none!important;
+      &:focus {
+        background:#fff!important;
+      }
     }
     button {
       border-radius:0px;
