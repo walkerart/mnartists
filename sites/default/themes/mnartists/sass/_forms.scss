@@ -1524,3 +1524,29 @@ body {
         display:none;
     }
 }
+
+
+// collapsable
+fieldset.collapsible {
+  legend {
+    border-bottom:1px solid #ccc;
+    .fieldset-legend {
+      background-image: url('../images/icon-collapse-arrow-up.png');
+      background-position: left center;
+      padding-left:20px;
+      .fieldset-title {
+
+      }
+    }
+  }
+  &.collapsed {
+    legend {
+      .fieldset-legend {
+        background-image: url('../images/icon-collapse-arrow-down.png');
+        .fieldset-title {
+
+        }
+      }
+    }
+  }
+}
