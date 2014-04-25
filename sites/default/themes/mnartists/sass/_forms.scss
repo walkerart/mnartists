@@ -1528,21 +1528,29 @@ body {
 
 // collapsable
 fieldset.collapsible {
+  height:auto;
   legend {
     border-bottom:1px solid #ccc;
+    width:100%;
+    display:block;
     .fieldset-legend {
       background-image: url('../images/icon-collapse-arrow-up.png');
       background-position: left center;
       padding-left:20px;
       .fieldset-title {
-
+        display:block;
+        padding:5px 0;
+      }
+      .summary {
+        display:none;
       }
     }
   }
   &.collapsed {
     legend {
       .fieldset-legend {
-        background-image: url('../images/icon-collapse-arrow-down.png');
+        background-image: url('../images/icon-collapse-arrow-down.png') !important;
+        background-repeat: no-repeat;
         .fieldset-title {
 
         }
