@@ -807,9 +807,13 @@ function mnartist_profiles_form_alter(&$form, $form_state, $form_id) {
         $form['picture']['#title'] = "Profile Picture";
         $form['picture']['picture_upload']['#title'] = "Upload Profile Picture";
 
-        // add link to nl sub to user form at bottom of form
-        $form['mailchimp_link']['#markup'] = "<a href='/user/{$user->uid}/mailchimp'>Edit My Newsletter Subscriptions</a>";
-        $form['mailchimp_link']['#weight'] = 100;
+        // add link to nl sub to user form at bottom of account form
+        $is_account = arg(3);
+        $is_account = is_null($is_account);
+        if ($is_account) {
+            $form['mailchimp_link']['#markup'] = "<a href='/user/{$user->uid}/mailchimp' class='newsletter-edit'>Edit My Newsletter Subscriptions</a>";
+            $form['mailchimp_link']['#weight'] = 100;
+        }
 
     } else if (in_array($form_id, array('article_node_form', 'artwork_node_form', 'community_node_form', 'event_node_form', 'program_node_form', 'venue_node_form')) &&
         !(in_array('administrator', array_values($user->roles)))) {
