@@ -1528,7 +1528,7 @@ body {
 
 // collapsable
 fieldset.collapsible {
-  height:auto;
+  height:auto!important;
   legend {
     border-bottom:1px solid #ccc;
     width:100%;
@@ -1537,6 +1537,8 @@ fieldset.collapsible {
       background-image: url('../images/icon-collapse-arrow-up.png');
       background-position: left center;
       padding-left:20px;
+      border-left:1px solid #ccc;
+      padding-left:10px;
       .fieldset-title {
         display:block;
         padding:5px 0;

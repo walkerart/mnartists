@@ -2141,7 +2141,7 @@ body .wysiwyg-toggle-wrapper {
 
 /* line 1530, ../sass/_forms.scss */
 fieldset.collapsible {
-  height: auto;
+  height: auto!important;
 }
 /* line 1532, ../sass/_forms.scss */
 fieldset.collapsible legend {
@@ -2154,17 +2154,19 @@ fieldset.collapsible legend .fieldset-legend {
   background-image: url("../images/icon-collapse-arrow-up.png");
   background-position: left center;
   padding-left: 20px;
+  border-left: 1px solid #ccc;
+  padding-left: 10px;
 }
-/* line 1540, ../sass/_forms.scss */
+/* line 1542, ../sass/_forms.scss */
 fieldset.collapsible legend .fieldset-legend .fieldset-title {
   display: block;
   padding: 5px 0;
 }
-/* line 1544, ../sass/_forms.scss */
+/* line 1546, ../sass/_forms.scss */
 fieldset.collapsible legend .fieldset-legend .summary {
   display: none;
 }
-/* line 1551, ../sass/_forms.scss */
+/* line 1553, ../sass/_forms.scss */
 fieldset.collapsible.collapsed legend .fieldset-legend {
   background-image: url("../images/icon-collapse-arrow-down.png") !important;
   background-repeat: no-repeat;
