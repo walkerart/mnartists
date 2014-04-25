@@ -43,7 +43,7 @@
 .block-content .ui-tabs ul.ui-tabs-nav.ui-widget-header li.ui-state-default.ui-tabs-selected:after {
   content: "";
   position: absolute;
-  bottom: -4px;
+  bottom: -3px;
   left: 50%;
   margin-left: -5px;
   height: 10px;
@@ -2136,6 +2136,40 @@ body.admin-menu .wysiwyg-toggle-wrapper {
 /* line 1523, ../sass/_forms.scss */
 body .wysiwyg-toggle-wrapper {
   display: none;
+}
+
+/* line 1530, ../sass/_forms.scss */
+fieldset.collapsible {
+  height: auto!important;
+  margin-bottom: 5px;
+}
+/* line 1533, ../sass/_forms.scss */
+fieldset.collapsible legend {
+  border-bottom: 1px solid #ccc;
+  width: 100%;
+  display: block;
+  padding: 0px;
+}
+/* line 1538, ../sass/_forms.scss */
+fieldset.collapsible legend .fieldset-legend {
+  background-image: url("../images/icon-collapse-arrow-up.png");
+  background-position: left center;
+  padding-left: 20px!important;
+}
+/* line 1542, ../sass/_forms.scss */
+fieldset.collapsible legend .fieldset-legend .fieldset-title {
+  display: block;
+  padding: 5px 0 5px 10px;
+  border-left: 1px solid #ccc;
+}
+/* line 1548, ../sass/_forms.scss */
+fieldset.collapsible legend .fieldset-legend .summary {
+  display: none;
+}
+/* line 1555, ../sass/_forms.scss */
+fieldset.collapsible.collapsed legend .fieldset-legend {
+  background-image: url("../images/icon-collapse-arrow-down.png") !important;
+  background-repeat: no-repeat;
 }
 
 /* user profile page */
