@@ -65,6 +65,30 @@ function mnartist_flag_lists_privacy_query_alter(QueryAlterableInterface $query)
     }
 }
 
+function mnartist_flag_lists_privacy_views_pre_view(&$view) {
+    // @TODO return to this, figure out why render_pager() error is occurring
+    global $user;
+    $view_name = $view->name;
+    if ($view_name === 'flag_lists_user_list') {
+        $is_singular_view = ((arg(0) === 'user' && is_numeric(arg(4))) || (arg(0) === 'flags' && is_numeric(arg(2))));
+        if ($is_singular_view) {
+            if ($user->uid !== arg(1)) {
+                $list_id = $view->args[0];
+                if (_mnartist_flag_lists_privacy_is_collection_private($list_id)) {
+
+                    dpm($view);
+                    $view->executed = TRUE;
+                    $view->built = TRUE;
+                    $view->rendered = TRUE;
+                    drupal_access_denied();
+                    return FALSE;
+                }
+            }
+        }
+
+    }
+}
+
 function _mnartist_flag_lists_privacy_is_collection_private($fid) {
     // get the privacy state for the current fid, db_select
     $query = db_select('mnartist_flag_lists_privacy', 'p');
@@ -76,6 +100,8 @@ function _mnartist_flag_lists_privacy_is_collection_private($fid) {
 
 // reimplementation of flag_lists_get_user_flags in flag_lists module,
 // which takes list privacy into account
+// @TODO have a look at how much overlap there is between this and
+// the get_user_flags in the collections module
 function mnartist_flag_lists_privacy_flag_lists_get_user_flags($content_type = NULL, $account = NULL, $use_flags = FALSE) {
 
     global $user;
