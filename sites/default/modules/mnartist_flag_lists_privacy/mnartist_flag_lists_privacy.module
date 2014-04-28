@@ -66,7 +66,6 @@ function mnartist_flag_lists_privacy_query_alter(QueryAlterableInterface $query)
 }
 
 function mnartist_flag_lists_privacy_views_pre_view(&$view) {
-    // @TODO return to this, figure out why render_pager() error is occurring
     global $user;
     $view_name = $view->name;
     if ($view_name === 'flag_lists_user_list') {
@@ -75,17 +74,11 @@ function mnartist_flag_lists_privacy_views_pre_view(&$view) {
             if ($user->uid !== arg(1)) {
                 $list_id = $view->args[0];
                 if (_mnartist_flag_lists_privacy_is_collection_private($list_id)) {
-
-                    dpm($view);
-                    $view->executed = TRUE;
-                    $view->built = TRUE;
-                    $view->rendered = TRUE;
                     drupal_access_denied();
-                    return FALSE;
+                    drupal_exit();
                 }
             }
         }
-
     }
 }
 
