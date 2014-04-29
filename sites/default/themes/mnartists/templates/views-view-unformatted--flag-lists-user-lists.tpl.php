@@ -32,7 +32,14 @@ foreach ($uncollected_result as $row) {
         if (isset($context_user->picture->uri)) {
             $uncoll_working_uri = $context_user->picture->uri;
         }
-    } else {
+        $uncoll_image_uri = (!is_null($uncoll_working_uri)) ? image_style_url('collection_thumbnail', $uncoll_working_uri) : '';
+        ?>
+        <li>
+          <a class="user-collection-item user-collection-user" href="<?= $uncoll_uri ?>">
+              <img src="<?= file_create_url($uncoll_image_uri) ?>">
+          </a>
+        </li>
+    <?php } else {
         $context_node = node_load($row->content_id);
         $uncoll_uri = "/node/$context_node->nid";
         if ($context_node->type === 'artwork') {
@@ -55,11 +62,11 @@ foreach ($uncollected_result as $row) {
                 $uncoll_working_uri = $context_node->field_images['und'][0]['uri'];
             }
         }
-        $uncoll_image_uri = (!is_null($uncoll_working_uri)) ? image_style_url('medium', $uncoll_working_uri) : '';
+        $uncoll_image_uri = (!is_null($uncoll_working_uri)) ? image_style_url('collection_thumbnail', $uncoll_working_uri) : '';
         ?>
         <li>
           <a class="user-collection-item" href="<?= $uncoll_uri ?>">
-              <img src="<?= file_create_url($uncoll_working_uri) ?>">
+              <img src="<?= file_create_url($uncoll_image_uri) ?>">
           </a>
         </li>
         <?php
