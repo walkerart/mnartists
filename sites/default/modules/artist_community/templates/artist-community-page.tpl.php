@@ -1,3 +1,8 @@
+<style>
+    .search-results .item {
+        width: 23% !important;
+    }
+</style>
 <?php
     // if there are any, get og params from url to
     // preserve them in links below
@@ -204,7 +209,7 @@
             <div>Your search returned no results.</div>
         <?php } ?>
     </div>
-    <div class="search-results content-all<?= (isset($_GET['content']['event'])) ? ' content-events' : '' ?>">
+    <div class="search-results content-all<?= (isset($_GET['content']['event'])) ? ' content-events' : '' ?>" id="search-results">
         <?php if(!is_null($all_event_results) && isset($_GET['event_date'])) { ?>
                 <div class="date-block">
                     <?php if (!empty($all_event_results) &&

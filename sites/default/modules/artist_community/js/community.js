@@ -52,10 +52,11 @@
             loading_indicator_selector: '.item-loading-indicator',
             endpoint_stem: '/communitygetitems',
             append_callback: function (newContent) {
+                var container = $('#search-results');
                 var newElems = $( newContent ).css({ opacity: 0 });
                 contentContainer.imagesLoaded(function () {
                     newElems.animate({ opacity: 1 });
-                    contentContainer.isotope('appended', newElems);
+                    container.append(newElems).masonry('appended', newElems).masonry();
                 });
                 var allItems = contentContainer.find('.item');
                 allItems.each(function(e){
@@ -66,12 +67,20 @@
         });
 
         contentContainer.imagesLoaded(function() {
-            contentContainer.isotope(isotopeOptions);
+            var container = $('#search-results');
+            container.masonry({
+                columnWidth: 10,
+                itemSelector: '.item'
+            });
         });
 
         // update columnWidth on window resize
         $(window).smartresize(function(){
-            contentContainer.isotope(isotopeOptions);
+            var container = $('#search-results');
+            container.masonry({
+                columnWidth: 10,
+                itemSelector: '.item'
+            });
         });
 
 
