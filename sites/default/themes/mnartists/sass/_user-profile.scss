@@ -364,15 +364,23 @@ h5.profile-title {
 
 /* collection menu on my stuff pages */
 .my-stuff {
-    .user-feed-message-star ul.menu li ul {
+    .user-feed-message-star {
         ul.menu {
             li {
                 ul {
-                    background:$main_bg;   
+                    background:$main_bg;
+                    li {
+                        a {
+                            color:#666;   
+                        }
+                    }
                 }
                 &:hover {
                     background:$main_bg;   
                 }
+            }
+            hr {
+                background:#ccc;   
             }
         }
     }
