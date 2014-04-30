@@ -360,3 +360,20 @@ h5.profile-title {
 	margin-bottom:10px;
 }
 /* */
+
+
+/* collection menu on my stuff pages */
+.my-stuff {
+    .user-feed-message-star ul.menu li ul {
+        ul.menu {
+            li {
+                ul {
+                    background:$main_bg;   
+                }
+                &:hover {
+                    background:$main_bg;   
+                }
+            }
+        }
+    }
+}
