@@ -2568,6 +2568,20 @@ h5.profile-title {
 }
 
 /* line 390, ../sass/_user-profile.scss */
+.user-welcome {
+  color: #fff;
+  text-align: left;
+}
+/* line 394, ../sass/_user-profile.scss */
+.user-welcome h2 {
+  font-size: 30px;
+  text-transform: none;
+  padding: 0px;
+  margin-bottom: 40px;
+  text-align: left;
+}
+
+/* line 402, ../sass/_user-profile.scss */
 .welcome-list {
   min-width: none;
   width: 100%;
@@ -2576,8 +2590,11 @@ h5.profile-title {
   *zoom: 1;
   margin: 0;
   padding: 0;
+  border-bottom: 1px solid #fff;
+  margin-bottom: 30px;
+  overflow: hidden;
 }
-/* line 394, ../sass/_user-profile.scss */
+/* line 410, ../sass/_user-profile.scss */
 .welcome-list li {
   display: inline;
   float: left;
@@ -2585,35 +2602,36 @@ h5.profile-title {
   width: 31.263%;
   margin-right: 2.409%;
   padding-top: 40px;
+  margin-bottom: 30px;
 }
-/* line 397, ../sass/_user-profile.scss */
+/* line 415, ../sass/_user-profile.scss */
 .welcome-list li.welcome-artists {
   background: url("../images/icon-welcome-user.png") no-repeat left top transparent;
 }
-/* line 400, ../sass/_user-profile.scss */
+/* line 418, ../sass/_user-profile.scss */
 .welcome-list li.welcome-collect {
   background: url("../images/icon-welcome-star.png") no-repeat left top transparent;
 }
-/* line 403, ../sass/_user-profile.scss */
+/* line 421, ../sass/_user-profile.scss */
 .welcome-list li.welcome-articles {
   margin-right: 0;
   background: url("../images/icon-welcome-doc.png") no-repeat left top transparent;
 }
-/* line 407, ../sass/_user-profile.scss */
+/* line 425, ../sass/_user-profile.scss */
 .welcome-list li.welcome-artwork {
   background: url("../images/icon-welcome-artwork.png") no-repeat left top transparent;
 }
-/* line 410, ../sass/_user-profile.scss */
+/* line 428, ../sass/_user-profile.scss */
 .welcome-list li.welcome-opportunities {
   background: url("../images/icon-welcome-hand.png") no-repeat left top transparent;
 }
-/* line 413, ../sass/_user-profile.scss */
+/* line 431, ../sass/_user-profile.scss */
 .welcome-list li.welcome-events {
   margin-right: 0;
   background: url("../images/icon-welcome-calendar.png") no-repeat left top transparent;
 }
 @media screen and (max-width: 480px) {
-  /* line 394, ../sass/_user-profile.scss */
+  /* line 410, ../sass/_user-profile.scss */
   .welcome-list li {
     display: inline;
     float: left;

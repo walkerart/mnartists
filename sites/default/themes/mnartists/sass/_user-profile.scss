@@ -387,13 +387,31 @@ h5.profile-title {
 }
 
 // welcome content
+.user-welcome {
+    color:#fff;
+    text-align:left;
+    
+    h2 {
+        font-size:30px;
+        text-transform:none;
+        padding:0px;
+        margin-bottom:40px;
+        text-align:left;
+    }
+}
 .welcome-list {
     @include container;
     margin:0;
     padding:0;
+    border-bottom:1px solid #fff;
+    margin-bottom:30px;
+    overflow:hidden;
+    
     li {
         @include column(8);
         padding-top:40px;
+        margin-bottom:30px;
+        
         &.welcome-artists {
             background: url('../images/icon-welcome-user.png') no-repeat left top transparent;
         }
