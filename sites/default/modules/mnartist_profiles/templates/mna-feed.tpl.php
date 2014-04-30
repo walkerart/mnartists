@@ -25,7 +25,7 @@
         <li class="feed-item infinify-terminator">There are no items in your feed. Favorite/Star an artist to see updates here.</li>
     -->
     <div class="user-welcome">
-        <h2>Now that you've joing MN Artists, here are some fun ways to start exploring and better using the site</h2>
+        <h2>Now that you've joined MN Artists, here are some fun ways to start exploring and better using the site.</h2>
         <ul class="welcome-list">
             <li class="welcome-artists">Find new artists in your area</li>
             <li class="welcome-collect">Start collecting artists, artworks, or articles</li>
