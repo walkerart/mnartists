@@ -1,3 +1,9 @@
+<style>
+    .search-results .item {
+        width: 24% !important;
+        margin-right: 1%;
+    }
+</style>
 <?php
     // if there are any, get og params from url to
     // preserve them in links below

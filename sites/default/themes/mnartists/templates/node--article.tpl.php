@@ -109,18 +109,20 @@ if (isset($node->body['und'])) {
     $text_excerpt = trim(strip_tags(text_summary($node->body['und'][0]['value'], 'htmlcorrector', 120)));
 }
 ?>
-<h3><?php print $type; ?></h3>
-<article id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
-  <?php if ($title && !$page): ?>
-    <header<?php print $header_attributes; ?>>
-      <?php if ($title): ?>
-        <h1<?php print $title_attributes; ?>>
-          <a href="<?= $node_url; ?>" rel="bookmark"><?php print $title; ?></a>
-        </h1>
-      <?php endif; ?>
-    </header>
-  <?php endif; ?>
-  <div<?php print $content_attributes; ?>>
-    <?= $text_excerpt ?> <a href="<?= $node_url ?>" class="item-more-button-link-indicator">&gt;</a>
-  </div>
-</article>
+<div class="item-inside">
+  <h3><?php print $type; ?></h3>
+  <article id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
+    <?php if ($title && !$page): ?>
+      <header<?php print $header_attributes; ?>>
+        <?php if ($title): ?>
+          <h1<?php print $title_attributes; ?>>
+            <a href="<?= $node_url; ?>" rel="bookmark"><?php print $title; ?></a>
+          </h1>
+        <?php endif; ?>
+      </header>
+    <?php endif; ?>
+    <div<?php print $content_attributes; ?>>
+      <?= $text_excerpt ?> <a href="<?= $node_url ?>" class="item-more-button-link-indicator">&gt;</a>
+    </div>
+  </article>
+</div>
