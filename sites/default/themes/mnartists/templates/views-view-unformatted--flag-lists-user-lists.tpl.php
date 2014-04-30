@@ -5,21 +5,20 @@
 
 // first, build a 'collection' of uncollected but favorited
 // items
-
-// @TODO this would be a lot nicer if we could just
-// take the uncollected data and pipe it through
-// views-view-fields--flag-lists-user-list.tpl.php
-?>
-<div class="user-list-wrap">
-    <h2>My Bin</h2>
-    <ul class="user-list">
-
-<?php
 global $user;
+
 // include the collections js
 ctools_add_js('collections', 'mnartist_collections');
+
 // get uncollected content
 $uncollected_result = mnartist_collections_get_uncollected_favorites($user->uid);
+
+$my_bin_noun = (arg(1) === $user->uid) ? 'My' : mnartist_profiles_collective_or_fullname_or_username(arg(1))."'s";
+?>
+<div class="user-list-wrap">
+    <h2><?= $my_bin_noun ?> Bin</h2>
+    <ul class="user-list">
+<?php
 
 // iterate and render
 foreach ($uncollected_result as $row) {
