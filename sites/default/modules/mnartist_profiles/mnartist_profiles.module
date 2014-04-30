@@ -472,11 +472,12 @@ function _get_role($user = NULL) {
 function _mnartist_profile_block_visibility() {
     global $user;
 
-    if ((arg(0) == 'user' && in_array(arg(2), array('edit', 'flags', 'mailchimp'))) ||
-            (arg(0) == 'user' && !user_is_logged_in()) ||
-            (arg(0) == "node" && in_array(arg(1), array("edit", "add"))) ||
-            (arg(0) == "node" && in_array(arg(2), array("edit"))) ||
-            (arg(0) == 'user' && in_array(arg(1), array("saved-filters", "feed")))
+    if ((arg(0) == "user" && in_array(arg(2), array("edit", "mailchimp"))) ||
+        (arg(0) == "user" && in_array(arg(2), array("flags")) && arg(1) === $user->uid) ||
+        (!user_is_logged_in() && arg(0) == "user" && (is_null(arg(1)) || in_array(arg(1), array("password", "register")))) ||
+        (arg(0) == "node" && in_array(arg(1), array("edit", "add"))) ||
+        (arg(0) == "node" && in_array(arg(2), array("edit"))) ||
+        (arg(0) == "user" && in_array(arg(1), array("saved-filters", "feed")))
         ) {
         return true;
     }
