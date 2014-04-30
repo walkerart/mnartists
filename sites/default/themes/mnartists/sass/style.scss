@@ -6029,8 +6029,14 @@ body.page-node-edit {
         width: 25%;
         font-size:14px;
         /*background:rgba(0,0,0,.05);*/
-        
         margin-right:0px;
+        
+        @media screen and (max-width: $break-tablet) {
+            width:50%;
+        }
+        @media screen and (max-width: $break-mobile) {
+            width:50%;
+        }
         
         .artist-profile {
             padding:10px;
