@@ -6026,8 +6026,14 @@ body.page-node-edit {
 
     .item {
         /* width: 24%; */
+        width: 23%;
         font-size:14px;
         background:rgba(0,0,0,.05);
+        margin-bottom:1%;
+        
+        &:nth-child(4n+4) {
+            margin-right:0px;
+        }
 
         h3 {
             @include quiet_type_label;
