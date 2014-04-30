@@ -26,13 +26,13 @@
     -->
     <div class="user-welcome">
         <h2>Now that you've joing MN Artists, here are some fun ways to start exploring and better using the site</h2>
-        <ul>
-            <li>Find new artists in your area</li>
-            <li>Start collecting artists, artworks, or articles</li>
-            <li>Read up on current arts articles</li>
-            <li>Add new work to your profile</li>
-            <li>Find Opportunities to advance your career</li>
-            <li>Learn about what art events are happening this week</li>
+        <ul class="welcome-list">
+            <li class="welcome-artists">Find new artists in your area</li>
+            <li class="welcome-collect">Start collecting artists, artworks, or articles</li>
+            <li class="welcome-articles">Read up on current arts articles</li>
+            <li class="welcome-artwork">Add new work to your profile</li>
+            <li class="welcome-opportunities">Find Opportunities to advance your career</li>
+            <li class="welcome-events">Learn about what art events are happening this week</li>
         </ul>
         <a class="done-link"><input type="checkbox" name="no-welcome">I've tried all these things</a></a>
     </div>

@@ -385,3 +385,33 @@ h5.profile-title {
         }
     }
 }
+
+// welcome content
+.welcome-list {
+    @include container;
+    li {
+        @include column(4);
+        padding-top:40px;
+        &.welcome-artists {
+            background: url('../images/icon-welcome-user.png') no-repeat left top transparent;
+        }
+        &.welcome-collect {
+            background: url('../images/icon-welcome-star.png') no-repeat left top transparent;
+        }
+        &.welcome-articles {
+            @include last;
+            background: url('../images/icon-welcome-doc.png') no-repeat left top transparent;
+        }
+        &.welcome-artwork {
+            background: url('../images/icon-welcome-artwork.png') no-repeat left top transparent;
+        }
+        &.welcome-opportunities {
+            background: url('../images/icon-welcome-hand.png') no-repeat left top transparent;
+        }
+        &.welcome-events {
+            @include last;
+            background: url('../images/icon-welcome-calendar.png') no-repeat left top transparent;
+        }
+        
+    }
+}
