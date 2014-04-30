@@ -389,8 +389,10 @@ h5.profile-title {
 // welcome content
 .welcome-list {
     @include container;
+    margin:0;
+    padding:0;
     li {
-        @include column(4);
+        @include column(8);
         padding-top:40px;
         &.welcome-artists {
             background: url('../images/icon-welcome-user.png') no-repeat left top transparent;
@@ -411,6 +413,10 @@ h5.profile-title {
         &.welcome-events {
             @include last;
             background: url('../images/icon-welcome-calendar.png') no-repeat left top transparent;
+        }
+        
+        @media screen and (max-width: $break-mobile) {
+            @include column(12);
         }
         
     }
