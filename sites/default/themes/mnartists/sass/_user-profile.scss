@@ -387,7 +387,10 @@ h5.profile-title {
 }
 
 // welcome content
-
+body.my-stuff.welcome {
+    background: url('../image/bg-my-stuff-welcome.png') no-repeat center center #3f3f3f;
+    background-size:cover;
+}
 
 .user-welcome {
     color:#fff;
@@ -399,6 +402,7 @@ h5.profile-title {
     float:none;
     overflow:visible;
     box-sizing:border-box;
+    
     @media screen and (max-width: $break-mobile) {
         @include column(24);
     }
@@ -419,7 +423,9 @@ h5.profile-title {
         height:auto;
     }
     .done-link {
-        color:#fff; 
+        color:#fff;
+        margin-bottom:30px;
+        display:inline-block;
         input {
             margin-right:8px;
         }
