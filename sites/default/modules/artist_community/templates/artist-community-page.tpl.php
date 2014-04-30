@@ -1,6 +1,7 @@
 <style>
     .search-results .item {
-        width: 23% !important;
+        width: 24% !important;
+        margin-right: 1%;
     }
 </style>
 <?php

@@ -29,22 +29,6 @@
 
         // ** main content area (search results)
         var contentContainer = $('.content-all');
-        var columns = 4;
-        var gutter = 20;
-        var isotopeOptions = {
-            // update columnWidth to a percentage of container width
-            masonry: {
-                columnWidth: contentContainer.width() / columns,
-                gutterWidth: gutter
-            },
-            onLayout: function($elems, instance) {
-                // Add exponential z-index for dropdown cropping
-                $elems.each(function(e){
-                    $(this).css({ zIndex: ($elems.length - e) });
-                });
-                $('.sort-thing').css({ zIndex: ($elems.length + 100)});// here and below, make sure sorter stays at the top of the heap
-            },
-        };
 
         // infinite scrolling dealings-with
         $('.content-all').infinify({
@@ -69,7 +53,7 @@
         contentContainer.imagesLoaded(function() {
             var container = $('#search-results');
             container.masonry({
-                columnWidth: 10,
+                columnWidth: '.item',
                 itemSelector: '.item'
             });
         });
@@ -78,7 +62,7 @@
         $(window).smartresize(function(){
             var container = $('#search-results');
             container.masonry({
-                columnWidth: 10,
+                columnWidth: '.item',
                 itemSelector: '.item'
             });
         });

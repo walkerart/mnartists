@@ -130,19 +130,21 @@ if (isset($node->field_date['und'])) {
     }
 }
 ?>
-<h3><?php print $type; ?></h3>
-<article id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
-    <?php if (isset($node->field_images['und'])) { ?>
-        <a href="<?= $node_url ?>" class="item-image"><img src="<?= $image_uri ?>" width="<?= $known_width ?>" height="<?=$computed_height ?>"></a>
-    <?php } ?>
-    <div class="item-info-container">
-        <p class="item-info-title"><a href="<?= $node_url ?>"><?php print $node->title; ?></a></p>
-        <?php if (!isset($_GET['event_date'])) { ?><p class="item-info-date"><?= $date_string ?></p><?php } ?>
-        <p class="item-info-excerpt">
-            <?= $text_excerpt ?> <a href="<?= $node_url ?>" class="item-more-button-link-indicator">&gt;</a>
-        </p>
-        <?php if(user_is_logged_in()) { ?>
-            <div class="item-info-flag pane-mnartist-collections-mna-collections-star"><?= theme("mnartist_collections_star", array('node_id' => $node->nid)) ?></div>
+<div class="item-inside">
+    <h3><?php print $type; ?></h3>
+    <article id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
+        <?php if (isset($node->field_images['und'])) { ?>
+            <a href="<?= $node_url ?>" class="item-image"><img src="<?= $image_uri ?>" width="<?= $known_width ?>" height="<?=$computed_height ?>"></a>
         <?php } ?>
-    </div>
-</article>
+        <div class="item-info-container">
+            <p class="item-info-title"><a href="<?= $node_url ?>"><?php print $node->title; ?></a></p>
+            <?php if (!isset($_GET['event_date'])) { ?><p class="item-info-date"><?= $date_string ?></p><?php } ?>
+            <p class="item-info-excerpt">
+                <?= $text_excerpt ?> <a href="<?= $node_url ?>" class="item-more-button-link-indicator">&gt;</a>
+            </p>
+            <?php if(user_is_logged_in()) { ?>
+                <div class="item-info-flag pane-mnartist-collections-mna-collections-star"><?= theme("mnartist_collections_star", array('node_id' => $node->nid)) ?></div>
+            <?php } ?>
+        </div>
+    </article>
+</div>
