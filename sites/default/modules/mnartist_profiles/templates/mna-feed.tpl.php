@@ -1,8 +1,10 @@
 <?php
     // template for rendering a user's feed
+    global $user;
+    $should_show_welcome = _mnartist_profiles_should_show_welcome();
 ?>
 
-<?php if (count($feed_data) > 0) { ?>
+<?php if (!$should_show_welcome) { ?>
     <ul class="user-feed">
         <?php foreach ($feed_data as $feed_event) { ?>
             <li class="feed-item">
@@ -25,7 +27,7 @@
         <li class="feed-item infinify-terminator">There are no items in your feed. Favorite/Star an artist to see updates here.</li>
     -->
     <div class="user-welcome">
-        <h2>Now that you've joing MN Artists, here are some fun ways to start exploring and better using the site</h2>
+        <h2>Now that you've joined MN Artists, here are some fun ways to start exploring and better using the site.</h2>
         <ul class="welcome-list">
             <li class="welcome-artists">Find new artists in your area</li>
             <li class="welcome-collect">Start collecting artists, artworks, or articles</li>
@@ -34,6 +36,8 @@
             <li class="welcome-opportunities">Find Opportunities to advance your career</li>
             <li class="welcome-events">Learn about what art events are happening this week</li>
         </ul>
-        <a class="done-link"><input type="checkbox" name="no-welcome">I've tried all these things</a></a>
+        <form id="welcome-form" class="done-link" method="post" action="user/<?= $user->uid ?>/setwelcome">
+            <label><input type="checkbox" name="no-welcome"> I've tried all these things</label>
+        </form>
     </div>
 <?php } ?>

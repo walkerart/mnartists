@@ -35,8 +35,26 @@ function mnartist_profiles_menu() {
         'type'              => MENU_CALLBACK,
     );
 
+    $items['user/%/setwelcome'] = array(
+        'page callback'     => 'mnartist_profiles_toggle_welcome',
+        'page arguments'    => array(1),
+        'access callback'   => TRUE,
+        'type'              => MENU_CALLBACK,
+    );
+
     return $items;
 
+}
+
+function mnartist_profiles_toggle_welcome($uid) {
+    $account = $user_load($uid);
+
+    // if (!isset($account->field_show_welcome[LANGUAGE_NONE])) {
+    //     $current_welcome = 1;
+    // } else {
+    //     $current_welcome = intval($account->field_show_welcome[LANGUAGE_NONE][0]['value']);
+    // }
+    // $new_welcome = !($current_welcome);
 }
 
 function mnartist_profiles_menu_alter(&$items) {
@@ -46,6 +64,27 @@ function mnartist_profiles_menu_alter(&$items) {
     return $items;
 }
 
+function mnartist_profiles_preprocess_html(&$variables) {
+    if (arg(0) === 'user' && arg(1) === 'feed') {
+        $variables['classes_array'][] = drupal_html_class("welcome");
+    }
+}
+
+function _mnartist_profiles_should_show_welcome() {
+    global $user;
+    $account = user_load($user->uid);
+
+    // if feed is empty...
+    $query = db_select('activity', 'a')
+                    ->fields('a')
+                    ->condition('uid', $user->uid)
+                    ->execute();
+    $feed_count = $query->rowCount();
+    $show_welcome_field = (!isset($account->field_show_welcome['und']) || (isset($account->field_show_welcome['und']) && $account->field_show_welcome['und'][0]['value'] === 1));
+    // and the show welcome field on the user
+    // is true
+    return ($feed_count === 0 && $show_welcome_field);
+}
 
 // feeds the feed "infinite scroll" more data
 function mnartist_profiles_feed_more() {
@@ -61,7 +100,6 @@ function mnartist_profiles_feed_more() {
 
     drupal_exit();
 }
-
 
 // feeds the standard page load feed with a page containing feed data
 function mnartist_profiles_feed() {
