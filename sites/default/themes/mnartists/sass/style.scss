@@ -7745,17 +7745,22 @@ li.collect-this, li.add-this {
 }
 
 /* @group collection list page */
+// this is official
 .page-user-flags-lists- {
 
     .view-content {
         @include container;
-        
+        text-align:center;
         h2 {
             padding:0 0 5px 0;
             background:none;
             color:#fff;
+            text-align:left;
         }
         .edit-controls {
+            padding:0px;
+            text-align:left;
+            
             li {
                 display:inline-block;
                 list-style:none;
@@ -7768,7 +7773,16 @@ li.collect-this, li.add-this {
             color:#fff;
             position:relative;
             list-style:none;
-            min-height:80px;  
+            min-height:80px;
+            
+            
+            @include column(14);
+            @include last;
+            margin-left:auto!important;
+            margin-right:auto!important;
+            display:block;float:none;
+            text-align:left;
+            
             li {
                 list-style:none;   
             }
