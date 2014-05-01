@@ -7811,6 +7811,7 @@ li.collect-this, li.add-this {
 .page-user-flags-lists- {
 
     .view-content {
+        
         h2 {
             padding:0 0 5px 0;
             background:none;
@@ -7975,6 +7976,48 @@ li.collect-this, li.add-this {
 
                 }
             }
+        }
+        
+        .edit-controls {
+          text-align:right;
+          position:absolute;
+          top:10px;
+          right:10px;
+          margin:0px;
+          padding:0px;
+
+          li {
+            list-style:none;
+            margin:0;
+            padding:0;
+            display:inline-block;
+
+            &.edit {
+              a{
+                background: url('../images/icon-form-edit.png') no-repeat center center transparent;
+              }
+            }
+            &.delete {
+              a{
+                background: url('../images/icon-form-remove.png') no-repeat center center transparent;
+              }
+            }
+
+            a {
+              height:21px;
+              width:21px;
+              border:1px solid #666;
+              border-radius:50%;
+              overflow:hidden;
+              text-indent:40px;
+              white-space:nowrap;
+              display:block;
+
+              &:hover {
+                border:1px solid #999;
+              }
+            }
+          }
         }
     }
 }
