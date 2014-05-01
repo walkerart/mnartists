@@ -438,9 +438,7 @@ p.site-description {
 								border-bottom:none;
 								margin-bottom:0;
 							}
-							&:last-child {
-								border-bottom:none;
-							}
+							
 							&:first-child {
 								border-top:none;
 							}
@@ -457,12 +455,16 @@ p.site-description {
 				border-top: 1px solid $mystuff_bg_light;
 			}
 			li.last {
-				border-bottom: 1px solid $mystuff_bg_light;
+				/*border-bottom: 1px solid $mystuff_bg_light;*/
+                border-bottom:none;
 			}
 		}
+        ul.my-stuff-menu {
+            margin-bottom:15px;
+        }
 		ul.my-stuff-menu,
         ul.my-stuff-edit-menu {
-			margin-bottom:10px;
+			
 			li.last {
 				position:relative;
 
