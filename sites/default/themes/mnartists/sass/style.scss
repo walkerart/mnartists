@@ -7817,9 +7817,16 @@ li.collect-this, li.add-this {
             color:#fff;
         }
         .user-list {
-            padding:20px 0;
-            @include column(24);
+            @include column(14);
+            @include last;
+            margin-left:auto!important;
+            margin-right:auto!important;
+            display:block;float:none;
+            text-align:left;
             overflow:visible;
+            padding:10px;
+            box-sizing: border-box;
+            
             @media screen and (max-width: $break-mobile) {
                 @include column(24);
             }
