@@ -452,7 +452,7 @@ p.site-description {
 			}
 			li.first {
 				border-bottom: 1px solid $mystuff_bg_light;
-				border-top: 1px solid $mystuff_bg_light;
+				/*border-top: 1px solid $mystuff_bg_light;*/
 			}
 			li.last {
 				/*border-bottom: 1px solid $mystuff_bg_light;*/
@@ -460,7 +460,13 @@ p.site-description {
 			}
 		}
         ul.my-stuff-menu {
-            margin-bottom:15px;
+            margin-bottom:20px;
+        }
+        ul.my-stuff-edit-menu li.last {
+            margin-top:20px;
+        }
+        ul.my-stuff-edit-menu li:nth-child(4) {
+            border-bottom:none;
         }
 		ul.my-stuff-menu,
         ul.my-stuff-edit-menu {
