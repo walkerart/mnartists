@@ -54,27 +54,36 @@ function mnartist_profiles_menu() {
 
 function mnartist_profiles_welcome() {
 
-    // include feed js
-    drupal_add_js(drupal_get_path('module', 'mnartist_profiles') .'/js/welcome.js');
+    global $user;
 
-    return theme("mna_user_welcome", array());
+    // include feed js
+    $account = user_load($user->uid);
+    $ive_tried_this = isset($account->field_show_welcome[LANGUAGE_NONE]) ? intval($account->field_show_welcome[LANGUAGE_NONE][0]['value']) : 0;
+
+    drupal_add_js(drupal_get_path('module', 'mnartist_profiles') .'/js/welcome.js');
+    return theme("mna_user_welcome", array('ive_tried_this' => $ive_tried_this));
 }
 
 function mnartist_profiles_set_welcome($uid) {
     $account = user_load($uid);
 
     // var_dump($account->field_show_welcome);
-    var_dump($_POST);
-    // echo 'here';
-    drupal_exit();
+    var_dump($_POST['no-welcome']);
+    $welcome_value = (isset($_POST['no-welcome']) && $_POST['no-welcome'] === 'on') ? 1: 0;
+    $field_show_welcome = array(
+        LANGUAGE_NONE => array(
+            array(
+                'value' => $welcome_value
+            )
+        )
+    );
+    $account->field_show_welcome = $field_show_welcome;
+    user_save($account);
 
-    // $account->field_show_welcome[LANGUAGE_NONE][0]['value']
-    // if (!isset($account->field_show_welcome[LANGUAGE_NONE])) {
-    //     $current_welcome = 1;
-    // } else {
-    //     $current_welcome = intval($account->field_show_welcome[LANGUAGE_NONE][0]['value']);
-    // }
-    // $new_welcome = !($current_welcome);
+    $account = user_load($uid);
+    var_dump($account->field_show_welcome);
+
+    drupal_exit();
 }
 
 function mnartist_profiles_menu_alter(&$items) {

@@ -1,7 +1,9 @@
 <?php
     // template for rendering a user's feed
     global $user;
-    $should_show_welcome = true;//_mnartist_profiles_should_show_welcome();
+    $should_show_welcome = _mnartist_profiles_should_show_welcome();
+    $parsed_referrer = parse_url($_SERVER['HTTP_REFERER']);
+    $came_from_welcome = ($parsed_referrer['path'] === '/user/welcome');
 ?>
 
 <?php if (count($feed_data) > 0) { ?>
@@ -22,7 +24,7 @@
         </li>
     </ul>
 <?php } else {
-    if ($should_show_welcome) {
+    if ($should_show_welcome && !$came_from_welcome) {
         drupal_goto('user/welcome');
     } else { ?>
         <li class="feed-item infinify-terminator">There are no items in your feed. Favorite/Star an artist to see updates here.</li>

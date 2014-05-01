@@ -13,7 +13,7 @@
                 url: $(this).attr('action'),
                 data: $(this).serialize(),
                 success: function (data) {
-                    console.log('data: ' + data);
+                    // don't need to do anything
                 }
             });
         });

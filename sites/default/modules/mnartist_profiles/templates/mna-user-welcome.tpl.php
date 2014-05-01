@@ -9,6 +9,6 @@
         <li class="welcome-events">Learn about what art events are happening this week</li>
     </ul>
     <form id="welcome-form" class="done-link" method="post" action="/user/<?= $user->uid ?>/setwelcome">
-        <label><input type="checkbox" name="no-welcome"> I've tried all these things</label>
+        <label><input type="checkbox" name="no-welcome"<?php if (isset($ive_tried_this) && $ive_tried_this === 1) { ?> checked<?php } ?>> I've tried all these things</label>
     </form>
 </div>
