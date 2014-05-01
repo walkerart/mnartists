@@ -820,11 +820,6 @@ form .description {
   font-weight: normal;
   color: #a3a3a3;
 }
-/* line 142, ../sass/_forms.scss */
-.field-widget-image-image fieldset.form-wrapper table.sticky-table thead {
-  display: none;
-  /* because its just duplicate title */
-}
 /* line 144, ../sass/_forms.scss */
 .field-widget-image-image fieldset.form-wrapper table.sticky-table thead tr {
   border: none;
@@ -1993,6 +1988,8 @@ div.entityconnect-edit input:hover {
 /* line 1360, ../sass/_forms.scss */
 .sticky-table thead {
   border: none;
+  display: none;
+  /* because its just duplicate title */
 }
 /* line 1363, ../sass/_forms.scss */
 .sticky-table thead tr {
