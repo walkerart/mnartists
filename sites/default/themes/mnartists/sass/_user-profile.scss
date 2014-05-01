@@ -286,11 +286,19 @@ h5.profile-title {
 						.content {
 							clear:both;
 							margin-bottom:20px;
-
-							img {
-								width:100%;
-								height:auto;
-							}
+                            a {
+                                text-align: center;
+                                display:block;
+                                background:#fcfcfc;
+                                img {
+                                    max-width:100%;
+                                    height:auto;
+                                    width:auto;
+                                    max-height:400px;
+                                    margin:0 auto;
+                                    display:block;
+                                }
+                            }
 						}
 						.left {
 							float: left;
