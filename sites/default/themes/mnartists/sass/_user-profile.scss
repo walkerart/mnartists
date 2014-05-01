@@ -24,6 +24,10 @@
 
 /* collections block */
 .pane-mnartist-profiles-mna-user-collections {
+    .block-content {
+        overflow:auto;
+        max-height:400px;
+    }
 	.collections {
 		ul {
 			margin:0;padding:0;
@@ -173,7 +177,10 @@ h5.profile-title {
 
 /* activity widget */
 .pane-mnartist-activity-activity {
-
+    .block-content {
+        max-height:400px;
+        overflow:auto;
+    }
 	.item-list {
 		font-family: $serif_font;
 		padding:10px;
