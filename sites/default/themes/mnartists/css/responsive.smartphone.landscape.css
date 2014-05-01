@@ -2181,20 +2181,32 @@ fieldset.collapsible legend .fieldset-legend .fieldset-title {
   display: block;
   padding: 5px 0 5px 10px;
   /*border-left:1px solid #ccc;*/
-  padding-left: 20px!important;
+  padding-left: 30px!important;
+  position: relative;
 }
 /* line 1561, ../sass/_forms.scss */
+fieldset.collapsible legend .fieldset-legend .fieldset-title:after {
+  content: "";
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 20px;
+  width: 1px;
+  display: block;
+  background: #ccc;
+}
+/* line 1572, ../sass/_forms.scss */
 fieldset.collapsible legend .fieldset-legend .summary {
   display: none;
 }
-/* line 1568, ../sass/_forms.scss */
+/* line 1579, ../sass/_forms.scss */
 fieldset.collapsible.collapsed legend .fieldset-legend {
   background-image: url("../images/icon-collapse-arrow-down.png") !important;
   background-repeat: no-repeat;
   background-position: 5px center !important;
 }
 
-/* line 1581, ../sass/_forms.scss */
+/* line 1592, ../sass/_forms.scss */
 .page-user-edit #tasks {
   display: none;
 }

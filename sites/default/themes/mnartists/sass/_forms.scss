@@ -1556,7 +1556,18 @@ fieldset.collapsible {
         display:block;
         padding:5px 0 5px 10px;
         /*border-left:1px solid #ccc;*/
-        padding-left:20px!important;
+        padding-left:30px!important;
+          position:relative;
+          &:after {
+            content:"";
+              position:absolute;
+              top:0px;
+              bottom:0px;
+              left:20px;
+              width:1px;
+              display:block;
+              background:#ccc;
+          }
       }
       .summary {
         display:none;
