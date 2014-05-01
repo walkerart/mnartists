@@ -35,8 +35,14 @@ function mnartist_profiles_menu() {
         'type'              => MENU_CALLBACK,
     );
 
+    $items['user/welcome'] = array(
+        'page callback'     => 'mnartist_profiles_welcome',
+        'access callback'   => TRUE,
+        'type'              => MENU_CALLBACK,
+    );
+
     $items['user/%/setwelcome'] = array(
-        'page callback'     => 'mnartist_profiles_toggle_welcome',
+        'page callback'     => 'mnartist_profiles_set_welcome',
         'page arguments'    => array(1),
         'access callback'   => TRUE,
         'type'              => MENU_CALLBACK,
@@ -46,9 +52,23 @@ function mnartist_profiles_menu() {
 
 }
 
-function mnartist_profiles_toggle_welcome($uid) {
-    $account = $user_load($uid);
+function mnartist_profiles_welcome() {
 
+    // include feed js
+    drupal_add_js(drupal_get_path('module', 'mnartist_profiles') .'/js/welcome.js');
+
+    return theme("mna_user_welcome", array());
+}
+
+function mnartist_profiles_set_welcome($uid) {
+    $account = user_load($uid);
+
+    // var_dump($account->field_show_welcome);
+    var_dump($_POST);
+    // echo 'here';
+    drupal_exit();
+
+    // $account->field_show_welcome[LANGUAGE_NONE][0]['value']
     // if (!isset($account->field_show_welcome[LANGUAGE_NONE])) {
     //     $current_welcome = 1;
     // } else {
@@ -62,12 +82,6 @@ function mnartist_profiles_menu_alter(&$items) {
     // to suppress tab on profile page
     $items['user/%user/mailchimp']['type'] = MENU_CALLBACK;
     return $items;
-}
-
-function mnartist_profiles_preprocess_html(&$variables) {
-    if (arg(0) === 'user' && arg(1) === 'feed') {
-        $variables['classes_array'][] = drupal_html_class("welcome");
-    }
 }
 
 function _mnartist_profiles_should_show_welcome() {
@@ -362,6 +376,11 @@ function mnartist_profiles_theme() {
         'variables' => array()
     );
 
+    $themes['mna_user_welcome'] = array(
+        'template' => 'templates/mna-user-welcome',
+        'variables' => array()
+    );
+
     return $themes;
 }
 
@@ -515,7 +534,7 @@ function _mnartist_profile_block_visibility() {
         (!user_is_logged_in() && arg(0) == "user" && (is_null(arg(1)) || in_array(arg(1), array("password", "register")))) ||
         (arg(0) == "node" && in_array(arg(1), array("edit", "add"))) ||
         (arg(0) == "node" && in_array(arg(2), array("edit"))) ||
-        (arg(0) == "user" && in_array(arg(1), array("saved-filters", "feed")))
+        (arg(0) == "user" && in_array(arg(1), array("saved-filters", "feed", "welcome")))
         ) {
         return true;
     }

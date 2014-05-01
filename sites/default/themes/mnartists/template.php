@@ -54,7 +54,7 @@ function mnartists_preprocess_html(&$vars) {
           (arg(0) == "user" && in_array(arg(2), array("flags")) && arg(1) === $user->uid) ||
           (arg(0) == "node" && in_array(arg(1), array("edit", "add"))) ||
           (arg(0) == "node" && in_array(arg(2), array("edit"))) ||
-          (arg(0) == 'user' && in_array(arg(1), array("saved-filters", "feed")))
+          (arg(0) == 'user' && in_array(arg(1), array("saved-filters", "feed", "welcome")))
       ) {
     $vars['classes_array'][] = drupal_html_class("my-stuff");
   }
