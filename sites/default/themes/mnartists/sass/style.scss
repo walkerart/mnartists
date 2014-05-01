@@ -7747,9 +7747,12 @@ li.collect-this, li.add-this {
 /* @group collection list page */
 .page-user-flags-lists- {
 
-    #content {
+    #content-column {
         @include container;
-        .view-content {
+        #main-content {
+               
+        }
+        .view {
              padding:20px 0;
             @include column(14);
             overflow:visible;
@@ -7762,7 +7765,7 @@ li.collect-this, li.add-this {
             @media screen and (max-width: $break-desktop-small) {
                 @include column(24);
             }
-            .views-row {
+            .views-content {
                 background: $mystuff_bg_dark;
                 padding:10px;
                 margin-bottom:20px;
