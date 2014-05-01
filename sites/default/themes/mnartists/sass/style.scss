@@ -7767,22 +7767,7 @@ li.collect-this, li.add-this {
             }
         }
         .user-list {
-            background: $mystuff_bg_dark;
-            padding:10px;
-            margin-bottom:20px;
-            color:#fff;
-            position:relative;
-            list-style:none;
-            min-height:80px;
-            
-            
-            @include column(14);
-            @include last;
-            margin-left:auto!important;
-            margin-right:auto!important;
-            display:block;float:none;
-            text-align:left;
-            
+
             li {
                 list-style:none;   
             }
@@ -7820,6 +7805,10 @@ li.collect-this, li.add-this {
             overflow:visible;
             
             box-sizing: border-box;
+            position:relative;
+            background: $mystuff_bg_dark;
+            margin-top:20px;
+            margin-bottom:20px;
             
             @media screen and (max-width: $break-mobile) {
                 @include column(24);
@@ -7830,10 +7819,13 @@ li.collect-this, li.add-this {
             @media screen and (max-width: $break-desktop-small) {
                 @include column(24);
             }
-            
+            h2 {
+                padding:10px;
+                margin:0px;
+            }
             .user-list {
                 padding:10px;
-                background: $mystuff_bg_dark;
+                
             }
         }
     }
