@@ -1,8 +1,10 @@
 <?php
     // template for rendering a user's feed
+    global $user;
+    $should_show_welcome = _mnartist_profiles_should_show_welcome();
 ?>
 
-<?php if (count($feed_data) > 0) { ?>
+<?php if (!$should_show_welcome) { ?>
     <ul class="user-feed">
         <?php foreach ($feed_data as $feed_event) { ?>
             <li class="feed-item">
@@ -34,6 +36,8 @@
             <li class="welcome-opportunities">Find Opportunities to advance your career</li>
             <li class="welcome-events">Learn about what art events are happening this week</li>
         </ul>
-        <a class="done-link"><input type="checkbox" name="no-welcome">I've tried all these things</a></a>
+        <form id="welcome-form" class="done-link" method="post" action="user/<?= $user->uid ?>/setwelcome">
+            <label><input type="checkbox" name="no-welcome"> I've tried all these things</label>
+        </form>
     </div>
 <?php } ?>
