@@ -1980,85 +1980,94 @@ div.entityconnect-edit input:hover {
   background: url("../images/bg-input-dots.gif") repeat-x left bottom white !important;
 }
 
-/* line 1357, ../sass/_forms.scss */
+/* line 1358, ../sass/_forms.scss */
+#user-profile-form .sticky-table thead {
+  display: none;
+}
+/* line 1363, ../sass/_forms.scss */
+#user-profile-form .form-item-profile-resume-field-biography-und-0-value label {
+  display: none;
+}
+
+/* line 1369, ../sass/_forms.scss */
 .sticky-table {
   border: none;
 }
-/* line 1360, ../sass/_forms.scss */
+/* line 1372, ../sass/_forms.scss */
 .sticky-table thead {
   border: none;
   display: none;
   /* because its just duplicate title */
 }
-/* line 1363, ../sass/_forms.scss */
+/* line 1375, ../sass/_forms.scss */
 .sticky-table thead tr {
   border: none;
   border-bottom: 1px solid #ccc;
   background: none;
 }
-/* line 1368, ../sass/_forms.scss */
+/* line 1380, ../sass/_forms.scss */
 .sticky-table thead tr th {
   border: none;
   box-sizing: border-box;
   padding: 5px 0;
 }
-/* line 1375, ../sass/_forms.scss */
+/* line 1387, ../sass/_forms.scss */
 .sticky-table tbody {
   border: none;
 }
-/* line 1377, ../sass/_forms.scss */
+/* line 1389, ../sass/_forms.scss */
 .sticky-table tbody tr {
   border: none;
 }
-/* line 1379, ../sass/_forms.scss */
+/* line 1391, ../sass/_forms.scss */
 .sticky-table tbody tr td {
   border: none;
   box-sizing: border-box;
   padding: 5px 0;
 }
-/* line 1384, ../sass/_forms.scss */
+/* line 1396, ../sass/_forms.scss */
 .sticky-table tbody tr td.field-multiple-drag {
   border-right: 1px solid #ccc;
   vertical-align: top;
   /*width:33%;*/
 }
-/* line 1392, ../sass/_forms.scss */
+/* line 1404, ../sass/_forms.scss */
 .sticky-table tbody tr td .media-widget {
   /*padding-left:20px;*/
 }
-/* line 1395, ../sass/_forms.scss */
+/* line 1407, ../sass/_forms.scss */
 .sticky-table tbody tr td .media-widget .form-item {
   display: inline;
 }
-/* line 1397, ../sass/_forms.scss */
+/* line 1409, ../sass/_forms.scss */
 .sticky-table tbody tr td .media-widget .form-item label {
   min-width: 1px;
 }
-/* line 1402, ../sass/_forms.scss */
+/* line 1414, ../sass/_forms.scss */
 .sticky-table tbody tr td .field-value-url {
   padding-left: 20px;
 }
-/* line 1405, ../sass/_forms.scss */
+/* line 1417, ../sass/_forms.scss */
 .sticky-table tbody tr td:nth-child(2) {
   padding-left: 10px;
 }
 
-/* line 1413, ../sass/_forms.scss */
+/* line 1425, ../sass/_forms.scss */
 .field-type-file-form .field-add-more-submit {
   /*margin-left:33%!important;*/
 }
 
-/* line 1417, ../sass/_forms.scss */
+/* line 1429, ../sass/_forms.scss */
 .sticky-table {
   margin-bottom: 10px;
 }
 
-/* line 1422, ../sass/_forms.scss */
+/* line 1434, ../sass/_forms.scss */
 form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
   padding-right: 0;
 }
 
-/* line 1425, ../sass/_forms.scss */
+/* line 1437, ../sass/_forms.scss */
 .draggable a.tabledrag-handle {
   cursor: move;
   float: left;
@@ -2068,7 +2077,7 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
   text-decoration: none;
 }
 
-/* line 1433, ../sass/_forms.scss */
+/* line 1445, ../sass/_forms.scss */
 .handle {
   /*background: url(../../misc/draggable.png) no-repeat 6px 9px;*/
   background-position: center center;
@@ -2083,19 +2092,19 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
 
 /* end draggable */
 /* birthdate form items */
-/* line 1450, ../sass/_forms.scss */
+/* line 1462, ../sass/_forms.scss */
 .field-name-field-birthdate .form-type-date-select {
   display: block;
   width: 100%;
   /*max-width:520px;*/
 }
-/* line 1455, ../sass/_forms.scss */
+/* line 1467, ../sass/_forms.scss */
 .field-name-field-birthdate .form-type-date-select .date-padding {
   padding: 0;
   float: none;
   display: block;
 }
-/* line 1460, ../sass/_forms.scss */
+/* line 1472, ../sass/_forms.scss */
 .field-name-field-birthdate .form-type-date-select .date-padding .form-item {
   width: 100%;
   /*max-width:520px;*/
@@ -2104,12 +2113,12 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
   clear: both;
   display: block;
 }
-/* line 1468, ../sass/_forms.scss */
+/* line 1480, ../sass/_forms.scss */
 .field-name-field-birthdate .form-type-date-select .date-padding .form-item label {
   width: 33%;
   float: left;
 }
-/* line 1474, ../sass/_forms.scss */
+/* line 1486, ../sass/_forms.scss */
 .field-name-field-birthdate .form-type-date-select .date-padding .form-item .date-month,
 .field-name-field-birthdate .form-type-date-select .date-padding .form-item .date-day,
 .field-name-field-birthdate .form-type-date-select .date-padding .form-item .date-year {
@@ -2118,66 +2127,66 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
   box-sizing: border-box;
   margin-bottom: 8px;
 }
-/* line 1480, ../sass/_forms.scss */
+/* line 1492, ../sass/_forms.scss */
 .field-name-field-birthdate .form-type-date-select .date-padding .form-item .date-month .customSelect,
 .field-name-field-birthdate .form-type-date-select .date-padding .form-item .date-day .customSelect,
 .field-name-field-birthdate .form-type-date-select .date-padding .form-item .date-year .customSelect {
   width: 100%;
 }
 
-/* line 1494, ../sass/_forms.scss */
+/* line 1506, ../sass/_forms.scss */
 form.node-article-form .cke_contents {
   min-height: 600px;
 }
 
-/* line 1505, ../sass/_forms.scss */
+/* line 1517, ../sass/_forms.scss */
 td.odd {
   background: none;
 }
 
-/* line 1513, ../sass/_forms.scss */
+/* line 1525, ../sass/_forms.scss */
 .password-strength {
   display: none;
 }
 
-/* line 1520, ../sass/_forms.scss */
+/* line 1532, ../sass/_forms.scss */
 body.admin-menu .wysiwyg-toggle-wrapper {
   display: block;
 }
-/* line 1524, ../sass/_forms.scss */
+/* line 1536, ../sass/_forms.scss */
 body .wysiwyg-toggle-wrapper {
   display: none;
 }
 
-/* line 1531, ../sass/_forms.scss */
+/* line 1543, ../sass/_forms.scss */
 fieldset.collapsible {
   height: auto!important;
   margin-bottom: 5px;
 }
-/* line 1534, ../sass/_forms.scss */
+/* line 1546, ../sass/_forms.scss */
 fieldset.collapsible legend {
   border-bottom: 1px solid #ccc;
   width: 100%;
   display: block;
   padding: 0px;
 }
-/* line 1539, ../sass/_forms.scss */
+/* line 1551, ../sass/_forms.scss */
 fieldset.collapsible legend .fieldset-legend {
   background-image: url("../images/icon-collapse-arrow-up.png") !important;
   background-position: 5px center !important;
   padding-left: 20px!important;
 }
-/* line 1543, ../sass/_forms.scss */
+/* line 1555, ../sass/_forms.scss */
 fieldset.collapsible legend .fieldset-legend .fieldset-title {
   display: block;
   padding: 5px 0 5px 10px;
   border-left: 1px solid #ccc;
 }
-/* line 1549, ../sass/_forms.scss */
+/* line 1561, ../sass/_forms.scss */
 fieldset.collapsible legend .fieldset-legend .summary {
   display: none;
 }
-/* line 1556, ../sass/_forms.scss */
+/* line 1568, ../sass/_forms.scss */
 fieldset.collapsible.collapsed legend .fieldset-legend {
   background-image: url("../images/icon-collapse-arrow-down.png") !important;
   background-repeat: no-repeat;

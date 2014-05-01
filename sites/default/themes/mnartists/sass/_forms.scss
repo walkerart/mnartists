@@ -1352,7 +1352,19 @@ div.entityconnect-edit {
     }
 }
 
-
+// user profile form only 
+#user-profile-form {
+    .sticky-table {
+        thead {
+            display:none;
+        }
+    }
+    .form-item-profile-resume-field-biography-und-0-value {
+        label {
+            display:none;
+        }
+    }
+}
 // STICKY AND DRAGGABLE TABLE STUFF
 .sticky-table {
     border:none;
