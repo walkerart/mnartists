@@ -448,6 +448,9 @@ p.site-description {
 
 					}
 				}
+                &:last-child {
+                    border-bottom:none;   
+                }
 			}
 			li.first {
 				border-bottom: 1px solid $mystuff_bg_light;
@@ -457,7 +460,8 @@ p.site-description {
 				border-bottom: 1px solid $mystuff_bg_light;
 			}
 		}
-		ul.my-stuff-menu {
+		ul.my-stuff-menu,
+        ul.my-stuff-edit-menu {
 			margin-bottom:10px;
 			li.last {
 				position:relative;
@@ -505,7 +509,7 @@ p.site-description {
 				}
 			}
 		}
-		ul.my-stuff-edit-menu {
+		/*ul.my-stuff-edit-menu {
 
 			li {
 				border:none;
@@ -517,7 +521,7 @@ p.site-description {
 					padding:10px;
 				}
 			}
-		}
+		}*/
 	}
 	.panel-pane {
 		.block-inner {
