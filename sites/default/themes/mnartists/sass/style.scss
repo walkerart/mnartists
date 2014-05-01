@@ -7747,32 +7747,30 @@ li.collect-this, li.add-this {
 /* @group collection list page */
 .page-user-flags-lists- {
 
-    #content-column {
+    .view-content {
         @include container;
-        #main-content {
-               
+        
+        h2 {
+            padding:0 0 5px 0;
+            background:none;
+            color:#fff;
         }
-        .flag-lists-user-list {
-             padding:20px 0;
-            @include column(14);
-            overflow:visible;
-            @media screen and (max-width: $break-mobile) {
-                @include column(24);
-            }
-            @media screen and (max-width: $break-tablet) {
-                @include column(24);
-            }
-            @media screen and (max-width: $break-desktop-small) {
-                @include column(24);
-            }
-            .view-content {
-                background: $mystuff_bg_dark;
-                padding:10px;
-                margin-bottom:20px;
-                color:#fff;
-                position:relative;
+        .edit-controls {
+            li {
+                display:inline-block;
                 list-style:none;
-                min-height:80px;
+            }
+        }
+        .user-list {
+            background: $mystuff_bg_dark;
+            padding:10px;
+            margin-bottom:20px;
+            color:#fff;
+            position:relative;
+            list-style:none;
+            min-height:80px;  
+            li {
+                list-style:none;   
             }
         }
     }
@@ -7804,7 +7802,7 @@ li.collect-this, li.add-this {
             background:none;
             color:#fff;
         }
-        .view-content {
+        .user-list {
             padding:20px 0;
             @include column(24);
             overflow:visible;
@@ -7818,7 +7816,7 @@ li.collect-this, li.add-this {
                 @include column(24);
             }
 
-            .user-list {
+            li.user-collection-item{
                 background: $mystuff_bg_dark;
                 padding:10px;
                 margin-bottom:20px;
