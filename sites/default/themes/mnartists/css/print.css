@@ -2174,13 +2174,14 @@ fieldset.collapsible legend {
 fieldset.collapsible legend .fieldset-legend {
   background-image: url("../images/icon-collapse-arrow-up.png") !important;
   background-position: 5px center !important;
-  padding-left: 20px!important;
+  padding-left: 0px!important;
 }
 /* line 1555, ../sass/_forms.scss */
 fieldset.collapsible legend .fieldset-legend .fieldset-title {
   display: block;
   padding: 5px 0 5px 10px;
-  border-left: 1px solid #ccc;
+  /*border-left:1px solid #ccc;*/
+  padding-left: 20px!important;
 }
 /* line 1561, ../sass/_forms.scss */
 fieldset.collapsible legend .fieldset-legend .summary {

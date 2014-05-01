@@ -1551,12 +1551,12 @@ fieldset.collapsible {
     .fieldset-legend {
       background-image: url('../images/icon-collapse-arrow-up.png') !important;
       background-position: 5px center !important;
-      padding-left:20px!important;
+      padding-left:0px!important;
       .fieldset-title {
         display:block;
         padding:5px 0 5px 10px;
-        border-left:1px solid #ccc;
-
+        /*border-left:1px solid #ccc;*/
+        padding-left:20px!important;
       }
       .summary {
         display:none;
