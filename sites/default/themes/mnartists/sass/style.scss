@@ -7809,15 +7809,8 @@ li.collect-this, li.add-this {
 
 /* @group single collection list page */
 .page-user-flags-lists- {
-
-    .view-content {
-        
-        h2 {
-            padding:0 0 5px 0;
-            background:none;
-            color:#fff;
-        }
-        .user-list {
+    .view-id-flag_lists_user_list {
+        .view-content {
             @include column(14);
             @include last;
             margin-left:auto!important;
@@ -7825,7 +7818,7 @@ li.collect-this, li.add-this {
             display:block;float:none;
             text-align:left;
             overflow:visible;
-            padding:10px;
+            
             box-sizing: border-box;
             
             @media screen and (max-width: $break-mobile) {
@@ -7837,8 +7830,26 @@ li.collect-this, li.add-this {
             @media screen and (max-width: $break-desktop-small) {
                 @include column(24);
             }
+            
+            .user-list {
+                padding:10px;
+                background: $mystuff_bg_dark;
+            }
+        }
+    }
+    .view-content {
+        
+        h2 {
+            padding:0 0 5px 0;
+            background:none;
+            color:#fff;
+        }
+        .user-list {
+            
+            
+         
 
-            li.user-collection-item{
+            li.user-collection-item {
                 background: $mystuff_bg_dark;
                 padding:10px;
                 margin-bottom:20px;
