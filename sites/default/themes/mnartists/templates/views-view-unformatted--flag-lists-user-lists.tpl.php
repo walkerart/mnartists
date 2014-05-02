@@ -32,7 +32,7 @@ foreach ($uncollected_result as $row) {
         if (isset($context_user->picture->uri)) {
             $uncoll_working_uri = $context_user->picture->uri;
         }
-        $uncoll_image_uri = (!is_null($uncoll_working_uri)) ? image_style_url('collection_thumbnail', $uncoll_working_uri) : '';
+        $uncoll_image_uri = (!is_null($uncoll_working_uri)) ? image_style_url('square_thumbnail', $uncoll_working_uri) : '';
         ?>
         <li>
           <a class="user-collection-item user-collection-user" href="<?= $uncoll_uri ?>">

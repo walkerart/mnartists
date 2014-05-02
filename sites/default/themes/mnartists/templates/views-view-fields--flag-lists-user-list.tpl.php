@@ -28,12 +28,14 @@ if ($node->type === 'artwork') {
           break;
       }
     }
+    $image_uri = (!is_null($working_uri)) ? image_style_url('medium', $working_uri) : '';
 } else {
   if (isset($node->field_images['und'])) {
     $working_uri = $node->field_images['und'][0]['uri'];
   }
+  $image_uri = (!is_null($working_uri)) ? image_style_url('square_thumbnail', $working_uri) : '';
 }
-$image_uri = (!is_null($working_uri)) ? image_style_url('medium', $working_uri) : '';
+
 ?>
 <li>
   <a class="user-collection-item" href="<?= $node_uri ?>">

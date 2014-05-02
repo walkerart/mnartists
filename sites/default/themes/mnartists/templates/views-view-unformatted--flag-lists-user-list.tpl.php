@@ -15,6 +15,11 @@ $link_url = 'user/'.$user->uid.'/'.$view->get_url();
 $list_id = $view->args[0];
 $dest_url = "user/$user->uid/flags/lists";
 
+if ($is_singular_view) {
+    ctools_add_js('collections', 'mnartist_collections');
+}
+
+
 ?>
 <?php if ($is_singular_view) { ?>
 <h2><?= $view->get_title() ?></h2>

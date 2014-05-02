@@ -3,11 +3,9 @@
         var collections = $(".user-list");
 
         collections.imagesLoaded(function() {
-            collections.isotope({
-                masonry: {
-                    columnWidth: collections.width() / 3,
-                    gutterWidth: 2
-                }
+            collections.masonry({
+                columnWidth: '.user-list li',
+                itemSelector: '.user-list li'
             });
         });
     });
