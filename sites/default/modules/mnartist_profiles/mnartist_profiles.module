@@ -742,7 +742,9 @@ function _mnartist_profile_user_collections() {
             $context_collection->items = $context_items;
             $context_collection->has_more = (count($content) > $collection_items_limit);
 
-            $collections_data[] = $context_collection;
+            if (!empty($context_collection->items)) {
+                $collections_data[] = $context_collection;
+            }
         }
         return theme('mna_user_collections', array('collections' => $collections_data));
     }
