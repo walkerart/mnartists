@@ -7451,6 +7451,14 @@ li.collect-this, li.add-this {
         height: 100%;
         width: 63.963963964%;
 
+        @media screen and (max-width: $break-tablet) {
+            @include column(24);
+            width: 100%;
+            float:none;
+            display:block;
+            clear:both;
+        }
+
         img {
             max-width: 100%;
             width: 100%;
@@ -7510,6 +7518,13 @@ li.collect-this, li.add-this {
         width: 36%;
         padding-left:20px;
         box-sizing:border-box;
+        @media screen and (max-width: $break-tablet) {
+            @include column(24);
+            width: 100%;
+            float:none;
+            display:block;
+            clear:both;
+        }
 
         ul {
             list-style: none;
