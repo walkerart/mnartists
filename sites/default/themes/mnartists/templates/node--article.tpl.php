@@ -124,17 +124,15 @@ if (isset($node->field_body[LANGUAGE_NONE])) {
     <?php if (isset($node->field_images[LANGUAGE_NONE])) { ?>
         <a href="<?= $node_url ?>" class="item-image"><img src="<?= $image_uri ?>" width="<?= $known_width ?>" height="<?=$computed_height ?>"></a>
     <?php } ?>
-    <?php if ($title && !$page): ?>
-      <header<?php print $header_attributes; ?>>
-        <?php if ($title): ?>
-          <h1<?php print $title_attributes; ?>>
-            <a href="<?= $node_url; ?>" rel="bookmark"><?php print $title; ?></a>
-          </h1>
-        <?php endif; ?>
-      </header>
-    <?php endif; ?>
-    <div<?php print $content_attributes; ?>>
-      <?= $text_excerpt ?> <a href="<?= $node_url ?>" class="item-more-button-link-indicator">&gt;</a>
+    <div class="item-info-container">
+      <p class="item-info-author"><?php print mnartist_profiles_collective_or_fullname_or_username($node->uid, true); ?></p>
+      <p class="item-info-title"><a href="<?= $node_url ?>"><?php print $node->title; ?></a></p>
+      <div<?php print $content_attributes; ?>>
+        <?= $text_excerpt ?> <a href="<?= $node_url ?>" class="item-more-button-link-indicator">&gt;</a>
+      </div>
+      <?php if(user_is_logged_in()) { ?>
+        <div class="item-info-flag pane-mnartist-collections-mna-collections-star"><?= theme("mnartist_collections_star", array('node_id' => $node->nid)) ?></div>
+      <?php } ?>
     </div>
   </article>
 </div>
