@@ -8046,6 +8046,27 @@ li.collect-this, li.add-this {
 
 /* @group user feed */
 .page-user-feed {
+  .intro-text {
+    padding:20px 0;
+    @include column(14);
+    @include last;
+    margin-left:auto!important;
+    margin-right:auto!important;
+    display:block;float:none;
+    text-align:left;
+    color:#fff;
+    @media screen and (max-width: $break-mobile) {
+      @include column(24);
+    }
+    @media screen and (max-width: $break-tablet) {
+      @include column(24);
+    }
+    @media screen and (max-width: $break-desktop-small) {
+      @include column(24);
+    }
+  }
+}
+.page-user-feed {
 
     #block-system-main {
         @include container;
