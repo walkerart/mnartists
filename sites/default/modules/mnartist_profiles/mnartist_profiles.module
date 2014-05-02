@@ -635,10 +635,11 @@ function _mnartist_profile_my_stuff() {
 
         // check for artist role
         $links[] = l("Account", "user/{$user->uid}/edit");
+        if (_get_role($user) !== 'org') {
+            $links[] = l("Profile", "user/{$user->uid}/edit/main") . l("View", "user/{$user->uid}", array("attributes" => array("class" => array("user-view"))));
+        }
         if (_get_role($user) === 'org' || in_array('administrator', array_values($user->roles))) {
             $links[] = l("Organization", "user") . l("edit", "user/{$user->uid}/edit/organization", array("attributes" => array("class" => array("user-view"))));
-        } else {
-            $links[] = l("Profile", "user/{$user->uid}/edit/main") . l("View", "user/{$user->uid}", array("attributes" => array("class" => array("user-view"))));
         }
         if (_get_role($user) === 'artist') {
             $links[] = l("Résumé", "user/{$user->uid}/edit/resume", array()) . l("View", "user/{$user->uid}/resume/download", array("attributes" => array("class" => array("user-view"), "target" => "_blank")));
