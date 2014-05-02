@@ -140,7 +140,7 @@ input {
             table.sticky-table {
 
                 thead {
-                    
+
                     tr {
                         border: none;
                         border-bottom: 1px solid #ccc;
@@ -1352,7 +1352,7 @@ div.entityconnect-edit {
     }
 }
 
-// user profile form only 
+// user profile form only
 #user-profile-form {
     .sticky-table {
         thead {
@@ -1588,8 +1588,12 @@ fieldset.collapsible {
   }
 }
 
+
 .page-user-edit {
-    #tasks {
-        display:none;   
-    }
+  #tasks {
+    display:none;
+  }
+}
+.logged-in.admin-menu .page-user-edit #tasks {
+  display:block;
 }

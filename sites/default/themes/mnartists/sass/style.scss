@@ -640,8 +640,13 @@ h2.pane-title,
 .panel-pane .block-inner .block-content section h2 {
     padding:0 0 5px 0;
     background:none;
+    color:$label_color;
 }
-
+.title-artwork h2,
+.search-results-status h2 {
+  color:$label_color;
+  padding-left:0px;
+}
 h2 {
     position: relative;
     clear: both;
@@ -6050,6 +6055,7 @@ body.page-node-edit {
 
         h3 {
             @include quiet_type_label;
+            color:$label_color;
         }
 
         &.item-event {
@@ -7411,7 +7417,7 @@ li.collect-this, li.add-this {
         margin:0;
         line-height:12px;
         height:15px;
-        color:#6d6d6d;
+        color:$label_color;
     }
 
     .widget-content {

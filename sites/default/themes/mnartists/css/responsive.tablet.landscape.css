@@ -494,24 +494,25 @@ input[type=submit]:hover {
 .layout-b .sidebar-right .pane-mnartist-article-other-articles-in-this-category h2 {
   margin: 0;
   padding: 0 0 5px 0;
+  color: gray;
 }
-/* line 88, ../sass/_layout-b.scss */
+/* line 89, ../sass/_layout-b.scss */
 .layout-b .sidebar-right .pane-mnartist-article-other-articles-by-this-author .widget-content,
 .layout-b .sidebar-right .pane-mnartist-article-other-articles-in-this-category .widget-content {
   padding: 0px;
 }
-/* line 91, ../sass/_layout-b.scss */
+/* line 92, ../sass/_layout-b.scss */
 .layout-b .sidebar-right .pane-mnartist-article-other-articles-by-this-author ul,
 .layout-b .sidebar-right .pane-mnartist-article-other-articles-in-this-category ul {
   padding: 0px;
   margin: 0px;
 }
-/* line 94, ../sass/_layout-b.scss */
+/* line 95, ../sass/_layout-b.scss */
 .layout-b .sidebar-right .pane-mnartist-article-other-articles-by-this-author ul li,
 .layout-b .sidebar-right .pane-mnartist-article-other-articles-in-this-category ul li {
   list-style: none;
 }
-/* line 97, ../sass/_layout-b.scss */
+/* line 98, ../sass/_layout-b.scss */
 .layout-b .sidebar-right .pane-mnartist-article-other-articles-by-this-author ul li a img,
 .layout-b .sidebar-right .pane-mnartist-article-other-articles-in-this-category ul li a img {
   width: 100%;
@@ -519,7 +520,7 @@ input[type=submit]:hover {
   display: block;
   margin: 0px;
 }
-/* line 103, ../sass/_layout-b.scss */
+/* line 104, ../sass/_layout-b.scss */
 .layout-b .sidebar-right .pane-mnartist-article-other-articles-by-this-author ul li a span,
 .layout-b .sidebar-right .pane-mnartist-article-other-articles-in-this-category ul li a span {
   display: block;
@@ -529,65 +530,66 @@ input[type=submit]:hover {
   border-bottom: 1px dotted #999;
   box-sizing: border-box;
 }
-/* line 114, ../sass/_layout-b.scss */
+/* line 115, ../sass/_layout-b.scss */
 .layout-b .sidebar-right .pane-mnartist-article-other-articles-by-this-author ul li:last-child a span,
 .layout-b .sidebar-right .pane-mnartist-article-other-articles-in-this-category ul li:last-child a span {
   border-bottom: none;
 }
-/* line 124, ../sass/_layout-b.scss */
+/* line 125, ../sass/_layout-b.scss */
 .layout-b .panel-col-top .block {
   margin: 0px;
 }
-/* line 127, ../sass/_layout-b.scss */
+/* line 128, ../sass/_layout-b.scss */
 .layout-b .panel-col-top .block h2 {
   padding: 0 0 5px 0;
   margin: 0px;
+  color: gray;
 }
 
-/* line 136, ../sass/_layout-b.scss */
+/* line 138, ../sass/_layout-b.scss */
 .panel-2col {
   /*  overflow: hidden;  */
 }
 
-/* line 140, ../sass/_layout-b.scss */
+/* line 142, ../sass/_layout-b.scss */
 .panel-2col .panel-col-first {
   float: left;
   width: 75%;
 }
 
-/* line 144, ../sass/_layout-b.scss */
+/* line 146, ../sass/_layout-b.scss */
 * html .panel-2col .panel-col-first {
   width: 74.9%;
 }
 
-/* line 148, ../sass/_layout-b.scss */
+/* line 150, ../sass/_layout-b.scss */
 .panel-2col .panel-col-first .inside {
   margin: 0 0 1em 0;
 }
 
-/* line 152, ../sass/_layout-b.scss */
+/* line 154, ../sass/_layout-b.scss */
 .panel-2col .panel-col-last {
   float: left;
   width: 25%;
 }
 
-/* line 156, ../sass/_layout-b.scss */
+/* line 158, ../sass/_layout-b.scss */
 * html .panel-2col .panel-col-last {
   width: 24.9%;
 }
 
-/* line 160, ../sass/_layout-b.scss */
+/* line 162, ../sass/_layout-b.scss */
 .panel-2col .panel-col-last .inside {
   margin: 0 0 1em 0;
 }
 
-/* line 165, ../sass/_layout-b.scss */
+/* line 167, ../sass/_layout-b.scss */
 #panels-edit-display .panel-pane,
 #panels-edit-display .helperclass {
   margin: .5em;
 }
 
-/* line 169, ../sass/_layout-b.scss */
+/* line 171, ../sass/_layout-b.scss */
 .panel-2col .panel-separator {
   margin: 0 0 1em 0;
 }
@@ -2206,9 +2208,14 @@ fieldset.collapsible.collapsed legend .fieldset-legend {
   background-position: 5px center !important;
 }
 
-/* line 1592, ../sass/_forms.scss */
+/* line 1593, ../sass/_forms.scss */
 .page-user-edit #tasks {
   display: none;
+}
+
+/* line 1597, ../sass/_forms.scss */
+.logged-in.admin-menu .page-user-edit #tasks {
+  display: block;
 }
 
 /* user profile page */
