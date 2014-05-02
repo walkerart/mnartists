@@ -46,7 +46,7 @@
                 allItems.each(function(e){
                     $(this).css({ zIndex: (allItems.length - e) });
                 });
-                $('.sort-thing').css({ zIndex: (allItems.length + 100)})
+                $('.sort-thing').css({ zIndex: (allItems.length + 100)});
             }
         });
 
@@ -65,6 +65,7 @@
                 columnWidth: '.item',
                 itemSelector: '.item'
             });
+            $('.sort-thing').css({ zIndex: (allItems.length + 100)});
         });
 
 
