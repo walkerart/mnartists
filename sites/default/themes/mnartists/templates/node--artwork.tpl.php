@@ -106,7 +106,7 @@ hide($content['links']);
 $top_title = $type;
 if (!(empty($node->field_medium3))) {
     $term_list = array();
-    foreach ($node->field_medium3['und'] as $term) {
+    foreach ($node->field_medium3[LANGUAGE_NONE] as $term) {
         $tterm = taxonomy_term_load($term['tid']);
         $term_list[] = $tterm->name;
     }
@@ -115,8 +115,8 @@ if (!(empty($node->field_medium3))) {
 
 // if non-standard media type get image by scheme,
 // otherwise use image
-if (isset($node->field_media['und'])) {
-  $working_uri = $node->field_media['und'][0]['uri'];
+if (isset($node->field_media[LANGUAGE_NONE])) {
+  $working_uri = $node->field_media[LANGUAGE_NONE][0]['uri'];
   $scheme = file_uri_scheme($working_uri);
   switch ($scheme) {
     case ('soundcloud'):
@@ -139,7 +139,7 @@ if (isset($node->field_media['und'])) {
 <div class="item-inside">
   <h3><?php print $top_title; ?></h3>
   <article id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
-    <?php if (isset($node->field_media['und'])) { ?>
+    <?php if (isset($node->field_media[LANGUAGE_NONE])) { ?>
       <a href="<?= $node_url ?>" class="item-image"><img src="<?= $image_uri ?>" width="<?= $known_width ?>" height="<?=$computed_height ?>"></a>
     <?php } ?>
     <div class="item-info-container">

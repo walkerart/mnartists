@@ -104,14 +104,26 @@
 hide($content['comments']);
 hide($content['links']);
 
-$text_excerpt = '';
-if (isset($node->body['und'])) {
-    $text_excerpt = trim(strip_tags(text_summary($node->body['und'][0]['value'], 'htmlcorrector', 120)));
+$image_uri = '';
+if (isset($node->field_images[LANGUAGE_NONE])) {
+    $target_image = $node->field_images[LANGUAGE_NONE][0];
+    $image_uri = image_style_url('medium', $target_image['uri']);
+    $known_width = 220;
+    $computed_height = ($known_width * $target_image['height']) / $target_image['width'];
 }
+
+$text_excerpt = '';
+if (isset($node->field_body[LANGUAGE_NONE])) {
+    $text_excerpt = trim(text_summary(strip_tags($node->field_body[LANGUAGE_NONE][0]['value']), 'text', 120));
+}
+
 ?>
 <div class="item-inside">
   <h3><?php print $type; ?></h3>
   <article id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
+    <?php if (isset($node->field_images[LANGUAGE_NONE])) { ?>
+        <a href="<?= $node_url ?>" class="item-image"><img src="<?= $image_uri ?>" width="<?= $known_width ?>" height="<?=$computed_height ?>"></a>
+    <?php } ?>
     <?php if ($title && !$page): ?>
       <header<?php print $header_attributes; ?>>
         <?php if ($title): ?>
