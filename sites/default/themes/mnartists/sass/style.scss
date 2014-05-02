@@ -6030,22 +6030,22 @@ body.page-node-edit {
         font-size:14px;
         /*background:rgba(0,0,0,.05);*/
         margin-right:0px;
-        
+
         @media screen and (max-width: $break-tablet) {
             width:50%;
         }
         @media screen and (max-width: $break-mobile) {
             width:50%;
         }
-        
+
         .artist-profile {
             padding:10px;
         }
         .item-inside {
-            padding:10px;   
+            padding:10px;
         }
         &:nth-child(4n+4) {
-            
+
         }
 
         h3 {
@@ -6320,6 +6320,9 @@ tr.odd .form-item, tr.even .form-item {
         }
 
     }
+}
+.logged-in.admin-menu .page-user-edit #tasks .primary {
+  display:block;
 }
 .page-user-edit-main,
 .page-user-edit-organization {
@@ -7579,7 +7582,7 @@ li.collect-this, li.add-this {
 
 /* from the network */
 .from-the-network-thing {
-    padding-top:20px;   
+    padding-top:20px;
 }
 /* */
 
@@ -7760,7 +7763,7 @@ li.collect-this, li.add-this {
         .edit-controls {
             padding:0px;
             text-align:left;
-            
+
             li {
                 display:inline-block;
                 list-style:none;
@@ -7769,7 +7772,7 @@ li.collect-this, li.add-this {
         .user-list {
 
             li {
-                list-style:none;   
+                list-style:none;
             }
         }
     }
@@ -7803,13 +7806,13 @@ li.collect-this, li.add-this {
             display:block;float:none;
             text-align:left;
             overflow:visible;
-            
+
             box-sizing: border-box;
             position:relative;
             background: $mystuff_bg_dark;
             margin-top:20px;
             margin-bottom:20px;
-            
+
             @media screen and (max-width: $break-mobile) {
                 @include column(24);
             }
@@ -7834,21 +7837,21 @@ li.collect-this, li.add-this {
             }
             .user-list {
                 padding:10px;
-                
+
             }
         }
     }
     .view-content {
-        
+
         h2 {
             padding:0 0 5px 0;
             background:none;
             color:#fff;
         }
         .user-list {
-            
-            
-         
+
+
+
 
             li.user-collection-item {
                 background: $mystuff_bg_dark;
@@ -7989,7 +7992,7 @@ li.collect-this, li.add-this {
                 }
             }
         }
-        
+
         .edit-controls {
           text-align:right;
           position:absolute;
@@ -8556,7 +8559,7 @@ li.collect-this, li.add-this {
             min-height:80px;
             overflow:visible;
             box-sizing: border-box;
-            
+
             @include column(14);
             @include last;
             margin-left:auto!important;
