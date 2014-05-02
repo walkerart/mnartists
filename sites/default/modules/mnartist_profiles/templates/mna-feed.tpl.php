@@ -5,6 +5,7 @@
     $parsed_referrer = parse_url($_SERVER['HTTP_REFERER']);
     $came_from_welcome = ($parsed_referrer['path'] === '/user/welcome');
 ?>
+<h2>My Feed</h2>
 <p class="intro-text">(lead text placeholder) Lorem ipsum Quis dolore id Excepteur irure dolore ullamco dolore ex aliqua aute et nulla nostrud id aliquip ut in anim ut velit ea ut tempor exercitation sed Ut adipisicing anim eu adipisicing.</p>
 <?php if (count($feed_data) > 0) { ?>
     <ul class="user-feed">
