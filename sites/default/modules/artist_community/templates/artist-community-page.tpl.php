@@ -75,7 +75,7 @@
                     <h3>Top Stories</h3>
                     <?php foreach($articles as $article) { ?>
                         <div class="article-detail" id="article-detail-<?= $article->nid ?>" style="display: none;">
-                            <img src="<?= $article->image_uri ?>">
+                            <a href="/node/<?= $article->nid ?>"><img src="<?= $article->image_uri ?>"></a>
                             <div class="article-content">
                                 <div class="article-detail-byline">by <?= $article->author ?></div>
                                 <div class="article-detail-flag pane-mnartist-collections-mna-collections-star"><?= theme("mnartist_collections_star", array('node_id' => $article->nid)) ?></div>
@@ -90,8 +90,10 @@
                         <ul>
                             <?php foreach($articles as $article) { ?>
                                 <li class="<?= strtolower($article->category) ?>" data-target-article="article-detail-<?= $article->nid ?>">
-                                    <h4><?= $article->category ?></h4>
-                                    <p><?= $article->title ?></p>
+                                    <a href="/node/<?= $article->nid ?>">
+                                        <h4><?= $article->category ?></h4>
+                                        <p><?= $article->title ?></p>
+                                    </a>
                                 </li>
                             <?php } ?>
                         </ul>
