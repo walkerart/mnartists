@@ -8591,6 +8591,12 @@ li.collect-this, li.add-this {
         .view-flag-lists-user-list {
 
         }
+        .user-collection-user {
+          img {
+            display:block;
+            border-radius:50%;
+          }
+        }
         .user-list-wrap {
             background: $mystuff_bg_dark;
             padding:10px;
@@ -9193,4 +9199,19 @@ div.warning {
     font-family: $serif_font;
     line-height:1.6em;
   }
+}
+
+// edit button on the page
+.edit-button {
+    input {
+      border-radius:0px;
+      color:#fff;
+      background:#222;
+      border:none;
+      outline:none;
+      text-transform:uppercase;
+      font-size:11px;
+      padding:5px;
+      margin:0 0 10px 15px;
+    }
 }
