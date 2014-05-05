@@ -7630,10 +7630,17 @@ li.collect-this, li.add-this {
 /* from the network */
 .from-the-network-thing {
   padding-top:20px;
+  @include container;
+
   h3 {
 
   }
   .network-post {
+    @include column(6);
+
+    &:nth-child(4) {
+      @include last;
+    }
     a {
 
     }
