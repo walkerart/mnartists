@@ -6034,7 +6034,7 @@ body.page-node-edit {
 .search-results {
     @include container;
     font-size:0;
-    padding-top:20px;
+    /*padding-top:20px;*/
 
     .item {
         /* width: 24%; */
@@ -7630,10 +7630,18 @@ li.collect-this, li.add-this {
 /* from the network */
 .from-the-network-thing {
   padding-top:20px;
+  padding-bottom:20px;
+  @include container;
+
   h3 {
 
   }
   .network-post {
+    @include column(6);
+
+    &:nth-child(5) {
+      @include last;
+    }
     a {
 
     }
