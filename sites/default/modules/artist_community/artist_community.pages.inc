@@ -16,6 +16,7 @@ function artist_community_search_page() {
     $output         = '';
     $articles_data  = array();
     $from_the_network_posts = array();
+    $from_the_network_limit = 4;
     $events_data    = array();
     $all_results    = array();
     $kill_content   = false;
@@ -141,7 +142,6 @@ function artist_community_search_page() {
             $from_the_network_filters = array_merge($from_the_network_filters, $filters);
         }
         $from_the_network_result = artist_community_execute_query(NODE_INDEX, $from_the_network_filters, array(array('promote', 'ASC'), array('changed', 'ASC')));
-        $from_the_network_limit = 4;
         $from_the_network_i = 0;
         foreach ($from_the_network_result as $index => $post) {
             if ($from_the_network_i >= $from_the_network_limit) {
@@ -155,6 +155,7 @@ function artist_community_search_page() {
             }
             $context_post->subheader = (isset($post->field_subheader['und'])) ? $post->field_subheader['und'][0]['value'] : '';
             $context_post->url = (isset($post->field_url['und'])) ? $post->field_url['und'][0]['value'] : '';
+            $context_post->source = (isset($post->field_url['und'])) ? $post->field_url['und'][0]['title'] : '';
             $from_the_network_posts[] = $context_post;
             $from_the_network_i++;
         }
