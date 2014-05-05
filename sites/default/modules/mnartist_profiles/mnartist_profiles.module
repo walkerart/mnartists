@@ -851,7 +851,7 @@ function _mnartist_profile_user_profile() {
         }
     }
 
-    return theme("mna_user_profile", array('user' => $user,
+    return theme("mna_user_profile", array('context_user' => $user,
                                         'fieldset' => $fieldset,
                                         'top_name' => $top_name,
                                         'fsvalue' => isset($fsvalue) ? $fsvalue : null,

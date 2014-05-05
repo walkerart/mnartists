@@ -1,8 +1,10 @@
 <?php
+    global $user;
+
     // template for rendering a user's or organization's profile
     $is_org = (isset($fieldset['field_organization_name']));
     $top_name = ($is_org) ? $fieldset['field_organization_name'][0]['value']['#markup'] : $top_name;
-    $picture_uri = (!is_null($user->picture)) ? image_style_url('artist-profile-photo',$user->picture->uri) : '';
+    $picture_uri = (!is_null($context_user->picture)) ? image_style_url('artist-profile-photo',$context_user->picture->uri) : '';
 ?>
 
 <h1><?= $top_name ?></h1>
@@ -65,10 +67,14 @@
                     <?php } ?>
                 </div>
             <?php }
-                $all_roles = mnartist_profiles_get_artwork_roles_for_user($user->uid);
+                $all_roles = mnartist_profiles_get_artwork_roles_for_user($context_user->uid);
                 if (!empty($all_roles)) { ?>
                 <div class="roles"><?= implode(', ', $all_roles) ?></div>
             <? } ?>
+            <br>
+            <div class="all-artworks">
+                <a href="/community?content[artwork]=1&global_search=<?= $context_user->name ?>">All Artworks</a>
+            </div>
         </div>
     </div>
 </div>
@@ -184,6 +190,11 @@
                 </div>
             <?php } ?>
         </div>
+    </div>
+<?php } ?>
+<?php if ($user->uid === $context_user->uid) { ?>
+    <div class="edit-button">
+        <a href="/user/<?= $context_user->uid ?>/edit">Edit</a>
     </div>
 <?php } ?>
 <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/themes/base/jquery-ui.css" type="text/css" media="all" />
