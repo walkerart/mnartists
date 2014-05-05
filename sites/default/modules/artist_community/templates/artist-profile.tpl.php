@@ -7,12 +7,11 @@
         ?>
         <img src="<?= $image_uri ?>" width="100" height="100">
     </a>
-
+    <?= flag_create_link('usercollections', $user->uid) ?>
     <div class="username">
         <a href="<?php print $url; ?>">
             <?php print mnartist_profiles_collective_or_fullname_or_username($user->uid); ?>
         </a>
     </div>
     <div class="roles"><?php print implode(', ', mnartist_profiles_get_artwork_roles_for_user($user->uid)); ?></div>
-    <?= flag_create_link('usercollections', $user->uid) ?>
 </div>
