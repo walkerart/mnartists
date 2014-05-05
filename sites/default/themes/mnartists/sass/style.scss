@@ -35,6 +35,12 @@ body {
 body.admin-menu {
     -webkit-font-smoothing: subpixel-antialiased;
 }
+body #tasks {
+  display:none;
+}
+body.admin-menu #tasks {
+  display:block;
+}
 body.wysiwygeditor {
     padding-left:0;
 }
