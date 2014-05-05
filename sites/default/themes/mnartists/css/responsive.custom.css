@@ -2234,15 +2234,73 @@ fieldset.collapsible.collapsed legend .fieldset-legend {
   display: block;
 }
 
-/* line 1605, ../sass/_forms.scss */
+/* line 1603, ../sass/_forms.scss */
+.page-node-edit.node-type-article #main-content {
+  box-sizing: border-box;
+  min-width: none;
+  width: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+  *zoom: 1;
+}
+/* line 1607, ../sass/_forms.scss */
 .page-node-edit.node-type-article #main-content #content {
   display: inline;
   float: left;
   overflow: hidden;
   width: 98.607%;
   margin-right: 2.409%;
-  margin-left: 0px;
-  margin-right: 0px;
+  margin-right: 0;
+}
+@media screen and (max-width: 960px) {
+  /* line 1607, ../sass/_forms.scss */
+  .page-node-edit.node-type-article #main-content #content {
+    display: inline;
+    float: left;
+    overflow: hidden;
+    width: 98.607%;
+    margin-right: 2.409%;
+    margin-right: 0;
+    padding: 40px 50px;
+    margin-left: 20px!important;
+    margin-right: 20px!important;
+    display: block;
+    float: none;
+    width: auto;
+  }
+}
+@media screen and (max-width: 768px) {
+  /* line 1607, ../sass/_forms.scss */
+  .page-node-edit.node-type-article #main-content #content {
+    display: inline;
+    float: left;
+    overflow: hidden;
+    width: 98.607%;
+    margin-right: 2.409%;
+    margin-right: 0;
+    padding: 20px 20px;
+    margin-left: 20px!important;
+    margin-right: 20px!important;
+    display: block;
+    float: none;
+    width: auto;
+  }
+}
+@media screen and (max-width: 480px) {
+  /* line 1607, ../sass/_forms.scss */
+  .page-node-edit.node-type-article #main-content #content {
+    margin-left: 10px!important;
+    margin-right: 10px!important;
+    display: block;
+    float: none;
+    width: auto;
+  }
+}
+
+/* line 1638, ../sass/_forms.scss */
+div[class*="-image-field-caption-value"] .cke_contents {
+  max-height: 200px;
+  min-height: 150px;
 }
 
 /* user profile page */

@@ -9158,7 +9158,12 @@ div.warning {
   }
   .pane-node-author {
     a {
-      text-decoration:none;
+      text-decoration:none!important;
+    }
+  }
+  .pane-node-field-tags {
+    a {
+      text-decoration:none!important;
     }
   }
   .field-type-image {
@@ -9216,7 +9221,9 @@ div.warning {
     width:45%;
     float:left;
     margin-bottom:15px;
-
+    a {
+      text-decoration:none;
+    }
     @media screen and (max-width: $break-mobile) {
       margin-bottom:5px;
     }
@@ -9263,4 +9270,11 @@ div.warning {
       padding:6px 10px;
       margin:0 0 15px 15px;
     }
+}
+
+// comments
+.pane-comment-reply-form {
+  .item-inside {
+    display:none;
+  }
 }
