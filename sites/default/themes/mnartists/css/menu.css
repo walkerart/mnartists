@@ -594,26 +594,30 @@ input[type=submit]:hover {
   margin: 0 0 1em 0;
 }
 
-/* line 5, ../sass/_layout-c.scss */
+/* line 1, ../sass/_layout-c.scss */
+.layout-c {
+  padding: 20px 0;
+}
+/* line 6, ../sass/_layout-c.scss */
 .layout-c .panel-2col .panel-col-first {
   width: 50%;
   box-sizing: border-box;
   padding-right: 10px;
 }
 @media screen and (max-width: 480px) {
-  /* line 5, ../sass/_layout-c.scss */
+  /* line 6, ../sass/_layout-c.scss */
   .layout-c .panel-2col .panel-col-first {
     padding-right: 0;
   }
 }
-/* line 15, ../sass/_layout-c.scss */
+/* line 16, ../sass/_layout-c.scss */
 .layout-c .panel-2col .panel-col-last {
   width: 50%;
   padding-left: 10px;
   box-sizing: border-box;
 }
 @media screen and (max-width: 480px) {
-  /* line 15, ../sass/_layout-c.scss */
+  /* line 16, ../sass/_layout-c.scss */
   .layout-c .panel-2col .panel-col-last {
     padding-left: 0;
   }
@@ -2398,18 +2402,18 @@ h5.profile-title {
 .pane-mnartist-activity-activity .block-content {
   max-height: 400px;
   overflow: auto;
-}
-/* line 184, ../sass/_user-profile.scss */
-.pane-mnartist-activity-activity .item-list {
-  font-family: "adobe-text-pro", "Times New Roman", Times, serif;
   padding: 10px;
 }
-/* line 187, ../sass/_user-profile.scss */
+/* line 185, ../sass/_user-profile.scss */
+.pane-mnartist-activity-activity .item-list {
+  padding: 0px;
+}
+/* line 188, ../sass/_user-profile.scss */
 .pane-mnartist-activity-activity .item-list ul {
   margin: 0;
   padding: 0;
 }
-/* line 191, ../sass/_user-profile.scss */
+/* line 192, ../sass/_user-profile.scss */
 .pane-mnartist-activity-activity .item-list ul li {
   list-style: none;
   border-bottom: 1px solid #ccc;
@@ -2417,7 +2421,7 @@ h5.profile-title {
   padding: 0 0 10px 0;
   margin: 0 0 10px 0;
 }
-/* line 198, ../sass/_user-profile.scss */
+/* line 199, ../sass/_user-profile.scss */
 .pane-mnartist-activity-activity .item-list ul li .feed-update-node-text {
   width: 100%;
   text-overflow: ellipsis;
@@ -2425,22 +2429,22 @@ h5.profile-title {
   display: block;
   white-space: nowrap;
 }
-/* line 206, ../sass/_user-profile.scss */
+/* line 207, ../sass/_user-profile.scss */
 .pane-mnartist-activity-activity .item-list ul li .left a {
   display: none;
 }
-/* line 211, ../sass/_user-profile.scss */
+/* line 212, ../sass/_user-profile.scss */
 .pane-mnartist-activity-activity .item-list ul li .feed-update-description a {
   font-weight: bold;
 }
-/* line 218, ../sass/_user-profile.scss */
+/* line 219, ../sass/_user-profile.scss */
 .pane-mnartist-activity-activity .username {
   font-weight: bold;
 }
 
 /* */
 /* art widget on artist page */
-/* line 226, ../sass/_user-profile.scss */
+/* line 227, ../sass/_user-profile.scss */
 .pane-user-mnartist-profiles-artworks {
   -webkit-transition: all .2s ease-in-out;
   -moz-transition: all .2s ease-in-out;
@@ -2448,11 +2452,11 @@ h5.profile-title {
   transition: all .2s ease-in-out;
   max-height: 9999px;
 }
-/* line 235, ../sass/_user-profile.scss */
+/* line 236, ../sass/_user-profile.scss */
 .pane-user-mnartist-profiles-artworks .block-inner .block-content {
   background: none;
 }
-/* line 238, ../sass/_user-profile.scss */
+/* line 239, ../sass/_user-profile.scss */
 .pane-user-mnartist-profiles-artworks .block-inner .block-content dt {
   font-family: "Apercu Regular", Arial, Helvetica, sans-serif;
   font-weight: normal;
@@ -2463,7 +2467,7 @@ h5.profile-title {
   padding: 0 0 5px 0;
   margin: 0;
 }
-/* line 243, ../sass/_user-profile.scss */
+/* line 244, ../sass/_user-profile.scss */
 .pane-user-mnartist-profiles-artworks .block-inner .block-content dd {
   padding: 10px;
   background: #fff;
@@ -2475,7 +2479,7 @@ h5.profile-title {
   max-height: 9999px;
   height: auto;
 }
-/* line 254, ../sass/_user-profile.scss */
+/* line 255, ../sass/_user-profile.scss */
 .pane-user-mnartist-profiles-artworks .block-inner .block-content dd .thumbs {
   overflow-x: scroll;
   white-space: nowrap;
@@ -2485,13 +2489,13 @@ h5.profile-title {
   clear: both;
   float: none;
 }
-/* line 263, ../sass/_user-profile.scss */
+/* line 264, ../sass/_user-profile.scss */
 .pane-user-mnartist-profiles-artworks .block-inner .block-content dd .thumbs img {
   margin-right: 20px;
   height: 120px;
   width: auto;
 }
-/* line 270, ../sass/_user-profile.scss */
+/* line 271, ../sass/_user-profile.scss */
 .pane-user-mnartist-profiles-artworks .block-inner .block-content dd .large-display {
   -webkit-transition: all .2s ease-in-out;
   -moz-transition: all .2s ease-in-out;
@@ -2500,7 +2504,7 @@ h5.profile-title {
   max-height: 999px;
   height: auto;
 }
-/* line 278, ../sass/_user-profile.scss */
+/* line 279, ../sass/_user-profile.scss */
 .pane-user-mnartist-profiles-artworks .block-inner .block-content dd .large-display .slide {
   width: 100%;
   -webkit-transition: all .2s ease-in-out;
@@ -2509,18 +2513,18 @@ h5.profile-title {
   transition: all .2s ease-in-out;
   max-height: 999px;
 }
-/* line 286, ../sass/_user-profile.scss */
+/* line 287, ../sass/_user-profile.scss */
 .pane-user-mnartist-profiles-artworks .block-inner .block-content dd .large-display .slide .content {
   clear: both;
   margin-bottom: 20px;
 }
-/* line 289, ../sass/_user-profile.scss */
+/* line 290, ../sass/_user-profile.scss */
 .pane-user-mnartist-profiles-artworks .block-inner .block-content dd .large-display .slide .content a {
   text-align: center;
   display: block;
   background: #fcfcfc;
 }
-/* line 293, ../sass/_user-profile.scss */
+/* line 294, ../sass/_user-profile.scss */
 .pane-user-mnartist-profiles-artworks .block-inner .block-content dd .large-display .slide .content a img {
   max-width: 100%;
   height: auto;
@@ -2529,7 +2533,7 @@ h5.profile-title {
   margin: 0 auto;
   display: block;
 }
-/* line 303, ../sass/_user-profile.scss */
+/* line 304, ../sass/_user-profile.scss */
 .pane-user-mnartist-profiles-artworks .block-inner .block-content dd .large-display .slide .left {
   float: left;
   width: 45%;
@@ -2537,45 +2541,45 @@ h5.profile-title {
   font-family: "adobe-text-pro", "Times New Roman", Times, serif;
   position: relative;
 }
-/* line 310, ../sass/_user-profile.scss */
+/* line 311, ../sass/_user-profile.scss */
 .pane-user-mnartist-profiles-artworks .block-inner .block-content dd .large-display .slide .left a {
   font-size: 18px;
   display: block;
   border-bottom: 1px solid #999;
   margin-bottom: 10px;
 }
-/* line 317, ../sass/_user-profile.scss */
+/* line 318, ../sass/_user-profile.scss */
 .pane-user-mnartist-profiles-artworks .block-inner .block-content dd .large-display .slide .left .user-profile-slideshow-star {
   position: absolute;
   right: 0;
   top: -6px;
 }
-/* line 324, ../sass/_user-profile.scss */
+/* line 325, ../sass/_user-profile.scss */
 .pane-user-mnartist-profiles-artworks .block-inner .block-content dd .large-display .slide .left .menu a {
   font-size: 12px;
   display: inline-block;
   margin: 0;
   border-bottom: none;
 }
-/* line 333, ../sass/_user-profile.scss */
+/* line 334, ../sass/_user-profile.scss */
 .pane-user-mnartist-profiles-artworks .block-inner .block-content dd .large-display .slide .left .views-field-title a {
   padding-bottom: 8px;
   padding-right: 25px;
 }
-/* line 339, ../sass/_user-profile.scss */
+/* line 340, ../sass/_user-profile.scss */
 .pane-user-mnartist-profiles-artworks .block-inner .block-content dd .large-display .slide .right {
   float: right;
   width: 45%;
   vertical-align: top;
 }
-/* line 344, ../sass/_user-profile.scss */
+/* line 345, ../sass/_user-profile.scss */
 .pane-user-mnartist-profiles-artworks .block-inner .block-content dd .large-display .slide .right:after {
   content: "";
   display: block;
   float: none;
   clear: both;
 }
-/* line 351, ../sass/_user-profile.scss */
+/* line 352, ../sass/_user-profile.scss */
 .pane-user-mnartist-profiles-artworks .block-inner .block-content dd .large-display .slide:after {
   content: "";
   clear: both;
@@ -2585,7 +2589,7 @@ h5.profile-title {
 
 /* end artwork widgeet */
 /* artist bio stuff (in the tabs( */
-/* line 367, ../sass/_user-profile.scss */
+/* line 368, ../sass/_user-profile.scss */
 .profile-label {
   display: block;
   font-family: "Apercu Regular", Arial, Helvetica, sans-serif;
@@ -2596,7 +2600,7 @@ h5.profile-title {
   text-transform: uppercase;
 }
 
-/* line 372, ../sass/_user-profile.scss */
+/* line 373, ../sass/_user-profile.scss */
 .profile-city-state {
   font-family: "Apercu Regular", Arial, Helvetica, sans-serif;
   text-transform: uppercase;
@@ -2605,30 +2609,30 @@ h5.profile-title {
 
 /* */
 /* collection menu on my stuff pages */
-/* line 385, ../sass/_user-profile.scss */
+/* line 386, ../sass/_user-profile.scss */
 .my-stuff .user-feed-message-star ul.menu li ul {
   background: #f2f2f2;
 }
-/* line 388, ../sass/_user-profile.scss */
+/* line 389, ../sass/_user-profile.scss */
 .my-stuff .user-feed-message-star ul.menu li ul li a {
   color: #666!important;
 }
-/* line 393, ../sass/_user-profile.scss */
+/* line 394, ../sass/_user-profile.scss */
 .my-stuff .user-feed-message-star ul.menu li:hover {
   background: #f2f2f2;
 }
-/* line 397, ../sass/_user-profile.scss */
+/* line 398, ../sass/_user-profile.scss */
 .my-stuff .user-feed-message-star ul.menu hr {
   background: #ccc;
 }
 
-/* line 405, ../sass/_user-profile.scss */
+/* line 406, ../sass/_user-profile.scss */
 body.my-stuff.welcome {
   /*background: url('../images/bg-my-stuff-welcome.jpg') no-repeat center center #3f3f3f;
   background-size:cover;*/
 }
 
-/* line 410, ../sass/_user-profile.scss */
+/* line 411, ../sass/_user-profile.scss */
 .user-welcome {
   color: #fff;
   text-align: left;
@@ -2647,7 +2651,7 @@ body.my-stuff.welcome {
   margin-top: 20px;
 }
 @media screen and (max-width: 480px) {
-  /* line 410, ../sass/_user-profile.scss */
+  /* line 411, ../sass/_user-profile.scss */
   .user-welcome {
     display: inline;
     float: left;
@@ -2657,7 +2661,7 @@ body.my-stuff.welcome {
   }
 }
 @media screen and (max-width: 768px) {
-  /* line 410, ../sass/_user-profile.scss */
+  /* line 411, ../sass/_user-profile.scss */
   .user-welcome {
     display: inline;
     float: left;
@@ -2666,7 +2670,7 @@ body.my-stuff.welcome {
     margin-right: 2.409%;
   }
 }
-/* line 429, ../sass/_user-profile.scss */
+/* line 430, ../sass/_user-profile.scss */
 .user-welcome h2 {
   font-size: 30px;
   text-transform: none;
@@ -2679,18 +2683,18 @@ body.my-stuff.welcome {
   line-height: 34px;
   height: auto;
 }
-/* line 441, ../sass/_user-profile.scss */
+/* line 442, ../sass/_user-profile.scss */
 .user-welcome .done-link {
   color: #fff;
   margin-bottom: 30px;
   display: inline-block;
 }
-/* line 445, ../sass/_user-profile.scss */
+/* line 446, ../sass/_user-profile.scss */
 .user-welcome .done-link input {
   margin-right: 8px;
 }
 
-/* line 450, ../sass/_user-profile.scss */
+/* line 451, ../sass/_user-profile.scss */
 .welcome-list {
   margin: 0;
   padding: 0;
@@ -2698,7 +2702,7 @@ body.my-stuff.welcome {
   margin-bottom: 30px;
   overflow: hidden;
 }
-/* line 457, ../sass/_user-profile.scss */
+/* line 458, ../sass/_user-profile.scss */
 .welcome-list li {
   display: inline;
   float: left;
@@ -2708,34 +2712,34 @@ body.my-stuff.welcome {
   padding-top: 40px;
   margin-bottom: 30px;
 }
-/* line 462, ../sass/_user-profile.scss */
+/* line 463, ../sass/_user-profile.scss */
 .welcome-list li.welcome-artists {
   background: url("../images/icon-welcome-user.png") no-repeat left top transparent;
 }
-/* line 465, ../sass/_user-profile.scss */
+/* line 466, ../sass/_user-profile.scss */
 .welcome-list li.welcome-collect {
   background: url("../images/icon-welcome-star.png") no-repeat left top transparent;
 }
-/* line 468, ../sass/_user-profile.scss */
+/* line 469, ../sass/_user-profile.scss */
 .welcome-list li.welcome-articles {
   margin-right: 0;
   background: url("../images/icon-welcome-doc.png") no-repeat left top transparent;
 }
-/* line 472, ../sass/_user-profile.scss */
+/* line 473, ../sass/_user-profile.scss */
 .welcome-list li.welcome-artwork {
   background: url("../images/icon-welcome-artwork.png") no-repeat left top transparent;
 }
-/* line 475, ../sass/_user-profile.scss */
+/* line 476, ../sass/_user-profile.scss */
 .welcome-list li.welcome-opportunities {
   background: url("../images/icon-welcome-hand.png") no-repeat left top transparent;
 }
-/* line 478, ../sass/_user-profile.scss */
+/* line 479, ../sass/_user-profile.scss */
 .welcome-list li.welcome-events {
   margin-right: 0;
   background: url("../images/icon-welcome-calendar.png") no-repeat left top transparent;
 }
 @media screen and (max-width: 480px) {
-  /* line 457, ../sass/_user-profile.scss */
+  /* line 458, ../sass/_user-profile.scss */
   .welcome-list li {
     display: inline;
     float: left;
