@@ -138,7 +138,7 @@ function artist_community_search_page() {
         $from_the_network_filter = new SearchApiQueryFilter;
         $from_the_network_filter->condition('type', 'from_the_network_item');
         $from_the_network_filters[] = $from_the_network_filter;
-        if ($local_og !== null) {
+        if (!is_null($local_og)) {
             $from_the_network_filters = array_merge($from_the_network_filters, $filters);
         }
         $from_the_network_result = artist_community_execute_query(NODE_INDEX, $from_the_network_filters, array(array('promote', 'ASC'), array('changed', 'ASC')));
@@ -148,15 +148,15 @@ function artist_community_search_page() {
                 break;
             }
             $post_data = new StdClass();
-            $context_post->nid = $post->nid;
-            $context_post->title = $post->title;
+            $post_data->nid = $post->nid;
+            $post_data->title = $post->title;
             if (isset($post->field_images['und'])) {
-                $context_post->image_url = image_style_url('medium', $post->field_images['und'][0]['uri']);
+                $post_data->image_url = image_style_url('from_the_network', $post->field_images['und'][0]['uri']);
             }
-            $context_post->subheader = (isset($post->field_subheader['und'])) ? $post->field_subheader['und'][0]['value'] : '';
-            $context_post->url = (isset($post->field_url['und'])) ? $post->field_url['und'][0]['value'] : '';
-            $context_post->source = (isset($post->field_url['und'])) ? $post->field_url['und'][0]['title'] : '';
-            $from_the_network_posts[] = $context_post;
+            $post_data->subheader = (isset($post->field_subheader['und'])) ? $post->field_subheader['und'][0]['value'] : '';
+            $post_data->url = (isset($post->field_url['und'])) ? $post->field_url['und'][0]['value'] : '';
+            $post_data->source = (isset($post->field_url['und'])) ? $post->field_url['und'][0]['title'] : '';
+            $from_the_network_posts[] = $post_data;
             $from_the_network_i++;
         }
 
