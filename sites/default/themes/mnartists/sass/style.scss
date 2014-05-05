@@ -7638,10 +7638,13 @@ li.collect-this, li.add-this {
 
     }
     .network-source {
-
+      text-transform: uppercase;
+      color: #888;
+      font-size: 11px;
     }
     .network-title {
-
+      font-weight:normal;
+      font-family: $sans_bold_font;
     }
   }
 }
@@ -9142,6 +9145,7 @@ div.warning {
 // image caption
 .image-field-caption {
   margin:0;
+  color:#808080;
 }
 .article-page {
   .main-content,
@@ -9152,6 +9156,11 @@ div.warning {
         padding-top:0px;
     }
   }
+  .pane-node-author {
+    a {
+      text-decoration:none;
+    }
+  }
   .field-type-image {
     margin-bottom:1.5em;
 
@@ -9159,7 +9168,7 @@ div.warning {
       text-align:center;
 
       img {
-        margin:0 auto;
+        margin:0;
         display:block;
         max-width:100%;
         width:auto;
