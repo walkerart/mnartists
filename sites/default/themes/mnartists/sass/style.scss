@@ -7452,6 +7452,10 @@ li.collect-this, li.add-this {
     clear: both;
     height: 600px; /* tmp should it be variable? */
 
+    @media screen and (max-width: $break-tablet) {
+      height:auto;
+    }
+
     .article-detail {
         float: left;
         background-color: white;
@@ -7531,6 +7535,7 @@ li.collect-this, li.add-this {
             float:none;
             display:block;
             clear:both;
+            padding-left:0px;
         }
 
         ul {
@@ -7624,7 +7629,21 @@ li.collect-this, li.add-this {
 
 /* from the network */
 .from-the-network-thing {
-    padding-top:20px;
+  padding-top:20px;
+  h3 {
+
+  }
+  .network-post {
+    a {
+
+    }
+    .network-source {
+
+    }
+    .network-title {
+
+    }
+  }
 }
 /* */
 
