@@ -180,10 +180,11 @@ h5.profile-title {
     .block-content {
         max-height:400px;
         overflow:auto;
+				padding:10px;
     }
 	.item-list {
 		font-family: $serif_font;
-		padding:10px;
+		padding:0px;
 		ul {
 			margin:0;
 			padding:0;
@@ -386,16 +387,16 @@ h5.profile-title {
                     background:$main_bg;
                     li {
                         a {
-                            color:#666!important;   
+                            color:#666!important;
                         }
                     }
                 }
                 &:hover {
-                    background:$main_bg;   
+                    background:$main_bg;
                 }
             }
             hr {
-                background:#ccc;   
+                background:#ccc;
             }
         }
     }
@@ -418,14 +419,14 @@ body.my-stuff.welcome {
     overflow:visible;
     box-sizing:border-box;
     margin-top:20px;
-    
+
     @media screen and (max-width: $break-mobile) {
         @include column(24);
     }
     @media screen and (max-width: $break-tablet) {
-        @include column(24);   
+        @include column(24);
     }
-    
+
     h2 {
         font-size:30px;
         text-transform:none;
@@ -453,12 +454,12 @@ body.my-stuff.welcome {
     border-bottom:1px solid #fff;
     margin-bottom:30px;
     overflow:hidden;
-    
+
     li {
         @include column(8);
         padding-top:40px;
         margin-bottom:30px;
-        
+
         &.welcome-artists {
             background: url('../images/icon-welcome-user.png') no-repeat left top transparent;
         }
@@ -479,10 +480,10 @@ body.my-stuff.welcome {
             @include last;
             background: url('../images/icon-welcome-calendar.png') no-repeat left top transparent;
         }
-        
+
         @media screen and (max-width: $break-mobile) {
             @include column(12);
         }
-        
+
     }
 }
