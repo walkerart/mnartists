@@ -1601,8 +1601,13 @@ fieldset.collapsible {
 // ON THE ARTICLE EDIT PAGE ONLY
 .page-node-edit.node-type-article {
   #main-content {
+    margin-left:20px;
+    margin-right:20px;
+    
     #content {
       @include column(24);
+      margin-left:0px;
+      margin-right:0px;
     }
   }
 }
