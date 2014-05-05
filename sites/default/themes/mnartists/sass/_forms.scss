@@ -1603,7 +1603,7 @@ fieldset.collapsible {
   #main-content {
     box-sizing:border-box;
     @include container;
-    
+
     #content {
       @include column(24);
       @include last;
@@ -1630,5 +1630,13 @@ fieldset.collapsible {
           width:auto;
       }
     }
+  }
+}
+
+// image caption when editing
+div[class*="-image-field-caption-value"] {
+  .cke_contents {
+    max-height:200px;
+    min-height:150px;
   }
 }
