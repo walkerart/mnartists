@@ -7544,7 +7544,14 @@ li.collect-this, li.add-this {
                 border-bottom:1px dotted $lightgray;
                 padding: 1em;
                 cursor:pointer;
-
+                a {
+                  color: #808080;
+                  text-decoration:none;
+                  
+                  &:hover {
+                    color:#222;
+                  }
+                }
                 h4 {
                     margin: 0; padding: 0;
                     text-transform:uppercase;
