@@ -61,6 +61,7 @@
         // update columnWidth on window resize
         $(window).smartresize(function(){
             var container = $('#search-results');
+            var allItems = contentContainer.find('.item');
             container.masonry({
                 columnWidth: '.item',
                 itemSelector: '.item'
