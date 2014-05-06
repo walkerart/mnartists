@@ -5591,7 +5591,7 @@ only screen and (min-device-pixel-ratio: 1.5) {
 }
 .event-content {
   .event-content-top {
-    margin-bottom:0px;
+    margin-bottom:0px!important;
   }
 }
 .event-content-top .field-name-field-category ul {
@@ -5611,7 +5611,7 @@ only screen and (min-device-pixel-ratio: 1.5) {
             @include quiet_type;
             @include no_break;
             @include rounded;
-            text-decoration:none;
+            text-decoration:none!important;
         }
 
     }
