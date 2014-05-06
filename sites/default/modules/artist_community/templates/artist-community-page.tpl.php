@@ -109,7 +109,7 @@
                                 <img src="<?= $post->image_url ?>" title="<?= $post->title ?>">
                             </a>
                             <div class="network-source"><?= $post->source ?></div>
-                            <div class="network-title"><?= $post->title ?></div>
+                            <div class="network-title"><a href="<?= $post->url ?>" target="_blank"><?= $post->title ?></a></div>
                         </div>
                     <?php } ?>
                 </div>
