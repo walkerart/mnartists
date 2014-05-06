@@ -52,6 +52,26 @@ function mnartist_article_block_view($delta = '') {
     return $block;
 }
 
+function mnartist_article_element_info_alter(&$type) {
+    if (isset($type['text_format']['#process'])) {
+        foreach ($type['text_format']['#process'] as &$callback) {
+            if ($callback === 'filter_process_format') {
+                $callback = 'mnartist_article_filter_process_format';
+            }
+        }
+    }
+}
+
+function mnartist_article_filter_process_format($element) {
+    $element = filter_process_format($element);
+    // if this is an article then force the format on the body
+    // field to filtered_html_b (Article Text)
+    if (isset($element['#bundle']) && $element['#bundle'] === 'article' && $element['#field_name'] === 'field_body') {
+        $element['format']['format']['#default_value'] = 'filtered_html_b';
+    }
+    return $element;
+}
+
 /**
  * @return
  * returns a sidebar block for use in single article
