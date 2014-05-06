@@ -5568,7 +5568,30 @@ only screen and (min-device-pixel-ratio: 1.5) {
     }
 }
 .event-content {
-
+  @include container;
+  .main-content {
+    width:75%;
+    @media screen and (max-width: $break-tablet) {
+      width:100%;
+      float:none;
+      display:block;
+      margin-bottom:20px;
+    }
+  }
+  .sidebar-right {
+    width:25%;
+    @media screen and (max-width: $break-tablet) {
+      float:left;
+      width:100%;
+      float:none;
+      display:block;
+    }
+  }
+}
+.event-content {
+  .event-content-top {
+    margin-bottom:0px;
+  }
 }
 .event-content-top .field-name-field-category ul {
     margin:0;padding:0;
@@ -5587,6 +5610,7 @@ only screen and (min-device-pixel-ratio: 1.5) {
             @include quiet_type;
             @include no_break;
             @include rounded;
+            text-decoration:none;
         }
 
     }
