@@ -132,7 +132,7 @@
                             $start_year = $context_data['field_work_start_date']['item'][0]['from']['year'];
                             $end_year = $context_data['field_work_end_date']['item'][0]['from']['year'];
                             ?>
-                            <p><?= $start_year ?> to <?= $end_year ?>  <?= $edu['field_degree'][0]['#markup'] ?>, <?= $edu['field_areas_of_study'][0]['#markup'] ?>, <?= $edu['field_school'][0]['#markup'] ?></p>
+                            <p><?= $start_year ?><?php if(!empty($end_year)) { ?> to <?= $end_year ?><?php } ?>  <?= $edu['field_degree'][0]['#markup'] ?> in <?= $edu['field_areas_of_study'][0]['#markup'] ?>, <?= $edu['field_school'][0]['#markup'] ?></p>
                     <?php }
                     } ?>
                 </div>
