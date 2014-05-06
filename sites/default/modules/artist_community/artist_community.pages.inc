@@ -16,7 +16,7 @@ function artist_community_search_page() {
     $output         = '';
     $articles_data  = array();
     $from_the_network_posts = array();
-    $from_the_network_limit = 4;
+    $from_the_network_limit = 3;
     $events_data    = array();
     $all_results    = array();
     $kill_content   = false;
