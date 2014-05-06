@@ -75,6 +75,11 @@
             <div class="all-artworks">
                 <a href="/community?content[artwork]=1&global_search=<?= $context_user->name ?>">All Artworks</a>
             </div>
+            <?php if ($user->uid === $context_user->uid || in_array('administrator', $user->roles)) { ?>
+                <div class="edit-button">
+                    <a href="/user/<?= $context_user->uid ?>/edit">Edit</a>
+                </div>
+            <?php } ?>
         </div>
     </div>
 </div>
@@ -190,11 +195,6 @@
                 </div>
             <?php } ?>
         </div>
-    </div>
-<?php } ?>
-<?php if ($user->uid === $context_user->uid || in_array('administrator', $user->roles)) { ?>
-    <div class="edit-button">
-        <a href="/user/<?= $context_user->uid ?>/edit">Edit</a>
     </div>
 <?php } ?>
 <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/themes/base/jquery-ui.css" type="text/css" media="all" />
