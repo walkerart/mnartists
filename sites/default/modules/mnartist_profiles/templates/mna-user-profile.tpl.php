@@ -192,7 +192,7 @@
         </div>
     </div>
 <?php } ?>
-<?php if ($user->uid === $context_user->uid) { ?>
+<?php if ($user->uid === $context_user->uid || in_array('administrator', $user->roles)) { ?>
     <div class="edit-button">
         <a href="/user/<?= $context_user->uid ?>/edit">Edit</a>
     </div>
