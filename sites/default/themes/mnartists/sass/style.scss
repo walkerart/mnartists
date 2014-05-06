@@ -8758,6 +8758,17 @@ li.collect-this, li.add-this {
             display:block;float:none;
             text-align:left;
 
+            .user-list {
+
+              li {
+                @include column(8);
+
+                &:nth-child(3n+3) {
+                  margin-right:0px;
+                }
+              }
+            }
+
             .edit-controls {
               text-align:right;
               position:absolute;
