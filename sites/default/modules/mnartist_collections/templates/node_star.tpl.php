@@ -11,7 +11,7 @@
         ?>
         <ul class='menu<?= $is_flagged ? " collected" : "" ?>'>
             <li class='first'>
-                <a href='#' class='star-link'><img src='/sites/default/themes/mnartists/images/fav-star.svg' class='star-icon' alt="flag this" /></a>
+                <a class='star-link'><img src='/sites/default/themes/mnartists/images/fav-star.svg' class='star-icon' alt="flag this" /></a>
                 <ul>
                     <li class='collect-this'><?= flag_create_link('collections', $node_id) ?></li>
                     <hr>

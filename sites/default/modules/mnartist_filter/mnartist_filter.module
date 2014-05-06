@@ -223,7 +223,7 @@ function _mnartist_filter_create_filter()
 		$output .= '</form>';
 	$output .= '</div>';
     $output .= "<ul class='menu'>";
-        $output .= "<li class='first'><a href='#' class='star-link";
+        $output .= "<li class='first'><a class='star-link";
         if(isset($record['fid']))
         {
             $output .= " active";
