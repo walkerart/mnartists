@@ -5370,15 +5370,35 @@ only screen and (min-device-pixel-ratio: 1.5) {
         }
     }
 }
+/* artwork edit button */
+.layout-g {
+  .edit-button {
+    a {
+      margin:20px 0 20px 0;
+      color:#fff!important;
+      text-decoration:none!important;
+      display:inline-block;
+    }
+  }
+}
 
 /* event page */
 /******************************************/
+.event-content {
+  .main-content {
+    .inset-wrapper {
+      margin-left:0px;
+      margin-right:0px;
+    }
+  }
+}
 .node-type-event {
   .edit-button {
     a {
       margin:20px 0 20px 0;
-      color:#fff;
-      text-decoration:none;
+      color:#fff!important;
+      text-decoration:none!important;
+      display:inline-block;
     }
   }
     .event-date {
@@ -5548,7 +5568,31 @@ only screen and (min-device-pixel-ratio: 1.5) {
     }
 }
 .event-content {
+  width:100%;
 
+  .main-content {
+    width:75%;
+    @media screen and (max-width: $break-desktop-small) {
+      width:100%;
+      float:none;
+      display:block;
+      margin-bottom:20px;
+    }
+  }
+  .sidebar-right {
+    width:25%;
+    @media screen and (max-width: $break-desktop-small) {
+      float:left;
+      width:100%;
+      float:none;
+      display:block;
+    }
+  }
+}
+.event-content {
+  .event-content-top {
+    margin-bottom:0px!important;
+  }
 }
 .event-content-top .field-name-field-category ul {
     margin:0;padding:0;
@@ -5563,10 +5607,13 @@ only screen and (min-device-pixel-ratio: 1.5) {
             position: relative;
             clear: both;
             height: 15px;
-            margin: 9px 0;
+            margin: 0;
+            display:block;
             @include quiet_type;
             @include no_break;
             @include rounded;
+            text-decoration:none!important;
+            color:gray;
         }
 
     }
@@ -6920,6 +6967,14 @@ ul.slidesjs-pagination {
 }
 /* */
 
+/* user profile */
+.pane-mnartist-profiles-mna-user-profile {
+  .edit-button {
+    a {
+      display:inline-block;
+    }
+  }
+}
 
 .social-links {
     padding:10px 0 20px 0;

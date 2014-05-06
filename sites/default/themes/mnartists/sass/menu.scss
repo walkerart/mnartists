@@ -26,7 +26,7 @@
 	.block-mnartist-filter {
 		margin-bottom:0;
 	}
-    
+
 	.search-container {
 		display:block;
 		margin:0;
@@ -126,7 +126,7 @@
                 position:absolute;
                 top:0px;
                 right:0px;
-                
+
             }
 			.item-list {
 				display:none;
@@ -293,8 +293,8 @@
 		a {
 			display:block;
 			line-height:1em;
-            // @include sans_bold_font;
-			font-weight:bold;
+      font-family:$sans_bold_font;
+			font-weight:normal;
 			padding:10px 0;
 			text-align:center;
 			background-image:none;
@@ -438,7 +438,7 @@ p.site-description {
 								border-bottom:none;
 								margin-bottom:0;
 							}
-							
+
 							&:first-child {
 								border-top:none;
 							}
@@ -447,7 +447,7 @@ p.site-description {
 					}
 				}
                 &:last-child {
-                    border-bottom:none;   
+                    border-bottom:none;
                 }
 			}
 			li.first {
@@ -470,7 +470,7 @@ p.site-description {
         }
 		ul.my-stuff-menu,
         ul.my-stuff-edit-menu {
-			
+
 			li.last {
 				position:relative;
 
