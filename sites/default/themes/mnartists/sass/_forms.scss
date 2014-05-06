@@ -1224,12 +1224,6 @@ div.entityconnect-edit {
 
 
 // add venue only
-.field-name-field-venue-form .form-wrapper .form-item.form-type-textfield .entityconnect-edit {
-  z-index:999;
-}
-.field-name-field-venue-form .form-wrapper .form-item.form-type-textfield .entityconnect-add {
-  z-index:998;
-}
 .node-venue-form {
     .field-name-field-public-form,
     .field-type-taxonomy-term-reference-form {
@@ -1245,6 +1239,12 @@ div.entityconnect-edit {
 
 
 // add event form only
+.field-name-field-venue-form.form-wrapper .form-item.form-type-textfield .entityconnect-edit {
+  z-index:999;
+}
+.field-name-field-venue-form.form-wrapper .form-item.form-type-textfield .entityconnect-add {
+  z-index:998;
+}
 .node-event-form {
     .field-name-field-category-form,
     .field-name-field-date-form,
