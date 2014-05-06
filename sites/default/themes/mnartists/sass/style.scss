@@ -5374,7 +5374,17 @@ only screen and (min-device-pixel-ratio: 1.5) {
 /* event page */
 /******************************************/
 .node-type-event {
+  .edit-button {
+    a {
+      margin:20px 0 20px 0;
+      color:#fff;
+      text-decoration:none;
+    }
+  }
     .event-date {
+      padding-left:10px;
+      padding-right:10px;
+
         .panel-separator {
             display:none;
         }
@@ -6146,7 +6156,7 @@ body.page-node-edit {
         .flag-wrapper {
           position: absolute;
           right: 5px;
-          
+
           a {
             border-radius:0px;
             border-radius:0px;
