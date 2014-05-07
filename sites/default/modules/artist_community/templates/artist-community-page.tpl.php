@@ -154,7 +154,7 @@
                                     </a>
                                 </li>
                             <?php } ?>
-                            <li class="user-thing-more"><a href="/community?content[artists]=1&?sort=recent&sort_direction=DESC<?php if ($og_get_string != '') { echo "&$og_get_string"; } ?>" style="font-size: 4em;">&#709;</a></li>
+                            <li class="user-thing-more"><a href="/community?content[artists]=1&?sort=recent&sort_direction=DESC<?php if ($og_get_string != '') { echo "&$og_get_string"; } ?>" style="font-size: 4em;">More</a></li>
                         </ul>
                         </div>
                     </div>
