@@ -8773,11 +8773,12 @@ li.collect-this, li.add-this {
     }
 }
 .rename-filter-editing-state {
+  background:$main_bg;
+  padding:10px;
   form {
     input[type=text] {
       outline:none!important;
-      border:none!important;
-      background:#f2f2f2!important;
+      background:#ffffff!important;
       color:$main_color;
       padding:5px!important;
       margin:0;
@@ -8795,11 +8796,10 @@ li.collect-this, li.add-this {
       background:#222;
       border:none;
       outline:none;
-      text-transform:uppercase;
       font-size:11px;
       padding:5px;
       margin-top:10px;
-      font-family:$sans_bold_font;
+      font-family:$sans_regular_font;
       font-weight:normal;
     }
   }
