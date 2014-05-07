@@ -1,0 +1,526 @@
+<?php
+
+function mnartist_register_menu() {
+
+    // endpoint for downloading user resume
+    $items['user/migrate'] = array(
+        'page callback'     => 'mnartist_register_migrate',
+        'page arguments'    => array(),
+        'access callback'   => TRUE,
+        'type'              => MENU_CALLBACK,
+    );
+
+    return $items;
+
+}
+
+function mnartist_register_mnartist_register_redirect() {
+    global $user;
+
+    $redirect = null;
+
+    //Check if user email had an account previously. if so redirect to migrate page
+    // if (_mnartist_register_check_for_legacy_account($user->mail)) {
+        $redirect = 'user/' . $user->uid . '/migrate';
+    // }
+
+    return $redirect;
+}
+
+function mnartist_register_migrate() {
+    global $user;
+
+    return '<h1>User Migration</h1>' . drupal_render(drupal_get_form('mnartist_register_user_form'));
+}
+
+function mnartist_register_user_form() {
+    global $user;
+
+    return array(
+        'username' => array(
+            '#type' => 'textfield',
+            '#title' => t('Username'),
+            '#default_value' => $user->mail,
+            '#required' => true
+        ),
+        'password' => array(
+            '#type' => 'password',
+            '#title' => t('Password'),
+            '#default_value' => '',
+            '#required' => true
+        ),
+        'submit' => array(
+            '#type' => 'submit',
+            '#value' => t('Import')
+        )
+    );
+}
+
+function mnartist_register_user_form_validate($form, &$form_state) {
+    $dbh = ConnectionFactory::getFactory()->getConnection();
+
+    $stmt = $dbh->prepare("SELECT * FROM t_user WHERE username = :username AND password = :password");
+    $stmt->bindParam(":username", $form_state['values']['username']);
+    $stmt->bindParam(":password", $form_state['values']['password']);
+    $stmt->execute();
+
+    $result = $stmt->fetchAll();
+
+    if (count($result) < 1) {
+        form_set_error('username', 'No account found for those credentials.');
+    }
+}
+
+function mnartist_register_user_form_submit($form, &$form_state) {
+
+    $batch = array(
+        'operations' => array(
+            array('_mnartist_register_batch_handler', array('getUserData', array(
+                'username' => trim($form_state['values']['username']),
+                'password' => trim($form_state['values']['password'])))),
+            array('_mnartist_register_batch_handler', array('loadMainProfile', array())),
+            array('_mnartist_register_batch_handler', array('loadResume', array())),
+            array('_mnartist_register_batch_handler', array('loadWorks', array())),
+        ),
+        'finished' => '_mnartist_register_batch_finished',
+        'title' => t('MNArtists Account Import'),
+        'init_message' => t('MNArtists Account Import is starting.'),
+        'progress_message' => t('Processed @current out of @total.'),
+        'error_message' => t('MNArtists Account Import has encountered an error.'),
+    );
+
+    batch_set($batch);
+}
+
+function _mnartist_register_batch_handler($action, $data, &$context) {
+
+    switch($action) {
+        case 'getUserData':
+            $legacyData = _mnartist_register_get_user_data(
+                $data['username'],
+                $data['password']
+            );
+            $context['results']['legacyData'] = $legacyData;
+            $context['finished'] = 1;
+            break;
+        case 'loadMainProfile':
+            _mnartist_load_user_profile_data($context['results']['legacyData']);
+            $context['finished'] = 1;
+            break;
+        case 'loadResume':
+            _mnartist_load_resume_profile_data($context['results']['legacyData']);
+            $context['finished'] = 1;
+            break;
+        case 'loadWorks':
+            if (!isset($context['sandbox']['progress'])) {
+                $context['sandbox']['progress'] = 0;
+                $context['sandbox']['max'] = count($context['results']['legacyData']['work']);
+            }
+
+            $work = $context['results']['legacyData']['work'][$context['sandbox']['progress']];
+            _mnartist_register_import_work($work);
+
+            $context['sandbox']['progress']++;
+            $context['finished'] = $context['sandbox']['progress'] / $context['sandbox']['max'];
+            break;
+    }
+}
+
+function _mnartist_register_batch_finished($success, $results, $operations) {
+    if ($success) {
+        drupal_set_message('MNArtists Account data successfully imported.');
+    }
+    else {
+        // An error occurred.
+        // $operations contains the operations that remained unprocessed.
+        $error_operation = reset($operations);
+        $message = t('An error occurred while processing %error_operation with arguments: @arguments', array('%error_operation' => $error_operation[0], '@arguments' => print_r($error_operation[1], TRUE)));
+        drupal_set_message($message, 'error');
+    }
+}
+
+function _mnartist_load_user_profile_data($legacyData) {
+    global $user;
+
+    if (isset($legacyData['artist']['files']) && count($legacyData['artist']['files'])) {
+        $image = system_retrieve_file($legacyData['artist']['files'][0]['uri'], 'public://pictures/' . $legacyData['artist']['files'][0]['filename'], TRUE, FILE_EXISTS_REPLACE);
+        if ($image) {
+            $saveData = array(
+                'picture' => $image
+            );
+            user_save($user, $saveData);
+        }
+    }
+
+    $mainProfile = profile2_load_by_user($user, 'main');
+    if (!$mainProfile) {
+         $mainProfile = profile_create(array('type' => 'main', 'uid' => $user->uid));
+         $mainProfile->bundle = 'main';
+         profile2_save($mainProfile);
+    }
+
+    if (strlen(trim($legacyData['firstname'])) || strlen(trim($legacyData['lastname']))) {
+        if (isset($mainProfile->field_full_name) && count($mainProfile->field_full_name)) {
+            //update field
+        } else {
+            $fc = entity_create('field_collection_item', array(
+                'field_name' => 'field_full_name',
+                'field_first_name' => array(
+                    LANGUAGE_NONE => array(array('value' => trim($legacyData['firstname'])))
+                ),
+                'field_last_name' => array(
+                    LANGUAGE_NONE => array(array('value' => trim($legacyData['lastname'])))
+                )
+            ));
+            $fc->setHostEntity('profile2', $mainProfile);
+            $fc->save();
+        }
+    }
+
+    if (isset($legacyData['artist'])) {
+        $artistData = $legacyData['artist'];
+        if (_mnartist_register_validate_field($artistData, 'gender')) {
+            $mainProfile->field_gender = array(LANGUAGE_NONE => array(array('value' => strtolower($artistData['gender']))));
+        }
+
+        if (_mnartist_register_validate_field($artistData, 'pseudonym')) {
+            $mainProfile->field_pseudonym = array(LANGUAGE_NONE => array(array('value' => $artistData['pseudonym'])));
+        }
+
+        if (_mnartist_register_validate_field($artistData, 'birthlocation')) {
+            $mainProfile->field_birthplace = array(LANGUAGE_NONE => array(array('value' => $artistData['birthlocation'])));
+        }
+
+        if (_mnartist_register_validate_field($artistData, 'birthdate')) {
+            $mainProfile->field_birthdate = array(LANGUAGE_NONE => array(array(
+                'value' => strtolower($artistData['birthdate'] . ' 00:00:00'
+            ))));
+        }
+
+        if (_mnartist_register_validate_field($artistData, 'qualificationtext')) {
+            $mainProfile->field_bio = array(LANGUAGE_NONE => array(array(
+                'value' => trim($artistData['qualificationtext']),
+                'format' => 'filtered_html'
+            )));
+        }
+
+        if (isset($artistData['contact']) && count($artistData['contact'])) {
+            $contactData = $artistData['contact'];
+
+            if (_mnartist_register_validate_field($contactData, 'lineone')) {
+                $address = trim(trim($contactData['lineone']) . ' ' . trim($contactData['linetwo']));
+                $mainProfile->field_address = array(LANGUAGE_NONE => array(array('value' => $address)));
+            }
+
+            if (_mnartist_register_validate_field($contactData, 'city')) {
+                $mainProfile->field_city = array(LANGUAGE_NONE => array(array('value' => $contactData['city'])));
+            }
+
+            if (_mnartist_register_validate_field($contactData, 'state_code')) {
+                $mainProfile->field_state = array(LANGUAGE_NONE => array(array('value' => strtoupper($contactData['state_code']))));
+            }
+
+            if (_mnartist_register_validate_field($contactData, 'zipcode')) {
+                $mainProfile->field_zip = array(LANGUAGE_NONE => array(array('value' => $contactData['zipcode'])));
+            }
+
+            if (_mnartist_register_validate_field($contactData, 'country_code')) {
+                $mainProfile->field_country = array(LANGUAGE_NONE => array(array('value' => strtoupper($contactData['country_code']))));
+            }
+
+            if (_mnartist_register_validate_field($contactData, 'number')) {
+                $mainProfile->field_phone = array(LANGUAGE_NONE => array(array('value' => $contactData['number'])));
+            }
+
+            if (_mnartist_register_validate_field($contactData, 'emailaddress')) {
+                $mainProfile->field_public_email = array(LANGUAGE_NONE => array(array('value' => $contactData['emailaddress'])));
+            }
+        }
+    }
+
+    profile2_save($mainProfile);
+}
+
+function _mnartist_load_resume_profile_data($legacyData) {
+    global $user;
+
+    $resume = profile2_load_by_user($user, 'resume');
+    if (!$resume) {
+         $resume = profile_create(array('type' => 'resume', 'uid' => $user->uid));
+         $resume->bundle = 'resume';
+         profile2_save($resume);
+    }
+
+    if (isset($legacyData['artist'])) {
+        $artistData = $legacyData['artist'];
+
+        if (_mnartist_register_validate_field($artistData, 'qualificationtext')) {
+            $resume->field_biography = array(LANGUAGE_NONE => array(array(
+                'value' => trim($artistData['qualificationtext']),
+                'format' => 'filtered_html'
+            )));
+        }
+
+        //Load all of these fields into field_imported_data since they cannot be parsed into fields
+        $importData = array();
+        if (_mnartist_register_validate_field($artistData, 'awardtext')) {
+            $importData['Awards'] = trim($artistData['awardtext']);
+        }
+
+        if (_mnartist_register_validate_field($artistData, 'exhibitiontext')) {
+            $importData['Exhibitions'] = trim($artistData['exhibitiontext']);
+        }
+
+        if (_mnartist_register_validate_field($artistData, 'gallerytext')) {
+            $importData['Galleries'] = trim($artistData['gallerytext']);
+        }
+
+        if (_mnartist_register_validate_field($artistData, 'collectiontext')) {
+            $importData['Collections'] = trim($artistData['collectiontext']);
+        }
+
+        if (_mnartist_register_validate_field($artistData, 'relatedorgtext')) {
+            $importData['Related Organizations'] = trim($artistData['relatedorgtext']);
+        }
+
+        if (count($importData)) {
+            $fieldData = '';
+            foreach($importData as $k => $v) {
+                $fieldData .= '<div><strong>' . $k . '</strong></div><div>' . $v . '</div>';
+            }
+
+            $resume->field_imported_data = array(LANGUAGE_NONE => array(array(
+                'value' => $fieldData,
+                'format' => 'filtered_html'
+            )));
+        }
+    }
+
+    profile2_save($resume);
+}
+
+function _mnartist_register_validate_field($legacyData, $field) {
+    return isset($legacyData[$field]) && strlen(trim($legacyData[$field]));
+}
+
+function _mnartist_register_get_user_data($email, $password) {
+    $dbh = ConnectionFactory::getFactory()->getConnection();
+
+    $userData = array();
+
+    //get base user info
+    $stmt = $dbh->prepare("SELECT * FROM t_user WHERE username = :username AND password = :password LIMIT 1");
+    $stmt->bindParam(":username", trim($email));
+    $stmt->bindParam(":password", trim($password));
+    $stmt->execute();
+
+    $result = $stmt->fetch();
+
+    if (count($result)) {
+        $userData['t_user.id'] = $result['id'];
+        $userData['firstname'] = $result['firstname'];
+        $userData['lastname'] = $result['lastname'];
+    } else {
+        return $userData;
+    }
+
+    //get resources
+    $stmt = $dbh->prepare(
+        "SELECT tr.*,
+                trt.name as resource_type_name
+           FROM t_resource tr
+          INNER JOIN t_resourcetype trt ON tr.resourcetype = trt.id
+          WHERE owner = :creatorid");
+
+    $stmt->bindParam(":creatorid", $userData['t_user.id']);
+    $stmt->execute();
+    $resources = $stmt->fetchAll();
+    $userData['resources'] = $resources;
+
+    foreach($resources as $resource) {
+        $contactStmt = $stmt = $dbh->prepare(
+         "SELECT tcp.*,
+                 ts.name as state_name,
+                 ts.code as state_code,
+                 tc.name as country_name,
+                 tc.code as country_code
+            FROM t_contactpoint tcp
+            LEFT JOIN t_state ts ON tcp.state = ts.id
+            LEFT JOIN t_country tc on tcp.country = tc.id
+           WHERE resourceid = :resourceId");
+
+        $stmt->bindParam(":resourceId", $resource['id']);
+        $stmt->execute();
+        $contactInfo = $stmt->fetch();
+
+        $type = strtolower($resource['resource_type_name']);
+        switch($type) {
+            case 'artist':
+                $stmt = $dbh->prepare("SELECT * FROM t_artist WHERE resourceid = :resourceId");
+                $stmt->bindParam(":resourceId", $resource['id']);
+                $stmt->execute();
+                $artistInfo = $stmt->fetch();
+                $userData['artist'] = $artistInfo;
+                $userData['artist']['childResources'] = _mnartist_register_getChildResources($resource['id']);
+                $userData['artist']['files'] = _mnartist_register_getResourceFiles($resource['id']);
+                if ($contactInfo) {
+                    $userData['artist']['contact'] = $contactInfo;
+                }
+                $userData['resource'] = $resource;
+
+                break;
+            case 'work':
+                if (!isset($userData[$type])) {
+                    $userData[$type] = array();
+                }
+
+                $work = $resource;
+
+                $stmt = $dbh->prepare("SELECT * FROM t_work WHERE resourceid = :resourceId");
+                $stmt->bindParam(":resourceId", $resource['id']);
+                $stmt->execute();
+                $work['work'] = $stmt->fetch();
+
+                $work['childResources'] = _mnartist_register_getChildResources($resource['id']);
+                $work['files'] = _mnartist_register_getResourceFiles($resource['id']);
+
+                if ($contactInfo) {
+                    $work['contact'] = $contactInfo;
+                }
+
+                $userData[$type][] = $work;
+                break;
+            default:
+                if (!isset($userData[$type])) {
+                    $userData[$type] = array();
+                }
+
+                $userData[$type][] = $resource;
+        }
+    }
+
+    return $userData;
+}
+
+function _mnartist_register_getChildResources($parentId) {
+    $dbh = ConnectionFactory::getFactory()->getConnection();
+
+    $stmt = $dbh->prepare("SELECT r.* FROM t_resource INNER JOIN t_resource_child rc ON r.id = rc.childid WHERE rc.parentid = :resourceId");
+    $stmt->bindParam(":resourceId", $parentId);
+    $stmt->execute();
+
+    $resources = $stmt->fetchAll();
+    foreach($resources as $k => $resource) {
+        $resources[$k]['files'] = $_mnartist_register_getResourceFiles($resource['id']);
+    }
+
+    return $resources;
+}
+
+function _mnartist_register_getResourceFiles($resourceId) {
+    $dbh = ConnectionFactory::getFactory()->getConnection();
+
+    $stmt = $dbh->prepare("SELECT f.* FROM t_resource_file rf INNER JOIN t_mediafile f ON rf.fileid = f.id WHERE rf.resourceid = :resourceId");
+    $stmt->bindParam(":resourceId", $resourceId);
+    $stmt->execute();
+
+    $files = $stmt->fetchAll();
+    foreach($files as $k => $v) {
+        $path = (strrpos($v['filepath'], '/') === strlen($v['filepath']) - 1) ? $v['filepath'] : $v['filepath'] . '/';
+        $files[$k]['uri'] = 'http://mnartists.org' . $path . $v['filename'];
+    }
+
+    return $files;
+}
+
+function _mnartist_register_import_work($work) {
+    global $user;
+
+    $node = new stdClass();
+    $node->type = 'artwork';
+    node_object_prepare($node);
+
+    $node->title    = $work['title'];
+    $node->language = LANGUAGE_NONE;
+    $node->uid      = $user->uid;
+
+    if (_mnartist_register_validate_field($work['work'], 'statementtext')) {
+        $node->body = array(LANGUAGE_NONE => array(array(
+            'value' => $work['work']['statementtext'],
+            'summary' => text_summary($work['work']['statementtext']),
+            'format' => 'filtered_html'
+        )));
+    }
+
+    if (_mnartist_register_validate_field($work['work'], 'workurl')) {
+        $node->field_url = array(LANGUAGE_NONE => array(array('value' => $work['work']['workurl'])));
+    }
+
+    if (count($work['files'])) {
+        $node->field_media = array(LANGUAGE_NONE => array());
+        foreach($work['files'] as $fileInfo) {
+            $file = system_retrieve_file($fileInfo['uri'], 'public://artwork/media/' . $fileInfo['filename'], TRUE, FILE_EXISTS_RENAME);
+            $file->display = 1;
+            $file->description = $fileInfo['description'];
+            $node->field_media[LANGUAGE_NONE][] = (array)$file;
+        }
+    }
+
+    node_save($node);
+}
+
+function _mnartist_register_get_legacy_account($email) {
+    $dbh = ConnectionFactory::getFactory()->getConnection();
+
+    $stmt = $dbh->prepare("SELECT * FROM t_user WHERE username = :username");
+    $stmt->bindParam(":username", $email);
+    $stmt->execute();
+
+    $result = $stmt->fetchAll();
+
+    if (count($result)) {
+        return true;
+    }
+
+    return false;
+}
+
+function _mnartist_register_check_for_legacy_account($email) {
+    $dbh = ConnectionFactory::getFactory()->getConnection();
+
+    $stmt = $dbh->prepare("SELECT * FROM t_user WHERE username = :username");
+    $stmt->bindParam(":username", $email);
+    $stmt->execute();
+
+    $result = $stmt->fetchAll();
+
+    if (count($result)) {
+        return true;
+    }
+
+    return false;
+}
+
+class ConnectionFactory
+{
+    private static $factory;
+    public static function getFactory()
+    {
+        if (!self::$factory) {
+            self::$factory = new ConnectionFactory();
+        }
+        return self::$factory;
+    }
+
+    private $db;
+
+    public function getConnection() {
+        if (!$this->db) {
+            $this->db = new PDO('pgsql:user=postgres dbname=mna_prod password=');
+            $this->db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+        }
+        return $this->db;
+    }
+}
+
+?>
