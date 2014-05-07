@@ -1,0 +1,18 @@
+// Partials to be shared with all .scss files.
+
+@import 'compass/support';                     // Add Compass' IE and vendor prefix support variables.
+@import 'compass/utilities/general/clearfix';  // Better than Drupal's clearfix.
+@import 'compass/css3';                        // Use one CSS3 mixin instead of multiple vendor prefixes.
+
+// @import 'blueprint' grid;
+@import 'blueprint/liquid';
+
+// Import custom partial - mixins and variables defined for your theme
+@import 'custom';
+
+// Variables
+@import 'variables';
+
+body {
+  font-family:$sans_regular_font;
+}
