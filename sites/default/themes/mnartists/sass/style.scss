@@ -8226,6 +8226,31 @@ li.collect-this, li.add-this {
       @include column(24);
     }
   }
+  #content {
+    h2 {
+      padding:20px 0;
+      @include column(14);
+      @include last;
+      margin-left:auto!important;
+      margin-right:auto!important;
+      display:block;float:none;
+      text-align:left;
+      color:#fff;
+      margin-top:0px;
+      margin-bottom:0px;
+      padding-bottom:5px;
+      
+      @media screen and (max-width: $break-mobile) {
+        @include column(24);
+      }
+      @media screen and (max-width: $break-tablet) {
+        @include column(24);
+      }
+      @media screen and (max-width: $break-desktop-small) {
+        @include column(24);
+      }
+    }
+  }
 }
 .page-user-feed {
 
