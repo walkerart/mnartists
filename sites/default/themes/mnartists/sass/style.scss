@@ -8208,7 +8208,7 @@ li.collect-this, li.add-this {
 /* @group user feed */
 .page-user-feed {
   .intro-text {
-    padding:20px 0;
+    padding:0 0 20px 0;
     @include column(14);
     @include last;
     margin-left:auto!important;
@@ -8227,8 +8227,9 @@ li.collect-this, li.add-this {
     }
   }
   #content {
+    padding-top:20px;
     h2 {
-      padding:20px 0;
+      padding:0 0 5px 0;
       @include column(14);
       @include last;
       margin-left:auto!important;
@@ -8238,8 +8239,31 @@ li.collect-this, li.add-this {
       color:#fff;
       margin-top:0px;
       margin-bottom:0px;
-      padding-bottom:5px;
-      
+
+      @media screen and (max-width: $break-mobile) {
+        @include column(24);
+      }
+      @media screen and (max-width: $break-tablet) {
+        @include column(24);
+      }
+      @media screen and (max-width: $break-desktop-small) {
+        @include column(24);
+      }
+    }
+
+    // this is the message when nothing is to show
+    .infinify-terminator {
+      padding:0 0 5px 0;
+      @include column(14);
+      @include last;
+      margin-left:auto!important;
+      margin-right:auto!important;
+      display:block;float:none;
+      text-align:left;
+      color:#fff;
+      margin-top:0px;
+      margin-bottom:0px;
+
       @media screen and (max-width: $break-mobile) {
         @include column(24);
       }
