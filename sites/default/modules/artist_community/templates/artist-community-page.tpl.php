@@ -119,8 +119,11 @@
     <?php if (!isset($_GET['global_search'])) { ?>
         <div class="panel-panel panel-col-last sidebar-right">
             <?php if(!is_null($all_event_results)) { ?>
-                <div class="widget-standard widget">
-                    <a href="/node/add/event">Create an event</a>
+                <div class="widget-standard widget my-events">
+                    <h3>My Events</h3>
+                    <div class="widget-content">
+                        <a href="/node/add/event">Create an event</a>
+                    </div>
                 </div>
 
                 <div class="widget-standard widget highlighted-event-thing">

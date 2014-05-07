@@ -281,8 +281,7 @@ function mnartist_profiles_resume_download($uid) {
                 $label = (isset($field_info_instances[$field_name])) ? $field_info_instances[$field_name]['label'] : '';
 
                 // if the field is NOT a field collection, just stash its contents
-                if (isset($field_info['type']) && $field_info['type'] != 'field_collection') {
-
+                if (isset($field_info['type']) && $field_info['type'] != 'field_collection' && isset($field['und'])) {
                     $template_data[$field_name] = array(
                         'label' => $label,
                         'item' => $field['und']
@@ -635,7 +634,7 @@ function _mnartist_profile_my_stuff() {
 
         // check for artist role
         $links[] = l("Account", "user/{$user->uid}/edit");
-        if (_get_role($user) !== 'org') {
+        if (_get_role($user) === 'artist') {
             $links[] = l("Profile", "user/{$user->uid}/edit/main") . l("View", "user/{$user->uid}", array("attributes" => array("class" => array("user-view"))));
         }
         if (_get_role($user) === 'org' || in_array('administrator', array_values($user->roles))) {
