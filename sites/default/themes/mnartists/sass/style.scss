@@ -9491,3 +9491,32 @@ div.warning {
     display:none;
   }
 }
+
+
+
+// modal windows ctools yet another version of a modal this should be a crime
+#modalBackdrop {
+  background:rgba(0,0,0,.6);
+}
+#modalContent {
+  .ctools-modal-content {
+    padding:0px!important;
+    border:none!important;
+    margin:0px;
+    background:$main_bg;
+    .modal-header {
+
+    }
+    #modal-content {
+      .form-actions {
+        input[type=submit] {
+          margin-top:0px;
+        }
+        .button {
+          font-family:$sans_regular_font;
+          border:none;
+        }
+      }
+    }
+  }
+}
