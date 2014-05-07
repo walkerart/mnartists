@@ -5782,6 +5782,18 @@ depending on the template so needs unified a bit */
 
         img {
             margin:0;
+            opacity:.3;
+        }
+
+        &.flag-action {
+          img {
+            opacity:.3;
+          }
+        }
+        &.unflag-action {
+          img {
+            opacity:.8;
+          }
         }
     }
     a.unflagged {
@@ -5789,6 +5801,9 @@ depending on the template so needs unified a bit */
     }
     a.flagged {
         opacity:1;
+    }
+    .flag-throbber {
+      display:none!important;
     }
     span {
         line-height:20px;
