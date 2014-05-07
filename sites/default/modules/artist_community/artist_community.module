@@ -46,6 +46,8 @@ define('AC_SORT_BY_DATE_FIELD', 'ds_sort_by_date');
 define('AC_SORT_BY_RECENT_FIELD', 'ds_created');
 define('AC_ORG_CATEGORY_FIELD', 'is_profile_organization:field_organization_type');
 
+
+
 // config for solarium
 global $solarium_config;
 $solarium_config = array(
@@ -1124,4 +1126,34 @@ function artist_community_current_filters_as_banner_string () {
     if (!empty($content_arr)) { $final_arr[] = (count($content_arr) > 1) ? '('.implode(' + ', $content_arr).')' : implode(' + ', $content_arr); }
     return implode(' x ', $final_arr);
 
+}
+
+// @TODO would this possibly be better placed in the theme? making
+// other modules dependant on community just for this seems incorrect
+function artist_community_image_for_artwork_image_uri ($uri) {
+    $working_uri = '';
+    $scheme = file_uri_scheme($uri);
+    switch ($scheme) {
+      case ('soundcloud'):
+      case ('youtube'):
+      case ('vimeo'):
+        $wrapper = file_stream_wrapper_get_instance_by_uri($uri);
+        $working_uri = $wrapper->getLocalThumbnailPath();
+        // @TODO some kind of if fallback? how would this work, where
+        // do we have a case that this doesn't return a real thing?
+        break;
+      case ('public'):
+        $mime_type = file_get_mimetype($working_uri);
+        if ($mime_type === 'application/pdf') {
+          // $working_uri =
+        } else if ($mime_type === 'text/plain') {
+          // $working_uri =
+        } else {
+            $working_uri = $uri;
+        }
+        // dpm($mime_type);
+        break;
+    }
+
+    return $working_uri;
 }

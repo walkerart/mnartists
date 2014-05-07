@@ -104,20 +104,7 @@ function mnartist_activity_tokens($type, $tokens, array $data = array(), array $
         case 'node-post-artwork-media-image-uri':
           $uri = '';
           if (isset($data['node']->field_media['und'])) {
-            $uri = $data['node']->field_media['und'][0]['uri'];
-            $scheme = file_uri_scheme($uri);
-            switch ($scheme) {
-              case ('soundcloud'):
-              case ('youtube'):
-              case ('vimeo'):
-                // this leaves out image style stuff, either add that back or
-                // make sure that can be handled elsewhere (css?)
-                $wrapper = file_stream_wrapper_get_instance_by_uri($uri);
-                $uri = $wrapper->getLocalThumbnailPath();
-                break;
-              case ('public'):
-                break;
-            }
+            $uri = artist_community_image_for_artwork_image_uri($data['node']->field_media['und'][0]['uri']);
           }
           if (isset($uri)) {
             $replacements[$original] = file_create_url($uri);

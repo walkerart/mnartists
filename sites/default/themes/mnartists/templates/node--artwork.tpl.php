@@ -116,18 +116,7 @@ if (!(empty($node->field_medium3))) {
 // if non-standard media type get image by scheme,
 // otherwise use image
 if (isset($node->field_media[LANGUAGE_NONE])) {
-  $working_uri = $node->field_media[LANGUAGE_NONE][0]['uri'];
-  $scheme = file_uri_scheme($working_uri);
-  switch ($scheme) {
-    case ('soundcloud'):
-    case ('youtube'):
-    case ('vimeo'):
-      $wrapper = file_stream_wrapper_get_instance_by_uri($working_uri);
-      $working_uri = $wrapper->getLocalThumbnailPath();
-      break;
-    case ('public'):
-      break;
-  }
+  $working_uri = artist_community_image_for_artwork_image_uri($node->field_media[LANGUAGE_NONE][0]['uri']);
   $image_uri = image_style_url('medium', $working_uri);
   $image_info = image_get_info($working_uri);
   $known_width = 220;
