@@ -8810,6 +8810,28 @@ li.collect-this, li.add-this {
         .view-flag-lists-user-list {
 
         }
+        h2 {
+          padding:0 0 5px 0;
+          @include column(14);
+          @include last;
+          margin-left:auto!important;
+          margin-right:auto!important;
+          display:block;float:none;
+          text-align:left;
+          color:#fff;
+          margin-top:0px;
+          margin-bottom:0px;
+
+          @media screen and (max-width: $break-mobile) {
+            @include column(24);
+          }
+          @media screen and (max-width: $break-tablet) {
+            @include column(24);
+          }
+          @media screen and (max-width: $break-desktop-small) {
+            @include column(24);
+          }
+        }
         .user-collection-user {
           img {
             display:block;
@@ -8899,26 +8921,12 @@ li.collect-this, li.add-this {
             }
 
             h2 {
-                padding:0 0 5px 0;
-                @include column(14);
-                @include last;
-                margin-left:auto!important;
-                margin-right:auto!important;
-                display:block;float:none;
-                text-align:left;
-                color:#fff;
-                margin-top:0px;
-                margin-bottom:0px;
-
-                @media screen and (max-width: $break-mobile) {
-                  @include column(24);
-                }
-                @media screen and (max-width: $break-tablet) {
-                  @include column(24);
-                }
-                @media screen and (max-width: $break-desktop-small) {
-                  @include column(24);
-                }
+                color:#ccc;
+                border-bottom:1px solid #ccc;
+                font-size:16px;
+                text-transform:none;
+                height:auto;
+                padding-bottom:5px;
 
                 a {
                     color:#ccc;
