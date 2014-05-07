@@ -121,7 +121,9 @@
             <?php if(!is_null($all_event_results)) { ?>
                 <div class="widget-standard widget my-events">
                     <h3>My Events</h3>
-                    <a href="/node/add/event">Create an event</a>
+                    <div class="widget-content">
+                        <a href="/node/add/event">Create an event</a>
+                    </div>
                 </div>
 
                 <div class="widget-standard widget highlighted-event-thing">
