@@ -8887,6 +8887,24 @@ li.collect-this, li.add-this {
   }
 }
 // user collections a list of all landing page
+.view-flag-lists-user-list {
+  .user-list {
+    padding:0;
+    @include container;
+
+    li {
+      vertical-align:middle;
+      list-style:none;
+
+      @include column(8);
+      width:30%;
+
+      &:nth-child(3n+3) {
+          margin-right:0!important;
+      }
+    }
+  }
+}
 .view-flag-lists-user-lists {
 
     .view-content {
