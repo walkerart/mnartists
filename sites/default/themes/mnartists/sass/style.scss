@@ -8899,12 +8899,26 @@ li.collect-this, li.add-this {
             }
 
             h2 {
-                color:#ccc;
-                border-bottom:1px solid #ccc;
-                font-size:16px;
-                text-transform:none;
-                height:auto;
-                padding-bottom:5px;
+                padding:0 0 5px 0;
+                @include column(14);
+                @include last;
+                margin-left:auto!important;
+                margin-right:auto!important;
+                display:block;float:none;
+                text-align:left;
+                color:#fff;
+                margin-top:0px;
+                margin-bottom:0px;
+
+                @media screen and (max-width: $break-mobile) {
+                  @include column(24);
+                }
+                @media screen and (max-width: $break-tablet) {
+                  @include column(24);
+                }
+                @media screen and (max-width: $break-desktop-small) {
+                  @include column(24);
+                }
 
                 a {
                     color:#ccc;
@@ -8920,6 +8934,7 @@ li.collect-this, li.add-this {
                     list-style:none;
 
                     @include column(8);
+                    width:30%;
 
                     &:nth-child(3n+3) {
                         margin-right:0!important;
