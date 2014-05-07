@@ -7890,10 +7890,13 @@ li.collect-this, li.add-this {
     font-size:22px;
     text-align:center;
     border-right:1px solid #222;
+    box-sizing:border-box;
+
     .month {
       font-size:10px;
       color:#808080;
       display:block;
+      text-transform:uppercase;
     }
   }
   .event-title {
@@ -7913,7 +7916,7 @@ li.collect-this, li.add-this {
   }
   .event-venue-and-star {
     position:relative;
-    padding:5px 0 10px 0;
+    padding:5px 40px 10px 0;
     .menu {
       position:absolute;
       right:0px;
