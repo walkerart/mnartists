@@ -7884,21 +7884,28 @@ li.collect-this, li.add-this {
 .highlighted-event-thing {
   .event-date {
     padding-top:0px;
-    width:25%;
+    width:20%;
     float:left;
     margin-bottom:10px;
     font-size:22px;
     text-align:center;
+    border-right:1px solid #222;
+    box-sizing:border-box;
+
     .month {
-      font-size:11px;
+      font-size:10px;
       color:#808080;
+      display:block;
+      text-transform:uppercase;
     }
   }
   .event-title {
     font-family:$sans_bold_font;
-    width:75%;
+    width:80%;
     float:left;
     margin-bottom:10px;
+    box-sizing:border-box;
+    padding-left:10px;
   }
   .event-image {
     img {
@@ -7908,9 +7915,12 @@ li.collect-this, li.add-this {
     }
   }
   .event-venue-and-star {
+    position:relative;
+    padding:5px 40px 10px 0;
     .menu {
       position:absolute;
       right:0px;
+      top:0px;
     }
     color:#808080;
   }
