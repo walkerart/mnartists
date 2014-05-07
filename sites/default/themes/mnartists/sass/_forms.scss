@@ -1668,3 +1668,27 @@ div[class*="-image-field-caption-value"] {
     }
   }
 }
+
+// messages on edit pages
+.page-node-add,
+.page-node-edit {
+  #messages {
+    padding:20px 0 20px 0;
+    @include column(14);
+    @include last;
+    margin-left:auto!important;
+    margin-right:auto!important;
+    display:block;float:none;
+    text-align:left;
+    color:#fff;
+    @media screen and (max-width: $break-mobile) {
+      @include column(24);
+    }
+    @media screen and (max-width: $break-tablet) {
+      @include column(24);
+    }
+    @media screen and (max-width: $break-desktop-small) {
+      @include column(24);
+    }
+  }
+}
