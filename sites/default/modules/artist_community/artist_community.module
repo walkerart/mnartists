@@ -107,6 +107,10 @@ function artist_community_theme() {
             'variables' => array(),
             'template' => 'templates/mna-location-search-block'
         ),
+        'artist_community_event_category_link' => array(
+            'variables' => array(),
+            'template' => 'templates/mna-event-category-link'
+        ),
     );
 }
 
@@ -131,6 +135,13 @@ function artist_community_block_info() {
 
     $blocks['content'] = array(
         'info' => t('Artist Community - Content'),
+        'cache' => DRUPAL_NO_CACHE,
+        'visibility' => BLOCK_VISIBILITY_PHP,
+        'pages' => '<?php return _artist_community_block_visibility(); ?>'
+    );
+
+    $blocks['event-category-link'] = array(
+        'info' => t('Artist Community - Event Category Link'),
         'cache' => DRUPAL_NO_CACHE,
         'visibility' => BLOCK_VISIBILITY_PHP,
         'pages' => '<?php return _artist_community_block_visibility(); ?>'
@@ -169,9 +180,19 @@ function artist_community_block_view($delta = '') {
             $block['subject'] = t('Search');
             $block['content'] = _community_block_search();
             break;
+        case 'event-category-link':
+            $block['subject'] = t('Event Category Link');
+            $block['content'] = _community_block_event_category_link();
+            break;
     }
 
     return $block;
+}
+
+function _community_block_event_category_link () {
+    return theme("artist_community_event_category_link", array(
+
+    ));
 }
 
 function _community_block_search() {
