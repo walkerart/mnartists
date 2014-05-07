@@ -7217,9 +7217,21 @@ body {
     }
 }
 // collection star
+.pane-mnartist-collections-mna-collections-star ul.menu li:hover, .user-feed-message-star ul.menu li:hover, .user-profile-slideshow-star ul.menu li:hover {
+  .star-link {
+    img {
+      opacity:.8;
+    }
+  }
+}
 .pane-mnartist-collections-mna-collections-star,
 .user-feed-message-star,
 .user-profile-slideshow-star {
+  .star-link {
+    img {
+      opacity:.3;
+    }
+  }
     hr {
         margin:0 10px 5px 10px !important;
     }
