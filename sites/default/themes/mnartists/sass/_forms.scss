@@ -1659,6 +1659,12 @@ div[class*="-image-field-caption-value"] {
     position:fixed;
     iframe {
       width:90%!important;
+      font-family:$sans_regular_font;
+      html {
+        body {
+          font-family:$sans_regular_font;
+        }
+      }
     }
   }
 }
