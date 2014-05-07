@@ -437,7 +437,7 @@
                 if (isset($resume_data['field_websites']['item']) &&
                     !(empty($resume_data['field_websites']['item']))) {
                     foreach ($resume_data['field_websites']['item'] as $site) {?>
-                        <li><?=$site['title'] ?> - <a href="<?=$site['value'] ?>"><?=$site['value'] ?></a></li>
+                        <li><?php if (isset($site['title']) && $site['title'] !== '') { ?><?=$site['title'] ?> - <?php } ?><a href="<?=$site['value'] ?>"><?=$site['value'] ?></a></li>
                 <?}}
             ?>
             </ul>

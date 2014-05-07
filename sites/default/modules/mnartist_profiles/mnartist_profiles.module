@@ -281,8 +281,7 @@ function mnartist_profiles_resume_download($uid) {
                 $label = (isset($field_info_instances[$field_name])) ? $field_info_instances[$field_name]['label'] : '';
 
                 // if the field is NOT a field collection, just stash its contents
-                if (isset($field_info['type']) && $field_info['type'] != 'field_collection') {
-
+                if (isset($field_info['type']) && $field_info['type'] != 'field_collection' && isset($field['und'])) {
                     $template_data[$field_name] = array(
                         'label' => $label,
                         'item' => $field['und']
