@@ -12,10 +12,7 @@
         currentTagline = '',
         taglinesLength = taglines.length,
         taglinesIteration = 0,
-        index = 0,
-        logoPartPositionX = 0,
-        logoPartPositionY = 0,
-        logoPartsType = Math.floor(Math.random()*6) + 1;
+        index = 0;
 
     var updateTaglines = function() {
         index = 0;
