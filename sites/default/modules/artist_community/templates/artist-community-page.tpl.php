@@ -21,11 +21,6 @@
 
         <!-- banner -->
         <header class="organization-header<?php if (count($_GET) <= 1) { ?> has-taglines<?php } ?>">
-            <ul class="logo-parts">
-                <li class="logo-m"></li>
-                <li class="logo-n"></li>
-                <li class="logo-a"></li>
-            </ul>
             <h1><a class="organization" href="/">Mn Artists<?= (isset($banner_string) && $banner_string !== '') ? " $banner_string" : '' ?></a></h1>
         </header>
 
@@ -119,15 +114,12 @@
     <?php if (!isset($_GET['global_search'])) { ?>
         <div class="panel-panel panel-col-last sidebar-right">
             <?php if(!is_null($all_event_results)) { ?>
-
-                <?php if(user_is_logged_in() && user_access('Event: Create new content')) { ?>
-                    <div class="widget-standard widget my-events">
-                        <h3>My Events</h3>
-                        <div class="widget-content">
-                            <a href="/node/add/event">Create an event</a>
-                        </div>
+                <div class="widget-standard widget my-events">
+                    <h3>My Events</h3>
+                    <div class="widget-content">
+                        <a href="/node/add/event">Create an event</a>
                     </div>
-                <?php } ?>
+                </div>
 
                 <div class="widget-standard widget highlighted-event-thing">
                     <h3><?= $highlighted_event->date->format('F'); ?> Highlight</h3>

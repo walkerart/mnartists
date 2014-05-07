@@ -43,6 +43,6 @@
         </li>
     <?php } ?>
     <?php if ($show_more_link === true) { ?>
-        <li id="twitter-more-link"><a>More&hellip;</a></li>
+        <li id="twitter-more-link"><a>MORE</a></li>
     <?php } ?>
 </ul>
