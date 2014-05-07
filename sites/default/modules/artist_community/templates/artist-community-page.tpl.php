@@ -119,12 +119,15 @@
     <?php if (!isset($_GET['global_search'])) { ?>
         <div class="panel-panel panel-col-last sidebar-right">
             <?php if(!is_null($all_event_results)) { ?>
-                <div class="widget-standard widget my-events">
-                    <h3>My Events</h3>
-                    <div class="widget-content">
-                        <a href="/node/add/event">Create an event</a>
+
+                <?php if(user_is_logged_in() && user_access('Event: Create new content')) { ?>
+                    <div class="widget-standard widget my-events">
+                        <h3>My Events</h3>
+                        <div class="widget-content">
+                            <a href="/node/add/event">Create an event</a>
+                        </div>
                     </div>
-                </div>
+                <?php } ?>
 
                 <div class="widget-standard widget highlighted-event-thing">
                     <h3><?= $highlighted_event->date->format('F'); ?> Highlight</h3>
