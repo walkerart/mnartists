@@ -9496,16 +9496,33 @@ div.warning {
 
 // modal windows ctools yet another version of a modal this should be a crime
 #modalBackdrop {
-  background:rgba(0,0,0,.6);
+  background:rgba(0,0,0,.6)!important;
 }
+div.ctools-modal-content .form-item label {
+  width:33%;
+}
+
 #modalContent {
+
   .ctools-modal-content {
     padding:0px!important;
     border:none!important;
     margin:0px;
     background:$main_bg;
     .modal-header {
+      background:none;
+      .modal-title {
+        color:#222;
+      }
+      .close {
+        color:#888;
+        font-size:11px;
 
+        img {
+          margin-left:5px;
+          vertical-align:middle;
+        }
+      }
     }
     #modal-content {
       .form-actions {

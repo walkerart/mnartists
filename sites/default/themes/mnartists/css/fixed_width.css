@@ -13983,10 +13983,15 @@ div.warning {
 
 /* line 9498, ../sass/style.scss */
 #modalBackdrop {
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.6) !important;
 }
 
-/* line 9502, ../sass/style.scss */
+/* line 9501, ../sass/style.scss */
+div.ctools-modal-content .form-item label {
+  width: 33%;
+}
+
+/* line 9507, ../sass/style.scss */
 #modalContent .ctools-modal-content {
   padding: 0px!important;
   border: none!important;
@@ -13994,10 +13999,28 @@ div.warning {
   background: #f2f2f2;
 }
 /* line 9512, ../sass/style.scss */
+#modalContent .ctools-modal-content .modal-header {
+  background: none;
+}
+/* line 9514, ../sass/style.scss */
+#modalContent .ctools-modal-content .modal-header .modal-title {
+  color: #222;
+}
+/* line 9517, ../sass/style.scss */
+#modalContent .ctools-modal-content .modal-header .close {
+  color: #888;
+  font-size: 11px;
+}
+/* line 9521, ../sass/style.scss */
+#modalContent .ctools-modal-content .modal-header .close img {
+  margin-left: 5px;
+  vertical-align: middle;
+}
+/* line 9529, ../sass/style.scss */
 #modalContent .ctools-modal-content #modal-content .form-actions input[type=submit] {
   margin-top: 0px;
 }
-/* line 9515, ../sass/style.scss */
+/* line 9532, ../sass/style.scss */
 #modalContent .ctools-modal-content #modal-content .form-actions .button {
   font-family: "Apercu Regular", Arial, Helvetica, sans-serif;
   border: none;
