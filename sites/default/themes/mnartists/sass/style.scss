@@ -6041,21 +6041,42 @@ body.page-node-edit {
         }
     }
 }
+
+/* artwork */
 .content-artwork {
-    .pane-node-title {
-        h2 {
-            font-family: "adobe-text-pro", "Times New Roman", Times, serif;
-            font-weight: normal;
-            height: auto;
-            a {
-                display:inline-block;
-                font-style:italic;
-            }
-            span {
-                display:inline-block;
-            }
+  .pane-node-field-media {
+    .field-items {
+      field-item {
+        .content {
+          text-align:center;
+          img {
+            max-height:600px;
+            display:inline-block;
+            width:auto;
+            max-width:100%;
+            height:auto;
+            margin:0 auto;
+          }
+        }
+      }
+    }
+  }
+}
+.content-artwork {
+.pane-node-title {
+    h2 {
+        font-family: "adobe-text-pro", "Times New Roman", Times, serif;
+        font-weight: normal;
+        height: auto;
+        a {
+            display:inline-block;
+            font-style:italic;
+        }
+        span {
+            display:inline-block;
         }
     }
+}
 .layout-g .panel-col.content-artwork .pane-node-title h2 {
   background: none;
   padding: 15px 0 10px 0;
