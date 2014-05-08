@@ -706,7 +706,9 @@ function _artist_community_build_subitems_for_item ($val, $taxonomy_terms, $face
 //Remove extra media values from the teaser view
 function artist_community_entity_view($entity, $type, $view_mode, $langcode) {
     if ($view_mode === 'teaser' && $entity->type === 'artwork') {
-        $entity->content['field_media']['#items'] = array_slice($entity->content['field_media']['#items'], 0, 1);
+        if (!empty($entity->content['field_media'])) {
+            $entity->content['field_media']['#items'] = array_slice($entity->content['field_media']['#items'], 0, 1);
+        }
     }
 }
 
@@ -1166,10 +1168,12 @@ function artist_community_image_for_artwork_image_uri ($uri) {
       case ('public'):
         $mime_type = file_get_mimetype($working_uri);
         if ($mime_type === 'application/pdf') {
+            // $working_uri = drupal_get_path('theme', 'mnartists')."/images/"
           // $working_uri =
         } else if ($mime_type === 'text/plain') {
           // $working_uri =
         } else {
+            // assume it's an image, then
             $working_uri = $uri;
         }
         // dpm($mime_type);
