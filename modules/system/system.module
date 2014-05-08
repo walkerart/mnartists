@@ -3452,12 +3452,14 @@ function system_retrieve_file($url, $destination = NULL, $managed = FALSE, $repl
   }
   $result = drupal_http_request($url);
   if ($result->code != 200) {
-    drupal_set_message(t('HTTP error @errorcode occurred when trying to fetch @remote.', array('@errorcode' => $result->code, '@remote' => $url)), 'error');
+    //drupal_set_message(t('HTTP error @errorcode occurred when trying to fetch @remote.', array('@errorcode' => $result->code, '@remote' => $url)), 'error');
+    watchdog('file system', 'HTTP error @errorcode occurred when trying to fetch @remote".', array('@errorcode' => $result->code, '@remote' => $url), WATCHDOG_ERROR);
     return FALSE;
   }
   $local = $managed ? file_save_data($result->data, $path, $replace) : file_unmanaged_save_data($result->data, $path, $replace);
   if (!$local) {
-    drupal_set_message(t('@remote could not be saved to @path.', array('@remote' => $url, '@path' => $path)), 'error');
+    //drupal_set_message(t('@remote could not be saved to @path.', array('@remote' => $url, '@path' => $path)), 'error');
+    watchdog('file system', '@remote could not be saved to @path.', array('@remote' => $url, '@path' => $path), WATCHDOG_ERROR);
   }
 
   return $local;
