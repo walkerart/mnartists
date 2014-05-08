@@ -201,6 +201,9 @@ function _imagemagick_check_path($file) {
  * @see image_resize()
  */
 function image_imagemagick_resize(stdClass $image, $width, $height) {
+  if($image->info['mime_type'] == 'image/gif') {
+    $image->ops[] = '-coalesce';
+  }
   $image->ops[] = '-resize ' . (int) $width . 'x' . (int) $height . '!';
   $image->info['width'] = $width;
   $image->info['height'] = $height;
