@@ -7845,6 +7845,16 @@ li.collect-this, li.add-this {
             &#twitter-more-link {
                 margin:0;
                 padding:0;
+                a {
+                  float:right;
+                  text-transform:uppercase;
+                  white-space:nowrap;
+                  margin-bottom:10px;
+                  background:url('../images/icon-more-chevron-white.png') no-repeat right center transparent;
+                  padding-right:16px;
+                  text-decoration:none !important;
+                  font-size:12px !important;
+                }
             }
 
             a {
@@ -8547,12 +8557,20 @@ li.collect-this, li.add-this {
                 &.user-thing-more {
                   min-height:10px;
                     a {
-                        background: url('../images/arrow-down-more.svg') no-repeat center center transparent;
+                        /*background: url('../images/arrow-down-more.svg') no-repeat center center transparent;
                         background-size:18px 10px;
                         overflow:hidden;text-indent:100px;white-space:nowrap;display:block;
                         width:60px;
                         height:20px;
-                        margin:0 auto;
+                        margin:0 auto;*/
+                        float:right;
+                        text-transform:uppercase;
+                        white-space:nowrap;
+                        margin-bottom:10px;
+                        background:url('../images/icon-more-chevron.png') no-repeat right center transparent;
+                        padding-right:16px;
+                        text-decoration:none !important;
+                        font-size:12px!important;
                     }
                 }
                 .user-thing-labels {
