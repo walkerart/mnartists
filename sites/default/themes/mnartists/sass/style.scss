@@ -7174,10 +7174,14 @@ body {
 }
 
 .content-artwork {
+    .menu li ul {
+      overflow:hidden;
+    }
     .menu li:hover>ul { /* since its top right, right align */
         top: 100%;
         right: 0px;
         left: auto;
+        overflow:auto;
     }
 }
 .node-type-event {
