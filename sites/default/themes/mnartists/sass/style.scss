@@ -7846,14 +7846,16 @@ li.collect-this, li.add-this {
                 margin:0;
                 padding:0;
                 a {
-                  float:right;
+                  float:none;
                   text-transform:uppercase;
                   white-space:nowrap;
-                  margin-bottom:10px;
+                  margin-bottom:0px;
                   background:url('../images/icon-more-chevron-white.png') no-repeat right center transparent;
                   padding-right:16px;
                   text-decoration:none !important;
                   font-size:12px !important;
+                  display:block;
+                  text-align:right;
                 }
             }
 
@@ -8563,14 +8565,17 @@ li.collect-this, li.add-this {
                         width:60px;
                         height:20px;
                         margin:0 auto;*/
-                        float:right;
+
                         text-transform:uppercase;
                         white-space:nowrap;
-                        margin-bottom:10px;
+                        margin-bottom:0px;
                         background:url('../images/icon-more-chevron.png') no-repeat right center transparent;
                         padding-right:16px;
                         text-decoration:none !important;
                         font-size:12px!important;
+                        display:block;
+                        text-align:right;
+                        float:none;
                     }
                 }
                 .user-thing-labels {
