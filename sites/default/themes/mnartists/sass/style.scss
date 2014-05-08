@@ -5930,21 +5930,21 @@ body.page-node-edit {
             input[type=text],
             input[type=password],
             textarea {
-                -moz-transition: all .3s ease-in-out;
-        -webkit-transition: all .3s ease-in-out;
-        transition: all .3s ease-in-out;
-        border:none;
-        outline: none;
-        color:#737373;
-        padding:4px 0 6px 0;
-        box-sizing: border-box;
-        background:#fff;
-        border-left:4px solid #fff!important;
-        border-right:4px solid #fff!important;
-        border-bottom:none;
-        z-index:42;
-        position:relative;
-        background: url('../images/bg-input-dots.gif') repeat-x left bottom #fff!important;
+              -moz-transition: all .3s ease-in-out;
+              -webkit-transition: all .3s ease-in-out;
+              transition: all .3s ease-in-out;
+              border:none;
+              outline: none;
+              color:#737373;
+              padding:4px 0 6px 0;
+              box-sizing: border-box;
+              background:#fff;
+              border-left:4px solid #fff!important;
+              border-right:4px solid #fff!important;
+              border-bottom:none;
+              z-index:42;
+              position:relative;
+              background: url('../images/bg-input-dots.gif') repeat-x left bottom #fff!important;
             }
         }
     }
@@ -6041,21 +6041,43 @@ body.page-node-edit {
         }
     }
 }
+
+/* artwork */
 .content-artwork {
-    .pane-node-title {
-        h2 {
-            font-family: "adobe-text-pro", "Times New Roman", Times, serif;
-            font-weight: normal;
-            height: auto;
-            a {
-                display:inline-block;
-                font-style:italic;
-            }
-            span {
-                display:inline-block;
-            }
+  .pane-node-field-media {
+    .field-items {
+      .field-item {
+        .content {
+          text-align:center;
+          img {
+            max-height:600px;
+            display:inline-block;
+            width:auto;
+            max-width:100%;
+            height:auto;
+            margin:0 auto;
+            margin-bottom:0px;
+          }
+        }
+      }
+    }
+  }
+}
+.content-artwork {
+.pane-node-title {
+    h2 {
+        font-family: "adobe-text-pro", "Times New Roman", Times, serif;
+        font-weight: normal;
+        height: auto;
+        a {
+            display:inline-block;
+            font-style:italic;
+        }
+        span {
+            display:inline-block;
         }
     }
+}
 .layout-g .panel-col.content-artwork .pane-node-title h2 {
   background: none;
   padding: 15px 0 10px 0;
@@ -6797,20 +6819,24 @@ form textarea:focus {
     -moz-transition: all .3s ease-in-out;
     -webkit-transition: all .3s ease-in-out;
     transition: all .3s ease-in-out;
-    outline:1px solid #ccc;
-    border:none;
+    /*outline:1px solid #ccc;
+    border:none;*/
 
+}
+input:-webkit-autofill, textarea:-webkit-autofill {
+  background-color:rgba(255,255,255,1);
+  color:#737373;
 }
 
 form input[type=text]:focus,
 form textarea:focus {
     /*-moz-box-shadow: 0 0 3px 1px rgba(210,0,0,1);
-    -webkit-box-shadow: 0 0 3px 1px rgba(210,0,0,1);*/
+    -webkit-box-shadow: 0 0 3px 1px rgba(210,0,0,1);
     -moz-box-shadow: inset 0 0 3px 1px rgba(0,0,0,.4);
-    -webkit-box-shadow: inset 0 0 3px 1px rgba(0,0,0,.4);
-    box-shadow: none;
-    outline:1px solid #888;
-    border:none;
+    -webkit-box-shadow: inset 0 0 3px 1px rgba(0,0,0,.4);*/
+    box-shadow: none!important;
+    /*outline:1px solid #888;
+    border:none;*/
 }
 select:focus,
 button:focus {
@@ -7152,10 +7178,14 @@ body {
 }
 
 .content-artwork {
+    .menu li ul {
+      overflow:hidden;
+    }
     .menu li:hover>ul { /* since its top right, right align */
         top: 100%;
         right: 0px;
         left: auto;
+        overflow:auto;
     }
 }
 .node-type-event {
@@ -7257,7 +7287,7 @@ body {
                 right:0px;
                 left:auto;
                 max-height:300px;
-                overflow:auto;
+                overflow:hidden;
 
                 .flag-count {
                     padding: 4px 0;
@@ -7360,6 +7390,9 @@ body {
             background:$mystuff_bg_dark;
             .star-icon {
                 -webkit-filter: invert(100%);
+            }
+            ul {
+              overflow:auto;
             }
             li {
 
@@ -7845,6 +7878,18 @@ li.collect-this, li.add-this {
             &#twitter-more-link {
                 margin:0;
                 padding:0;
+                a {
+                  float:none;
+                  text-transform:uppercase;
+                  white-space:nowrap;
+                  margin-bottom:0px;
+                  background:url('../images/icon-more-chevron-white.png') no-repeat right center transparent;
+                  padding-right:16px;
+                  text-decoration:none !important;
+                  font-size:12px !important;
+                  display:block;
+                  text-align:right;
+                }
             }
 
             a {
@@ -8547,12 +8592,23 @@ li.collect-this, li.add-this {
                 &.user-thing-more {
                   min-height:10px;
                     a {
-                        background: url('../images/arrow-down-more.svg') no-repeat center center transparent;
+                        /*background: url('../images/arrow-down-more.svg') no-repeat center center transparent;
                         background-size:18px 10px;
                         overflow:hidden;text-indent:100px;white-space:nowrap;display:block;
                         width:60px;
                         height:20px;
-                        margin:0 auto;
+                        margin:0 auto;*/
+
+                        text-transform:uppercase;
+                        white-space:nowrap;
+                        margin-bottom:0px;
+                        background:url('../images/icon-more-chevron.png') no-repeat right center transparent;
+                        padding-right:16px;
+                        text-decoration:none !important;
+                        font-size:12px!important;
+                        display:block;
+                        text-align:right;
+                        float:none;
                     }
                 }
                 .user-thing-labels {
