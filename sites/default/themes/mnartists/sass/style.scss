@@ -7283,7 +7283,7 @@ body {
                 right:0px;
                 left:auto;
                 max-height:300px;
-                overflow:auto;
+                overflow:hidden;
 
                 .flag-count {
                     padding: 4px 0;
@@ -7386,6 +7386,9 @@ body {
             background:$mystuff_bg_dark;
             .star-icon {
                 -webkit-filter: invert(100%);
+            }
+            ul {
+              overflow:auto;
             }
             li {
 
