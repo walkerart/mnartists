@@ -129,6 +129,7 @@ function _mnartist_register_batch_handler($action, $data, &$context) {
 function _mnartist_register_batch_finished($success, $results, $operations) {
     if ($success) {
         drupal_set_message('MNArtists Account data successfully imported.');
+        drupal_redirect('/user');
     }
     else {
         // An error occurred.
@@ -460,9 +461,11 @@ function _mnartist_register_import_work($work) {
         $node->field_media = array(LANGUAGE_NONE => array());
         foreach($work['files'] as $fileInfo) {
             $file = system_retrieve_file($fileInfo['uri'], 'public://artwork/media/' . $fileInfo['filename'], TRUE, FILE_EXISTS_RENAME);
-            $file->display = 1;
-            $file->description = $fileInfo['description'];
-            $node->field_media[LANGUAGE_NONE][] = (array)$file;
+            if ($file && isset($file->fid)) {
+                $file->display = 1;
+                $file->description = $fileInfo['description'];
+                $node->field_media[LANGUAGE_NONE][] = (array)$file;
+            }
         }
     }
 

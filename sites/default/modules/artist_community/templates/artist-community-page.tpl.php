@@ -21,11 +21,6 @@
 
         <!-- banner -->
         <header class="organization-header<?php if (count($_GET) <= 1) { ?> has-taglines<?php } ?>">
-            <ul class="logo-parts">
-                <li class="logo-m"></li>
-                <li class="logo-n"></li>
-                <li class="logo-a"></li>
-            </ul>
             <h1><a class="organization" href="/">Mn Artists<?= (isset($banner_string) && $banner_string !== '') ? " $banner_string" : '' ?></a></h1>
         </header>
 
@@ -159,7 +154,7 @@
                                     </a>
                                 </li>
                             <?php } ?>
-                            <li class="user-thing-more"><a href="/community?content[artists]=1&?sort=recent&sort_direction=DESC<?php if ($og_get_string != '') { echo "&$og_get_string"; } ?>" style="font-size: 4em;">&#709;</a></li>
+                            <li class="user-thing-more"><a href="/community?content[artists]=1&?sort=recent&sort_direction=DESC<?php if ($og_get_string != '') { echo "&$og_get_string"; } ?>" style="font-size: 4em;">More</a></li>
                         </ul>
                         </div>
                     </div>
