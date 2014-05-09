@@ -116,9 +116,8 @@ if (!(empty($node->field_medium3))) {
 // if non-standard media type get image by scheme,
 // otherwise use image
 if (isset($node->field_media[LANGUAGE_NONE])) {
-  $working_uri = artist_community_image_for_artwork_image_uri($node->field_media[LANGUAGE_NONE][0]['uri']);
-  $image_uri = image_style_url('medium', $working_uri);
-  $image_info = image_get_info($working_uri);
+  $image_uri = artist_community_image_for_artwork_image_uri($node->field_media[LANGUAGE_NONE][0]['uri'], 'medium');
+  $image_info = image_get_info($image_uri);
   $known_width = 220;
   $computed_height = (!empty($image_info['width'])) ? ($known_width * $image_info['height']) / $image_info['width'] : 0;
 }

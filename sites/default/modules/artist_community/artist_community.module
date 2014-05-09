@@ -46,6 +46,7 @@ define('AC_SORT_BY_DATE_FIELD', 'ds_sort_by_date');
 define('AC_SORT_BY_RECENT_FIELD', 'ds_created');
 define('AC_ORG_CATEGORY_FIELD', 'is_profile_organization:field_organization_type');
 
+define('DEFAULT_DOCUMENT_IMAGE', 'icon-media-document.png');
 
 
 // config for solarium
@@ -1153,32 +1154,32 @@ function artist_community_current_filters_as_banner_string () {
 
 // @TODO would this possibly be better placed in the theme? making
 // other modules dependant on community just for this seems incorrect
-function artist_community_image_for_artwork_image_uri ($uri) {
+function artist_community_image_for_artwork_image_uri ($uri, $image_style = null) {
     $working_uri = '';
     $scheme = file_uri_scheme($uri);
+    $mime_type = file_get_mimetype($uri);
+    $non_image_mime_types = array("application/pdf", "text/plain");
+
     switch ($scheme) {
       case ('soundcloud'):
       case ('youtube'):
       case ('vimeo'):
         $wrapper = file_stream_wrapper_get_instance_by_uri($uri);
         $working_uri = $wrapper->getLocalThumbnailPath();
-        // @TODO some kind of if fallback? how would this work, where
-        // do we have a case that this doesn't return a real thing?
         break;
       case ('public'):
-        $mime_type = file_get_mimetype($working_uri);
-        if ($mime_type === 'application/pdf') {
-            // $working_uri = drupal_get_path('theme', 'mnartists')."/images/"
-          // $working_uri =
-        } else if ($mime_type === 'text/plain') {
-          // $working_uri =
+        $mime_type = file_get_mimetype($uri);
+        if (in_array($mime_type, $non_image_mime_types)) {
+            $working_uri = drupal_get_path('theme', 'mnartists')."/images/".DEFAULT_DOCUMENT_IMAGE;
         } else {
-            // assume it's an image, then
+            // otherwise assume it's an image
             $working_uri = $uri;
         }
-        // dpm($mime_type);
         break;
     }
-
+    if ($image_style !== null && !in_array($mime_type, $non_image_mime_types)) {
+        return image_style_url($image_style, $working_uri);
+    }
     return $working_uri;
+
 }
