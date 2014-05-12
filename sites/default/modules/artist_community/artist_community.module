@@ -91,7 +91,15 @@ function artist_community_theme() {
             'variables' => array(
                 'content' => array(),
             ),
+            'file' => 'artist_community.templates.inc',
             'template' => 'templates/artist-community-page',
+        ),
+        'artist_community_page_search_results' => array(
+            'variables' => array(
+                'content' => array(),
+            ),
+            'file' => 'artist_community.templates.inc',
+            'template' => 'templates/artist-community-page-search-results',
         ),
         'artist_community_artist_profile' => array(
             'variables' => array(
