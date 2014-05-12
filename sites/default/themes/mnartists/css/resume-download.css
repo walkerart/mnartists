@@ -2930,24 +2930,78 @@ body.my-stuff.welcome {
 
 /* line 5, ../sass/resume-download.scss */
 .page-user-resume-download {
-  background-color: #f2f2f2 !important;
+  background-color: #f4f4f4 !important;
   color: #222222;
   margin: 0;
   padding: 0;
   background-image: none!important;
 }
-/* line 16, ../sass/resume-download.scss */
+/* line 14, ../sass/resume-download.scss */
+.page-user-resume-download #content .container {
+  max-width: 720px;
+  margin-bottom: 60px;
+  margin-top: 80px;
+}
+@media screen and (max-width: 480px) {
+  /* line 14, ../sass/resume-download.scss */
+  .page-user-resume-download #content .container {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+}
+/* line 24, ../sass/resume-download.scss */
+.page-user-resume-download #content .container h1 {
+  padding: 0 0 20px 0;
+  margin: 0 0 20px 0;
+  border-bottom: 1px solid #ccc;
+  font-size: 22px;
+  font-weight: normal;
+  font-family: "Apercu Bold", Arial, Helvetica, sans-serif;
+}
+/* line 33, ../sass/resume-download.scss */
 .page-user-resume-download #content .container section {
-  padding-bottom: 40px;
-  margin-bottom: 40px;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
   border-bottom: 1px solid #ccc;
 }
-/* line 21, ../sass/resume-download.scss */
+/* line 38, ../sass/resume-download.scss */
 .page-user-resume-download #content .container section:last-child {
   border-bottom: none;
   margin-bottom: 0;
 }
-/* line 35, ../sass/resume-download.scss */
+/* line 42, ../sass/resume-download.scss */
+.page-user-resume-download #content .container section div {
+  font-size: 14px;
+}
+/* line 49, ../sass/resume-download.scss */
+.page-user-resume-download #content .container section div p:last-child {
+  margin-bottom: 0px;
+}
+/* line 54, ../sass/resume-download.scss */
+.page-user-resume-download #content .container section h2 {
+  padding-left: 0px;
+  text-transform: none;
+  font-family: "Apercu Bold", Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  line-height: 16px;
+  height: auto;
+  margin-bottom: 20px;
+}
+/* line 65, ../sass/resume-download.scss */
+.page-user-resume-download #content .container section.websites ul {
+  margin: 0;
+  padding: 0;
+}
+/* line 69, ../sass/resume-download.scss */
+.page-user-resume-download #content .container section.websites ul li {
+  list-style-type: none;
+  font-family: "Apercu Bold", Arial, Helvetica, sans-serif;
+}
+/* line 72, ../sass/resume-download.scss */
+.page-user-resume-download #content .container section.websites ul li a {
+  font-family: "Apercu Regular", Arial, Helvetica, sans-serif;
+}
+/* line 81, ../sass/resume-download.scss */
 .page-user-resume-download #menu {
   display: none;
   /* we don't want to show this on this page */

@@ -14192,12 +14192,27 @@ div.ctools-modal-content .form-item label {
   border: none;
 }
 
+/* banner animation h1 styles */
 /* line 9716, ../sass/style.scss */
 .organization-header h1 {
-  font-size: 45px;
-  line-height: 48px;
+  font-size: 20px;
+  line-height: 24px;
 }
 
+@media (min-width: 680px) {
+  /* line 9721, ../sass/style.scss */
+  .organization-header h1 {
+    font-size: 37px;
+    line-height: 40px;
+  }
+}
+@media (min-width: 920px) {
+  /* line 9727, ../sass/style.scss */
+  .organization-header h1 {
+    font-size: 45px;
+    line-height: 48px;
+  }
+}
 /* jquery ui tabs */
 /* line 5, ../sass/_jquery-ui.scss */
 .block-content .ui-tabs {
