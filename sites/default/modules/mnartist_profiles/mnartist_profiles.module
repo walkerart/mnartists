@@ -317,6 +317,7 @@ function mnartist_profiles_resume_download($uid) {
             // render the template with the data we just constructed,
             // and output it
             $output = theme("mna_resume_download", array(
+                                'user_full_name' => mnartist_profiles_collective_or_fullname_or_username($uid),
                                 'resume_data' => $template_data
                             )
                         );
