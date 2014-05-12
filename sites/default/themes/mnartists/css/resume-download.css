@@ -2942,7 +2942,14 @@ body.my-stuff.welcome {
   margin-bottom: 60px;
   margin-top: 80px;
 }
-/* line 19, ../sass/resume-download.scss */
+@media screen and (max-width: 480px) {
+  /* line 14, ../sass/resume-download.scss */
+  .page-user-resume-download #content .container {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+}
+/* line 24, ../sass/resume-download.scss */
 .page-user-resume-download #content .container h1 {
   padding: 0 0 20px 0;
   margin: 0 0 20px 0;
@@ -2951,26 +2958,26 @@ body.my-stuff.welcome {
   font-weight: normal;
   font-family: "Apercu Bold", Arial, Helvetica, sans-serif;
 }
-/* line 28, ../sass/resume-download.scss */
+/* line 33, ../sass/resume-download.scss */
 .page-user-resume-download #content .container section {
   padding-bottom: 20px;
   margin-bottom: 20px;
   border-bottom: 1px solid #ccc;
 }
-/* line 33, ../sass/resume-download.scss */
+/* line 38, ../sass/resume-download.scss */
 .page-user-resume-download #content .container section:last-child {
   border-bottom: none;
   margin-bottom: 0;
 }
-/* line 37, ../sass/resume-download.scss */
+/* line 42, ../sass/resume-download.scss */
 .page-user-resume-download #content .container section div {
   font-size: 14px;
 }
-/* line 44, ../sass/resume-download.scss */
+/* line 49, ../sass/resume-download.scss */
 .page-user-resume-download #content .container section div p:last-child {
   margin-bottom: 0px;
 }
-/* line 49, ../sass/resume-download.scss */
+/* line 54, ../sass/resume-download.scss */
 .page-user-resume-download #content .container section h2 {
   padding-left: 0px;
   text-transform: none;
@@ -2980,21 +2987,21 @@ body.my-stuff.welcome {
   height: auto;
   margin-bottom: 20px;
 }
-/* line 60, ../sass/resume-download.scss */
+/* line 65, ../sass/resume-download.scss */
 .page-user-resume-download #content .container section.websites ul {
   margin: 0;
   padding: 0;
 }
-/* line 64, ../sass/resume-download.scss */
+/* line 69, ../sass/resume-download.scss */
 .page-user-resume-download #content .container section.websites ul li {
   list-style-type: none;
   font-family: "Apercu Bold", Arial, Helvetica, sans-serif;
 }
-/* line 67, ../sass/resume-download.scss */
+/* line 72, ../sass/resume-download.scss */
 .page-user-resume-download #content .container section.websites ul li a {
   font-family: "Apercu Regular", Arial, Helvetica, sans-serif;
 }
-/* line 76, ../sass/resume-download.scss */
+/* line 81, ../sass/resume-download.scss */
 .page-user-resume-download #menu {
   display: none;
   /* we don't want to show this on this page */
