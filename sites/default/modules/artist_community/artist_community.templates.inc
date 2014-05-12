@@ -26,3 +26,11 @@ function template_preprocess_artist_community_artist_profile(&$vars) {
 
     $vars['url'] = url('user/' . $vars['user']->uid);
 }
+
+
+function template_preprocess_artist_community_page (&$vars) {
+  $featured_articles_will_show = (!is_null($vars['articles']) && !empty($vars['articles']));
+  $sidebar_will_show = (!isset($_GET['global_search']) && (!is_null($vars['all_event_results']) || !empty($vars['latest_users']) || !empty($vars['event_widget_items'])));
+  $vars['sidebar_will_show'] = $sidebar_will_show;
+  $vars['featured_articles_will_show'] = $featured_articles_will_show;
+}
