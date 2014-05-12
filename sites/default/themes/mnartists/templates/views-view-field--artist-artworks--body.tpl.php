@@ -15,5 +15,5 @@ if (isset($artwork_node->body[LANGUAGE_NONE])) {
 }
 ?>
 <div class="user-profile-slideshow-artwork-body">
-    <p><?= $text_excerpt ?><?php if (!empty($excerpt_overflow)) { ?><span class="user-profile-slideshow-artwork-body-hellip">&hellip;</span><span class="user-profile-slideshow-artwork-body-overflow"><?= $excerpt_overflow ?></span><a href="user-profile-slideshow-artwork-body-more-link">MORE</a><?php } ?></p>
+    <p><?= $text_excerpt ?><?php if (!empty($excerpt_overflow)) { ?><span class="user-profile-slideshow-artwork-body-hellip">&hellip;</span><span class="user-profile-slideshow-artwork-body-overflow"><?= $excerpt_overflow ?></span><a href="#" class="user-profile-slideshow-artwork-body-more-link">MORE</a><?php } ?></p>
 </div>

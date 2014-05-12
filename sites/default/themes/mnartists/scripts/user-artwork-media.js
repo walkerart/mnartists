@@ -63,5 +63,15 @@
         });
 
         vaa.remove();
+
+        // handle artwork body 'more' links
+        var sliderContainerEl = $('.artist-artworks-slider');
+        var overflowEls = sliderContainerEl.find('.user-profile-slideshow-artwork-body-overflow').hide();
+        var moreLinkEls = sliderContainerEl.find('.user-profile-slideshow-artwork-body-more-link').click(function (evt) {
+            evt.preventDefault();
+            $(this).hide();
+            $(this).siblings('.user-profile-slideshow-artwork-body-hellip').hide();
+            $(this).siblings('.user-profile-slideshow-artwork-body-overflow').show();
+        });
     });
 }(jQuery));
