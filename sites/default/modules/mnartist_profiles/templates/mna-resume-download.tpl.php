@@ -2,7 +2,7 @@
     // template for the download view of a user's resume
 ?>
 <div class="container">
-    <h1>User Name Make This Dynamic</h1>
+    <h1><?= $user_full_name ?></h1>
     <?php if (!empty($resume_data['field_general_statement']['item'])) { ?>
         <section class="resume-block resume-block-simple general-statement">
             <h2><?= $resume_data['field_general_statement']['label'] ?></h2>

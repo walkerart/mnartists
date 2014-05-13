@@ -1138,8 +1138,16 @@ function artist_community_current_filters_as_banner_string () {
     if ($local_content !== null) {
         foreach($local_content as $type => $value) {
             $context_content_arr = array();
-            $content_header = ucwords($type);
-            $content_header .= (substr($content_header, (strlen($content_header) - 1), 1) !== 's') ? 's' : '';
+            $content_header = $type;
+            $pluralized_content_header = '';
+            if ($content_header === 'opportunity') {
+                $pluralized_content_header = 'opportunities';
+            } else if (substr($content_header, (strlen($content_header) - 1), 1) !== 's') {
+                $pluralized_content_header = $content_header.'s';
+            } else {
+                $pluralized_content_header = $content_header;
+            }
+            $pluralized_content_header = ucwords($pluralized_content_header);
 
             if (is_array($value)) {
                 foreach ($local_content[$type] as $tid) {
@@ -1151,7 +1159,7 @@ function artist_community_current_filters_as_banner_string () {
             } else if ($type === 'event' && isset($_GET['event_location_search'])) {
                 $context_content_arr[] = $_GET['event_location_search'];
             }
-            $content_arr[] = (!empty($context_content_arr)) ? sprintf('(%s / %s)', $content_header, implode(' + ', $context_content_arr)) : "($content_header)";
+            $content_arr[] = (!empty($context_content_arr)) ? sprintf('(%s / %s)', $pluralized_content_header, implode(' + ', $context_content_arr)) : "($pluralized_content_header)";
         }
     }
     if (!empty($og_arr)) { $final_arr[] = '('.implode(' + ', $og_arr).')'; }

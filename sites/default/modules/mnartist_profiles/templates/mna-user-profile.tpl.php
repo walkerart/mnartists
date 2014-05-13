@@ -32,7 +32,7 @@
             <?php } ?>
             <?php if(isset($fieldset['field_full_name'])) { ?>
                 <div class='profile-full-name'>
-                    <span class='profile-title'>Contact Name:</span> <?= $fs['field_first_name'][0]['#markup'] ?> <?= $fs['field_last_name'][0]['#markup'] ?>
+                    <span class='profile-title'>Contact Name:</span> <?= (isset($fs['field_first_name'])) ? $fs['field_first_name'][0]['#markup'] : '' ?> <?= ($fs['field_last_name']) ? $fs['field_last_name'][0]['#markup'] : '' ?>
                 </div>
             <? } ?>
             <?php if(isset($fieldset['field_phone'])) { ?>
