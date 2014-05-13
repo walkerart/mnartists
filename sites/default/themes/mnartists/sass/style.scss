@@ -6339,6 +6339,26 @@ body.page-node-edit {
     }
 }
 
+// search results after being filtered (aka 3 columns, not 4)
+.main-content {
+  .search-results {
+    .item {
+      width: 33.3%;
+      font-size:14px;
+      /*background:rgba(0,0,0,.05);*/
+      margin-right:0px;
+
+      @media screen and (max-width: $break-tablet) {
+          width:50%;
+      }
+      @media screen and (max-width: $break-mobile) {
+          width:50%;
+      }
+    }
+  }
+}
+
+
 // hide weight button on forms
 .tabledrag-toggle-weight-wrapper {
     display:none;
