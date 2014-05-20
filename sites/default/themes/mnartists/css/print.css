@@ -3004,7 +3004,8 @@ table * {
 /*
  * Hide various bits of the page
  */
-/* line 98, ../sass/print.scss */
+/* line 99, ../sass/print.scss */
+.sidebar-button,
 #menu,
 .sidebar,
 #breadcrumb,
@@ -3028,7 +3029,7 @@ ul.links,
 /*
  * Ensure the display the main content region
  */
-/* line 106, ../sass/print.scss */
+/* line 107, ../sass/print.scss */
 #content {
   display: block !important;
 }
@@ -3036,12 +3037,12 @@ ul.links,
 /*
  * Layout
  */
-/* line 114, ../sass/print.scss */
+/* line 115, ../sass/print.scss */
 #header {
   margin-bottom: 20px;
 }
 
-/* line 119, ../sass/print.scss */
+/* line 120, ../sass/print.scss */
 .content-inner {
   margin: 0 !important;
   padding: 0 !important;
@@ -3050,7 +3051,7 @@ ul.links,
 /*
  * HTML elements
  */
-/* line 133, ../sass/print.scss */
+/* line 134, ../sass/print.scss */
 h1,
 h2,
 h3,
@@ -3063,29 +3064,29 @@ h6 {
   line-height: 1;
 }
 
-/* line 141, ../sass/print.scss */
+/* line 142, ../sass/print.scss */
 h1 {
   font-size: 14pt;
 }
 
-/* line 146, ../sass/print.scss */
+/* line 147, ../sass/print.scss */
 h2 {
   font-size: 13pt;
 }
 
-/* line 151, ../sass/print.scss */
+/* line 152, ../sass/print.scss */
 h3 {
   font-size: 12pt;
 }
 
-/* line 158, ../sass/print.scss */
+/* line 159, ../sass/print.scss */
 h4,
 h5,
 h6 {
   font-size: 11pt;
 }
 
-/* line 169, ../sass/print.scss */
+/* line 170, ../sass/print.scss */
 h1 a,
 h2 a,
 h3 a,
@@ -3098,17 +3099,17 @@ h6 a,
   color: #333333;
 }
 
-/* line 177, ../sass/print.scss */
+/* line 178, ../sass/print.scss */
 hgroup a:link, hgroup a:visited {
   text-decoration: none;
 }
 
-/* line 183, ../sass/print.scss */
+/* line 184, ../sass/print.scss */
 #page-title {
   margin-top: 20px;
 }
 
-/* line 193, ../sass/print.scss */
+/* line 194, ../sass/print.scss */
 pre,
 code,
 tt,
@@ -3119,7 +3120,7 @@ var {
   font-family: Consolas, "Lucida Console", Menlo, Monaco, "DejaVu Sans Mono", monospace, sans-serif;
 }
 
-/* line 199, ../sass/print.scss */
+/* line 200, ../sass/print.scss */
 blockquote {
   margin: 20px;
   padding: 10px;
@@ -3128,7 +3129,7 @@ blockquote {
   background: #eeeeee;
 }
 
-/* line 208, ../sass/print.scss */
+/* line 209, ../sass/print.scss */
 hr {
   background-color: #666666;
 }
@@ -3136,12 +3137,12 @@ hr {
 /*
  * Header, Logo, Site name
  */
-/* line 216, ../sass/print.scss */
+/* line 217, ../sass/print.scss */
 #header {
   padding-bottom: 20px;
 }
 
-/* line 221, ../sass/print.scss */
+/* line 222, ../sass/print.scss */
 #logo img {
   padding: 0 10px 0 0;
   margin: 0 !important;
@@ -3151,14 +3152,14 @@ hr {
 /*
  * Images
  */
-/* line 231, ../sass/print.scss */
+/* line 232, ../sass/print.scss */
 img {
   float: left;
   margin: 4px 20px 10px 0;
   page-break-inside: avoid;
 }
 
-/* line 238, ../sass/print.scss */
+/* line 239, ../sass/print.scss */
 a img {
   border: none;
 }
@@ -3166,46 +3167,46 @@ a img {
 /*
  * Tables
  */
-/* line 246, ../sass/print.scss */
+/* line 247, ../sass/print.scss */
 table {
   margin: 1px;
   text-align: left;
 }
 
-/* line 252, ../sass/print.scss */
+/* line 253, ../sass/print.scss */
 th {
   border-bottom: 1px solid #333333;
   font-weight: 700;
 }
 
-/* line 258, ../sass/print.scss */
+/* line 259, ../sass/print.scss */
 td {
   border-bottom: 1px solid #333333;
 }
 
-/* line 264, ../sass/print.scss */
+/* line 265, ../sass/print.scss */
 th,
 td {
   padding: 4px 10px 4px 0;
 }
 
-/* line 269, ../sass/print.scss */
+/* line 270, ../sass/print.scss */
 tfoot {
   font-style: italic;
 }
 
-/* line 274, ../sass/print.scss */
+/* line 275, ../sass/print.scss */
 caption {
   margin-bottom: 10px;
   text-align: left;
 }
 
-/* line 280, ../sass/print.scss */
+/* line 281, ../sass/print.scss */
 thead {
   display: table-header-group;
 }
 
-/* line 285, ../sass/print.scss */
+/* line 286, ../sass/print.scss */
 tr {
   page-break-inside: avoid;
 }
@@ -3213,7 +3214,7 @@ tr {
 /*
  * Forms
  */
-/* line 293, ../sass/print.scss */
+/* line 294, ../sass/print.scss */
 form {
   margin-bottom: 10px;
 }
@@ -3221,13 +3222,13 @@ form {
 /*
  * Poll module
  */
-/* line 303, ../sass/print.scss */
+/* line 304, ../sass/print.scss */
 .poll .text,
 .poll .percent,
 .poll .total {
   text-align: left;
 }
-/* line 306, ../sass/print.scss */
+/* line 307, ../sass/print.scss */
 .poll form {
   margin-bottom: 0;
 }
@@ -3235,7 +3236,7 @@ form {
 /*
  * Articles
  */
-/* line 316, ../sass/print.scss */
+/* line 317, ../sass/print.scss */
 .node,
 .comment {
   margin-bottom: 20px;
@@ -3243,7 +3244,7 @@ form {
   page-break-inside: avoid;
 }
 
-/* line 322, ../sass/print.scss */
+/* line 323, ../sass/print.scss */
 .submitted {
   color: #666666;
   text-decoration: none;
@@ -3252,7 +3253,7 @@ form {
   margin: 0;
   padding: 0;
 }
-/* line 330, ../sass/print.scss */
+/* line 331, ../sass/print.scss */
 .submitted a {
   color: #666666;
   text-decoration: none;
@@ -3263,7 +3264,7 @@ form {
 }
 
 /* resume print */
-/* line 342, ../sass/print.scss */
+/* line 343, ../sass/print.scss */
 .page-user-resume-download #content .container {
   margin-top: 0px;
   margin-bottom: 0px;

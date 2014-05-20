@@ -3008,3 +3008,18 @@ body.my-stuff.welcome {
   display: none;
   /* we don't want to show this on this page */
 }
+
+/* print for the resume only */
+@media print {
+  /* line 88, ../sass/resume-download.scss */
+  .page-user-resume-download #content .container {
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+
+  /* line 91, ../sass/resume-download.scss */
+  .sidebar-button {
+    display: none;
+  }
+}
+/* end print css */
