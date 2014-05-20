@@ -24,6 +24,20 @@
     height: 192px;
   }
 }
+/* organization header only on the homepage */
+.front .organization-header {
+  height:auto;
+}
+@media (min-width: 680px) {
+  .front .organization-header {
+    height: auto;
+  }
+}
+@media (min-width: 920px) {
+  .front .organization-header {
+    height: auto;
+  }
+} /* end org header on home only */
 
 .organization-header a {
   text-decoration: none;
