@@ -7220,20 +7220,30 @@ body {
     }
 }
 .node-type-event {
-
-    .inset-wrapper {
-
-        .menu li:hover>ul { /* since its top right, right align */
-            top: 100%;
-            right: 0px;
-            left: auto;
-        }
+  .inset-wrapper {
+    .menu li:hover>ul { /* since its top right, right align */
+      top: 100%;
+      right: 0px;
+      left: auto;
     }
+  }
+  .pane-artist-community-event-category-link {
+    .block-content {
+      a {
+        @include quiet_type_label;
+        padding:0 0 5px 0;
+        margin:0;
+        line-height:12px;
+        height:15px;
+        color:$label_color;
+      }
+    }
+  }
 }
 
 .menu li li:hover>ul {  /* 2nd+ levels go on the right side of the parent item */
-        top: 0;
-        left: 100%;
+  top: 0;
+  left: 100%;
 }
 
 /* -- float.clear --
