@@ -100,7 +100,12 @@ function artist_community_search_page() {
             $article_filters = array_merge($article_filters, $filters);
         }
         $articles = artist_community_execute_query(NODE_INDEX, $article_filters, array(array('promote', 'ASC'), array('changed', 'ASC')));
+        $maxArticles = 8;
+        $articleCounter = 0;
         foreach($articles as $index => $article) {
+            if ($articleCounter >= $maxArticles) {
+                break;
+            }
             $context_article_data = new StdClass();
             $author_full_name = '';
             $context_user_main_profile = profile2_load_by_user($article->uid, 'main');
@@ -121,6 +126,7 @@ function artist_community_search_page() {
             $category_term = (isset($article->field_article_category['und'])) ? taxonomy_term_load($article->field_article_category['und'][0]['tid']) : '';
             $context_article_data->category = (isset($category_term->name)) ? $category_term->name : '';
             $articles_data[] = $context_article_data;
+            $articleCounter++;
         }
 
         // as above, but with events
