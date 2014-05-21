@@ -200,7 +200,7 @@ function _mnartist_profiles_get_feed_data($row_offset = null, $row_limit = null)
         $context_user = user_load($row->uid);
         $context_object->message = $row->message;
         $context_object->entity_id = $row->eid;
-        $context_object->user_picture_uri = (isset($context_user->picture->uri)) ? image_style_url('square_thumbnail', $context_user->picture->uri) : null;
+        $context_object->user_picture_uri = (isset($context_user->picture->uri)) ? image_style_url('square_thumbnail', $context_user->picture->uri) : 'http://mnartist.imalab.us/sites/default/files/styles/square_thumbnail/public/pictures/picture-default.jpg';
         $context_object->update_timestamp = $row->created;
         $feed_data[] = $context_object;
     }
