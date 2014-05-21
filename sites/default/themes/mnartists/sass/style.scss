@@ -5392,6 +5392,10 @@ only screen and (min-device-pixel-ratio: 1.5) {
     }
   }
 }
+.event-content.panel-2col .panel-col-first .panel-col-last.inset-right .inside {
+  box-sizing:border-box;
+  padding-right:10px;
+}
 .node-type-event {
   .edit-button {
     a {
@@ -7236,6 +7240,8 @@ body {
         line-height:12px;
         height:15px;
         color:$label_color;
+        display:inline-block;
+        text-decoration:none;
       }
     }
   }
