@@ -17,7 +17,7 @@
     }
 ?>
 <div class="panel-2col layout-a">
-    <div class="panel-panel panel-col-first main-content">
+    <div class="panel-panel panel-col-first main-content<?php if (!$featured_articles_will_show) { ?> has-featured-articles<?php } ?>">
 
         <!-- banner -->
         <header class="organization-header<?php if (count($_GET) <= 1) { ?> has-taglines<?php } ?>">
