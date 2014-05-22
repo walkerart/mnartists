@@ -1695,3 +1695,12 @@ div[class*="-image-field-caption-value"] {
     }
   }
 }
+
+/* force inputs in modals to have high z-index */
+.ui-dialog {
+  form {
+    input {
+      z-index:2000;
+    }
+  }
+}

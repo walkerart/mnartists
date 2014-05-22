@@ -2387,6 +2387,12 @@ div[class*="-image-field-caption-value"] .cke_contents {
   }
 }
 
+/* force inputs in modals to have high z-index */
+/* line 1702, ../sass/_forms.scss */
+.ui-dialog form input {
+  z-index: 2000;
+}
+
 /* user profile page */
 /* line 6, ../sass/_user-profile.scss */
 .user-picture a {
