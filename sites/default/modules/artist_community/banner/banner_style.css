@@ -19,8 +19,19 @@
 }
 @media (min-width: 920px) {
   .organization-header {
-    font-size: 45px;
-    line-height: 48px;
+    height:auto;
+  }
+}
+.organization-header.has-taglines {
+  height: 96px;
+}
+@media (min-width: 680px) {
+  .organization-header.has-taglines {
+    height: 160px;
+  }
+}
+@media (min-width: 920px) {
+  .organization-header.has-taglines {
     height: 192px;
   }
 }
