@@ -605,6 +605,20 @@ function _mnartist_profile_my_stuff() {
     if (!user_is_logged_in()) {
         $userBlock = module_invoke('user', 'block', 'view', 'login');
         $output = $userBlock['content'];
+
+        $links = array();
+        $links[] = l("Login", "user");
+        $links[] = l("Register", "user/register");
+        $links[] = l("Forgot Password", "user/password");
+
+        $output .= theme_item_list(array(
+            'items' => $links,
+            'title' => null,
+            'type' => 'ul',
+            'attributes' => array(
+                'class' => array('my-stuff-menu', 'login-menu')
+            )
+        ));
     } else {
         $links = array();
 
@@ -863,6 +877,8 @@ function _mnartist_profile_user_profile() {
 function mnartist_profiles_form_alter(&$form, $form_state, $form_id) {
     global $user;
     if ($form_id == 'user_profile_form') {
+        $form['privacy_instructions']['#markup'] = "<div class='privacy-instructions'>Checking the 'Private' option will below will make that particular field visible only to you.</div>";
+        $form['privacy_instructions']['#weight'] = -100;
         if (isset($form["#user_category"]) && $form["#user_category"] == 'resume') {
             // include form js
             drupal_add_js(drupal_get_path('module', 'mnartist_profiles') .'/js/resume_form.js');
