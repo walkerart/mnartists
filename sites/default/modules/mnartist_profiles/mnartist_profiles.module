@@ -605,6 +605,20 @@ function _mnartist_profile_my_stuff() {
     if (!user_is_logged_in()) {
         $userBlock = module_invoke('user', 'block', 'view', 'login');
         $output = $userBlock['content'];
+
+        $links = array();
+        $links[] = l("Login", "user");
+        $links[] = l("Register", "user/register");
+        $links[] = l("Forgot Password", "user/password");
+
+        $output .= theme_item_list(array(
+            'items' => $links,
+            'title' => null,
+            'type' => 'ul',
+            'attributes' => array(
+                'class' => array('my-stuff-menu', 'login-menu')
+            )
+        ));
     } else {
         $links = array();
 
