@@ -103,7 +103,7 @@ function _mnartist_profiles_should_show_welcome() {
                     ->condition('uid', $user->uid)
                     ->execute();
     $feed_count = $query->rowCount();
-    $show_welcome_field = (!isset($account->field_show_welcome['und']) || (isset($account->field_show_welcome['und']) && $account->field_show_welcome['und'][0]['value'] === 1));
+    $show_welcome_field = (!isset($account->field_show_welcome['und']) || (isset($account->field_show_welcome['und']) && $account->field_show_welcome['und'][0]['value'] === '1'));
     // and the show welcome field on the user
     // is true
     return ($feed_count === 0 && $show_welcome_field);
