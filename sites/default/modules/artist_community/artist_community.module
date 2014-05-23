@@ -849,11 +849,12 @@ function _artist_community_get_items_query ($local_og = null,
             'user' => array()
         );
 
-        $forSaleQuery = null;
-        foreach($local_content as $type => $value) {
 
+        foreach($local_content as $type => $value) {
+            $forSaleQuery = null;
             switch($type) {
                 case 'artwork':
+                case 'artwork_for_sale':
                 case 'article':
                 case 'opportunity':
                 case 'event':
@@ -869,10 +870,15 @@ function _artist_community_get_items_query ($local_og = null,
                         $subQueryTargetField = AC_CATEGORY_FIELD;
                     }
                     if (isset($local_content[$type]) &&
-                        is_array($local_content[$type])) {
+                        is_array($local_content[$type]) &&
+                        $type !== 'artwork_for_sale') {
                         $subQuery = implode(' AND ', $local_content[$type]);
                     }
-                    $forSaleQuery = AC_FOR_SALE_FIELD.':true';
+                    if (isset($local_content['artwork_for_sale']) &&
+                        $local_content['artwork_for_sale'] === '1') {
+                        $typeQuery = AC_TYPE_FIELD.":artwork";
+                        $forSaleQuery = AC_FOR_SALE_FIELD.':true';
+                    }
                 case 'event':
                     if (isset($_GET['event_location_search'])) {
                         $event_coords = _get_location_coords_from_search_string(urldecode($_GET['event_location_search']));
@@ -1170,6 +1176,8 @@ function artist_community_current_filters_as_banner_string () {
             $pluralized_content_header = '';
             if ($content_header === 'opportunity') {
                 $pluralized_content_header = 'opportunities';
+            } else if ($content_header === 'artwork_for_sale') {
+                $pluralized_content_header = 'Artworks For Sale';
             } else if (substr($content_header, (strlen($content_header) - 1), 1) !== 's') {
                 $pluralized_content_header = $content_header.'s';
             } else {
