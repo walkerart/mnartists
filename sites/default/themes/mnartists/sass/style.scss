@@ -5669,11 +5669,22 @@ only screen and (min-device-pixel-ratio: 1.5) {
     }
 }
 /* multiple day event date */
+.event-date .field-type-datetime .field-items .field-item {
+  vertical-align:middle;
+}
+.event-date .date-display-end .month {
+  margin-left:5px;
+}
+.event-date .date-display-start .month {
+  margin-right:5px;
+}
 .event-date .date-display-end,
 .event-date .date-display-start {
     font-size:50px;
     font-family:$sans_bold_font;
     line-height:50px;
+    display:inline-block;
+    vertical-align:middle;
 
     .month {
         text-transform:uppercase;
