@@ -5672,10 +5672,10 @@ only screen and (min-device-pixel-ratio: 1.5) {
 .event-date .field-type-datetime .field-items .field-item {
   vertical-align:middle;
 }
-.event-date .date-display-end .month {
+.event-date .date-display-end {
   margin-left:5px;
 }
-.event-date .date-display-start .month {
+.event-date .date-display-start {
   margin-right:5px;
 }
 .event-date .date-display-end,
@@ -5693,6 +5693,10 @@ only screen and (min-device-pixel-ratio: 1.5) {
         text-align:center;
         margin-bottom:5px;
         line-height:20px;
+
+        &:nth-child(2) {
+          display:none; /* there is an empty month div for some reason sometimes */
+        }
     }
     .month:last-child {
         /* display:none; */ // why?
