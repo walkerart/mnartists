@@ -5650,7 +5650,7 @@ only screen and (min-device-pixel-ratio: 1.5) {
         }
     }
 }
-
+/* single day event date */
 .event-date .date-display-single {
     font-size:50px;
     font-family:$sans_bold_font;
@@ -5668,6 +5668,27 @@ only screen and (min-device-pixel-ratio: 1.5) {
         /* display:none; */ // why?
     }
 }
+/* multiple day event date */
+.event-date .date-display-end,
+.event-date .date-display-start {
+    font-size:50px;
+    font-family:$sans_bold_font;
+    line-height:50px;
+
+    .month {
+        text-transform:uppercase;
+        font-size:24px;
+        display:block;
+        text-align:center;
+        margin-bottom:5px;
+        line-height:20px;
+    }
+    .month:last-child {
+        /* display:none; */ // why?
+    }
+}
+/* */
+
 .panel-pane .event-content {
     padding-top:10px;
 }
