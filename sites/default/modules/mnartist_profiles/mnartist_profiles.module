@@ -573,6 +573,13 @@ function mnartist_profiles_block_info() {
             'cache' => DRUPAL_NO_CACHE,
             'visibility' => BLOCK_VISIBILITY_PHP,
             'pages' => '<?php return _mnartist_profile_block_visibility(); ?>'
+        ),
+
+        'mna_all_artworks_link' => array(
+            'info' => t('All Artworks Link'),
+            'cache' => DRUPAL_NO_CACHE,
+            'visibility' => BLOCK_VISIBILITY_PHP,
+            'pages' => '<?php return _mnartist_profile_block_visibility(); ?>'
         )
 
         // @TODO next add block, start with just a list of user's collections, replace that in current thing
@@ -592,6 +599,10 @@ function mnartist_profiles_block_view($delta = '') {
         case 'mna_user_collections':
             $block['subject'] = 'User Collections';
             $block['content'] = _mnartist_profile_user_collections();
+        break;
+        case 'mna_all_artworks_link':
+            $block['subject'] = 'All Artworks Link';
+            $block['content'] = _mnartist_profile_all_artworks_link();
         break;
     }
 
@@ -696,6 +707,18 @@ function _mnartist_profile_my_stuff() {
         ));
     }
     return $output;
+}
+
+function _mnartist_profile_all_artworks_link() {
+    $user_id = arg(1);
+    $context_user = user_load($user_id);
+    if($context_user) {
+        $link_fragment_arr = array();
+        $link_fragment_arr[] = '<div class="all-artworks">';
+        $link_fragment_arr[] = '<a href="/community?content[artwork]=1&global_search='.$context_user->name.'">All Artworks</a>';
+        $link_fragment_arr[] = '</div>';
+        return implode('', $link_fragment_arr);
+    }
 }
 
 function _mnartist_profile_user_collections() {

@@ -71,10 +71,6 @@
                 if (!empty($all_roles)) { ?>
                 <div class="roles"><?= implode(', ', $all_roles) ?></div>
             <? } ?>
-            <br>
-            <div class="all-artworks">
-                <a href="/community?content[artwork]=1&global_search=<?= $context_user->name ?>">All Artworks</a>
-            </div>
             <?php if ($user->uid === $context_user->uid || in_array('administrator', $user->roles)) { ?>
                 <div class="edit-button">
                     <a href="/user/<?= $context_user->uid ?>/edit">Edit</a>
