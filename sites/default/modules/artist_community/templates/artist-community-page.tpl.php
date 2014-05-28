@@ -17,7 +17,7 @@
     }
 ?>
 <div class="panel-2col layout-a">
-    <div class="panel-panel panel-col-first main-content<?php if (!$featured_articles_will_show) { ?> has-featured-articles<?php } ?>">
+    <div class="panel-panel panel-col-first main-content<?php if ($featured_articles_will_show) { ?> has-featured-articles<?php } ?>">
 
         <!-- banner -->
         <header class="organization-header<?php if (count($_GET) <= 1) { ?> has-taglines<?php } ?>">
@@ -109,7 +109,7 @@
                     <?php } ?>
                 </div>
             <?php }
-            if (!$featured_articles_will_show) {
+            if ($featured_articles_will_show) {
                 print theme('artist_community_page_search_results', array(
                     'total_num_results' => $total_num_results,
                     'all_event_results' => $all_event_results,
@@ -200,7 +200,7 @@
         </div>
     <?php } ?>
     <?php
-        if ($featured_articles_will_show) {
+        if (!$featured_articles_will_show) {
             print theme('artist_community_page_search_results', array(
                 'total_num_results' => $total_num_results,
                 'all_event_results' => $all_event_results,
