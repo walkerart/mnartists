@@ -15,6 +15,16 @@
         }
         $og_get_string = implode('&', $og_get_string_arr);
     }
+
+    // @TODO remove redundancy here, this is just for explicitness for now
+    $layout_mode = 4;
+    if (!$featured_articles_will_show && $sidebar_will_show) {
+        $layout_mode = 3;
+    } else if ((!$featured_articles_will_show && !$sidebar_will_show) || ($featured_articles_will_show && $sidebar_will_show)) {
+        $layout_mode = 4;
+    } else {
+        $layout_mode = 4;
+    }
 ?>
 <div class="panel-2col layout-a">
     <div class="panel-panel panel-col-first main-content<?php if (!$featured_articles_will_show) { ?> has-featured-articles<?php } ?>">
@@ -109,7 +119,7 @@
                     <?php } ?>
                 </div>
             <?php }
-            if (!$featured_articles_will_show && $sidebar_will_show) {
+            if ($layout_mode === 3) {
                 print theme('artist_community_page_search_results', array(
                     'total_num_results' => $total_num_results,
                     'all_event_results' => $all_event_results,
@@ -199,7 +209,7 @@
             <?php } ?>
         </div>
     <?php }
-        if ((!$featured_articles_will_show && !$sidebar_will_show) || ($featured_articles_will_show && $sidebar_will_show)) {
+        if ($layout_mode === 4) {
             print theme('artist_community_page_search_results', array(
                 'total_num_results' => $total_num_results,
                 'all_event_results' => $all_event_results,
