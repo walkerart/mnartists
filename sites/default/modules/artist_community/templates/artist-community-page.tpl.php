@@ -74,7 +74,7 @@
             <div class="sort-thing-current-sort" id="sort-thing-opener">SORT</div>
         </div>
 
-        <?php if (!isset($_GET['global_search'])) { ?>
+        <?php if ($featured_articles_will_show) { ?>
             <?php if (!empty($articles)) { ?>
                 <div class="article-thing widget">
                     <h3>Top Stories</h3>
@@ -128,7 +128,7 @@
             }
         } ?>
     </div>
-    <?php if (!isset($_GET['global_search']) && $sidebar_will_show) { ?>
+    <?php if ($sidebar_will_show) { ?>
         <div class="panel-panel panel-col-last sidebar-right">
             <?php if(!is_null($all_event_results)) { ?>
                 <div class="widget-standard widget my-events">
