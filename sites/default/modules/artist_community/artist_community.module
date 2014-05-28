@@ -543,6 +543,9 @@ function url_query_master($text, $path, $key, $val, $attributes = array()) {
             case 'article':
                 $facet_count = intval($search_facets->getFacet($val.'s')->getValue());
                 break;
+            case 'opportunity':
+                $facet_count = intval($search_facets->getFacet('opportunities')->getValue());
+                break;
         }
         $output = l($text." ($facet_count)", $path, array('query' => $query, 'attributes' => $attributes));
 
@@ -819,7 +822,7 @@ function _artist_community_get_items_query ($local_og = null,
             $userQueryBuilder[] = AC_USER_NODE_FIELD.":$og_id";
         }
     } else {
-        $nodeQueryBuilder[] = '('.AC_TYPE_FIELD.':article OR '.AC_TYPE_FIELD.':artwork OR '.AC_TYPE_FIELD.':event)';
+        $nodeQueryBuilder[] = '('.AC_TYPE_FIELD.':article OR '.AC_TYPE_FIELD.':artwork OR '.AC_TYPE_FIELD.':event OR '.AC_TYPE_FIELD.':opportunity)';
     }
 
     $nodeQueryBuilderString = (count($nodeQueryBuilder) !== 0) ? ' AND ('.implode(' OR ', $nodeQueryBuilder).')' : '';
