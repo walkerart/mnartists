@@ -119,18 +119,19 @@
                     <?php } ?>
                 </div>
             <?php }
-            if ($layout_mode === 3) {
-                print theme('artist_community_page_search_results', array(
-                    'total_num_results' => $total_num_results,
-                    'all_event_results' => $all_event_results,
-                    'content' => $content,
-                ));
-            }
-        } ?>
+        }
+        if ($layout_mode === 3) {
+            print theme('artist_community_page_search_results', array(
+                'total_num_results' => $total_num_results,
+                'all_event_results' => $all_event_results,
+                'content' => $content,
+            ));
+        }
+        ?>
     </div>
     <?php if ($sidebar_will_show) { ?>
         <div class="panel-panel panel-col-last sidebar-right">
-            <?php if(!is_null($all_event_results)) { ?>
+            <?php if(!empty($all_event_results)) { ?>
                 <div class="widget-standard widget my-events">
                     <h3>My Events</h3>
                     <div class="widget-content">
@@ -154,7 +155,7 @@
                 </div>
             <?php } ?>
 
-            <?php if (is_null($all_event_results)) { ?>
+            <?php if (empty($all_event_results)) { ?>
                 <?php if (!empty($latest_users)) { ?>
                     <div class="user-thing widget-standard widget">
                         <h3>Newest Artists</h3>

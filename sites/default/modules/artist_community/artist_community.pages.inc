@@ -17,6 +17,7 @@ function artist_community_search_page() {
     $articles_data  = array();
     $latest_users_data = array();
     $from_the_network_posts = array();
+    $all_event_results = array();
     $from_the_network_limit = 3;
     $events_data    = array();
     $all_results    = array();
@@ -215,7 +216,6 @@ function artist_community_search_page() {
 
     $all_community_results = _artist_community_get_items_query($local_og, $local_content, $start_row, $num_rows, null, $local_sort, $local_sort_direction);
 
-    $all_event_results = null;
     $highlighted_event = null;
     if (isset($_GET['content']) &&
         count($_GET['content']) === 1 &&
@@ -223,16 +223,19 @@ function artist_community_search_page() {
         isset($_GET['content']['event'])) {
 
         $filtered_by_events_only = true;
-
-        $all_event_results = array();
         foreach ($all_community_results['results'] as $index => $row) {
-            $date_key = date_create($row['item']->field_date['und'][0]['value']);
-            $date_key->setTime(0,0,0);
-            $date_key_string = $date_key->format('Y-m-d');
-            if (isset($all_event_results[$date_key_string])) {
-                $all_event_results[$date_key_string][] = $row;
-            } else {
-                $all_event_results[$date_key_string] = array($row);
+            // date should always be set as it's a required field,
+            // but putting this here to prevent a breakdown if that
+            // somehow ever happens
+            if (isset($row['item']->field_date['und'])) {
+                $date_key = date_create($row['item']->field_date['und'][0]['value']);
+                $date_key->setTime(0,0,0);
+                $date_key_string = $date_key->format('Y-m-d');
+                if (isset($all_event_results[$date_key_string])) {
+                    $all_event_results[$date_key_string][] = $row;
+                } else {
+                    $all_event_results[$date_key_string] = array($row);
+                }
             }
         }
 
@@ -255,6 +258,7 @@ function artist_community_search_page() {
                                                 'from_the_network_posts' => $from_the_network_posts,
                                                 'latest_users' => $latest_users_data,
                                                 'all_event_results' => $all_event_results,
+                                                'filtered_by_events_only' => $filtered_by_events_only,
                                                 'highlighted_event' => $highlighted_event,
                                                 'banner_string' => artist_community_current_filters_as_banner_string()));
 }
