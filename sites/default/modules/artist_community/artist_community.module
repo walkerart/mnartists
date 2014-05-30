@@ -689,6 +689,18 @@ function url_query_master($text, $path, $key, $val, $attributes = array()) {
             // and build sub-items for categories
             $event_category_vocab_tree = taxonomy_get_tree(EVENT_CATEGORY_VID);
             $event_sub_items = array_merge($event_sub_items, _artist_community_build_subitems_for_item($val, $event_category_vocab_tree, $event_category_facets_rec, $query));
+
+            // do past event thing
+            $past_event_attributes = array();
+            if (isset($_GET['content']['event_include_past']) && $_GET['content']['event_include_past'] == 1) {
+                $past_event_attributes['class'] = array('active-trail','selected');
+            }
+            $query['content']['event_include_past'] = TRUE;
+            $event_sub_items[] = l("Include Past Events", 'community', array(
+                'query' => $query,
+                'attributes' => $past_event_attributes,
+            ));
+
             if (isset($event_sub_items)) {
                 $output .= theme('item_list', array('items' => $event_sub_items));
             }
@@ -787,6 +799,7 @@ function _artist_community_get_items_query ($local_og = null,
     $filtered_by_events_only = false;
     $filtered_by_events_and_location = (isset($_GET['event_location_search']));
     $filtered_by_event_date = false;
+    $filtered_by_event_include_past = false;
 
     // $filtered_by_user_only = false;
     $filtered_by_user_location = false;
@@ -807,6 +820,12 @@ function _artist_community_get_items_query ($local_og = null,
         $solarium_query->setQuery($globalQs);
     }
 
+    if (isset($local_content['event_include_past']) &&
+        $local_content['event_include_past'] === '1') {
+        $filtered_by_event_include_past = true;
+    }
+
+
     // Handle Organic groups and taxonomies
     if ($local_og !== null) {
         foreach($local_og as $og_id => $terms) {
@@ -822,7 +841,11 @@ function _artist_community_get_items_query ($local_og = null,
             $userQueryBuilder[] = AC_USER_NODE_FIELD.":$og_id";
         }
     } else {
-        $nodeQueryBuilder[] = '('.AC_TYPE_FIELD.':article OR '.AC_TYPE_FIELD.':artwork OR '.AC_TYPE_FIELD.':event OR '.AC_TYPE_FIELD.':opportunity)';
+        if ($filtered_by_event_include_past) {
+            $nodeQueryBuilder[] = '('.AC_TYPE_FIELD.':article OR '.AC_TYPE_FIELD.':artwork OR '.AC_TYPE_FIELD.':event OR '.AC_TYPE_FIELD.':opportunity)';
+        } else {
+            $nodeQueryBuilder[] = '('.AC_TYPE_FIELD.':article OR '.AC_TYPE_FIELD.':artwork OR '.AC_TYPE_FIELD.':opportunity OR ('.AC_TYPE_FIELD.":event AND ds_field_date\:value:[NOW TO *]))";
+        }
     }
 
     $nodeQueryBuilderString = (count($nodeQueryBuilder) !== 0) ? ' AND ('.implode(' OR ', $nodeQueryBuilder).')' : '';
