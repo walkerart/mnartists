@@ -1725,6 +1725,16 @@ div[class*="-image-field-caption-value"] {
 
 // edit event
 .node-type-event.page-node-edit {
+  .field-name-field-date-form {
+    .form-wrapper {
+      .fieldset-wrapper {
+        float:none;
+        .date-no-float {
+          width:100%;float:none;clear:both;
+        }
+      }
+    }
+  }
   .date-padding {
     .form-item {
       label {
@@ -1732,7 +1742,7 @@ div[class*="-image-field-caption-value"] {
         float:left;
       }
       input {
-        width: 66%;
+        width: 65.8%;
         float: left;
         clear:right;
         box-sizing:border-box;
