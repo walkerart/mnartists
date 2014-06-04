@@ -1722,3 +1722,24 @@ div[class*="-image-field-caption-value"] {
   color:#808080;
   padding-bottom:20px;
 }
+
+// edit event
+.node-type-event.page-node-edit {
+  .date-padding {
+    .form-item {
+      label {
+        width:33%;
+        float:left;
+      }
+      input {
+        width: 66%;
+        float: left;
+        clear:right;
+        box-sizing:border-box;
+      }
+      .description {
+        margin-left:33%;
+      }
+    }
+  }
+}
