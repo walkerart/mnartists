@@ -452,7 +452,7 @@ function url_query_master($text, $path, $key, $val, $attributes = array()) {
         $query['content'] = $_GET['content'];
     }
 
-    if (isset($_GET['global_search'])) {
+    if (isset($_GET['global_search']) && !empty($_GET['global_search'])) {
         $query['global_search'] = $_GET['global_search'];
     }
 
@@ -542,6 +542,9 @@ function url_query_master($text, $path, $key, $val, $attributes = array()) {
             case 'artwork':
             case 'article':
                 $facet_count = intval($search_facets->getFacet($val.'s')->getValue());
+                break;
+            case 'opportunity':
+                $facet_count = intval($search_facets->getFacet('opportunities')->getValue());
                 break;
         }
         $output = l($text." ($facet_count)", $path, array('query' => $query, 'attributes' => $attributes));
@@ -686,6 +689,18 @@ function url_query_master($text, $path, $key, $val, $attributes = array()) {
             // and build sub-items for categories
             $event_category_vocab_tree = taxonomy_get_tree(EVENT_CATEGORY_VID);
             $event_sub_items = array_merge($event_sub_items, _artist_community_build_subitems_for_item($val, $event_category_vocab_tree, $event_category_facets_rec, $query));
+
+            // do past event thing
+            $past_event_attributes = array();
+            if (isset($_GET['content']['event_include_past']) && $_GET['content']['event_include_past'] == 1) {
+                $past_event_attributes['class'] = array('active-trail','selected');
+            }
+            $query['content']['event_include_past'] = TRUE;
+            $event_sub_items[] = l("Include Past Events", 'community', array(
+                'query' => $query,
+                'attributes' => $past_event_attributes,
+            ));
+
             if (isset($event_sub_items)) {
                 $output .= theme('item_list', array('items' => $event_sub_items));
             }
@@ -784,6 +799,7 @@ function _artist_community_get_items_query ($local_og = null,
     $filtered_by_events_only = false;
     $filtered_by_events_and_location = (isset($_GET['event_location_search']));
     $filtered_by_event_date = false;
+    $filtered_by_event_include_past = false;
 
     // $filtered_by_user_only = false;
     $filtered_by_user_location = false;
@@ -793,7 +809,7 @@ function _artist_community_get_items_query ($local_og = null,
     $solarium_query = $client->createSelect();
 
     // add the search term if a user entered one
-    if (isset($_GET['global_search'])) {
+    if (isset($_GET['global_search']) && !empty($_GET['global_search'])) {
         // @ddamico: there is surely a better way to do this,
         // but I couldn't get exact term searches to work unless
         // I included the search term both with and without
@@ -803,6 +819,12 @@ function _artist_community_get_items_query ($local_og = null,
         $globalQs .= '('.AC_PROFILE_SEARCH_FIELD.":{$_GET['global_search']}* OR ".AC_PROFILE_SEARCH_FIELD.":{$_GET['global_search']}))";
         $solarium_query->setQuery($globalQs);
     }
+
+    if (isset($local_content['event_include_past']) &&
+        $local_content['event_include_past'] === '1') {
+        $filtered_by_event_include_past = true;
+    }
+
 
     // Handle Organic groups and taxonomies
     if ($local_og !== null) {
@@ -819,7 +841,11 @@ function _artist_community_get_items_query ($local_og = null,
             $userQueryBuilder[] = AC_USER_NODE_FIELD.":$og_id";
         }
     } else {
-        $nodeQueryBuilder[] = '('.AC_TYPE_FIELD.':article OR '.AC_TYPE_FIELD.':artwork OR '.AC_TYPE_FIELD.':event)';
+        if ($filtered_by_event_include_past) {
+            $nodeQueryBuilder[] = '('.AC_TYPE_FIELD.':article OR '.AC_TYPE_FIELD.':artwork OR '.AC_TYPE_FIELD.':event OR '.AC_TYPE_FIELD.':opportunity)';
+        } else {
+            $nodeQueryBuilder[] = '('.AC_TYPE_FIELD.':article OR '.AC_TYPE_FIELD.':artwork OR '.AC_TYPE_FIELD.':opportunity OR ('.AC_TYPE_FIELD.":event AND ds_field_date\:value:[NOW TO *]))";
+        }
     }
 
     $nodeQueryBuilderString = (count($nodeQueryBuilder) !== 0) ? ' AND ('.implode(' OR ', $nodeQueryBuilder).')' : '';
@@ -1200,7 +1226,11 @@ function artist_community_current_filters_as_banner_string () {
     }
     if (!empty($og_arr)) { $final_arr[] = '('.implode(' + ', $og_arr).')'; }
     if (!empty($content_arr)) { $final_arr[] = (count($content_arr) > 1) ? '('.implode(' + ', $content_arr).')' : implode(' + ', $content_arr); }
-    return implode(' x ', $final_arr);
+    $banner_string = implode(' x ', $final_arr);
+    if (isset($_GET['global_search']) && !empty($_GET['global_search'])) {
+        $banner_string .= ' + "'.urldecode($_GET['global_search']).'"';
+    }
+    return $banner_string;
 
 }
 

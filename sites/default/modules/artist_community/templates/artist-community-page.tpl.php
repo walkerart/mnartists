@@ -15,6 +15,16 @@
         }
         $og_get_string = implode('&', $og_get_string_arr);
     }
+
+    // @TODO remove redundancy here, this is just for explicitness for now
+    $layout_mode = 4;
+    if (!$featured_articles_will_show && $sidebar_will_show) {
+        $layout_mode = 3;
+    } else if ((!$featured_articles_will_show && !$sidebar_will_show) || ($featured_articles_will_show && $sidebar_will_show)) {
+        $layout_mode = 4;
+    } else {
+        $layout_mode = 4;
+    }
 ?>
 <div class="panel-2col layout-a">
     <div class="panel-panel panel-col-first main-content<?php if (!$featured_articles_will_show) { ?> has-featured-articles<?php } ?>">
@@ -64,7 +74,7 @@
             <div class="sort-thing-current-sort" id="sort-thing-opener">SORT</div>
         </div>
 
-        <?php if (!isset($_GET['global_search'])) { ?>
+        <?php if ($featured_articles_will_show) { ?>
             <?php if (!empty($articles)) { ?>
                 <div class="article-thing widget">
                     <h3>Top Stories</h3>
@@ -109,18 +119,19 @@
                     <?php } ?>
                 </div>
             <?php }
-            if (!$featured_articles_will_show) {
-                print theme('artist_community_page_search_results', array(
-                    'total_num_results' => $total_num_results,
-                    'all_event_results' => $all_event_results,
-                    'content' => $content,
-                ));
-            }
-        } ?>
+        }
+        if ($layout_mode === 3) {
+            print theme('artist_community_page_search_results', array(
+                'total_num_results' => $total_num_results,
+                'all_event_results' => $all_event_results,
+                'content' => $content,
+            ));
+        }
+        ?>
     </div>
-    <?php if (!isset($_GET['global_search']) && $sidebar_will_show) { ?>
+    <?php if ($sidebar_will_show) { ?>
         <div class="panel-panel panel-col-last sidebar-right">
-            <?php if(!is_null($all_event_results)) { ?>
+            <?php if(!empty($all_event_results)) { ?>
                 <div class="widget-standard widget my-events">
                     <h3>My Events</h3>
                     <div class="widget-content">
@@ -144,7 +155,7 @@
                 </div>
             <?php } ?>
 
-            <?php if (is_null($all_event_results)) { ?>
+            <?php if (empty($all_event_results)) { ?>
                 <?php if (!empty($latest_users)) { ?>
                     <div class="user-thing widget-standard widget">
                         <h3>Newest Artists</h3>
@@ -198,9 +209,8 @@
                 </div>
             <?php } ?>
         </div>
-    <?php } ?>
-    <?php
-        if ($featured_articles_will_show) {
+    <?php }
+        if ($layout_mode === 4) {
             print theme('artist_community_page_search_results', array(
                 'total_num_results' => $total_num_results,
                 'all_event_results' => $all_event_results,
