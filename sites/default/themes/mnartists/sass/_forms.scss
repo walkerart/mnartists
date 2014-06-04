@@ -1731,6 +1731,15 @@ div[class*="-image-field-caption-value"] {
         float:none;
         .date-no-float {
           width:100%;float:none;clear:both;
+          .form-item {
+            float:none;clear:both;
+            display:block;width:100%;
+            .date-padding {
+              float:none;clear:both;
+              display:block;width:100%;
+            }
+          }
+
         }
       }
     }
