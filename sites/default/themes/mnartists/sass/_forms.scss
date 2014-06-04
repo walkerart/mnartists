@@ -1722,3 +1722,49 @@ div[class*="-image-field-caption-value"] {
   color:#808080;
   padding-bottom:20px;
 }
+
+// edit event
+.node-type-event.page-node-edit {
+  .field-name-field-date-form {
+    .form-wrapper {
+      .fieldset-wrapper {
+        float:none;
+        .date-no-float {
+          width:100%;float:none;clear:both;
+          .form-item {
+            float:none;clear:both;
+            display:block;width:100%;
+            .date-padding {
+              float:none;clear:both;
+              display:block;width:100%;
+              .form-item-field-date-und-0-value-date {
+                .description {
+                  margin-bottom:8px;
+                }
+              }
+            }
+          }
+
+        }
+      }
+    }
+  }
+  .date-padding {
+    .form-item {
+      label {
+        width:33%;
+        float:left;
+      }
+      input {
+        width: 65.8%;
+        float: left;
+        clear:right;
+        box-sizing:border-box;
+        margin-bottom:0px;
+      }
+      .description {
+        margin-left:33%;
+      }
+    }
+  }
+}
