@@ -6,7 +6,7 @@
     $came_from_welcome = ($parsed_referrer['path'] === '/user/welcome');
 ?>
 <h2>My Feed</h2>
-<p class="intro-text">(lead text placeholder) Lorem ipsum Quis dolore id Excepteur irure dolore ullamco dolore ex aliqua aute et nulla nostrud id aliquip ut in anim ut velit ea ut tempor exercitation sed Ut adipisicing anim eu adipisicing.</p>
+<p class="intro-text">Find and follow artists to see updates in your feed.</p>
 <?php if (count($feed_data) > 0) { ?>
     <ul class="user-feed">
         <?php foreach ($feed_data as $feed_event) { ?>
