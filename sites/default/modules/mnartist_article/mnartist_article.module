@@ -176,3 +176,21 @@ function _article_block_other_articles_in_this_category () {
                                                                             'other_articles' => $other_articles,
                                                                             'max_articles' => 3));
 }
+
+function mnartist_article_wysiwyg_plugin($editor, $version) {
+    switch ($editor) {
+        case 'ckeditor':
+            return array(
+                'justify' => array(
+                    'url' => 'http://ckeditor.com/addon/justify',
+                    'buttons' => array(
+                        'JustifyLeft' => 'Justify Left',
+                        'JustifyRight' => 'Justify Right',
+                        'JustifyCenter' => 'Justify Center'
+                    ),
+                    'load' => TRUE,
+                    'internal' => TRUE,
+            ),
+        );
+    }
+}
