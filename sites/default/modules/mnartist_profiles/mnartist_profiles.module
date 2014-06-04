@@ -900,9 +900,18 @@ function _mnartist_profile_user_profile() {
 function mnartist_profiles_form_alter(&$form, $form_state, $form_id) {
     global $user;
     if ($form_id == 'user_profile_form') {
-        $form['privacy_instructions']['#markup'] = "<div class='privacy-instructions'>Checking the 'Private' option will below will make that particular field visible only to you.</div>";
-        $form['privacy_instructions']['#weight'] = -100;
-        if (isset($form["#user_category"]) && $form["#user_category"] == 'resume') {
+
+        if (isset($form["#user_category"]) && $form["#user_category"] == 'main') {
+
+            // include main profile instructions
+            $form['privacy_instructions']['#markup'] = "<div class='privacy-instructions'>Manage information that will appear on your public profile.<br>Help our funders learn more about our artistic communities by filling out as many fields as possible, even if you keep them private.</div>";
+            $form['privacy_instructions']['#weight'] = -100;
+
+        } else if (isset($form["#user_category"]) && $form["#user_category"] == 'resume') {
+
+            $form['resume_instructions']['#markup'] = "<div class='privacy-instructions'>Use this resume builder to manage and save your ongoing artistic experience. <br> Find data imported from your resume on the old mnartists.org stored in its entirety under the Imported Data field below.  Please take a moment to copy and paste this text in the new form, so that your new resume can be easily displayed and downloaded.</div>";
+            $form['resume_instructions']['#weight'] = -100;
+
             // include form js
             drupal_add_js(drupal_get_path('module', 'mnartist_profiles') .'/js/resume_form.js');
 
