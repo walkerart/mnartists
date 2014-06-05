@@ -635,6 +635,23 @@ body {
 		        -webkit-transition: all .3s ease-in-out;
 		        transition: all .3s ease-in-out;
 			}
+			/* for fixining and unfixing for menu scrollability */
+			.html {
+				#menu {
+
+				}
+				#page {
+					position:relative;
+				}
+				&.sidebar-show {
+					#menu {
+
+					}
+					#page {
+						.position:fixed;
+					}
+				}
+			} /* end mobile scrollability */
 		}
 		.sidebar-button {
 			left:200px;
@@ -642,22 +659,7 @@ body {
 		}
 	}
 }
-.html {
-	#menu {
 
-	}
-	#page {
-		position:relative;
-	}
-	&.sidebar-show {
-		#menu {
-
-		}
-		#page {
-			.position:fixed;
-		}
-	}
-}
 
 // sidebar menu toggle button
 .sidebar-button {

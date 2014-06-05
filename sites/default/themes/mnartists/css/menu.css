@@ -3646,6 +3646,11 @@ body {
   overflow: hidden;
 }
 @media screen and (max-width: 480px) {
+  /* line 614, ../sass/menu.scss */
+  body.sidebar-show {
+    /* for fixining and unfixing for menu scrollability */
+    /* end mobile scrollability */
+  }
   /* line 618, ../sass/menu.scss */
   body.sidebar-show #page {
     margin-left: 200px;
@@ -3667,23 +3672,22 @@ body {
   body.sidebar-show #menu .menu-content {
     display: block;
   }
+  /* line 643, ../sass/menu.scss */
+  body.sidebar-show .html #page {
+    position: relative;
+  }
+  /* line 650, ../sass/menu.scss */
+  body.sidebar-show .html.sidebar-show #page {
+    .position: fixed;
+  }
 }
-/* line 639, ../sass/menu.scss */
+/* line 656, ../sass/menu.scss */
 body.sidebar-show .sidebar-button {
   left: 200px;
   background: url("../images/bg-mobile-menu-button.gif") no-repeat left -45px #e5e5e5;
 }
 
-/* line 649, ../sass/menu.scss */
-.html #page {
-  position: relative;
-}
-/* line 656, ../sass/menu.scss */
-.html.sidebar-show #page {
-  .position: fixed;
-}
-
-/* line 663, ../sass/menu.scss */
+/* line 665, ../sass/menu.scss */
 .sidebar-button {
   display: none;
   background: url("../images/bg-mobile-menu-button.gif") no-repeat left top #e5e5e5;
@@ -3696,7 +3700,7 @@ body.sidebar-show .sidebar-button {
   line-height: 45px;
 }
 @media screen and (max-width: 480px) {
-  /* line 663, ../sass/menu.scss */
+  /* line 665, ../sass/menu.scss */
   .sidebar-button {
     display: block;
     display: block;
@@ -3720,38 +3724,38 @@ body.sidebar-show .sidebar-button {
     transition-timing-function: ease-in-out;
   }
 }
-/* line 686, ../sass/menu.scss */
+/* line 688, ../sass/menu.scss */
 .sidebar-button:hover {
   text-decoration: none;
 }
 
-/* line 691, ../sass/menu.scss */
+/* line 693, ../sass/menu.scss */
 .my-stuff .sidebar-button {
   background: url("../images/bg-mobile-menu-button.gif") no-repeat left -45px #e5e5e5;
 }
-/* line 695, ../sass/menu.scss */
+/* line 697, ../sass/menu.scss */
 .my-stuff.sidebar-show .sidebar-button {
   background: url("../images/bg-mobile-menu-button.gif") no-repeat left top #e5e5e5;
 }
 
-/* line 703, ../sass/menu.scss */
+/* line 705, ../sass/menu.scss */
 ::-webkit-input-placeholder {
   color: #888;
 }
 
-/* line 707, ../sass/menu.scss */
+/* line 709, ../sass/menu.scss */
 :-moz-placeholder {
   /* Firefox 18- */
   color: #888;
 }
 
-/* line 711, ../sass/menu.scss */
+/* line 713, ../sass/menu.scss */
 ::-moz-placeholder {
   /* Firefox 19+ */
   color: #888;
 }
 
-/* line 715, ../sass/menu.scss */
+/* line 717, ../sass/menu.scss */
 :-ms-input-placeholder {
   color: #888;
 }
