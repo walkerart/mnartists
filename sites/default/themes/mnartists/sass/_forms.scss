@@ -1603,9 +1603,20 @@ fieldset.collapsible {
 .logged-in.admin-menu .page-user-edit #tasks {
   display:block;
 }
+.page-node-edit,
+.page-node-add,
+.page-user-edit {
+  .region-help {
+    color:#fff;
+    .block {
+      margin-bottom:0px;
+    }
+  }
+}
 
-// ON THE ARTICLE EDIT PAGE ONLY
-.page-node-edit.node-type-article {
+// ON THE ARTICLE EDIT/ADD PAGE ONLY
+.page-node-edit.node-type-article,
+.page-node-add.page-node-add-article {
   #main-content {
     box-sizing:border-box;
     @include container;

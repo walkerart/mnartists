@@ -9813,3 +9813,31 @@ div.ctools-modal-content .form-item label {
     line-height: 48px;
   }
 }
+
+/* more link */
+.user-profile-slideshow-artwork-body-more-link {
+  background: url("../images/icon-more-chevron.png") no-repeat right center transparent;
+  padding-right: 16px;
+  display:inline-block;
+  padding-left:5px;
+}
+.pane-mnartist-profiles-mna-all-artworks-link {
+  .block-inner .block-content {
+    background:none;
+
+    .all-artworks {
+      a {
+        text-transform: uppercase;
+        white-space: nowrap;
+        margin-bottom: 0px;
+        background: url("../images/icon-more-chevron.png") no-repeat right center transparent;
+        padding-right: 16px;
+        text-decoration: none !important;
+        font-size: 12px!important;
+        display: block;
+        text-align: right;
+        float: none;
+      }
+    }
+  }
+}

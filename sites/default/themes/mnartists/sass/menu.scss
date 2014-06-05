@@ -626,6 +626,7 @@ body {
 			#menu {
 				display:block;
 				width:200px;
+				overflow:auto;
 
 				.menu-content {
 					display:block;
@@ -634,6 +635,23 @@ body {
 		        -webkit-transition: all .3s ease-in-out;
 		        transition: all .3s ease-in-out;
 			}
+			/* for fixining and unfixing for menu scrollability */
+			.html {
+				#menu {
+
+				}
+				#page {
+					position:relative;
+				}
+				&.sidebar-show {
+					#menu {
+
+					}
+					#page {
+						.position:fixed;
+					}
+				}
+			} /* end mobile scrollability */
 		}
 		.sidebar-button {
 			left:200px;
@@ -641,6 +659,8 @@ body {
 		}
 	}
 }
+
+
 // sidebar menu toggle button
 .sidebar-button {
 	display:none;

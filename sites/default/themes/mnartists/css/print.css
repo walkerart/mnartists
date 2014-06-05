@@ -2245,7 +2245,21 @@ fieldset.collapsible.collapsed legend .fieldset-legend {
 }
 
 /* line 1609, ../sass/_forms.scss */
-.page-node-edit.node-type-article #main-content {
+.page-node-edit .region-help,
+.page-node-add .region-help,
+.page-user-edit .region-help {
+  color: #fff;
+}
+/* line 1611, ../sass/_forms.scss */
+.page-node-edit .region-help .block,
+.page-node-add .region-help .block,
+.page-user-edit .region-help .block {
+  margin-bottom: 0px;
+}
+
+/* line 1620, ../sass/_forms.scss */
+.page-node-edit.node-type-article #main-content,
+.page-node-add.page-node-add-article #main-content {
   box-sizing: border-box;
   min-width: none;
   width: 100%;
@@ -2253,8 +2267,9 @@ fieldset.collapsible.collapsed legend .fieldset-legend {
   overflow: hidden;
   *zoom: 1;
 }
-/* line 1613, ../sass/_forms.scss */
-.page-node-edit.node-type-article #main-content #content {
+/* line 1624, ../sass/_forms.scss */
+.page-node-edit.node-type-article #main-content #content,
+.page-node-add.page-node-add-article #main-content #content {
   display: inline;
   float: left;
   overflow: hidden;
@@ -2263,8 +2278,9 @@ fieldset.collapsible.collapsed legend .fieldset-legend {
   margin-right: 0;
 }
 @media screen and (max-width: 960px) {
-  /* line 1613, ../sass/_forms.scss */
-  .page-node-edit.node-type-article #main-content #content {
+  /* line 1624, ../sass/_forms.scss */
+  .page-node-edit.node-type-article #main-content #content,
+  .page-node-add.page-node-add-article #main-content #content {
     display: inline;
     float: left;
     overflow: hidden;
@@ -2280,8 +2296,9 @@ fieldset.collapsible.collapsed legend .fieldset-legend {
   }
 }
 @media screen and (max-width: 768px) {
-  /* line 1613, ../sass/_forms.scss */
-  .page-node-edit.node-type-article #main-content #content {
+  /* line 1624, ../sass/_forms.scss */
+  .page-node-edit.node-type-article #main-content #content,
+  .page-node-add.page-node-add-article #main-content #content {
     display: inline;
     float: left;
     overflow: hidden;
@@ -2297,8 +2314,9 @@ fieldset.collapsible.collapsed legend .fieldset-legend {
   }
 }
 @media screen and (max-width: 480px) {
-  /* line 1613, ../sass/_forms.scss */
-  .page-node-edit.node-type-article #main-content #content {
+  /* line 1624, ../sass/_forms.scss */
+  .page-node-edit.node-type-article #main-content #content,
+  .page-node-add.page-node-add-article #main-content #content {
     margin-left: 10px!important;
     margin-right: 10px!important;
     display: block;
@@ -2307,13 +2325,13 @@ fieldset.collapsible.collapsed legend .fieldset-legend {
   }
 }
 
-/* line 1644, ../sass/_forms.scss */
+/* line 1655, ../sass/_forms.scss */
 div[class*="-image-field-caption-value"] .cke_contents {
   max-height: 200px;
   min-height: 150px;
 }
 
-/* line 1652, ../sass/_forms.scss */
+/* line 1663, ../sass/_forms.scss */
 .page-node-add-artwork .ui-dialog {
   height: 80%!important;
   margin-top: 0 !important;
@@ -2324,19 +2342,19 @@ div[class*="-image-field-caption-value"] .cke_contents {
   position: fixed;
   background: none;
 }
-/* line 1661, ../sass/_forms.scss */
+/* line 1672, ../sass/_forms.scss */
 .page-node-add-artwork .ui-dialog iframe {
   width: 90%!important;
   font-family: "Apercu Regular", Arial, Helvetica, sans-serif;
   max-height: 400px;
   max-width: 600px;
 }
-/* line 1667, ../sass/_forms.scss */
+/* line 1678, ../sass/_forms.scss */
 .page-node-add-artwork .ui-dialog iframe html body {
   font-family: "Apercu Regular", Arial, Helvetica, sans-serif;
 }
 
-/* line 1678, ../sass/_forms.scss */
+/* line 1689, ../sass/_forms.scss */
 .page-node-add #messages,
 .page-node-edit #messages {
   padding: 20px 0 0 0;
@@ -2354,7 +2372,7 @@ div[class*="-image-field-caption-value"] .cke_contents {
   color: #fff;
 }
 @media screen and (max-width: 480px) {
-  /* line 1678, ../sass/_forms.scss */
+  /* line 1689, ../sass/_forms.scss */
   .page-node-add #messages,
   .page-node-edit #messages {
     display: inline;
@@ -2365,7 +2383,7 @@ div[class*="-image-field-caption-value"] .cke_contents {
   }
 }
 @media screen and (max-width: 768px) {
-  /* line 1678, ../sass/_forms.scss */
+  /* line 1689, ../sass/_forms.scss */
   .page-node-add #messages,
   .page-node-edit #messages {
     display: inline;
@@ -2376,7 +2394,7 @@ div[class*="-image-field-caption-value"] .cke_contents {
   }
 }
 @media screen and (max-width: 960px) {
-  /* line 1678, ../sass/_forms.scss */
+  /* line 1689, ../sass/_forms.scss */
   .page-node-add #messages,
   .page-node-edit #messages {
     display: inline;
@@ -2388,63 +2406,63 @@ div[class*="-image-field-caption-value"] .cke_contents {
 }
 
 /* force inputs in modals to have high z-index */
-/* line 1702, ../sass/_forms.scss */
+/* line 1713, ../sass/_forms.scss */
 .ui-dialog form input {
   z-index: 2000;
 }
 
-/* line 1707, ../sass/_forms.scss */
+/* line 1718, ../sass/_forms.scss */
 .page-community .ui-dialog .ui-widget-content {
   color: #737373;
 }
 
 /* user login */
-/* line 1714, ../sass/_forms.scss */
+/* line 1725, ../sass/_forms.scss */
 #user-login .form-item-name .description {
   margin-left: 33%;
 }
 
 /* privacy statement */
-/* line 1721, ../sass/_forms.scss */
+/* line 1732, ../sass/_forms.scss */
 .privacy-instructions {
   color: #808080;
   padding-bottom: 20px;
 }
 
-/* line 1730, ../sass/_forms.scss */
+/* line 1741, ../sass/_forms.scss */
 .node-type-event.page-node-edit .field-name-field-date-form .form-wrapper .fieldset-wrapper {
   float: none;
 }
-/* line 1732, ../sass/_forms.scss */
+/* line 1743, ../sass/_forms.scss */
 .node-type-event.page-node-edit .field-name-field-date-form .form-wrapper .fieldset-wrapper .date-no-float {
   width: 100%;
   float: none;
   clear: both;
 }
-/* line 1734, ../sass/_forms.scss */
+/* line 1745, ../sass/_forms.scss */
 .node-type-event.page-node-edit .field-name-field-date-form .form-wrapper .fieldset-wrapper .date-no-float .form-item {
   float: none;
   clear: both;
   display: block;
   width: 100%;
 }
-/* line 1737, ../sass/_forms.scss */
+/* line 1748, ../sass/_forms.scss */
 .node-type-event.page-node-edit .field-name-field-date-form .form-wrapper .fieldset-wrapper .date-no-float .form-item .date-padding {
   float: none;
   clear: both;
   display: block;
   width: 100%;
 }
-/* line 1741, ../sass/_forms.scss */
+/* line 1752, ../sass/_forms.scss */
 .node-type-event.page-node-edit .field-name-field-date-form .form-wrapper .fieldset-wrapper .date-no-float .form-item .date-padding .form-item-field-date-und-0-value-date .description {
   margin-bottom: 8px;
 }
-/* line 1754, ../sass/_forms.scss */
+/* line 1765, ../sass/_forms.scss */
 .node-type-event.page-node-edit .date-padding .form-item label {
   width: 33%;
   float: left;
 }
-/* line 1758, ../sass/_forms.scss */
+/* line 1769, ../sass/_forms.scss */
 .node-type-event.page-node-edit .date-padding .form-item input {
   width: 65.8%;
   float: left;
@@ -2452,7 +2470,7 @@ div[class*="-image-field-caption-value"] .cke_contents {
   box-sizing: border-box;
   margin-bottom: 0px;
 }
-/* line 1765, ../sass/_forms.scss */
+/* line 1776, ../sass/_forms.scss */
 .node-type-event.page-node-edit .date-padding .form-item .description {
   margin-left: 33%;
 }
