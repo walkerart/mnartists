@@ -642,6 +642,23 @@ body {
 		}
 	}
 }
+.html {
+	#menu {
+
+	}
+	#page {
+		position:relative;
+	}
+	&.sidebar-show {
+		#menu {
+
+		}
+		#page {
+			.position:fixed;
+		}
+	}
+}
+
 // sidebar menu toggle button
 .sidebar-button {
 	display:none;

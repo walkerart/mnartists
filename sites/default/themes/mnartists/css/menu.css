@@ -3674,7 +3674,16 @@ body.sidebar-show .sidebar-button {
   background: url("../images/bg-mobile-menu-button.gif") no-repeat left -45px #e5e5e5;
 }
 
-/* line 646, ../sass/menu.scss */
+/* line 649, ../sass/menu.scss */
+.html #page {
+  position: relative;
+}
+/* line 656, ../sass/menu.scss */
+.html.sidebar-show #page {
+  .position: fixed;
+}
+
+/* line 663, ../sass/menu.scss */
 .sidebar-button {
   display: none;
   background: url("../images/bg-mobile-menu-button.gif") no-repeat left top #e5e5e5;
@@ -3687,7 +3696,7 @@ body.sidebar-show .sidebar-button {
   line-height: 45px;
 }
 @media screen and (max-width: 480px) {
-  /* line 646, ../sass/menu.scss */
+  /* line 663, ../sass/menu.scss */
   .sidebar-button {
     display: block;
     display: block;
@@ -3711,38 +3720,38 @@ body.sidebar-show .sidebar-button {
     transition-timing-function: ease-in-out;
   }
 }
-/* line 669, ../sass/menu.scss */
+/* line 686, ../sass/menu.scss */
 .sidebar-button:hover {
   text-decoration: none;
 }
 
-/* line 674, ../sass/menu.scss */
+/* line 691, ../sass/menu.scss */
 .my-stuff .sidebar-button {
   background: url("../images/bg-mobile-menu-button.gif") no-repeat left -45px #e5e5e5;
 }
-/* line 678, ../sass/menu.scss */
+/* line 695, ../sass/menu.scss */
 .my-stuff.sidebar-show .sidebar-button {
   background: url("../images/bg-mobile-menu-button.gif") no-repeat left top #e5e5e5;
 }
 
-/* line 686, ../sass/menu.scss */
+/* line 703, ../sass/menu.scss */
 ::-webkit-input-placeholder {
   color: #888;
 }
 
-/* line 690, ../sass/menu.scss */
+/* line 707, ../sass/menu.scss */
 :-moz-placeholder {
   /* Firefox 18- */
   color: #888;
 }
 
-/* line 694, ../sass/menu.scss */
+/* line 711, ../sass/menu.scss */
 ::-moz-placeholder {
   /* Firefox 19+ */
   color: #888;
 }
 
-/* line 698, ../sass/menu.scss */
+/* line 715, ../sass/menu.scss */
 :-ms-input-placeholder {
   color: #888;
 }
