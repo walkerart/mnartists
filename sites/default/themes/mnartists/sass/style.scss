@@ -5395,6 +5395,9 @@ only screen and (min-device-pixel-ratio: 1.5) {
 .event-content.panel-2col .panel-col-first .panel-col-last.inset-right .inside {
   box-sizing:border-box;
   padding-right:10px;
+  @media screen and (max-width: $break-mobile) {
+    padding-left:0px;
+  }
 }
 .node-type-event {
   .edit-button {
@@ -7328,6 +7331,12 @@ body {
         top: 10px;
         right: 10px;
         z-index: 9999;
+        @media screen and (max-width: $break-mobile) {
+          position:relative;
+          top:auto;
+          left:auto;
+          right:auto;
+        }
     }
 }
 // collection star
