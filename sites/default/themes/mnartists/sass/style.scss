@@ -7331,6 +7331,20 @@ body {
         top: 10px;
         right: 10px;
         z-index: 9999;
+        ul.menu {
+          li {
+            @media screen and (max-width: $break-mobile) {
+              float:right;
+            }
+            ul {
+              li {
+                @media screen and (max-width: $break-mobile) {
+                  float:none;
+                }
+              }
+            }
+          }
+        }
         @media screen and (max-width: $break-mobile) {
           position:relative;
           top:auto;
