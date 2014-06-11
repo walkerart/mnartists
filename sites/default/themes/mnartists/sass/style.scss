@@ -8269,7 +8269,8 @@ li.collect-this, li.add-this {
         h2 {
             padding:0 0 5px 0;
             background:none;
-            color:#fff;
+
+            color:$main_color;
         }
         .user-list {
 
@@ -8444,7 +8445,7 @@ li.collect-this, li.add-this {
             a {
               height:21px;
               width:21px;
-              border:1px solid #666;
+              border:none;
               border-radius:50%;
               overflow:hidden;
               text-indent:40px;
@@ -8452,7 +8453,7 @@ li.collect-this, li.add-this {
               display:block;
 
               &:hover {
-                border:1px solid #999;
+                border:none;
               }
             }
           }
@@ -8464,7 +8465,14 @@ li.collect-this, li.add-this {
     .view-content {
       background: $mystuff_bg_dark;
       h2 {
-        color:$main_color;
+        color:#fff;
+      }
+      .edit-controls li a {
+        border:1px solid #666;
+
+        &:hover {
+          border:1px solid #999;
+        }
       }
     }
   }
