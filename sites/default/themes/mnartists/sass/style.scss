@@ -9444,6 +9444,17 @@ li.collect-this, li.add-this {
 
 
 /* login page */
+.my-stuff.not-logged-in.page-user.page-user-welcome {
+  #content-column #content {
+    background:$mystuff_bg_dark;
+    .user-welcome {
+      width:100%;
+    }
+    #welcome-form {
+      paddgin:0px;
+    }
+  }
+}
 .my-stuff.not-logged-in.page-user,
 .my-stuff.not-logged-in.page-user-register,
 .my-stuff.not-logged-in.page-user-password,
