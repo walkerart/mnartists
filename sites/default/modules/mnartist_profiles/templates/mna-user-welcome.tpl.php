@@ -9,7 +9,7 @@
         <li class="welcome-collect"><a href="/">Start collecting artists, artworks, or articles</li>
         <li class="welcome-articles"><a href="/community?content[article]=1">Read up on current arts articles</li>
         <li class="welcome-artwork"><a href="/node/add/artwork">Add new work to your profile</a></li>
-        <li class="welcome-opportunities"><a href="/opportunities">Find Opportunities to advance your career</a></li>
+        <li class="welcome-opportunities"><a href="/community?content[opportunity]=1">Find Opportunities to advance your career</a></li>
         <li class="welcome-events"><a href="/community?content[event]=1">Learn about what art events are happening this week</a></li>
     </ul>
     <form id="welcome-form" class="done-link" method="post" action="/user/<?= $user->uid ?>/setwelcome">
