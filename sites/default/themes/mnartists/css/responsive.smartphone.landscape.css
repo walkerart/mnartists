@@ -2896,13 +2896,7 @@ body.my-stuff.welcome {
 .user-welcome {
   color: #fff;
   text-align: left;
-  text-align: left;
-  display: inline;
-  float: left;
-  overflow: hidden;
-  width: 56.517%;
-  margin-right: 2.409%;
-  display: inline-block;
+  display: block;
   margin-left: auto;
   margin-right: auto;
   float: none;
@@ -2910,27 +2904,7 @@ body.my-stuff.welcome {
   box-sizing: border-box;
   margin-top: 20px;
 }
-@media screen and (max-width: 480px) {
-  /* line 418, ../sass/_user-profile.scss */
-  .user-welcome {
-    display: inline;
-    float: left;
-    overflow: hidden;
-    width: 98.607%;
-    margin-right: 2.409%;
-  }
-}
-@media screen and (max-width: 768px) {
-  /* line 418, ../sass/_user-profile.scss */
-  .user-welcome {
-    display: inline;
-    float: left;
-    overflow: hidden;
-    width: 98.607%;
-    margin-right: 2.409%;
-  }
-}
-/* line 437, ../sass/_user-profile.scss */
+/* line 436, ../sass/_user-profile.scss */
 .user-welcome h2 {
   font-size: 30px;
   text-transform: none;
@@ -2943,18 +2917,18 @@ body.my-stuff.welcome {
   line-height: 34px;
   height: auto;
 }
-/* line 449, ../sass/_user-profile.scss */
+/* line 448, ../sass/_user-profile.scss */
 .user-welcome .done-link {
   color: #fff;
   margin-bottom: 30px;
   display: inline-block;
 }
-/* line 453, ../sass/_user-profile.scss */
+/* line 452, ../sass/_user-profile.scss */
 .user-welcome .done-link input {
   margin-right: 8px;
 }
 
-/* line 458, ../sass/_user-profile.scss */
+/* line 457, ../sass/_user-profile.scss */
 .welcome-list {
   margin: 0;
   padding: 0;
@@ -2962,7 +2936,7 @@ body.my-stuff.welcome {
   margin-bottom: 30px;
   overflow: hidden;
 }
-/* line 465, ../sass/_user-profile.scss */
+/* line 464, ../sass/_user-profile.scss */
 .welcome-list li {
   display: inline;
   float: left;
@@ -2972,34 +2946,34 @@ body.my-stuff.welcome {
   padding-top: 40px;
   margin-bottom: 30px;
 }
-/* line 470, ../sass/_user-profile.scss */
+/* line 469, ../sass/_user-profile.scss */
 .welcome-list li.welcome-artists {
   background: url("../images/icon-welcome-user.png") no-repeat left top transparent;
 }
-/* line 473, ../sass/_user-profile.scss */
+/* line 472, ../sass/_user-profile.scss */
 .welcome-list li.welcome-collect {
   background: url("../images/icon-welcome-star.png") no-repeat left top transparent;
 }
-/* line 476, ../sass/_user-profile.scss */
+/* line 475, ../sass/_user-profile.scss */
 .welcome-list li.welcome-articles {
   margin-right: 0;
   background: url("../images/icon-welcome-doc.png") no-repeat left top transparent;
 }
-/* line 480, ../sass/_user-profile.scss */
+/* line 479, ../sass/_user-profile.scss */
 .welcome-list li.welcome-artwork {
   background: url("../images/icon-welcome-artwork.png") no-repeat left top transparent;
 }
-/* line 483, ../sass/_user-profile.scss */
+/* line 482, ../sass/_user-profile.scss */
 .welcome-list li.welcome-opportunities {
   background: url("../images/icon-welcome-hand.png") no-repeat left top transparent;
 }
-/* line 486, ../sass/_user-profile.scss */
+/* line 485, ../sass/_user-profile.scss */
 .welcome-list li.welcome-events {
   margin-right: 0;
   background: url("../images/icon-welcome-calendar.png") no-repeat left top transparent;
 }
 @media screen and (max-width: 480px) {
-  /* line 465, ../sass/_user-profile.scss */
+  /* line 464, ../sass/_user-profile.scss */
   .welcome-list li {
     display: inline;
     float: left;
