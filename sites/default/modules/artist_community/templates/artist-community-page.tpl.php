@@ -31,7 +31,7 @@
 
         <!-- banner -->
         <header class="organization-header<?php if (count($_GET) <= 1) { ?> has-taglines<?php } ?>">
-            <h1><a class="organization" href="/">Mn Artists<?= (isset($banner_string) && $banner_string !== '') ? " $banner_string" : '' ?></a></h1>
+            <h1><a class="organization" href="/">Mn Artists</a><?= (isset($banner_string) && $banner_string !== '') ? " $banner_string" : '' ?></h1>
         </header>
 
         <div class="sort-thing sort-thing-fully-retracted">
