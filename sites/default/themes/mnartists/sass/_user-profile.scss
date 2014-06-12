@@ -418,20 +418,19 @@ body.my-stuff.welcome {
 .user-welcome {
     color:#fff;
     text-align:left;
-    text-align:left;
-    @include column(14);
-    display:inline-block;
-    margin-left:auto;margin-right:auto;
+    display:block;
+    margin-left:auto;
+		margin-right:auto;
     float:none;
     overflow:visible;
     box-sizing:border-box;
     margin-top:20px;
 
     @media screen and (max-width: $break-mobile) {
-        @include column(24);
+
     }
     @media screen and (max-width: $break-tablet) {
-        @include column(24);
+
     }
 
     h2 {
@@ -464,8 +463,13 @@ body.my-stuff.welcome {
 
     li {
         @include column(8);
-        padding-top:40px;
+        padding-top:0px;
         margin-bottom:30px;
+				a {
+					color:#fff;
+					padding-top:40px;
+					display:block;
+				}
 
         &.welcome-artists {
             background: url('../images/icon-welcome-user.png') no-repeat left top transparent;

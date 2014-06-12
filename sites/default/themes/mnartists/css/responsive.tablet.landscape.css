@@ -489,7 +489,7 @@ input[type=submit]:hover {
 }
 /* line 76, ../sass/_layout-b.scss */
 .layout-b .sidebar-right .article-author .widget-content a span {
-  font-size: 18px;
+  font-size: 14px;
   font-family: "adobe-text-pro", "Times New Roman", Times, serif;
   font-weight: bold;
   clear: both;
@@ -2331,8 +2331,9 @@ div[class*="-image-field-caption-value"] .cke_contents {
   min-height: 150px;
 }
 
-/* line 1663, ../sass/_forms.scss */
-.page-node-add-artwork .ui-dialog {
+/* line 1664, ../sass/_forms.scss */
+.page-node-add-artwork .ui-dialog,
+.page-node-add-article .ui-dialog {
   height: 80%!important;
   margin-top: 0 !important;
   top: 20px!important;
@@ -2342,19 +2343,21 @@ div[class*="-image-field-caption-value"] .cke_contents {
   position: fixed;
   background: none;
 }
-/* line 1672, ../sass/_forms.scss */
-.page-node-add-artwork .ui-dialog iframe {
+/* line 1673, ../sass/_forms.scss */
+.page-node-add-artwork .ui-dialog iframe,
+.page-node-add-article .ui-dialog iframe {
   width: 90%!important;
   font-family: "Apercu Regular", Arial, Helvetica, sans-serif;
   max-height: 400px;
   max-width: 600px;
 }
-/* line 1678, ../sass/_forms.scss */
-.page-node-add-artwork .ui-dialog iframe html body {
+/* line 1679, ../sass/_forms.scss */
+.page-node-add-artwork .ui-dialog iframe html body,
+.page-node-add-article .ui-dialog iframe html body {
   font-family: "Apercu Regular", Arial, Helvetica, sans-serif;
 }
 
-/* line 1689, ../sass/_forms.scss */
+/* line 1690, ../sass/_forms.scss */
 .page-node-add #messages,
 .page-node-edit #messages {
   padding: 20px 0 0 0;
@@ -2372,7 +2375,7 @@ div[class*="-image-field-caption-value"] .cke_contents {
   color: #fff;
 }
 @media screen and (max-width: 480px) {
-  /* line 1689, ../sass/_forms.scss */
+  /* line 1690, ../sass/_forms.scss */
   .page-node-add #messages,
   .page-node-edit #messages {
     display: inline;
@@ -2383,7 +2386,7 @@ div[class*="-image-field-caption-value"] .cke_contents {
   }
 }
 @media screen and (max-width: 768px) {
-  /* line 1689, ../sass/_forms.scss */
+  /* line 1690, ../sass/_forms.scss */
   .page-node-add #messages,
   .page-node-edit #messages {
     display: inline;
@@ -2394,7 +2397,7 @@ div[class*="-image-field-caption-value"] .cke_contents {
   }
 }
 @media screen and (max-width: 960px) {
-  /* line 1689, ../sass/_forms.scss */
+  /* line 1690, ../sass/_forms.scss */
   .page-node-add #messages,
   .page-node-edit #messages {
     display: inline;
@@ -2406,63 +2409,63 @@ div[class*="-image-field-caption-value"] .cke_contents {
 }
 
 /* force inputs in modals to have high z-index */
-/* line 1713, ../sass/_forms.scss */
+/* line 1714, ../sass/_forms.scss */
 .ui-dialog form input {
   z-index: 2000;
 }
 
-/* line 1718, ../sass/_forms.scss */
+/* line 1719, ../sass/_forms.scss */
 .page-community .ui-dialog .ui-widget-content {
   color: #737373;
 }
 
 /* user login */
-/* line 1725, ../sass/_forms.scss */
+/* line 1726, ../sass/_forms.scss */
 #user-login .form-item-name .description {
   margin-left: 33%;
 }
 
 /* privacy statement */
-/* line 1732, ../sass/_forms.scss */
+/* line 1733, ../sass/_forms.scss */
 .privacy-instructions {
   color: #808080;
   padding-bottom: 20px;
 }
 
-/* line 1741, ../sass/_forms.scss */
+/* line 1742, ../sass/_forms.scss */
 .node-type-event.page-node-edit .field-name-field-date-form .form-wrapper .fieldset-wrapper {
   float: none;
 }
-/* line 1743, ../sass/_forms.scss */
+/* line 1744, ../sass/_forms.scss */
 .node-type-event.page-node-edit .field-name-field-date-form .form-wrapper .fieldset-wrapper .date-no-float {
   width: 100%;
   float: none;
   clear: both;
 }
-/* line 1745, ../sass/_forms.scss */
+/* line 1746, ../sass/_forms.scss */
 .node-type-event.page-node-edit .field-name-field-date-form .form-wrapper .fieldset-wrapper .date-no-float .form-item {
   float: none;
   clear: both;
   display: block;
   width: 100%;
 }
-/* line 1748, ../sass/_forms.scss */
+/* line 1749, ../sass/_forms.scss */
 .node-type-event.page-node-edit .field-name-field-date-form .form-wrapper .fieldset-wrapper .date-no-float .form-item .date-padding {
   float: none;
   clear: both;
   display: block;
   width: 100%;
 }
-/* line 1752, ../sass/_forms.scss */
+/* line 1753, ../sass/_forms.scss */
 .node-type-event.page-node-edit .field-name-field-date-form .form-wrapper .fieldset-wrapper .date-no-float .form-item .date-padding .form-item-field-date-und-0-value-date .description {
   margin-bottom: 8px;
 }
-/* line 1765, ../sass/_forms.scss */
+/* line 1766, ../sass/_forms.scss */
 .node-type-event.page-node-edit .date-padding .form-item label {
   width: 33%;
   float: left;
 }
-/* line 1769, ../sass/_forms.scss */
+/* line 1770, ../sass/_forms.scss */
 .node-type-event.page-node-edit .date-padding .form-item input {
   width: 65.8%;
   float: left;
@@ -2470,7 +2473,7 @@ div[class*="-image-field-caption-value"] .cke_contents {
   box-sizing: border-box;
   margin-bottom: 0px;
 }
-/* line 1776, ../sass/_forms.scss */
+/* line 1777, ../sass/_forms.scss */
 .node-type-event.page-node-edit .date-padding .form-item .description {
   margin-left: 33%;
 }
@@ -2896,13 +2899,7 @@ body.my-stuff.welcome {
 .user-welcome {
   color: #fff;
   text-align: left;
-  text-align: left;
-  display: inline;
-  float: left;
-  overflow: hidden;
-  width: 56.517%;
-  margin-right: 2.409%;
-  display: inline-block;
+  display: block;
   margin-left: auto;
   margin-right: auto;
   float: none;
@@ -2910,27 +2907,7 @@ body.my-stuff.welcome {
   box-sizing: border-box;
   margin-top: 20px;
 }
-@media screen and (max-width: 480px) {
-  /* line 418, ../sass/_user-profile.scss */
-  .user-welcome {
-    display: inline;
-    float: left;
-    overflow: hidden;
-    width: 98.607%;
-    margin-right: 2.409%;
-  }
-}
-@media screen and (max-width: 768px) {
-  /* line 418, ../sass/_user-profile.scss */
-  .user-welcome {
-    display: inline;
-    float: left;
-    overflow: hidden;
-    width: 98.607%;
-    margin-right: 2.409%;
-  }
-}
-/* line 437, ../sass/_user-profile.scss */
+/* line 436, ../sass/_user-profile.scss */
 .user-welcome h2 {
   font-size: 30px;
   text-transform: none;
@@ -2943,18 +2920,18 @@ body.my-stuff.welcome {
   line-height: 34px;
   height: auto;
 }
-/* line 449, ../sass/_user-profile.scss */
+/* line 448, ../sass/_user-profile.scss */
 .user-welcome .done-link {
   color: #fff;
   margin-bottom: 30px;
   display: inline-block;
 }
-/* line 453, ../sass/_user-profile.scss */
+/* line 452, ../sass/_user-profile.scss */
 .user-welcome .done-link input {
   margin-right: 8px;
 }
 
-/* line 458, ../sass/_user-profile.scss */
+/* line 457, ../sass/_user-profile.scss */
 .welcome-list {
   margin: 0;
   padding: 0;
@@ -2962,44 +2939,50 @@ body.my-stuff.welcome {
   margin-bottom: 30px;
   overflow: hidden;
 }
-/* line 465, ../sass/_user-profile.scss */
+/* line 464, ../sass/_user-profile.scss */
 .welcome-list li {
   display: inline;
   float: left;
   overflow: hidden;
   width: 31.263%;
   margin-right: 2.409%;
-  padding-top: 40px;
+  padding-top: 0px;
   margin-bottom: 30px;
 }
-/* line 470, ../sass/_user-profile.scss */
+/* line 468, ../sass/_user-profile.scss */
+.welcome-list li a {
+  color: #fff;
+  padding-top: 40px;
+  display: block;
+}
+/* line 474, ../sass/_user-profile.scss */
 .welcome-list li.welcome-artists {
   background: url("../images/icon-welcome-user.png") no-repeat left top transparent;
 }
-/* line 473, ../sass/_user-profile.scss */
+/* line 477, ../sass/_user-profile.scss */
 .welcome-list li.welcome-collect {
   background: url("../images/icon-welcome-star.png") no-repeat left top transparent;
 }
-/* line 476, ../sass/_user-profile.scss */
+/* line 480, ../sass/_user-profile.scss */
 .welcome-list li.welcome-articles {
   margin-right: 0;
   background: url("../images/icon-welcome-doc.png") no-repeat left top transparent;
 }
-/* line 480, ../sass/_user-profile.scss */
+/* line 484, ../sass/_user-profile.scss */
 .welcome-list li.welcome-artwork {
   background: url("../images/icon-welcome-artwork.png") no-repeat left top transparent;
 }
-/* line 483, ../sass/_user-profile.scss */
+/* line 487, ../sass/_user-profile.scss */
 .welcome-list li.welcome-opportunities {
   background: url("../images/icon-welcome-hand.png") no-repeat left top transparent;
 }
-/* line 486, ../sass/_user-profile.scss */
+/* line 490, ../sass/_user-profile.scss */
 .welcome-list li.welcome-events {
   margin-right: 0;
   background: url("../images/icon-welcome-calendar.png") no-repeat left top transparent;
 }
 @media screen and (max-width: 480px) {
-  /* line 465, ../sass/_user-profile.scss */
+  /* line 464, ../sass/_user-profile.scss */
   .welcome-list li {
     display: inline;
     float: left;

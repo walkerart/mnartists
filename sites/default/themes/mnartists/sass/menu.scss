@@ -114,12 +114,14 @@
 				font-family: $sans_bold_font;
 			}
 			a.expand {
-				line-height:1em;
+
 				margin:0;
-				padding:8px 10px 0 8px;
+				padding:0 8px 0 8px;
 				right:0;top:0;
 				position:absolute;
 				background:none;
+				font-size:18px;
+				line-height:30px;
 			}
             a.user-view {
                 color:#888888!important;
@@ -419,6 +421,9 @@ p.site-description {
 					margin:0;
 					padding:15px 15px 15px 15px;
 
+					&.expand {
+						padding: 5px 10px;
+					}
 				}
 				.item-list {
 					background:#4d4d4d;

@@ -5395,6 +5395,9 @@ only screen and (min-device-pixel-ratio: 1.5) {
 .event-content.panel-2col .panel-col-first .panel-col-last.inset-right .inside {
   box-sizing:border-box;
   padding-right:10px;
+  @media screen and (max-width: $break-mobile) {
+    padding-left:0px;
+  }
 }
 .node-type-event {
   .edit-button {
@@ -5426,8 +5429,10 @@ only screen and (min-device-pixel-ratio: 1.5) {
             article h1 a {
                 color:$lightgray;
                 font-weight:normal;
-                font-size:14px;
+                font-size:13px;
                 font-family: $serif_font;
+                text-transform:capitalize!important;
+                letter-spacing:normal;
             }
 
             .block-content {
@@ -5452,9 +5457,10 @@ only screen and (min-device-pixel-ratio: 1.5) {
                                 a {
 
                                     font-weight:normal;
-                                    font-size:14px;
+                                    font-size:13px;
                                     font-family: $serif_font;
                                     color:$main_color;
+                                    letter-spacing:normal;
                                 }
                             }
                         }
@@ -5467,11 +5473,11 @@ only screen and (min-device-pixel-ratio: 1.5) {
                                 h2, label {
                                     color:$lightgray;
                                     font-weight:normal;
-                                    font-size:14px;
+                                    font-size:13px;
                                     font-family: $sans_regular_font;
-                                    text-transform:uppercase;
+                                    text-transform:capitalize;
                                     padding-bottom:0px;
-
+                                    letter-spacing:normal;
                                 }
                                 .field-items {
 
@@ -5499,14 +5505,15 @@ only screen and (min-device-pixel-ratio: 1.5) {
 
             .field-item h3 {
                 font-family: $sans_regular_font;
-                text-transform:uppercase;
+                text-transform:capitalize;
             }
             .field-item header h1 {
                 font-weight:normal;
             }
             .field-item .node-content h2 {
                 font-family: $sans_regular_font;
-                text-transform:uppercase;
+                text-transform:capitalize;
+                letter-spacing:normal;
             }
 
             .node-content section h2 {
@@ -5525,7 +5532,8 @@ only screen and (min-device-pixel-ratio: 1.5) {
                     h2 {
                         color:$lightgray;
                         font-weight:normal;
-                        font-size:14px;
+                        font-size:13px;
+                        letter-spacing:normal;
                     }
                 }
                 .contextual-links-wrapper {
@@ -5537,24 +5545,27 @@ only screen and (min-device-pixel-ratio: 1.5) {
 
     .pane-node-body {
         font-family: $serif_font;
-        font-size:14px;
+        font-size: 17px;
         p {
-            line-height:1.4em;
+            font-size: 17px;
+            font-family: "adobe-text-pro", "Times New Roman", Times, serif;
+            line-height: 1.6em;
         }
     }
 
     .field-name-field-email {
         color:$main_color;
         font-weight:normal;
-        font-size:14px;
+        font-size:13px;
         font-family: $serif_font;
         h2 {
             color:$lightgray;
             font-weight:normal;
-            font-size:14px;
+            font-size:13px;
             font-family: $sans_regular_font;
-            text-transform:uppercase;
+            text-transform:capitalize;
             margin:0;
+            letter-spacing:normal;
         }
     }
 }
@@ -6242,8 +6253,14 @@ body.page-node-edit {
             }
 
             .item-info-title {
-                font-weight:normal;
-                font-family: $sans_bold_font;
+                /*font-weight:normal;
+                font-family: $sans_bold_font;*/
+                font-family:$serif_font;
+                font-weight:bold;
+                font-size:14px;
+            }
+            .node-content {
+              line-height:1.4em;
             }
 
             .item-info-date {
@@ -7328,6 +7345,26 @@ body {
         top: 10px;
         right: 10px;
         z-index: 9999;
+        ul.menu {
+          li {
+            @media screen and (max-width: $break-mobile) {
+              float:right;
+            }
+            ul {
+              li {
+                @media screen and (max-width: $break-mobile) {
+                  float:none;
+                }
+              }
+            }
+          }
+        }
+        @media screen and (max-width: $break-mobile) {
+          position:relative;
+          top:auto;
+          left:auto;
+          right:auto;
+        }
     }
 }
 // collection star
@@ -8206,10 +8243,10 @@ li.collect-this, li.add-this {
             display:block;float:none;
             text-align:left;
             overflow:visible;
-
+            background:#fff;
             box-sizing: border-box;
             position:relative;
-            background: $mystuff_bg_dark;
+
             margin-top:20px;
             margin-bottom:20px;
 
@@ -8225,7 +8262,7 @@ li.collect-this, li.add-this {
             h2 {
                 padding:0px;
                 margin:0px;
-                color: #ccc;
+                color: $main_color;
                 border-bottom: 1px solid #ccc;
                 font-size: 16px;
                 text-transform: none;
@@ -8246,7 +8283,8 @@ li.collect-this, li.add-this {
         h2 {
             padding:0 0 5px 0;
             background:none;
-            color:#fff;
+
+            color:$main_color;
         }
         .user-list {
 
@@ -8421,7 +8459,7 @@ li.collect-this, li.add-this {
             a {
               height:21px;
               width:21px;
-              border:1px solid #666;
+              border:none;
               border-radius:50%;
               overflow:hidden;
               text-indent:40px;
@@ -8429,12 +8467,29 @@ li.collect-this, li.add-this {
               display:block;
 
               &:hover {
-                border:1px solid #999;
+                border:none;
               }
             }
           }
         }
     }
+}
+.page-user-flags-lists-.my-stuff {
+  .view-id-flag_lists_user_list {
+    .view-content {
+      background: $mystuff_bg_dark;
+      h2 {
+        color:#fff;
+      }
+      .edit-controls li a {
+        border:1px solid #666;
+
+        &:hover {
+          border:1px solid #999;
+        }
+      }
+    }
+  }
 }
 /* @end */
 
@@ -9403,6 +9458,17 @@ li.collect-this, li.add-this {
 
 
 /* login page */
+.my-stuff.not-logged-in.page-user.page-user-welcome {
+  #content-column #content {
+    background:$mystuff_bg_dark;
+    .user-welcome {
+      width:100%;
+    }
+    #welcome-form {
+      padding:0px;
+    }
+  }
+}
 .my-stuff.not-logged-in.page-user,
 .my-stuff.not-logged-in.page-user-register,
 .my-stuff.not-logged-in.page-user-password,
@@ -9568,7 +9634,7 @@ div.warning {
     min-width:10px;
     background:url('../images/icon-more-chevron.png') no-repeat center bottom transparent;
     text-indent:20px;
-
+    height:10px;
     &:hover {
         background:url('../images/icon-more-chevron.png') no-repeat center bottom transparent;
     }
@@ -9665,12 +9731,12 @@ div.warning {
     font-size:36px;
     line-height:1.2em;
     padding-right:40px;
+    margin-bottom:8px;
+
     .block-content a {
       text-decoration:none !important;
     }
-
   }
-
   .pane-mnartist-collections-mna-collections-star {
     position:absolute;
     top:20px;
@@ -9687,7 +9753,7 @@ div.warning {
     font-size:13px;
     width:45%;
     float:left;
-    margin-bottom:15px;
+    margin-bottom:20px;
     a {
       text-decoration:none;
     }
@@ -9704,19 +9770,17 @@ div.warning {
     width:55%;
     float:right;
     text-align:right;
-    margin-bottom:15px;
+    margin-bottom:20px;
 
     @media screen and (max-width: $break-mobile) {
       text-align:left;
     }
   }
-
   .pane-node-field-images {
     .field-label {
       display:none;
     }
   }
-
   .field-name-field-body {
     font-size:17px;
     font-family: $serif_font;
@@ -9834,9 +9898,10 @@ div.ctools-modal-content .form-item label {
         padding-right: 16px;
         text-decoration: none !important;
         font-size: 12px!important;
-        display: block;
-        text-align: right;
+        display: inline-block;
+        text-align: left;
         float: none;
+        margin-bottom:5px;
       }
     }
   }
