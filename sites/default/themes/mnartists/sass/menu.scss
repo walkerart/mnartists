@@ -92,7 +92,9 @@
 				color:#666;
 				background: url('../images/mna-circle-hollow.svg') no-repeat left center transparent;
 				background-size: 10px auto;
-
+				&:hover {
+					color:$main_color;
+				}
 			}
 			a.active-trail {
 				/*background: url('../images/mna-circle-filled.svg') no-repeat left center transparent;*/
@@ -112,6 +114,9 @@
 				font-weight:bold;*/
 				font-weight:normal;
 				font-family: $sans_bold_font;
+				&:hover {
+					color:#666;
+				}
 			}
 			a.expand {
 

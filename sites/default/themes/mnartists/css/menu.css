@@ -3105,18 +3105,22 @@ body.my-stuff.welcome {
   background: url("../images/mna-circle-hollow.svg") no-repeat left center transparent;
   background-size: 10px auto;
 }
-/* line 97, ../sass/menu.scss */
+/* line 95, ../sass/menu.scss */
+#menu ul li a:hover {
+  color: #222222;
+}
+/* line 99, ../sass/menu.scss */
 #menu ul li a.active-trail {
   /*background: url('../images/mna-circle-filled.svg') no-repeat left center transparent;*/
   background: url("../images/icon-check-solid.svg") no-repeat left center transparent;
   background-size: 9px auto;
 }
-/* line 103, ../sass/menu.scss */
+/* line 105, ../sass/menu.scss */
 #menu ul li a.active-trail.active {
   background: url("../images/icon-check-hollow.svg") no-repeat left center transparent;
   background-size: 9px auto;
 }
-/* line 107, ../sass/menu.scss */
+/* line 109, ../sass/menu.scss */
 #menu ul li a.active-trail.active.selected {
   background: url("../images/icon-check-solid.svg") no-repeat left center transparent;
   background-size: 9px auto;
@@ -3126,7 +3130,11 @@ body.my-stuff.welcome {
   font-weight: normal;
   font-family: "Apercu Bold", Arial, Helvetica, sans-serif;
 }
-/* line 116, ../sass/menu.scss */
+/* line 117, ../sass/menu.scss */
+#menu ul li a.active-trail.active.selected:hover {
+  color: #666;
+}
+/* line 121, ../sass/menu.scss */
 #menu ul li a.expand {
   margin: 0;
   padding: 0 8px 0 8px;
@@ -3137,29 +3145,29 @@ body.my-stuff.welcome {
   font-size: 18px;
   line-height: 30px;
 }
-/* line 126, ../sass/menu.scss */
+/* line 131, ../sass/menu.scss */
 #menu ul li a.user-view {
   color: #888888!important;
   position: absolute;
   top: 0px;
   right: 0px;
 }
-/* line 133, ../sass/menu.scss */
+/* line 138, ../sass/menu.scss */
 #menu ul li .item-list {
   display: none;
 }
-/* line 136, ../sass/menu.scss */
+/* line 141, ../sass/menu.scss */
 #menu ul li .item-list ul {
   background: #eaeaea;
   display: block;
   padding: 8px 0;
 }
-/* line 141, ../sass/menu.scss */
+/* line 146, ../sass/menu.scss */
 #menu ul li .item-list ul li {
   padding: 0 0 0 30px;
   display: block;
 }
-/* line 145, ../sass/menu.scss */
+/* line 150, ../sass/menu.scss */
 #menu ul li .item-list ul li a {
   margin: 0;
   /*
@@ -3171,49 +3179,49 @@ body.my-stuff.welcome {
   border-bottom: none;
   padding: 8px 0 8px 20px;
 }
-/* line 157, ../sass/menu.scss */
+/* line 162, ../sass/menu.scss */
 #menu ul li .item-list ul li a.active-trail.active.selected {
   font-weight: normal;
 }
-/* line 161, ../sass/menu.scss */
+/* line 166, ../sass/menu.scss */
 #menu ul li .item-list ul li.first {
   border-bottom: none;
 }
-/* line 168, ../sass/menu.scss */
+/* line 173, ../sass/menu.scss */
 #menu ul li .item-list .menu-event-datepicker {
   display: block;
 }
-/* line 174, ../sass/menu.scss */
+/* line 179, ../sass/menu.scss */
 #menu ul li .item-list .menu-event-datepicker table tr td a {
   padding: 0;
   font-size: 10px;
   background-image: none;
 }
-/* line 179, ../sass/menu.scss */
+/* line 184, ../sass/menu.scss */
 #menu ul li .item-list .menu-event-datepicker table tr td a.ui-state-highlight {
   background: #fff;
   border: 1px solid #999;
 }
-/* line 189, ../sass/menu.scss */
+/* line 194, ../sass/menu.scss */
 #menu ul li .item-list .menu-event-datepicker .ui-datepicker th {
   font-weight: normal;
 }
-/* line 202, ../sass/menu.scss */
+/* line 207, ../sass/menu.scss */
 #menu ul li:first-child {
   border-bottom: 1px solid #fff;
 }
-/* line 205, ../sass/menu.scss */
+/* line 210, ../sass/menu.scss */
 #menu ul li:first-child a.active {
   /*background: url('../images/mna-circle-half.svg') no-repeat left center transparent;
   background-size: 10px auto;
   background: url('../images/mna-circle-filled.svg') no-repeat left center transparent;
   background-size: 10px auto;*/
 }
-/* line 214, ../sass/menu.scss */
+/* line 219, ../sass/menu.scss */
 #menu ul .block {
   margin-bottom: 0px;
 }
-/* line 219, ../sass/menu.scss */
+/* line 224, ../sass/menu.scss */
 #menu .menu-event-datepicker {
   max-width: 200px;
   margin: 0 0 0 -30px !important;
@@ -3223,80 +3231,80 @@ body.my-stuff.welcome {
   float: none;
   display: block;
 }
-/* line 229, ../sass/menu.scss */
+/* line 234, ../sass/menu.scss */
 #menu .menu-event-datepicker .ui-datepicker-prev,
 #menu .menu-event-datepicker .ui-datepicker-next {
   padding: 0;
 }
-/* line 233, ../sass/menu.scss */
+/* line 238, ../sass/menu.scss */
 #menu .menu-event-datepicker .ui-datepicker-inline {
   padding: 0 0 10px 0;
   margin: 0 0 10px 0;
 }
 
-/* line 241, ../sass/menu.scss */
+/* line 246, ../sass/menu.scss */
 #block-artist-community-menu-search .block-inner {
   margin: 0;
   padding: 0;
 }
 
-/* line 248, ../sass/menu.scss */
+/* line 253, ../sass/menu.scss */
 #menu #block-mnartist-filter-mna-filter-create {
   position: absolute;
   top: 9px;
   right: 0px;
 }
-/* line 252, ../sass/menu.scss */
+/* line 257, ../sass/menu.scss */
 #menu #block-mnartist-filter-mna-filter-create .block-inner {
   margin: 0;
 }
-/* line 256, ../sass/menu.scss */
+/* line 261, ../sass/menu.scss */
 #menu #block-mnartist-filter-mna-filter-create .star-link img {
   opacity: .3;
 }
-/* line 261, ../sass/menu.scss */
+/* line 266, ../sass/menu.scss */
 #menu #block-mnartist-filter-mna-filter-create .star-link:hover img {
   opacity: .8;
 }
-/* line 268, ../sass/menu.scss */
+/* line 273, ../sass/menu.scss */
 #menu #block-mnartist-filter-mna-filter-create ul.menu li {
   border: none;
 }
-/* line 270, ../sass/menu.scss */
+/* line 275, ../sass/menu.scss */
 #menu #block-mnartist-filter-mna-filter-create ul.menu li a {
   background: none;
   margin: 0;
   padding: 0;
 }
-/* line 276, ../sass/menu.scss */
+/* line 281, ../sass/menu.scss */
 #menu #block-mnartist-filter-mna-filter-create ul.menu li ul {
   width: 12em;
   right: 0;
   left: auto;
 }
-/* line 282, ../sass/menu.scss */
+/* line 287, ../sass/menu.scss */
 #menu #block-mnartist-filter-mna-filter-create ul.menu li ul li a {
   background: none;
   padding: 5px 0;
 }
-/* line 290, ../sass/menu.scss */
+/* line 295, ../sass/menu.scss */
 #menu #block-mnartist-filter-mna-filter-create hr {
   display: none;
 }
 
-/* line 295, ../sass/menu.scss */
+/* line 300, ../sass/menu.scss */
 #menu ul.mega-tabs {
   width: 100%;
   position: relative;
   display: table;
 }
-/* line 300, ../sass/menu.scss */
+/* line 305, ../sass/menu.scss */
 #menu ul.mega-tabs li {
   width: 50%;
   display: table-cell;
   border-bottom: none!important;
 }
-/* line 306, ../sass/menu.scss */
+/* line 311, ../sass/menu.scss */
 #menu ul.mega-tabs li a {
   display: block;
   line-height: 1em;
@@ -3307,27 +3315,27 @@ body.my-stuff.welcome {
   background-image: none;
   margin: 0;
 }
-/* line 317, ../sass/menu.scss */
+/* line 322, ../sass/menu.scss */
 #menu ul.mega-tabs li.user-tab {
   background: #323232;
 }
-/* line 320, ../sass/menu.scss */
+/* line 325, ../sass/menu.scss */
 #menu ul.mega-tabs li.user-tab a {
   color: #e5e5e5;
 }
 
-/* line 327, ../sass/menu.scss */
+/* line 332, ../sass/menu.scss */
 body.admin-menu #menu {
   top: 20px;
 }
 @media screen and (max-width: 480px) {
-  /* line 327, ../sass/menu.scss */
+  /* line 332, ../sass/menu.scss */
   body.admin-menu #menu {
     top: 0px;
   }
 }
 
-/* line 334, ../sass/menu.scss */
+/* line 339, ../sass/menu.scss */
 p.site-description {
   position: relative;
   padding: 0;
@@ -3338,7 +3346,7 @@ p.site-description {
   display: block;
 }
 
-/* line 343, ../sass/menu.scss */
+/* line 348, ../sass/menu.scss */
 .menu-content {
   display: block;
 }
@@ -3346,30 +3354,30 @@ p.site-description {
 /* */
 /* date picker on menu bar (this might not need to be defined) */
 /* date picker on page ****************/
-/* line 352, ../sass/menu.scss */
+/* line 357, ../sass/menu.scss */
 .menu-event-datepicker {
   display: none;
 }
 
-/* line 355, ../sass/menu.scss */
+/* line 360, ../sass/menu.scss */
 #menu ul li .ui-datepicker-inline a {
   padding: 0;
   background-image: none;
 }
 
-/* line 359, ../sass/menu.scss */
+/* line 364, ../sass/menu.scss */
 #menu ul li .menu-event-datepicker {
   margin: 0 -10px;
   background: #ebebeb;
 }
-/* line 363, ../sass/menu.scss */
+/* line 368, ../sass/menu.scss */
 #menu ul li .menu-event-datepicker .ui-widget {
   background: #ebebeb;
 }
 
 /* */
 /* favorite filter star */
-/* line 370, ../sass/menu.scss */
+/* line 375, ../sass/menu.scss */
 #create-filter {
   width: 17px;
   height: 16px;
@@ -3386,11 +3394,11 @@ p.site-description {
 }
 
 /* my stuff menu bar */
-/* line 387, ../sass/menu.scss */
+/* line 392, ../sass/menu.scss */
 .my-stuff {
   background: #3f3f3f;
 }
-/* line 390, ../sass/menu.scss */
+/* line 395, ../sass/menu.scss */
 .my-stuff #menu {
   background: #323232;
   		/*ul.my-stuff-edit-menu {
@@ -3407,117 +3415,117 @@ p.site-description {
   			}
   		}*/
 }
-/* line 393, ../sass/menu.scss */
+/* line 398, ../sass/menu.scss */
 .my-stuff #menu ul.mega-tabs {
   background: #323232;
 }
-/* line 396, ../sass/menu.scss */
+/* line 401, ../sass/menu.scss */
 .my-stuff #menu ul.mega-tabs li {
   background: #f2f2f2;
   border: none;
 }
-/* line 400, ../sass/menu.scss */
+/* line 405, ../sass/menu.scss */
 .my-stuff #menu ul.mega-tabs li a {
   color: #666;
   padding: 10px 0;
 }
-/* line 406, ../sass/menu.scss */
+/* line 411, ../sass/menu.scss */
 .my-stuff #menu ul.mega-tabs li.user-tab {
   background: #323232;
 }
-/* line 409, ../sass/menu.scss */
+/* line 414, ../sass/menu.scss */
 .my-stuff #menu ul.mega-tabs li.user-tab a {
   color: #e5e5e5;
 }
-/* line 416, ../sass/menu.scss */
+/* line 421, ../sass/menu.scss */
 .my-stuff #menu ul li {
   border-bottom: 1px solid #3f3f3f;
 }
-/* line 418, ../sass/menu.scss */
+/* line 423, ../sass/menu.scss */
 .my-stuff #menu ul li a {
   color: #e3e3e3;
   background: none;
   margin: 0;
   padding: 15px 15px 15px 15px;
 }
-/* line 424, ../sass/menu.scss */
+/* line 429, ../sass/menu.scss */
 .my-stuff #menu ul li a.expand {
   padding: 5px 10px;
 }
-/* line 428, ../sass/menu.scss */
+/* line 433, ../sass/menu.scss */
 .my-stuff #menu ul li .item-list {
   background: #4d4d4d;
   margin-left: 0;
   margin-right: 0;
   padding: 0;
 }
-/* line 434, ../sass/menu.scss */
+/* line 439, ../sass/menu.scss */
 .my-stuff #menu ul li .item-list ul {
   background: #4d4d4d;
   margin: 0;
   padding: 7px 0;
 }
-/* line 440, ../sass/menu.scss */
+/* line 445, ../sass/menu.scss */
 .my-stuff #menu ul li .item-list ul li {
   padding: 0 0 0 0;
   border-bottom: 1px solid #3f3f3f;
   margin: 0 0 0 0;
 }
-/* line 445, ../sass/menu.scss */
+/* line 450, ../sass/menu.scss */
 .my-stuff #menu ul li .item-list ul li a {
   color: #ccc;
   padding: 10px 15px;
   margin: 0;
 }
-/* line 450, ../sass/menu.scss */
+/* line 455, ../sass/menu.scss */
 .my-stuff #menu ul li .item-list ul li a.active {
   color: #fff;
 }
-/* line 453, ../sass/menu.scss */
+/* line 458, ../sass/menu.scss */
 .my-stuff #menu ul li .item-list ul li.last {
   border-bottom: none;
   margin-bottom: 0;
 }
-/* line 458, ../sass/menu.scss */
+/* line 463, ../sass/menu.scss */
 .my-stuff #menu ul li .item-list ul li:first-child {
   border-top: none;
 }
-/* line 465, ../sass/menu.scss */
+/* line 470, ../sass/menu.scss */
 .my-stuff #menu ul li:last-child {
   border-bottom: none;
 }
-/* line 469, ../sass/menu.scss */
+/* line 474, ../sass/menu.scss */
 .my-stuff #menu ul li.first {
   border-bottom: 1px solid #3f3f3f;
   /*border-top: 1px solid $mystuff_bg_light;*/
 }
-/* line 473, ../sass/menu.scss */
+/* line 478, ../sass/menu.scss */
 .my-stuff #menu ul li.last {
   /*border-bottom: 1px solid $mystuff_bg_light;*/
   border-bottom: none;
 }
-/* line 478, ../sass/menu.scss */
+/* line 483, ../sass/menu.scss */
 .my-stuff #menu ul.my-stuff-menu {
   margin-bottom: 20px;
 }
-/* line 481, ../sass/menu.scss */
+/* line 486, ../sass/menu.scss */
 .my-stuff #menu ul.my-stuff-menu.login-menu {
   padding-top: 20px;
 }
-/* line 484, ../sass/menu.scss */
+/* line 489, ../sass/menu.scss */
 .my-stuff #menu ul.my-stuff-edit-menu li.last {
   margin-top: 20px;
 }
-/* line 487, ../sass/menu.scss */
+/* line 492, ../sass/menu.scss */
 .my-stuff #menu ul.my-stuff-edit-menu li:nth-child(4) {
   border-bottom: none;
 }
-/* line 493, ../sass/menu.scss */
+/* line 498, ../sass/menu.scss */
 .my-stuff #menu ul.my-stuff-menu li.last,
 .my-stuff #menu ul.my-stuff-edit-menu li.last {
   position: relative;
 }
-/* line 504, ../sass/menu.scss */
+/* line 509, ../sass/menu.scss */
 .my-stuff #menu ul.my-stuff-menu li a.user-edit,
 .my-stuff #menu ul.my-stuff-edit-menu li a.user-edit {
   position: absolute;
@@ -3535,40 +3543,40 @@ p.site-description {
   text-indent: 100%;
   white-space: nowrap;
 }
-/* line 519, ../sass/menu.scss */
+/* line 524, ../sass/menu.scss */
 .my-stuff #menu ul.my-stuff-menu li a.user-edit.active,
 .my-stuff #menu ul.my-stuff-edit-menu li a.user-edit.active {
   background: url("../images/icon-pencil-white.svg") no-repeat left center transparent;
   opacity: .6;
 }
-/* line 525, ../sass/menu.scss */
+/* line 530, ../sass/menu.scss */
 .my-stuff #menu ul.my-stuff-menu li a.user-edit:hover,
 .my-stuff #menu ul.my-stuff-edit-menu li a.user-edit:hover {
   opacity: .6;
 }
-/* line 528, ../sass/menu.scss */
+/* line 533, ../sass/menu.scss */
 .my-stuff #menu ul.my-stuff-menu li a.active,
 .my-stuff #menu ul.my-stuff-edit-menu li a.active {
   background: #3f3f3f;
 }
-/* line 531, ../sass/menu.scss */
+/* line 536, ../sass/menu.scss */
 .my-stuff #menu ul.my-stuff-menu li li.last,
 .my-stuff #menu ul.my-stuff-edit-menu li li.last {
   padding-top: 0;
 }
-/* line 533, ../sass/menu.scss */
+/* line 538, ../sass/menu.scss */
 .my-stuff #menu ul.my-stuff-menu li li.last a,
 .my-stuff #menu ul.my-stuff-edit-menu li li.last a {
   border: none;
   margin-bottom: 0;
 }
-/* line 555, ../sass/menu.scss */
+/* line 560, ../sass/menu.scss */
 .my-stuff .panel-pane .block-inner .block-content {
   background: #323232;
   color: #8f8f8f;
 }
 
-/* line 564, ../sass/menu.scss */
+/* line 569, ../sass/menu.scss */
 .nearme-filter {
   margin-bottom: 10px;
   box-sizing: border-box;
@@ -3580,7 +3588,7 @@ p.site-description {
   padding-top: 10px;
   position: relative;
 }
-/* line 575, ../sass/menu.scss */
+/* line 580, ../sass/menu.scss */
 .nearme-filter label {
   display: block;
   width: 40%;
@@ -3596,7 +3604,7 @@ p.site-description {
   color: #222;
   padding-left: 0;
 }
-/* line 589, ../sass/menu.scss */
+/* line 594, ../sass/menu.scss */
 .nearme-filter input[type="search"] {
   display: block;
   width: 60%;
@@ -3607,7 +3615,7 @@ p.site-description {
   background-size: 9px auto;
   padding-right: 17px;
 }
-/* line 599, ../sass/menu.scss */
+/* line 604, ../sass/menu.scss */
 .nearme-filter button {
   position: absolute;
   right: 10px;
@@ -3622,24 +3630,24 @@ p.site-description {
   background: none;
   display: block;
 }
-/* line 610, ../sass/menu.scss */
+/* line 615, ../sass/menu.scss */
 .nearme-filter button:hover, .nearme-filter button:focus {
   border: none;
   outline: none;
   background: none;
 }
 
-/* line 616, ../sass/menu.scss */
+/* line 621, ../sass/menu.scss */
 body {
   overflow: hidden;
 }
 @media screen and (max-width: 480px) {
-  /* line 619, ../sass/menu.scss */
+  /* line 624, ../sass/menu.scss */
   body.sidebar-show {
     /* for fixining and unfixing for menu scrollability */
     /* end mobile scrollability */
   }
-  /* line 623, ../sass/menu.scss */
+  /* line 628, ../sass/menu.scss */
   body.sidebar-show #page {
     margin-left: 200px;
     min-width: 300px;
@@ -3647,7 +3655,7 @@ body {
     -webkit-transition: all .3s ease-in-out;
     transition: all .3s ease-in-out;
   }
-  /* line 631, ../sass/menu.scss */
+  /* line 636, ../sass/menu.scss */
   body.sidebar-show #menu {
     display: block;
     width: 200px;
@@ -3656,26 +3664,26 @@ body {
     -webkit-transition: all .3s ease-in-out;
     transition: all .3s ease-in-out;
   }
-  /* line 636, ../sass/menu.scss */
+  /* line 641, ../sass/menu.scss */
   body.sidebar-show #menu .menu-content {
     display: block;
   }
-  /* line 648, ../sass/menu.scss */
+  /* line 653, ../sass/menu.scss */
   body.sidebar-show .html #page {
     position: relative;
   }
-  /* line 655, ../sass/menu.scss */
+  /* line 660, ../sass/menu.scss */
   body.sidebar-show .html.sidebar-show #page {
     .position: fixed;
   }
 }
-/* line 661, ../sass/menu.scss */
+/* line 666, ../sass/menu.scss */
 body.sidebar-show .sidebar-button {
   left: 200px;
   background: url("../images/bg-mobile-menu-button.gif") no-repeat left -45px #e5e5e5;
 }
 
-/* line 670, ../sass/menu.scss */
+/* line 675, ../sass/menu.scss */
 .sidebar-button {
   display: none;
   background: url("../images/bg-mobile-menu-button.gif") no-repeat left top #e5e5e5;
@@ -3688,7 +3696,7 @@ body.sidebar-show .sidebar-button {
   line-height: 45px;
 }
 @media screen and (max-width: 480px) {
-  /* line 670, ../sass/menu.scss */
+  /* line 675, ../sass/menu.scss */
   .sidebar-button {
     display: block;
     display: block;
@@ -3712,38 +3720,38 @@ body.sidebar-show .sidebar-button {
     transition-timing-function: ease-in-out;
   }
 }
-/* line 693, ../sass/menu.scss */
+/* line 698, ../sass/menu.scss */
 .sidebar-button:hover {
   text-decoration: none;
 }
 
-/* line 698, ../sass/menu.scss */
+/* line 703, ../sass/menu.scss */
 .my-stuff .sidebar-button {
   background: url("../images/bg-mobile-menu-button.gif") no-repeat left -45px #e5e5e5;
 }
-/* line 702, ../sass/menu.scss */
+/* line 707, ../sass/menu.scss */
 .my-stuff.sidebar-show .sidebar-button {
   background: url("../images/bg-mobile-menu-button.gif") no-repeat left top #e5e5e5;
 }
 
-/* line 710, ../sass/menu.scss */
+/* line 715, ../sass/menu.scss */
 ::-webkit-input-placeholder {
   color: #888;
 }
 
-/* line 714, ../sass/menu.scss */
+/* line 719, ../sass/menu.scss */
 :-moz-placeholder {
   /* Firefox 18- */
   color: #888;
 }
 
-/* line 718, ../sass/menu.scss */
+/* line 723, ../sass/menu.scss */
 ::-moz-placeholder {
   /* Firefox 19+ */
   color: #888;
 }
 
-/* line 722, ../sass/menu.scss */
+/* line 727, ../sass/menu.scss */
 :-ms-input-placeholder {
   color: #888;
 }
