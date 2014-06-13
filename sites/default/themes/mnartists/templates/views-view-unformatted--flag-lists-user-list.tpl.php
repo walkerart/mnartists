@@ -19,15 +19,18 @@ if ($is_singular_view) {
     ctools_add_js('collections', 'mnartist_collections');
 }
 
+$is_my_list = ($user->uid === arg(4));
 
 ?>
 <?php if ($is_singular_view) { ?>
 <h2><?= $view->get_title() ?></h2>
 <?php } ?>
+<?php if ($is_my_list) { ?>
 <ul class="edit-controls">
     <li class="edit"><a href="/flags/lists/edit/<?= $list_id ?>?destination=<?= $dest_url ?>">edit</a></li>
     <li class="delete"><a href="/flags/lists/delete/<?= $list_id ?>?destination=<?= $dest_url ?>">delete</a></li>
 </ul>
+<? } ?>
 <ul class="user-list">
     <?php
         foreach ($rows as $index => $item) {
