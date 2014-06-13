@@ -6191,6 +6191,11 @@ body.page-node-edit {
         /*background:rgba(0,0,0,.05);*/
         margin-right:0px;
 
+        &.item-more {
+          opacity:0!important;
+          visibility:none;
+        }
+
         @media screen and (max-width: $break-tablet) {
             width:50%;
         }
@@ -7109,6 +7114,18 @@ ul.slidesjs-pagination {
     }
   }
 }
+/* artist */
+.layout-c .panel-2col .panel-col-last {
+  .inside {
+    .panel-separator {
+      margin:0px;
+      .pane-mnartist-profiles-mna-all-artworks-link {
+        background:#fff;
+        padding:5px;
+      }
+    }
+  }
+}
 
 .social-links {
     padding:10px 0 20px 0;
@@ -7927,8 +7944,9 @@ li.collect-this, li.add-this {
       font-size: 11px;
     }
     .network-title {
-      font-weight:normal;
-      font-family: $sans_bold_font;
+      font-family: $serif_font;
+      font-weight: bold;
+      font-size: 14px;
     }
   }
 }
@@ -8826,6 +8844,7 @@ li.collect-this, li.add-this {
     height: 100px;
     clear: both;
     background:none;
+    color:rgba(255,255,255,0);
 
     &.loading {
         background: url('../images/icon-loader.gif') no-repeat center center transparent;
@@ -9905,4 +9924,8 @@ div.ctools-modal-content .form-item label {
       }
     }
   }
+}
+
+.form-required {
+  color:#f00!important;
 }
