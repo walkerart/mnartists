@@ -6191,6 +6191,10 @@ body.page-node-edit {
         /*background:rgba(0,0,0,.05);*/
         margin-right:0px;
 
+        &.item-more {
+          opacity:0!important;
+        }
+
         @media screen and (max-width: $break-tablet) {
             width:50%;
         }
@@ -8839,6 +8843,7 @@ li.collect-this, li.add-this {
     height: 100px;
     clear: both;
     background:none;
+    color:rgba(255,255,255,0);
 
     &.loading {
         background: url('../images/icon-loader.gif') no-repeat center center transparent;
