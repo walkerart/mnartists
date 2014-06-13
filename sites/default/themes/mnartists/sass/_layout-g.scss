@@ -81,6 +81,9 @@
                     margin-bottom:10px;
                     padding-top:5px;
                     display:block;
+                    @media screen and (max-width: $break-mobile) {
+                      padding-right:45px;
+                    }
                 }
             }
             .pane-mnartist-collections-mna-collections-star {
@@ -88,6 +91,10 @@
                 top:12px;
                 right:6px;
                 z-index:9999;
+                @media screen and (max-width: $break-mobile) {
+                  right: 10px;
+                  width: auto;
+                }
             }
         }
     }

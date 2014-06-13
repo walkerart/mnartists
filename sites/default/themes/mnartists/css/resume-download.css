@@ -704,12 +704,25 @@ input[type=submit]:hover {
   padding-top: 5px;
   display: block;
 }
-/* line 86, ../sass/_layout-g.scss */
+@media screen and (max-width: 480px) {
+  /* line 76, ../sass/_layout-g.scss */
+  .layout-g .panel-col.content-artwork .pane-node-author a {
+    padding-right: 45px;
+  }
+}
+/* line 89, ../sass/_layout-g.scss */
 .layout-g .panel-col.content-artwork .pane-mnartist-collections-mna-collections-star {
   position: absolute;
   top: 12px;
   right: 6px;
   z-index: 9999;
+}
+@media screen and (max-width: 480px) {
+  /* line 89, ../sass/_layout-g.scss */
+  .layout-g .panel-col.content-artwork .pane-mnartist-collections-mna-collections-star {
+    right: 10px;
+    width: auto;
+  }
 }
 
 /* line 2, ../sass/_forms.scss */
