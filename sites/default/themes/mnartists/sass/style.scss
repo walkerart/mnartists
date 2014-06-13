@@ -6193,6 +6193,7 @@ body.page-node-edit {
 
         &.item-more {
           opacity:0!important;
+          visibility:none;
         }
 
         @media screen and (max-width: $break-tablet) {
@@ -9923,4 +9924,8 @@ div.ctools-modal-content .form-item label {
       }
     }
   }
+}
+
+.form-required {
+  color:#f00!important;
 }
