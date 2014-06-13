@@ -939,8 +939,17 @@ function mnartist_profiles_form_alter(&$form, $form_state, $form_id) {
         !(in_array('administrator', array_values($user->roles)))) {
             // disable additional options if we're on the appropriate
             // node edit forms and we're not an admin user
-            _mnartist_profiles_disable_vertical_tabs($form);
+
+            // @TODO just disabled the disabling here for now, may have
+            // to append a field to the form to have a mock-part-of-the-form
+            // switch for comments open/close
+
+            // _mnartist_profiles_disable_vertical_tabs($form);
     }
+}
+
+function mnartist_profiles_user_login (&$edit, $account) {
+    $edit['redirect'] = 'user/feed';
 }
 
 function mnartist_profiles_form_venue_node_form_alter(&$form, &$form_state, $form_id) {
