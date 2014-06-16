@@ -19,7 +19,7 @@ if ($is_singular_view) {
     ctools_add_js('collections', 'mnartist_collections');
 }
 
-$is_my_list = ($user->uid === arg(4));
+$is_my_list = ($user->uid === arg(1));
 
 ?>
 <?php if ($is_singular_view) { ?>
