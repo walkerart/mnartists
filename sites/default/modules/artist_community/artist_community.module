@@ -1009,7 +1009,7 @@ function _artist_community_get_items_query ($local_og = null,
     } else {
         // ss_full_name
         $sort_key = AC_CREATED_FIELD;
-        $sort_direction = $solarium_query::SORT_ASC;
+        $sort_direction = $solarium_query::SORT_DESC;
         if (!is_null($local_sort)) {
             if ($local_sort === 'alpha') {
                 $sort_key = 'ss_sort_by_name';
@@ -1030,29 +1030,34 @@ function _artist_community_get_items_query ($local_og = null,
     // limit to published nodes
     $solarium_query->createFilterQuery('published_filter')->setQuery('is_status:1');
 
-    // get the result set, assign the result's facetset to a global
-    $facetSet = $solarium_query->getFacetSet();
-    $facetSet->createFacetField('node_medium')->setField(AC_MEDIUM_FIELD);
-    $facetSet->createFacetField('og_node_membership')->setField(AC_OG_GROUP_REF_FIELD);
-    $facetSet->createFacetField('og_user_group')->setField(AC_USER_NODE_FIELD);
-    $facetSet->createFacetField('og_user_membership')->setField(AC_USER_OG_MEMBERSHIP);
-    $facetSet->createFacetField('user_practices')->setField(AC_USER_PRACTICE_FIELD);
-    $facetSet->createFacetField('user_experiences')->setField(AC_USER_EXPERIENCE_FIELD);
-    $facetSet->createFacetField('node_type')->setField(AC_TYPE_FIELD);
-    $facetSet->createFacetField('node_artwork_subject')->setField(AC_SUBJECT_FIELD);
-    $facetSet->createFacetField('node_artwork_for_sale')->setField(AC_FOR_SALE_FIELD);
-    $facetSet->createFacetField('node_category')->setField(AC_CATEGORY_FIELD);
-    $facetSet->createFacetField('node_article_category')->setField(AC_ARTICLE_CATEGORY_FIELD);
-    $facetSet->createFacetField('organizations_type')->setField(AC_ORG_CATEGORY_FIELD);
+    // (if no filters are set?)
+    if (isset($_GET['og'])) {
+        // get the result set, assign the result's facetset to a global
+        $facetSet = $solarium_query->getFacetSet();
+        $facetSet->createFacetField('node_medium')->setField(AC_MEDIUM_FIELD);
+        $facetSet->createFacetField('og_node_membership')->setField(AC_OG_GROUP_REF_FIELD);
+        $facetSet->createFacetField('og_user_group')->setField(AC_USER_NODE_FIELD);
+        $facetSet->createFacetField('og_user_membership')->setField(AC_USER_OG_MEMBERSHIP);
+        $facetSet->createFacetField('user_practices')->setField(AC_USER_PRACTICE_FIELD);
+        $facetSet->createFacetField('user_experiences')->setField(AC_USER_EXPERIENCE_FIELD);
+        $facetSet->createFacetField('node_type')->setField(AC_TYPE_FIELD);
+        $facetSet->createFacetField('node_artwork_subject')->setField(AC_SUBJECT_FIELD);
+        $facetSet->createFacetField('node_artwork_for_sale')->setField(AC_FOR_SALE_FIELD);
+        $facetSet->createFacetField('node_category')->setField(AC_CATEGORY_FIELD);
+        $facetSet->createFacetField('node_article_category')->setField(AC_ARTICLE_CATEGORY_FIELD);
+        $facetSet->createFacetField('organizations_type')->setField(AC_ORG_CATEGORY_FIELD);
 
-    // use constants here for index_id and field and so on
-    $facetSet->createFacetQuery('artists')->setQuery('index_id:users AND im_roles:'.ARTIST_ROLE);
-    $facetSet->createFacetQuery('organizations')->setQuery('index_id:users AND im_roles:'.ORG_ROLE);
-    $facetSet->createFacetQuery('events')->setQuery('index_id:default_node_index AND '.AC_TYPE_FIELD.':event');
-    $facetSet->createFacetQuery('articles')->setQuery('index_id:default_node_index AND '.AC_TYPE_FIELD.':article');
-    $facetSet->createFacetQuery('artworks')->setQuery('index_id:default_node_index AND '.AC_TYPE_FIELD.':artwork');
-    $facetSet->createFacetQuery('opportunities')->setQuery('index_id:default_node_index AND '.AC_TYPE_FIELD.':opportunity');
-    $facetSet->createFacetQuery('all_content')->setQuery('(index_id:default_node_index AND (('.AC_TYPE_FIELD.':article OR '.AC_TYPE_FIELD.':artwork OR '.AC_TYPE_FIELD.':event))) OR (index_id:users)');
+        // use constants here for index_id and field and so on
+        $facetSet->createFacetQuery('artists')->setQuery('index_id:users AND im_roles:'.ARTIST_ROLE);
+        $facetSet->createFacetQuery('organizations')->setQuery('index_id:users AND im_roles:'.ORG_ROLE);
+        $facetSet->createFacetQuery('events')->setQuery('index_id:default_node_index AND '.AC_TYPE_FIELD.':event');
+        $facetSet->createFacetQuery('articles')->setQuery('index_id:default_node_index AND '.AC_TYPE_FIELD.':article');
+        $facetSet->createFacetQuery('artworks')->setQuery('index_id:default_node_index AND '.AC_TYPE_FIELD.':artwork');
+        $facetSet->createFacetQuery('opportunities')->setQuery('index_id:default_node_index AND '.AC_TYPE_FIELD.':opportunity');
+        $facetSet->createFacetQuery('all_content')->setQuery('(index_id:default_node_index AND (('.AC_TYPE_FIELD.':article OR '.AC_TYPE_FIELD.':artwork OR '.AC_TYPE_FIELD.':event))) OR (index_id:users)');
+    } else {
+        _set_community_query_facets();
+    }
 
     $resultset = $client->select($solarium_query);
     $search_facets = $resultset->getFacetSet();
@@ -1157,7 +1162,7 @@ function _set_community_query_facets () {
         // use constants here for index_id and field and so on
         $facetSet->createFacetQuery('artists')->setQuery('index_id:users AND im_roles:'.ARTIST_ROLE);
         $facetSet->createFacetQuery('organizations')->setQuery('index_id:users AND im_roles:'.ORG_ROLE);
-        $facetSet->createFacetQuery('events')->setQuery('index_id:default_node_index AND '.AC_TYPE_FIELD.':event');
+        $facetSet->createFacetQuery('events')->setQuery('index_id:default_node_index AND '.AC_TYPE_FIELD.':event  AND ds_field_date\:value:[NOW TO *]');
         $facetSet->createFacetQuery('articles')->setQuery('index_id:default_node_index AND '.AC_TYPE_FIELD.':article');
         $facetSet->createFacetQuery('artworks')->setQuery('index_id:default_node_index AND '.AC_TYPE_FIELD.':artwork');
         $facetSet->createFacetQuery('opportunities')->setQuery('index_id:default_node_index AND '.AC_TYPE_FIELD.':opportunity');

@@ -9,7 +9,7 @@
     </a>
     <span class="flag-super-wrapper">
         <?= flag_create_link('usercollections', $user->uid) ?>
-        <div class="flag-more-menu">Follow this <?php echo (isset($user->roles[ORG_ROLE])) ? 'Organization' : 'Artist' ?></div>
+        <div class="flag-more-menu"><a href="<?php print $url; ?>">Follow this <?php echo (isset($user->roles[ORG_ROLE])) ? 'Organization' : 'Artist' ?></a></div>
     </span>
     <div class="username">
         <a href="<?php print $url; ?>">
