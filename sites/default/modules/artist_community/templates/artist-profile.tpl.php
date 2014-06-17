@@ -7,7 +7,10 @@
         ?>
         <img src="<?= $image_uri ?>" width="100" height="100">
     </a>
-    <?= flag_create_link('usercollections', $user->uid) ?>
+    <span class="flag-super-wrapper">
+        <?= flag_create_link('usercollections', $user->uid) ?>
+        <div class="flag-more-menu">Follow this <?php echo (isset($user->roles[ORG_ROLE])) ? 'Organization' : 'Artist' ?></div>
+    </span>
     <div class="username">
         <a href="<?php print $url; ?>">
             <?php print mnartist_profiles_collective_or_fullname_or_username($user->uid); ?>

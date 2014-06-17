@@ -120,13 +120,13 @@ if ($teaser) {
     <h3><?php print $type; ?></h3>
     <article id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
       <?php if ($image_uri) { ?>
-          <a href="/node/<?= $node->nid ?>" class="item-image"><img src="<?= $image_uri ?>"></a>
+          <a href="<?= $node_url ?>" class="item-image"><img src="<?= $image_uri ?>"></a>
       <?php } ?>
       <div class="item-info-container">
         <p class="item-info-author"><?php print mnartist_profiles_collective_or_fullname_or_username($node->uid, true); ?></p>
-        <p class="item-info-title"><a href="/node/<?= $node->nid ?>"><?php print $node->title; ?></a></p>
+        <p class="item-info-title"><a href="<?= $node_url ?>"><?php print $node->title; ?></a></p>
         <div<?php print $content_attributes; ?>>
-          <?= $text_excerpt ?> <a href="/node/<?= $node->nid ?>" class="item-more-button-link-indicator">&gt;</a>
+          <?= $text_excerpt ?> <a href="<?= $node_url ?>" class="item-more-button-link-indicator">&gt;</a>
         </div>
         <?php if(user_is_logged_in()) { ?>
           <div class="item-info-flag pane-mnartist-collections-mna-collections-star"><?= theme("mnartist_collections_star", array('node_id' => $node->nid)) ?></div>
