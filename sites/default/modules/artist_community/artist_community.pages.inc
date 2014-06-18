@@ -101,7 +101,7 @@ function artist_community_search_page() {
         if ($local_og !== null) {
             $article_filters = array_merge($article_filters, $filters);
         }
-        $articles = artist_community_execute_query(NODE_INDEX, $article_filters, array(array('promote', 'ASC'), array('changed', 'ASC')));
+        $articles = artist_community_execute_query(NODE_INDEX, $article_filters, array(array('promote', 'ASC'), array('changed', 'DESC')));
         $maxArticles = 8;
         $articleCounter = 0;
         foreach($articles as $index => $article) {
@@ -121,6 +121,7 @@ function artist_community_search_page() {
             }
             $context_article_data->author = $author_full_name;
             $context_article_data->title = $article->title;
+            $context_article_data->subhead = isset($article->field_article_subheader['und']) ? $article->field_article_subheader['und'][0]['value'] : '';
             $context_article_data->image_uri = isset($article->field_images['und']) ? image_style_url('featured_article', $article->field_images['und'][0]['uri']) : '';
             $context_article_data->photo_credit = isset($article->field_images['und'][0]['image_field_caption']['value']) ? $article->field_images['und'][0]['image_field_caption']['value'] : '';
             $context_article_data->excerpt = (isset($article->field_body['und'])) ? strip_tags(text_summary($article->field_body['und'][0]['value'], 'html', 300)) : '';

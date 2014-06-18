@@ -84,8 +84,10 @@
                         <div class="article-detail" id="article-detail-<?= $article->nid ?>" style="display: none;">
                             <a href="/node/<?= $article->nid ?>"><img src="<?= $article->image_uri ?>"></a>
                             <div class="article-content">
+                                <div class="article-detail-title"><?= $article->title ?></div>
                                 <div class="article-detail-byline">by <?= $article->author ?></div>
                                 <div class="article-detail-flag pane-mnartist-collections-mna-collections-star"><?= theme("mnartist_collections_star", array('node_id' => $article->nid)) ?></div>
+                                <div class="article-detail-subhead"><?= $article->subhead ?></div>
                                 <div class="article-detail-excerpt"><?= trim($article->excerpt) ?>&hellip;</div>
                                 <a class="article-detail-excerpt-more" href="/node/<?= $article->nid ?>">More</a>
                                 <div class="article-detail-photo-credit"><?= $article->photo_credit ?></div>
