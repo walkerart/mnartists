@@ -6288,6 +6288,58 @@ body.page-node-edit {
 
     .artist-profile {
 
+      .flag-super-wrapper {
+        display:block;
+        width:100%;
+        position:relative;
+
+        .flag-wrapper {
+          .flag {
+            padding:5px;
+          }
+        }
+
+        &:hover {
+          .flag-more-menu {
+            pointer-events: auto;
+            opacity:1;
+
+          }
+          .flag-wrapper {
+            .flag {
+              background:$mystuff_bg_dark;
+              img {
+                -webkit-filter: invert(100%);
+                filter: invert(100%);
+              }
+            }
+          }
+        }
+        .flag-more-menu {
+          opacity:0;
+          pointer-events: none;
+          padding:10px;
+          background:$mystuff_bg_dark;
+          color:#fff;
+          position:absolute;
+          top:30px;
+          right:5px;
+
+          a {
+            color:#fff;
+            border-radius:0px;
+            border-radius: 0px;
+            padding: 0px;
+            margin: 0px;
+            font-size:12px;
+
+            &:hover {
+              color:$lightgray;
+            }
+          }
+        }
+      }
+
         a {
             display:block;
             overflow:hidden;
@@ -7385,7 +7437,9 @@ body {
     }
 }
 // collection star
-.pane-mnartist-collections-mna-collections-star ul.menu li:hover, .user-feed-message-star ul.menu li:hover, .user-profile-slideshow-star ul.menu li:hover {
+.pane-mnartist-collections-mna-collections-star ul.menu li:hover,
+.user-feed-message-star ul.menu li:hover,
+.user-profile-slideshow-star ul.menu li:hover {
   .star-link {
     img {
       opacity:.8;
@@ -7398,6 +7452,13 @@ body {
   .star-link {
     img {
       opacity:.3;
+    }
+  }
+  .collected {
+    .star-link {
+      img {
+        opacity:.8;
+      }
     }
   }
     hr {
