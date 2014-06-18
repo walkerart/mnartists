@@ -1,10 +1,12 @@
 <div class="clear"></div>
-<div class="search-results-status">
-    <h2>Search Results (<?= $total_num_results ?>)</h2>
-    <?php if ($total_num_results === 0) { ?>
-        <div>Your search returned no results.</div>
-    <?php } ?>
-</div>
+<?php if($has_filters) { ?>
+    <div class="search-results-status">
+        <h2>Search Results (<?= $total_num_results ?>)</h2>
+        <?php if ($total_num_results === 0) { ?>
+            <div>Your search returned no results.</div>
+        <?php } ?>
+    </div>
+<?php } ?>
 <div class="search-results content-all<?= (isset($_GET['content']['event'])) ? ' content-events' : '' ?>" id="search-results">
     <?php if(!empty($all_event_results) && isset($_GET['event_date'])) { ?>
         <div class="date-block">

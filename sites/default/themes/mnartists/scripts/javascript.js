@@ -189,7 +189,8 @@ jQuery(document).ready(function () {
     // though maybe we want to expand this a bit?
     var maxCheckboxAndRadioElements = 50;
     var targetCheckboxAndRadioElements = jQuery('.form-type-checkbox input, .form-type-radio input').not('.form-item-field-op-required-und input, .form-item-field-op-optional-und input');//remove for hidden fields in opportunity section;
-    if (targetCheckboxAndRadioElements.length < maxCheckboxAndRadioElements) {
+    if (!(jQuery('body').hasClass('page-admin')) &&
+        targetCheckboxAndRadioElements.length < maxCheckboxAndRadioElements) {
         targetCheckboxAndRadioElements.iCheck().on("ifChanged",function(e){
             var isChecked = jQuery(e.delegateTarget).is(":checked");
             var checkedLabel = jQuery(e.delegateTarget).parents(".form-item:first").find("label");
