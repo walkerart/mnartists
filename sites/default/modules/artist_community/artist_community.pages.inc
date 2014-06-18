@@ -196,9 +196,11 @@ function artist_community_search_page() {
         }
         $latest_users = artist_community_execute_query(USER_INDEX, $latest_user_filters, array(array('created', 'DESC')));
         $user_keys = array_keys($latest_users);
+        $user_counter = 0;
         foreach($user_keys as $index => $value) {
-            if ($index >= 3) { break; }
+            if ($user_counter >= 3) { break; }
             $user = $latest_users[$value];
+            if (is_null($user->picture)) { continue; }
             $context_latest_user_data = new StdClass();
 
             $full_name = mnartist_profiles_collective_or_fullname_or_username($user->uid);
@@ -209,6 +211,7 @@ function artist_community_search_page() {
             $context_latest_user_data->full_name = $full_name;
             $context_latest_user_data->image_uri = $image_uri;
             $latest_users_data[] = $context_latest_user_data;
+            $user_counter++;
         }
     }
 
