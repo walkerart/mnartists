@@ -194,3 +194,12 @@ function mnartist_article_wysiwyg_plugin($editor, $version) {
         );
     }
 }
+
+function mnartist_article_form_alter(&$form, &$form_state, $form_id) {
+    switch ($form_id) {
+        case "article_node_form":
+            $form['comment_settings']['#group'] = '';
+            $form['comment_settings']['#collapsed'] = false;
+            break;
+    }
+}
