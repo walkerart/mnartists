@@ -6289,15 +6289,27 @@ body.page-node-edit {
     .artist-profile {
 
       .flag-super-wrapper {
-        display:inline-block;
+        display:block;
+        width:100%;
+        position:relative;
+
+        .flag-wrapper {
+          .flag {
+            padding:5px;
+          }
+        }
 
         &:hover {
-
           .flag-more-menu {
             pointer-events: auto;
             opacity:1;
-          }
 
+          }
+          .flag-wrapper {
+            .flag {
+              background:$mystuff_bg_dark;
+            }
+          }
         }
         .flag-more-menu {
           opacity:0;
@@ -6305,6 +6317,17 @@ body.page-node-edit {
           padding:10px;
           background:$mystuff_bg_dark;
           color:#fff;
+          position:absolute;
+          top:30px;
+          right:0px;
+
+          a {
+            color:#fff;
+            border-radius:0px;
+            border-radius: 0px;
+            padding: 0px;
+            margin: 0px;
+          }
         }
       }
 
