@@ -7437,7 +7437,9 @@ body {
     }
 }
 // collection star
-.pane-mnartist-collections-mna-collections-star ul.menu li:hover, .user-feed-message-star ul.menu li:hover, .user-profile-slideshow-star ul.menu li:hover {
+.pane-mnartist-collections-mna-collections-star ul.menu li:hover,
+.user-feed-message-star ul.menu li:hover,
+.user-profile-slideshow-star ul.menu li:hover {
   .star-link {
     img {
       opacity:.8;
@@ -7450,6 +7452,13 @@ body {
   .star-link {
     img {
       opacity:.3;
+    }
+  }
+  .collected {
+    .star-link {
+      img {
+        opacity:.8;
+      }
     }
   }
     hr {
