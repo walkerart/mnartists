@@ -6308,6 +6308,10 @@ body.page-node-edit {
           .flag-wrapper {
             .flag {
               background:$mystuff_bg_dark;
+              img {
+                -webkit-filter: invert(100%);
+                filter: invert(100%);
+              }
             }
           }
         }
@@ -6319,7 +6323,7 @@ body.page-node-edit {
           color:#fff;
           position:absolute;
           top:30px;
-          right:0px;
+          right:5px;
 
           a {
             color:#fff;
@@ -6327,6 +6331,8 @@ body.page-node-edit {
             border-radius: 0px;
             padding: 0px;
             margin: 0px;
+            font-size:12px;
+
             &:hover {
               color:$lightgray;
             }
