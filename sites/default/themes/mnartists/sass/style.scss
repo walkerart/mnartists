@@ -6288,7 +6288,84 @@ body.page-node-edit {
 
     .artist-profile {
 
-      .flag-super-wrapper {
+      .follow-menu {
+        li {
+          float:right;
+          .flag-wrapper {
+            .flag {
+              height:30px;
+              width:27px;
+              display:block;
+              padding:0px;
+              text-align:center;
+              box-sizing:border-box;
+              padding-top:5px;
+              img {
+                opacity:.3;
+              }
+            }
+          }
+          &:hover {
+            .flag-wrapper {
+              .flag {
+                background:$mystuff_bg_dark;
+                img {
+                  -webkit-filter: invert(100%);
+                  filter: invert(100%);
+                }
+              }
+            }
+          }
+          ul {
+            padding:10px;
+            position:absolute;
+            overflow:hidden;
+            top:40px;
+            right:5px;
+            left:auto;
+            font-size:12px;
+            li {
+              float:none;
+              display:block;
+              clear:both;
+              a {
+                padding:4px 0;
+                margin:0;
+                border-radius:0px;
+                &:hover {
+                  color:#888;
+                }
+              }
+              &.share-this {
+                &.collect-title {
+                  border-top:1px solid #fff;
+                  padding-top:5px;
+                  a {
+                    padding-left:0px;
+                  }
+                }
+              }
+              &.share-this {
+                a {
+                  padding-left:15px;
+                }
+              }
+            }
+          }
+        }
+        &.collected {
+          li {
+            .flag-wrapper {
+              .flag {
+                img {
+                  opacity:.8;
+                }
+              }
+            }
+          }
+        }
+      }
+      /*.flag-super-wrapper {
         display:block;
         width:100%;
         position:relative;
@@ -6338,7 +6415,7 @@ body.page-node-edit {
             }
           }
         }
-      }
+      }*/
 
         a {
             display:block;
@@ -7805,7 +7882,14 @@ li.collect-this, li.add-this {
     @media screen and (max-width: $break-tablet) {
       height:auto;
     }
-
+    .article-detail-title {
+      font-weight: bold;
+      font-size: 19px;
+      line-height: 24px;
+      -webkit-font-smoothing: antialiased;
+      margin-bottom:5px;
+      border-bottom:1px dotted #888;
+    }
     .article-detail {
         float: left;
         background-color: white;
@@ -7826,17 +7910,19 @@ li.collect-this, li.add-this {
             height:auto;
         }
         .article-content {
-            padding:10px;
+            padding:0px 10px 10px 10px;
             position:relative;
 
             .article-detail-byline {
                 text-transform: uppercase;
+                font-size:11px;
             }
             .article-detail-excerpt {
-                font-size: 1.1em;
                 display:block;
                 font-family:$serif_font;
-                min-height:70px;
+                min-height:50px;
+                font-size: 15px;
+                line-height: 20px;
 
                 strong {
                     font-family:$serif_font;
@@ -7864,6 +7950,9 @@ li.collect-this, li.add-this {
                 display:block;
                 clear:both;
                 font-size:11px;
+            }
+            .article-detail-subhead {
+              display:none;
             }
             .pane-mnartist-collections-mna-collections-star {
                 position:absolute;
@@ -9682,7 +9771,7 @@ body {
     -moz-transition: all .3s ease-in-out;
     -webkit-transition: all .3s ease-in-out;
     transition: all .3s ease-in-out;
-    @media screen and (max-width: $break-mobile) {
+    @media screen and (max-width: $break-tablet) {
       padding-top:60px;
     }
 }
