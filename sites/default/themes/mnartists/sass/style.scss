@@ -6290,18 +6290,34 @@ body.page-node-edit {
 
       .follow-menu {
         li {
+          float:right;
           .flag-wrapper {
             .flag {
-              padding:5px;
+              height:20px;
+              width:20px;
               display:inline-block;
               img {
                 opacity:.3;
               }
             }
           }
+          &:hover {
+            .flag-wrapper {
+              .flag {
+                background:$mystuff_bg_dark;
+              }
+            }
+          }
           ul {
             padding:5px;
+            position:absolute;
+            overflow:hidden;
+            top:40px;
+            right:0px;
             li {
+              float:none;
+              display:block;
+              clear:both;
               a {
                 padding:5px 0;
                 margin:0;
