@@ -6288,7 +6288,40 @@ body.page-node-edit {
 
     .artist-profile {
 
-      .flag-super-wrapper {
+      .follow-menu {
+        li {
+          .flag-wrapper {
+            .flag {
+              padding:5px;
+              display:inline-block;
+              img {
+                opacity:.3;
+              }
+            }
+          }
+          ul {
+            padding:5px;
+            li {
+              a {
+                padding:5px 0;
+                margin:0;
+              }
+            }
+          }
+        }
+        &.collected {
+          li {
+            .flag-wrapper {
+              .flag {
+                img {
+                  opacity:.8;
+                }
+              }
+            }
+          }
+        }
+      }
+      /*.flag-super-wrapper {
         display:block;
         width:100%;
         position:relative;
@@ -6338,7 +6371,7 @@ body.page-node-edit {
             }
           }
         }
-      }
+      }*/
 
         a {
             display:block;
