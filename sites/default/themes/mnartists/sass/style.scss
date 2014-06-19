@@ -7882,7 +7882,14 @@ li.collect-this, li.add-this {
     @media screen and (max-width: $break-tablet) {
       height:auto;
     }
-
+    .article-detail-title {
+      font-weight: bold;
+      font-size: 19px;
+      line-height: 24px;
+      -webkit-font-smoothing: antialiased;
+      margin-bottom:5px;
+      border-bottom:1px dotted #888;
+    }
     .article-detail {
         float: left;
         background-color: white;
@@ -7908,12 +7915,14 @@ li.collect-this, li.add-this {
 
             .article-detail-byline {
                 text-transform: uppercase;
+                font-size:11px;
             }
             .article-detail-excerpt {
-                font-size: 1.1em;
                 display:block;
                 font-family:$serif_font;
-                min-height:70px;
+                min-height:50px;
+                font-size: 15px;
+                line-height: 20px;
 
                 strong {
                     font-family:$serif_font;
