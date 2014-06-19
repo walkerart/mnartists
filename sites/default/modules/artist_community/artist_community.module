@@ -29,7 +29,7 @@ include_once 'artist_community.features.inc';
 define('AC_OG_GROUP_REF_FIELD', 'im_og_group_ref');
 define('AC_MEDIUM_FIELD', 'im_field_medium');
 define('AC_SUBJECT_FIELD', 'im_field_subject_concept');
-define('AC_FOR_SALE_FIELD', 'bs_field_for_sale');// @TODO fill in correct field name here
+define('AC_FOR_SALE_FIELD', 'bs_field_for_sale');
 define('AC_USER_NODE_FIELD', 'im_og_user_node');
 define('AC_USER_OG_MEMBERSHIP', 'im_og_membership');
 define('AC_TYPE_FIELD', 'ss_type');
@@ -437,10 +437,6 @@ function array_mashinator(&$array, $needle) {
 function url_query_master($text, $path, $key, $val, $attributes = array()) {
     global $search_facets;
     _set_community_query_facets();
-    if (is_null($search_facets)) {
-        _placeholder_community_query_facets();
-    }
-
 
     $query = array();
 
@@ -784,8 +780,6 @@ function _artist_community_get_items_query ($local_og = null,
     global $solarium_config;
     global $search_facets;
 
-    _set_community_query_facets();
-
     // declare container for all results
     $all_results = array();
 
@@ -1034,42 +1028,16 @@ function _artist_community_get_items_query ($local_og = null,
     // limit to published nodes
     $solarium_query->createFilterQuery('published_filter')->setQuery('is_status:1');
 
-    // @TODO instead of this, offload to a method *like* _set_community_query_facets
-    // (or _set_community_query_facets + a new param) so that we generate facet counts
-    // which ONLY take og into account, not content
-
-    // (if no filters are set?)
+    // here we cut in to say "if there are any community filters applied,
+    // then apply ONLY THEM to the facet counts, not the content types
+    $facet_query_string = null;
     if (isset($_GET['og'])) {
-        // get the result set, assign the result's facetset to a global
-        $facetSet = $solarium_query->getFacetSet();
-        $facetSet->createFacetField('node_medium')->setField(AC_MEDIUM_FIELD);
-        $facetSet->createFacetField('og_node_membership')->setField(AC_OG_GROUP_REF_FIELD);
-        $facetSet->createFacetField('og_user_group')->setField(AC_USER_NODE_FIELD);
-        $facetSet->createFacetField('og_user_membership')->setField(AC_USER_OG_MEMBERSHIP);
-        $facetSet->createFacetField('user_practices')->setField(AC_USER_PRACTICE_FIELD);
-        $facetSet->createFacetField('user_experiences')->setField(AC_USER_EXPERIENCE_FIELD);
-        $facetSet->createFacetField('node_type')->setField(AC_TYPE_FIELD);
-        $facetSet->createFacetField('node_artwork_subject')->setField(AC_SUBJECT_FIELD);
-        $facetSet->createFacetField('node_artwork_for_sale')->setField(AC_FOR_SALE_FIELD);
-        $facetSet->createFacetField('node_category')->setField(AC_CATEGORY_FIELD);
-        $facetSet->createFacetField('node_article_category')->setField(AC_ARTICLE_CATEGORY_FIELD);
-        $facetSet->createFacetField('organizations_type')->setField(AC_ORG_CATEGORY_FIELD);
-
-        // use constants here for index_id and field and so on
-        $facetSet->createFacetQuery('artists')->setQuery('index_id:users AND im_roles:'.ARTIST_ROLE);
-        $facetSet->createFacetQuery('organizations')->setQuery('index_id:users AND im_roles:'.ORG_ROLE);
-        $facetSet->createFacetQuery('events')->setQuery('index_id:default_node_index AND '.AC_TYPE_FIELD.':event');
-        $facetSet->createFacetQuery('articles')->setQuery('index_id:default_node_index AND '.AC_TYPE_FIELD.':article');
-        $facetSet->createFacetQuery('artworks')->setQuery('index_id:default_node_index AND '.AC_TYPE_FIELD.':artwork');
-        $facetSet->createFacetQuery('opportunities')->setQuery('index_id:default_node_index AND '.AC_TYPE_FIELD.':opportunity');
-        $facetSet->createFacetQuery('all_content')->setQuery('(index_id:default_node_index AND (('.AC_TYPE_FIELD.':article OR '.AC_TYPE_FIELD.':artwork OR '.AC_TYPE_FIELD.':event))) OR (index_id:users)');
-    } else {
-        _set_community_query_facets();
+        $facet_query_string = implode(' OR ', array_merge($nodeQueryBuilder, $userQueryBuilder));
+        unset($search_facets);
     }
+    _set_community_query_facets($facet_query_string);
 
-    $resultset = $client->select($solarium_query);
-    $search_facets = $resultset->getFacetSet();
-
+    // set the select
     $resultset = $client->select($solarium_query);
 
     // if we actually want markup back, get it ready
@@ -1143,7 +1111,7 @@ function _get_location_coords_from_search_string ($search_string) {
     return false;
 }
 
-function _set_community_query_facets () {
+function _set_community_query_facets ($filter_query_string = null) {
 
     global $solarium_config;
     global $search_facets;
@@ -1152,6 +1120,10 @@ function _set_community_query_facets () {
         $client = new Solarium\Client($solarium_config);
         $solarium_query = $client->createSelect();
         $solarium_query->createFilterQuery('published_filter')->setQuery('is_status:1');
+        if (!is_null($filter_query_string)) {
+            $solarium_query->createFilterQuery('community')->setQuery($filter_query_string);
+            // $solarium_query->setQuery($filter_query_string);
+        }
 
         $facetSet = $solarium_query->getFacetSet();
         $facetSet->createFacetField('node_medium')->setField(AC_MEDIUM_FIELD);
