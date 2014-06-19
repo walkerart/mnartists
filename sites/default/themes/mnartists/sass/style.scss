@@ -6294,9 +6294,12 @@ body.page-node-edit {
           .flag-wrapper {
             .flag {
               height:30px;
-              width:20px;
-              display:inline-block;
+              width:27px;
+              display:block;
               padding:0px;
+              text-align:center;
+              box-sizing:border-box;
+              padding-top:5px;
               img {
                 opacity:.3;
               }
@@ -6336,6 +6339,7 @@ body.page-node-edit {
               &.share-this {
                 &.collect-title {
                   border-top:1px solid #fff;
+                  padding-top:5px;
                   a {
                     padding-left:0px;
                   }
