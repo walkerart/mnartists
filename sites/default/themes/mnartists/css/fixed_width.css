@@ -443,13 +443,13 @@ input[type=submit]:hover {
   width: 50%;
 }
 /* line 25, ../sass/_layout-b.scss */
-.layout-b .main-content .inside .pane-custom.pane-2 {
+.layout-b .main-content .inside .pane-custom.pane-2, .layout-b .main-content .inside .pane-custom.pane-node-updated {
   width: 50%;
   text-align: right;
 }
 @media screen and (max-width: 480px) {
   /* line 25, ../sass/_layout-b.scss */
-  .layout-b .main-content .inside .pane-custom.pane-2 {
+  .layout-b .main-content .inside .pane-custom.pane-2, .layout-b .main-content .inside .pane-custom.pane-node-updated {
     text-align: left;
     margin-bottom: 20px;
   }
@@ -2490,6 +2490,19 @@ div[class*="-image-field-caption-value"] .cke_contents {
 /* line 1777, ../sass/_forms.scss */
 .node-type-event.page-node-edit .date-padding .form-item .description {
   margin-left: 33%;
+}
+
+/* line 1785, ../sass/_forms.scss */
+.wysiwygeditor b, .wysiwygeditor bold, .wysiwygeditor strong {
+  font-weight: bold;
+}
+/* line 1788, ../sass/_forms.scss */
+.wysiwygeditor em, .wysiwygeditor i {
+  font-style: italic;
+}
+/* line 1791, ../sass/_forms.scss */
+.wysiwygeditor a {
+  text-decoration: underline;
 }
 
 /* user profile page */
@@ -14493,42 +14506,50 @@ div.warning {
   text-decoration: none !important;
 }
 /* line 9909, ../sass/style.scss */
+.article-page .pane-node-field-article-subheader {
+  font-size: 19px;
+  line-height: 24px;
+  -webkit-font-smoothing: antialiased;
+  margin-bottom: 5px;
+  border-bottom: 1px dotted #888;
+}
+/* line 9916, ../sass/style.scss */
 .article-page .pane-mnartist-collections-mna-collections-star {
   position: absolute;
   top: 20px;
   right: 20px;
   width: auto!important;
 }
-/* line 9915, ../sass/style.scss */
+/* line 9922, ../sass/style.scss */
 .article-page .pane-node-field-subheader {
   margin-bottom: 1em;
   padding-top: 5px;
   max-width: 90%;
   font-size: 14px;
 }
-/* line 9921, ../sass/style.scss */
+/* line 9928, ../sass/style.scss */
 .article-page .pane-node-author {
   font-size: 13px;
   width: 45%;
   float: left;
   margin-bottom: 20px;
 }
-/* line 9926, ../sass/style.scss */
+/* line 9933, ../sass/style.scss */
 .article-page .pane-node-author a {
   text-decoration: none;
 }
 @media screen and (max-width: 480px) {
-  /* line 9921, ../sass/style.scss */
+  /* line 9928, ../sass/style.scss */
   .article-page .pane-node-author {
     margin-bottom: 5px;
   }
 }
-/* line 9933, ../sass/style.scss */
+/* line 9940, ../sass/style.scss */
 .article-page .pane-custom {
   width: 35%;
   float: left;
 }
-/* line 9937, ../sass/style.scss */
+/* line 9944, ../sass/style.scss */
 .article-page .pane-node-created {
   font-size: 13px;
   width: 55%;
@@ -14537,23 +14558,23 @@ div.warning {
   margin-bottom: 20px;
 }
 @media screen and (max-width: 480px) {
-  /* line 9937, ../sass/style.scss */
+  /* line 9944, ../sass/style.scss */
   .article-page .pane-node-created {
     text-align: left;
   }
 }
-/* line 9949, ../sass/style.scss */
+/* line 9956, ../sass/style.scss */
 .article-page .pane-node-field-images .field-label {
   display: none;
 }
-/* line 9953, ../sass/style.scss */
+/* line 9960, ../sass/style.scss */
 .article-page .field-name-field-body {
   font-size: 17px;
   font-family: "adobe-text-pro", "Times New Roman", Times, serif;
   line-height: 1.6em;
 }
 
-/* line 9962, ../sass/style.scss */
+/* line 9969, ../sass/style.scss */
 .edit-button a {
   border-radius: 0px;
   color: #fff;
@@ -14566,81 +14587,81 @@ div.warning {
   margin: 0 0 15px 15px;
 }
 
-/* line 9977, ../sass/style.scss */
+/* line 9984, ../sass/style.scss */
 .pane-comment-reply-form .item-inside {
   display: none;
 }
 
-/* line 9985, ../sass/style.scss */
+/* line 9992, ../sass/style.scss */
 #modalBackdrop {
   background: rgba(0, 0, 0, 0.6) !important;
 }
 
-/* line 9988, ../sass/style.scss */
+/* line 9995, ../sass/style.scss */
 div.ctools-modal-content .form-item label {
   width: 33%;
 }
 
-/* line 9994, ../sass/style.scss */
+/* line 10001, ../sass/style.scss */
 #modalContent .ctools-modal-content {
   padding: 0px!important;
   border: none!important;
   margin: 0px;
   background: #f2f2f2;
 }
-/* line 10000, ../sass/style.scss */
+/* line 10007, ../sass/style.scss */
 #modalContent .ctools-modal-content .modal-header {
   padding: 10px;
   background: none;
 }
-/* line 10004, ../sass/style.scss */
+/* line 10011, ../sass/style.scss */
 #modalContent .ctools-modal-content .modal-header .modal-title {
   color: #222;
 }
-/* line 10007, ../sass/style.scss */
+/* line 10014, ../sass/style.scss */
 #modalContent .ctools-modal-content .modal-header .close {
   color: #888;
   font-size: 11px;
 }
-/* line 10011, ../sass/style.scss */
+/* line 10018, ../sass/style.scss */
 #modalContent .ctools-modal-content .modal-header .close img {
   margin-left: 5px;
   vertical-align: middle;
   display: none;
 }
-/* line 10020, ../sass/style.scss */
+/* line 10027, ../sass/style.scss */
 #modalContent .ctools-modal-content #modal-content .form-actions input[type=submit] {
   margin-top: 0px;
 }
-/* line 10023, ../sass/style.scss */
+/* line 10030, ../sass/style.scss */
 #modalContent .ctools-modal-content #modal-content .form-actions .button {
   font-family: "Apercu Regular", Arial, Helvetica, sans-serif;
   border: none;
 }
 
 /* banner animation h1 styles */
-/* line 10033, ../sass/style.scss */
+/* line 10040, ../sass/style.scss */
 .organization-header h1 {
   font-size: 20px;
   line-height: 24px;
 }
 
 @media (min-width: 680px) {
-  /* line 10038, ../sass/style.scss */
+  /* line 10045, ../sass/style.scss */
   .organization-header h1 {
     font-size: 37px;
     line-height: 40px;
   }
 }
 @media (min-width: 920px) {
-  /* line 10044, ../sass/style.scss */
+  /* line 10051, ../sass/style.scss */
   .organization-header h1 {
     font-size: 45px;
     line-height: 48px;
   }
 }
 /* more link */
-/* line 10051, ../sass/style.scss */
+/* line 10058, ../sass/style.scss */
 .user-profile-slideshow-artwork-body-more-link {
   background: url("../images/icon-more-chevron.png") no-repeat right center transparent;
   padding-right: 16px;
@@ -14648,11 +14669,11 @@ div.ctools-modal-content .form-item label {
   padding-left: 5px;
 }
 
-/* line 10058, ../sass/style.scss */
+/* line 10065, ../sass/style.scss */
 .pane-mnartist-profiles-mna-all-artworks-link .block-inner .block-content {
   background: none;
 }
-/* line 10062, ../sass/style.scss */
+/* line 10069, ../sass/style.scss */
 .pane-mnartist-profiles-mna-all-artworks-link .block-inner .block-content .all-artworks a {
   text-transform: uppercase;
   white-space: nowrap;
@@ -14667,7 +14688,7 @@ div.ctools-modal-content .form-item label {
   margin-bottom: 5px;
 }
 
-/* line 10079, ../sass/style.scss */
+/* line 10086, ../sass/style.scss */
 .form-required {
   color: #f00!important;
 }
@@ -15116,13 +15137,13 @@ input[type=submit]:hover {
   width: 50%;
 }
 /* line 25, ../sass/_layout-b.scss */
-.layout-b .main-content .inside .pane-custom.pane-2 {
+.layout-b .main-content .inside .pane-custom.pane-2, .layout-b .main-content .inside .pane-custom.pane-node-updated {
   width: 50%;
   text-align: right;
 }
 @media screen and (max-width: 480px) {
   /* line 25, ../sass/_layout-b.scss */
-  .layout-b .main-content .inside .pane-custom.pane-2 {
+  .layout-b .main-content .inside .pane-custom.pane-2, .layout-b .main-content .inside .pane-custom.pane-node-updated {
     text-align: left;
     margin-bottom: 20px;
   }
@@ -17163,6 +17184,19 @@ div[class*="-image-field-caption-value"] .cke_contents {
 /* line 1777, ../sass/_forms.scss */
 .node-type-event.page-node-edit .date-padding .form-item .description {
   margin-left: 33%;
+}
+
+/* line 1785, ../sass/_forms.scss */
+.wysiwygeditor b, .wysiwygeditor bold, .wysiwygeditor strong {
+  font-weight: bold;
+}
+/* line 1788, ../sass/_forms.scss */
+.wysiwygeditor em, .wysiwygeditor i {
+  font-style: italic;
+}
+/* line 1791, ../sass/_forms.scss */
+.wysiwygeditor a {
+  text-decoration: underline;
 }
 
 /* user profile page */

@@ -442,13 +442,13 @@ input[type=submit]:hover {
   width: 50%;
 }
 /* line 25, ../sass/_layout-b.scss */
-.layout-b .main-content .inside .pane-custom.pane-2 {
+.layout-b .main-content .inside .pane-custom.pane-2, .layout-b .main-content .inside .pane-custom.pane-node-updated {
   width: 50%;
   text-align: right;
 }
 @media screen and (max-width: 480px) {
   /* line 25, ../sass/_layout-b.scss */
-  .layout-b .main-content .inside .pane-custom.pane-2 {
+  .layout-b .main-content .inside .pane-custom.pane-2, .layout-b .main-content .inside .pane-custom.pane-node-updated {
     text-align: left;
     margin-bottom: 20px;
   }
@@ -2489,6 +2489,19 @@ div[class*="-image-field-caption-value"] .cke_contents {
 /* line 1777, ../sass/_forms.scss */
 .node-type-event.page-node-edit .date-padding .form-item .description {
   margin-left: 33%;
+}
+
+/* line 1785, ../sass/_forms.scss */
+.wysiwygeditor b, .wysiwygeditor bold, .wysiwygeditor strong {
+  font-weight: bold;
+}
+/* line 1788, ../sass/_forms.scss */
+.wysiwygeditor em, .wysiwygeditor i {
+  font-style: italic;
+}
+/* line 1791, ../sass/_forms.scss */
+.wysiwygeditor a {
+  text-decoration: underline;
 }
 
 /* user profile page */
