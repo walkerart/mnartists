@@ -14,17 +14,24 @@ function mnartist_register_menu() {
 
 }
 
-function mnartist_register_mnartist_register_redirect() {
+function mnartist_register_form_alter(&$form, &$form_state, $form_id) {
+    switch ($form_id) {
+        case 'user_register_form':
+            $form['#redirect'] = 'user/migrate';
+            break;
+    }
+}
+
+function mnartist_register_user_register_submit($form, &$form_state) {
+    $form_state['redirect'] = 'user/migrate';
+}
+
+function mnartist_register_redirect() {
     global $user;
 
-    $redirect = null;
+    $redirect = 'user/migrate';
 
-    //Check if user email had an account previously. if so redirect to migrate page
-    // if (_mnartist_register_check_for_legacy_account($user->mail)) {
-        $redirect = 'user/' . $user->uid . '/migrate';
-    // }
-
-    return $redirect;
+    drupal_goto($redirect);
 }
 
 function mnartist_register_migrate() {
@@ -129,7 +136,7 @@ function _mnartist_register_batch_handler($action, $data, &$context) {
 function _mnartist_register_batch_finished($success, $results, $operations) {
     if ($success) {
         drupal_set_message('MNArtists Account data successfully imported.');
-        drupal_redirect('/user');
+        drupal_goto('/user/feed');
     }
     else {
         // An error occurred.
