@@ -51,10 +51,12 @@ function mnartists_preprocess_html(&$vars) {
 
   if ((!user_is_logged_in() && arg(0) == "user" && (is_null(arg(1)) || in_array(arg(1), array('password', 'register')))) ||
           (arg(0) == "user" && in_array(arg(2), array("edit", "mailchimp"))) ||
-          (arg(0) == "user" && in_array(arg(2), array("flags")) && arg(1) === $user->uid) ||
           (arg(0) == "node" && in_array(arg(1), array("edit", "add"))) ||
           (arg(0) == "node" && in_array(arg(2), array("edit"))) ||
-          (arg(0) == 'user' && in_array(arg(1), array("saved-filters", "feed", "welcome")))
+          (arg(0) == 'user' && in_array(arg(1), array("saved-filters", "feed", "welcome")) ||
+          (arg(0) == "user" && in_array(arg(2), array("flags")) && flag_lists_is_owner('edit', arg(4))) ||
+          (arg(0) == "user" && in_array(arg(2), array("flags")) && !is_numeric(arg(3))) ||
+          (arg(0) == "flags" && flag_lists_is_owner('edit', arg(2))))
       ) {
     $vars['classes_array'][] = drupal_html_class("my-stuff");
   }
