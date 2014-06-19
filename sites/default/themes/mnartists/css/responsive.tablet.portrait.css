@@ -707,7 +707,7 @@ input[type=submit]:hover {
 @media screen and (max-width: 480px) {
   /* line 76, ../sass/_layout-g.scss */
   .layout-g .panel-col.content-artwork .pane-node-author a {
-    padding-right: 40px;
+    padding-right: 45px;
   }
 }
 /* line 89, ../sass/_layout-g.scss */
@@ -3108,4 +3108,14 @@ form input.text-full {
 /* line 75, ../sass/responsive.tablet.portrait.scss */
 .layout-c .panel-2col .panel-col-last {
   padding-left: 0px;
+}
+
+/* line 79, ../sass/responsive.tablet.portrait.scss */
+#menu, #menu:before {
+  width: 0px;
+  overflow: hidden;
+}
+/* line 82, ../sass/responsive.tablet.portrait.scss */
+#menu .menu-content, #menu:before .menu-content {
+  width: 200px;
 }
