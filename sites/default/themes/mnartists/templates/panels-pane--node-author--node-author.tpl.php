@@ -1,6 +1,5 @@
 <?php
-	$article_node = node_load($display->args[0]);
-	$article_author = user_load($article_node->uid);
+	$article_author = user_load($display->context['panelizer']->data->uid);
     $author_uri = "/users/$article_author->uid";
 	$full_name = mnartist_profiles_collective_or_fullname_or_username($article_author->uid);
 	$author_image_uri = image_style_url('square_thumbnail', $article_author->picture->uri);

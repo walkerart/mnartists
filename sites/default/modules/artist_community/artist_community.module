@@ -906,6 +906,10 @@ function _artist_community_get_items_query ($local_og = null,
                         $forSaleQuery = AC_FOR_SALE_FIELD.':true';
                     }
                 case 'event':
+                    if (!isset($_GET['content']['event_include_past']) ||
+                        (isset($_GET['content']['event_include_past']) && isset($_GET['content']['event_include_past']) !== 1)) {
+                        $typeQuery .= " AND ds_field_date\:value:[NOW TO *]";
+                    }
                     if (isset($_GET['event_location_search'])) {
                         $event_coords = _get_location_coords_from_search_string(urldecode($_GET['event_location_search']));
                         $eventLocationSearchString = '{!geofilt sfield='.AC_USER_LATLNG_FIELD." pt=$event_coords d=".NEAR_ME_RADIUS.'}';
@@ -1029,6 +1033,10 @@ function _artist_community_get_items_query ($local_og = null,
 
     // limit to published nodes
     $solarium_query->createFilterQuery('published_filter')->setQuery('is_status:1');
+
+    // @TODO instead of this, offload to a method *like* _set_community_query_facets
+    // (or _set_community_query_facets + a new param) so that we generate facet counts
+    // which ONLY take og into account, not content
 
     // (if no filters are set?)
     if (isset($_GET['og'])) {
