@@ -1,6 +1,9 @@
 <?php
 
 function template_preprocess_artist_community_artist_profile(&$vars) {
+
+    global $base_url;
+
     $vars['image'] = '';
     $profile = profile2_load_by_user($vars['user']);
 
@@ -24,6 +27,7 @@ function template_preprocess_artist_community_artist_profile(&$vars) {
         'path' => $image
     ));
 
+    $vars['base_url'] = $base_url;
     $vars['url'] = url('user/' . $vars['user']->uid);
 }
 
