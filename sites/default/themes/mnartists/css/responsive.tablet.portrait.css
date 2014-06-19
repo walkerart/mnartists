@@ -3111,11 +3111,22 @@ form input.text-full {
 }
 
 /* line 79, ../sass/responsive.tablet.portrait.scss */
+body, body.admin-menu {
+  padding-left: 0px;
+  margin-top: 0!important;
+}
+
+/* line 83, ../sass/responsive.tablet.portrait.scss */
+body.admin-menu #menu {
+  top: 0px;
+}
+
+/* line 87, ../sass/responsive.tablet.portrait.scss */
 #menu, #menu:before {
   width: 0px;
   overflow: hidden;
 }
-/* line 82, ../sass/responsive.tablet.portrait.scss */
+/* line 90, ../sass/responsive.tablet.portrait.scss */
 #menu .menu-content, #menu:before .menu-content {
   width: 200px;
 }
