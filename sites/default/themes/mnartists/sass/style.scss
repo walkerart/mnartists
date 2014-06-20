@@ -8260,6 +8260,17 @@ li.collect-this, li.add-this {
       position:absolute;
       right:0px;
       top:0px;
+      li {
+        &:hover {
+          .star-link {
+            background:$mystuff_bg_dark;
+            img {
+              -webkit-filter: invert(100%);
+              filter: invert(100%);
+            }
+          }
+        }
+      }
       .star-link {
         padding:5px;
         &:hover {
