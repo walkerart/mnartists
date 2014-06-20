@@ -8264,8 +8264,10 @@ li.collect-this, li.add-this {
         padding:5px;
         &:hover {
           background:$mystuff_bg_dark;
-          -webkit-filter: invert(100%);
-          filter: invert(100%);
+          img {
+            -webkit-filter: invert(100%);
+            filter: invert(100%);
+          }
         }
       }
       li {
@@ -8291,6 +8293,17 @@ li.collect-this, li.add-this {
           .flag-this {
             a {
 
+            }
+          }
+          .collect-this {
+            a {
+              padding-left:0px;
+            }
+          }
+          .add-this {
+            opacity:.6;
+            &:hover {
+              opacity:1;
             }
           }
         }
