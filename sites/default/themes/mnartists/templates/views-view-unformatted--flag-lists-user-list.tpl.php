@@ -19,7 +19,7 @@ if ($is_singular_view) {
     ctools_add_js('collections', 'mnartist_collections');
 }
 
-$is_my_list = ($user->uid === arg(1));
+$is_my_list = flag_lists_is_owner('edit', $list_id);
 
 ?>
 <?php if ($is_singular_view) { ?>
