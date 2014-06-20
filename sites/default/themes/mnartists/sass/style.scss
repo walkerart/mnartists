@@ -7502,6 +7502,11 @@ body {
                   float:none;
                 }
               }
+              .add-this {
+                a {
+
+                }
+              }
             }
           }
         }
@@ -8255,6 +8260,41 @@ li.collect-this, li.add-this {
       position:absolute;
       right:0px;
       top:0px;
+      .star-link {
+        padding:5px;
+        &:hover {
+          background:$mystuff_bg_dark;
+          -webkit-filter: invert(100%);
+          filter: invert(100%);
+        }
+      }
+      li {
+        ul {
+          left:auto;
+          right:0px;
+          padding:10px;
+          width:200px;
+          box-sizing:border-box;
+          hr {
+            background:#fff;
+          }
+          .flag-count {
+            display:none;
+          }
+          li {
+            a {
+              &:hover {
+                color:#888;
+              }
+            }
+          }
+          .flag-this {
+            a {
+
+            }
+          }
+        }
+      }
     }
     color:#808080;
   }
