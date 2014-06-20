@@ -1264,3 +1264,12 @@ function artist_community_image_for_artwork_image_uri ($uri, $image_style = null
     return $working_uri;
 
 }
+
+
+function artist_community_preprocess_page (&$vars) {
+    $menu_item = menu_get_item();
+    if ($menu_item['path'] === 'taxonomy/term/%') {
+        // include js for tags paths
+        ctools_add_js('taxonomy', 'artist_community');
+    }
+}
