@@ -199,8 +199,10 @@ function mnartist_article_form_alter(&$form, &$form_state, $form_id) {
     switch ($form_id) {
         case "article_node_form":
         case "artwork_node_form":
-            $form['comment_settings']['#group'] = '';
-            $form['comment_settings']['#collapsed'] = false;
+            $form['comment'] = $form['comment_settings']['comment'];
+            $form['comment']['#weight'] = 98;
+            unset($form['comment']['#title_display']);
+            unset($form['comment_settings']);
             break;
     }
 }
