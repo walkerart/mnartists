@@ -6180,6 +6180,7 @@ body.page-node-edit {
   .nodes {
     .item {
       .item-inside {
+        padding:10px;
         h3 {
           @include quiet_type_label;
           color:$label_color;
@@ -6190,6 +6191,7 @@ body.page-node-edit {
           }
           .item-info-container {
             line-height:1.4em;
+            position:relative;
             p {
               text-indent:none;
               margin:0 0 .5em 0;
@@ -6207,7 +6209,7 @@ body.page-node-edit {
               position:absolute;
               right:0px;
               top:-5px;
-              
+
               ul.menu {
 
               }
