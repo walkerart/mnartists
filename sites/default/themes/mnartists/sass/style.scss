@@ -10198,10 +10198,16 @@ div.ctools-modal-content .form-item label {
 
 // event sidebar
 .event-sidebar {
+  @media screen and (max-width: $break-tablet) {
+    max-width:300px;
+  }
   .inside {
     padding-left:20px;
     @media screen and (max-width: $break-mobile) {
       padding-left:0px;
+    }
+    @media screen and (max-width: $break-tablet) {
+        padding-left:0px;
     }
     h2 {
       height:15px;
@@ -10210,6 +10216,7 @@ div.ctools-modal-content .form-item label {
     .pane-node-author {
       .widget-content {
         padding:10px;
+        background:#fff;
         a {
           img {
             display:block;
