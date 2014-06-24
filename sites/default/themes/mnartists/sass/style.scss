@@ -6175,7 +6175,45 @@ body.page-node-edit {
 }
 
 
+/* search results for a tag */
+.page-taxonomy-term {
+  .nodes {
+    .item {
+      .item-inside {
+        h3 {
+          @include quiet_type_label;
+          color:$label_color;
+        }
+        article {
+          a img {
 
+          }
+          .item-info-container {
+            line-height:1.4em;
+            p {
+              text-indent:none;
+              margin:0 0 .5em 0;
+              line-height:1.2em;
+            }
+            .item-info-author {
+
+            }
+            .item-info-title {
+              font-family:$serif_font;
+              font-weight:bold;
+              font-size:14px;
+            }
+            .item-info-flag {
+              ul.menu {
+
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
 
 /* search result listing */
 .search-results {
