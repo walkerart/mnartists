@@ -10039,6 +10039,10 @@ div.warning {
   }
   .pane-node-updated {
     text-align:right;
+    @media screen and (max-width: $break-mobile) {
+      text-align:left;
+      margin-bottom:10px;
+    }
   }
   .pane-mnartist-collections-mna-collections-star {
     position:absolute;
