@@ -8516,7 +8516,8 @@ li.collect-this, li.add-this {
 /* @end */
 
 /* @group single collection list page */
-.page-user-flags-lists- {
+.page-user-flags-lists-,
+.page-user-flags {
     .view-id-flag_lists_user_list {
         .view-content {
             @include column(14);
@@ -8758,7 +8759,8 @@ li.collect-this, li.add-this {
     }
 }
 .page-user-flags-lists-.my-stuff,
-.page-flags-lists.my-stuff {
+.page-flags-lists.my-stuff,
+.page-user-flags.my-stuff {
   .view-id-flag_lists_user_list {
     .view-content {
       background: $mystuff_bg_dark;
