@@ -181,8 +181,9 @@
                     ?>
                     <?= (isset($award['field_award_year'])) ? $award['field_award_year']['#items'][0]['from']['year'] . ' ' : '' ?>
                     <?= (isset($award['field_award_name'])) ? $award['field_award_name'][0]['#markup'] : '' ?>
-                    <?= (isset($award['field_award_organization'])) ? ' ' . $award['field_award_organization'][0]['#markup'] . '<br />' . PHP_EOL : '' ?>
-                <?php } ?>
+                    <?= (isset($award['field_award_organization'])) ? ' ' . $award['field_award_organization'][0]['#markup'] : '' ?>
+                    <p><?= (isset($award['field_description'])) ? ' ' . $award['field_description'][0]['#markup'] : '' ?></p>
+                <?php } ?><br />
             </div>
         <?php }
         if(isset($fieldset['field_galleries'])) { ?>
