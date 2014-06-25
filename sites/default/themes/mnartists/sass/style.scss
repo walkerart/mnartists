@@ -69,7 +69,7 @@ strong {
 
 em,
 cite {
-    font-family: $sans_italic_font;
+    /*font-family: $sans_italic_font;*/
     font-style: italic;
 }
 
@@ -7534,6 +7534,7 @@ body {
         top: 10px;
         right: 10px;
         z-index: 9999;
+        .flag-count {display:none;}
         ul.menu {
           li {
             @media screen and (max-width: $break-mobile) {
@@ -7571,9 +7572,15 @@ body {
     }
   }
 }
+.pane-mnartist-collections-mna-collections-star {
+  .flag-count {
+    display:none!important;
+  }
+}
 .pane-mnartist-collections-mna-collections-star,
 .user-feed-message-star,
 .user-profile-slideshow-star {
+  .flag-count {display:none;}
   .star-link {
     img {
       opacity:.3;
@@ -8461,7 +8468,8 @@ li.collect-this, li.add-this {
     }
   }
 }
-.page-user-flags-lists- {
+.page-user-flags-lists-,
+.page-flags-lists {
 
     .view-content {
         @include container;
@@ -8508,7 +8516,8 @@ li.collect-this, li.add-this {
 /* @end */
 
 /* @group single collection list page */
-.page-user-flags-lists- {
+.page-user-flags-lists-,
+.page-flags-lists {
     .view-id-flag_lists_user_list {
         .view-content {
             @include column(14);
@@ -8749,7 +8758,9 @@ li.collect-this, li.add-this {
         }
     }
 }
-.page-user-flags-lists-.my-stuff {
+.page-user-flags-lists-.my-stuff,
+.page-flags-lists.my-stuff,
+.page-user-flags.my-stuff {
   .view-id-flag_lists_user_list {
     .view-content {
       background: $mystuff_bg_dark;
@@ -9975,6 +9986,11 @@ div.warning {
       text-decoration:none!important;
     }
   }
+  .field-name-field-body {
+    a {
+      text-decoration:underline;
+    }
+  }
   .field-type-image {
     margin-bottom:1.5em;
 
@@ -10007,7 +10023,11 @@ div.warning {
     font-size:36px;
     line-height:1.2em;
     padding-right:40px;
-    margin-bottom:8px;
+    margin-bottom:15px;
+
+    @media screen and (max-width: $break-mobile) {
+      font-size:24px;
+    }
 
     .block-content a {
       text-decoration:none !important;
@@ -10019,6 +10039,14 @@ div.warning {
     -webkit-font-smoothing: antialiased;
     margin-bottom:5px;
     border-bottom:1px dotted #888;
+    padding-bottom:10px;
+  }
+  .pane-node-updated {
+    text-align:right;
+    @media screen and (max-width: $break-mobile) {
+      text-align:left;
+      margin-bottom:10px;
+    }
   }
   .pane-mnartist-collections-mna-collections-star {
     position:absolute;
@@ -10194,4 +10222,43 @@ div.ctools-modal-content .form-item label {
 
 .form-required {
   color:#f00!important;
+}
+
+// event sidebar
+.event-sidebar {
+  @media screen and (max-width: $break-tablet) {
+    max-width:300px;
+  }
+  .inside {
+    padding-left:20px;
+    @media screen and (max-width: $break-mobile) {
+      padding-left:0px;
+    }
+    @media screen and (max-width: $break-tablet) {
+        padding-left:0px;
+    }
+    h2 {
+      height:15px;
+      line-height:12px;
+    }
+    .pane-node-author {
+      .widget-content {
+        padding:10px;
+        background:#fff;
+        a {
+          img {
+            display:block;
+            width:100%;
+            height:auto;
+          }
+          span {
+            display:block;
+            font-family:$serif_font;
+            font-weight:bold;
+            font-size:14px;
+          }
+        }
+      }
+    }
+  }
 }
