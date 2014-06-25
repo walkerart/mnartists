@@ -687,6 +687,10 @@ function _mnartist_profile_my_stuff() {
         if (count(array_intersect(array('administrator', 'Artist', 'Organization'), array_values($user->roles)))) {
             $editItems[] = l("Add Event", "node/add/event");
         }
+        if (in_array('administrator', array_values($user->roles)) ||
+            in_array('Organization', array_values($user->roles)) && in_array('administrator', array_values($user->roles))) {
+            $editItems[] = l("Add Opportunity", "node/add/opportunity");
+        }
         if (in_array('administrator', array_values($user->roles))) {
             $editItems[] = l("Add Venue", "node/add/venue");
             $editItems[] = l("Add Article", "node/add/article");
