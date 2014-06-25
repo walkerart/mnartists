@@ -4,6 +4,7 @@ function artist_community_search_page() {
 
     // include the community js
     ctools_add_js('community', 'artist_community');
+    ctools_add_js('follow-menu', 'artist_community');
 
     // include the banner stuff
     drupal_add_js(drupal_get_path('module', 'artist_community') .'/banner/javascripts/src/main.js');
