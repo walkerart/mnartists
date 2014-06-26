@@ -695,7 +695,7 @@ function url_query_master($text, $path, $key, $val, $attributes = array()) {
 
             // do past event thing
             $past_event_attributes = array();
-            if (isset($_GET['content']['event_include_past']) && $_GET['content']['event_include_past'] == 1) {
+            if (isset($_GET['content']['event_include_past']) && $_GET['content']['event_include_past'] == '1') {
                 $past_event_attributes['class'] = array('active-trail','selected');
             }
             $query['content']['event_include_past'] = TRUE;
@@ -945,7 +945,7 @@ function _artist_community_get_items_query ($local_og = null,
                         $subQueryTargetField = AC_CATEGORY_FIELD;
                     }
                     if (!isset($_GET['content']['event_include_past']) ||
-                        (isset($_GET['content']['event_include_past']) && isset($_GET['content']['event_include_past']) !== 1)) {
+                        (isset($_GET['content']['event_include_past']) && isset($_GET['content']['event_include_past']) != '1')) {
                         $typeQuery .= " AND ds_field_date\:value:[NOW TO *]";
                     }
                     if (isset($_GET['event_location_search'])) {
