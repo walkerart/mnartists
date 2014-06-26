@@ -18,6 +18,8 @@ define('PRACTICE_VID', '13');
 define('ARTICLE_CATEGORY_VID', '6');
 define('EVENT_CATEGORY_VID', '2');
 define('ORGANIZATIONS_CATEGORY_VID', '7');
+define('OPPORTUNITY_TYPE_VID', '14');
+
 
 // default limits for search
 define('SEARCH_DEFAULT_ROWS', '20');
@@ -47,6 +49,8 @@ define('AC_SORT_BY_NAME_FIELD', 'tm_sort_by_name');
 define('AC_SORT_BY_DATE_FIELD', 'ds_sort_by_date');
 define('AC_SORT_BY_RECENT_FIELD', 'ds_created');
 define('AC_ORG_CATEGORY_FIELD', 'is_profile_organization:field_organization_type');
+define('AC_OPP_TYPE_FIELD', 'is_field_op_type');
+
 
 define('DEFAULT_DOCUMENT_IMAGE', 'icon-media-document.png');
 
@@ -703,6 +707,21 @@ function url_query_master($text, $path, $key, $val, $attributes = array()) {
             if (isset($event_sub_items)) {
                 $output .= theme('item_list', array('items' => $event_sub_items));
             }
+        } else if ($val === 'opportunity') {
+
+            $opportunity_sub_items = array();
+
+            // get opportunity type facet counts
+            $opportunity_category_facets_rec = array();
+            $opportunity_category_facets = $search_facets->getFacet('opportunity_type');
+            foreach ($opportunity_category_facets as $value => $count) {
+                $opportunity_category_facets_rec[$value] = $count;
+            }
+            $opportunity_category_vocab_tree = taxonomy_get_tree(OPPORTUNITY_TYPE_VID);
+            $opportunity_sub_items = _artist_community_build_subitems_for_item($val, $opportunity_category_vocab_tree, $opportunity_category_facets_rec, $query);
+            if (isset($opportunity_sub_items)) {
+                $output .= theme('item_list', array('items' => $opportunity_sub_items));
+            }
         }
     }
 
@@ -888,6 +907,8 @@ function _artist_community_get_items_query ($local_og = null,
                         $subQueryTargetField = AC_SUBJECT_FIELD;
                     } else if ($type === 'article') {
                         $subQueryTargetField = AC_ARTICLE_CATEGORY_FIELD;
+                    } else if ($type === 'opportunity') {
+                        $subQueryTargetField = AC_OPP_TYPE_FIELD;
                     } else {
                         $subQueryTargetField = AC_CATEGORY_FIELD;
                     }
@@ -1153,6 +1174,7 @@ function _set_community_query_facets ($filter_query_string = null) {
         $facetSet->createFacetField('node_category')->setField(AC_CATEGORY_FIELD);
         $facetSet->createFacetField('node_article_category')->setField(AC_ARTICLE_CATEGORY_FIELD);
         $facetSet->createFacetField('organizations_type')->setField(AC_ORG_CATEGORY_FIELD);
+        $facetSet->createFacetField('opportunity_type')->setField(AC_OPP_TYPE_FIELD);
 
         // use constants here for index_id and field and so on
         $facetSet->createFacetQuery('artists')->setQuery('index_id:users AND im_roles:'.ARTIST_ROLE);
