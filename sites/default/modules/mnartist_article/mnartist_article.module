@@ -203,6 +203,8 @@ function mnartist_article_form_alter(&$form, &$form_state, $form_id) {
             $form['comment']['#weight'] = 98;
             unset($form['comment']['#title_display']);
             unset($form['comment_settings']);
+        case "article_node_form":
+            $form['author']['name']['#autocomplete_path'] = 'user/ac_fullname';
             break;
     }
 }
