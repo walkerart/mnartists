@@ -48,8 +48,39 @@ function mnartist_profiles_menu() {
         'type'              => MENU_CALLBACK,
     );
 
+    $items['user/ac_fullname'] = array(
+        'page callback'     => 'mnartist_profiles_ac_fullname',
+        'page arguments'    => array(),
+        'access callback'   => TRUE,
+        'type'              => MENU_CALLBACK,
+    );
+
     return $items;
 
+}
+
+
+function mnartist_profiles_ac_fullname($string) {
+    // get the data
+    global $solarium_config;
+    $client = new Solarium\Client($solarium_config);
+    $solarium_query = $client->createSelect();
+    $solarium_query->setQuery("index_id:users");
+    $solarium_query->createFilterQuery('name_query')->setQuery("tm_sort_by_name:$string* OR tm_sort_by_name:$string");
+
+    $resultset = $client->select($solarium_query);
+    $matches = array();
+    foreach ($resultset as $result) {
+        if ($result->tm_sort_by_name !== "") {
+            $key = $result->tm_name[0];
+            $value = $result->tm_sort_by_name[0];
+        } else {
+            $key = $value = $result->tm_name[0];
+        }
+        $matches["$key"] = "$value";
+    }
+    print drupal_json_encode($matches);
+    drupal_exit();
 }
 
 function mnartist_profiles_welcome() {
@@ -687,6 +718,10 @@ function _mnartist_profile_my_stuff() {
         if (count(array_intersect(array('administrator', 'Artist', 'Organization'), array_values($user->roles)))) {
             $editItems[] = l("Add Event", "node/add/event");
         }
+        if (in_array('administrator', array_values($user->roles)) ||
+            in_array('Organization', array_values($user->roles)) && in_array('administrator', array_values($user->roles))) {
+            $editItems[] = l("Add Opportunity", "node/add/opportunity");
+        }
         if (in_array('administrator', array_values($user->roles))) {
             $editItems[] = l("Add Venue", "node/add/venue");
             $editItems[] = l("Add Article", "node/add/article");
@@ -997,7 +1032,7 @@ function mnartist_profiles_entity_property_info_alter(&$info) {
     // creating a common field between users and nodes that an
     // all content search can be sorted on
     $info['user']['bundles']['user']['properties']['sort_by_name'] = array(
-        'type' => 'string',
+        'type' => 'fulltext',
         'label' => t('Sort By Name'),
         'sanitized' => TRUE,
         'getter callback' => 'mnartist_profiles_sort_by_name_callback',
