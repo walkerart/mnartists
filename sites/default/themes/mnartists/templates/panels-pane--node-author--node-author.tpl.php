@@ -2,7 +2,7 @@
 	$article_author = user_load($display->context['panelizer']->data->uid);
     $author_uri = "/user/$article_author->uid";
 	$full_name = mnartist_profiles_collective_or_fullname_or_username($article_author->uid);
-	$author_image_uri = image_style_url('square_thumbnail', $article_author->picture->uri);
+    $author_image_uri = (isset($article_author->picture->uri)) ? image_style_url('square_thumbnail', $article_author->picture->uri) : 'http://mnartist.imalab.us/sites/default/files/styles/square_thumbnail/public/pictures/picture-default.jpg';
 ?>
 <div<?php print $attributes; ?>>
     <?php if ($title) { ?>
