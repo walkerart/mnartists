@@ -709,8 +709,12 @@ function url_query_master($text, $path, $key, $val, $attributes = array()) {
                 $new_arr = array('content' => array('event_include_past' => TRUE));
                 $no_q = $_GET;
                 unset($no_q['q']);
-                $merged_content = array_merge($new_arr['content'], $no_q['content']);
-                $no_q['content'] = $merged_content;
+                if (isset($no_q['content'])) {
+                    $merged_content = array_merge($new_arr['content'], $no_q['content']);
+                    $no_q['content'] = $merged_content;
+                } else {
+                    $no_q['content'] = $new_arr['content'];
+                }
                 $new_arr = $no_q;
             } else {
                 $no_q = $_GET;
