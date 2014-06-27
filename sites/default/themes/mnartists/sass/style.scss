@@ -6364,7 +6364,7 @@ body.page-node-edit {
             position:absolute;
             overflow:hidden;
             top:40px;
-            right:5px;
+            right:0px;
             left:auto;
             font-size:12px;
             li {
@@ -6408,57 +6408,6 @@ body.page-node-edit {
           }
         }
       }
-      /*.flag-super-wrapper {
-        display:block;
-        width:100%;
-        position:relative;
-
-        .flag-wrapper {
-          .flag {
-            padding:5px;
-          }
-        }
-
-        &:hover {
-          .flag-more-menu {
-            pointer-events: auto;
-            opacity:1;
-
-          }
-          .flag-wrapper {
-            .flag {
-              background:$mystuff_bg_dark;
-              img {
-                -webkit-filter: invert(100%);
-                filter: invert(100%);
-              }
-            }
-          }
-        }
-        .flag-more-menu {
-          opacity:0;
-          pointer-events: none;
-          padding:10px;
-          background:$mystuff_bg_dark;
-          color:#fff;
-          position:absolute;
-          top:30px;
-          right:5px;
-
-          a {
-            color:#fff;
-            border-radius:0px;
-            border-radius: 0px;
-            padding: 0px;
-            margin: 0px;
-            font-size:12px;
-
-            &:hover {
-              color:$lightgray;
-            }
-          }
-        }
-      }*/
 
         a {
             display:block;
@@ -6478,7 +6427,7 @@ body.page-node-edit {
         }
         .flag-wrapper {
           position: absolute;
-          right: 5px;
+          right: 0px;
 
           a {
             border-radius:0px;
@@ -10245,21 +10194,81 @@ div.ctools-modal-content .form-item label {
     .pane-node-author {
       .widget-content {
         padding:10px;
-        background:#fff;
+        background:none;
+
         a {
           img {
             display:block;
-            width:100%;
+            width:80%;
             height:auto;
+            border-radius:50%;
+            margin:0px auto 20px auto
           }
           span {
             display:block;
             font-family:$serif_font;
             font-weight:bold;
             font-size:14px;
+            text-align:center;
           }
         }
       }
     }
   }
+}
+// opportuntity sidebar
+.node-type-opportunity {
+  .inside {
+    h2 {
+      height:15px;
+      line-height:12px;
+    }
+    .pane-node-author {
+      width:100%;
+
+      .widget-content {
+        padding:10px;
+        background:none;
+
+        a {
+          img {
+            display:block;
+            width:80%;
+            height:auto;
+            border-radius:50%;
+            margin:0px auto 20px auto
+          }
+          span {
+            display:block;
+            font-family:$serif_font;
+            font-weight:bold;
+            font-size:14px;
+            text-align:center;
+          }
+        }
+      }
+    }
+  }
+}
+// opportunity styles
+.node-type-opportunity {
+  .edit-button {
+    margin-top:20px;
+    a {
+      color:#fff!important;
+      margin-left:0px;
+    }
+  }
+}
+.node-type-opportunity {
+  .layout-b .main-content .inside .pane-custom.pane-1 {
+    float:none;
+    width:100%;
+  }
+}
+
+/* weird */
+.pane-mnartist-article-other-articles-by-this-author {
+  float:none;
+  clear:both;
 }
