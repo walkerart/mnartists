@@ -698,9 +698,28 @@ function url_query_master($text, $path, $key, $val, $attributes = array()) {
             if (isset($_GET['content']['event_include_past']) && $_GET['content']['event_include_past'] == '1') {
                 $past_event_attributes['class'] = array('active-trail','selected');
             }
-            $query['content']['event_include_past'] = TRUE;
+
+            // OKAY, this is not great, but with the amount of time
+            // available this is what I could get working.
+            // The include past flag is *sort of* part of the event
+            // filter, but not directly, so we're going to go directly
+            // against $_GET here to build the on/off querystrings we
+            // want.
+            if (!isset($query['content']['event_include_past'])) {
+                $new_arr = array('content' => array('event_include_past' => TRUE));
+                $no_q = $_GET;
+                unset($no_q['q']);
+                $merged_content = array_merge($new_arr['content'], $no_q['content']);
+                $no_q['content'] = $merged_content;
+                $new_arr = $no_q;
+            } else {
+                $no_q = $_GET;
+                unset($no_q['q']);
+                unset($no_q['content']['event_include_past']);
+                $new_arr = $no_q;
+            }
             $event_sub_items[] = l("Include Past Events", 'community', array(
-                'query' => $query,
+                'query' => $new_arr,
                 'attributes' => $past_event_attributes,
             ));
 
