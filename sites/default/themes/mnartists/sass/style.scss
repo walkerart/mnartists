@@ -10245,18 +10245,22 @@ div.ctools-modal-content .form-item label {
     .pane-node-author {
       .widget-content {
         padding:10px;
-        background:#fff;
+        background:none;
+
         a {
           img {
             display:block;
-            width:100%;
+            width:80%;
             height:auto;
+            border-radius:50%;
+            margin:0px auto 20px auto
           }
           span {
             display:block;
             font-family:$serif_font;
             font-weight:bold;
             font-size:14px;
+            text-align:center;
           }
         }
       }
@@ -10272,7 +10276,7 @@ div.ctools-modal-content .form-item label {
     }
     .pane-node-author {
       width:100%;
-      
+
       .widget-content {
         padding:10px;
         background:none;
