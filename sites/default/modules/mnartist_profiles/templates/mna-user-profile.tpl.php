@@ -66,6 +66,19 @@
                     <span class='profile-title'>E-Mail:</span> <?= $fieldset['field_email'][0]['value']['#markup'] ?>
                 </div>
             <? } ?>
+            <?php if(isset($fieldset['field_websites'])) { ?>
+                <div class='profile-websites'>
+                    <span class='profile-title'>Websites:</span>
+                    <?php
+                        $websites_display = array();
+
+                        foreach ($fieldset['field_websites'] as $website) {
+                            $websites_display[] = '<a href="'.$website['value']['#href'].' target="_blank">'.$website['value']['#title'].'</a>';
+                        }
+                    ?>
+                    <?= implode(', ', $websites_display) ?>
+                </div>
+            <? } ?>
             <?php if(isset($fieldset['field_twitter']) || isset($fieldset['field_facebook'])) { ?>
                 <div class='social-links'>
                     <?php if(isset($fieldset['field_twitter'])) { ?>
