@@ -108,7 +108,7 @@ if ($teaser) {
   $image_uri = '';
   if (isset($node->uid)) {
       $target_user = user_load($node->uid);
-      $image_uri = (isset($target_user->picture->uri)) ? image_style_url('square_thumbnail', $target_user->picture->uri) : 'http://mnartist.imalab.us/sites/default/files/styles/square_thumbnail/public/pictures/picture-default.jpg';
+      $image_uri = (isset($target_user->picture->uri)) ? image_style_url('community_content_thumb', $target_user->picture->uri) : 'http://mnartist.imalab.us/sites/default/files/styles/square_thumbnail/public/pictures/picture-default.jpg';
   }
 
   $text_excerpt = '';

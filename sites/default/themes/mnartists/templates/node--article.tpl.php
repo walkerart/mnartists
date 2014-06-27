@@ -108,7 +108,7 @@ if ($teaser) {
   $image_uri = '';
   if (isset($node->field_images[LANGUAGE_NONE])) {
       $target_image = $node->field_images[LANGUAGE_NONE][0];
-      $image_uri = image_style_url('medium', $target_image['uri']);
+      $image_uri = image_style_url('community_content_thumb', $target_image['uri']);
       $known_width = 220;
       $computed_height = ($known_width * $target_image['height']) / $target_image['width'];
   }
