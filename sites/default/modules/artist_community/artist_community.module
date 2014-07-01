@@ -938,7 +938,7 @@ function _artist_community_get_items_query ($local_og = null,
                     if (isset($local_content[$type]) &&
                         is_array($local_content[$type]) &&
                         $type !== 'artwork_for_sale') {
-                        $subQuery = implode(' AND ', $local_content[$type]);
+                        $subQuery = implode(' OR ', $local_content[$type]);
                     }
                     if (isset($local_content['artwork_for_sale']) &&
                         $local_content['artwork_for_sale'] === '1') {
@@ -960,13 +960,7 @@ function _artist_community_get_items_query ($local_og = null,
                     $contextQueryBuilder = array();
                     $typeQuery = AC_TYPE_FIELD.":$type";
                     $subQuery = null;
-                    if ($type === 'artwork') {
-                        $subQueryTargetField = AC_SUBJECT_FIELD;
-                    } else if ($type === 'article') {
-                        $subQueryTargetField = AC_ARTICLE_CATEGORY_FIELD;
-                    } else {
-                        $subQueryTargetField = AC_CATEGORY_FIELD;
-                    }
+                    $subQueryTargetField = AC_CATEGORY_FIELD;
                     if (!isset($_GET['content']['event_include_past']) ||
                         (isset($_GET['content']['event_include_past']) && isset($_GET['content']['event_include_past']) != '1')) {
                         $typeQuery .= " AND ds_field_date\:value:[NOW TO *]";
@@ -1179,10 +1173,12 @@ function _set_community_query_facets ($filter_query_string = null) {
         $client = new Solarium\Client($solarium_config);
         $solarium_query = $client->createSelect();
         $solarium_query->createFilterQuery('published_filter')->setQuery('is_status:1');
-        if (!is_null($filter_query_string)) {
-            $solarium_query->createFilterQuery('community')->setQuery($filter_query_string);
-            // $solarium_query->setQuery($filter_query_string);
-        }
+
+        // put together the base query string, taking past events
+        // into account if needed
+        $base_query_string = (isset($_GET['content']['event_include_past']) && $_GET['content']['event_include_past'] == '1') ? "(index_id:default_node_index AND ((ss_type:article OR ss_type:artwork OR ss_type:opportunity OR ss_type:event))) OR (index_id:users)" : "(index_id:default_node_index AND ((ss_type:article OR ss_type:artwork OR ss_type:opportunity OR (ss_type:event AND ds_field_date\:value:[NOW TO *])))) OR (index_id:users)";
+        $finished_query_string = (!is_null($filter_query_string)) ? "($base_query_string) AND $filter_query_string" : $base_query_string;
+        $solarium_query->createFilterQuery('community')->setQuery($finished_query_string);
 
         $facetSet = $solarium_query->getFacetSet();
         $facetSet->createFacetField('node_medium')->setField(AC_MEDIUM_FIELD);
@@ -1202,7 +1198,11 @@ function _set_community_query_facets ($filter_query_string = null) {
         // use constants here for index_id and field and so on
         $facetSet->createFacetQuery('artists')->setQuery('index_id:users AND im_roles:'.ARTIST_ROLE);
         $facetSet->createFacetQuery('organizations')->setQuery('index_id:users AND im_roles:'.ORG_ROLE);
-        $facetSet->createFacetQuery('events')->setQuery('index_id:default_node_index AND '.AC_TYPE_FIELD.':event  AND ds_field_date\:value:[NOW TO *]');
+        if (isset($_GET['content']['event_include_past']) && $_GET['content']['event_include_past'] == '1') {
+            $facetSet->createFacetQuery('events')->setQuery('index_id:default_node_index AND '.AC_TYPE_FIELD.':event');
+        } else {
+            $facetSet->createFacetQuery('events')->setQuery('index_id:default_node_index AND '.AC_TYPE_FIELD.':event  AND ds_field_date\:value:[NOW TO *]');
+        }
         $facetSet->createFacetQuery('articles')->setQuery('index_id:default_node_index AND '.AC_TYPE_FIELD.':article');
         $facetSet->createFacetQuery('artworks')->setQuery('index_id:default_node_index AND '.AC_TYPE_FIELD.':artwork');
         $facetSet->createFacetQuery('opportunities')->setQuery('index_id:default_node_index AND '.AC_TYPE_FIELD.':opportunity');
