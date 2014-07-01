@@ -722,6 +722,7 @@ function url_query_master($text, $path, $key, $val, $attributes = array()) {
                 unset($no_q['content']['event_include_past']);
                 $new_arr = $no_q;
             }
+            $event_sub_items[] = "<span class='community-content-menu-separator'></span>";
             $event_sub_items[] = l("Include Past Events", 'community', array(
                 'query' => $new_arr,
                 'attributes' => $past_event_attributes,
