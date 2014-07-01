@@ -206,7 +206,8 @@ function artist_community_search_page() {
             $context_latest_user_data = new StdClass();
 
             $full_name = mnartist_profiles_collective_or_fullname_or_username($user->uid);
-            $image_uri = (isset($user->picture->uri)) ? image_style_url('artist_thumbnail_small', $user->picture->uri) : 'http://mnartist.imalab.us/sites/default/files/styles/artist_thumbnail_small/public/pictures/picture-default.png';
+            $working_uri = (isset($user->picture->uri)) ? $user->picture->uri : variable_get('user_picture_default');
+            $image_uri = image_style_url('artist_thumbnail_small', $working_uri);
 
             $context_latest_user_data->uid = $user->uid;
             $context_latest_user_data->username = $user->name;
