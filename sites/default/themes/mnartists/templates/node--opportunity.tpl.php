@@ -106,10 +106,12 @@ hide($content['links']);
 
 if ($teaser) {
   $image_uri = '';
-  if (isset($node->uid)) {
-      $target_user = user_load($node->uid);
-      $image_uri = (isset($target_user->picture->uri)) ? image_style_url('community_content_thumb', $target_user->picture->uri) : 'http://mnartist.imalab.us/sites/default/files/styles/square_thumbnail/public/pictures/picture-default.jpg';
-  }
+    if (isset($node->op_cover_image[LANGUAGE_NONE])) {
+        $target_image = $node->op_cover_image[LANGUAGE_NONE][0];
+        $image_uri = image_style_url('community_content_thumb', $target_image['uri']);
+        $known_width = 220;
+        $computed_height = ($known_width * $target_image['height']) / $target_image['width'];
+    }
 
   $text_excerpt = '';
   if (isset($node->body[LANGUAGE_NONE])) {
@@ -119,8 +121,8 @@ if ($teaser) {
   <div class="item-inside">
     <h3><?php print $type; ?></h3>
     <article id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
-      <?php if ($image_uri) { ?>
-          <a href="<?= $node_url ?>" class="item-image"><img src="<?= $image_uri ?>"></a>
+      <?php if (isset($node->op_cover_image[LANGUAGE_NONE])) { ?>
+          <a href="<?= $node_url ?>" class="item-image"><img src="<?= $image_uri ?>" width="<?= $known_width ?>" height="<?=$computed_height ?>"></a>
       <?php } ?>
       <div class="item-info-container">
         <p class="item-info-author"><?php print mnartist_profiles_collective_or_fullname_or_username($node->uid, true); ?></p>
