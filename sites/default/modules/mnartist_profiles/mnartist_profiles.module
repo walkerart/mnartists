@@ -473,7 +473,9 @@ function mnartist_profiles_form_user_register_submit(&$form, &$form_state) {
     }
 
     // Redirect to the users profile edit page
-    drupal_goto('user/' . $user->uid . '/edit/' . $goto);
+    // not doing this anymore, we're redirecting to migrate
+    // in register module instead
+    // drupal_goto('user/' . $user->uid . '/edit/' . $goto);
 }
 
 /**

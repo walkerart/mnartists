@@ -17,21 +17,13 @@ function mnartist_register_menu() {
 function mnartist_register_form_alter(&$form, &$form_state, $form_id) {
     switch ($form_id) {
         case 'user_register_form':
-            $form['#redirect'] = 'user/migrate';
+            $form['#submit'][] = 'mnartist_register_user_register_submit';
             break;
     }
 }
 
 function mnartist_register_user_register_submit($form, &$form_state) {
-    $form_state['redirect'] = 'user/migrate';
-}
-
-function mnartist_register_redirect() {
-    global $user;
-
-    $redirect = 'user/migrate';
-
-    drupal_goto($redirect);
+    drupal_goto('user/migrate');
 }
 
 function mnartist_register_migrate() {
