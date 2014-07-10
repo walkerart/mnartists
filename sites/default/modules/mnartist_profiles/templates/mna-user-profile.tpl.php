@@ -50,7 +50,7 @@
             <?php } ?>
             <?php if(isset($fieldset['field_county'])) { ?>
                 <div class='profile-county'>
-                    <?= $fieldset['field_county'][0]['value']['#markup'] ?><?php if (preg_match('/[Cc]ounty$/', $fieldset['field_county'][0]['value']['#markup']) !== 1) { ?> County<?php } ?>
+                    <span class='profile-title'>County:</span> <?= $fieldset['field_county'][0]['value']['#markup'] ?>
                 </div>
             <?php } ?>
             <?php if(isset($fieldset['field_full_name'])) { ?>
