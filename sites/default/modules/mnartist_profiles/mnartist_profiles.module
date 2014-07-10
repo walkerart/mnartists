@@ -755,7 +755,7 @@ function _mnartist_profile_all_artworks_link() {
     if($context_user) {
         $link_fragment_arr = array();
         $link_fragment_arr[] = '<div class="all-artworks">';
-        $link_fragment_arr[] = "<a href='/community?content[artwork]=1&global_search=\"".mnartist_profiles_collective_or_fullname_or_username($context_user->uid)."\"'>All Artworks</a>";
+        $link_fragment_arr[] = "<a href='/community?content[artwork]=1&global_search=\"".check_plain(mnartist_profiles_collective_or_fullname_or_username($context_user->uid))."\"'>All Artworks</a>";
         $link_fragment_arr[] = '</div>';
         return implode('', $link_fragment_arr);
     }
@@ -1153,7 +1153,7 @@ function _mnartist_profiles_profile2_profiles_as_indexable($profile) {
         foreach ($profile as $field_name => $field) {
             $field_info = field_info_field($field_name);
             $field_id = $field_info['id'];
-            $privacy = _profile2_field_privacy_value($field_id, $profile->pid);
+            $privacy = (bool) _profile2_field_privacy_value($field_id, $profile->pid);
 
             if (isset($field_info['type']) && $field_info['type'] != 'field_collection') {
                 if ($privacy !== true) {
@@ -1170,8 +1170,8 @@ function _mnartist_profiles_profile2_profiles_as_indexable($profile) {
                         foreach ($instances as $instance_field_name => $instance_field) {
                             $instance_field_info = field_info_field($instance_field_name);
                             $instance_field_id = $instance_field_info['id'];
-                            $collection_field_privacy = _profile2_field_privacy_value($instance_field_id, $profile->pid);
-                            if ($privacy !== true) {
+                            $collection_field_privacy = (bool) _profile2_field_privacy_value($instance_field_id, $profile->pid);
+                            if ($privacy !== true || true) {
                                 if (isset($instance_field['und']) && !empty($instance_field['und'][0]['safe_value'])) {
                                     $return_arr[] = strip_tags($instance_field['und'][0]['safe_value']);
                                 }
