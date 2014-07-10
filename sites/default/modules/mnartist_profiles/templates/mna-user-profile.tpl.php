@@ -7,7 +7,8 @@
     // template for rendering a user's or organization's profile
     $is_org = (isset($fieldset['field_organization_name']));
     $top_name = ($is_org) ? $fieldset['field_organization_name'][0]['value']['#markup'] : $top_name;
-    $picture_uri = (!is_null($context_user->picture)) ? image_style_url('artist-profile-photo',$context_user->picture->uri) : '';
+    $working_uri = (!is_null($context_user->picture)) ? $context_user->picture->uri : variable_get('user_picture_default');
+    $picture_uri = image_style_url('artist-profile-photo', $working_uri);
 
 ?>
 
