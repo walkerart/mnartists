@@ -1,7 +1,11 @@
 .organization-header h1 {
-  font-size: 20px;
-  line-height: 24px;
+  font-size: 45px;
+  line-height: 48px;
   padding-left:0px;
+}
+.organization-header .taglines {
+	font-size: 45px;
+  	line-height: 48px;
 }
 .organization-header {
   position: relative;
@@ -22,10 +26,24 @@
     line-height: 40px;
     height: 160px;
   }
+  .organization-header .taglines {
+  	font-size: 37px;
+    line-height: 40px;
+  }
 }
 @media (min-width: 920px) {
   .organization-header {
     height:auto;
+  }
+  .organization-header,
+  .organization-header h1 {
+    font-size: 45px;
+    line-height: 48px;
+    height: 160px;
+  }
+  .organization-header .taglines {
+    font-size: 45px;
+    line-height: 48px;
   }
 }
 .organization-header.has-taglines {
@@ -39,7 +57,7 @@
 }
 @media (min-width: 920px) {
   .organization-header.has-taglines {
-    height: 192px;
+    height: 152px;
   }
 }
 /* organization header only on the homepage */
@@ -85,9 +103,10 @@
   left: 0;
   z-index: 999;
 }
-@media (min-width: max-width 679px) {
-  .organization-header .logo-parts {
-    display: none;
+@media (max-width: 679px) {
+  .organization-header .taglines {
+  	font-size: 20px;
+    line-height: 24px;
   }
 }
 .organization-header h1, .organization-header .taglines, .organization-header p {

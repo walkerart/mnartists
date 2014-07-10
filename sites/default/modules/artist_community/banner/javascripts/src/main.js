@@ -1,12 +1,16 @@
 (function($) {
     var taglines = [
-            'is a platform to connect designers, readers & organizations.',
-            'is a platform to connect craftspeople, collectors & venues.',
-            'is a platform to connect performers, curators & opportunities.',
-            'provides access to and engagement with Minnesota’s arts culture.',
-            'loves you.',
-            'can be used as a dating site.',
-            'is a website.'
+            'is a platform to connect designers, readers & organizations',
+            'is a platform to connect craftspeople, collectors & venues',
+            'is a platform to connect performers, curators & opportunities',
+            'provides access to and engagement with Minnesota\'s arts culture',
+            'loves you',
+            'can be used as a dating site',
+            'loves beautiful writing',
+            'wants to hear artists\' voices',
+            'is a panorama of our arts community',
+            'is a network of potential collaborators',
+            'will connect you to your next gig'
         ],
         taglinesContainer = '',
         currentTagline = '',
