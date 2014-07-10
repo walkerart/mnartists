@@ -81,6 +81,7 @@
                                     var newContent = $(html);
                                     moreContentContainer.append(newContent);
                                     appendCallbacks.fire(newContent);
+                                    moreContentContainer.trigger('infinifyContentContainerDidAddMoreContent');// hilarious!
 
                                     if (newContent.filter(options.more_link_container_selector).length !== 0) {
 
