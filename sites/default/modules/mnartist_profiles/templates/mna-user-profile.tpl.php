@@ -48,6 +48,11 @@
                     <?= $fieldset['field_city'][0]['value']['#markup'] ?>, <?= $fieldset['field_state'][0]['value']['#markup'] ?>
                 </div>
             <?php } ?>
+            <?php if(isset($fieldset['field_county'])) { ?>
+                <div class='profile-county'>
+                    <?= $fieldset['field_county'][0]['value']['#markup'] ?><?php if (preg_match('/[Cc]ounty$/', $fieldset['field_county'][0]['value']['#markup']) !== 1) { ?> County<?php } ?>
+                </div>
+            <?php } ?>
             <?php if(isset($fieldset['field_full_name'])) { ?>
                 <div class='profile-full-name'>
                     <span class='profile-title'>Contact Name:</span> <?= (isset($fs['field_first_name'])) ? $fs['field_first_name'][0]['#markup'] : '' ?> <?= ($fs['field_last_name']) ? $fs['field_last_name'][0]['#markup'] : '' ?>
