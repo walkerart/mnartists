@@ -19,13 +19,13 @@
                                 continue;
                             }
                         ?>
-                            <input type="hidden" name="<?= urldecode($pair[0]) ?>" value="<?= urldecode($pair[1]) ?>">
+                            <input type="hidden" name="<?= htmlentities(urldecode($pair[0])) ?>" value="<?= htmlentities(urldecode($pair[1])) ?>">
                     <?php }
                     }
                 }
             }
         ?>
-        <input placeholder="Search" type="search" name="global_search" id="search" value='<?= urldecode($globalSearchValue) ?>'/>
+        <input placeholder="Search" type="search" name="global_search" id="search" value="<?= htmlentities(urldecode($globalSearchValue)) ?>">
         <button type="submit"></button>
     </form>
 </div>
