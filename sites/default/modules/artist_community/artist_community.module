@@ -855,8 +855,8 @@ function _artist_community_get_items_query ($local_og = null,
         // I included the search term both with and without
         // the wildcard (it's as if the * is behaving as 1 or more
         // instead of 0 or more)
-        $globalQs = '(('.AC_GLOBAL_SEARCH_FIELD.":{$_GET['global_search']}* OR ".AC_GLOBAL_SEARCH_FIELD.":{$_GET['global_search']}) OR ";
-        $globalQs .= '('.AC_PROFILE_SEARCH_FIELD.":{$_GET['global_search']}* OR ".AC_PROFILE_SEARCH_FIELD.":{$_GET['global_search']}))";
+        $globalQs = AC_GLOBAL_SEARCH_FIELD.":{$_GET['global_search']}* OR ".AC_GLOBAL_SEARCH_FIELD.":{$_GET['global_search']} OR ";
+        $globalQs .= AC_PROFILE_SEARCH_FIELD.":{$_GET['global_search']}* OR ".AC_PROFILE_SEARCH_FIELD.":{$_GET['global_search']}";
         $solarium_query->setQuery($globalQs);
     }
 
@@ -1026,7 +1026,7 @@ function _artist_community_get_items_query ($local_og = null,
         $solarium_query->createFilterQuery($type)->setQuery($contentFilterQueryString);
     }
 
-    $communityQueryString = "(index_id:default_node_index$nodeQueryBuilderString) OR (index_id:users$userQueryBuilderString)";
+    $communityQueryString = "(index_id:default_node_index$nodeQueryBuilderString AND is_status:1) OR (index_id:users$userQueryBuilderString)";
 
     $solarium_query->createFilterQuery('the_thing')->setQuery($communityQueryString);
     if ($offset !== null && is_int($offset)) {
@@ -1080,7 +1080,8 @@ function _artist_community_get_items_query ($local_og = null,
     }
 
     // limit to published nodes
-    $solarium_query->createFilterQuery('published_filter')->setQuery('is_status:1');
+    // moved to query above since this only applies to nodes and not users
+    // $solarium_query->createFilterQuery('published_filter')->setQuery('is_status:1');
 
     // here we cut in to say "if there are any community filters applied,
     // then apply ONLY THEM to the facet counts, not the content types
@@ -1091,8 +1092,21 @@ function _artist_community_get_items_query ($local_og = null,
     }
     _set_community_query_facets($facet_query_string);
 
+    // enable debug
+    // $debug = $solarium_query->getDebug();
+
     // set the select
     $resultset = $client->select($solarium_query);
+    
+    // display the debug results
+    // dvm($solarium_query);
+    // $debugResult = $resultset->getDebug();
+    // dpm($debugResult->getQueryString());
+    // dpm($debugResult->getParsedQuery());
+    // dpm($debugResult->getQueryParser());
+    // dpm($debugResult->getOtherQuery());
+    // dvm($debugResult->getExplain());
+
 
     // if we actually want markup back, get it ready
     if ($rendernodes === true) {
