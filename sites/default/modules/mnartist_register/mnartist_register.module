@@ -1,5 +1,15 @@
 <?php
 
+// needed to clean up an import mess
+// function mnartist_register_init() {
+//     $nodes = node_load_multiple(array(), array('uid' => 45));
+//     foreach($nodes as $node) {
+//         if (strlen($node->title) === 0) {
+//             node_delete($node->nid);
+//         }
+//     }
+// }
+
 function mnartist_register_menu() {
 
     // endpoint for downloading user resume
@@ -301,6 +311,29 @@ function _mnartist_load_resume_profile_data($legacyData) {
 
 function _mnartist_register_validate_field($legacyData, $field) {
     return isset($legacyData[$field]) && strlen(trim($legacyData[$field]));
+}
+
+function _mnartist_register_filter_legacy_tags($originalString) {
+
+    // @TODO this is probably a horrible place for
+    // this to live, but these are so darn specific
+    // @TODO do we need to do any extra escaping on
+    // the incoming string here?
+    $legacySubstitutions = array(
+        '[b]' => '<b>',
+        '[/b]' => '</b>',
+        '[i]' => '<i>',
+        '[/i]' => '</i>',
+        '[u]' => '<u>',
+        '[/u]' => '</u>',
+    );
+
+    return str_replace(
+        array_keys($legacySubstitutions),
+        array_values($legacySubstitutions),
+        $originalString
+    );
+
 }
 
 function _mnartist_register_get_user_data($email, $password) {
