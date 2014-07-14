@@ -10,7 +10,34 @@ function mnartists_theme() {
       'template' => 'templates/opportunity-node-form',
       'render element' => 'form'
     ),
+    'user_login' => array(
+      'template' => 'templates/user_login',
+      'render element' => 'form',
+    ),
+    'user_register_form' => array(
+      'template' => 'templates/user_register',
+      'render element' => 'form',
+    ),
+    'user_pass' => array(
+      'template' => 'templates/user_pass',
+      'render element' => 'form',
+    ),
   );
+}
+
+function mnartists_preprocess_user_login(&$variables) {
+  $variables['intro_text'] = t('Have you registered with the new mnartists.org? If so, log-in here with your new username and password.<br>If not, register first, then you can create a new profile or import your old account.');
+  $variables['rendered'] = drupal_render_children($variables['form']);
+}
+
+function mnartists_preprocess_user_register_form(&$variables) {
+  $variables['intro_text'] = t('Welcome to the all-new mnartists.org!  Whether you have an account on the old site or you&rsquo;d like to start fresh, you&rsquo;ll need to register with us by providing the information below.');
+  $variables['rendered'] = drupal_render_children($variables['form']);
+}
+
+function mnartists_preprocess_user_pass(&$variables) {
+  $variables['intro_text'] = t('Forgot your password?<br>If you&rsquo;ve created an account on the new mnartists.org, fill out your username or email and click the "E-Mail New Password" button.<br> If you haven&rsquo;t created an account on the new mnartists.org, retrieve your old password by emailing <a href="mailto:info@mnartists.org">info@mnartists.org</a>.');
+  $variables['rendered'] = drupal_render_children($variables['form']);
 }
 
 /**
