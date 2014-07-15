@@ -4,6 +4,7 @@
 ?>
 <div class="user-welcome">
     <h2>Now that you've joined MN Artists, here are some fun ways to start exploring and better using the site.</h2>
+    <p>Welcome to the new MN Artists! To move your artwork and information from the old site to the new site, <a href="/user/migrate">click here</a>.</p>
     <ul class="welcome-list">
         <li class="welcome-artists"><a href="/community?content[artists]=1">Find new artists in your area</a></li>
         <li class="welcome-collect"><a href="/">Start collecting artists, artworks, or articles</a></li>

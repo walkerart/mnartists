@@ -1,5 +1,5 @@
 <p class="site-description">
-    Make your own MN Artists homepage by filtering communities and content.
+    Select communities and content to create a homepage tailored to your interests.
 </p>
 <div class="search-container">
     <form method="get" action="/community">
