@@ -113,6 +113,8 @@ function mnartist_activity_tokens($type, $tokens, array $data = array(), array $
         case 'node-first-image-uri':
           if (isset($data['node']->field_images['und'])) {
             $uri = $data['node']->field_images['und'][0]['uri'];
+          } else if (isset($data['node']->op_cover_image['und'])) {
+            $uri = $data['node']->op_cover_image['und'][0]['uri'];
           }
           if (isset($uri)) {
             $replacements[$original] = file_create_url($uri);
