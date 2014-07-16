@@ -30,8 +30,10 @@ if ($node->type === 'artwork') {
     }
     $image_uri = (!is_null($working_uri)) ? image_style_url('medium', $working_uri) : '';
 } else {
-  if (isset($node->field_images['und'])) {
-    $working_uri = $node->field_images['und'][0]['uri'];
+  if ($node->type === 'opportunity') {
+    $working_uri = (isset($node->op_cover_image['und'])) ? $node->op_cover_image['und'][0]['uri'] : null;
+  } else {
+    $working_uri = (isset($node->field_images['und'])) ? $node->field_images['und'][0]['uri'] : null;
   }
   $image_uri = (!is_null($working_uri)) ? image_style_url('square_thumbnail', $working_uri) : '';
 }
