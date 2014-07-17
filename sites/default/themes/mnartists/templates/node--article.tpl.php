@@ -115,7 +115,7 @@ if ($teaser) {
 
   $text_excerpt = '';
   if (isset($node->field_body[LANGUAGE_NONE])) {
-      $text_excerpt = trim(text_summary(strip_tags($node->field_body[LANGUAGE_NONE][0]['value']), 'text', 120));
+      $text_excerpt = trim(text_summary(strip_tags($node->field_body[LANGUAGE_NONE][0]['safe_value']), 'text', 120));
   }
 
   ?>
@@ -126,7 +126,7 @@ if ($teaser) {
           <a href="<?= $node_url ?>" class="item-image"><img src="<?= $image_uri ?>" width="<?= $known_width ?>" height="<?=$computed_height ?>"></a>
       <?php } ?>
       <div class="item-info-container">
-        <p class="item-info-author"><?php print mnartist_profiles_collective_or_fullname_or_username($node->uid, true); ?></p>
+        <p class="item-info-author"><a href="/user/<?= $node->uid ?>"><?php print mnartist_profiles_collective_or_fullname_or_username($node->uid, true); ?></a></p>
         <p class="item-info-title"><a href="<?= $node_url ?>"><?php print $node->title; ?></a></p>
         <div<?php print $content_attributes; ?>>
           <?= $text_excerpt ?> <a href="<?= $node_url ?>" class="item-more-button-link-indicator">&gt;</a>

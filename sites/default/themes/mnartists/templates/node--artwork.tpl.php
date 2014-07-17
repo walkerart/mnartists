@@ -131,7 +131,7 @@ if (isset($node->field_media[LANGUAGE_NONE])) {
       <a href="<?= $node_url ?>" class="item-image"><img src="<?= $image_uri ?>" width="<?= $known_width ?>" height="<?=$computed_height ?>"></a>
     <?php } ?>
     <div class="item-info-container">
-      <p class="item-info-author"><?php print mnartist_profiles_collective_or_fullname_or_username($node->uid, true); ?></p>
+      <p class="item-info-author"><a href="/user/<?= $node->uid ?>"><?php print mnartist_profiles_collective_or_fullname_or_username($node->uid, true); ?></a></p>
       <p class="item-info-title"><a href="<?= $node_url ?>"><?php print $node->title; ?></a></p>
       <?php if(user_is_logged_in()) { ?>
         <div class="item-info-flag pane-mnartist-collections-mna-collections-star"><?= theme("mnartist_collections_star", array('node_id' => $node->nid)) ?></div>
