@@ -127,10 +127,10 @@ function mnartist_activity_tokens($type, $tokens, array $data = array(), array $
           $limit = 500;
           $final = '';
           if (isset($data['node']->body['und'])) {
-            $safe_body =  $data['node']->body['und'][0]['value'];
+            $safe_body =  $data['node']->body['und'][0]['safe_value'];
             $stripped_safe_body = trim(strip_tags($safe_body));
           } else if (isset($data['node']->field_body['und'])) {
-            $safe_body = $data['node']->field_body['und'][0]['value'];
+            $safe_body = $data['node']->field_body['und'][0]['safe_value'];
             $stripped_safe_body = trim(strip_tags($safe_body));
           } else {
             break;
