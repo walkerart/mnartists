@@ -7,6 +7,7 @@
 define('ARTIST_ROLE', 4);
 define('ORG_ROLE', 5);
 define('PUBLIC_ROLE', 6);
+define('ORG_ADMIN_ROLE', 7);
 define('FEED_DEFAULT_ROW_LIMIT', '20');
 
 include_once 'mnartist_profiles.features.inc';
@@ -477,7 +478,25 @@ function mnartist_profiles_form_user_register_submit(&$form, &$form_state) {
             'rid' => $rid,
         ));
         $query->execute();
+
+        // @TODO problem:
+        // mnartist_profiles_form_user_register_submit is called AFTER
+        // whatever 'index items immediately' is doing, so new users
+        // are indexed, but their updated roles are not
+
+        // this doesn't work because it doesn't seem to trigger
+        // a re-indexing
+        // $context_user = user_load($user->uid);
+        // $save_result = user_save($context_user);
+        // dpm($save_result);
+
+        // and this does trigger the reindexing in a performant
+        // way, but seems to throw an error on indexing due
+        // to a missing date?
+        // $user_index = search_api_index_load(USER_INDEX);
+        // search_api_index_items($user_index, -1);
     }
+
 
     // Redirect to the users profile edit page
     // not doing this anymore, we're redirecting to migrate
@@ -728,7 +747,7 @@ function _mnartist_profile_my_stuff() {
             $editItems[] = l("Add Event", "node/add/event");
         }
         if (in_array('administrator', array_values($user->roles)) ||
-            in_array('Organization', array_values($user->roles)) && in_array('administrator', array_values($user->roles))) {
+            in_array('Organizational Admin', array_values($user->roles))) {
             $editItems[] = l("Add Opportunity", "node/add/opportunity");
         }
         if (in_array('administrator', array_values($user->roles))) {
