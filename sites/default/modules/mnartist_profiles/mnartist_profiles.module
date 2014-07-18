@@ -1302,3 +1302,27 @@ function mnartist_profiles_get_geocoding_search_string_for_uid($uid) {
     }
     return $search_string;
 }
+
+function mnartist_profiles_search_api_index_items_alter(array &$items, SearchApiIndex $index) {
+
+    // if a user has marked their account as private, don't
+    // index it, and if a private user owns a node don't index
+    // that either
+    if ($index->machine_name === USER_INDEX) {
+        foreach($items as $id => $item){
+            if(isset($item->field_user_global_privacy_flag) &&
+                $item->field_user_global_privacy_flag[LANGUAGE_NONE][0]['value'] == '1') {
+                unset($items[$id]);
+            }
+        }
+    } else if ($index->machine_name === NODE_INDEX) {
+        foreach($items as $id => $item){
+            $node_author = user_load($item->uid);
+            if(isset($node_author->field_user_global_privacy_flag) &&
+                $node_author->field_user_global_privacy_flag[LANGUAGE_NONE][0]['value'] == '1') {
+                unset($items[$id]);
+            }
+        }
+    }
+
+}
