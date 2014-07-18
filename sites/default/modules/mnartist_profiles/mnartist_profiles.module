@@ -84,6 +84,27 @@ function mnartist_profiles_ac_fullname($string) {
     drupal_exit();
 }
 
+function mnartist_profiles_user_update(&$edit, $account, $category) {
+
+    // if user is changing their privacy flag to ON,
+    // the set all their nodes to unpublished
+    if (isset($edit['field_user_global_privacy_flag']) &&
+        $edit['field_user_global_privacy_flag'][LANGUAGE_NONE][0]['value'] == '1') {
+
+        $query = new EntityFieldQuery();
+        $entities = $query->entityCondition('entity_type', 'node')
+            ->propertyCondition('uid', $account->uid)
+            ->execute();
+        $nodes = node_load_multiple(array_keys($entities['node']));
+
+        foreach ($nodes as $node) {
+            $node->status = '0';
+            node_save($node);
+        }
+    }
+
+}
+
 function mnartist_profiles_welcome() {
 
     global $user;
@@ -530,46 +551,60 @@ function mnartist_profiles_field_extra_fields() {
  * Implements hook_user_view()
  */
 function mnartist_profiles_user_view($account, $view_mode, $langcode) {
-    // Show an artists artworks
-    $view = views_get_view('artist_artworks');
-    $view->dom_id = 'artist-artworks';
-    $view->args[] = arg(1);
-    $view->execute();
 
-    $account->content['mnartist_profiles_artworks'] = array(
-        '#type' => 'user_profile_item',
-        '#title' => t('Artworks'),
-        '#markup' => $view->render('block_1'),
-    );
+    global $user;
 
-    // Build an artists collections by node type
-    $types = node_type_get_types();
-    $content = '';
-    $account->content['mnartist_profiles_collections'] = array(
-        '#type' => 'user_profile_category',
-        '#title' => t('Collections'),
-    );
+    // don't allow access if target user is set to private,
+    // and we're not an admin and we're not the target user
+    if ($user->uid !== $account->uid &&
+        !in_array('administrator', array_values($user->roles)) &&
+        isset($account->field_user_global_privacy_flag) &&
+        $account->field_user_global_privacy_flag[LANGUAGE_NONE][0]['value'] == '1')  {
 
-    foreach($types as $type) {
+        drupal_access_denied();
+        drupal_exit();
 
-        $view = views_get_view('collections');
-        $view->dom_id = 'artist-collections-' . $type->type;
+    } else {
+        // Show an artists artworks
+        $view = views_get_view('artist_artworks');
+        $view->dom_id = 'artist-artworks';
         $view->args[] = arg(1);
-        $view->args[] = $type->type;
         $view->execute();
 
-        if (!$view->total_rows) continue;
-
-        $content = '<h3>' . $type->name . '</h3>';
-        $content .= $view->render();
-        $account->content['mnartist_profiles_collections'][$type->type] = array(
+        $account->content['mnartist_profiles_artworks'] = array(
             '#type' => 'user_profile_item',
-            '#title' => $type->name,
-            '#markup' => $view->render(),
+            '#title' => t('Artworks'),
+            '#markup' => $view->render('block_1'),
         );
 
-    }
+        // Build an artists collections by node type
+        $types = node_type_get_types();
+        $content = '';
+        $account->content['mnartist_profiles_collections'] = array(
+            '#type' => 'user_profile_category',
+            '#title' => t('Collections'),
+        );
 
+        foreach($types as $type) {
+
+            $view = views_get_view('collections');
+            $view->dom_id = 'artist-collections-' . $type->type;
+            $view->args[] = arg(1);
+            $view->args[] = $type->type;
+            $view->execute();
+
+            if (!$view->total_rows) continue;
+
+            $content = '<h3>' . $type->name . '</h3>';
+            $content .= $view->render();
+            $account->content['mnartist_profiles_collections'][$type->type] = array(
+                '#type' => 'user_profile_item',
+                '#title' => $type->name,
+                '#markup' => $view->render(),
+            );
+
+        }
+    }
 }
 
 function mnartist_profiles_preprocess_user_profile(&$vars) {
@@ -964,6 +999,7 @@ function _mnartist_profile_user_profile() {
 
 function mnartist_profiles_form_alter(&$form, $form_state, $form_id) {
     global $user;
+
     if ($form_id == 'user_profile_form') {
 
         if (isset($form["#user_category"]) && $form["#user_category"] == 'main') {
@@ -1005,6 +1041,14 @@ function mnartist_profiles_form_alter(&$form, $form_state, $form_id) {
             // disable additional options if we're on the appropriate
             // node edit forms and we're not an admin user
             _mnartist_profiles_disable_vertical_tabs($form);
+
+            // leaving this in here since we *might* want to keep it?
+            // if (isset($account->field_user_global_privacy_flag) &&
+            //     $account->field_user_global_privacy_flag[LANGUAGE_NONE][0]['value'] == '1') {
+            //         // then set published to false and type to hidden
+            //         $form['options']['status']['#default_value'] = '0';
+            //         $form['options']['status']['#type'] = 'hidden';
+            // }
     }
 }
 
