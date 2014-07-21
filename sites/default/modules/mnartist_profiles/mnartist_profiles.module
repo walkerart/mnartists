@@ -783,7 +783,7 @@ function _mnartist_profile_my_stuff() {
         }
         if (in_array('administrator', array_values($user->roles)) ||
             in_array('Organizational Admin', array_values($user->roles))) {
-            $editItems[] = l("Add Opportunity", "node/add/opportunity");
+            $editItems[] = l("Add Opportunity", "node/add/opportunity") . l("View", "applications", array("attributes" => array("class" => array("user-view"))));
         }
         if (in_array('administrator', array_values($user->roles))) {
             $editItems[] = l("Add Venue", "node/add/venue");
@@ -1355,7 +1355,7 @@ function mnartist_profiles_search_api_index_items_alter(array &$items, SearchApi
     if ($index->machine_name === USER_INDEX) {
         foreach($items as $id => $item){
             if(isset($item->field_user_global_privacy_flag) &&
-                $item->field_user_global_privacy_flag[LANGUAGE_NONE][0]['value'] == '1') {
+                $item->field_user_global_privacy_flag[LANGUAGE_NONE][0]['value'] === '1') {
                 unset($items[$id]);
             }
         }
@@ -1363,7 +1363,7 @@ function mnartist_profiles_search_api_index_items_alter(array &$items, SearchApi
         foreach($items as $id => $item){
             $node_author = user_load($item->uid);
             if(isset($node_author->field_user_global_privacy_flag) &&
-                $node_author->field_user_global_privacy_flag[LANGUAGE_NONE][0]['value'] == '1') {
+                $node_author->field_user_global_privacy_flag[LANGUAGE_NONE][0]['value'] === '1') {
                 unset($items[$id]);
             }
         }
