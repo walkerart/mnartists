@@ -750,6 +750,9 @@ function _mnartist_profile_my_stuff() {
             'children' => $flags
         );
         $links[] = array(
+            'data' => l("Applications", "applications"),
+        );
+        $links[] = array(
             'data' => l("Saved Filters", "user/saved-filters"),
             'children' => _mnartist_filter_view_filter()
         );
@@ -783,7 +786,7 @@ function _mnartist_profile_my_stuff() {
         }
         if (in_array('administrator', array_values($user->roles)) ||
             in_array('Organizational Admin', array_values($user->roles))) {
-            $editItems[] = l("Add Opportunity", "node/add/opportunity") . l("View", "applications", array("attributes" => array("class" => array("user-view"))));
+            $editItems[] = l("Add Opportunity", "node/add/opportunity") . l("View", "opportunities", array("attributes" => array("class" => array("user-view"))));
         }
         if (in_array('administrator', array_values($user->roles))) {
             $editItems[] = l("Add Venue", "node/add/venue");
