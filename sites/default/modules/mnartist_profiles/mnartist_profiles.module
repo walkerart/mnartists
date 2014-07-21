@@ -845,35 +845,38 @@ function _mnartist_profile_user_collections() {
             foreach ($content as $index => $item) {
                 if ($index > $collection_items_limit - 1) { break ; }
                 $context_node = node_load($item->content_id);
-                $context_item = new StdClass;
-                $context_item->title = $context_node->title;
-                $context_item->uri = "/node/{$context_node->nid}";
-                if ($context_node->type === 'artwork') {
-                    if (isset($context_node->field_media['und'])) {
-                        // check what kind of media we're dealing with
-                        $working_uri = $context_node->field_media['und'][0]['uri'];
-                        $scheme = file_uri_scheme($working_uri);
-                        switch ($scheme) {
-                          case ('soundcloud'):
-                          case ('youtube'):
-                          case ('vimeo'):
-                            $wrapper = file_stream_wrapper_get_instance_by_uri($working_uri);
-                            $working_uri = $wrapper->getLocalThumbnailPath();
-                            break;
-                          case ('public'):
-                            break;
-                        }
-                        $context_item->image_uri = image_style_url('square_thumbnail', $working_uri);
-                    } else {
-                        $context_item->image_uri = null;
-                    }
-                } else {
-                    $context_item->image_uri = (isset($context_node->field_images['und'])) ? image_style_url('square_thumbnail', $context_node->field_images['und'][0]['uri']) : null;
-                }
 
-                // only add this item if we have gotten an image
-                if (!is_null($context_item->image_uri)) {
-                    $context_items[] = $context_item;
+                if (!is_null($context_node) && $context_node !== false) {
+                    $context_item = new StdClass;
+                    $context_item->title = $context_node->title;
+                    $context_item->uri = "/node/{$context_node->nid}";
+                    if ($context_node->type === 'artwork') {
+                        if (isset($context_node->field_media['und'])) {
+                            // check what kind of media we're dealing with
+                            $working_uri = $context_node->field_media['und'][0]['uri'];
+                            $scheme = file_uri_scheme($working_uri);
+                            switch ($scheme) {
+                              case ('soundcloud'):
+                              case ('youtube'):
+                              case ('vimeo'):
+                                $wrapper = file_stream_wrapper_get_instance_by_uri($working_uri);
+                                $working_uri = $wrapper->getLocalThumbnailPath();
+                                break;
+                              case ('public'):
+                                break;
+                            }
+                            $context_item->image_uri = image_style_url('square_thumbnail', $working_uri);
+                        } else {
+                            $context_item->image_uri = null;
+                        }
+                    } else {
+                        $context_item->image_uri = (isset($context_node->field_images['und'])) ? image_style_url('square_thumbnail', $context_node->field_images['und'][0]['uri']) : null;
+                    }
+
+                    // only add this item if we have gotten an image
+                    if (!is_null($context_item->image_uri)) {
+                        $context_items[] = $context_item;
+                    }
                 }
             }
 
