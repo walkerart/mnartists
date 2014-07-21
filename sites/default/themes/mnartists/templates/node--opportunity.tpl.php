@@ -114,8 +114,15 @@ if ($teaser) {
     }
 
   $text_excerpt = '';
-  if (isset($node->body[LANGUAGE_NONE])) {
-      $text_excerpt = trim(text_summary(strip_tags($node->body[LANGUAGE_NONE][0]['value']), 'text', 120));
+  if (isset($node->op_short_description[LANGUAGE_NONE])) {
+      $text_excerpt = trim(text_summary(strip_tags($node->op_short_description[LANGUAGE_NONE][0]['value']), 'text', 120));
+  }
+
+  $end_date = null;
+  $date_string = '';
+  if (isset($node->op_dates[LANGUAGE_NONE]) && isset($node->op_dates[LANGUAGE_NONE][0]['value2'])) {
+    $end_date = new DateTime($node->op_dates[LANGUAGE_NONE][0]['value2']);
+    $date_string = $end_date->format('l, M jS Y, g:ha');
   }
   ?>
   <div class="item-inside">
@@ -126,9 +133,10 @@ if ($teaser) {
       <?php } ?>
       <div class="item-info-container">
         <p class="item-info-author"><a href="/user/<?= $node->uid ?>"><?php print mnartist_profiles_collective_or_fullname_or_username($node->uid, true); ?></a></p>
+        <?php if ($date_string !== '') { ?><p class="item-info-deadline">Closes: <?= $date_string ?></p><?php } ?>
         <p class="item-info-title"><a href="<?= $node_url ?>"><?php print $node->title; ?></a></p>
         <div<?php print $content_attributes; ?>>
-          <?= $text_excerpt ?> <a href="<?= $node_url ?>" class="item-more-button-link-indicator">&gt;</a>
+          <?php if ($text_excerpt !== '') { ?><?= $text_excerpt ?> <a href="<?= $node_url ?>" class="item-more-button-link-indicator">&gt;</a><?php } ?>
         </div>
         <?php if(user_is_logged_in()) { ?>
           <div class="item-info-flag pane-mnartist-collections-mna-collections-star"><?= theme("mnartist_collections_star", array('node_id' => $node->nid)) ?></div>
