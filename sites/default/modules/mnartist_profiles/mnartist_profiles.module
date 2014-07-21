@@ -633,6 +633,7 @@ function _mnartist_profile_block_visibility() {
     global $user;
 
     if ((arg(0) == "user" && in_array(arg(2), array("edit", "mailchimp"))) ||
+        (in_array(arg(0), array('opportunities'))) ||
         (!user_is_logged_in() && arg(0) == "user" && (is_null(arg(1)) || in_array(arg(1), array("password", "register")))) ||
         (arg(0) == "node" && in_array(arg(1), array("edit", "add"))) ||
         (arg(0) == "node" && in_array(arg(2), array("edit"))) ||
@@ -786,7 +787,7 @@ function _mnartist_profile_my_stuff() {
         }
         if (in_array('administrator', array_values($user->roles)) ||
             in_array('Organizational Admin', array_values($user->roles))) {
-            $editItems[] = l("Add Opportunity", "node/add/opportunity") . l("View", "opportunities", array("attributes" => array("class" => array("user-view"))));
+            $editItems[] = l("Add Opportunity", "node/add/opportunity") . l("Manage", "opportunities", array("attributes" => array("class" => array("user-view"))));
         }
         if (in_array('administrator', array_values($user->roles))) {
             $editItems[] = l("Add Venue", "node/add/venue");
