@@ -8774,6 +8774,7 @@ li.collect-this, li.add-this {
       #block-system-main {
         h1 {
           color:gray;
+          display:none;
         }
         #opList_wrapper {
           color:gray;
@@ -8791,9 +8792,9 @@ li.collect-this, li.add-this {
   }
 }
 .paginate_enabled_previous {
-  background: url('../images/bg-paginate-prev.png') no-repeat top right;
+  background: url('../images/bg-paginate-prev.png') no-repeat top left;
   &:hover {
-    background: url('../images/bg-paginate-prev.png') no-repeat top right;
+    background: url('../images/bg-paginate-prev.png') no-repeat top left;
   }
 }
 .paginate_disabled_next {
