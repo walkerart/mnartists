@@ -1,0 +1,132 @@
+<?php
+
+/**
+ * Implements hook_node_info()
+ */
+function mn_op_node_info() {
+  return array(
+    'opportunity' => array(
+        'name' => t('Opportunity'),
+        'base' => 'node_content',
+        'description' => t('Create a new opportunity.'),
+        'has_title' => '1',
+        'title_label' => t('Opportunity Name'),
+     )
+  );
+}
+
+/**
+ * Implements hook_menu().
+ *
+ */
+function mn_op_menu() {
+  $items['opportunities'] = array(
+    'title' => 'Opportunities',
+    'page callback' => 'mn_op_index',
+    'access callback' => true,
+    'file' => 'mn_op.index.inc',
+    'type' => MENU_NORMAL_ITEM,
+  );
+
+  $items['applications'] = array(
+    'title' => 'Applications',
+    'page callback' => 'mn_op_aps',
+    'access callback' => true,
+    'file' => 'mn_op.applications.inc',
+    'type' => MENU_NORMAL_ITEM,
+  );
+  //path for user to view personal applications for specific opportunities
+  $items['application/%'] = array(
+    'title' => 'Application',
+    'page callback' => 'mn_op_ap',
+    'access callback' => true,
+    'page arguments' => array(1),
+    'file' => 'mn_op.application.inc',
+  );
+
+  $items['opportunity/%/jury-settings'] = array(
+    'title' => 'Jury Settings',
+    'page callback' => 'mn_op_settings',
+    'access callback' => true,
+    'page arguments' => array(1),
+    'file' => 'mn_op.settings.inc',
+  );
+  return $items;
+}
+
+/**
+ * Implement hook_form()
+ */
+function mn_op_form($node, $form_state) {
+    return node_content_form($node, $form_state);
+}
+
+/**
+ * Implements hook_theme().
+ */
+function mn_op_theme() {
+  return array(
+    'mn_op_list' => array(
+      'variables' => array('rows' => array()),
+      'template' => 'mn-op-list',
+    ),
+    'mn_op_view' => array(
+      'variables' => array('rows' => array()),
+      'template' => 'mn-op-view',
+    ),
+    'mn_op_applications' => array(
+      'variables' => array('rows' => array()),
+      'template' => 'mn-op-applications',
+    ),
+    'mn_op_application' => array(
+      'variables' => array('rows' => array()),
+      'template' => 'mn-op-application',
+    ),
+    'mn_op_settings' => array(
+      'variables' => array('rows' => array()),
+      'template' => 'mn-op-settings',
+    )
+  );
+}
+
+function mn_op_get_jurors($nid) {
+    $result = db_select('op_jurors', 'op')
+      ->fields('op')
+      ->condition('nid', $nid, '=')
+      ->execute()
+      ->fetchAll();
+    //check for unregistered jurors and update table
+    $i = 0;
+    foreach ($result as $juror) {
+      if ($juror->uid == 0) {
+        $checkJuror = _check_juror_registration($nid, $juror->mail);
+        if (isset($checkJuror)) $result = $checkJuror;
+      }
+      $i++;
+    }
+    return $result;
+}
+
+function _check_juror_registration($nid, $mail){
+  $user = user_load_by_mail($mail);
+  if ($user) {
+    $juror['uid'] = $user->uid;
+    $juror['name'] = $user->name;
+    $result = db_update('op_jurors')
+      ->condition('nid', $nid, '=')
+      ->condition('mail', $mail, '=')
+            ->fields($juror)
+            ->execute();
+        if ($result) $jurors = mn_op_get_jurors($nid);
+        return $jurors;
+  }
+}
+
+function mn_op_check_existing_settings($nid) {
+  $result = db_select('op_jury_settings', 'op')
+      ->fields('op')
+      ->condition('nid', $nid, '=')
+      ->execute()
+      ->fetchAssoc();
+    return $result;
+}
