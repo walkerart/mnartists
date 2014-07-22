@@ -18,5 +18,6 @@ $(document).ready(function(){
 		return $(this).ekkoLightbox();
 	});
 
+    $('img').VimeoThumb();
 });
 })(jQuery);
