@@ -95,11 +95,14 @@ function mnartist_profiles_user_update(&$edit, $account, $category) {
         $entities = $query->entityCondition('entity_type', 'node')
             ->propertyCondition('uid', $account->uid)
             ->execute();
-        $nodes = node_load_multiple(array_keys($entities['node']));
 
-        foreach ($nodes as $node) {
-            $node->status = '0';
-            node_save($node);
+        $node_keys = array_keys($entities['node']);
+        if (!empty($node_keys)) {
+            $nodes = node_load_multiple($node_keys);
+            foreach ($nodes as $node) {
+                $node->status = '0';
+                node_save($node);
+            }
         }
     }
 
