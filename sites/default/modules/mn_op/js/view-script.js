@@ -1,8 +1,6 @@
 (function($){
 $(document).ready(function(){
 
-	$("#input-star").rating();
-
 	$('.ap-more').click(function() {
         $(this).prev('.ap-artwork-body').css({'height': 'auto'});
         $(this).addClass('hidden');
@@ -18,6 +16,5 @@ $(document).ready(function(){
 		return $(this).ekkoLightbox();
 	});
 
-    $('img').VimeoThumb();
 });
 })(jQuery);
