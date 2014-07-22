@@ -815,60 +815,51 @@ form .description {
   border-radius: 50%;
   text-overflow: hidden;
   height: 21px;
-  width: 21px;
-  background: url("../images/icon-form-add.png") no-repeat center center transparent;
-  text-indent: 50px;
+  width: 75px;
+  background: url("../images/icon-form-withtext-add.png") no-repeat center center transparent;
+  text-indent: 200px;
   white-space: nowrap;
   padding: 0;
   border: none;
   outline: none;
+  overflow: hidden;
 }
-/* line 46, ../sass/_forms.scss */
-.form-item .button.launcher:after {
-  content: "Add a file";
-}
-/* line 50, ../sass/_forms.scss */
+/* line 48, ../sass/_forms.scss */
 .form-item .button.remove {
   border-radius: 50%;
   text-overflow: hidden;
   height: 21px;
-  width: 21px;
-  background: url("../images/icon-form-remove.png") no-repeat center center transparent;
-  text-indent: 50px;
+  width: 69px;
+  background: url("../images/icon-form-withtext-delete.png") no-repeat center center transparent;
+  text-indent: 200px;
   white-space: nowrap;
   padding: 0;
   border: none;
   outline: none;
+  overflow: hidden;
 }
 /* line 60, ../sass/_forms.scss */
-.form-item .button.remove:after {
-  content: "Remove";
-}
-/* line 64, ../sass/_forms.scss */
 .form-item .button.edit {
   border-radius: 50%;
   text-overflow: hidden;
   height: 21px;
-  width: 21px;
-  background: url("../images/icon-form-edit.png") no-repeat center center transparent;
-  text-indent: 50px;
+  width: 75px;
+  background: url("../images/icon-form-withtext-edit.png") no-repeat center center transparent;
+  text-indent: 200px;
   white-space: nowrap;
   padding: 0;
   border: none;
   outline: none;
-}
-/* line 74, ../sass/_forms.scss */
-.form-item .button.edit:after {
-  content: "Edit";
+  overflow: hidden;
 }
 
 /* media wrapper (when uploading an image on a from u see this) */
-/* line 90, ../sass/_forms.scss */
+/* line 84, ../sass/_forms.scss */
 .media-widget .preview .media-item .label-wrapper label {
   color: #888888;
 }
 
-/* line 93, ../sass/_forms.scss */
+/* line 87, ../sass/_forms.scss */
 .media-item {
   background: #FFFFFF;
   border: 1px solid #CCCCCC;
@@ -876,32 +867,32 @@ form .description {
   width: 100px;
 }
 
-/* line 99, ../sass/_forms.scss */
+/* line 93, ../sass/_forms.scss */
 .media-widget .preview .media-item:hover {
   border: 1px solid #999;
 }
 
-/* line 104, ../sass/_forms.scss */
+/* line 98, ../sass/_forms.scss */
 .media-widget .form-required {
   display: none;
 }
 
-/* line 110, ../sass/_forms.scss */
+/* line 104, ../sass/_forms.scss */
 .field-multiple-table tr.draggable {
   border-bottom: 10px solid #f2f2f2;
 }
 
-/* line 115, ../sass/_forms.scss */
+/* line 109, ../sass/_forms.scss */
 .media-item .label-wrapper label {
   max-width: 100%;
 }
 
-/* line 120, ../sass/_forms.scss */
+/* line 114, ../sass/_forms.scss */
 .form-item table thead label {
   padding-left: 0!important;
 }
 
-/* line 126, ../sass/_forms.scss */
+/* line 120, ../sass/_forms.scss */
 .form-wrapper legend .fieldset-legend {
   font-family: "Apercu Bold", Arial, Helvetica, sans-serif;
   font-weight: normal;
@@ -909,47 +900,47 @@ form .description {
   -webkit-font-smoothing: antialiased;
 }
 
-/* line 143, ../sass/_forms.scss */
+/* line 137, ../sass/_forms.scss */
 .field-widget-image-image fieldset.form-wrapper legend {
   font-family: "Apercu Bold", Arial, Helvetica, sans-serif;
   font-weight: normal;
   color: #a3a3a3;
 }
-/* line 153, ../sass/_forms.scss */
+/* line 147, ../sass/_forms.scss */
 .field-widget-image-image fieldset.form-wrapper table.sticky-table thead tr {
   border: none;
   border-bottom: 1px solid #ccc;
   background: none;
 }
-/* line 157, ../sass/_forms.scss */
+/* line 151, ../sass/_forms.scss */
 .field-widget-image-image fieldset.form-wrapper table.sticky-table thead tr th {
   border: none;
   box-sizing: border-box;
   padding: 5px 0;
 }
-/* line 168, ../sass/_forms.scss */
+/* line 162, ../sass/_forms.scss */
 .field-widget-image-image fieldset.form-wrapper table.sticky-table tbody tr.draggable {
   border-bottom: 1px solid #ccc;
 }
-/* line 190, ../sass/_forms.scss */
+/* line 184, ../sass/_forms.scss */
 .field-widget-image-image fieldset.form-wrapper .image-widget-data .file img {
   margin-right: 10px;
   margin-bottom: 0;
 }
-/* line 201, ../sass/_forms.scss */
+/* line 195, ../sass/_forms.scss */
 .field-widget-image-image fieldset.form-wrapper .image-widget-data input[type=submit] {
   margin-left: 0!important;
 }
-/* line 204, ../sass/_forms.scss */
+/* line 198, ../sass/_forms.scss */
 .field-widget-image-image fieldset.form-wrapper .image-widget-data .NFI-button {
   margin-right: 20px;
   margin-bottom: 8px;
 }
-/* line 211, ../sass/_forms.scss */
+/* line 205, ../sass/_forms.scss */
 .field-widget-image-image fieldset.form-wrapper input[type=file] {
   margin-bottom: 8px;
 }
-/* line 214, ../sass/_forms.scss */
+/* line 208, ../sass/_forms.scss */
 .field-widget-image-image fieldset.form-wrapper input[id$=remove-button] {
   border-radius: 50%;
   text-overflow: hidden;
@@ -965,126 +956,126 @@ form .description {
 
 /* form things agian this will need to be organized heavily soon but
     doing some rapid testing work  here */
-/* line 233, ../sass/_forms.scss */
+/* line 227, ../sass/_forms.scss */
 .form-item {
   margin-bottom: 8px;
   color: gray;
 }
-/* line 237, ../sass/_forms.scss */
+/* line 231, ../sass/_forms.scss */
 .form-item.form-type-checkbox {
   margin-bottom: 8px;
   clear: both;
   float: none;
 }
-/* line 241, ../sass/_forms.scss */
+/* line 235, ../sass/_forms.scss */
 .form-item.form-type-checkbox .icheckbox {
   float: left;
   margin-right: 15px;
 }
-/* line 246, ../sass/_forms.scss */
+/* line 240, ../sass/_forms.scss */
 .form-item.form-type-checkbox .icheckbox.checked label {
   color: #222222 !important;
 }
-/* line 252, ../sass/_forms.scss */
+/* line 246, ../sass/_forms.scss */
 .form-item.form-type-checkbox label.active {
   color: #222222;
 }
-/* line 257, ../sass/_forms.scss */
+/* line 251, ../sass/_forms.scss */
 .form-item.form-type-checkboxes {
   width: 100%;
   /*max-width:520px;*/
 }
-/* line 261, ../sass/_forms.scss */
+/* line 255, ../sass/_forms.scss */
 .form-item.form-type-checkboxes label {
   width: 33%;
   float: left;
   min-width: none;
 }
-/* line 266, ../sass/_forms.scss */
+/* line 260, ../sass/_forms.scss */
 .form-item.form-type-checkboxes .form-checkboxes {
   float: left;
 }
-/* line 271, ../sass/_forms.scss */
+/* line 265, ../sass/_forms.scss */
 .form-item.form-type-checkboxes .form-item.form-type-checkbox {
   width: 100%;
 }
-/* line 274, ../sass/_forms.scss */
+/* line 268, ../sass/_forms.scss */
 .form-item.form-type-checkboxes .form-item.form-type-checkbox .icheckbox {
   float: left;
   margin-right: 15px;
   /* tmp */
   margin-bottom: 8px;
 }
-/* line 279, ../sass/_forms.scss */
+/* line 273, ../sass/_forms.scss */
 .form-item.form-type-checkboxes .form-item.form-type-checkbox label {
   width: auto;
   float: left;
 }
-/* line 283, ../sass/_forms.scss */
+/* line 277, ../sass/_forms.scss */
 .form-item.form-type-checkboxes .form-item.form-type-checkbox label.active {
   color: #222222;
 }
-/* line 289, ../sass/_forms.scss */
+/* line 283, ../sass/_forms.scss */
 .form-item.form-type-checkboxes .form-item.form-type-checkbox:last-child .icheckbox {
   margin-bottom: 64px;
 }
-/* line 296, ../sass/_forms.scss */
+/* line 290, ../sass/_forms.scss */
 .form-item.form-type-radios {
   width: 100%;
   /*max-width:520px;*/
 }
-/* line 300, ../sass/_forms.scss */
+/* line 294, ../sass/_forms.scss */
 .form-item.form-type-radios label {
   width: 33%;
   float: left;
   min-width: none;
 }
-/* line 305, ../sass/_forms.scss */
+/* line 299, ../sass/_forms.scss */
 .form-item.form-type-radios .form-checkboxes {
   float: left;
 }
-/* line 310, ../sass/_forms.scss */
+/* line 304, ../sass/_forms.scss */
 .form-item.form-type-radios .form-item.form-type-radio {
   width: 100%;
 }
-/* line 313, ../sass/_forms.scss */
+/* line 307, ../sass/_forms.scss */
 .form-item.form-type-radios .form-item.form-type-radio .iradio {
   float: left;
   margin-right: 15px;
   /* tmp */
   margin-bottom: 8px;
 }
-/* line 318, ../sass/_forms.scss */
+/* line 312, ../sass/_forms.scss */
 .form-item.form-type-radios .form-item.form-type-radio label {
   width: auto;
   float: left;
 }
-/* line 321, ../sass/_forms.scss */
+/* line 315, ../sass/_forms.scss */
 .form-item.form-type-radios .form-item.form-type-radio label.active {
   color: #222222;
 }
-/* line 327, ../sass/_forms.scss */
+/* line 321, ../sass/_forms.scss */
 .form-item.form-type-radios .form-item.form-type-radio:last-child .iradio {
   margin-bottom: 64px;
 }
-/* line 335, ../sass/_forms.scss */
+/* line 329, ../sass/_forms.scss */
 .form-item.form-type-password, .form-item.form-item-files-picture-upload {
   width: 100%;
   /*max-width:520px;*/
 }
-/* line 339, ../sass/_forms.scss */
+/* line 333, ../sass/_forms.scss */
 .form-item.form-type-password label, .form-item.form-item-files-picture-upload label {
   width: 33%;
   float: left;
 }
-/* line 343, ../sass/_forms.scss */
+/* line 337, ../sass/_forms.scss */
 .form-item.form-type-password input, .form-item.form-item-files-picture-upload input {
   float: left;
   width: 66%;
   box-sizing: border-box;
   margin-bottom: 8px;
 }
-/* line 350, ../sass/_forms.scss */
+/* line 344, ../sass/_forms.scss */
 .form-item.form-type-password .password-strength,
 .form-item.form-type-password div.password-confirm, .form-item.form-item-files-picture-upload .password-strength,
 .form-item.form-item-files-picture-upload div.password-confirm {
@@ -1092,54 +1083,54 @@ form .description {
   float: none;
   margin-bottom: 8px;
 }
-/* line 355, ../sass/_forms.scss */
+/* line 349, ../sass/_forms.scss */
 .form-item.form-type-password input.password-confirm, .form-item.form-item-files-picture-upload input.password-confirm {
   clear: none;
   float: left;
 }
-/* line 363, ../sass/_forms.scss */
+/* line 357, ../sass/_forms.scss */
 .form-item.form-type-password .description, .form-item.form-item-field-tags-und .description {
   margin-left: 33%;
   clear: both;
   display: block;
 }
-/* line 369, ../sass/_forms.scss */
+/* line 363, ../sass/_forms.scss */
 .form-item.form-type-password-confirm {
   margin-bottom: 64px;
 }
-/* line 372, ../sass/_forms.scss */
+/* line 366, ../sass/_forms.scss */
 .form-item.form-type-password-confirm .form-type-password {
   width: 100%;
   /*max-width:520px;*/
 }
-/* line 376, ../sass/_forms.scss */
+/* line 370, ../sass/_forms.scss */
 .form-item.form-type-password-confirm .form-type-password label {
   width: 33%;
   float: left;
 }
-/* line 380, ../sass/_forms.scss */
+/* line 374, ../sass/_forms.scss */
 .form-item.form-type-password-confirm .form-type-password input {
   float: left;
   width: 66%;
   box-sizing: border-box;
   margin-bottom: 8px;
 }
-/* line 387, ../sass/_forms.scss */
+/* line 381, ../sass/_forms.scss */
 .form-item.form-type-password-confirm .description {
   clear: both;
   float: none;
 }
-/* line 391, ../sass/_forms.scss */
+/* line 385, ../sass/_forms.scss */
 .form-item.form-type-select {
   width: 100%;
   /*max-width:520px;*/
 }
-/* line 395, ../sass/_forms.scss */
+/* line 389, ../sass/_forms.scss */
 .form-item.form-type-select label {
   width: 33%;
   float: left;
 }
-/* line 400, ../sass/_forms.scss */
+/* line 394, ../sass/_forms.scss */
 .form-item.form-type-select select,
 .form-item.form-type-select .chosen-container {
   float: left;
@@ -1147,7 +1138,7 @@ form .description {
   box-sizing: border-box;
   margin-bottom: 8px;
 }
-/* line 407, ../sass/_forms.scss */
+/* line 401, ../sass/_forms.scss */
 .form-item.form-type-select .customSelect {
   float: left;
   width: 66%;
@@ -1157,35 +1148,35 @@ form .description {
   border: 1px solid #eee;
   background: url("../images/icon-select-arrow.png") no-repeat 98% center white;
 }
-/* line 417, ../sass/_forms.scss */
+/* line 411, ../sass/_forms.scss */
 .form-item.form-type-managed-file {
   width: 100%;
   /*max-width:520px;*/
 }
-/* line 421, ../sass/_forms.scss */
+/* line 415, ../sass/_forms.scss */
 .form-item.form-type-managed-file label {
   width: 33%;
   float: left;
 }
-/* line 425, ../sass/_forms.scss */
+/* line 419, ../sass/_forms.scss */
 .form-item.form-type-managed-file .image-widget {
   float: left;
   width: 66%;
   box-sizing: border-box;
 }
-/* line 430, ../sass/_forms.scss */
+/* line 424, ../sass/_forms.scss */
 .form-item.form-type-managed-file .image-widget .image-widget-data {
   float: none;
   /*background: #fff;*/
   overflow: hidden;
   line-height: 1em;
 }
-/* line 436, ../sass/_forms.scss */
+/* line 430, ../sass/_forms.scss */
 .form-item.form-type-managed-file .image-widget .image-widget-data .NFI-wrapper {
   float: left;
   background: none;
 }
-/* line 440, ../sass/_forms.scss */
+/* line 434, ../sass/_forms.scss */
 .form-item.form-type-managed-file .image-widget .image-widget-data .NFI-wrapper .NFI-button {
   padding: 0;
   height: 110px;
@@ -1196,7 +1187,7 @@ form .description {
   white-space: nowrap;
   background: url("../images/bg-drag-image-here.png") no-repeat left top transparent;
 }
-/* line 451, ../sass/_forms.scss */
+/* line 445, ../sass/_forms.scss */
 .form-item.form-type-managed-file .image-widget .image-widget-data input[type=text] {
   border-left: none!important;
   border-right: none!important;
@@ -1208,23 +1199,23 @@ form .description {
   float: none;
   max-width: 110px;
 }
-/* line 464, ../sass/_forms.scss */
+/* line 458, ../sass/_forms.scss */
 .form-item.form-type-managed-file .image-widget .image-widget-data .form-submit {
   float: left;
   margin: 0 0 0 20px;
 }
-/* line 470, ../sass/_forms.scss */
+/* line 464, ../sass/_forms.scss */
 .form-item.form-type-managed-file .description {
   margin-left: 33%;
   clear: both;
   display: block;
 }
-/* line 476, ../sass/_forms.scss */
+/* line 470, ../sass/_forms.scss */
 .form-item.form-type-textfield {
   width: 100%;
   /*max-width:520px;*/
 }
-/* line 480, ../sass/_forms.scss */
+/* line 474, ../sass/_forms.scss */
 .form-item.form-type-textfield label {
   width: 33%;
   float: left;
@@ -1232,7 +1223,7 @@ form .description {
   font-family: "Apercu Regular", Arial, Helvetica, sans-serif;
   color: gray;
 }
-/* line 487, ../sass/_forms.scss */
+/* line 481, ../sass/_forms.scss */
 .form-item.form-type-textfield input {
   float: left;
   width: 66%;
@@ -1240,16 +1231,16 @@ form .description {
   margin-bottom: 8px;
 }
 
-/* line 502, ../sass/_forms.scss */
+/* line 496, ../sass/_forms.scss */
 .form-wrapper .form-item[class*='-field-privacy'] {
   margin-left: 33%;
   margin-bottom: 20px;
 }
-/* line 506, ../sass/_forms.scss */
+/* line 500, ../sass/_forms.scss */
 .form-wrapper .form-item[class*='-field-privacy'] label {
   font-size: 11px;
 }
-/* line 509, ../sass/_forms.scss */
+/* line 503, ../sass/_forms.scss */
 .form-wrapper .form-item[class*='-field-privacy'] .description {
   clear: both;
   float: none;
@@ -1260,7 +1251,7 @@ form .description {
   color: #808080;
 }
 
-/* line 525, ../sass/_forms.scss */
+/* line 519, ../sass/_forms.scss */
 #edit-account .form-item-mail .description,
 #edit-account .form-item-name .description {
   display: block;
@@ -1268,7 +1259,7 @@ form .description {
   float: none;
   margin-left: 33%;
 }
-/* line 531, ../sass/_forms.scss */
+/* line 525, ../sass/_forms.scss */
 #edit-account .form-type-password-confirm .description {
   display: block;
   clear: both;
@@ -1276,25 +1267,25 @@ form .description {
   margin-left: 33%;
 }
 
-/* line 544, ../sass/_forms.scss */
+/* line 538, ../sass/_forms.scss */
 #edit-picture .form-item-files-picture-upload label {
   width: 33%;
   float: left;
 }
-/* line 548, ../sass/_forms.scss */
+/* line 542, ../sass/_forms.scss */
 #edit-picture .form-item-files-picture-upload .image-widget {
   float: left;
   width: 66%;
   box-sizing: border-box;
 }
-/* line 553, ../sass/_forms.scss */
+/* line 547, ../sass/_forms.scss */
 #edit-picture .form-item-files-picture-upload .NFI-wrapper {
   float: left;
   width: 66%;
   box-sizing: border-box;
   background: none;
 }
-/* line 559, ../sass/_forms.scss */
+/* line 553, ../sass/_forms.scss */
 #edit-picture .form-item-files-picture-upload .NFI-wrapper .NFI-button {
   padding: 0;
   height: 110px;
@@ -1305,7 +1296,7 @@ form .description {
   white-space: nowrap;
   background: url("../images/bg-drag-image-here.png") no-repeat left top transparent;
 }
-/* line 570, ../sass/_forms.scss */
+/* line 564, ../sass/_forms.scss */
 #edit-picture .form-item-files-picture-upload input[type=text] {
   border-left: none!important;
   border-right: none!important;
@@ -1317,46 +1308,46 @@ form .description {
   float: none;
   max-width: 110px;
 }
-/* line 583, ../sass/_forms.scss */
+/* line 577, ../sass/_forms.scss */
 #edit-picture .form-item-files-picture-upload .form-submit {
   float: left;
   margin: 0 0 0 20px;
 }
-/* line 588, ../sass/_forms.scss */
+/* line 582, ../sass/_forms.scss */
 #edit-picture .form-item-files-picture-upload .description {
   margin-left: 33%;
   clear: both;
   display: block;
 }
 
-/* line 595, ../sass/_forms.scss */
+/* line 589, ../sass/_forms.scss */
 .form-type-file {
   width: 100%;
   /*max-width:520px;*/
 }
 
-/* line 608, ../sass/_forms.scss */
+/* line 602, ../sass/_forms.scss */
 .form-type-partial-datetime-element .partial-date-element .partial-date-year {
   min-width: 90px;
 }
-/* line 611, ../sass/_forms.scss */
+/* line 605, ../sass/_forms.scss */
 .form-type-partial-datetime-element .partial-date-element .partial-date-year .form-item {
   width: 100%;
 }
-/* line 614, ../sass/_forms.scss */
+/* line 608, ../sass/_forms.scss */
 .form-type-partial-datetime-element .partial-date-element .partial-date-year .form-item label {
   width: 33%;
   float: left;
   min-width: none;
 }
-/* line 619, ../sass/_forms.scss */
+/* line 613, ../sass/_forms.scss */
 .form-type-partial-datetime-element .partial-date-element .partial-date-year .form-item select {
   float: left;
   width: 66%;
   box-sizing: border-box;
   margin-bottom: 8px;
 }
-/* line 625, ../sass/_forms.scss */
+/* line 619, ../sass/_forms.scss */
 .form-type-partial-datetime-element .partial-date-element .partial-date-year .form-item .description {
   float: none;
   width: 100%;
@@ -1365,11 +1356,11 @@ form .description {
   padding-left: 0;
   margin-left: 0;
 }
-/* line 635, ../sass/_forms.scss */
+/* line 629, ../sass/_forms.scss */
 .form-type-partial-datetime-element .partial-date-element .partial-date-month {
   min-width: 90px;
 }
-/* line 638, ../sass/_forms.scss */
+/* line 632, ../sass/_forms.scss */
 .form-type-partial-datetime-element .partial-date-element .partial-date-month .description {
   float: none;
   width: 100%;
@@ -1378,11 +1369,11 @@ form .description {
   padding-left: 0;
   margin-left: 0;
 }
-/* line 647, ../sass/_forms.scss */
+/* line 641, ../sass/_forms.scss */
 .form-type-partial-datetime-element .partial-date-element .partial-date-day {
   min-width: 90px;
 }
-/* line 650, ../sass/_forms.scss */
+/* line 644, ../sass/_forms.scss */
 .form-type-partial-datetime-element .partial-date-element .partial-date-day .description {
   float: none;
   width: 100%;
@@ -1392,60 +1383,60 @@ form .description {
   margin-left: 0;
 }
 
-/* line 662, ../sass/_forms.scss */
+/* line 656, ../sass/_forms.scss */
 .text-format-wrapper .tips {
   display: none;
 }
-/* line 665, ../sass/_forms.scss */
+/* line 659, ../sass/_forms.scss */
 .text-format-wrapper .form-type-select {
   padding-left: 0;
 }
-/* line 668, ../sass/_forms.scss */
+/* line 662, ../sass/_forms.scss */
 .text-format-wrapper .filter-help {
   display: none;
 }
-/* line 674, ../sass/_forms.scss */
+/* line 668, ../sass/_forms.scss */
 .text-format-wrapper .form-item.form-type-textarea {
   width: 100%;
   /*max-width:520px;*/
 }
-/* line 678, ../sass/_forms.scss */
+/* line 672, ../sass/_forms.scss */
 .text-format-wrapper .form-item.form-type-textarea label {
   width: 33%;
   float: left;
 }
-/* line 682, ../sass/_forms.scss */
+/* line 676, ../sass/_forms.scss */
 .text-format-wrapper .form-item.form-type-textarea .form-textarea-wrapper {
   float: left;
   width: 66%;
   box-sizing: border-box;
 }
-/* line 690, ../sass/_forms.scss */
+/* line 684, ../sass/_forms.scss */
 .text-format-wrapper fieldset.filter-wrapper {
   width: 100%;
   margin: 0;
   padding: 0;
   /*max-width:520px;*/
 }
-/* line 696, ../sass/_forms.scss */
+/* line 690, ../sass/_forms.scss */
 .text-format-wrapper fieldset.filter-wrapper .fieldset-wrapper {
   margin-left: 33%;
 }
-/* line 699, ../sass/_forms.scss */
+/* line 693, ../sass/_forms.scss */
 .text-format-wrapper fieldset.filter-wrapper .fieldset-wrapper .filter-help {
   padding: 0;
 }
 
-/* line 706, ../sass/_forms.scss */
+/* line 700, ../sass/_forms.scss */
 .form-item label {
   box-sizing: border-box;
 }
-/* line 709, ../sass/_forms.scss */
+/* line 703, ../sass/_forms.scss */
 .form-item input {
   box-sizing: border-box;
 }
 
-/* line 716, ../sass/_forms.scss */
+/* line 710, ../sass/_forms.scss */
 .form-wrapper .field-value-url,
 .form-wrapper .field-value-title {
   width: 100%;
@@ -1453,13 +1444,13 @@ form .description {
   position: relative;
   padding-left: 0!important;
 }
-/* line 722, ../sass/_forms.scss */
+/* line 716, ../sass/_forms.scss */
 .form-wrapper .field-value-url label,
 .form-wrapper .field-value-title label {
   width: 33%;
   float: left;
 }
-/* line 726, ../sass/_forms.scss */
+/* line 720, ../sass/_forms.scss */
 .form-wrapper .field-value-url input.form-text,
 .form-wrapper .field-value-title input.form-text {
   float: left;
@@ -1467,173 +1458,173 @@ form .description {
   box-sizing: border-box;
   margin-bottom: 8px;
 }
-/* line 734, ../sass/_forms.scss */
+/* line 728, ../sass/_forms.scss */
 .form-wrapper .form-item.form-type-textfield {
   width: 100%;
   /*max-width:520px;*/
   position: relative;
   clear: both;
 }
-/* line 740, ../sass/_forms.scss */
+/* line 734, ../sass/_forms.scss */
 .form-wrapper .form-item.form-type-textfield label {
   width: 33%;
   float: left;
 }
-/* line 744, ../sass/_forms.scss */
+/* line 738, ../sass/_forms.scss */
 .form-wrapper .form-item.form-type-textfield input.form-text {
   float: left;
   width: 66%;
   box-sizing: border-box;
   margin-bottom: 8px;
 }
-/* line 750, ../sass/_forms.scss */
+/* line 744, ../sass/_forms.scss */
 .form-wrapper .form-item.form-type-textfield .description {
   float: none;
   /*margin-left:33%;*/
 }
-/* line 754, ../sass/_forms.scss */
+/* line 748, ../sass/_forms.scss */
 .form-wrapper .form-item.form-type-textfield .entityconnect-add {
   position: absolute;
   right: 5px;
   padding: 1px;
 }
-/* line 759, ../sass/_forms.scss */
+/* line 753, ../sass/_forms.scss */
 .form-wrapper .form-item.form-type-textfield .entityconnect-edit {
   position: absolute;
   right: 27px;
   padding: 1px;
 }
-/* line 765, ../sass/_forms.scss */
+/* line 759, ../sass/_forms.scss */
 .form-wrapper .form-item.form-type-textarea {
   width: 100%;
   /*max-width:520px;*/
   position: relative;
 }
-/* line 770, ../sass/_forms.scss */
+/* line 764, ../sass/_forms.scss */
 .form-wrapper .form-item.form-type-textarea label {
   width: 33%;
   float: left;
 }
-/* line 774, ../sass/_forms.scss */
+/* line 768, ../sass/_forms.scss */
 .form-wrapper .form-item.form-type-textarea .form-textarea-wrapper {
   float: left;
   width: 66%;
   box-sizing: border-box;
   margin-bottom: 8px;
 }
-/* line 783, ../sass/_forms.scss */
+/* line 777, ../sass/_forms.scss */
 .form-wrapper.field-type-datetime-form fieldset.form-wrapper {
   width: 100%;
   /*max-width:520px;*/
   position: relative;
 }
-/* line 793, ../sass/_forms.scss */
+/* line 787, ../sass/_forms.scss */
 .form-wrapper.field-type-datetime-form fieldset.form-wrapper .fieldset-wrapper .date-float {
   width: 33%;
   float: left;
 }
-/* line 797, ../sass/_forms.scss */
+/* line 791, ../sass/_forms.scss */
 .form-wrapper.field-type-datetime-form fieldset.form-wrapper .fieldset-wrapper .date-no-float {
   float: left;
   width: 33%;
   box-sizing: border-box;
   clear: none;
 }
-/* line 808, ../sass/_forms.scss */
+/* line 802, ../sass/_forms.scss */
 .form-wrapper.field-type-datetime-form fieldset.form-wrapper .fieldset-wrapper .date-no-float.end-date-wrapper .form-item .form-item label {
   display: none;
 }
-/* line 812, ../sass/_forms.scss */
+/* line 806, ../sass/_forms.scss */
 .form-wrapper.field-type-datetime-form fieldset.form-wrapper .fieldset-wrapper .date-no-float.end-date-wrapper .form-item .description {
   margin-left: 0;
 }
-/* line 823, ../sass/_forms.scss */
+/* line 817, ../sass/_forms.scss */
 .form-wrapper.form-type-textarea {
   width: 100%;
   max-width: 520px;
   position: relative;
 }
-/* line 828, ../sass/_forms.scss */
+/* line 822, ../sass/_forms.scss */
 .form-wrapper.form-type-textarea label {
   width: 33%;
   float: left;
 }
-/* line 832, ../sass/_forms.scss */
+/* line 826, ../sass/_forms.scss */
 .form-wrapper.form-type-textarea .form-textarea-wrapper {
   float: left;
   width: 66%;
   box-sizing: border-box;
   margin-bottom: 8px;
 }
-/* line 842, ../sass/_forms.scss */
+/* line 836, ../sass/_forms.scss */
 .form-wrapper.field-type-partial-date-form .form-item {
   width: 100%;
   /*max-width:520px;*/
   position: relative;
 }
-/* line 847, ../sass/_forms.scss */
+/* line 841, ../sass/_forms.scss */
 .form-wrapper.field-type-partial-date-form .form-item label {
   width: 33%;
   float: left;
 }
-/* line 851, ../sass/_forms.scss */
+/* line 845, ../sass/_forms.scss */
 .form-wrapper.field-type-partial-date-form .form-item .partial-date-element {
   float: left;
   width: 66%;
   box-sizing: border-box;
   margin-bottom: 8px;
 }
-/* line 861, ../sass/_forms.scss */
+/* line 855, ../sass/_forms.scss */
 .form-wrapper.field-name-field-for-sale-form .icheckbox {
   float: left;
   margin-right: 15px;
   margin-bottom: 8px;
 }
-/* line 866, ../sass/_forms.scss */
+/* line 860, ../sass/_forms.scss */
 .form-wrapper.field-name-field-for-sale-form label {
   width: auto;
   float: left;
 }
-/* line 873, ../sass/_forms.scss */
+/* line 867, ../sass/_forms.scss */
 .form-wrapper.field-name-field-public-form .icheckbox {
   float: left;
   margin-right: 15px;
   margin-bottom: 8px;
 }
-/* line 878, ../sass/_forms.scss */
+/* line 872, ../sass/_forms.scss */
 .form-wrapper.field-name-field-public-form label {
   width: auto;
   float: left;
 }
-/* line 889, ../sass/_forms.scss */
+/* line 883, ../sass/_forms.scss */
 .form-wrapper.field-name-field-images-form, .form-wrapper.field-name-field-tags-form, .form-wrapper.field-name-og-group-ref, .form-wrapper.field-type-text-long-form, .form-wrapper.field-name-field-subheader-form, .form-wrapper.field-type-url-form, .form-wrapper.field-name-field-media-form {
   margin-bottom: 64px;
 }
-/* line 892, ../sass/_forms.scss */
+/* line 886, ../sass/_forms.scss */
 .form-wrapper.field-name-og-group-ref {
   overflow: hidden;
 }
-/* line 897, ../sass/_forms.scss */
+/* line 891, ../sass/_forms.scss */
 .form-wrapper.field-name-field-dimensions-form .form-textarea-wrapper {
   margin-bottom: 64px;
 }
 
-/* line 906, ../sass/_forms.scss */
+/* line 900, ../sass/_forms.scss */
 .form-item-account-type {
   display: block !important;
 }
 
-/* line 913, ../sass/_forms.scss */
+/* line 907, ../sass/_forms.scss */
 #field-media-add-more-wrapper tbody .form-required {
   display: none;
 }
-/* line 916, ../sass/_forms.scss */
+/* line 910, ../sass/_forms.scss */
 #field-media-add-more-wrapper tbody tr {
   border-bottom: 10px solid #f2f2f2;
 }
 
 /* draggable icon thingy for sticky crosshairs etc */
-/* line 924, ../sass/_forms.scss */
+/* line 918, ../sass/_forms.scss */
 a.tabledrag-handle .handle {
   background: url("../images/icon-crosshair-drag.png") no-repeat center center transparent;
   height: 20px;
@@ -1642,13 +1633,13 @@ a.tabledrag-handle .handle {
   width: 20px;
 }
 
-/* line 936, ../sass/_forms.scss */
+/* line 930, ../sass/_forms.scss */
 .NFI-wrapper {
   background: #fff;
   float: right;
 }
 
-/* line 954, ../sass/_forms.scss */
+/* line 948, ../sass/_forms.scss */
 .chosen-container {
   box-sizing: border-box;
   margin: 0 0 8px 0;
@@ -1656,12 +1647,12 @@ a.tabledrag-handle .handle {
   border: none;
   background: url("../images/icon-select-arrow.png") no-repeat 98% center white;
 }
-/* line 961, ../sass/_forms.scss */
+/* line 955, ../sass/_forms.scss */
 .chosen-container input.default {
   font-size: 11px !important;
   font-family: "Apercu Regular", Arial, Helvetica, sans-serif !important;
 }
-/* line 971, ../sass/_forms.scss */
+/* line 965, ../sass/_forms.scss */
 .chosen-container.chosen-container-single .chosen-single {
   border-radius: 0;
   border: none;
@@ -1669,24 +1660,24 @@ a.tabledrag-handle .handle {
   background: none;
   font-size: 12px;
 }
-/* line 979, ../sass/_forms.scss */
+/* line 973, ../sass/_forms.scss */
 .chosen-container.chosen-container-single .chosen-single div b {
   background: none;
 }
-/* line 985, ../sass/_forms.scss */
+/* line 979, ../sass/_forms.scss */
 .chosen-container.chosen-container-single .chosen-search {
   display: none;
 }
-/* line 993, ../sass/_forms.scss */
+/* line 987, ../sass/_forms.scss */
 .chosen-container.chosen-container-single .chosen-results .active-result.highlighted {
   background: #ccc;
   box-shadow: none;
 }
-/* line 1005, ../sass/_forms.scss */
+/* line 999, ../sass/_forms.scss */
 .chosen-container.chosen-container-single.chosen-container-active .chosen-single div b {
   background: none;
 }
-/* line 1012, ../sass/_forms.scss */
+/* line 1006, ../sass/_forms.scss */
 .chosen-container .chosen-choices {
   box-shadow: none;
   border: none;
@@ -1695,7 +1686,7 @@ a.tabledrag-handle .handle {
   box-sizing: border-box;
   font-size: 12px!important;
 }
-/* line 1022, ../sass/_forms.scss */
+/* line 1016, ../sass/_forms.scss */
 .chosen-container .chosen-choices li.search-choice {
   border-radius: 0;
   background: #ccc;
@@ -1703,15 +1694,15 @@ a.tabledrag-handle .handle {
   box-shadow: none;
   font-size: 12px;
 }
-/* line 1029, ../sass/_forms.scss */
+/* line 1023, ../sass/_forms.scss */
 .chosen-container .chosen-choices li.search-choice:hover {
   background: #ddd;
 }
-/* line 1034, ../sass/_forms.scss */
+/* line 1028, ../sass/_forms.scss */
 .chosen-container .chosen-choices input {
   font-size: 11px;
 }
-/* line 1038, ../sass/_forms.scss */
+/* line 1032, ../sass/_forms.scss */
 .chosen-container .chosen-drop {
   border: none;
   box-shadow: none;
@@ -1719,7 +1710,7 @@ a.tabledrag-handle .handle {
 
 /* iCheck plugin Minimal skin, grey
 ----------------------------------- */
-/* line 1057, ../sass/_forms.scss */
+/* line 1051, ../sass/_forms.scss */
 .icheckbox,
 .iradio {
   display: block;
@@ -1732,68 +1723,68 @@ a.tabledrag-handle .handle {
   cursor: pointer;
 }
 
-/* line 1067, ../sass/_forms.scss */
+/* line 1061, ../sass/_forms.scss */
 .icheckbox {
   background-position: 0 0;
 }
 
-/* line 1070, ../sass/_forms.scss */
+/* line 1064, ../sass/_forms.scss */
 .icheckbox.hover {
   background-position: -20px 0;
 }
 
-/* line 1073, ../sass/_forms.scss */
+/* line 1067, ../sass/_forms.scss */
 .icheckbox.checked {
   background-position: -40px 0;
 }
 
-/* line 1076, ../sass/_forms.scss */
+/* line 1070, ../sass/_forms.scss */
 .icheckbox.disabled {
   background-position: -60px 0;
   cursor: default;
 }
 
-/* line 1080, ../sass/_forms.scss */
+/* line 1074, ../sass/_forms.scss */
 .icheckbox.checked.disabled {
   background-position: -80px 0;
 }
 
-/* line 1083, ../sass/_forms.scss */
+/* line 1077, ../sass/_forms.scss */
 .iradio {
   background-position: -100px 0;
 }
 
-/* line 1086, ../sass/_forms.scss */
+/* line 1080, ../sass/_forms.scss */
 .iradio.hover {
   background-position: -120px 0;
 }
 
-/* line 1089, ../sass/_forms.scss */
+/* line 1083, ../sass/_forms.scss */
 .iradio.checked {
   background-position: -140px 0;
 }
 
-/* line 1092, ../sass/_forms.scss */
+/* line 1086, ../sass/_forms.scss */
 .iradio.disabled {
   background-position: -160px 0;
   cursor: default;
 }
 
-/* line 1096, ../sass/_forms.scss */
+/* line 1090, ../sass/_forms.scss */
 .iradio.checked.disabled {
   background-position: -180px 0;
 }
 
-/* line 1102, ../sass/_forms.scss */
+/* line 1096, ../sass/_forms.scss */
 .cke_chrome {
   box-shadow: none!important;
 }
-/* line 1105, ../sass/_forms.scss */
+/* line 1099, ../sass/_forms.scss */
 .cke_chrome .cke_top {
   margin: 0;
   padding: 0;
 }
-/* line 1108, ../sass/_forms.scss */
+/* line 1102, ../sass/_forms.scss */
 .cke_chrome .cke_top .cke_toolgroup {
   margin: 0;
   padding: 0;
@@ -1801,7 +1792,7 @@ a.tabledrag-handle .handle {
   background: none;
 }
 
-/* line 1116, ../sass/_forms.scss */
+/* line 1110, ../sass/_forms.scss */
 body.wysiwygeditor {
   background: #fff;
   box-sizing: border-box;
@@ -1810,18 +1801,18 @@ body.wysiwygeditor {
   text-align: left;
 }
 
-/* line 1127, ../sass/_forms.scss */
+/* line 1121, ../sass/_forms.scss */
 .entityconnect-add, .entityconnect-edit {
   width: auto;
   padding: 0;
 }
 
-/* line 1131, ../sass/_forms.scss */
+/* line 1125, ../sass/_forms.scss */
 form div.entityconnect-edit input {
   background: url("../images/icon-form-edit.png") no-repeat center center transparent !important;
 }
 
-/* line 1135, ../sass/_forms.scss */
+/* line 1129, ../sass/_forms.scss */
 .entityconnect-add input {
   border-radius: 50%;
   text-overflow: hidden;
@@ -1835,17 +1826,17 @@ form div.entityconnect-edit input {
   outline: none;
   margin: 0;
 }
-/* line 1147, ../sass/_forms.scss */
+/* line 1141, ../sass/_forms.scss */
 .entityconnect-add input:hover {
   background: url("../images/icon-form-add.png") no-repeat center center transparent !important;
   opacity: .8;
 }
 
-/* line 1153, ../sass/_forms.scss */
+/* line 1147, ../sass/_forms.scss */
 div.entityconnect-edit {
   margin-left: 5px !important;
 }
-/* line 1155, ../sass/_forms.scss */
+/* line 1149, ../sass/_forms.scss */
 div.entityconnect-edit input {
   border-radius: 50%;
   text-overflow: hidden;
@@ -1859,99 +1850,99 @@ div.entityconnect-edit input {
   outline: none;
   margin: 0;
 }
-/* line 1167, ../sass/_forms.scss */
+/* line 1161, ../sass/_forms.scss */
 div.entityconnect-edit input:hover {
   background: url("../images/icon-form-edit.png") no-repeat center center transparent !important;
   opacity: .8;
 }
 
-/* line 1180, ../sass/_forms.scss */
+/* line 1174, ../sass/_forms.scss */
 .node-artwork-form .field-type-text-with-summary,
 .node-artwork-form .field-name-field-tags-form,
 .node-artwork-form .field-name-field-public-form {
   margin-bottom: 64px;
 }
-/* line 1183, ../sass/_forms.scss */
+/* line 1177, ../sass/_forms.scss */
 .node-artwork-form .field-name-field-tags-form {
   overflow: hidden;
 }
-/* line 1187, ../sass/_forms.scss */
+/* line 1181, ../sass/_forms.scss */
 .node-artwork-form .field-name-field-dimensions-form .form-textarea-wrapper {
   margin-bottom: 64px!important;
 }
-/* line 1191, ../sass/_forms.scss */
+/* line 1185, ../sass/_forms.scss */
 .node-artwork-form .ui-multiselect {
   margin-bottom: 8px;
 }
-/* line 1194, ../sass/_forms.scss */
+/* line 1188, ../sass/_forms.scss */
 .node-artwork-form .description {
   margin-bottom: 8px;
 }
-/* line 1201, ../sass/_forms.scss */
+/* line 1195, ../sass/_forms.scss */
 .node-artwork-form .field-name-field-created-date-form .partial-date-year .description {
   clear: both;
   margin-left: 0;
 }
-/* line 1207, ../sass/_forms.scss */
+/* line 1201, ../sass/_forms.scss */
 .node-artwork-form #cke_1_contents {
   height: 210px !important;
 }
-/* line 1212, ../sass/_forms.scss */
+/* line 1206, ../sass/_forms.scss */
 .node-artwork-form .field-name-field-roles-form .description {
   margin-left: 33%;
 }
 
-/* line 1221, ../sass/_forms.scss */
+/* line 1215, ../sass/_forms.scss */
 .page-node-add-article .field-type-taxonomy-term-reference-form {
   margin-bottom: 64px;
 }
-/* line 1224, ../sass/_forms.scss */
+/* line 1218, ../sass/_forms.scss */
 .page-node-add-article .field-name-field-contact-name-form {
   overflow: hidden;
 }
-/* line 1228, ../sass/_forms.scss */
+/* line 1222, ../sass/_forms.scss */
 .page-node-add-article .field-type-taxonomy-term-reference-form label {
   margin-bottom: 64px;
 }
 
-/* line 1239, ../sass/_forms.scss */
+/* line 1233, ../sass/_forms.scss */
 .node-venue-form .field-name-field-public-form label,
 .node-venue-form .field-type-taxonomy-term-reference-form label {
   margin-bottom: 64px;
 }
-/* line 1243, ../sass/_forms.scss */
+/* line 1237, ../sass/_forms.scss */
 .node-venue-form .field-name-field-contact-name-form {
   overflow: hidden;
   margin-bottom: 64px;
 }
 
-/* line 1251, ../sass/_forms.scss */
+/* line 1245, ../sass/_forms.scss */
 .field-name-field-venue-form.form-wrapper .form-item.form-type-textfield .entityconnect-edit {
   z-index: 999;
 }
 
-/* line 1254, ../sass/_forms.scss */
+/* line 1248, ../sass/_forms.scss */
 .field-name-field-venue-form.form-wrapper .form-item.form-type-textfield .entityconnect-add {
   z-index: 998;
 }
 
-/* line 1261, ../sass/_forms.scss */
+/* line 1255, ../sass/_forms.scss */
 .node-event-form .field-name-field-category-form,
 .node-event-form .field-name-field-date-form,
 .node-event-form .field-type-text-with-summary,
 .node-event-form .field-name-field-community-user-select-form {
   margin-bottom: 64px;
 }
-/* line 1265, ../sass/_forms.scss */
+/* line 1259, ../sass/_forms.scss */
 .node-event-form .field-name-field-category-form label {
   margin-bottom: 64px;
 }
-/* line 1269, ../sass/_forms.scss */
+/* line 1263, ../sass/_forms.scss */
 .node-event-form #edit-submit {
   float: none;
 }
 
-/* line 1283, ../sass/_forms.scss */
+/* line 1277, ../sass/_forms.scss */
 .page-node-add input.ajax-processed, .page-node-add input#edit-submit, .page-node-add input#edit-preview,
 .page-node-edit input.ajax-processed,
 .page-node-edit input#edit-submit,
@@ -1980,7 +1971,7 @@ div.entityconnect-edit input:hover {
   font-weight: normal;
   letter-spacing: 0;
 }
-/* line 1301, ../sass/_forms.scss */
+/* line 1295, ../sass/_forms.scss */
 .page-node-add input.ajax-processed:hover, .page-node-add input#edit-submit:hover, .page-node-add input#edit-preview:hover,
 .page-node-edit input.ajax-processed:hover,
 .page-node-edit input#edit-submit:hover,
@@ -1991,7 +1982,7 @@ div.entityconnect-edit input:hover {
   background: #222;
   color: #fff;
 }
-/* line 1309, ../sass/_forms.scss */
+/* line 1303, ../sass/_forms.scss */
 .page-node-add form input[type=text],
 .page-node-add form textarea,
 .page-node-add form input[type=password],
@@ -2017,7 +2008,7 @@ div.entityconnect-edit input:hover {
   position: relative;
   background: url("../images/bg-input-dots.gif") repeat-x left bottom white !important;
 }
-/* line 1327, ../sass/_forms.scss */
+/* line 1321, ../sass/_forms.scss */
 .page-node-add form input[type=text]:before,
 .page-node-add form textarea:before,
 .page-node-add form input[type=password]:before,
@@ -2038,7 +2029,7 @@ div.entityconnect-edit input:hover {
   bottom: 0;
   z-index: 998;
 }
-/* line 1336, ../sass/_forms.scss */
+/* line 1330, ../sass/_forms.scss */
 .page-node-add form input[type=text]:after,
 .page-node-add form textarea:after,
 .page-node-add form input[type=password]:after,
@@ -2059,7 +2050,7 @@ div.entityconnect-edit input:hover {
   bottom: 0;
   z-index: 999;
 }
-/* line 1349, ../sass/_forms.scss */
+/* line 1343, ../sass/_forms.scss */
 .page-node-add form input[type=text]:focus,
 .page-node-add form textarea:focus,
 .page-node-add form input[type=password]:focus,
@@ -2086,94 +2077,94 @@ div.entityconnect-edit input:hover {
   background: url("../images/bg-input-dots.gif") repeat-x left bottom white !important;
 }
 
-/* line 1373, ../sass/_forms.scss */
+/* line 1367, ../sass/_forms.scss */
 #user-profile-form .sticky-table thead {
   display: none;
 }
-/* line 1378, ../sass/_forms.scss */
+/* line 1372, ../sass/_forms.scss */
 #user-profile-form .form-item-profile-resume-field-biography-und-0-value label {
   color: transparent;
 }
 
-/* line 1384, ../sass/_forms.scss */
+/* line 1378, ../sass/_forms.scss */
 .sticky-table {
   border: none;
 }
-/* line 1387, ../sass/_forms.scss */
+/* line 1381, ../sass/_forms.scss */
 .sticky-table thead {
   border: none;
   display: none;
   /* because its just duplicate title */
 }
-/* line 1390, ../sass/_forms.scss */
+/* line 1384, ../sass/_forms.scss */
 .sticky-table thead tr {
   border: none;
   border-bottom: 1px solid #ccc;
   background: none;
 }
-/* line 1395, ../sass/_forms.scss */
+/* line 1389, ../sass/_forms.scss */
 .sticky-table thead tr th {
   border: none;
   box-sizing: border-box;
   padding: 5px 0;
 }
-/* line 1402, ../sass/_forms.scss */
+/* line 1396, ../sass/_forms.scss */
 .sticky-table tbody {
   border: none;
 }
-/* line 1404, ../sass/_forms.scss */
+/* line 1398, ../sass/_forms.scss */
 .sticky-table tbody tr {
   border: none;
 }
-/* line 1406, ../sass/_forms.scss */
+/* line 1400, ../sass/_forms.scss */
 .sticky-table tbody tr td {
   border: none;
   box-sizing: border-box;
   padding: 5px 0;
 }
-/* line 1411, ../sass/_forms.scss */
+/* line 1405, ../sass/_forms.scss */
 .sticky-table tbody tr td.field-multiple-drag {
   border-right: 1px solid #ccc;
   vertical-align: top;
   /*width:33%;*/
 }
-/* line 1419, ../sass/_forms.scss */
+/* line 1413, ../sass/_forms.scss */
 .sticky-table tbody tr td .media-widget {
   /*padding-left:20px;*/
 }
-/* line 1422, ../sass/_forms.scss */
+/* line 1416, ../sass/_forms.scss */
 .sticky-table tbody tr td .media-widget .form-item {
   display: inline;
 }
-/* line 1424, ../sass/_forms.scss */
+/* line 1418, ../sass/_forms.scss */
 .sticky-table tbody tr td .media-widget .form-item label {
   min-width: 1px;
 }
-/* line 1429, ../sass/_forms.scss */
+/* line 1423, ../sass/_forms.scss */
 .sticky-table tbody tr td .field-value-url {
   padding-left: 20px;
 }
-/* line 1432, ../sass/_forms.scss */
+/* line 1426, ../sass/_forms.scss */
 .sticky-table tbody tr td:nth-child(2) {
   padding-left: 10px;
 }
 
-/* line 1440, ../sass/_forms.scss */
+/* line 1434, ../sass/_forms.scss */
 .field-type-file-form .field-add-more-submit {
   /*margin-left:33%!important;*/
 }
 
-/* line 1444, ../sass/_forms.scss */
+/* line 1438, ../sass/_forms.scss */
 .sticky-table {
   margin-bottom: 10px;
 }
 
-/* line 1449, ../sass/_forms.scss */
+/* line 1443, ../sass/_forms.scss */
 form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
   padding-right: 0;
 }
 
-/* line 1452, ../sass/_forms.scss */
+/* line 1446, ../sass/_forms.scss */
 .draggable a.tabledrag-handle {
   cursor: move;
   float: left;
@@ -2183,7 +2174,7 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
   text-decoration: none;
 }
 
-/* line 1460, ../sass/_forms.scss */
+/* line 1454, ../sass/_forms.scss */
 .handle {
   /*background: url(../../misc/draggable.png) no-repeat 6px 9px;*/
   background-position: center center;
@@ -2198,19 +2189,19 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
 
 /* end draggable */
 /* birthdate form items */
-/* line 1477, ../sass/_forms.scss */
+/* line 1471, ../sass/_forms.scss */
 .field-name-field-birthdate .form-type-date-select {
   display: block;
   width: 100%;
   /*max-width:520px;*/
 }
-/* line 1482, ../sass/_forms.scss */
+/* line 1476, ../sass/_forms.scss */
 .field-name-field-birthdate .form-type-date-select .date-padding {
   padding: 0;
   float: none;
   display: block;
 }
-/* line 1487, ../sass/_forms.scss */
+/* line 1481, ../sass/_forms.scss */
 .field-name-field-birthdate .form-type-date-select .date-padding .form-item {
   width: 100%;
   /*max-width:520px;*/
@@ -2219,12 +2210,12 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
   clear: both;
   display: block;
 }
-/* line 1495, ../sass/_forms.scss */
+/* line 1489, ../sass/_forms.scss */
 .field-name-field-birthdate .form-type-date-select .date-padding .form-item label {
   width: 33%;
   float: left;
 }
-/* line 1501, ../sass/_forms.scss */
+/* line 1495, ../sass/_forms.scss */
 .field-name-field-birthdate .form-type-date-select .date-padding .form-item .date-month,
 .field-name-field-birthdate .form-type-date-select .date-padding .form-item .date-day,
 .field-name-field-birthdate .form-type-date-select .date-padding .form-item .date-year {
@@ -2233,56 +2224,56 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
   box-sizing: border-box;
   margin-bottom: 8px;
 }
-/* line 1507, ../sass/_forms.scss */
+/* line 1501, ../sass/_forms.scss */
 .field-name-field-birthdate .form-type-date-select .date-padding .form-item .date-month .customSelect,
 .field-name-field-birthdate .form-type-date-select .date-padding .form-item .date-day .customSelect,
 .field-name-field-birthdate .form-type-date-select .date-padding .form-item .date-year .customSelect {
   width: 100%;
 }
 
-/* line 1521, ../sass/_forms.scss */
+/* line 1515, ../sass/_forms.scss */
 form.node-article-form .cke_contents {
   min-height: 600px;
 }
 
-/* line 1532, ../sass/_forms.scss */
+/* line 1526, ../sass/_forms.scss */
 td.odd {
   background: none;
 }
 
-/* line 1540, ../sass/_forms.scss */
+/* line 1534, ../sass/_forms.scss */
 .password-strength {
   display: none;
 }
 
-/* line 1547, ../sass/_forms.scss */
+/* line 1541, ../sass/_forms.scss */
 body.admin-menu .wysiwyg-toggle-wrapper {
   display: block;
 }
-/* line 1551, ../sass/_forms.scss */
+/* line 1545, ../sass/_forms.scss */
 body .wysiwyg-toggle-wrapper {
   display: none;
 }
 
-/* line 1558, ../sass/_forms.scss */
+/* line 1552, ../sass/_forms.scss */
 fieldset.collapsible {
   height: auto!important;
   margin-bottom: 5px;
 }
-/* line 1561, ../sass/_forms.scss */
+/* line 1555, ../sass/_forms.scss */
 fieldset.collapsible legend {
   border-bottom: 1px solid #ccc;
   width: 100%;
   display: block;
   padding: 0px;
 }
-/* line 1566, ../sass/_forms.scss */
+/* line 1560, ../sass/_forms.scss */
 fieldset.collapsible legend .fieldset-legend {
   background-image: url("../images/icon-collapse-arrow-up.png") !important;
   background-position: 5px center !important;
   padding-left: 0px!important;
 }
-/* line 1570, ../sass/_forms.scss */
+/* line 1564, ../sass/_forms.scss */
 fieldset.collapsible legend .fieldset-legend .fieldset-title {
   display: block;
   padding: 5px 0 5px 10px;
@@ -2290,7 +2281,7 @@ fieldset.collapsible legend .fieldset-legend .fieldset-title {
   padding-left: 30px!important;
   position: relative;
 }
-/* line 1576, ../sass/_forms.scss */
+/* line 1570, ../sass/_forms.scss */
 fieldset.collapsible legend .fieldset-legend .fieldset-title:after {
   content: "";
   position: absolute;
@@ -2301,41 +2292,41 @@ fieldset.collapsible legend .fieldset-legend .fieldset-title:after {
   display: block;
   background: #ccc;
 }
-/* line 1587, ../sass/_forms.scss */
+/* line 1581, ../sass/_forms.scss */
 fieldset.collapsible legend .fieldset-legend .summary {
   display: none;
 }
-/* line 1594, ../sass/_forms.scss */
+/* line 1588, ../sass/_forms.scss */
 fieldset.collapsible.collapsed legend .fieldset-legend {
   background-image: url("../images/icon-collapse-arrow-down.png") !important;
   background-repeat: no-repeat;
   background-position: 5px center !important;
 }
 
-/* line 1608, ../sass/_forms.scss */
+/* line 1602, ../sass/_forms.scss */
 .page-user-edit #tasks {
   display: none;
 }
 
-/* line 1612, ../sass/_forms.scss */
+/* line 1606, ../sass/_forms.scss */
 .logged-in.admin-menu .page-user-edit #tasks {
   display: block;
 }
 
-/* line 1618, ../sass/_forms.scss */
+/* line 1612, ../sass/_forms.scss */
 .page-node-edit .region-help,
 .page-node-add .region-help,
 .page-user-edit .region-help {
   color: #fff;
 }
-/* line 1620, ../sass/_forms.scss */
+/* line 1614, ../sass/_forms.scss */
 .page-node-edit .region-help .block,
 .page-node-add .region-help .block,
 .page-user-edit .region-help .block {
   margin-bottom: 0px;
 }
 
-/* line 1629, ../sass/_forms.scss */
+/* line 1623, ../sass/_forms.scss */
 .page-node-edit.node-type-article #main-content,
 .page-node-add.page-node-add-article #main-content {
   box-sizing: border-box;
@@ -2345,7 +2336,7 @@ fieldset.collapsible.collapsed legend .fieldset-legend {
   overflow: hidden;
   *zoom: 1;
 }
-/* line 1633, ../sass/_forms.scss */
+/* line 1627, ../sass/_forms.scss */
 .page-node-edit.node-type-article #main-content #content,
 .page-node-add.page-node-add-article #main-content #content {
   display: inline;
@@ -2356,7 +2347,7 @@ fieldset.collapsible.collapsed legend .fieldset-legend {
   margin-right: 0;
 }
 @media screen and (max-width: 960px) {
-  /* line 1633, ../sass/_forms.scss */
+  /* line 1627, ../sass/_forms.scss */
   .page-node-edit.node-type-article #main-content #content,
   .page-node-add.page-node-add-article #main-content #content {
     display: inline;
@@ -2374,7 +2365,7 @@ fieldset.collapsible.collapsed legend .fieldset-legend {
   }
 }
 @media screen and (max-width: 768px) {
-  /* line 1633, ../sass/_forms.scss */
+  /* line 1627, ../sass/_forms.scss */
   .page-node-edit.node-type-article #main-content #content,
   .page-node-add.page-node-add-article #main-content #content {
     display: inline;
@@ -2392,7 +2383,7 @@ fieldset.collapsible.collapsed legend .fieldset-legend {
   }
 }
 @media screen and (max-width: 480px) {
-  /* line 1633, ../sass/_forms.scss */
+  /* line 1627, ../sass/_forms.scss */
   .page-node-edit.node-type-article #main-content #content,
   .page-node-add.page-node-add-article #main-content #content {
     margin-left: 10px!important;
@@ -2403,13 +2394,13 @@ fieldset.collapsible.collapsed legend .fieldset-legend {
   }
 }
 
-/* line 1664, ../sass/_forms.scss */
+/* line 1658, ../sass/_forms.scss */
 div[class*="-image-field-caption-value"] .cke_contents {
   max-height: 200px;
   min-height: 150px;
 }
 
-/* line 1673, ../sass/_forms.scss */
+/* line 1667, ../sass/_forms.scss */
 .page-node-add-artwork .ui-dialog,
 .page-node-add-article .ui-dialog {
   height: 80%!important;
@@ -2421,7 +2412,7 @@ div[class*="-image-field-caption-value"] .cke_contents {
   position: fixed;
   background: none;
 }
-/* line 1682, ../sass/_forms.scss */
+/* line 1676, ../sass/_forms.scss */
 .page-node-add-artwork .ui-dialog iframe,
 .page-node-add-article .ui-dialog iframe {
   width: 90%!important;
@@ -2429,13 +2420,13 @@ div[class*="-image-field-caption-value"] .cke_contents {
   max-height: 400px;
   max-width: 600px;
 }
-/* line 1688, ../sass/_forms.scss */
+/* line 1682, ../sass/_forms.scss */
 .page-node-add-artwork .ui-dialog iframe html body,
 .page-node-add-article .ui-dialog iframe html body {
   font-family: "Apercu Regular", Arial, Helvetica, sans-serif;
 }
 
-/* line 1699, ../sass/_forms.scss */
+/* line 1693, ../sass/_forms.scss */
 .page-node-add #messages,
 .page-node-edit #messages {
   padding: 20px 0 0 0;
@@ -2453,7 +2444,7 @@ div[class*="-image-field-caption-value"] .cke_contents {
   color: #fff;
 }
 @media screen and (max-width: 480px) {
-  /* line 1699, ../sass/_forms.scss */
+  /* line 1693, ../sass/_forms.scss */
   .page-node-add #messages,
   .page-node-edit #messages {
     display: inline;
@@ -2464,7 +2455,7 @@ div[class*="-image-field-caption-value"] .cke_contents {
   }
 }
 @media screen and (max-width: 768px) {
-  /* line 1699, ../sass/_forms.scss */
+  /* line 1693, ../sass/_forms.scss */
   .page-node-add #messages,
   .page-node-edit #messages {
     display: inline;
@@ -2475,7 +2466,7 @@ div[class*="-image-field-caption-value"] .cke_contents {
   }
 }
 @media screen and (max-width: 960px) {
-  /* line 1699, ../sass/_forms.scss */
+  /* line 1693, ../sass/_forms.scss */
   .page-node-add #messages,
   .page-node-edit #messages {
     display: inline;
@@ -2487,63 +2478,63 @@ div[class*="-image-field-caption-value"] .cke_contents {
 }
 
 /* force inputs in modals to have high z-index */
-/* line 1723, ../sass/_forms.scss */
+/* line 1717, ../sass/_forms.scss */
 .ui-dialog form input {
   z-index: 2000;
 }
 
-/* line 1728, ../sass/_forms.scss */
+/* line 1722, ../sass/_forms.scss */
 .page-community .ui-dialog .ui-widget-content {
   color: #737373;
 }
 
 /* user login */
-/* line 1735, ../sass/_forms.scss */
+/* line 1729, ../sass/_forms.scss */
 #user-login .form-item-name .description {
   margin-left: 33%;
 }
 
 /* privacy statement */
-/* line 1742, ../sass/_forms.scss */
+/* line 1736, ../sass/_forms.scss */
 .privacy-instructions {
   color: #808080;
   padding-bottom: 20px;
 }
 
-/* line 1751, ../sass/_forms.scss */
+/* line 1745, ../sass/_forms.scss */
 .node-type-event.page-node-edit .field-name-field-date-form .form-wrapper .fieldset-wrapper {
   float: none;
 }
-/* line 1753, ../sass/_forms.scss */
+/* line 1747, ../sass/_forms.scss */
 .node-type-event.page-node-edit .field-name-field-date-form .form-wrapper .fieldset-wrapper .date-no-float {
   width: 100%;
   float: none;
   clear: both;
 }
-/* line 1755, ../sass/_forms.scss */
+/* line 1749, ../sass/_forms.scss */
 .node-type-event.page-node-edit .field-name-field-date-form .form-wrapper .fieldset-wrapper .date-no-float .form-item {
   float: none;
   clear: both;
   display: block;
   width: 100%;
 }
-/* line 1758, ../sass/_forms.scss */
+/* line 1752, ../sass/_forms.scss */
 .node-type-event.page-node-edit .field-name-field-date-form .form-wrapper .fieldset-wrapper .date-no-float .form-item .date-padding {
   float: none;
   clear: both;
   display: block;
   width: 100%;
 }
-/* line 1762, ../sass/_forms.scss */
+/* line 1756, ../sass/_forms.scss */
 .node-type-event.page-node-edit .field-name-field-date-form .form-wrapper .fieldset-wrapper .date-no-float .form-item .date-padding .form-item-field-date-und-0-value-date .description {
   margin-bottom: 8px;
 }
-/* line 1775, ../sass/_forms.scss */
+/* line 1769, ../sass/_forms.scss */
 .node-type-event.page-node-edit .date-padding .form-item label {
   width: 33%;
   float: left;
 }
-/* line 1779, ../sass/_forms.scss */
+/* line 1773, ../sass/_forms.scss */
 .node-type-event.page-node-edit .date-padding .form-item input {
   width: 65.8%;
   float: left;
@@ -2551,30 +2542,30 @@ div[class*="-image-field-caption-value"] .cke_contents {
   box-sizing: border-box;
   margin-bottom: 0px;
 }
-/* line 1786, ../sass/_forms.scss */
+/* line 1780, ../sass/_forms.scss */
 .node-type-event.page-node-edit .date-padding .form-item .description {
   margin-left: 33%;
 }
 
-/* line 1794, ../sass/_forms.scss */
+/* line 1788, ../sass/_forms.scss */
 .wysiwygeditor b, .wysiwygeditor bold, .wysiwygeditor strong {
   font-weight: bold;
 }
-/* line 1797, ../sass/_forms.scss */
+/* line 1791, ../sass/_forms.scss */
 .wysiwygeditor em, .wysiwygeditor i {
   font-style: italic;
 }
-/* line 1800, ../sass/_forms.scss */
+/* line 1794, ../sass/_forms.scss */
 .wysiwygeditor a {
   text-decoration: underline;
 }
 
-/* line 1804, ../sass/_forms.scss */
+/* line 1798, ../sass/_forms.scss */
 form .description {
   line-height: 1.2em;
 }
 
-/* line 1808, ../sass/_forms.scss */
+/* line 1802, ../sass/_forms.scss */
 .form-type-radios.form-item-comment #edit-comment {
   width: 66%;
   float: left;
@@ -2582,7 +2573,7 @@ form .description {
   margin-bottom: 64px;
   overflow: hidden;
 }
-/* line 1814, ../sass/_forms.scss */
+/* line 1808, ../sass/_forms.scss */
 .form-type-radios.form-item-comment #edit-comment .description {
   display: block;
   float: none;
@@ -2591,7 +2582,7 @@ form .description {
   line-height: 1.2em;
   padding-left: 33px;
 }
-/* line 1822, ../sass/_forms.scss */
+/* line 1816, ../sass/_forms.scss */
 .form-type-radios.form-item-comment #edit-comment .iradio {
   margin-bottom: 0!important;
 }
@@ -15941,60 +15932,51 @@ form .description {
   border-radius: 50%;
   text-overflow: hidden;
   height: 21px;
-  width: 21px;
-  background: url("../images/icon-form-add.png") no-repeat center center transparent;
-  text-indent: 50px;
+  width: 75px;
+  background: url("../images/icon-form-withtext-add.png") no-repeat center center transparent;
+  text-indent: 200px;
   white-space: nowrap;
   padding: 0;
   border: none;
   outline: none;
+  overflow: hidden;
 }
-/* line 46, ../sass/_forms.scss */
-.form-item .button.launcher:after {
-  content: "Add a file";
-}
-/* line 50, ../sass/_forms.scss */
+/* line 48, ../sass/_forms.scss */
 .form-item .button.remove {
   border-radius: 50%;
   text-overflow: hidden;
   height: 21px;
-  width: 21px;
-  background: url("../images/icon-form-remove.png") no-repeat center center transparent;
-  text-indent: 50px;
+  width: 69px;
+  background: url("../images/icon-form-withtext-delete.png") no-repeat center center transparent;
+  text-indent: 200px;
   white-space: nowrap;
   padding: 0;
   border: none;
   outline: none;
+  overflow: hidden;
 }
 /* line 60, ../sass/_forms.scss */
-.form-item .button.remove:after {
-  content: "Remove";
-}
-/* line 64, ../sass/_forms.scss */
 .form-item .button.edit {
   border-radius: 50%;
   text-overflow: hidden;
   height: 21px;
-  width: 21px;
-  background: url("../images/icon-form-edit.png") no-repeat center center transparent;
-  text-indent: 50px;
+  width: 75px;
+  background: url("../images/icon-form-withtext-edit.png") no-repeat center center transparent;
+  text-indent: 200px;
   white-space: nowrap;
   padding: 0;
   border: none;
   outline: none;
-}
-/* line 74, ../sass/_forms.scss */
-.form-item .button.edit:after {
-  content: "Edit";
+  overflow: hidden;
 }
 
 /* media wrapper (when uploading an image on a from u see this) */
-/* line 90, ../sass/_forms.scss */
+/* line 84, ../sass/_forms.scss */
 .media-widget .preview .media-item .label-wrapper label {
   color: #888888;
 }
 
-/* line 93, ../sass/_forms.scss */
+/* line 87, ../sass/_forms.scss */
 .media-item {
   background: #FFFFFF;
   border: 1px solid #CCCCCC;
@@ -16002,32 +15984,32 @@ form .description {
   width: 100px;
 }
 
-/* line 99, ../sass/_forms.scss */
+/* line 93, ../sass/_forms.scss */
 .media-widget .preview .media-item:hover {
   border: 1px solid #999;
 }
 
-/* line 104, ../sass/_forms.scss */
+/* line 98, ../sass/_forms.scss */
 .media-widget .form-required {
   display: none;
 }
 
-/* line 110, ../sass/_forms.scss */
+/* line 104, ../sass/_forms.scss */
 .field-multiple-table tr.draggable {
   border-bottom: 10px solid #f2f2f2;
 }
 
-/* line 115, ../sass/_forms.scss */
+/* line 109, ../sass/_forms.scss */
 .media-item .label-wrapper label {
   max-width: 100%;
 }
 
-/* line 120, ../sass/_forms.scss */
+/* line 114, ../sass/_forms.scss */
 .form-item table thead label {
   padding-left: 0!important;
 }
 
-/* line 126, ../sass/_forms.scss */
+/* line 120, ../sass/_forms.scss */
 .form-wrapper legend .fieldset-legend {
   font-family: "Apercu Bold", Arial, Helvetica, sans-serif;
   font-weight: normal;
@@ -16035,47 +16017,47 @@ form .description {
   -webkit-font-smoothing: antialiased;
 }
 
-/* line 143, ../sass/_forms.scss */
+/* line 137, ../sass/_forms.scss */
 .field-widget-image-image fieldset.form-wrapper legend {
   font-family: "Apercu Bold", Arial, Helvetica, sans-serif;
   font-weight: normal;
   color: #a3a3a3;
 }
-/* line 153, ../sass/_forms.scss */
+/* line 147, ../sass/_forms.scss */
 .field-widget-image-image fieldset.form-wrapper table.sticky-table thead tr {
   border: none;
   border-bottom: 1px solid #ccc;
   background: none;
 }
-/* line 157, ../sass/_forms.scss */
+/* line 151, ../sass/_forms.scss */
 .field-widget-image-image fieldset.form-wrapper table.sticky-table thead tr th {
   border: none;
   box-sizing: border-box;
   padding: 5px 0;
 }
-/* line 168, ../sass/_forms.scss */
+/* line 162, ../sass/_forms.scss */
 .field-widget-image-image fieldset.form-wrapper table.sticky-table tbody tr.draggable {
   border-bottom: 1px solid #ccc;
 }
-/* line 190, ../sass/_forms.scss */
+/* line 184, ../sass/_forms.scss */
 .field-widget-image-image fieldset.form-wrapper .image-widget-data .file img {
   margin-right: 10px;
   margin-bottom: 0;
 }
-/* line 201, ../sass/_forms.scss */
+/* line 195, ../sass/_forms.scss */
 .field-widget-image-image fieldset.form-wrapper .image-widget-data input[type=submit] {
   margin-left: 0!important;
 }
-/* line 204, ../sass/_forms.scss */
+/* line 198, ../sass/_forms.scss */
 .field-widget-image-image fieldset.form-wrapper .image-widget-data .NFI-button {
   margin-right: 20px;
   margin-bottom: 8px;
 }
-/* line 211, ../sass/_forms.scss */
+/* line 205, ../sass/_forms.scss */
 .field-widget-image-image fieldset.form-wrapper input[type=file] {
   margin-bottom: 8px;
 }
-/* line 214, ../sass/_forms.scss */
+/* line 208, ../sass/_forms.scss */
 .field-widget-image-image fieldset.form-wrapper input[id$=remove-button] {
   border-radius: 50%;
   text-overflow: hidden;
@@ -16091,126 +16073,126 @@ form .description {
 
 /* form things agian this will need to be organized heavily soon but
     doing some rapid testing work  here */
-/* line 233, ../sass/_forms.scss */
+/* line 227, ../sass/_forms.scss */
 .form-item {
   margin-bottom: 8px;
   color: gray;
 }
-/* line 237, ../sass/_forms.scss */
+/* line 231, ../sass/_forms.scss */
 .form-item.form-type-checkbox {
   margin-bottom: 8px;
   clear: both;
   float: none;
 }
-/* line 241, ../sass/_forms.scss */
+/* line 235, ../sass/_forms.scss */
 .form-item.form-type-checkbox .icheckbox {
   float: left;
   margin-right: 15px;
 }
-/* line 246, ../sass/_forms.scss */
+/* line 240, ../sass/_forms.scss */
 .form-item.form-type-checkbox .icheckbox.checked label {
   color: #222222 !important;
 }
-/* line 252, ../sass/_forms.scss */
+/* line 246, ../sass/_forms.scss */
 .form-item.form-type-checkbox label.active {
   color: #222222;
 }
-/* line 257, ../sass/_forms.scss */
+/* line 251, ../sass/_forms.scss */
 .form-item.form-type-checkboxes {
   width: 100%;
   /*max-width:520px;*/
 }
-/* line 261, ../sass/_forms.scss */
+/* line 255, ../sass/_forms.scss */
 .form-item.form-type-checkboxes label {
   width: 33%;
   float: left;
   min-width: none;
 }
-/* line 266, ../sass/_forms.scss */
+/* line 260, ../sass/_forms.scss */
 .form-item.form-type-checkboxes .form-checkboxes {
   float: left;
 }
-/* line 271, ../sass/_forms.scss */
+/* line 265, ../sass/_forms.scss */
 .form-item.form-type-checkboxes .form-item.form-type-checkbox {
   width: 100%;
 }
-/* line 274, ../sass/_forms.scss */
+/* line 268, ../sass/_forms.scss */
 .form-item.form-type-checkboxes .form-item.form-type-checkbox .icheckbox {
   float: left;
   margin-right: 15px;
   /* tmp */
   margin-bottom: 8px;
 }
-/* line 279, ../sass/_forms.scss */
+/* line 273, ../sass/_forms.scss */
 .form-item.form-type-checkboxes .form-item.form-type-checkbox label {
   width: auto;
   float: left;
 }
-/* line 283, ../sass/_forms.scss */
+/* line 277, ../sass/_forms.scss */
 .form-item.form-type-checkboxes .form-item.form-type-checkbox label.active {
   color: #222222;
 }
-/* line 289, ../sass/_forms.scss */
+/* line 283, ../sass/_forms.scss */
 .form-item.form-type-checkboxes .form-item.form-type-checkbox:last-child .icheckbox {
   margin-bottom: 64px;
 }
-/* line 296, ../sass/_forms.scss */
+/* line 290, ../sass/_forms.scss */
 .form-item.form-type-radios {
   width: 100%;
   /*max-width:520px;*/
 }
-/* line 300, ../sass/_forms.scss */
+/* line 294, ../sass/_forms.scss */
 .form-item.form-type-radios label {
   width: 33%;
   float: left;
   min-width: none;
 }
-/* line 305, ../sass/_forms.scss */
+/* line 299, ../sass/_forms.scss */
 .form-item.form-type-radios .form-checkboxes {
   float: left;
 }
-/* line 310, ../sass/_forms.scss */
+/* line 304, ../sass/_forms.scss */
 .form-item.form-type-radios .form-item.form-type-radio {
   width: 100%;
 }
-/* line 313, ../sass/_forms.scss */
+/* line 307, ../sass/_forms.scss */
 .form-item.form-type-radios .form-item.form-type-radio .iradio {
   float: left;
   margin-right: 15px;
   /* tmp */
   margin-bottom: 8px;
 }
-/* line 318, ../sass/_forms.scss */
+/* line 312, ../sass/_forms.scss */
 .form-item.form-type-radios .form-item.form-type-radio label {
   width: auto;
   float: left;
 }
-/* line 321, ../sass/_forms.scss */
+/* line 315, ../sass/_forms.scss */
 .form-item.form-type-radios .form-item.form-type-radio label.active {
   color: #222222;
 }
-/* line 327, ../sass/_forms.scss */
+/* line 321, ../sass/_forms.scss */
 .form-item.form-type-radios .form-item.form-type-radio:last-child .iradio {
   margin-bottom: 64px;
 }
-/* line 335, ../sass/_forms.scss */
+/* line 329, ../sass/_forms.scss */
 .form-item.form-type-password, .form-item.form-item-files-picture-upload {
   width: 100%;
   /*max-width:520px;*/
 }
-/* line 339, ../sass/_forms.scss */
+/* line 333, ../sass/_forms.scss */
 .form-item.form-type-password label, .form-item.form-item-files-picture-upload label {
   width: 33%;
   float: left;
 }
-/* line 343, ../sass/_forms.scss */
+/* line 337, ../sass/_forms.scss */
 .form-item.form-type-password input, .form-item.form-item-files-picture-upload input {
   float: left;
   width: 66%;
   box-sizing: border-box;
   margin-bottom: 8px;
 }
-/* line 350, ../sass/_forms.scss */
+/* line 344, ../sass/_forms.scss */
 .form-item.form-type-password .password-strength,
 .form-item.form-type-password div.password-confirm, .form-item.form-item-files-picture-upload .password-strength,
 .form-item.form-item-files-picture-upload div.password-confirm {
@@ -16218,54 +16200,54 @@ form .description {
   float: none;
   margin-bottom: 8px;
 }
-/* line 355, ../sass/_forms.scss */
+/* line 349, ../sass/_forms.scss */
 .form-item.form-type-password input.password-confirm, .form-item.form-item-files-picture-upload input.password-confirm {
   clear: none;
   float: left;
 }
-/* line 363, ../sass/_forms.scss */
+/* line 357, ../sass/_forms.scss */
 .form-item.form-type-password .description, .form-item.form-item-field-tags-und .description {
   margin-left: 33%;
   clear: both;
   display: block;
 }
-/* line 369, ../sass/_forms.scss */
+/* line 363, ../sass/_forms.scss */
 .form-item.form-type-password-confirm {
   margin-bottom: 64px;
 }
-/* line 372, ../sass/_forms.scss */
+/* line 366, ../sass/_forms.scss */
 .form-item.form-type-password-confirm .form-type-password {
   width: 100%;
   /*max-width:520px;*/
 }
-/* line 376, ../sass/_forms.scss */
+/* line 370, ../sass/_forms.scss */
 .form-item.form-type-password-confirm .form-type-password label {
   width: 33%;
   float: left;
 }
-/* line 380, ../sass/_forms.scss */
+/* line 374, ../sass/_forms.scss */
 .form-item.form-type-password-confirm .form-type-password input {
   float: left;
   width: 66%;
   box-sizing: border-box;
   margin-bottom: 8px;
 }
-/* line 387, ../sass/_forms.scss */
+/* line 381, ../sass/_forms.scss */
 .form-item.form-type-password-confirm .description {
   clear: both;
   float: none;
 }
-/* line 391, ../sass/_forms.scss */
+/* line 385, ../sass/_forms.scss */
 .form-item.form-type-select {
   width: 100%;
   /*max-width:520px;*/
 }
-/* line 395, ../sass/_forms.scss */
+/* line 389, ../sass/_forms.scss */
 .form-item.form-type-select label {
   width: 33%;
   float: left;
 }
-/* line 400, ../sass/_forms.scss */
+/* line 394, ../sass/_forms.scss */
 .form-item.form-type-select select,
 .form-item.form-type-select .chosen-container {
   float: left;
@@ -16273,7 +16255,7 @@ form .description {
   box-sizing: border-box;
   margin-bottom: 8px;
 }
-/* line 407, ../sass/_forms.scss */
+/* line 401, ../sass/_forms.scss */
 .form-item.form-type-select .customSelect {
   float: left;
   width: 66%;
@@ -16283,35 +16265,35 @@ form .description {
   border: 1px solid #eee;
   background: url("../images/icon-select-arrow.png") no-repeat 98% center white;
 }
-/* line 417, ../sass/_forms.scss */
+/* line 411, ../sass/_forms.scss */
 .form-item.form-type-managed-file {
   width: 100%;
   /*max-width:520px;*/
 }
-/* line 421, ../sass/_forms.scss */
+/* line 415, ../sass/_forms.scss */
 .form-item.form-type-managed-file label {
   width: 33%;
   float: left;
 }
-/* line 425, ../sass/_forms.scss */
+/* line 419, ../sass/_forms.scss */
 .form-item.form-type-managed-file .image-widget {
   float: left;
   width: 66%;
   box-sizing: border-box;
 }
-/* line 430, ../sass/_forms.scss */
+/* line 424, ../sass/_forms.scss */
 .form-item.form-type-managed-file .image-widget .image-widget-data {
   float: none;
   /*background: #fff;*/
   overflow: hidden;
   line-height: 1em;
 }
-/* line 436, ../sass/_forms.scss */
+/* line 430, ../sass/_forms.scss */
 .form-item.form-type-managed-file .image-widget .image-widget-data .NFI-wrapper {
   float: left;
   background: none;
 }
-/* line 440, ../sass/_forms.scss */
+/* line 434, ../sass/_forms.scss */
 .form-item.form-type-managed-file .image-widget .image-widget-data .NFI-wrapper .NFI-button {
   padding: 0;
   height: 110px;
@@ -16322,7 +16304,7 @@ form .description {
   white-space: nowrap;
   background: url("../images/bg-drag-image-here.png") no-repeat left top transparent;
 }
-/* line 451, ../sass/_forms.scss */
+/* line 445, ../sass/_forms.scss */
 .form-item.form-type-managed-file .image-widget .image-widget-data input[type=text] {
   border-left: none!important;
   border-right: none!important;
@@ -16334,23 +16316,23 @@ form .description {
   float: none;
   max-width: 110px;
 }
-/* line 464, ../sass/_forms.scss */
+/* line 458, ../sass/_forms.scss */
 .form-item.form-type-managed-file .image-widget .image-widget-data .form-submit {
   float: left;
   margin: 0 0 0 20px;
 }
-/* line 470, ../sass/_forms.scss */
+/* line 464, ../sass/_forms.scss */
 .form-item.form-type-managed-file .description {
   margin-left: 33%;
   clear: both;
   display: block;
 }
-/* line 476, ../sass/_forms.scss */
+/* line 470, ../sass/_forms.scss */
 .form-item.form-type-textfield {
   width: 100%;
   /*max-width:520px;*/
 }
-/* line 480, ../sass/_forms.scss */
+/* line 474, ../sass/_forms.scss */
 .form-item.form-type-textfield label {
   width: 33%;
   float: left;
@@ -16358,7 +16340,7 @@ form .description {
   font-family: "Apercu Regular", Arial, Helvetica, sans-serif;
   color: gray;
 }
-/* line 487, ../sass/_forms.scss */
+/* line 481, ../sass/_forms.scss */
 .form-item.form-type-textfield input {
   float: left;
   width: 66%;
@@ -16366,16 +16348,16 @@ form .description {
   margin-bottom: 8px;
 }
 
-/* line 502, ../sass/_forms.scss */
+/* line 496, ../sass/_forms.scss */
 .form-wrapper .form-item[class*='-field-privacy'] {
   margin-left: 33%;
   margin-bottom: 20px;
 }
-/* line 506, ../sass/_forms.scss */
+/* line 500, ../sass/_forms.scss */
 .form-wrapper .form-item[class*='-field-privacy'] label {
   font-size: 11px;
 }
-/* line 509, ../sass/_forms.scss */
+/* line 503, ../sass/_forms.scss */
 .form-wrapper .form-item[class*='-field-privacy'] .description {
   clear: both;
   float: none;
@@ -16386,7 +16368,7 @@ form .description {
   color: #808080;
 }
 
-/* line 525, ../sass/_forms.scss */
+/* line 519, ../sass/_forms.scss */
 #edit-account .form-item-mail .description,
 #edit-account .form-item-name .description {
   display: block;
@@ -16394,7 +16376,7 @@ form .description {
   float: none;
   margin-left: 33%;
 }
-/* line 531, ../sass/_forms.scss */
+/* line 525, ../sass/_forms.scss */
 #edit-account .form-type-password-confirm .description {
   display: block;
   clear: both;
@@ -16402,25 +16384,25 @@ form .description {
   margin-left: 33%;
 }
 
-/* line 544, ../sass/_forms.scss */
+/* line 538, ../sass/_forms.scss */
 #edit-picture .form-item-files-picture-upload label {
   width: 33%;
   float: left;
 }
-/* line 548, ../sass/_forms.scss */
+/* line 542, ../sass/_forms.scss */
 #edit-picture .form-item-files-picture-upload .image-widget {
   float: left;
   width: 66%;
   box-sizing: border-box;
 }
-/* line 553, ../sass/_forms.scss */
+/* line 547, ../sass/_forms.scss */
 #edit-picture .form-item-files-picture-upload .NFI-wrapper {
   float: left;
   width: 66%;
   box-sizing: border-box;
   background: none;
 }
-/* line 559, ../sass/_forms.scss */
+/* line 553, ../sass/_forms.scss */
 #edit-picture .form-item-files-picture-upload .NFI-wrapper .NFI-button {
   padding: 0;
   height: 110px;
@@ -16431,7 +16413,7 @@ form .description {
   white-space: nowrap;
   background: url("../images/bg-drag-image-here.png") no-repeat left top transparent;
 }
-/* line 570, ../sass/_forms.scss */
+/* line 564, ../sass/_forms.scss */
 #edit-picture .form-item-files-picture-upload input[type=text] {
   border-left: none!important;
   border-right: none!important;
@@ -16443,46 +16425,46 @@ form .description {
   float: none;
   max-width: 110px;
 }
-/* line 583, ../sass/_forms.scss */
+/* line 577, ../sass/_forms.scss */
 #edit-picture .form-item-files-picture-upload .form-submit {
   float: left;
   margin: 0 0 0 20px;
 }
-/* line 588, ../sass/_forms.scss */
+/* line 582, ../sass/_forms.scss */
 #edit-picture .form-item-files-picture-upload .description {
   margin-left: 33%;
   clear: both;
   display: block;
 }
 
-/* line 595, ../sass/_forms.scss */
+/* line 589, ../sass/_forms.scss */
 .form-type-file {
   width: 100%;
   /*max-width:520px;*/
 }
 
-/* line 608, ../sass/_forms.scss */
+/* line 602, ../sass/_forms.scss */
 .form-type-partial-datetime-element .partial-date-element .partial-date-year {
   min-width: 90px;
 }
-/* line 611, ../sass/_forms.scss */
+/* line 605, ../sass/_forms.scss */
 .form-type-partial-datetime-element .partial-date-element .partial-date-year .form-item {
   width: 100%;
 }
-/* line 614, ../sass/_forms.scss */
+/* line 608, ../sass/_forms.scss */
 .form-type-partial-datetime-element .partial-date-element .partial-date-year .form-item label {
   width: 33%;
   float: left;
   min-width: none;
 }
-/* line 619, ../sass/_forms.scss */
+/* line 613, ../sass/_forms.scss */
 .form-type-partial-datetime-element .partial-date-element .partial-date-year .form-item select {
   float: left;
   width: 66%;
   box-sizing: border-box;
   margin-bottom: 8px;
 }
-/* line 625, ../sass/_forms.scss */
+/* line 619, ../sass/_forms.scss */
 .form-type-partial-datetime-element .partial-date-element .partial-date-year .form-item .description {
   float: none;
   width: 100%;
@@ -16491,11 +16473,11 @@ form .description {
   padding-left: 0;
   margin-left: 0;
 }
-/* line 635, ../sass/_forms.scss */
+/* line 629, ../sass/_forms.scss */
 .form-type-partial-datetime-element .partial-date-element .partial-date-month {
   min-width: 90px;
 }
-/* line 638, ../sass/_forms.scss */
+/* line 632, ../sass/_forms.scss */
 .form-type-partial-datetime-element .partial-date-element .partial-date-month .description {
   float: none;
   width: 100%;
@@ -16504,11 +16486,11 @@ form .description {
   padding-left: 0;
   margin-left: 0;
 }
-/* line 647, ../sass/_forms.scss */
+/* line 641, ../sass/_forms.scss */
 .form-type-partial-datetime-element .partial-date-element .partial-date-day {
   min-width: 90px;
 }
-/* line 650, ../sass/_forms.scss */
+/* line 644, ../sass/_forms.scss */
 .form-type-partial-datetime-element .partial-date-element .partial-date-day .description {
   float: none;
   width: 100%;
@@ -16518,60 +16500,60 @@ form .description {
   margin-left: 0;
 }
 
-/* line 662, ../sass/_forms.scss */
+/* line 656, ../sass/_forms.scss */
 .text-format-wrapper .tips {
   display: none;
 }
-/* line 665, ../sass/_forms.scss */
+/* line 659, ../sass/_forms.scss */
 .text-format-wrapper .form-type-select {
   padding-left: 0;
 }
-/* line 668, ../sass/_forms.scss */
+/* line 662, ../sass/_forms.scss */
 .text-format-wrapper .filter-help {
   display: none;
 }
-/* line 674, ../sass/_forms.scss */
+/* line 668, ../sass/_forms.scss */
 .text-format-wrapper .form-item.form-type-textarea {
   width: 100%;
   /*max-width:520px;*/
 }
-/* line 678, ../sass/_forms.scss */
+/* line 672, ../sass/_forms.scss */
 .text-format-wrapper .form-item.form-type-textarea label {
   width: 33%;
   float: left;
 }
-/* line 682, ../sass/_forms.scss */
+/* line 676, ../sass/_forms.scss */
 .text-format-wrapper .form-item.form-type-textarea .form-textarea-wrapper {
   float: left;
   width: 66%;
   box-sizing: border-box;
 }
-/* line 690, ../sass/_forms.scss */
+/* line 684, ../sass/_forms.scss */
 .text-format-wrapper fieldset.filter-wrapper {
   width: 100%;
   margin: 0;
   padding: 0;
   /*max-width:520px;*/
 }
-/* line 696, ../sass/_forms.scss */
+/* line 690, ../sass/_forms.scss */
 .text-format-wrapper fieldset.filter-wrapper .fieldset-wrapper {
   margin-left: 33%;
 }
-/* line 699, ../sass/_forms.scss */
+/* line 693, ../sass/_forms.scss */
 .text-format-wrapper fieldset.filter-wrapper .fieldset-wrapper .filter-help {
   padding: 0;
 }
 
-/* line 706, ../sass/_forms.scss */
+/* line 700, ../sass/_forms.scss */
 .form-item label {
   box-sizing: border-box;
 }
-/* line 709, ../sass/_forms.scss */
+/* line 703, ../sass/_forms.scss */
 .form-item input {
   box-sizing: border-box;
 }
 
-/* line 716, ../sass/_forms.scss */
+/* line 710, ../sass/_forms.scss */
 .form-wrapper .field-value-url,
 .form-wrapper .field-value-title {
   width: 100%;
@@ -16579,13 +16561,13 @@ form .description {
   position: relative;
   padding-left: 0!important;
 }
-/* line 722, ../sass/_forms.scss */
+/* line 716, ../sass/_forms.scss */
 .form-wrapper .field-value-url label,
 .form-wrapper .field-value-title label {
   width: 33%;
   float: left;
 }
-/* line 726, ../sass/_forms.scss */
+/* line 720, ../sass/_forms.scss */
 .form-wrapper .field-value-url input.form-text,
 .form-wrapper .field-value-title input.form-text {
   float: left;
@@ -16593,173 +16575,173 @@ form .description {
   box-sizing: border-box;
   margin-bottom: 8px;
 }
-/* line 734, ../sass/_forms.scss */
+/* line 728, ../sass/_forms.scss */
 .form-wrapper .form-item.form-type-textfield {
   width: 100%;
   /*max-width:520px;*/
   position: relative;
   clear: both;
 }
-/* line 740, ../sass/_forms.scss */
+/* line 734, ../sass/_forms.scss */
 .form-wrapper .form-item.form-type-textfield label {
   width: 33%;
   float: left;
 }
-/* line 744, ../sass/_forms.scss */
+/* line 738, ../sass/_forms.scss */
 .form-wrapper .form-item.form-type-textfield input.form-text {
   float: left;
   width: 66%;
   box-sizing: border-box;
   margin-bottom: 8px;
 }
-/* line 750, ../sass/_forms.scss */
+/* line 744, ../sass/_forms.scss */
 .form-wrapper .form-item.form-type-textfield .description {
   float: none;
   /*margin-left:33%;*/
 }
-/* line 754, ../sass/_forms.scss */
+/* line 748, ../sass/_forms.scss */
 .form-wrapper .form-item.form-type-textfield .entityconnect-add {
   position: absolute;
   right: 5px;
   padding: 1px;
 }
-/* line 759, ../sass/_forms.scss */
+/* line 753, ../sass/_forms.scss */
 .form-wrapper .form-item.form-type-textfield .entityconnect-edit {
   position: absolute;
   right: 27px;
   padding: 1px;
 }
-/* line 765, ../sass/_forms.scss */
+/* line 759, ../sass/_forms.scss */
 .form-wrapper .form-item.form-type-textarea {
   width: 100%;
   /*max-width:520px;*/
   position: relative;
 }
-/* line 770, ../sass/_forms.scss */
+/* line 764, ../sass/_forms.scss */
 .form-wrapper .form-item.form-type-textarea label {
   width: 33%;
   float: left;
 }
-/* line 774, ../sass/_forms.scss */
+/* line 768, ../sass/_forms.scss */
 .form-wrapper .form-item.form-type-textarea .form-textarea-wrapper {
   float: left;
   width: 66%;
   box-sizing: border-box;
   margin-bottom: 8px;
 }
-/* line 783, ../sass/_forms.scss */
+/* line 777, ../sass/_forms.scss */
 .form-wrapper.field-type-datetime-form fieldset.form-wrapper {
   width: 100%;
   /*max-width:520px;*/
   position: relative;
 }
-/* line 793, ../sass/_forms.scss */
+/* line 787, ../sass/_forms.scss */
 .form-wrapper.field-type-datetime-form fieldset.form-wrapper .fieldset-wrapper .date-float {
   width: 33%;
   float: left;
 }
-/* line 797, ../sass/_forms.scss */
+/* line 791, ../sass/_forms.scss */
 .form-wrapper.field-type-datetime-form fieldset.form-wrapper .fieldset-wrapper .date-no-float {
   float: left;
   width: 33%;
   box-sizing: border-box;
   clear: none;
 }
-/* line 808, ../sass/_forms.scss */
+/* line 802, ../sass/_forms.scss */
 .form-wrapper.field-type-datetime-form fieldset.form-wrapper .fieldset-wrapper .date-no-float.end-date-wrapper .form-item .form-item label {
   display: none;
 }
-/* line 812, ../sass/_forms.scss */
+/* line 806, ../sass/_forms.scss */
 .form-wrapper.field-type-datetime-form fieldset.form-wrapper .fieldset-wrapper .date-no-float.end-date-wrapper .form-item .description {
   margin-left: 0;
 }
-/* line 823, ../sass/_forms.scss */
+/* line 817, ../sass/_forms.scss */
 .form-wrapper.form-type-textarea {
   width: 100%;
   max-width: 520px;
   position: relative;
 }
-/* line 828, ../sass/_forms.scss */
+/* line 822, ../sass/_forms.scss */
 .form-wrapper.form-type-textarea label {
   width: 33%;
   float: left;
 }
-/* line 832, ../sass/_forms.scss */
+/* line 826, ../sass/_forms.scss */
 .form-wrapper.form-type-textarea .form-textarea-wrapper {
   float: left;
   width: 66%;
   box-sizing: border-box;
   margin-bottom: 8px;
 }
-/* line 842, ../sass/_forms.scss */
+/* line 836, ../sass/_forms.scss */
 .form-wrapper.field-type-partial-date-form .form-item {
   width: 100%;
   /*max-width:520px;*/
   position: relative;
 }
-/* line 847, ../sass/_forms.scss */
+/* line 841, ../sass/_forms.scss */
 .form-wrapper.field-type-partial-date-form .form-item label {
   width: 33%;
   float: left;
 }
-/* line 851, ../sass/_forms.scss */
+/* line 845, ../sass/_forms.scss */
 .form-wrapper.field-type-partial-date-form .form-item .partial-date-element {
   float: left;
   width: 66%;
   box-sizing: border-box;
   margin-bottom: 8px;
 }
-/* line 861, ../sass/_forms.scss */
+/* line 855, ../sass/_forms.scss */
 .form-wrapper.field-name-field-for-sale-form .icheckbox {
   float: left;
   margin-right: 15px;
   margin-bottom: 8px;
 }
-/* line 866, ../sass/_forms.scss */
+/* line 860, ../sass/_forms.scss */
 .form-wrapper.field-name-field-for-sale-form label {
   width: auto;
   float: left;
 }
-/* line 873, ../sass/_forms.scss */
+/* line 867, ../sass/_forms.scss */
 .form-wrapper.field-name-field-public-form .icheckbox {
   float: left;
   margin-right: 15px;
   margin-bottom: 8px;
 }
-/* line 878, ../sass/_forms.scss */
+/* line 872, ../sass/_forms.scss */
 .form-wrapper.field-name-field-public-form label {
   width: auto;
   float: left;
 }
-/* line 889, ../sass/_forms.scss */
+/* line 883, ../sass/_forms.scss */
 .form-wrapper.field-name-field-images-form, .form-wrapper.field-name-field-tags-form, .form-wrapper.field-name-og-group-ref, .form-wrapper.field-type-text-long-form, .form-wrapper.field-name-field-subheader-form, .form-wrapper.field-type-url-form, .form-wrapper.field-name-field-media-form {
   margin-bottom: 64px;
 }
-/* line 892, ../sass/_forms.scss */
+/* line 886, ../sass/_forms.scss */
 .form-wrapper.field-name-og-group-ref {
   overflow: hidden;
 }
-/* line 897, ../sass/_forms.scss */
+/* line 891, ../sass/_forms.scss */
 .form-wrapper.field-name-field-dimensions-form .form-textarea-wrapper {
   margin-bottom: 64px;
 }
 
-/* line 906, ../sass/_forms.scss */
+/* line 900, ../sass/_forms.scss */
 .form-item-account-type {
   display: block !important;
 }
 
-/* line 913, ../sass/_forms.scss */
+/* line 907, ../sass/_forms.scss */
 #field-media-add-more-wrapper tbody .form-required {
   display: none;
 }
-/* line 916, ../sass/_forms.scss */
+/* line 910, ../sass/_forms.scss */
 #field-media-add-more-wrapper tbody tr {
   border-bottom: 10px solid #f2f2f2;
 }
 
 /* draggable icon thingy for sticky crosshairs etc */
-/* line 924, ../sass/_forms.scss */
+/* line 918, ../sass/_forms.scss */
 a.tabledrag-handle .handle {
   background: url("../images/icon-crosshair-drag.png") no-repeat center center transparent;
   height: 20px;
@@ -16768,13 +16750,13 @@ a.tabledrag-handle .handle {
   width: 20px;
 }
 
-/* line 936, ../sass/_forms.scss */
+/* line 930, ../sass/_forms.scss */
 .NFI-wrapper {
   background: #fff;
   float: right;
 }
 
-/* line 954, ../sass/_forms.scss */
+/* line 948, ../sass/_forms.scss */
 .chosen-container {
   box-sizing: border-box;
   margin: 0 0 8px 0;
@@ -16782,12 +16764,12 @@ a.tabledrag-handle .handle {
   border: none;
   background: url("../images/icon-select-arrow.png") no-repeat 98% center white;
 }
-/* line 961, ../sass/_forms.scss */
+/* line 955, ../sass/_forms.scss */
 .chosen-container input.default {
   font-size: 11px !important;
   font-family: "Apercu Regular", Arial, Helvetica, sans-serif !important;
 }
-/* line 971, ../sass/_forms.scss */
+/* line 965, ../sass/_forms.scss */
 .chosen-container.chosen-container-single .chosen-single {
   border-radius: 0;
   border: none;
@@ -16795,24 +16777,24 @@ a.tabledrag-handle .handle {
   background: none;
   font-size: 12px;
 }
-/* line 979, ../sass/_forms.scss */
+/* line 973, ../sass/_forms.scss */
 .chosen-container.chosen-container-single .chosen-single div b {
   background: none;
 }
-/* line 985, ../sass/_forms.scss */
+/* line 979, ../sass/_forms.scss */
 .chosen-container.chosen-container-single .chosen-search {
   display: none;
 }
-/* line 993, ../sass/_forms.scss */
+/* line 987, ../sass/_forms.scss */
 .chosen-container.chosen-container-single .chosen-results .active-result.highlighted {
   background: #ccc;
   box-shadow: none;
 }
-/* line 1005, ../sass/_forms.scss */
+/* line 999, ../sass/_forms.scss */
 .chosen-container.chosen-container-single.chosen-container-active .chosen-single div b {
   background: none;
 }
-/* line 1012, ../sass/_forms.scss */
+/* line 1006, ../sass/_forms.scss */
 .chosen-container .chosen-choices {
   box-shadow: none;
   border: none;
@@ -16821,7 +16803,7 @@ a.tabledrag-handle .handle {
   box-sizing: border-box;
   font-size: 12px!important;
 }
-/* line 1022, ../sass/_forms.scss */
+/* line 1016, ../sass/_forms.scss */
 .chosen-container .chosen-choices li.search-choice {
   border-radius: 0;
   background: #ccc;
@@ -16829,15 +16811,15 @@ a.tabledrag-handle .handle {
   box-shadow: none;
   font-size: 12px;
 }
-/* line 1029, ../sass/_forms.scss */
+/* line 1023, ../sass/_forms.scss */
 .chosen-container .chosen-choices li.search-choice:hover {
   background: #ddd;
 }
-/* line 1034, ../sass/_forms.scss */
+/* line 1028, ../sass/_forms.scss */
 .chosen-container .chosen-choices input {
   font-size: 11px;
 }
-/* line 1038, ../sass/_forms.scss */
+/* line 1032, ../sass/_forms.scss */
 .chosen-container .chosen-drop {
   border: none;
   box-shadow: none;
@@ -16845,7 +16827,7 @@ a.tabledrag-handle .handle {
 
 /* iCheck plugin Minimal skin, grey
 ----------------------------------- */
-/* line 1057, ../sass/_forms.scss */
+/* line 1051, ../sass/_forms.scss */
 .icheckbox,
 .iradio {
   display: block;
@@ -16858,68 +16840,68 @@ a.tabledrag-handle .handle {
   cursor: pointer;
 }
 
-/* line 1067, ../sass/_forms.scss */
+/* line 1061, ../sass/_forms.scss */
 .icheckbox {
   background-position: 0 0;
 }
 
-/* line 1070, ../sass/_forms.scss */
+/* line 1064, ../sass/_forms.scss */
 .icheckbox.hover {
   background-position: -20px 0;
 }
 
-/* line 1073, ../sass/_forms.scss */
+/* line 1067, ../sass/_forms.scss */
 .icheckbox.checked {
   background-position: -40px 0;
 }
 
-/* line 1076, ../sass/_forms.scss */
+/* line 1070, ../sass/_forms.scss */
 .icheckbox.disabled {
   background-position: -60px 0;
   cursor: default;
 }
 
-/* line 1080, ../sass/_forms.scss */
+/* line 1074, ../sass/_forms.scss */
 .icheckbox.checked.disabled {
   background-position: -80px 0;
 }
 
-/* line 1083, ../sass/_forms.scss */
+/* line 1077, ../sass/_forms.scss */
 .iradio {
   background-position: -100px 0;
 }
 
-/* line 1086, ../sass/_forms.scss */
+/* line 1080, ../sass/_forms.scss */
 .iradio.hover {
   background-position: -120px 0;
 }
 
-/* line 1089, ../sass/_forms.scss */
+/* line 1083, ../sass/_forms.scss */
 .iradio.checked {
   background-position: -140px 0;
 }
 
-/* line 1092, ../sass/_forms.scss */
+/* line 1086, ../sass/_forms.scss */
 .iradio.disabled {
   background-position: -160px 0;
   cursor: default;
 }
 
-/* line 1096, ../sass/_forms.scss */
+/* line 1090, ../sass/_forms.scss */
 .iradio.checked.disabled {
   background-position: -180px 0;
 }
 
-/* line 1102, ../sass/_forms.scss */
+/* line 1096, ../sass/_forms.scss */
 .cke_chrome {
   box-shadow: none!important;
 }
-/* line 1105, ../sass/_forms.scss */
+/* line 1099, ../sass/_forms.scss */
 .cke_chrome .cke_top {
   margin: 0;
   padding: 0;
 }
-/* line 1108, ../sass/_forms.scss */
+/* line 1102, ../sass/_forms.scss */
 .cke_chrome .cke_top .cke_toolgroup {
   margin: 0;
   padding: 0;
@@ -16927,7 +16909,7 @@ a.tabledrag-handle .handle {
   background: none;
 }
 
-/* line 1116, ../sass/_forms.scss */
+/* line 1110, ../sass/_forms.scss */
 body.wysiwygeditor {
   background: #fff;
   box-sizing: border-box;
@@ -16936,18 +16918,18 @@ body.wysiwygeditor {
   text-align: left;
 }
 
-/* line 1127, ../sass/_forms.scss */
+/* line 1121, ../sass/_forms.scss */
 .entityconnect-add, .entityconnect-edit {
   width: auto;
   padding: 0;
 }
 
-/* line 1131, ../sass/_forms.scss */
+/* line 1125, ../sass/_forms.scss */
 form div.entityconnect-edit input {
   background: url("../images/icon-form-edit.png") no-repeat center center transparent !important;
 }
 
-/* line 1135, ../sass/_forms.scss */
+/* line 1129, ../sass/_forms.scss */
 .entityconnect-add input {
   border-radius: 50%;
   text-overflow: hidden;
@@ -16961,17 +16943,17 @@ form div.entityconnect-edit input {
   outline: none;
   margin: 0;
 }
-/* line 1147, ../sass/_forms.scss */
+/* line 1141, ../sass/_forms.scss */
 .entityconnect-add input:hover {
   background: url("../images/icon-form-add.png") no-repeat center center transparent !important;
   opacity: .8;
 }
 
-/* line 1153, ../sass/_forms.scss */
+/* line 1147, ../sass/_forms.scss */
 div.entityconnect-edit {
   margin-left: 5px !important;
 }
-/* line 1155, ../sass/_forms.scss */
+/* line 1149, ../sass/_forms.scss */
 div.entityconnect-edit input {
   border-radius: 50%;
   text-overflow: hidden;
@@ -16985,99 +16967,99 @@ div.entityconnect-edit input {
   outline: none;
   margin: 0;
 }
-/* line 1167, ../sass/_forms.scss */
+/* line 1161, ../sass/_forms.scss */
 div.entityconnect-edit input:hover {
   background: url("../images/icon-form-edit.png") no-repeat center center transparent !important;
   opacity: .8;
 }
 
-/* line 1180, ../sass/_forms.scss */
+/* line 1174, ../sass/_forms.scss */
 .node-artwork-form .field-type-text-with-summary,
 .node-artwork-form .field-name-field-tags-form,
 .node-artwork-form .field-name-field-public-form {
   margin-bottom: 64px;
 }
-/* line 1183, ../sass/_forms.scss */
+/* line 1177, ../sass/_forms.scss */
 .node-artwork-form .field-name-field-tags-form {
   overflow: hidden;
 }
-/* line 1187, ../sass/_forms.scss */
+/* line 1181, ../sass/_forms.scss */
 .node-artwork-form .field-name-field-dimensions-form .form-textarea-wrapper {
   margin-bottom: 64px!important;
 }
-/* line 1191, ../sass/_forms.scss */
+/* line 1185, ../sass/_forms.scss */
 .node-artwork-form .ui-multiselect {
   margin-bottom: 8px;
 }
-/* line 1194, ../sass/_forms.scss */
+/* line 1188, ../sass/_forms.scss */
 .node-artwork-form .description {
   margin-bottom: 8px;
 }
-/* line 1201, ../sass/_forms.scss */
+/* line 1195, ../sass/_forms.scss */
 .node-artwork-form .field-name-field-created-date-form .partial-date-year .description {
   clear: both;
   margin-left: 0;
 }
-/* line 1207, ../sass/_forms.scss */
+/* line 1201, ../sass/_forms.scss */
 .node-artwork-form #cke_1_contents {
   height: 210px !important;
 }
-/* line 1212, ../sass/_forms.scss */
+/* line 1206, ../sass/_forms.scss */
 .node-artwork-form .field-name-field-roles-form .description {
   margin-left: 33%;
 }
 
-/* line 1221, ../sass/_forms.scss */
+/* line 1215, ../sass/_forms.scss */
 .page-node-add-article .field-type-taxonomy-term-reference-form {
   margin-bottom: 64px;
 }
-/* line 1224, ../sass/_forms.scss */
+/* line 1218, ../sass/_forms.scss */
 .page-node-add-article .field-name-field-contact-name-form {
   overflow: hidden;
 }
-/* line 1228, ../sass/_forms.scss */
+/* line 1222, ../sass/_forms.scss */
 .page-node-add-article .field-type-taxonomy-term-reference-form label {
   margin-bottom: 64px;
 }
 
-/* line 1239, ../sass/_forms.scss */
+/* line 1233, ../sass/_forms.scss */
 .node-venue-form .field-name-field-public-form label,
 .node-venue-form .field-type-taxonomy-term-reference-form label {
   margin-bottom: 64px;
 }
-/* line 1243, ../sass/_forms.scss */
+/* line 1237, ../sass/_forms.scss */
 .node-venue-form .field-name-field-contact-name-form {
   overflow: hidden;
   margin-bottom: 64px;
 }
 
-/* line 1251, ../sass/_forms.scss */
+/* line 1245, ../sass/_forms.scss */
 .field-name-field-venue-form.form-wrapper .form-item.form-type-textfield .entityconnect-edit {
   z-index: 999;
 }
 
-/* line 1254, ../sass/_forms.scss */
+/* line 1248, ../sass/_forms.scss */
 .field-name-field-venue-form.form-wrapper .form-item.form-type-textfield .entityconnect-add {
   z-index: 998;
 }
 
-/* line 1261, ../sass/_forms.scss */
+/* line 1255, ../sass/_forms.scss */
 .node-event-form .field-name-field-category-form,
 .node-event-form .field-name-field-date-form,
 .node-event-form .field-type-text-with-summary,
 .node-event-form .field-name-field-community-user-select-form {
   margin-bottom: 64px;
 }
-/* line 1265, ../sass/_forms.scss */
+/* line 1259, ../sass/_forms.scss */
 .node-event-form .field-name-field-category-form label {
   margin-bottom: 64px;
 }
-/* line 1269, ../sass/_forms.scss */
+/* line 1263, ../sass/_forms.scss */
 .node-event-form #edit-submit {
   float: none;
 }
 
-/* line 1283, ../sass/_forms.scss */
+/* line 1277, ../sass/_forms.scss */
 .page-node-add input.ajax-processed, .page-node-add input#edit-submit, .page-node-add input#edit-preview,
 .page-node-edit input.ajax-processed,
 .page-node-edit input#edit-submit,
@@ -17106,7 +17088,7 @@ div.entityconnect-edit input:hover {
   font-weight: normal;
   letter-spacing: 0;
 }
-/* line 1301, ../sass/_forms.scss */
+/* line 1295, ../sass/_forms.scss */
 .page-node-add input.ajax-processed:hover, .page-node-add input#edit-submit:hover, .page-node-add input#edit-preview:hover,
 .page-node-edit input.ajax-processed:hover,
 .page-node-edit input#edit-submit:hover,
@@ -17117,7 +17099,7 @@ div.entityconnect-edit input:hover {
   background: #222;
   color: #fff;
 }
-/* line 1309, ../sass/_forms.scss */
+/* line 1303, ../sass/_forms.scss */
 .page-node-add form input[type=text],
 .page-node-add form textarea,
 .page-node-add form input[type=password],
@@ -17143,7 +17125,7 @@ div.entityconnect-edit input:hover {
   position: relative;
   background: url("../images/bg-input-dots.gif") repeat-x left bottom white !important;
 }
-/* line 1327, ../sass/_forms.scss */
+/* line 1321, ../sass/_forms.scss */
 .page-node-add form input[type=text]:before,
 .page-node-add form textarea:before,
 .page-node-add form input[type=password]:before,
@@ -17164,7 +17146,7 @@ div.entityconnect-edit input:hover {
   bottom: 0;
   z-index: 998;
 }
-/* line 1336, ../sass/_forms.scss */
+/* line 1330, ../sass/_forms.scss */
 .page-node-add form input[type=text]:after,
 .page-node-add form textarea:after,
 .page-node-add form input[type=password]:after,
@@ -17185,7 +17167,7 @@ div.entityconnect-edit input:hover {
   bottom: 0;
   z-index: 999;
 }
-/* line 1349, ../sass/_forms.scss */
+/* line 1343, ../sass/_forms.scss */
 .page-node-add form input[type=text]:focus,
 .page-node-add form textarea:focus,
 .page-node-add form input[type=password]:focus,
@@ -17212,94 +17194,94 @@ div.entityconnect-edit input:hover {
   background: url("../images/bg-input-dots.gif") repeat-x left bottom white !important;
 }
 
-/* line 1373, ../sass/_forms.scss */
+/* line 1367, ../sass/_forms.scss */
 #user-profile-form .sticky-table thead {
   display: none;
 }
-/* line 1378, ../sass/_forms.scss */
+/* line 1372, ../sass/_forms.scss */
 #user-profile-form .form-item-profile-resume-field-biography-und-0-value label {
   color: transparent;
 }
 
-/* line 1384, ../sass/_forms.scss */
+/* line 1378, ../sass/_forms.scss */
 .sticky-table {
   border: none;
 }
-/* line 1387, ../sass/_forms.scss */
+/* line 1381, ../sass/_forms.scss */
 .sticky-table thead {
   border: none;
   display: none;
   /* because its just duplicate title */
 }
-/* line 1390, ../sass/_forms.scss */
+/* line 1384, ../sass/_forms.scss */
 .sticky-table thead tr {
   border: none;
   border-bottom: 1px solid #ccc;
   background: none;
 }
-/* line 1395, ../sass/_forms.scss */
+/* line 1389, ../sass/_forms.scss */
 .sticky-table thead tr th {
   border: none;
   box-sizing: border-box;
   padding: 5px 0;
 }
-/* line 1402, ../sass/_forms.scss */
+/* line 1396, ../sass/_forms.scss */
 .sticky-table tbody {
   border: none;
 }
-/* line 1404, ../sass/_forms.scss */
+/* line 1398, ../sass/_forms.scss */
 .sticky-table tbody tr {
   border: none;
 }
-/* line 1406, ../sass/_forms.scss */
+/* line 1400, ../sass/_forms.scss */
 .sticky-table tbody tr td {
   border: none;
   box-sizing: border-box;
   padding: 5px 0;
 }
-/* line 1411, ../sass/_forms.scss */
+/* line 1405, ../sass/_forms.scss */
 .sticky-table tbody tr td.field-multiple-drag {
   border-right: 1px solid #ccc;
   vertical-align: top;
   /*width:33%;*/
 }
-/* line 1419, ../sass/_forms.scss */
+/* line 1413, ../sass/_forms.scss */
 .sticky-table tbody tr td .media-widget {
   /*padding-left:20px;*/
 }
-/* line 1422, ../sass/_forms.scss */
+/* line 1416, ../sass/_forms.scss */
 .sticky-table tbody tr td .media-widget .form-item {
   display: inline;
 }
-/* line 1424, ../sass/_forms.scss */
+/* line 1418, ../sass/_forms.scss */
 .sticky-table tbody tr td .media-widget .form-item label {
   min-width: 1px;
 }
-/* line 1429, ../sass/_forms.scss */
+/* line 1423, ../sass/_forms.scss */
 .sticky-table tbody tr td .field-value-url {
   padding-left: 20px;
 }
-/* line 1432, ../sass/_forms.scss */
+/* line 1426, ../sass/_forms.scss */
 .sticky-table tbody tr td:nth-child(2) {
   padding-left: 10px;
 }
 
-/* line 1440, ../sass/_forms.scss */
+/* line 1434, ../sass/_forms.scss */
 .field-type-file-form .field-add-more-submit {
   /*margin-left:33%!important;*/
 }
 
-/* line 1444, ../sass/_forms.scss */
+/* line 1438, ../sass/_forms.scss */
 .sticky-table {
   margin-bottom: 10px;
 }
 
-/* line 1449, ../sass/_forms.scss */
+/* line 1443, ../sass/_forms.scss */
 form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
   padding-right: 0;
 }
 
-/* line 1452, ../sass/_forms.scss */
+/* line 1446, ../sass/_forms.scss */
 .draggable a.tabledrag-handle {
   cursor: move;
   float: left;
@@ -17309,7 +17291,7 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
   text-decoration: none;
 }
 
-/* line 1460, ../sass/_forms.scss */
+/* line 1454, ../sass/_forms.scss */
 .handle {
   /*background: url(../../misc/draggable.png) no-repeat 6px 9px;*/
   background-position: center center;
@@ -17324,19 +17306,19 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
 
 /* end draggable */
 /* birthdate form items */
-/* line 1477, ../sass/_forms.scss */
+/* line 1471, ../sass/_forms.scss */
 .field-name-field-birthdate .form-type-date-select {
   display: block;
   width: 100%;
   /*max-width:520px;*/
 }
-/* line 1482, ../sass/_forms.scss */
+/* line 1476, ../sass/_forms.scss */
 .field-name-field-birthdate .form-type-date-select .date-padding {
   padding: 0;
   float: none;
   display: block;
 }
-/* line 1487, ../sass/_forms.scss */
+/* line 1481, ../sass/_forms.scss */
 .field-name-field-birthdate .form-type-date-select .date-padding .form-item {
   width: 100%;
   /*max-width:520px;*/
@@ -17345,12 +17327,12 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
   clear: both;
   display: block;
 }
-/* line 1495, ../sass/_forms.scss */
+/* line 1489, ../sass/_forms.scss */
 .field-name-field-birthdate .form-type-date-select .date-padding .form-item label {
   width: 33%;
   float: left;
 }
-/* line 1501, ../sass/_forms.scss */
+/* line 1495, ../sass/_forms.scss */
 .field-name-field-birthdate .form-type-date-select .date-padding .form-item .date-month,
 .field-name-field-birthdate .form-type-date-select .date-padding .form-item .date-day,
 .field-name-field-birthdate .form-type-date-select .date-padding .form-item .date-year {
@@ -17359,56 +17341,56 @@ form .field-multiple-table td.field-multiple-drag a.tabledrag-handle {
   box-sizing: border-box;
   margin-bottom: 8px;
 }
-/* line 1507, ../sass/_forms.scss */
+/* line 1501, ../sass/_forms.scss */
 .field-name-field-birthdate .form-type-date-select .date-padding .form-item .date-month .customSelect,
 .field-name-field-birthdate .form-type-date-select .date-padding .form-item .date-day .customSelect,
 .field-name-field-birthdate .form-type-date-select .date-padding .form-item .date-year .customSelect {
   width: 100%;
 }
 
-/* line 1521, ../sass/_forms.scss */
+/* line 1515, ../sass/_forms.scss */
 form.node-article-form .cke_contents {
   min-height: 600px;
 }
 
-/* line 1532, ../sass/_forms.scss */
+/* line 1526, ../sass/_forms.scss */
 td.odd {
   background: none;
 }
 
-/* line 1540, ../sass/_forms.scss */
+/* line 1534, ../sass/_forms.scss */
 .password-strength {
   display: none;
 }
 
-/* line 1547, ../sass/_forms.scss */
+/* line 1541, ../sass/_forms.scss */
 body.admin-menu .wysiwyg-toggle-wrapper {
   display: block;
 }
-/* line 1551, ../sass/_forms.scss */
+/* line 1545, ../sass/_forms.scss */
 body .wysiwyg-toggle-wrapper {
   display: none;
 }
 
-/* line 1558, ../sass/_forms.scss */
+/* line 1552, ../sass/_forms.scss */
 fieldset.collapsible {
   height: auto!important;
   margin-bottom: 5px;
 }
-/* line 1561, ../sass/_forms.scss */
+/* line 1555, ../sass/_forms.scss */
 fieldset.collapsible legend {
   border-bottom: 1px solid #ccc;
   width: 100%;
   display: block;
   padding: 0px;
 }
-/* line 1566, ../sass/_forms.scss */
+/* line 1560, ../sass/_forms.scss */
 fieldset.collapsible legend .fieldset-legend {
   background-image: url("../images/icon-collapse-arrow-up.png") !important;
   background-position: 5px center !important;
   padding-left: 0px!important;
 }
-/* line 1570, ../sass/_forms.scss */
+/* line 1564, ../sass/_forms.scss */
 fieldset.collapsible legend .fieldset-legend .fieldset-title {
   display: block;
   padding: 5px 0 5px 10px;
@@ -17416,7 +17398,7 @@ fieldset.collapsible legend .fieldset-legend .fieldset-title {
   padding-left: 30px!important;
   position: relative;
 }
-/* line 1576, ../sass/_forms.scss */
+/* line 1570, ../sass/_forms.scss */
 fieldset.collapsible legend .fieldset-legend .fieldset-title:after {
   content: "";
   position: absolute;
@@ -17427,41 +17409,41 @@ fieldset.collapsible legend .fieldset-legend .fieldset-title:after {
   display: block;
   background: #ccc;
 }
-/* line 1587, ../sass/_forms.scss */
+/* line 1581, ../sass/_forms.scss */
 fieldset.collapsible legend .fieldset-legend .summary {
   display: none;
 }
-/* line 1594, ../sass/_forms.scss */
+/* line 1588, ../sass/_forms.scss */
 fieldset.collapsible.collapsed legend .fieldset-legend {
   background-image: url("../images/icon-collapse-arrow-down.png") !important;
   background-repeat: no-repeat;
   background-position: 5px center !important;
 }
 
-/* line 1608, ../sass/_forms.scss */
+/* line 1602, ../sass/_forms.scss */
 .page-user-edit #tasks {
   display: none;
 }
 
-/* line 1612, ../sass/_forms.scss */
+/* line 1606, ../sass/_forms.scss */
 .logged-in.admin-menu .page-user-edit #tasks {
   display: block;
 }
 
-/* line 1618, ../sass/_forms.scss */
+/* line 1612, ../sass/_forms.scss */
 .page-node-edit .region-help,
 .page-node-add .region-help,
 .page-user-edit .region-help {
   color: #fff;
 }
-/* line 1620, ../sass/_forms.scss */
+/* line 1614, ../sass/_forms.scss */
 .page-node-edit .region-help .block,
 .page-node-add .region-help .block,
 .page-user-edit .region-help .block {
   margin-bottom: 0px;
 }
 
-/* line 1629, ../sass/_forms.scss */
+/* line 1623, ../sass/_forms.scss */
 .page-node-edit.node-type-article #main-content,
 .page-node-add.page-node-add-article #main-content {
   box-sizing: border-box;
@@ -17471,7 +17453,7 @@ fieldset.collapsible.collapsed legend .fieldset-legend {
   overflow: hidden;
   *zoom: 1;
 }
-/* line 1633, ../sass/_forms.scss */
+/* line 1627, ../sass/_forms.scss */
 .page-node-edit.node-type-article #main-content #content,
 .page-node-add.page-node-add-article #main-content #content {
   display: inline;
@@ -17482,7 +17464,7 @@ fieldset.collapsible.collapsed legend .fieldset-legend {
   margin-right: 0;
 }
 @media screen and (max-width: 960px) {
-  /* line 1633, ../sass/_forms.scss */
+  /* line 1627, ../sass/_forms.scss */
   .page-node-edit.node-type-article #main-content #content,
   .page-node-add.page-node-add-article #main-content #content {
     display: inline;
@@ -17500,7 +17482,7 @@ fieldset.collapsible.collapsed legend .fieldset-legend {
   }
 }
 @media screen and (max-width: 768px) {
-  /* line 1633, ../sass/_forms.scss */
+  /* line 1627, ../sass/_forms.scss */
   .page-node-edit.node-type-article #main-content #content,
   .page-node-add.page-node-add-article #main-content #content {
     display: inline;
@@ -17518,7 +17500,7 @@ fieldset.collapsible.collapsed legend .fieldset-legend {
   }
 }
 @media screen and (max-width: 480px) {
-  /* line 1633, ../sass/_forms.scss */
+  /* line 1627, ../sass/_forms.scss */
   .page-node-edit.node-type-article #main-content #content,
   .page-node-add.page-node-add-article #main-content #content {
     margin-left: 10px!important;
@@ -17529,13 +17511,13 @@ fieldset.collapsible.collapsed legend .fieldset-legend {
   }
 }
 
-/* line 1664, ../sass/_forms.scss */
+/* line 1658, ../sass/_forms.scss */
 div[class*="-image-field-caption-value"] .cke_contents {
   max-height: 200px;
   min-height: 150px;
 }
 
-/* line 1673, ../sass/_forms.scss */
+/* line 1667, ../sass/_forms.scss */
 .page-node-add-artwork .ui-dialog,
 .page-node-add-article .ui-dialog {
   height: 80%!important;
@@ -17547,7 +17529,7 @@ div[class*="-image-field-caption-value"] .cke_contents {
   position: fixed;
   background: none;
 }
-/* line 1682, ../sass/_forms.scss */
+/* line 1676, ../sass/_forms.scss */
 .page-node-add-artwork .ui-dialog iframe,
 .page-node-add-article .ui-dialog iframe {
   width: 90%!important;
@@ -17555,13 +17537,13 @@ div[class*="-image-field-caption-value"] .cke_contents {
   max-height: 400px;
   max-width: 600px;
 }
-/* line 1688, ../sass/_forms.scss */
+/* line 1682, ../sass/_forms.scss */
 .page-node-add-artwork .ui-dialog iframe html body,
 .page-node-add-article .ui-dialog iframe html body {
   font-family: "Apercu Regular", Arial, Helvetica, sans-serif;
 }
 
-/* line 1699, ../sass/_forms.scss */
+/* line 1693, ../sass/_forms.scss */
 .page-node-add #messages,
 .page-node-edit #messages {
   padding: 20px 0 0 0;
@@ -17579,7 +17561,7 @@ div[class*="-image-field-caption-value"] .cke_contents {
   color: #fff;
 }
 @media screen and (max-width: 480px) {
-  /* line 1699, ../sass/_forms.scss */
+  /* line 1693, ../sass/_forms.scss */
   .page-node-add #messages,
   .page-node-edit #messages {
     display: inline;
@@ -17590,7 +17572,7 @@ div[class*="-image-field-caption-value"] .cke_contents {
   }
 }
 @media screen and (max-width: 768px) {
-  /* line 1699, ../sass/_forms.scss */
+  /* line 1693, ../sass/_forms.scss */
   .page-node-add #messages,
   .page-node-edit #messages {
     display: inline;
@@ -17601,7 +17583,7 @@ div[class*="-image-field-caption-value"] .cke_contents {
   }
 }
 @media screen and (max-width: 960px) {
-  /* line 1699, ../sass/_forms.scss */
+  /* line 1693, ../sass/_forms.scss */
   .page-node-add #messages,
   .page-node-edit #messages {
     display: inline;
@@ -17613,63 +17595,63 @@ div[class*="-image-field-caption-value"] .cke_contents {
 }
 
 /* force inputs in modals to have high z-index */
-/* line 1723, ../sass/_forms.scss */
+/* line 1717, ../sass/_forms.scss */
 .ui-dialog form input {
   z-index: 2000;
 }
 
-/* line 1728, ../sass/_forms.scss */
+/* line 1722, ../sass/_forms.scss */
 .page-community .ui-dialog .ui-widget-content {
   color: #737373;
 }
 
 /* user login */
-/* line 1735, ../sass/_forms.scss */
+/* line 1729, ../sass/_forms.scss */
 #user-login .form-item-name .description {
   margin-left: 33%;
 }
 
 /* privacy statement */
-/* line 1742, ../sass/_forms.scss */
+/* line 1736, ../sass/_forms.scss */
 .privacy-instructions {
   color: #808080;
   padding-bottom: 20px;
 }
 
-/* line 1751, ../sass/_forms.scss */
+/* line 1745, ../sass/_forms.scss */
 .node-type-event.page-node-edit .field-name-field-date-form .form-wrapper .fieldset-wrapper {
   float: none;
 }
-/* line 1753, ../sass/_forms.scss */
+/* line 1747, ../sass/_forms.scss */
 .node-type-event.page-node-edit .field-name-field-date-form .form-wrapper .fieldset-wrapper .date-no-float {
   width: 100%;
   float: none;
   clear: both;
 }
-/* line 1755, ../sass/_forms.scss */
+/* line 1749, ../sass/_forms.scss */
 .node-type-event.page-node-edit .field-name-field-date-form .form-wrapper .fieldset-wrapper .date-no-float .form-item {
   float: none;
   clear: both;
   display: block;
   width: 100%;
 }
-/* line 1758, ../sass/_forms.scss */
+/* line 1752, ../sass/_forms.scss */
 .node-type-event.page-node-edit .field-name-field-date-form .form-wrapper .fieldset-wrapper .date-no-float .form-item .date-padding {
   float: none;
   clear: both;
   display: block;
   width: 100%;
 }
-/* line 1762, ../sass/_forms.scss */
+/* line 1756, ../sass/_forms.scss */
 .node-type-event.page-node-edit .field-name-field-date-form .form-wrapper .fieldset-wrapper .date-no-float .form-item .date-padding .form-item-field-date-und-0-value-date .description {
   margin-bottom: 8px;
 }
-/* line 1775, ../sass/_forms.scss */
+/* line 1769, ../sass/_forms.scss */
 .node-type-event.page-node-edit .date-padding .form-item label {
   width: 33%;
   float: left;
 }
-/* line 1779, ../sass/_forms.scss */
+/* line 1773, ../sass/_forms.scss */
 .node-type-event.page-node-edit .date-padding .form-item input {
   width: 65.8%;
   float: left;
@@ -17677,30 +17659,30 @@ div[class*="-image-field-caption-value"] .cke_contents {
   box-sizing: border-box;
   margin-bottom: 0px;
 }
-/* line 1786, ../sass/_forms.scss */
+/* line 1780, ../sass/_forms.scss */
 .node-type-event.page-node-edit .date-padding .form-item .description {
   margin-left: 33%;
 }
 
-/* line 1794, ../sass/_forms.scss */
+/* line 1788, ../sass/_forms.scss */
 .wysiwygeditor b, .wysiwygeditor bold, .wysiwygeditor strong {
   font-weight: bold;
 }
-/* line 1797, ../sass/_forms.scss */
+/* line 1791, ../sass/_forms.scss */
 .wysiwygeditor em, .wysiwygeditor i {
   font-style: italic;
 }
-/* line 1800, ../sass/_forms.scss */
+/* line 1794, ../sass/_forms.scss */
 .wysiwygeditor a {
   text-decoration: underline;
 }
 
-/* line 1804, ../sass/_forms.scss */
+/* line 1798, ../sass/_forms.scss */
 form .description {
   line-height: 1.2em;
 }
 
-/* line 1808, ../sass/_forms.scss */
+/* line 1802, ../sass/_forms.scss */
 .form-type-radios.form-item-comment #edit-comment {
   width: 66%;
   float: left;
@@ -17708,7 +17690,7 @@ form .description {
   margin-bottom: 64px;
   overflow: hidden;
 }
-/* line 1814, ../sass/_forms.scss */
+/* line 1808, ../sass/_forms.scss */
 .form-type-radios.form-item-comment #edit-comment .description {
   display: block;
   float: none;
@@ -17717,7 +17699,7 @@ form .description {
   line-height: 1.2em;
   padding-left: 33px;
 }
-/* line 1822, ../sass/_forms.scss */
+/* line 1816, ../sass/_forms.scss */
 .form-type-radios.form-item-comment #edit-comment .iradio {
   margin-bottom: 0!important;
 }
