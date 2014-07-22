@@ -28,7 +28,20 @@
           position:absolute;
           right:5px;
           top:5px;
-
+          &:hover {
+              .flag-wrapper {
+                  a {
+                      background:#323232;
+                  }
+              }
+              ul {
+                  position:absolute;
+                  right:0px;
+                  top:40px;
+                  left:auto;
+                  bottom:auto;
+              }
+          }
       }
       .block-content {
           h1 {
