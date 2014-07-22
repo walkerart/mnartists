@@ -26,12 +26,31 @@
   .pane-mnartist-profiles-mna-user-profile {
       .follow-menu {
           position:absolute;
-          right:5px;
-          top:5px;
+          right:10px;
+          top:15px;
+          .flag-wrapper {
+              a {
+                  padding:0px;
+              }
+          }
+          ul {
+              li {
+                  &.follow-this {
+                      padding-left:0px;
+                      margin-bottom:8px;
+                      border-bottom:1px solid #fff;
+                  }
+              }
+          }
+
           &:hover {
               .flag-wrapper {
                   a {
                       background:#323232;
+                      img {
+                          -webkit-filter: invert(100%);
+                          filter: invert(100%);
+                      }
                   }
               }
               ul {
@@ -40,6 +59,9 @@
                   top:40px;
                   left:auto;
                   bottom:auto;
+                  font-size: 12px;
+                  font-family: "Apercu Regular", Arial, Helvetica, sans-serif;
+
               }
           }
       }
