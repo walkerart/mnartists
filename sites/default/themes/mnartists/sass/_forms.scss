@@ -43,6 +43,9 @@ form {
             white-space:nowrap;
             padding:0;
             border:none;outline:none;
+            &:after {
+              content:"Add a file";
+            }
         }
         &.remove {
             border-radius:50%;
@@ -54,6 +57,9 @@ form {
             white-space:nowrap;
             padding:0;
             border:none;outline:none;
+            &:after {
+              content:"Remove";
+            }
         }
         &.edit {
             border-radius:50%;
@@ -65,6 +71,9 @@ form {
             white-space:nowrap;
             padding:0;
             border:none;outline:none;
+            &:after {
+              content: "Edit";
+            }
         }
     }
 }
