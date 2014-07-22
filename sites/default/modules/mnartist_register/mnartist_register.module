@@ -39,7 +39,12 @@ function mnartist_register_user_register_submit($form, &$form_state) {
 function mnartist_register_migrate() {
     global $user;
 
-    return '<h1>User Migration</h1>' . drupal_render(drupal_get_form('mnartist_register_user_form'));
+    $html_fragment = array();
+    $html_fragment[] = '<h1>User Migration</h1>';
+    $html_fragment[] = drupal_render(drupal_get_form('mnartist_register_user_form'));
+    $html_fragment[] = '<div class="no-migrate" style="clear: both;">Placeholder post-form-text, to include <a href="/user/'.$user->uid.'/edit">link to profile edit</a>.</p>';
+
+    return implode('', $html_fragment);
 }
 
 function mnartist_register_user_form() {
@@ -212,7 +217,7 @@ function _mnartist_load_user_profile_data($legacyData) {
 
         if (_mnartist_register_validate_field($artistData, 'qualificationtext')) {
             $mainProfile->field_bio = array(LANGUAGE_NONE => array(array(
-                'value' => trim($artistData['qualificationtext']),
+                'value' => _mnartist_register_filter_legacy_tags(trim($artistData['qualificationtext'])),
                 'format' => 'filtered_html'
             )));
         }
@@ -269,7 +274,7 @@ function _mnartist_load_resume_profile_data($legacyData) {
 
         if (_mnartist_register_validate_field($artistData, 'qualificationtext')) {
             $resume->field_biography = array(LANGUAGE_NONE => array(array(
-                'value' => trim($artistData['qualificationtext']),
+                'value' => _mnartist_register_filter_legacy_tags(trim($artistData['qualificationtext'])),
                 'format' => 'filtered_html'
             )));
         }
@@ -303,7 +308,7 @@ function _mnartist_load_resume_profile_data($legacyData) {
             }
 
             $resume->field_imported_data = array(LANGUAGE_NONE => array(array(
-                'value' => $fieldData,
+                'value' => _mnartist_register_filter_legacy_tags($fieldData),
                 'format' => 'filtered_html'
             )));
         }
