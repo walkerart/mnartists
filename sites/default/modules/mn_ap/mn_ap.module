@@ -1,0 +1,748 @@
+<?php
+
+/**
+ * Implements hook_menu().
+ *
+ */
+function mn_ap_menu() {
+  $items['opportunity/%/apply'] = array(
+    'title' => 'Apply',
+    'page callback' => 'mn_ap_apply',
+    'access callback' => TRUE,
+    'page arguments' => array(1),
+    'file' => 'mn_ap.apply.inc',
+  );
+  $items['opportunity/%/apply/ajax'] = array(
+    'type' => MENU_CALLBACK,
+    'page callback' => 'ap_ajax_callback',
+    'access arguments' => array('access content'),
+  );
+  $items['opportunity/%/submissions'] = array(
+    'title' => 'Submissions',
+    'page callback' => 'mn_ap_submission',
+    'access callback' => TRUE,
+    'page arguments' => array(1),
+    'file' => 'mn_ap.submission.inc',
+  );
+  $items['opportunity/%/submission/%'] = array(
+    'title' => 'Applicant Review',
+    'page callback' => 'mn_ap_review',
+    'access callback' => TRUE,
+    'page arguments' => array(1,3),
+    'file' => 'mn_ap.review.inc',
+  );
+  $items['opportunity/%/submission/%/admin'] = array(
+    'title' => 'Admin Applicant View',
+    'page callback' => 'mn_ap_admin',
+    'access callback' => TRUE,
+    'page arguments' => array(1,3),
+    'file' => 'mn_ap.admin.inc',
+  );
+  $items['opportunity/%/submissions/%/xls'] = array(
+    'type' => MENU_CALLBACK,
+    'page callback' => 'ap_submissions_xls',
+    'page arguments' => array(1,3),
+    'access arguments' => array('access content'),
+  );
+  $items['opportunity/%/apply/submit'] = array(
+    'title' => 'Submit',
+    'type' => MENU_CALLBACK,
+    'page callback' => 'ap_submit_form',
+    'page arguments' => array(1),
+    'access arguments' => array('access content'),
+  );
+
+  return $items;
+}
+
+/**
+ * Implements hook_theme().
+ */
+function mn_ap_theme() {
+  return array(
+    'mn_ap_apply' => array(
+      'variables' => array('rows' => array()),
+      'template' => 'mn-ap-apply',
+    ),
+    'mn_ap_submissions' => array(
+      'variables' => array('rows' => array()),
+      'template' => 'mn-ap-submissions',
+    ),
+    'mn_ap_admin' => array(
+      'variables' => array('rows' => array()),
+      'template' => 'mn-ap-admin',
+    ),
+    'mn_ap_review' => array(
+      'variables' => array('rows' => array()),
+      'template' => 'mn-ap-review',
+    )
+  );
+}
+
+/**
+ * Submit form for the op_applications table
+ * Uploads files from custom  upload fields
+ */
+function ap_submit_form() {
+  global $user;
+  $title = $_POST['title'];
+  $nid = $_POST['nid'];
+  $uid = $user->uid;
+  $name = $user->name;
+  $ap_folder = $nid;
+  $user_folder = '/'.$uid;
+  $ap_folder_path = variable_get('file_public_path', conf_path() . '/files/opportunity/' . $ap_folder);
+  $user_folder_path = $ap_folder_path . $user_folder;
+
+  $input = array(
+      'nid' => $nid,
+      'uid' => $uid,
+      'first_name' => $_POST['first_name'],
+      'last_name' => $_POST['last_name'],
+      'email' => $_POST['email'],
+      'phone' => $_POST['phone'],
+      'address' => $_POST['address'],
+      'city' => $_POST['city'],
+      'state' => $_POST['state'],
+      'zip' => $_POST['zip'],
+      'website' => !empty($_POST['website']) ? $_POST['website'] : '',
+      'gender' => !empty($_POST['gender']) ? $_POST['gender'] : '',
+      'age' => !empty($_POST['age']) ? $_POST['age'] : '0',
+      'ethnicity' => !empty($_POST['ethnicity']) ? $_POST['ethnicity'] : '',
+      'county' => !empty($_POST['county'])  ? $_POST['county'] : '',
+      'country' => !empty($_POST['country']) ? $_POST['country'] : '',
+      'bio' => !empty($_POST['bioEditor']) ? $_POST['bioEditor'] : '',
+      'statement' => !empty($_POST['statementEditor']) ? $_POST['statementEditor'] : '',
+      'proposal' => !empty($_POST['proposalEditor']) ? $_POST['proposalEditor'] : '',
+      'field1' => !empty($_POST['field1Editor']) ? $_POST['field1Editor'] : '',
+      'field2' => !empty($_POST['field2Editor']) ? $_POST['field2Editor'] : '',
+      'field3' => !empty($_POST['field3Editor']) ? $_POST['field3Editor'] : '',
+      'field4' => !empty($_POST['field4Editor']) ? $_POST['field4Editor'] : '',
+      'complete' => 1
+  );
+
+  //create application folder if doesn't exist
+  if (!file_exists($ap_folder_path)) {
+    file_prepare_directory($ap_folder_path, $options = FILE_CREATE_DIRECTORY);
+    //mkdir($ap_folder_path, 0777, true);
+  }
+  //create user folder if doesn't exist
+  if (!file_exists($user_folder_path)) {
+    file_prepare_directory($user_folder_path, $options = FILE_CREATE_DIRECTORY);
+    //mkdir($user_folder_path , 0777, true);
+  }
+
+  //check for artwork
+  if (!empty($_POST['artwork'])) {
+    $artwork_data = mn_ap_artworks_data($uid);
+    array_pop($artwork_data);
+    foreach($_POST['artwork'] as $fid) {
+      foreach($artwork_data as $data) {
+        foreach($data['images'] as $image) {
+          if ($image['fid'] == $fid) {
+            $work['uid'] = $uid;
+            $work['nid'] = $nid;
+            $work['title'] = isset($data['title']) ? $data['title'] : '';
+            $work['medium'] = isset($data['medium']) ? json_encode($data['medium']) : '';
+            $work['date'] = isset($data['date']) ? $data['date'] : '';
+            $work['dimensions'] = isset($data['dimensions']) ? $data['dimensions'] : '';
+            $work['description'] = isset($data['body']) ? $data['body'] : '';
+            $work['file_type'] = isset($image['type']) ? $image['type'] : '';
+            $work['file'] = isset($image['file']) ? $image['file'] : '';
+            if ($image['type'] == 'image') {
+              $url = image_style_url('large', $image['file']);
+              $data = drupal_http_request($url);
+              $thumb = image_style_url('ap_tiny', $image['file']);
+              $thumb_data = drupal_http_request($thumb);
+              if (file_prepare_directory($ap_folder_path, $options = FILE_MODIFY_PERMISSIONS) && file_prepare_directory($user_folder_path, $options = FILE_MODIFY_PERMISSIONS)) {
+                //get filepath of existing image
+                $filepath = str_replace($GLOBALS['base_url'], "", file_create_url($image['file']));
+                $file = drupal_basename($filepath);
+                $work['file'] = $file;
+                //move the the image to new location
+                file_unmanaged_save_data($data->data, "$user_folder_path/$file", $replace = FILE_EXISTS_RENAME);
+                file_unmanaged_save_data($thumb_data->data, "$user_folder_path/thumb_$file", $replace = FILE_EXISTS_RENAME);
+              }
+            }
+            // write data to op_artwork table
+            db_insert('op_artworks')
+              ->fields($work)
+              ->execute();
+          }
+        }
+      }
+    }
+  }
+
+  //do uploads use $i for increment through keys used in input array
+  $i = 1;
+  if(!empty($_FILES["upload"])) {
+    foreach ($_FILES["upload"]["error"] as $key => $error) {
+      if ($error == UPLOAD_ERR_OK) {
+        $tmp_name = $_FILES["upload"]["tmp_name"][$key];
+        $name = $_FILES["upload"]["name"][$key];
+        if (!file_exists("$user_folder_path/$name")) {
+          move_uploaded_file($tmp_name, "$user_folder_path/$name");
+          $input['upload'.$i] = $name;
+        } else {
+          $new_name = file_newname($user_folder_path, $name);
+          move_uploaded_file($tmp_name, "$user_folder_path/$new_name");
+          $input['upload'.$i] = $new_name;
+        }
+        $i++;
+      }
+    }
+  }
+
+  //checks for an existing application
+  $result = mn_ap_application_data($input['nid'], $input['uid']);
+
+  if ($result) {
+    $input['updated_at'] = date("Y-m-d H:i:s");
+    db_update('op_applications')
+        ->condition('pid', $result['pid'], '=')
+        ->fields($input)
+        ->execute();
+  } else {
+    $input['created_at'] = date("Y-m-d H:i:s");
+    db_insert('op_applications')
+        ->fields($input)
+        ->execute();
+  }
+  return drupal_set_message(t('Your application has been submitted.'), 'error');
+}
+
+/*
+* function to generate newname for uploads
+*/
+function file_newname($path, $filename){
+  if ($pos = strrpos($filename, '.')) {
+         $name = substr($filename, 0, $pos);
+         $ext = substr($filename, $pos);
+  } else {
+         $name = $filename;
+  }
+  $newpath = $path.'/'.$filename;
+  $newname = $filename;
+  $counter = 0;
+  while (file_exists($newpath)) {
+         $newname = $name .'_'. $counter . $ext;
+         $newpath = $path.'/'.$newname;
+         $counter++;
+   }
+  return $newname;
+}
+
+function mn_ap_application_data($nid, $uid) {
+  $result = db_select('op_applications', 'op')
+      ->fields('op')
+      ->condition('nid', $nid, '=')
+      ->condition('uid', $uid, '=')
+      ->execute()
+      ->fetchAssoc();
+  return $result;
+}
+
+function mn_ap_application_artworks($nid, $uid) {
+  $result = db_select('op_artworks', 'op')
+      ->fields('op')
+      ->condition('nid', $nid, '=')
+      ->condition('uid', $uid, '=')
+      ->execute()
+      ->fetchAll();
+  return $result;
+}
+
+function mn_ap_artworks_data($uid, $vid = NULL) {
+  $query =  new EntityFieldQuery();
+  $query->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'artwork')
+    //->field_condition('body', 'body_value')
+    ->propertyCondition('uid', $uid)
+    ->propertyOrderBy('created', 'DESC');
+
+  $result = $query->execute();
+
+  $out = array();
+  if (!empty($result['node'])) {
+    $resultKeys = array_keys($result['node']);
+    $out = node_view_multiple(node_load_multiple($resultKeys));
+    //$out = node_view_multiple(node_load_multiple(array_keys($result['node'])));
+  }
+
+  if (empty($out['nodes'])) {
+    return drupal_set_message(t('You have not added any artworks to your profile.'), 'status');
+  }
+
+  $rows = array();
+  foreach ($out['nodes'] as $row) {
+    //getting object and converting to array
+    $object = (array)$row['field_media']['#object'];
+    //dpm($object); 
+    //get medium from tid
+    $medium = isset($object['field_medium']['und']) ? mn_ap_medium_data($object['field_medium']['und']) : '';
+    //clean up artwork
+    $images = isset($object['field_media']) ? mn_ap_artwork_image_data($object['field_media']) : '';
+    //get date fields and make readable date
+    $day = isset($object['field_created_date']['und']['0']['from']['day']) ? (int)$object['field_created_date']['und']['0']['from']['day'] : '';
+    $month = isset($object['field_created_date']['und']['0']['from']['month']) ? (int)$object['field_created_date']['und']['0']['from']['month'] : '';
+    $year = isset($object['field_created_date']['und']['0']['from']['year']) ? (int)$object['field_created_date']['und']['0']['from']['year'] : '';
+    $date = get_artwork_date($month, $day, $year);
+
+    $rows[] = array(
+      'vid' => isset($object['vid']) ? $object['vid'] : '',
+      'title' => isset($object['title']) ? $object['title'] : '',
+      'body' => isset($object['body']['und']['0']['safe_value']) ? strip_tags($object['body']['und']['0']['safe_value']) : '',
+      'date' => $date,
+      'dimensions' => isset($object['field_dimensions']['und']['0']['value']) ? $object['field_dimensions']['und']['0']['value'] : '',
+      'medium' => $medium,
+      'images' => $images,
+      //'field_media' => isset($object['field_media']) ? $object['field_media'] : '',
+      //'row' => $row
+    );
+  }
+  return $rows; //$out['nodes'];
+}
+
+/*
+* this creates a combined array of required and optional form areas
+*/
+function get_form_areas($required, $optional) {
+  $areas = array();
+  $required  = isset($required['und']) ? $required['und'] : '';
+  $optional  = isset($optional['und']) ? $optional['und'] : '';
+  $combined = array_merge((array)$required, (array)$optional);
+  if($combined) {
+    foreach ($combined as $c) {
+      if ($c) $areas[] = $c['value'];
+    }
+  }
+  return $areas;
+}
+
+/*
+* set the order of form steps check if they exist and create array for steps use arraykeys for step #'s
+*/
+function get_form_steps($required, $optional, $work) {
+  $required  = isset($required['und']) ? $required['und'] : '';
+  $optional  = isset($optional['und']) ? $optional['und'] : '';
+  $work  = isset($work['und']) ? $work['und'] : '';
+  $steps = array(
+    'statement-proposal' => '',
+    'bio-resume' => '',
+    'work' => '',
+    'fields-uploads' => ''
+  );
+  $combined = array_merge((array)$required, (array)$optional, (array)$work);
+  foreach ($combined as $c) {
+    if (!empty($c)) {
+      switch ($c['value']) {
+        case 'statement':
+          $steps['statement-proposal'] = 'statement-proposal';
+          break;
+        case 'proposal':
+          $steps['statement-proposal'] = 'statement-proposal';
+          break;
+        case 'bio':
+          $steps['bio-resume'] = 'bio-resume';
+          break;
+        case 'resume':
+          $steps['bio-resume'] = 'bio-resume';
+          break;
+        case 'image':
+        case 'video':
+        case 'sound':
+          $steps['work'] = 'work';
+          break;
+        case 'field1':
+        case 'field2':
+        case 'field3':
+        case 'field4':
+          $steps['fields-uploads'] = 'fields-uploads';
+          break;
+        case 'upload1':
+        case 'upload2':
+        case 'upload3':
+        case 'upload4':
+          $steps['fields-uploads'] = 'fields-uploads';
+          break;
+      }
+    }
+  }
+  foreach ($steps as $step) {
+    if($step == '') {
+      $key = array_search($step, $steps);
+      unset($steps[$key]);
+    }
+  }
+  return array_keys($steps);
+}
+
+/**
+ * required to get medium data because it is an array of tid's
+ */
+function mn_ap_medium_data($media) {
+  foreach ($media as $medium) {
+    $term = (array)taxonomy_term_load($medium['tid']);
+    $mediums[] = $term['name'];
+  }
+  return $mediums;
+}
+/**
+* Getting the date for display
+*/
+function get_artwork_date($month, $day, $year){
+  if ($month != '' && $day != '' && $year != '') {
+    $date = date('F j, Y', strtotime("$month/$day/$year"));
+  } elseif ($month != '' && $year != '') {
+    $month = date('F', strtotime($month));
+    $date = "$month, $year";
+  } else {
+    $date = $year;
+  }
+  return $date;
+}
+
+/**
+ * get only required information out of field_media for use in template
+ */
+function mn_ap_artwork_image_data($artworks) {
+  foreach($artworks['und'] as $artwork) {
+    if (isset($artwork['uri'])) {
+      if (substr($artwork['filemime'], 0, 1) == 'i') {
+        $art[] = array(
+          'fid' => $artwork['fid'],
+          'type' => 'image',
+          'file' => $artwork['uri']
+        );
+      } elseif (substr($artwork['uri'], 0, 1) == 's') {
+        $url = explode("/", substr($artwork['uri'], 15));
+        $art[] = array(
+          'fid' => $artwork['fid'],
+          'type' => 'soundcloud',
+          'file' => "http://soundcloud.com/$url[0]/$url[2]"
+        );
+      } elseif (substr($artwork['uri'], 0, 1) == 'y') {
+        $art[] = array(
+          'fid' => $artwork['fid'],
+          'type' => 'youtube',
+          'file' => 'http://www.youtube.com/embed/' . substr($artwork['uri'], 12) . '?autoplay=0'
+        );
+      } elseif (substr($artwork['uri'], 0, 1) == 'v') {
+        $art[] = array(
+          'fid' => $artwork['fid'],
+          'type' => 'vimeo',
+          'file' => '//player.vimeo.com/video/' . substr($artwork['uri'], 10)
+        );
+      }
+    }
+  }
+  return $art;
+}
+
+/**
+ * Ajax Callback for updating the op_applications table
+ */
+function ap_ajax_callback() {
+  if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    global $user;
+    //set input from the post method
+    $input = array(
+      'nid' => (int)$_POST['node_id'],
+      'uid' => $user->uid,
+      'first_name' => !empty($_POST['first_name'])  ? $_POST['first_name'] : '',
+      'last_name' => !empty($_POST['last_name'])  ? $_POST['last_name'] : '',
+      'email' => !empty($_POST['email'])  ? $_POST['email'] : '',
+      'phone' => !empty($_POST['phone'])  ? $_POST['phone'] : '',
+      'address' => !empty($_POST['address'])  ? $_POST['address'] : '',
+      'city' => !empty($_POST['city'])  ? $_POST['city'] : '',
+      'state' => !empty($_POST['state'])  ? $_POST['state'] : '',
+      'zip' => !empty($_POST['zip'])  ? (int)$_POST['zip'] : '',
+      'website' => !empty($_POST['website']) ? $_POST['website'] : '',
+      'gender' => !empty($_POST['gender'])  ? $_POST['gender'] : '',
+      'age' => trim($_POST['age']) != '' ? $_POST['age'] : '0',
+      'ethnicity' => !empty($_POST['ethnicity']) ? $_POST['ethnicity'] : '',
+      'county' => !empty($_POST['county'])  ? $_POST['county'] : '',
+      'country' => !empty($_POST['country']) ? $_POST['country'] : '',
+      'bio' => !empty($_POST['bio'])  ? $_POST['bio'] : '',
+      'statement' => !empty($_POST['statement'])  ? $_POST['statement'] : '',
+      'proposal' => !empty($_POST['proposal'])  ? $_POST['proposal'] : '',
+      'field1' => !empty($_POST['field1'])  ? $_POST['field1'] : '',
+      'field2' => !empty($_POST['field2'])  ? $_POST['field2'] : '',
+      'field3' => !empty($_POST['field3'])  ? $_POST['field3'] : '',
+      'field4' => !empty($_POST['field4'])  ? $_POST['field4'] : '',
+    );
+
+    //checks for an existing application
+    $result = mn_ap_application_data($input['nid'], $input['uid']);
+    if (!$result) {
+      $input['created_at'] = date("Y-m-d H:i:s");
+      db_insert('op_applications')
+          ->fields($input)
+          ->execute();
+    } else {
+      $input['updated_at'] = date("Y-m-d H:i:s");
+      db_update('op_applications')
+          ->condition('pid', $result['pid'], '=')
+          ->fields($input)
+          ->execute();
+    }
+  }
+}
+
+function mn_ap_get_submissions($nid) {
+  $results = db_select('op_applications', 'op')
+      ->fields('op')
+      ->condition('nid', $nid, '=')
+      //->condition('complete', 1, '=')
+      ->execute()
+      ->fetchAll();
+  $resultArray = array();
+  foreach ($results as $result) {
+    $resultArray[] = (array)$result;
+  }
+  return $resultArray;
+}
+
+function mn_ap_get_all_reviews($nid) {
+  $query = db_select('op_applications', 'ap');
+  $query->join('op_rating', 'r', 'ap.uid = r.aid');
+  $query->condition('ap.nid', $nid, '=')
+      ->condition('r.nid', $nid, '=')
+      ->fields('ap',array('uid'))
+            ->fields('r',array('rating', 'comment'))
+            ->orderBy('ap.uid', 'desc');
+  $results = $query->execute()->fetchAll();
+
+  $submissions = mn_ap_get_submissions($nid);
+  $submissions = (array)$submissions;
+
+  $works = db_select('op_artworks', 'op')
+      ->fields('op')
+      ->condition('nid', $nid, '=')
+      ->execute()
+      ->fetchAll();
+
+  $combined = array();
+
+  foreach ($submissions as $submission) {
+    $temp = array();
+    $i = 0;
+    $c = 1;
+    $rating = 0;
+    foreach ($results as $result) {
+      if($result->uid == $submission['uid']) {
+        $rating += $result->rating;
+        $avg = $rating / $c;
+        $temp['avgRating'] = $avg;
+        $temp['voteCount'] = $c;
+        $temp['reviews'][$i] = $result;
+        $i++;
+        $c++;
+      }
+    }
+    $w = 0;
+    foreach ($works as $work) {
+      if($work->uid == $submission['uid']) {
+        $temp['artworks'][$w] = $work;
+        $w++;
+      }
+    }
+    $combined[] = array_merge($submission, (array)$temp);
+  }
+  return $combined;
+}
+
+function get_juror_reviews($nid, $uid) {
+  $query = db_select('op_applications', 'ap');
+  $query->join('op_rating', 'r', 'ap.uid = r.aid');
+  $query->condition('r.uid', $uid, '=')
+      ->condition('ap.nid', $nid, '=')
+      ->condition('r.nid', $nid, '=');
+  $query->fields('ap',array('uid', 'first_name', 'last_name'))
+      ->fields('r',array('rating', 'comment'))
+      ->orderBy('ap.uid', 'desc');
+  $results = $query->execute()->fetchAll();
+
+  $works = db_select('op_artworks', 'op')
+      ->fields('op')
+      ->condition('nid', $nid, '=')
+      ->execute()
+      ->fetchAll();
+
+  $submissions = mn_ap_get_submissions($nid);
+  $submissions = (array)$submissions;
+
+  $combined = array();
+  foreach ($submissions as $submission) {
+    $temp = array();
+    foreach ($results as $result) {
+      if($result->uid == $submission['uid']) {
+        $temp['rating'] = $result->rating;
+        $temp['comment'] = $result->comment;
+      }
+    }
+    $w = 0;
+    foreach ($works as $work) {
+      if($work->uid == $submission['uid']) {
+        $temp['artworks'][$w] = $work;
+        $w++;
+      }
+    }
+
+    $combined[] = array_merge($submission, (array)$temp);
+  }
+  return $combined;
+}
+
+/*
+* Get all fields used in application and all applications for
+*/
+function mn_ap_get_all_for_xls($nid) {
+  //opportunity node
+  $node = node_load($nid);
+  //submissions
+  $submissions = mn_ap_get_submissions($nid);
+  $submissions = (array)$submissions;
+  //reviews
+  $query = db_select('op_applications', 'ap');
+  $query->join('op_rating', 'r', 'ap.uid = r.aid');
+  $query->condition('ap.nid', $nid, '=')
+        ->condition('r.nid', $nid, '=')
+        ->fields('ap',array('uid'))
+        ->fields('r',array('uid', 'rating', 'comment'))
+        ->orderBy('ap.uid', 'desc');
+  $reviews = $query->execute()->fetchAll();
+  //$reviews = (array)$reviews;
+
+  //form areas incuded in opportunity
+  $areas = get_form_areas($node->field_op_required, $node->field_op_optional);
+  //jurors
+  $jurors = mn_op_get_jurors($nid);
+  //$jurors = (array)$jurors;
+
+  //combine reviews with juror names
+  $combined = array();
+  foreach ($submissions as $submission) {
+    $reviewFields = array();
+    $formFields = array();
+    $formFields['uid'] = $submission['uid'];
+    $formFields['first_name'] = $submission['first_name'];
+    $formFields['last_name'] = $submission['last_name'];
+    $formFields['address'] = $submission['address'];
+    $formFields['city'] = $submission['city'];
+    $formFields['state'] = $submission['state'];
+    $formFields['zip'] = $submission['zip'];
+    $formFields['email'] = $submission['email'];
+    in_array('website', $areas) ? $formFields['website'] = $submission['website'] : '';
+    in_array('phone', $areas) ? $formFields['phone'] = $submission['phone'] : '';
+    in_array('gender', $areas) ? $formFields['gender'] = $submission['gender'] : '';
+    in_array('ethnicity', $areas) ? $formFields['ethnicity'] = $submission['ethnicity'] : '';
+    in_array('age', $areas) ? $formFields['age'] = $submission['age'] : '';
+    in_array('county', $areas) ? $formFields['county'] = $submission['county'] : '';
+    in_array('country', $areas) ? $formFields['country'] = $submission['country'] : '';
+    in_array('bio', $areas) ? $formFields['bio'] = $submission['bio'] : '';
+    in_array('statement', $areas) ? $formFields['statement'] = $submission['statement'] : '';
+    in_array('proposal', $areas) ? $formFields['proposal'] = $submission['proposal'] : '';
+    in_array('field1', $areas) ? $formFields['field1'] = $submission['field1'] : '';
+    in_array('field2', $areas) ? $formFields['field2'] = $submission['field2'] : '';
+    in_array('field3', $areas) ? $formFields['field3'] = $submission['field3'] : '';
+    in_array('field4', $areas) ? $formFields['field4'] = $submission['field4'] : '';
+    in_array('upload1', $areas) ? $formFields['upload1'] = $submission['upload1'] : '';
+    in_array('upload2', $areas) ? $formFields['upload2'] = $submission['upload2'] : '';
+    in_array('upload3', $areas) ? $formFields['upload3'] = $submission['upload3'] : '';
+    in_array('upload4', $areas) ? $formFields['upload4'] = $submission['upload4'] : '';
+
+    $j = 0; //juror review count
+    $c = 1; //count for # of reviews used in avg
+    $rating = 0;
+    $avg = 0;
+    foreach ($jurors as $juror) {
+      foreach ($reviews as $review) {
+        if (($review->r_uid == $juror->uid) && ($review->uid == $submission['uid'])) {
+          if ($review->rating != 0) {
+            $rating += $review->rating;
+            $avg = $rating / $c;
+            $c++;
+          }
+          //dpm($juror);
+          $reviewFields['review' . $j] = $juror->name . ', ' . $juror->mail . ', ' . $review->rating . ', ' . $review->comment;
+        } else {
+          $reviewFields['review' . $j] = $juror->name . ', ' . $juror->mail . ', No Review';
+        }
+      }
+      $j++; //increment juror count
+    }
+
+    $reviewFields['avg_rating'] = $avg;
+    $reviewFields['rating_count'] = $c-1;
+
+    $formFields['completed'] = $submission['complete'] == 1 ? 'True' : 'False';
+    $formFields['completed_at'] = $submission['updated_at'];
+    $formFields['accepted'] = $submission['accept'] == 1 ? 'True' : 'False';
+    $formFields['accepted_at'] = $submission['accepted_at'];
+
+    $combined[] = array_merge($formFields, (array)$reviewFields);
+  }
+  return $combined;
+}
+
+function ap_submissions_xls($nid, $title) {
+  $filename = $title . '.xls';
+  $submissions = mn_ap_get_all_for_xls($nid);
+  //$submissions = mn_ap_get_all_reviews($nid);
+  if ($submissions) {
+    $submissionArray[] = array_keys($submissions[0]);
+    foreach ($submissions as $submission) {
+      $submissionArray[] = array_values($submission);
+    }
+  }
+
+  array_to_xls_download($submissionArray, $filename);
+}
+
+function array_to_xls_download($array, $filename = "export.xls", $delimiter="\t") {
+    // open raw memory as file so no temp files needed, you might run out of memory though
+    $f = fopen('php://memory', 'w');
+    // loop over the input array
+    foreach ($array as $line) {
+        // generate xls lines from the inner arrays
+        fputcsv($f, $line, $delimiter, '"');
+    }
+    // rewind the "file" with the xls lines
+    fseek($f, 0);
+    // tell the browser it's going to be a xls file
+    header('Content-Type:   application/vnd.ms-excel; charset=utf-8');
+    // tell the browser we want to save it instead of displaying it
+    header('Content-Disposition: attachement; filename="'.$filename.'";');
+
+    // make php send the generated xls lines to the browser
+    fpassthru($f);
+}
+
+function mn_ap_check_juror($nid, $mail){
+  $juror = 0;
+  $result = db_select('op_jurors', 'op')
+      ->fields('op')
+      ->condition('nid', $nid, '=')
+      ->condition('mail', $mail, '=')
+      ->execute()
+      ->fetchAssoc();
+    if ($result) $juror = 1;
+    return $juror;
+}
+
+function mn_ap_update_ap_status($nid, $uid, $status) {
+    $input['accepted_at'] = date("Y-m-d H:i:s");
+    //toggle the currently set status
+    if ($status == 0) {
+        $input['accept'] = 1;
+    } elseif($status == 1) {
+        $input['accept'] = 0;
+    }
+    db_update('op_applications')
+        ->condition('nid', $nid, '=')
+        ->condition('uid', $uid, '=')
+        ->fields($input)
+        ->execute();
+}
