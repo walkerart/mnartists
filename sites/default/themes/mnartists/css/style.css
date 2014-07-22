@@ -638,8 +638,8 @@ input[type=submit]:hover {
 /* line 27, ../sass/_layout-c.scss */
 .layout-c .pane-mnartist-profiles-mna-user-profile .follow-menu {
   position: absolute;
-  right: 10px;
-  top: 15px;
+  right: 0px;
+  top: 5px;
 }
 /* line 34, ../sass/_layout-c.scss */
 .layout-c .pane-mnartist-profiles-mna-user-profile .follow-menu li .flag-wrapper a {
@@ -648,33 +648,42 @@ input[type=submit]:hover {
   padding: 5px;
   box-sizing: border-box;
 }
-/* line 44, ../sass/_layout-c.scss */
+/* line 42, ../sass/_layout-c.scss */
+.layout-c .pane-mnartist-profiles-mna-user-profile .follow-menu li ul {
+  padding-left: 10px;
+}
+/* line 45, ../sass/_layout-c.scss */
 .layout-c .pane-mnartist-profiles-mna-user-profile .follow-menu li ul li.follow-this {
   padding-left: 0px;
   margin-bottom: 8px;
   border-bottom: 1px solid #fff;
 }
-/* line 54, ../sass/_layout-c.scss */
+/* line 49, ../sass/_layout-c.scss */
+.layout-c .pane-mnartist-profiles-mna-user-profile .follow-menu li ul li.follow-this a {
+  padding-left: 0px;
+  text-transform: uppercase;
+}
+/* line 59, ../sass/_layout-c.scss */
 .layout-c .pane-mnartist-profiles-mna-user-profile .follow-menu li:hover .flag-wrapper a {
   background: #323232;
 }
-/* line 56, ../sass/_layout-c.scss */
+/* line 61, ../sass/_layout-c.scss */
 .layout-c .pane-mnartist-profiles-mna-user-profile .follow-menu li:hover .flag-wrapper a img {
   -webkit-filter: invert(100%);
   filter: invert(100%);
   display: block;
 }
-/* line 63, ../sass/_layout-c.scss */
+/* line 68, ../sass/_layout-c.scss */
 .layout-c .pane-mnartist-profiles-mna-user-profile .follow-menu li:hover ul {
   position: absolute;
-  right: 0px;
-  top: 27px;
+  right: 5px;
+  top: 46px;
   left: auto;
   bottom: auto;
   font-size: 12px;
   font-family: "Apercu Regular", Arial, Helvetica, sans-serif;
 }
-/* line 77, ../sass/_layout-c.scss */
+/* line 82, ../sass/_layout-c.scss */
 .layout-c .pane-mnartist-profiles-mna-user-profile .block-content h1 {
   padding-right: 30px;
 }

@@ -26,8 +26,8 @@
   .pane-mnartist-profiles-mna-user-profile {
       .follow-menu {
           position:absolute;
-          right:10px;
-          top:15px;
+          right:0px;
+          top:5px;
 
           li {
               .flag-wrapper {
@@ -40,11 +40,16 @@
                   }
               }
               ul {
+                  padding-left:10px;
                   li {
                       &.follow-this {
                           padding-left:0px;
                           margin-bottom:8px;
                           border-bottom:1px solid #fff;
+                          a {
+                              padding-left:0px;
+                              text-transform:uppercase;
+                          }
                       }
                   }
               }
@@ -62,8 +67,8 @@
                   }
                   ul {
                       position:absolute;
-                      right:0px;
-                      top:27px;
+                      right:5px;
+                      top:46px;
                       left:auto;
                       bottom:auto;
                       font-size: 12px;
