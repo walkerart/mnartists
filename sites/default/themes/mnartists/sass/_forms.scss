@@ -37,43 +37,37 @@ form {
             border-radius:50%;
             text-overflow:hidden;
             height:21px;
-            width:21px;
-            background: url('../images/icon-form-add.png') no-repeat center center transparent;
-            text-indent:50px;
+            width:75px;
+            background: url('../images/icon-form-withtext-add.png') no-repeat center center transparent;
+            text-indent:200px;
             white-space:nowrap;
             padding:0;
             border:none;outline:none;
-            &:after {
-              content:"Add a file";
-            }
+            overflow:hidden;
         }
         &.remove {
             border-radius:50%;
             text-overflow:hidden;
             height:21px;
-            width:21px;
-            background: url('../images/icon-form-remove.png') no-repeat center center transparent;
-            text-indent:50px;
+            width:69px;
+            background: url('../images/icon-form-withtext-delete.png') no-repeat center center transparent;
+            text-indent:200px;
             white-space:nowrap;
             padding:0;
             border:none;outline:none;
-            &:after {
-              content:"Remove";
-            }
+            overflow:hidden;
         }
         &.edit {
             border-radius:50%;
             text-overflow:hidden;
             height:21px;
-            width:21px;
-            background: url('../images/icon-form-edit.png') no-repeat center center transparent;
-            text-indent:50px;
+            width:75px;
+            background: url('../images/icon-form-withtext-edit.png') no-repeat center center transparent;
+            text-indent:200px;
             white-space:nowrap;
             padding:0;
             border:none;outline:none;
-            &:after {
-              content: "Edit";
-            }
+            overflow:hidden;
         }
     }
 }
