@@ -42,14 +42,11 @@ function mnartist_register_migrate() {
     $html_fragment = array();
     $html_fragment[] = '<h1>User Migration</h1>';
     $html_fragment[] = drupal_render(drupal_get_form('mnartist_register_user_form'));
-    $html_fragment[] = '<div class="no-migrate" style="clear: both;">Placeholder post-form-text, to include <a href="/user/'.$user->uid.'/edit">link to profile edit</a>.</p>';
-
     return implode('', $html_fragment);
 }
 
 function mnartist_register_user_form() {
     global $user;
-
     return array(
         'help' => array(
             '#markup' => 'Enter your old email and password from your existing mnartists.org and click Import.  You will then be brought to your new profile page. After import, click on My Stuff to view and update your profile information and work samples. Forgot your old password? Reset your old password by emailing <a href="mailto:info@mnartists.org">info@mnartists.org</a>.',
@@ -58,22 +55,41 @@ function mnartist_register_user_form() {
             '#type' => 'textfield',
             '#title' => t('Username'),
             '#default_value' => $user->mail,
-            '#required' => true
+            '#required' => false
         ),
         'password' => array(
             '#type' => 'password',
             '#title' => t('Password'),
             '#default_value' => '',
-            '#required' => true
+            '#required' => false
         ),
         'submit' => array(
             '#type' => 'submit',
             '#value' => t('Import')
+        ),
+        'button' => array(
+            '#type' => 'button',
+            '#value' => t('Proceed Without Importing'),
         )
     );
 }
 
 function mnartist_register_user_form_validate($form, &$form_state) {
+
+    global $user;
+
+    if (isset($form_state["values"]["op"]) && $form_state["values"]["op"] === "Proceed Without Importing") {
+        drupal_goto("user/$user->uid/edit");
+        return;
+    }
+
+    if (!isset($form_state["values"]["username"]) || strlen($form_state["values"]["username"]) < 1) {
+        form_set_error('username', 'Username is required.');
+    }
+    if (!isset($form_state["values"]["password"]) || strlen($form_state["values"]["password"]) < 1) {
+        form_set_error('username', 'Password is required.');
+    }
+
     $dbh = ConnectionFactory::getFactory()->getConnection();
 
     $stmt = $dbh->prepare("SELECT * FROM t_user WHERE username = :username AND password = :password");
