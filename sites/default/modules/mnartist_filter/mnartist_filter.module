@@ -19,7 +19,7 @@ function mnartist_filter_menu() {
         'access callback' => 'user_is_logged_in'
     );
     $items['user/saved-filters/delete'] = array(
-        'page callback' => 'mnartist_filter_user_delete',
+        'page callback' => 'mnartist_filter_user_delete_filter',
         'access callback' => 'user_is_logged_in'
     );
 	return $items;
@@ -37,7 +37,7 @@ function mnartist_filter_view()
 	header('Location: ' . $_POST['url']);
 }
 
-function mnartist_filter_user_delete()
+function mnartist_filter_user_delete_filter()
 {
     global $user;
     $url = $_SERVER['REQUEST_URI'];
@@ -54,7 +54,7 @@ function mnartist_filter_user_delete()
             }
         }
     }
-    header('Location: /user/saved-filters');
+    header('Location: /user/saved-filters');// @TODO this should be a drupal_goto
 
 }
 
