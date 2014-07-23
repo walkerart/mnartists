@@ -42,8 +42,14 @@
             if (verbEl) {
                 if (data.flagStatus === 'unflagged') {
                     verbEl.text('Follow');
+                    if (!flagEl.parent().parent().hasClass('follow-menu')) {
+                        flagEl.parent().parent().parent().parent().removeClass('collected');
+                    }
                 } else if (data.flagStatus === 'flagged') {
                     verbEl.text('Unfollow');
+                    if (!flagEl.parent().parent().hasClass('follow-menu')) {
+                        flagEl.parent().parent().parent().parent().addClass('collected');
+                    }
                 }
             }
         });
