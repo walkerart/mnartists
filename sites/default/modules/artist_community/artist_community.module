@@ -707,7 +707,7 @@ function url_query_master($text, $path, $key, $val, $attributes = array()) {
             // against $_GET here to build the on/off querystrings we
             // want.
             if (!isset($query['content']['event_include_past'])) {
-                $new_arr = array('content' => array('event_include_past' => TRUE));
+                $new_arr = array('content' => array('event_include_past' => TRUE, 'event' => TRUE));
                 $no_q = $_GET;
                 unset($no_q['q']);
                 if (isset($no_q['content'])) {
@@ -721,6 +721,9 @@ function url_query_master($text, $path, $key, $val, $attributes = array()) {
                 $no_q = $_GET;
                 unset($no_q['q']);
                 unset($no_q['content']['event_include_past']);
+                if (isset($no_q['content']['event']) && !is_array($no_q['content']['event'])) {
+                    unset($no_q['content']['event']);
+                }
                 $new_arr = $no_q;
             }
             $event_sub_items[] = "<span class='community-content-menu-separator'></span>";
@@ -780,6 +783,14 @@ function _artist_community_build_subitems_for_item ($val, $taxonomy_terms, $face
         }
 
         array_mashinator($query['content'][$val], $term->tid);
+
+        // intervene to treat event_include_past as a special case
+        if ($query['content']['event_include_past'] == 1 &&
+            empty($query['content']['event']) &&
+            count($query['content']) == 2) {
+            $query['content']['event'] = 1;
+        }
+
 
         // Build a sub menu of taxonomy terms
         $sub_items[] = l($term->name." ($facet_count)", 'community', array(
