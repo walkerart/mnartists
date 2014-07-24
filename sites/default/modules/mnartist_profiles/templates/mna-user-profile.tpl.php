@@ -6,7 +6,7 @@
 
     // template for rendering a user's or organization's profile
     $is_org = (isset($fieldset['field_organization_name']));
-    $top_name = ($is_org) ? $fieldset['field_organization_name'][0]['value']['#markup'] : $top_name;
+    $top_name = ($is_org) ? $fieldset['field_organization_name'][0]['value']['#markup'] : mnartist_profiles_collective_or_fullname_or_username($context_user->uid);
     $working_uri = (!is_null($context_user->picture)) ? $context_user->picture->uri : variable_get('user_picture_default');
     $picture_uri = image_style_url('artist-profile-photo', $working_uri);
 
@@ -79,7 +79,7 @@
                         $websites_display = array();
 
                         foreach ($fieldset['field_websites'] as $website) {
-                            $websites_display[] = '<a href="'.$website['value']['#href'].' target="_blank">'.$website['value']['#title'].'</a>';
+                            $websites_display[] = '<a href="'.$website['value']['#href'].'" target="_blank">'.$website['value']['#title'].'</a>';
                         }
                     ?>
                     <?= implode(', ', $websites_display) ?>
