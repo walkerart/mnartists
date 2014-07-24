@@ -540,7 +540,8 @@ function mnartist_profiles_user_view($account, $view_mode, $langcode) {
     if ($user->uid !== $account->uid &&
         !in_array('administrator', array_values($user->roles)) &&
         isset($account->field_user_global_privacy_flag) &&
-        $account->field_user_global_privacy_flag[LANGUAGE_NONE][0]['value'] == '1')  {
+        isset($account->field_user_global_privacy_flag[LANGUAGE_NONE]) &&
+        $account->field_user_global_privacy_flag[LANGUAGE_NONE][0]['value'] === '1')  {
 
         drupal_access_denied();
         drupal_exit();
