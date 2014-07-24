@@ -294,19 +294,19 @@ input[type=submit]:hover {
 @media screen and (max-width: 480px) {
   /* line 10, ../sass/_layout-a.scss */
   .layout-a .panel-col-first {
-    padding-right: 0;
+    padding-right: 0px;
   }
 }
 @media screen and (max-width: 768px) {
   /* line 10, ../sass/_layout-a.scss */
   .layout-a .panel-col-first {
-    padding-right: 0;
+    padding-right: 10px;
   }
 }
 @media screen and (max-width: 960px) {
   /* line 10, ../sass/_layout-a.scss */
   .layout-a .panel-col-first {
-    padding-right: 0;
+    padding-right: 10px;
   }
 }
 /* line 26, ../sass/_layout-a.scss */
@@ -342,73 +342,89 @@ input[type=submit]:hover {
   margin: 0 0 1em 0;
 }
 /* line 55, ../sass/_layout-a.scss */
+.layout-a .panel-col-last.sidebar-right {
+  padding-top: 152px;
+}
+@media screen and (max-width: 480px) {
+  /* line 55, ../sass/_layout-a.scss */
+  .layout-a .panel-col-last.sidebar-right {
+    padding-top: 0px;
+  }
+}
+@media screen and (max-width: 768px) {
+  /* line 55, ../sass/_layout-a.scss */
+  .layout-a .panel-col-last.sidebar-right {
+    padding-top: 0px;
+  }
+}
+/* line 65, ../sass/_layout-a.scss */
 .layout-a .panel-separator {
   margin: 0 0 1em 0;
 }
 
-/* line 63, ../sass/_layout-a.scss */
+/* line 73, ../sass/_layout-a.scss */
 .layout-a .panel-2col .panel-col-top {
   width: 100%;
   float: none;
   clear: both;
   overflow: hidden;
 }
-/* line 69, ../sass/_layout-a.scss */
+/* line 79, ../sass/_layout-a.scss */
 .layout-a .panel-2col .panel-col-top .panel-col-first {
   width: 75%;
   float: left;
   vertical-align: top;
 }
-/* line 74, ../sass/_layout-a.scss */
+/* line 84, ../sass/_layout-a.scss */
 .layout-a .panel-2col .panel-col-top .panel-col-first .inside {
   background: #ccc;
   margin: 0 20px 0 0;
   padding: 10px;
 }
-/* line 80, ../sass/_layout-a.scss */
+/* line 90, ../sass/_layout-a.scss */
 .layout-a .panel-2col .panel-col-top .panel-col-last {
   width: 25%;
   float: left;
   vertical-align: top;
 }
-/* line 85, ../sass/_layout-a.scss */
+/* line 95, ../sass/_layout-a.scss */
 .layout-a .panel-2col .panel-col-top .panel-col-last .inside {
   background: #fff;
   margin: 0;
 }
-/* line 89, ../sass/_layout-a.scss */
+/* line 99, ../sass/_layout-a.scss */
 .layout-a .panel-2col .panel-col-top .panel-col-last .inside .widget {
   background: #fff;
   padding: 10px;
 }
-/* line 96, ../sass/_layout-a.scss */
+/* line 106, ../sass/_layout-a.scss */
 .layout-a .panel-2col .panel-col-full {
   width: 100%;
 }
-/* line 98, ../sass/_layout-a.scss */
+/* line 108, ../sass/_layout-a.scss */
 .layout-a .panel-2col .panel-col-full .inside {
   width: 100%;
   background: #ccc;
   margin: 0;
 }
 
-/* line 108, ../sass/_layout-a.scss */
+/* line 118, ../sass/_layout-a.scss */
 * html .panel-2col.layout-a .panel-col-first {
   width: 74.9%;
 }
 
-/* line 111, ../sass/_layout-a.scss */
+/* line 121, ../sass/_layout-a.scss */
 * html .panel-2col.layout-a .panel-col-last {
   width: 24.9%;
 }
 
 /* insets */
-/* line 115, ../sass/_layout-a.scss */
+/* line 125, ../sass/_layout-a.scss */
 * html .panel-2col.layout-a .panel-col-first .panel-col-first.inset-left {
   width: 74.9%;
 }
 
-/* line 118, ../sass/_layout-a.scss */
+/* line 128, ../sass/_layout-a.scss */
 * html .panel-2col.layout-a .panel-col-first .panel-col-last.inset-right {
   width: 24.9%;
 }

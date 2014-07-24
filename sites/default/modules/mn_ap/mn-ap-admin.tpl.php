@@ -115,8 +115,8 @@
 			</div>
 			<div class="col-sm-6">
 				<?php if($artwork->file_type == 'image') : ?>
-					<a href="<?php  print $GLOBALS['base_url'] . '/sites/default/files/opportunity/'. $artwork->nid . '/' . $artwork->uid . '/' . $artwork->file; ?>" data-toggle="lightbox" data-gallery="multiimages" data-title="<?php echo $artwork->title; ?>" data-parent=".lightbox-parent">
-					<img class="img-responsive" src="<?php  print $GLOBALS['base_url'] . '/sites/default/files/opportunity/'. $artwork->nid . '/' . $artwork->uid . '/' . $artwork->file; ?>">
+					<a href="<?php  print $GLOBALS['base_url'] . '/sites/default/files/opportunity/'. $artwork->nid . '/' . $artwork->uid . '/' . urlencode($artwork->file); ?>" data-toggle="lightbox" data-gallery="multiimages" data-title="<?php echo $artwork->title; ?>" data-parent=".lightbox-parent">
+					<img class="img-responsive" src="<?php  print $GLOBALS['base_url'] . '/sites/default/files/opportunity/'. $artwork->nid . '/' . $artwork->uid . '/' . urlencode($artwork->file); ?>">
 					</a>
 				<?php endif; ?>
 				<?php if($artwork->file_type == 'vimeo') : ?>
@@ -137,6 +137,11 @@
 						}); })(jQuery);', 'inline' )
 					?>
 					<?php $sci++; ?>
+				<?php endif; ?>
+				<?php if ($artwork->file_type == 'document') : ?>
+                	<a href="<?php  print $GLOBALS['base_url'] . '/sites/default/files/opportunity/'. $artwork->nid . '/' . $artwork->uid . '/' . urlencode($artwork->file); ?>" target="_blank">
+                		<div class="img-responsive doc-icon"></div><?php echo urldecode($artwork->file); ?>
+                	</a>
 				<?php endif; ?>
 			</div>
 		</div>
