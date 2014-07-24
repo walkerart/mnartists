@@ -6075,6 +6075,11 @@ body.page-node-edit {
         }
     }
 }
+.cke_wysiwyg_frame {
+    html, body {
+        height:100%;
+    }
+}
 
 /* general layout */
 .inset-left {
@@ -10365,8 +10370,13 @@ div.ctools-modal-content .form-item label {
 }
 .node-type-opportunity {
   .layout-b .main-content .inside .pane-custom.pane-1 {
-    float:none;
-    width:100%;
+    /*float:none;
+    width:100%;*/
+    margin-bottom:2em;
+  }
+  .layout-b .main-content .inside .pane-custom.pane-1 {
+    text-align:left;
+    margin-bottom:2em;
   }
 }
 
