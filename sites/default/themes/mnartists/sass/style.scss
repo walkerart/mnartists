@@ -7566,6 +7566,16 @@ body {
     }
   }
 }
+ul.menu.collected li:hover .star-link img { opacity:1; }
+.pane-mnartist-collections-mna-collections-star ul.menu.collected li:hover,
+.user-feed-message-star ul.menu.collected li:hover,
+.user-profile-slideshow-star ul.menu.collected li:hover {
+  .star-link {
+    img {
+      opacity:1;
+    }
+  }
+}
 .pane-mnartist-collections-mna-collections-star {
   .flag-count {
     display:none!important;
