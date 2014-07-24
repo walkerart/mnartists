@@ -6,7 +6,7 @@
 ?>
 
 <h1>Your Applications</h1>
-<?php if(count($rows['started']) > 0) : ?>
+
 <div class="panel panel-default">
 	<div class="panel-heading"><span class="h4">In Progress</span></div>
 	<table class="table">
@@ -28,11 +28,8 @@
 		</tbody>
 	</table>
 </div>
-<?php endif; ?>
-
-<?php if(count($rows['completed']) > 0) : ?>
 <div class="panel panel-default">
-	<div class="panel-heading"><span class="h4">Completed</span></div>
+	<div class="panel-heading"><span class="h4">Complete</span></div>
 	<table class="table">
 		<thead>
 			<tr>
@@ -52,4 +49,3 @@
 		</tbody>
 	</table>
 </div>
-<?php endif; ?>

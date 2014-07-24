@@ -164,16 +164,6 @@ function ap_submit_form() {
                 file_unmanaged_save_data($thumb_data->data, "$user_folder_path/thumb_$file", $replace = FILE_EXISTS_RENAME);
               }
             }
-            if ($image['type'] == 'document') {
-              $url = file_create_url($image['file']);
-              $data = drupal_http_request($url);
-              if (file_prepare_directory($ap_folder_path, $options = FILE_MODIFY_PERMISSIONS) && file_prepare_directory($user_folder_path, $options = FILE_MODIFY_PERMISSIONS)) {
-                $filepath = str_replace($GLOBALS['base_url'], "", file_create_url($image['file']));
-                $file = drupal_basename($filepath);
-                $work['file'] = $file;
-                file_unmanaged_save_data($data->data, "$user_folder_path/$file", $replace = FILE_EXISTS_RENAME);
-              }
-            }
             // write data to op_artwork table
             db_insert('op_artworks')
               ->fields($work)
@@ -417,44 +407,32 @@ function get_artwork_date($month, $day, $year){
  * get only required information out of field_media for use in template
  */
 function mn_ap_artwork_image_data($artworks) {
-  //dpm($artworks);
   foreach($artworks['und'] as $artwork) {
     if (isset($artwork['uri'])) {
       if (substr($artwork['filemime'], 0, 1) == 'i') {
         $art[] = array(
           'fid' => $artwork['fid'],
           'type' => 'image',
-          'file' => $artwork['uri'],
-          'filename' => $artwork['filename']
+          'file' => $artwork['uri']
         );
       } elseif (substr($artwork['uri'], 0, 1) == 's') {
         $url = explode("/", substr($artwork['uri'], 15));
         $art[] = array(
           'fid' => $artwork['fid'],
           'type' => 'soundcloud',
-          'file' => "http://soundcloud.com/$url[0]/$url[2]",
-          'filename' => $artwork['filename']
+          'file' => "http://soundcloud.com/$url[0]/$url[2]"
         );
       } elseif (substr($artwork['uri'], 0, 1) == 'y') {
         $art[] = array(
           'fid' => $artwork['fid'],
           'type' => 'youtube',
-          'file' => 'http://www.youtube.com/embed/' . substr($artwork['uri'], 12) . '?autoplay=0',
-          'filename' => $artwork['filename']
+          'file' => 'http://www.youtube.com/embed/' . substr($artwork['uri'], 12) . '?autoplay=0'
         );
       } elseif (substr($artwork['uri'], 0, 1) == 'v') {
         $art[] = array(
           'fid' => $artwork['fid'],
           'type' => 'vimeo',
-          'file' => '//player.vimeo.com/video/' . substr($artwork['uri'], 10),
-          'filename' => $artwork['filename']
-        );
-      } elseif ($artwork['type'] == 'document') {
-        $art[] = array(
-          'fid' => $artwork['fid'],
-          'type' => 'document',
-          'file' => $artwork['uri'],
-          'filename' => $artwork['filename']
+          'file' => '//player.vimeo.com/video/' . substr($artwork['uri'], 10)
         );
       }
     }

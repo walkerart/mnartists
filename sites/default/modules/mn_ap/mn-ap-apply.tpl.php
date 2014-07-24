@@ -16,7 +16,7 @@
         }); })(jQuery);', 'inline' );
        drupal_add_js(drupal_get_path('module', 'mn_ap') . '/js/scripts2.js');
 ?>
-<?php dpm($rows); ?>
+<?php //dpm($rows); ?>
 <div class="container">
     <div class="row">
       <div class="col-md-12">
@@ -113,49 +113,49 @@
               </div>
               <?php if (in_array('website', $rows['opportunity']['areas'])) : ?>
               <div class="form-group">
-                  <label class="col-sm-2 control-label" for="website">Website<?php if(is_array($rows['opportunity']['required']) && in_array('website', $rows['opportunity']['required'])) echo '*'; ?></label>
+                  <label class="col-sm-2 control-label" for="website">Website<?php if(in_array('website', $rows['opportunity']['required'])) echo '*'; ?></label>
                   <div class="col-sm-4">
-                      <input type="text" class="form-control" name="website" id="website" value="<?php echo $rows['website']; ?>" <?php if(is_array($rows['opportunity']['required']) && in_array('website', $rows['opportunity']['required'])) echo 'required'; ?>>
+                      <input type="text" class="form-control" name="website" id="website" value="<?php echo $rows['website']; ?>" <?php if(in_array('website', $rows['opportunity']['required'])) echo 'required'; ?>>
                   </div>
               </div>
               <?php endif; ?>
               <?php if (in_array('county', $rows['opportunity']['areas'])) : ?>
               <div class="form-group">
-                  <label class="col-sm-2 control-label" for="county">County<?php if(is_array($rows['opportunity']['required']) && in_array('county', $rows['opportunity']['required'])) echo '*'; ?></label>
+                  <label class="col-sm-2 control-label" for="county">County<?php if(in_array('county', $rows['opportunity']['required'])) echo '*'; ?></label>
                   <div class="col-sm-4">
-                      <input type="text" class="form-control" name="county" id="county" value="<?php echo $rows['county']; ?>" <?php if(is_array($rows['opportunity']['required']) && in_array('county', $rows['opportunity']['required'])) echo 'required'; ?>>
+                      <input type="text" class="form-control" name="county" id="county" value="<?php echo $rows['county']; ?>" <?php if(in_array('county', $rows['opportunity']['required'])) echo 'required'; ?>>
                   </div>
               </div>
               <?php endif; ?>
               <?php if (in_array('country', $rows['opportunity']['areas'])) : ?>
               <div class="form-group">
-                  <label class="col-sm-2 control-label" for="country">Country<?php if(is_array($rows['opportunity']['required']) && in_array('country', $rows['opportunity']['required'])) echo '*'; ?></label>
+                  <label class="col-sm-2 control-label" for="country">Country<?php if(in_array('country', $rows['opportunity']['required'])) echo '*'; ?></label>
                   <div class="col-sm-4">
-                      <input type="text" class="form-control" name="country" id="country" value="<?php echo $rows['country']; ?>" <?php if(is_array($rows['opportunity']['required']) && in_array('country', $rows['opportunity']['required'])) echo 'required'; ?>>
+                      <input type="text" class="form-control" name="country" id="country" value="<?php echo $rows['country']; ?>" <?php if(in_array('country', $rows['opportunity']['required'])) echo 'required'; ?>>
                   </div>
               </div>
               <?php endif; ?>
                <?php if (in_array('gender', $rows['opportunity']['areas'])) : ?>
               <div class="form-group">
-                  <label class="col-sm-2 control-label" for="gender">Gender<?php if(is_array($rows['opportunity']['required']) && in_array('gender', $rows['opportunity']['required'])) echo '*'; ?></label>
+                  <label class="col-sm-2 control-label" for="gender">Gender<?php if(in_array('gender', $rows['opportunity']['required'])) echo '*'; ?></label>
                   <div class="col-sm-4">
-                      <input type="text" class="form-control" name="gender" id="gender" value="<?php echo $rows['gender']; ?>" <?php if(is_array($rows['opportunity']['required']) && in_array('gender', $rows['opportunity']['required'])) echo 'required'; ?>>
+                      <input type="text" class="form-control" name="gender" id="gender" value="<?php echo $rows['gender']; ?>" <?php if(in_array('gender', $rows['opportunity']['required'])) echo 'required'; ?>>
                   </div>
               </div>
               <?php endif; ?>
               <?php if (in_array('ethnicity', $rows['opportunity']['areas'])) : ?>
               <div class="form-group">
-                  <label class="col-sm-2 control-label" for="ethnicity">Ethnicity<?php if(is_array($rows['opportunity']['required']) && in_array('ethnicity', $rows['opportunity']['required'])) echo '*'; ?></label>
+                  <label class="col-sm-2 control-label" for="ethnicity">Ethnicity<?php if(in_array('ethnicity', $rows['opportunity']['required'])) echo '*'; ?></label>
                   <div class="col-sm-4">
-                      <input type="text" class="form-control" name="ethnicity" id="ethnicity" value="<?php echo $rows['ethnicity']; ?>" <?php if(is_array($rows['opportunity']['required']) && in_array('ethnicity', $rows['opportunity']['required'])) echo 'required'; ?>>
+                      <input type="text" class="form-control" name="ethnicity" id="ethnicity" value="<?php echo $rows['ethnicity']; ?>" <?php if(in_array('ethnicity', $rows['opportunity']['required'])) echo 'required'; ?>>
                   </div>
               </div>
               <?php endif; ?>
               <?php if (in_array('age', $rows['opportunity']['areas'])) : ?>
               <div class="form-group">
-                  <label class="col-sm-2 control-label" for="age">Age<?php if(is_array($rows['opportunity']['required']) && in_array('age', $rows['opportunity']['required'])) echo '*'; ?></label>
+                  <label class="col-sm-2 control-label" for="age">Age<?php if(in_array('age', $rows['opportunity']['required'])) echo '*'; ?></label>
                   <div class="col-sm-4">
-                      <input type="text" class="form-control" name="age" id="age" value="<?php echo $rows['age'] != 0 ? $rows['age'] : ''; ?>" <?php if(is_array($rows['opportunity']['required']) && in_array('age', $rows['opportunity']['required'])) echo 'required'; ?>>
+                      <input type="text" class="form-control" name="age" id="age" value="<?php echo $rows['age'] != 0 ? $rows['age'] : ''; ?>" <?php if(in_array('age', $rows['opportunity']['required'])) echo 'required'; ?>>
                   </div>
               </div>
               <?php endif; ?>
@@ -184,7 +184,7 @@
             </div>
             <?php if (in_array('statement', $rows['opportunity']['areas'])) : ?>
             <div class="form-group">
-              <label for="statement">Statement <?php if(is_array($rows['opportunity']['required']) && in_array('statement', $rows['opportunity']['required'])) echo '*'; ?> <div class="small"><?php echo $rows['opportunity']['statement_desc']; ?></div></label>
+              <label for="statement">Statement <?php if(in_array('statement', $rows['opportunity']['required'])) echo '*'; ?> <div class="small"><?php echo $rows['opportunity']['statement_desc']; ?></div></label>
               <div class="form-textarea-wrapper">
                 <textarea class="form-control ap-textarea" id="statementEditor" name="statementEditor"><?php echo $rows['resume_statement']; ?></textarea>
               </div>
@@ -193,7 +193,7 @@
 
             <?php if (in_array('proposal', $rows['opportunity']['areas'])) : ?>
             <div class="form-group">
-              <label for="proposal">Proposal<?php if(is_array($rows['opportunity']['required']) && in_array('proposal', $rows['opportunity']['required'])) echo '*'; ?><div class="small"><?php echo $rows['opportunity']['proposal_desc']; ?></div></label>
+              <label for="proposal">Proposal<?php if(in_array('proposal', $rows['opportunity']['required'])) echo '*'; ?><div class="small"><?php echo $rows['opportunity']['proposal_desc']; ?></div></label>
               <input class="hidden" id="proposalHide" name="proposalHide" value="">
               <div class="form-textarea-wrapper">
                 <textarea class="form-control ap-textarea" id="proposalEditor" name="proposalEditor"><?php echo $rows['proposal']; ?></textarea>
@@ -227,7 +227,7 @@
             </div>
             <?php if (in_array('bio', $rows['opportunity']['areas'])) : ?>
               <div class="form-group">
-                <label for="bio">Bio<?php if(is_array($rows['opportunity']['required']) && in_array('bio', $rows['opportunity']['required'])) echo '*'; ?> <div class="small"><?php echo $rows['opportunity']['bio_desc']; ?></div></label>
+                <label for="bio">Bio<?php if(in_array('bio', $rows['opportunity']['required'])) echo '*'; ?> <div class="small"><?php echo $rows['opportunity']['bio_desc']; ?></div></label>
                 <div class="form-textarea-wrapper">
                   <textarea class="form-control ap-textarea" id="bioEditor" name="bioEditor"><?php echo $rows['resume_bio']; ?></textarea>
                 </div>
@@ -294,10 +294,7 @@
                     <div class="thumbnail ap-artwork-thumbnail">
                       <img class="img-responsive" src="<?php echo image_style_url('large', $image['file']); ?>">
                       <div class="caption">
-                        <div>
-                          <input type="checkbox" class="ap-check" data-id="f<?php echo $image['fid']; ?>" name="artwork['<?php echo $image['fid']; ?>']" value="<?php echo $image['fid']; ?>" data-vid="v<?php echo $artwork['vid']; ?>">
-                          <?php echo $image['filename']; ?>
-                        </div>
+                        <p><input type="checkbox" class="ap-check" data-id="f<?php echo $image['fid']; ?>" name="artwork['<?php echo $image['fid']; ?>']" value="<?php echo $image['fid']; ?>" data-vid="v<?php echo $artwork['vid']; ?>"></p>
                       </div>
                     </div>
                   </div>
@@ -308,10 +305,7 @@
                     <div class="thumbnail ap-artwork-thumbnail">
                       <span id="url<?php echo $sci; // populated by soundcloud embed iframe ?>"></span>
                       <div class="caption">
-                        <div>
-                          <input type="checkbox" class="ap-check" data-id="f<?php echo $image['fid']; ?>" name="artwork['<?php echo $image['fid']; ?>']" value="<?php echo $image['fid']; ?>" data-vid="v<?php echo $artwork['vid']; ?>">
-                          <?php echo $image['filename']; ?>
-                        </div>
+                      <p><input type="checkbox" class="ap-check" data-id="f<?php echo $image['fid']; ?>" name="artwork['<?php echo $image['fid']; ?>']" value="<?php echo $image['fid']; ?>" data-vid="v<?php echo $artwork['vid']; ?>"></p>
                       </div>
                     <?php drupal_add_js(array('soundcloud_url' => array('url' . $sci => $image['file'])), 'setting');
                         drupal_add_js('(function ($) { $(document).ready(function() {
@@ -332,10 +326,7 @@
                     <div class="thumbnail ap-artwork-thumbnail">
                       <iframe class="img-responsive" src="<?php echo $image['file']; ?>" id="ytplayer" frameborder="0"></iframe>
                       <div class="caption">
-                        <div>
-                          <input type="checkbox" class="ap-check" data-id="f<?php echo $image['fid']; ?>" name="artwork['<?php echo $image['fid']; ?>']" value="<?php echo $image['fid']; ?>" data-vid="v<?php echo $artwork['vid']; ?>">
-                          <?php echo $image['filename']; ?>
-                        </div>
+                      <p><input type="checkbox" class="ap-check" data-id="f<?php echo $image['fid']; ?>" name="artwork['<?php echo $image['fid']; ?>']" value="<?php echo $image['fid']; ?>" data-vid="v<?php echo $artwork['vid']; ?>"></p>
                       </div>
                     </div>
                   </div>
@@ -346,24 +337,7 @@
                     <div class="thumbnail ap-artwork-thumbnail">
                       <iframe class="img-responsive" src="<?php echo $image['file']; ?>" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
                       <div class="caption">
-                        <div>
-                          <input type="checkbox" class="ap-check" data-id="f<?php echo $image['fid']; ?>" name="artwork['<?php echo $image['fid']; ?>']" value="<?php echo $image['fid']; ?>" data-vid="v<?php echo $artwork['vid']; ?>">
-                          <?php echo $image['filename']; ?>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <?php elseif ($image['type'] == 'document' && in_array('text', $rows['opportunity']['work_types'])) : ?>
-                  <?php $noneOfTypes = 'false'; ?>
-                  <div class="ap-image col-sm-4">
-                    <div class="thumbnail ap-artwork-thumbnail">
-                      <div class="img-responsive doc-icon"></div>
-                      <div class="caption">
-                        <div>
-                          <input type="checkbox" class="ap-check" data-id="f<?php echo $image['fid']; ?>" name="artwork['<?php echo $image['fid']; ?>']" value="<?php echo $image['fid']; ?>" data-vid="v<?php echo $artwork['vid']; ?>">
-                          <a href="<?php echo file_create_url($image['file']); ?>" target="_blank"><?php echo $image['filename']; ?></a>
-                        </div>
+                      <p><input type="checkbox" class="ap-check" data-id="f<?php echo $image['fid']; ?>" name="artwork['<?php echo $image['fid']; ?>']" value="<?php echo $image['fid']; ?>" data-vid="v<?php echo $artwork['vid']; ?>"></P>
                       </div>
                     </div>
                   </div>
@@ -606,15 +580,6 @@
                     <div class="ap-image ap-artwork col-sm-6" id="<?php echo $image['fid']; ?>">
                       <label for="artwork['<?php echo $image['fid']; ?>']"></label>
                         <iframe class="img-responsive" src="<?php echo $image['file']; ?>" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-                    </div>
-                  </span>
-
-                  <?php elseif ($image['type'] == 'document' && in_array('text', $rows['opportunity']['work_types'])) : ?>
-                  <?php $noneOfTypes = 'false'; ?>
-                  <span class="ap-artwork hidden" id="f<?php echo $image['fid']; ?>">
-                    <div class="ap-image col-sm-4">
-                      <div class="img-responsive doc-icon"></div>
-                      <a href="<?php echo file_create_url($image['file']); ?>" target="_blank"><?php echo $image['filename']; ?></a>
                     </div>
                   </span>
                   <?php endif; ?>

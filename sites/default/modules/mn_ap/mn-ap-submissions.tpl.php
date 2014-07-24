@@ -77,15 +77,8 @@
                             <?php endif; ?>
                             <?php if($artwork->file_type == 'soundcloud') : ?>
                               <li class="sound thumb-list">
-                                <a class="btn btn-default btn-sound" href="<?php echo urlencode($artwork->file); ?>" target="_blank">
+                                <a class="btn btn-default btn-sound" href="<?php echo $artwork->file; ?>" target="_blank">
                                   <span class="glyphicon glyphicon-volume-up"></span> Listen
-                                </a>
-                              </li>
-                            <?php endif; ?>
-                            <?php if ($artwork->file_type == 'document') : ?>
-                              <li class="document thumb-list">
-                                <a class="btn btn-default btn-document" href="<?php  print $GLOBALS['base_url'] . '/sites/default/files/opportunity/'. $artwork->nid . '/' . $artwork->uid . '/' . urlencode($artwork->file); ?>" target="_blank">
-                                  <span class="glyphicon glyphicon-file"></span> Read
                                 </a>
                               </li>
                             <?php endif; ?>

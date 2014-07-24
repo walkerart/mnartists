@@ -19,18 +19,11 @@
 ?>
 
 <div class="container">
-	<br>
-	<div class="row">
-		<a class="prev" href="/applications">Back to Applications</a>
-	</div>
-	<div class="row">
-		<h1><?php echo $rows['opportunity']['title']; ?> Application submited: <?php echo $rows['application']['updated_at']; ?></h1>
-	</div>
 	<div class="row">
       	<div class="col-md-8">
-      		<h3>
+      		<h1>
       			<?php echo $rows['application']['first_name'] . ' ' . $rows['application']['last_name']; ?>
-      		</h3>
+      		</h1>
       		<p><?php echo $rows['application']['address']; ?></br>
       		<?php echo $rows['application']['city'] . ', ' . $rows['application']['state'] . ' ' . $rows['application']['zip']; ?></p>
       		<?php echo (in_array("county", $rows['areas'])) && $rows['application']['county'] != '' ? '<p>County: ' . $rows['application']['country'] . '</p>' : ''; ?>
@@ -77,7 +70,7 @@
 			<div class="col-sm-6">
 				<?php if($artwork->file_type == 'image') : ?>
 					<a href="<?php  print $GLOBALS['base_url'] . '/sites/default/files/opportunity/'. $artwork->nid . '/' . $artwork->uid . '/' . $artwork->file; ?>" data-toggle="lightbox" data-gallery="multiimages" data-title="<?php echo $artwork->title; ?>" data-parent=".lightbox-parent">
-					<img class="img-responsive" src="<?php  print $GLOBALS['base_url'] . '/sites/default/files/opportunity/'. $artwork->nid . '/' . $artwork->uid . '/' . urlencode($artwork->file); ?>">
+					<img class="img-responsive" src="<?php  print $GLOBALS['base_url'] . '/sites/default/files/opportunity/'. $artwork->nid . '/' . $artwork->uid . '/' . $artwork->file; ?>">
 					</a>
 				<?php endif; ?>
 				<?php if($artwork->file_type == 'vimeo') : ?>
@@ -98,11 +91,6 @@
 						}); })(jQuery);', 'inline' )
 					?>
 					<?php $sci++; ?>
-				<?php endif; ?>
-				<?php if ($artwork->file_type == 'document') : ?>
-                	<a href="<?php  print $GLOBALS['base_url'] . '/sites/default/files/opportunity/'. $artwork->nid . '/' . $artwork->uid . '/' . urlencode($artwork->file); ?>" target="_blank">
-                		<div class="img-responsive doc-icon"></div><?php echo urldecode($artwork->file); ?>
-                	</a>
 				<?php endif; ?>
 			</div>
 		</div>

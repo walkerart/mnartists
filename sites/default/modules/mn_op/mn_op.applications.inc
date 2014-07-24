@@ -11,10 +11,6 @@ function mn_op_aps() {
 	$completed = mn_op_get_completed_applications($uid);
 	$started = mn_op_get_started_applications($uid);
 
-	if (! $completed && ! $started ) {
-		return drupal_set_message(t('You have no applications.'), 'error');
-	}
-
 	$rows = array(
 		'completed' => $completed,
 		'started' => $started
@@ -22,6 +18,8 @@ function mn_op_aps() {
 
 	$output = theme('mn_op_applications', array('rows' => $rows));
 	return $output;
+
+	return drupal_set_message(t('You have no applications.'), 'error');
 }
 
 function mn_op_get_completed_applications($uid) {
