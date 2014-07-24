@@ -504,7 +504,7 @@ function _mnartist_register_import_work($work) {
     if (_mnartist_register_validate_field($work['work'], 'statementtext')) {
         $node->body = array(LANGUAGE_NONE => array(array(
             'value' => $work['work']['statementtext'],
-            'summary' => text_summary($work['work']['statementtext']),
+            'summary' => text_summary(_mnartist_register_filter_legacy_tags($work['work']['statementtext'])),
             'format' => 'filtered_html'
         )));
     }
