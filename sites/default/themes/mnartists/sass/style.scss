@@ -6157,6 +6157,14 @@ body.page-node-edit {
         list-style:none;
         display:inline-block;
         margin-right:10px;
+        &:after {
+            content:",";
+        }
+        &:last-child {
+            &:after {
+                content:"";
+            }
+        }
       }
     }
   }
