@@ -2,9 +2,7 @@
     drupal_add_css(drupal_get_path('module', 'mn_ap') . '/css/bootstrap.min.css');
     drupal_add_css(drupal_get_path('module', 'mn_op') . '/css/mn-op.css');
     drupal_add_css(drupal_get_path('module', 'mn_ap') . '/css/styles.css');
-?>
-
-<?php dpm($rows); ?>
+    //dpm($rows); ?>
 <div class="container">
     <div class="row">
         <div class="col-md-12">

@@ -23,6 +23,12 @@ function mn_ap_apply($nid) {
 		return drupal_set_message(t('The applications will not be accepted for this opportunity until: ' . $op_data['start_date']), 'warning');
 	}
 
+	//check if application is onsite
+	dpm($op_data);
+	if (! $op_data['apply_on_site']) {
+		return drupal_set_message(t('The applications for this opportunity are on an external site.'), 'warning');
+	}
+
 	$output = '';
 	//check for exiting application
 	$ap_data = mn_ap_application_data($nid, $uid);
@@ -124,8 +130,8 @@ function mn_ap_opportunity_data($nid) {
 				'image' => isset($row['op_cover_image']['und']['0']) ? $row['op_cover_image']['und']['0'] : '',
 				'email' => isset($row['op_email']['und']['0']['safe_value']) ? $row['op_email']['und']['0']['safe_value'] : '',
 				'website' => isset($row['op_uri']['und']['0']['safe_value']) ? $row['op_uri']['und']['0']['safe_value'] : '',
-				'min_works' => $row['op_min_works']['und']['0']['value'],
-				'max_works' => $row['op_max_works']['und']['0']['value'],
+				'min_works' => isset($row['op_min_works']['und']['0']['value']) ? $row['op_min_works']['und']['0']['value'] : '',
+				'max_works' => isset($row['op_max_works']['und']['0']['value']) ? $row['op_max_works']['und']['0']['value'] : '',
 				'communities' => isset($row['og_group_ref']) ? $row['og_group_ref'] : '',
 				'guidelines' => isset($row['op_guidelines']['und']['0']['safe_value']) ? $row['op_guidelines']['und']['0']['safe_value'] : '',
 				'work_types' => $work_types, //isset($row['op_work_types']['und']) ? $row['op_work_types']['und'] : '',

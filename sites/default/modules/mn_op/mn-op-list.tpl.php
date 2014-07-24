@@ -4,9 +4,7 @@
 	drupal_add_css(drupal_get_path('module', 'mn_op') . '/css/mn-op.css');
 	drupal_add_js(drupal_get_path('module', 'mn_ap') . '/js/jquery.dataTables.js');
 	drupal_add_js(drupal_get_path('module', 'mn_op') . '/js/mn-op.js');
-?>
-
-<?php //dpr($rows); ?>
+	//dpr($rows); ?>
 <h1>Opportunities</h1>
 <table class="table" id="opList">
 	<thead>

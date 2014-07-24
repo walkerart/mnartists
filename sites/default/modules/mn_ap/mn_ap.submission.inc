@@ -8,6 +8,10 @@ function mn_ap_submission($nid) {
 	$node = node_load($nid);
 	$owner = $node->uid == $uid ? 1 : 0;
 	$juror = mn_ap_check_juror($nid, $user->mail);
+	//
+	if($juror) {
+		mn_op_check_juror_registration($nid, $user->mail);
+	}
 
 	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       mn_ap_update_ap_status($nid, $_POST['uid'], $_POST['status']);
