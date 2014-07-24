@@ -6153,12 +6153,25 @@ body.page-node-edit {
     ul.field-items {
       list-style:none;
       padding-left:0px;
+      margin-bottom:0px;
       li {
         list-style:none;
         display:inline-block;
-        margin-right:10px;
+        margin-right:5px;
+        &:after {
+            content:",";
+        }
+        &:last-child {
+            &:after {
+                content:"";
+            }
+        }
       }
     }
+  }
+  .inset-left {
+    font-family: "adobe-text-pro", "Times New Roman", Times, serif;
+    font-weight: normal;
   }
 }
 .content-artwork {
@@ -7567,6 +7580,7 @@ body {
   }
 }
 ul.menu.collected li:hover .star-link img { opacity:1; }
+ul.menu li:hover .star-link img { opacity:7; }
 .pane-mnartist-collections-mna-collections-star ul.menu.collected li:hover,
 .user-feed-message-star ul.menu.collected li:hover,
 .user-profile-slideshow-star ul.menu.collected li:hover {
