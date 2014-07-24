@@ -44,8 +44,8 @@ foreach ($uncollected_result as $row) {
         $context_node = node_load($row->content_id);
         $uncoll_uri = "/node/$context_node->nid";
         if ($context_node->type === 'artwork') {
-            if (isset($context_node->field_media['und'])) {
-                $uncoll_working_uri = $context_node->field_media['und'][0]['uri'];
+            if (isset($context_node->field_media[LANGUAGE_NONE])) {
+                $uncoll_working_uri = $context_node->field_media[LANGUAGE_NONE][0]['uri'];
                 $uncoll_scheme = file_uri_scheme($uncoll_working_uri);
                 switch ($uncoll_scheme) {
                   case ('soundcloud'):
@@ -58,12 +58,15 @@ foreach ($uncollected_result as $row) {
                     break;
                 }
             }
+            $uncoll_image_uri = (!is_null($uncoll_working_uri)) ? image_style_url('medium', $uncoll_working_uri) : '';
         } else {
-            if (isset($context_node->field_images['und'])) {
-                $uncoll_working_uri = $context_node->field_images['und'][0]['uri'];
+            if ($context_node->type === 'opportunity') {
+                $uncoll_working_uri = (isset($context_node->op_cover_image[LANGUAGE_NONE])) ? $context_node->op_cover_image[LANGUAGE_NONE][0]['uri'] : null;
+            } else {
+                $uncoll_working_uri = (isset($context_node->field_images[LANGUAGE_NONE])) ? $context_node->field_images[LANGUAGE_NONE][0]['uri'] : null;
             }
+            $uncoll_image_uri = (!is_null($uncoll_working_uri)) ? image_style_url('collection_thumbnail', $uncoll_working_uri) : '';
         }
-        $uncoll_image_uri = (!is_null($uncoll_working_uri)) ? image_style_url('collection_thumbnail', $uncoll_working_uri) : '';
         ?>
         <li>
           <a class="user-collection-item" href="<?= $uncoll_uri ?>">
