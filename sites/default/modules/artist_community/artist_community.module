@@ -785,7 +785,8 @@ function _artist_community_build_subitems_for_item ($val, $taxonomy_terms, $face
         array_mashinator($query['content'][$val], $term->tid);
 
         // intervene to treat event_include_past as a special case
-        if ($query['content']['event_include_past'] == 1 &&
+        if (isset($query['content']['event_include_past']) &&
+            $query['content']['event_include_past'] == 1 &&
             empty($query['content']['event']) &&
             count($query['content']) == 2) {
             $query['content']['event'] = 1;
