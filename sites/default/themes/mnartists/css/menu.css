@@ -809,9 +809,13 @@ form .description {
   display: block;
 }
 
+/* line 34, ../sass/_forms.scss */
+.form-item .button {
+  border-radius: 0px;
+}
 /* line 36, ../sass/_forms.scss */
 .form-item .button.launcher {
-  border-radius: 50%;
+  border-radius: 0px;
   text-overflow: hidden;
   height: 21px;
   width: 75px;
@@ -825,7 +829,7 @@ form .description {
 }
 /* line 48, ../sass/_forms.scss */
 .form-item .button.remove {
-  border-radius: 50%;
+  border-radius: 0px;
   text-overflow: hidden;
   height: 21px;
   width: 69px;
@@ -839,7 +843,7 @@ form .description {
 }
 /* line 60, ../sass/_forms.scss */
 .form-item .button.edit {
-  border-radius: 50%;
+  border-radius: 0px;
   text-overflow: hidden;
   height: 21px;
   width: 75px;
@@ -3862,4 +3866,11 @@ body.sidebar-show .sidebar-button {
 /* line 727, ../sass/menu.scss */
 :-ms-input-placeholder {
   color: #888;
+}
+
+/* line 732, ../sass/menu.scss */
+.community-content-menu-separator {
+  height: 1px;
+  display: block;
+  background: #ccc;
 }

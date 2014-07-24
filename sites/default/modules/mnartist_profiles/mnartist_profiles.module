@@ -614,7 +614,7 @@ function _mnartist_profile_block_visibility() {
     global $user;
 
     if ((arg(0) == "user" && in_array(arg(2), array("edit", "mailchimp"))) ||
-        (in_array(arg(0), array('opportunities'))) ||
+        (in_array(arg(0), array('opportunities', 'applications'))) ||
         (!user_is_logged_in() && arg(0) == "user" && (is_null(arg(1)) || in_array(arg(1), array("password", "register")))) ||
         (arg(0) == "node" && in_array(arg(1), array("edit", "add"))) ||
         (arg(0) == "node" && in_array(arg(2), array("edit"))) ||
