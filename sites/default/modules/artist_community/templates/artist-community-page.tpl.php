@@ -67,7 +67,11 @@
                             $st_href = $qs.'sort='.$sort_term;
                             ?>
                             <li class="<?= $class ?>">
-                                <a href="?<?= $st_href ?>&sort_direction=ASC"><?= $sort_label ?></a> <a href="?<?= $st_href ?>&sort_direction=DESC">&#8595;</a>
+                                <?php if ($sort_term === 'alpha') { ?>
+                                    <a href="?<?= $st_href ?>&sort_direction=ASC"><?= $sort_label ?></a> <a href="?<?= $st_href ?>&sort_direction=DESC">&#8595;</a>
+                                <?php } else { ?>
+                                    <a href="?<?= $st_href ?>&sort_direction=DESC"><?= $sort_label ?></a> <a href="?<?= $st_href ?>&sort_direction=ASC">&#8595;</a>
+                                <?php } ?>
                             </li>
                     <?php } ?>
                 </ul>

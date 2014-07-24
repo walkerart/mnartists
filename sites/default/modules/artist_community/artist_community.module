@@ -1052,7 +1052,12 @@ function _artist_community_get_items_query ($local_og = null,
     // if we're filtered by events, sort by event start date
     // instead of date created
     if ($filtered_by_events_only) {
-        $solarium_query->addSort(AC_SORT_BY_DATE_FIELD, $solarium_query::SORT_DESC);
+
+        if (!is_null($local_sort_direction) && $local_sort_direction === 'DESC') {
+            $solarium_query->addSort(AC_SORT_BY_DATE_FIELD, $solarium_query::SORT_DESC);
+        } else {
+            $solarium_query->addSort(AC_SORT_BY_DATE_FIELD, $solarium_query::SORT_ASC);
+        }
 
         $solarium_query->setStart(null);
         $solarium_query->setRows(null);
@@ -1086,8 +1091,8 @@ function _artist_community_get_items_query ($local_og = null,
                 $sort_key = 'is_flags_count';
             }
         }
-        if (!is_null($local_sort_direction) && $local_sort_direction === 'DESC') {
-            $sort_direction = $solarium_query::SORT_DESC;
+        if (!is_null($local_sort_direction) && $local_sort_direction === 'ASC') {
+            $sort_direction = $solarium_query::SORT_ASC;
         }
         $solarium_query->addSort($sort_key, $sort_direction);
     }
