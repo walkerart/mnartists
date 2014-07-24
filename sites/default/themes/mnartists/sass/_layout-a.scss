@@ -14,13 +14,13 @@
         padding-right:20px;
 
         @media screen and (max-width: $break-mobile) {
-            padding-right:0;
+            padding-right:0px;
         }
         @media screen and (max-width: $break-tablet) {
-            padding-right:0;
+            padding-right:10px;
         }
         @media screen and (max-width: $break-desktop-small) {
-            padding-right:0;
+            padding-right:10px;
         }
 
         .inside {
@@ -50,6 +50,16 @@
 
         .inside {
             margin: 0 0 1em 0;
+        }
+
+        &.sidebar-right {
+          padding-top:152px;
+          @media screen and (max-width: $break-mobile) {
+              padding-top:0px;
+          }
+          @media screen and (max-width: $break-tablet) {
+              padding-top:0px;
+          }
         }
     }
     .panel-separator {
