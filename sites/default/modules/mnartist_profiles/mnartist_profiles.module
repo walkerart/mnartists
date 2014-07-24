@@ -67,7 +67,7 @@ function mnartist_profiles_ac_fullname($string) {
     $client = new Solarium\Client($solarium_config);
     $solarium_query = $client->createSelect();
     $solarium_query->setQuery("index_id:users");
-    $solarium_query->createFilterQuery('name_query')->setQuery("tm_sort_by_name:$string* OR tm_sort_by_name:$string");
+    $solarium_query->createFilterQuery('name_query')->setQuery(AC_SORT_BY_NAME_FIELD.":$string* OR tm_sort_by_name:$string");
 
     $resultset = $client->select($solarium_query);
     $matches = array();
@@ -1093,7 +1093,7 @@ function mnartist_profiles_entity_property_info_alter(&$info) {
     // creating a common field between users and nodes that an
     // all content search can be sorted on
     $info['user']['bundles']['user']['properties']['sort_by_name'] = array(
-        'type' => 'fulltext',
+        'type' => 'string',
         'label' => t('Sort By Name'),
         'sanitized' => TRUE,
         'getter callback' => 'mnartist_profiles_sort_by_name_callback',
