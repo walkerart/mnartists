@@ -35,7 +35,7 @@ if ($node->type === 'artwork') {
   } else {
     $working_uri = (isset($node->field_images['und'])) ? $node->field_images['und'][0]['uri'] : null;
   }
-  $image_uri = (!is_null($working_uri)) ? image_style_url('square_thumbnail', $working_uri) : '';
+  $image_uri = (!is_null($working_uri)) ? image_style_url('collection_thumbnail', $working_uri) : '';
 }
 
 ?>
