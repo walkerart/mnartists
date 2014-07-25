@@ -104,7 +104,7 @@
                             <?php if($review['accept'] != 1) : ?>
                                   <input class="ap-btn-margin" type="submit" value="Accept">
                             <?php else : ?>
-                                  <input class="ap-btn-margin" type="submit" value="Unaccept">
+                                  <input class="ap-btn-margin" type="submit" value="Reject">
                             <?php endif; ?>
                           </form>
                         </td>

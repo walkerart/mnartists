@@ -761,6 +761,7 @@ function mn_ap_update_ap_status($nid, $uid, $status) {
         $input['accept'] = 1;
     } elseif($status == 1) {
         $input['accept'] = 0;
+        $input['accepted_at'] = NULL;
     }
     db_update('op_applications')
         ->condition('nid', $nid, '=')

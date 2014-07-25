@@ -99,7 +99,7 @@ function mn_op_get_jurors($nid) {
     $i = 0;
     foreach ($result as $juror) {
       if ($juror->uid == 0) {
-        $checkJuror = _check_juror_registration($nid, $juror->mail);
+        $checkJuror = mn_op_check_juror_registration($nid, $juror->mail);
         if (isset($checkJuror)) $result = $checkJuror;
       }
       $i++;
@@ -107,7 +107,7 @@ function mn_op_get_jurors($nid) {
     return $result;
 }
 
-function _check_juror_registration($nid, $mail){
+function mn_op_check_juror_registration($nid, $mail){
   $user = user_load_by_mail($mail);
   if ($user) {
     $juror['uid'] = $user->uid;
