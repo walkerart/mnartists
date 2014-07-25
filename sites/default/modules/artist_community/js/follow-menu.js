@@ -38,18 +38,15 @@
         $(document).bind('flagGlobalAfterLinkUpdate', function(event, data) {
             var flagEl = $(data.link);
             var verbEl = flagEl.siblings('ul').find('li.follow-this a .flag-verb');
+            var parentUlEl = (flagEl.parent().parent().hasClass('follow-menu')) ? flagEl.parent().parent() : flagEl.parent().parent().parent().parent();
 
             if (verbEl) {
                 if (data.flagStatus === 'unflagged') {
                     verbEl.text('Follow');
-                    if (!flagEl.parent().parent().hasClass('follow-menu')) {
-                        flagEl.parent().parent().parent().parent().removeClass('collected');
-                    }
+                    parentUlEl.removeClass('collected');
                 } else if (data.flagStatus === 'flagged') {
                     verbEl.text('Unfollow');
-                    if (!flagEl.parent().parent().hasClass('follow-menu')) {
-                        flagEl.parent().parent().parent().parent().addClass('collected');
-                    }
+                    parentUlEl.addClass('collected');
                 }
             }
         });

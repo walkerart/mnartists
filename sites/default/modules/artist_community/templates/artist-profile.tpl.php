@@ -1,3 +1,10 @@
+<?php
+    $is_flagged = FALSE;
+    $context_user_flag = flag_get_flag('usercollections');
+    if ($context_user_flag && $context_user_flag->is_flagged($user->uid)) {
+        $is_flagged = TRUE;
+    }
+?>
 <div class="artist-profile">
     <h3><?php echo (isset($user->roles[ORG_ROLE])) ? 'Org' : 'Artist' ?></h3>
     <a href="<?php print $url; ?>">
@@ -10,7 +17,7 @@
     </a>
 
     <?php if(user_is_logged_in()) { ?>
-        <ul class="menu follow-menu">
+        <ul class="menu follow-menu<?php if ($is_flagged) { ?> collected<? } ?>">
             <li class="first">
                 <?= flag_create_link('usercollections', $user->uid) ?>
                 <ul>
