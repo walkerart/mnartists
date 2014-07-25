@@ -34,7 +34,7 @@ function mn_ap_submission($nid) {
 		);
 
 	    if($juror) {
-	    	$juror_reviews = get_juror_reviews($nid, $uid);
+	    	$juror_reviews = get_juror_reviews($nid, $uid, $settings['round']);
 	    	$rows['juror_reviews'] = $juror_reviews;
 	    }
 

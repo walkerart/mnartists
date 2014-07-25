@@ -183,7 +183,7 @@ dpm($rows); ?>
                                     <td><?php echo isset($review['comment']) ? $review['comment'] : 'None'; ?></td>
                                     <td><?php echo isset($review['rating']) ? $review['rating'] : 'None'; ?></td>
                                     <td>
-                                      <?php if(isset($review['comment']) && isset($review['rating'])) : ?>
+                                      <?php if(isset($review['comment']) && isset($review['rating']) && $review['round'] == $rows['settings']['round']) : ?>
                                         <a class="btn ap-btn btn-success" href="<?php echo url('opportunity/' . $rows['opportunity']->vid . '/submission/' . $review['uid'], array()); ?>">Reviewed</a>
                                       <?php else : ?>
                                         <a class="btn ap-btn btn-danger" href="<?php echo url('opportunity/' . $rows['opportunity']->vid . '/submission/' . $review['uid'], array()); ?>">Review</a>

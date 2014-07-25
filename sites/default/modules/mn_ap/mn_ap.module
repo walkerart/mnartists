@@ -576,15 +576,16 @@ function mn_ap_get_all_reviews($nid) {
   return $combined;
 }
 
-function get_juror_reviews($nid, $uid) {
+function get_juror_reviews($nid, $uid, $round) {
   $query = db_select('op_applications', 'ap');
   $query->join('op_rating', 'r', 'ap.uid = r.aid');
   $query->condition('r.uid', $uid, '=')
       ->condition('ap.nid', $nid, '=')
-      ->condition('r.nid', $nid, '=')
-      ->orderBy('pid', 'asc');
+      ->condition('r.nid', $nid, '=');
+  if ($round > 1 ) $query->condition('ap.accept', '1', '=');
+  $query->orderBy('pid', 'asc');
   $query->fields('ap',array('uid', 'first_name', 'last_name'))
-      ->fields('r',array('rating', 'comment'));
+      ->fields('r',array('rating', 'comment', 'round'));
   $results = $query->execute()->fetchAll();
 
   $works = db_select('op_artworks', 'op')
@@ -593,27 +594,21 @@ function get_juror_reviews($nid, $uid) {
       ->execute()
       ->fetchAll();
 
-  $submissions = mn_ap_get_submissions($nid);
-  $submissions = (array)$submissions;
-
   $combined = array();
-  foreach ($submissions as $submission) {
+  foreach ($results as $result) {
     $temp = array();
-    foreach ($results as $result) {
-      if($result->uid == $submission['uid']) {
-        $temp['rating'] = $result->rating;
-        $temp['comment'] = $result->comment;
-      }
+    if($result->round != $round) {
+      $temp['rating'] = '';
+      $temp['comment'] = '';
     }
     $w = 0;
     foreach ($works as $work) {
-      if($work->uid == $submission['uid']) {
+      if($work->uid == $result->uid) {
         $temp['artworks'][$w] = $work;
         $w++;
       }
     }
-
-    $combined[] = array_merge($submission, (array)$temp);
+    $combined[] = array_merge((array)$result, (array)$temp);
   }
   return $combined;
 }
@@ -685,24 +680,18 @@ function mn_ap_get_all_for_xls($nid) {
     $avg = 0;
     foreach ($jurors as $juror) {
       foreach ($reviews as $review) {
+        //if review matches juror and review matches applicant - create a review
         if ($review->uid == $juror->uid && $review->aid == $submission['uid']) {
           if ($review->rating != 0) {
-            dpm('match');
-            dpm($review);
-            dpm($juror);
-            dpm($submission);
             $rating += $review->rating;
             $avg = $rating / $c;
             $c++;
-            $reviewFields['review ' . $j] = $juror->name . ', ' . $juror->mail . ', ' . $review->rating . ', ' . $review->comment;
+            $reviewFields['review ' . $j . ' - Round ' . $juror->round] = $juror->name . ', ' . $juror->mail . ', ' . $review->rating . ', ' . $review->comment;
           }
         }
       }
+      //if no review field has been created - make one that says - no review
       if (! $reviewFields['review ' . $j]) {
-        dpm('none');
-        dpm($review);
-        dpm($juror);
-        dpm($submission);
         $reviewFields['review ' . $j] = $juror->name . ', ' . $juror->mail . ', No Review';
       }
       $j++; //increment juror count

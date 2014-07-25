@@ -70,6 +70,7 @@ dpm($rows); ?>
 		</div>
 		<div class="col-md-4">
 			<form class="form form-review" action="<?php echo url('opportunity/' . $rows['application']['nid'] . '/submission/' . $rows['application']['uid'], array()); ?>" method="POST">
+				<input type="hidden" name="round" id="round" value="<?php echo $rows['settings']['round']; ?>">
 				<div class="form-group row">
 					<?php if(array_search( $rows['application']['uid'], $rows['paging'])+1 < count($rows['paging'])) : ?>
 					<input type="hidden" name="next" id="next" value="<?php echo $rows['paging'][array_search($rows['application']['uid'], $rows['paging'])+1]; ?>">

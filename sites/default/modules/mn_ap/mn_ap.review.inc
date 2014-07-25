@@ -5,8 +5,13 @@ function mn_ap_review($nid, $uid) {
 	$node = node_load($nid);
 	$owner = $node->uid == $user->uid ? 1 : 0;
 	$juror = mn_ap_check_juror($nid, $user->mail);
+	$application = mn_ap_application_data($nid, $uid);
+	$areas = get_form_areas($node->field_op_required, $node->field_op_optional);
+	$artworks  = _get_ap_artworks($nid, $uid);
+	$settings = _get_jury_settings($nid);
+	$steps = get_form_steps($node->field_op_required, $node->field_op_optional, $node->op_work_types);
+	$review = _get_ap_review($nid, $user->uid, $uid, $settings['round']);
 
-	$review = _get_ap_review($nid, $user->uid, $uid);
 	$paging = _get_submission_paging($nid);
 	//look for a POST request
 	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -16,12 +21,6 @@ function mn_ap_review($nid, $uid) {
 			$review = _create_ap_review($nid, $user->uid, $uid, $_POST);
 		}
 	}
-
-	$application = mn_ap_application_data($nid, $uid);
-	$areas = get_form_areas($node->field_op_required, $node->field_op_optional);
-	$artworks  = _get_ap_artworks($nid, $uid);
-	$settings = _get_jury_settings($nid);
-	$steps = get_form_steps($node->field_op_required, $node->field_op_optional, $node->op_work_types);
 
 	$rows = array(
 		'opportunity' => (array)$node,
@@ -45,7 +44,7 @@ function mn_ap_review($nid, $uid) {
 	}
 }
 
-function _get_ap_review($nid, $uid, $aid){
+function _get_ap_review($nid, $uid, $aid, $round){
 	$result = db_select('op_rating', 'op')
       ->fields('op')
       ->condition('nid', $nid, '=')
@@ -63,7 +62,8 @@ function _create_ap_review($nid, $uid, $aid, $data) {
 		'aid' => $aid,
 		'uid' => $uid,
 		'rating' => $data['rating'],
-		'comment' => $data['comment']
+		'comment' => $data['comment'],
+		'round' => $data['round']
 		);
 	$result = db_insert('op_rating')
 		->fields($review)
@@ -82,12 +82,14 @@ function _update_ap_review($nid, $uid, $aid, $data) {
 		'aid' => $aid,
 		'uid' => $uid,
 		'rating' => $data['rating'],
-		'comment' => $data['comment']
+		'comment' => $data['comment'],
+		'round' => $data['round']
 		);
 	db_update('op_rating')
       	->condition('nid', $nid, '=')
       	->condition('uid', $uid, '=')
       	->condition('aid', $aid, '=')
+      	->condition('round', $data['round'], '=')
 	    ->fields($review)
 	    ->execute();
 	if (isset($data['next'])) {
