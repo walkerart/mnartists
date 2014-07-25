@@ -26,7 +26,7 @@
         $layout_mode = 4;
     }
 
-    $has_filters = (isset($_GET['og']) || isset($_GET['content']));
+    $has_filters = (isset($_GET['og']) || isset($_GET['content']) || isset($_GET['global_search']));
 ?>
 <div class="panel-2col layout-a">
     <div class="panel-panel panel-col-first main-content<?php if (!$featured_articles_will_show) { ?> has-featured-articles<?php } ?>">
@@ -220,7 +220,10 @@
         </div>
     <?php }
         if ($layout_mode === 4) {
-            print theme('artist_community_page_search_results', array(
+            if (!$has_filters) { ?>
+                <h2 class="unfiltered-results-header">Browse Most Recent</h2>
+            <?php }
+        print theme('artist_community_page_search_results', array(
                 'total_num_results' => $total_num_results,
                 'all_event_results' => $all_event_results,
                 'content' => $content,
