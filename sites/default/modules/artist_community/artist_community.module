@@ -1107,6 +1107,9 @@ function _artist_community_get_items_query ($local_og = null,
     if (isset($_GET['og'])) {
         $facet_query_string = implode(' OR ', array_merge($nodeQueryBuilder, $userQueryBuilder));
         unset($search_facets);
+    } else if (isset($_GET['global_search']) && !empty($_GET['global_search'])) {
+        $facet_query_string = $globalQs;
+        unset($search_facets);
     }
     _set_community_query_facets($facet_query_string);
 
@@ -1209,8 +1212,12 @@ function _set_community_query_facets ($filter_query_string = null) {
 
         // put together the base query string, taking past events
         // into account if needed
-        $base_query_string = (isset($_GET['content']['event_include_past']) && $_GET['content']['event_include_past'] == '1') ? "(index_id:default_node_index AND ((ss_type:article OR ss_type:artwork OR ss_type:opportunity OR ss_type:event))) OR (index_id:users)" : "(index_id:default_node_index AND ((ss_type:article OR ss_type:artwork OR ss_type:opportunity OR (ss_type:event AND ds_field_date\:value:[NOW TO *])))) OR (index_id:users)";
-        $finished_query_string = (!is_null($filter_query_string)) ? "($base_query_string) AND $filter_query_string" : $base_query_string;
+        if (isset($_GET['global_search']) && !empty($_GET['global_search'])) {
+            $finished_query_string = $filter_query_string;
+        } else {
+            $base_query_string = (isset($_GET['content']['event_include_past']) && $_GET['content']['event_include_past'] == '1') ? "(index_id:default_node_index AND ((ss_type:article OR ss_type:artwork OR ss_type:opportunity OR ss_type:event))) OR (index_id:users)" : "(index_id:default_node_index AND ((ss_type:article OR ss_type:artwork OR ss_type:opportunity OR (ss_type:event AND ds_field_date\:value:[NOW TO *])))) OR (index_id:users)";
+            $finished_query_string = (!is_null($filter_query_string)) ? "($base_query_string) AND $filter_query_string" : $base_query_string;
+        }
         $solarium_query->createFilterQuery('community')->setQuery($finished_query_string);
 
         $facetSet = $solarium_query->getFacetSet();
