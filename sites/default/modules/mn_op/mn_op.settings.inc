@@ -9,6 +9,7 @@ function mn_op_settings($nid) {
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (user_access('administrator') || $owner) {
             if(isset($_POST['remove']) && isset($_POST['juror_email'])) {
+                //remove a juror by email address
                 _remove_juror_from_opportunity($nid, $_POST['juror_email']);
             } elseif(isset($_POST['juror_email'])) {
                 //run status update on nid
@@ -47,20 +48,30 @@ function _add_juror_to_opportunity($nid, $mail) {
             'nid' => $nid,
             'mail' => $mail
         );
+
+    //check if Juror has already been added
     $existingJuror = _check_existing_juror($nid, $mail);
+    if($existingJuror) {
+        return drupal_set_message(t('You have already added ' . $mail . ' as a juror.'), 'warning');
+    }
+
     if($user) {
+        //user is already in the system set uid and name fields
         $juror['uid'] = $user->uid;
         $juror['name'] = $user->name;
         if(! $existingJuror) {
             db_insert('op_jurors')
               ->fields($juror)
               ->execute();
+            //send mail to registered user
         }
     } else {
+        //user is not in the system
         if(! $existingJuror) {
             db_insert('op_jurors')
               ->fields($juror)
               ->execute();
+            //send mail to non registered user
         }
     }
 }

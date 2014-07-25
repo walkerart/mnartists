@@ -516,6 +516,7 @@ function mn_ap_get_submissions($nid) {
   $results = db_select('op_applications', 'op')
       ->fields('op')
       ->condition('nid', $nid, '=')
+      ->orderBy('uid', 'asc')
       //->condition('complete', 1, '=')
       ->execute()
       ->fetchAll();
@@ -580,10 +581,10 @@ function get_juror_reviews($nid, $uid) {
   $query->join('op_rating', 'r', 'ap.uid = r.aid');
   $query->condition('r.uid', $uid, '=')
       ->condition('ap.nid', $nid, '=')
-      ->condition('r.nid', $nid, '=');
+      ->condition('r.nid', $nid, '=')
+      ->orderBy('pid', 'asc');
   $query->fields('ap',array('uid', 'first_name', 'last_name'))
-      ->fields('r',array('rating', 'comment'))
-      ->orderBy('ap.uid', 'desc');
+      ->fields('r',array('rating', 'comment'));
   $results = $query->execute()->fetchAll();
 
   $works = db_select('op_artworks', 'op')
@@ -627,13 +628,16 @@ function mn_ap_get_all_for_xls($nid) {
   $submissions = mn_ap_get_submissions($nid);
   $submissions = (array)$submissions;
   //reviews
-  $query = db_select('op_applications', 'ap');
-  $query->join('op_rating', 'r', 'ap.uid = r.aid');
-  $query->condition('ap.nid', $nid, '=')
-        ->condition('r.nid', $nid, '=')
-        ->fields('ap',array('uid'))
-        ->fields('r',array('uid', 'rating', 'comment'))
-        ->orderBy('ap.uid', 'desc');
+  // $query = db_select('op_applications', 'ap');
+  // $query->join('op_rating', 'r', 'ap.uid = r.aid');
+  // $query->condition('ap.nid', $nid, '=')
+  //       ->condition('r.nid', $nid, '=')
+  //       ->fields('ap',array('uid'))
+  //       ->fields('r',array('uid', 'aid', 'rating', 'comment'))
+  //       ->orderBy('ap.uid', 'desc');
+  $query = db_select('op_rating', 'r');
+  $query->condition('r.nid', $nid, '=')
+        ->fields('r');
   $reviews = $query->execute()->fetchAll();
   //$reviews = (array)$reviews;
 
@@ -675,23 +679,31 @@ function mn_ap_get_all_for_xls($nid) {
     in_array('upload3', $areas) ? $formFields['upload3'] = $submission['upload3'] : '';
     in_array('upload4', $areas) ? $formFields['upload4'] = $submission['upload4'] : '';
 
-    $j = 0; //juror review count
+    $j = 1; //juror review count
     $c = 1; //count for # of reviews used in avg
     $rating = 0;
     $avg = 0;
     foreach ($jurors as $juror) {
       foreach ($reviews as $review) {
-        if (($review->r_uid == $juror->uid) && ($review->uid == $submission['uid'])) {
+        if ($review->uid == $juror->uid && $review->aid == $submission['uid']) {
           if ($review->rating != 0) {
+            dpm('match');
+            dpm($review);
+            dpm($juror);
+            dpm($submission);
             $rating += $review->rating;
             $avg = $rating / $c;
             $c++;
+            $reviewFields['review ' . $j] = $juror->name . ', ' . $juror->mail . ', ' . $review->rating . ', ' . $review->comment;
           }
-          //dpm($juror);
-          $reviewFields['review' . $j] = $juror->name . ', ' . $juror->mail . ', ' . $review->rating . ', ' . $review->comment;
-        } else {
-          $reviewFields['review' . $j] = $juror->name . ', ' . $juror->mail . ', No Review';
         }
+      }
+      if (! $reviewFields['review ' . $j]) {
+        dpm('none');
+        dpm($review);
+        dpm($juror);
+        dpm($submission);
+        $reviewFields['review ' . $j] = $juror->name . ', ' . $juror->mail . ', No Review';
       }
       $j++; //increment juror count
     }

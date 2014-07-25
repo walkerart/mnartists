@@ -32,14 +32,16 @@ function mn_ap_submission($nid) {
 			'areas' => $areas,
 			'settings' => $settings,
 		);
-    if($juror) {
-      $juror_reviews = get_juror_reviews($nid, $uid);
-      $rows['juror_reviews'] = $juror_reviews;
-    }
-    if(user_access('administrator')|| $owner ) {
-      $reviews = mn_ap_get_all_reviews($nid);
-      $rows['reviews'] = $reviews;
-    }
+
+	    if($juror) {
+	    	$juror_reviews = get_juror_reviews($nid, $uid);
+	    	$rows['juror_reviews'] = $juror_reviews;
+	    }
+
+	    if(user_access('administrator') || $owner ) {
+	    	$reviews = mn_ap_get_all_reviews($nid);
+	      	$rows['reviews'] = $reviews;
+	    }
 
 		if (user_access('administrator') || $owner) {
 			$jurors = mn_op_get_jurors($nid);

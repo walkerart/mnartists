@@ -68,6 +68,11 @@ function _create_ap_review($nid, $uid, $aid, $data) {
 	$result = db_insert('op_rating')
 		->fields($review)
 		->execute();
+	if (isset($data['next'])) {
+		drupal_goto('opportunity/' . $nid . '/submission/' . $data['next']);
+	} else {
+		drupal_goto('opportunity/'. $nid . '/submissions');
+	}
 	return $review;
 }
 
@@ -98,7 +103,7 @@ function _get_submission_paging($nid) {
       ->fields('op', array('uid'))
       ->condition('nid', $nid, '=')
       ->condition('complete', 1, '=')
-      ->orderBy('uid', 'desc')
+      ->orderBy('uid', 'asc')
       ->execute()
       ->fetchAll();
   $resultArray = array();

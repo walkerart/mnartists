@@ -108,6 +108,7 @@ function mn_op_get_jurors($nid) {
 }
 
 function mn_op_check_juror_registration($nid, $mail){
+  $jurors = '';
   $user = user_load_by_mail($mail);
   if ($user) {
     $juror['uid'] = $user->uid;

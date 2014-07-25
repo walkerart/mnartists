@@ -11,7 +11,7 @@
       drupal_add_js(drupal_get_path('module', 'mn_ap') . '/js/ekko-lightbox.min.js');
       drupal_add_js(drupal_get_path('module', 'mn_ap') . '/js/subScript.js');
 
-//dpm($rows); ?>
+dpm($rows); ?>
 <div class="container">
       <div class="row">
             <div class="col-md-6">
@@ -38,7 +38,7 @@
                     <th>Num. Ratings</th>
                     <th>Avg. Rating</th>
                     <th class="work"></th>
-                    <th></th>
+                    <th>Status</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -102,9 +102,9 @@
                             <input type="hidden" name="status" value="<?php echo $review['accept']; ?>">
                             <input type="hidden" name="uid" value="<?php echo $review['uid']; ?>">
                             <?php if($review['accept'] != 1) : ?>
-                                  <input class="ap-btn-margin" type="submit" value="Accept">
+                                <input class="ap-btn-margin" type="submit" value="Out">
                             <?php else : ?>
-                                  <input class="ap-btn-margin" type="submit" value="Reject">
+                                <input class="ap-btn-margin" type="submit" value="In">
                             <?php endif; ?>
                           </form>
                         </td>
@@ -114,6 +114,11 @@
                 </tbody>
             </table>
         </div>
+      </div>
+      <div class="row">
+          <div class="col-md-12">
+              <a class="prev" href="<?php echo url('opportunities/', array()); ?>">Back to Opportunities</a>
+          </div>
       </div>
       <?php endif; ?>
 
@@ -191,11 +196,10 @@
                   </table>
             </div>
       </div>
+    <div class="row">
+        <div class="col-md-12">
+            <a class="prev" href="<?php echo url('applications/', array()); ?>">Back to Applications</a>
+        </div>
+    </div>
       <?php endif; ?>
-
-      <div class="row">
-            <div class="col-md-12">
-                  <a class="prev" href="<?php echo url('opportunities/', array()); ?>">Back</a>
-            </div>
-      </div>
 </div>

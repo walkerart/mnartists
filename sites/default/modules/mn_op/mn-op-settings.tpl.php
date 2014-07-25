@@ -9,13 +9,16 @@
             <h1><?php echo $rows['opportunity']->title; ?>: Jury Settings</h1>
         </div>
     </div>
-        <form role="form" action="<?php echo url('opportunity/'. $rows['opportunity']->nid .'/jury-settings', array()); ?>" method="POST">
-            <input type="hidden" id="nid" name="nid" value="<?php echo $rows['opportunity']->vid; ?>">
-            <input type="hidden" id="settings" name="settings" value="settings">
-            <div class="form-group row">
-                <div class="form-type-select">
-                    <label class="col-sm-2 control-label">Star Rating Scale</label>
-                    <select class="form-select col-sm-4" name="scale" id="scale">
+    <form role="form" action="<?php echo url('opportunity/'. $rows['opportunity']->nid .'/jury-settings', array()); ?>" method="POST">
+        <input type="hidden" id="nid" name="nid" value="<?php echo $rows['opportunity']->vid; ?>">
+        <input type="hidden" id="settings" name="settings" value="settings">
+        <div class="form-group row">
+            <div class="form-type-select">
+                <div class="col-sm-2">
+                    <label class="control-label">Star Rating Scale</label>
+                </div>
+                <div class="col-sm-6">
+                    <select class="form-select" name="scale" id="scale">
                         <option <?php echo $rows['settings']['scale'] == 1 ? 'selected' : ''; ?>>1</option>
                         <option <?php echo $rows['settings']['scale'] == 2 ? 'selected' : ''; ?>>2</option>
                         <option <?php echo $rows['settings']['scale'] == 3 ? 'selected' : ''; ?>>3</option>
@@ -39,16 +42,22 @@
                     </select>
                 </div>
             </div>
-            <div class="row">
-                <div class="form-group">
-                    <label for="note" class="col-sm-6 control-label">Instructions for comment box.</lable>
-                    <div class="col-sm-12">
+        </div>
+
+        <div class="row">
+            <div class="form-group">
+                <div class="col-sm-2">
+                    <label for="note" class="control-label">Instructions for comment box.</label>
+                </div>
+                <div class="col-sm-6">
                     <textarea class="form-control" rows="3" name="note" id="note"><?php echo isset($rows['settings']['note']) ? $rows['settings']['note'] : ''; ?></textarea>
-                    </div>
                 </div>
             </div>
-            <div class="row">
-                <table class="col-sm-6">
+        </div>
+
+        <div class="row">
+            <div class="col-sm-8">
+                <table>
                     <tbody>
                         <tr>
                             <td>Comments Required:</td>
@@ -60,149 +69,177 @@
             </div>
         </div>
 
-            <div class="row">
-                <div class="col-md-8">
-                <table>
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th>Visible to Jury</th>
-                            <th>Hidden from Jury</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Name</td>
-                            <td><input type="radio" name="name" id="nameVis" value="1" <?php echo ($rows['settings']['name'] == '1' || $rows['settings'] == 0) ? 'checked' : ''; ?>></td>
-                            <td><input type="radio" name="name" id="nameHid" value="0" <?php echo $rows['settings']['name'] == '0' ? 'checked' : ''; ?>></td>
-                        </tr>
-                        <tr>
-                            <td>Address</td>
-                            <td><input type="radio" name="address" id="addressVis" value="1" <?php echo ($rows['settings']['address'] == '1' || $rows['settings'] == 0) ? 'checked' : ''; ?>></td>
-                            <td><input type="radio" name="address" id="addressHid" value="0" <?php echo $rows['settings']['address'] == '0' ? 'checked' : ''; ?>></td>
-                        </tr>
-                        <?php if (in_array('county', $rows['areas'])) : ?>
-                        <tr>
-                            <td>County</td>
-                            <td><input type="radio" name="county" id="countyVis" value="1" <?php echo ($rows['settings']['county'] == '1' || $rows['settings'] == 0) ? 'checked' : ''; ?>></td>
-                            <td><input type="radio" name="county" id="countyHid" value="0" <?php echo $rows['settings']['county'] == '0' ? 'checked' : ''; ?>></td>
-                        </tr>
-                        <?php if (in_array('country', $rows['areas'])) : ?>
-                        <tr>
-                            <td>Country</td>
-                            <td><input type="radio" name="country" id="countryVis" value="1" <?php echo ($rows['settings']['country'] == '1' || $rows['settings'] == 0) ? 'checked' : ''; ?>></td>
-                            <td><input type="radio" name="country" id="countryHid" value="0" <?php echo $rows['settings']['country'] == '0' ? 'checked' : ''; ?>></td>
-                        </tr>
-                        <?php endif; ?>
-                        <?php endif; ?>
-                        <tr>
-                            <td>Phone</td>
-                            <td><input type="radio" name="phone" id="phoneVis" value="1" <?php echo ($rows['settings']['phone'] == '1' || $rows['settings'] == 0) ? 'checked' : ''; ?>></td>
-                            <td><input type="radio" name="phone" id="phoneHid" value="0" <?php echo $rows['settings']['phone'] == '0' ? 'checked' : ''; ?>></td>
-                        </tr>
-                        <tr>
-                            <td>Email</td>
-                            <td><input type="radio" name="email" id="emailVis" value="1" <?php echo ($rows['settings']['email'] == '1' || $rows['settings'] == 0) ? 'checked' : ''; ?>></td>
-                            <td><input type="radio" name="email" id="emailHid" value="0" <?php echo $rows['settings']['email'] == '0' ? 'checked' : ''; ?>></td>
-                        </tr>
-                        <?php if (in_array('website', $rows['areas'])) : ?>
-                        <tr>
-                            <td>Website</td>
-                            <td><input type="radio" name="website" id="websiteVis" value="1" <?php echo ($rows['settings']['website'] == '1' || $rows['settings'] == 0) ? 'checked' : ''; ?>></td>
-                            <td><input type="radio" name="website" id="websiteHid" value="0" <?php echo $rows['settings']['website'] == '0' ? 'checked' : ''; ?>></td>
-                        </tr>
-                        <?php endif; ?>
-                        <?php if (in_array('gender', $rows['areas'])) : ?>
-                        <tr>
-                            <td>Gender</td>
-                            <td><input type="radio" name="gender" id="genderVis" value="1" <?php echo ($rows['settings']['gender'] == '1' || $rows['settings'] == 0) ? 'checked' : ''; ?>></td>
-                            <td><input type="radio" name="gender" id="genderHid" value="0" <?php echo $rows['settings']['website'] == '0' ? 'checked' : ''; ?>></td>
-                        </tr>
-                        <?php endif; ?>
-                        <?php if (in_array('ethnicity', $rows['areas'])) : ?>
-                        <tr>
-                            <td>Ethnicity</td>
-                            <td><input type="radio" name="ethnicity" id="ethnicityVis" value="1" <?php echo ($rows['settings']['ethnicity'] == '1' || $rows['settings'] == 0) ? 'checked' : ''; ?>></td>
-                            <td><input type="radio" name="ethnicity" id="ethnicityHid" value="0" <?php echo $rows['settings']['ethnicity'] == '0' ? 'checked' : ''; ?>></td>
-                        </tr>
-                        <?php endif; ?>
-                        <?php if (in_array('age', $rows['areas'])) : ?>
-                        <tr>
-                            <td>Age</td>
-                            <td><input type="radio" name="age" id="ageVis" value="1" <?php echo ($rows['settings']['age'] == '1' || $rows['settings'] == 0) ? 'checked' : ''; ?>></td>
-                            <td><input type="radio" name="age" id="ageHid" value="0" <?php echo $rows['settings']['age'] == '0' ? 'checked' : ''; ?>></td>
-                        </tr>
-                        <?php endif; ?>
-                        <?php if (in_array('statement', $rows['areas'])) : ?>
-                        <tr>
-                            <td>Statement</td>
-                            <td><input type="radio" name="statement" id="statementVis" value="1" <?php echo ($rows['settings']['statement'] == '1' || $rows['settings'] == 0) ? 'checked' : ''; ?>></td>
-                            <td><input type="radio" name="statement" id="statementHid" value="0" <?php echo $rows['settings']['statement'] == '0' ? 'checked' : ''; ?>></td>
-                        </tr>
-                        <?php endif; ?>
-                        <?php if (in_array('proposal', $rows['areas'])) : ?>
-                        <tr>
-                            <td>Proposal</td>
-                            <td><input type="radio" name="proposal" id="proposalVis" value="1" <?php echo ($rows['settings']['proposal'] == '1' || $rows['settings'] == 0) ? 'checked' : ''; ?>></td>
-                            <td><input type="radio" name="proposal" id="proposalHid" value="0" <?php echo $rows['settings']['proposal'] == '0' ? 'checked' : ''; ?>></td>
-                        </tr>
-                        <?php endif; ?>
-                        <?php if (in_array('bio', $rows['areas'])) : ?>
-                        <tr>
-                            <td>Bio</td>
-                            <td><input type="radio" name="bio" id="bioVis" value="1" <?php echo ($rows['settings']['bio'] == '1' || $rows['settings'] == 0) ? 'checked' : ''; ?>></td>
-                            <td><input type="radio" name="bio" id="bioHid" value="0" <?php echo $rows['settings']['bio'] == '0' ? 'checked' : ''; ?>></td>
-                        </tr>
-                        <?php endif; ?>
-                        <?php if (in_array('resume', $rows['areas'])) : ?>
-                        <tr>
-                            <td>Resume</td>
-                            <td><input type="radio" name="resume" id="resumeVis" value="1" <?php echo ($rows['settings']['resume'] == '1' || $rows['settings'] == 0) ? 'checked' : ''; ?>></td>
-                            <td><input type="radio" name="resume" id="resumeHid" value="0" <?php echo $rows['settings']['resume'] == '0' ? 'checked' : ''; ?>></td>
-                        </tr>
-                        <?php endif; ?>
-                        <?php sort($rows['areas']);
-                        foreach($rows['areas'] as $area) : ?>
-                        <tr>
-                            <?php if(substr($area, 0, 5) == 'field') : ?>
-                                <td>
-                                    <?php   $field = "field_op_custom_".substr($area, -1);
-                                            $title =  $rows['opportunity']->$field;
-                                            echo 'Field: ' . $title['und'][0]['value'];  ?>
-                                </td>
-                                <td><input type="radio" name="<?php echo $area; ?>" id="<?php echo $area; ?>Vis" value="1" <?php echo ($rows['settings'][$area] == '1' || $rows['settings'] == 0) ? 'checked' : ''; ?>></td>
-                                <td><input type="radio" name="<?php echo $area; ?>" id="<?php echo $area; ?>Hid" value="0" <?php echo $rows['settings'][$area] == '0' ? 'checked' : ''; ?>></td>
-                            <?php elseif (substr($area, 0, 6) == 'upload') : ?>
-                                <td>
-                                    <?php   $field = 'field_op_custom_upload_' . substr($area, -1);
-                                            $title =  $rows['opportunity']->$field;
-                                            echo 'Upload: ' . $title['und'][0]['value'];  ?>
-                                </td>
-                                <td><input type="radio" name="<?php echo $area; ?>" id="<?php echo $area; ?>Vis" value="1" <?php echo ($rows['settings'][$area] == '1' || $rows['settings'] == 0)  ? 'checked' : ''; ?>></td>
-                                <td><input type="radio" name="<?php echo $area; ?>" id="<?php echo $area; ?>Hid" value="0" <?php echo $rows['settings'][$area] == '0' ? 'checked' : ''; ?>></td>
-                            <?php endif; ?>
-                        </tr>
-                        <?php endforeach; ?>
 
-                        <?php if(isset($rows['opportunity']->op_work_types['und'])) : ?>
-                        <tr>
-                            <td>Artwork</td>
-                            <td><input type="radio" name="artwork" id="artworkVis" value="1" <?php echo ($rows['settings']['artwork'] == '1' || $rows['settings'] == 0) ? 'checked' : ''; ?>></td>
-                            <td><input type="radio" name="artwork" id="artworkHid" value="0" <?php echo $rows['settings']['artwork'] == '0' ? 'checked' : ''; ?>></td>
-                        </tr>
+        <div class="row">
+            <div class="col-md-8">
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Visible to Jury</th>
+                        <th>Hidden from Jury</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Name</td>
+                        <td><input type="radio" name="name" id="nameVis" value="1" <?php echo ($rows['settings']['name'] == '1' || $rows['settings'] == 0) ? 'checked' : ''; ?>></td>
+                        <td><input type="radio" name="name" id="nameHid" value="0" <?php echo $rows['settings']['name'] == '0' ? 'checked' : ''; ?>></td>
+                    </tr>
+                    <tr>
+                        <td>Address</td>
+                        <td><input type="radio" name="address" id="addressVis" value="1" <?php echo ($rows['settings']['address'] == '1' || $rows['settings'] == 0) ? 'checked' : ''; ?>></td>
+                        <td><input type="radio" name="address" id="addressHid" value="0" <?php echo $rows['settings']['address'] == '0' ? 'checked' : ''; ?>></td>
+                    </tr>
+                    <?php if (in_array('county', $rows['areas'])) : ?>
+                    <tr>
+                        <td>County</td>
+                        <td><input type="radio" name="county" id="countyVis" value="1" <?php echo ($rows['settings']['county'] == '1' || $rows['settings'] == 0) ? 'checked' : ''; ?>></td>
+                        <td><input type="radio" name="county" id="countyHid" value="0" <?php echo $rows['settings']['county'] == '0' ? 'checked' : ''; ?>></td>
+                    </tr>
+                    <?php if (in_array('country', $rows['areas'])) : ?>
+                    <tr>
+                        <td>Country</td>
+                        <td><input type="radio" name="country" id="countryVis" value="1" <?php echo ($rows['settings']['country'] == '1' || $rows['settings'] == 0) ? 'checked' : ''; ?>></td>
+                        <td><input type="radio" name="country" id="countryHid" value="0" <?php echo $rows['settings']['country'] == '0' ? 'checked' : ''; ?>></td>
+                    </tr>
+                    <?php endif; ?>
+                    <?php endif; ?>
+                    <tr>
+                        <td>Phone</td>
+                        <td><input type="radio" name="phone" id="phoneVis" value="1" <?php echo ($rows['settings']['phone'] == '1' || $rows['settings'] == 0) ? 'checked' : ''; ?>></td>
+                        <td><input type="radio" name="phone" id="phoneHid" value="0" <?php echo $rows['settings']['phone'] == '0' ? 'checked' : ''; ?>></td>
+                    </tr>
+                    <tr>
+                        <td>Email</td>
+                        <td><input type="radio" name="email" id="emailVis" value="1" <?php echo ($rows['settings']['email'] == '1' || $rows['settings'] == 0) ? 'checked' : ''; ?>></td>
+                        <td><input type="radio" name="email" id="emailHid" value="0" <?php echo $rows['settings']['email'] == '0' ? 'checked' : ''; ?>></td>
+                    </tr>
+                    <?php if (in_array('website', $rows['areas'])) : ?>
+                    <tr>
+                        <td>Website</td>
+                        <td><input type="radio" name="website" id="websiteVis" value="1" <?php echo ($rows['settings']['website'] == '1' || $rows['settings'] == 0) ? 'checked' : ''; ?>></td>
+                        <td><input type="radio" name="website" id="websiteHid" value="0" <?php echo $rows['settings']['website'] == '0' ? 'checked' : ''; ?>></td>
+                    </tr>
+                    <?php endif; ?>
+                    <?php if (in_array('gender', $rows['areas'])) : ?>
+                    <tr>
+                        <td>Gender</td>
+                        <td><input type="radio" name="gender" id="genderVis" value="1" <?php echo ($rows['settings']['gender'] == '1' || $rows['settings'] == 0) ? 'checked' : ''; ?>></td>
+                        <td><input type="radio" name="gender" id="genderHid" value="0" <?php echo $rows['settings']['website'] == '0' ? 'checked' : ''; ?>></td>
+                    </tr>
+                    <?php endif; ?>
+                    <?php if (in_array('ethnicity', $rows['areas'])) : ?>
+                    <tr>
+                        <td>Ethnicity</td>
+                        <td><input type="radio" name="ethnicity" id="ethnicityVis" value="1" <?php echo ($rows['settings']['ethnicity'] == '1' || $rows['settings'] == 0) ? 'checked' : ''; ?>></td>
+                        <td><input type="radio" name="ethnicity" id="ethnicityHid" value="0" <?php echo $rows['settings']['ethnicity'] == '0' ? 'checked' : ''; ?>></td>
+                    </tr>
+                    <?php endif; ?>
+                    <?php if (in_array('age', $rows['areas'])) : ?>
+                    <tr>
+                        <td>Age</td>
+                        <td><input type="radio" name="age" id="ageVis" value="1" <?php echo ($rows['settings']['age'] == '1' || $rows['settings'] == 0) ? 'checked' : ''; ?>></td>
+                        <td><input type="radio" name="age" id="ageHid" value="0" <?php echo $rows['settings']['age'] == '0' ? 'checked' : ''; ?>></td>
+                    </tr>
+                    <?php endif; ?>
+                    <?php if (in_array('statement', $rows['areas'])) : ?>
+                    <tr>
+                        <td>Statement</td>
+                        <td><input type="radio" name="statement" id="statementVis" value="1" <?php echo ($rows['settings']['statement'] == '1' || $rows['settings'] == 0) ? 'checked' : ''; ?>></td>
+                        <td><input type="radio" name="statement" id="statementHid" value="0" <?php echo $rows['settings']['statement'] == '0' ? 'checked' : ''; ?>></td>
+                    </tr>
+                    <?php endif; ?>
+                    <?php if (in_array('proposal', $rows['areas'])) : ?>
+                    <tr>
+                        <td>Proposal</td>
+                        <td><input type="radio" name="proposal" id="proposalVis" value="1" <?php echo ($rows['settings']['proposal'] == '1' || $rows['settings'] == 0) ? 'checked' : ''; ?>></td>
+                        <td><input type="radio" name="proposal" id="proposalHid" value="0" <?php echo $rows['settings']['proposal'] == '0' ? 'checked' : ''; ?>></td>
+                    </tr>
+                    <?php endif; ?>
+                    <?php if (in_array('bio', $rows['areas'])) : ?>
+                    <tr>
+                        <td>Bio</td>
+                        <td><input type="radio" name="bio" id="bioVis" value="1" <?php echo ($rows['settings']['bio'] == '1' || $rows['settings'] == 0) ? 'checked' : ''; ?>></td>
+                        <td><input type="radio" name="bio" id="bioHid" value="0" <?php echo $rows['settings']['bio'] == '0' ? 'checked' : ''; ?>></td>
+                    </tr>
+                    <?php endif; ?>
+                    <?php if (in_array('resume', $rows['areas'])) : ?>
+                    <tr>
+                        <td>Resume</td>
+                        <td><input type="radio" name="resume" id="resumeVis" value="1" <?php echo ($rows['settings']['resume'] == '1' || $rows['settings'] == 0) ? 'checked' : ''; ?>></td>
+                        <td><input type="radio" name="resume" id="resumeHid" value="0" <?php echo $rows['settings']['resume'] == '0' ? 'checked' : ''; ?>></td>
+                    </tr>
+                    <?php endif; ?>
+                    <?php sort($rows['areas']);
+                    foreach($rows['areas'] as $area) : ?>
+                    <tr>
+                        <?php if(substr($area, 0, 5) == 'field') : ?>
+                            <td>
+                                <?php   $field = "field_op_custom_".substr($area, -1);
+                                        $title =  $rows['opportunity']->$field;
+                                        echo 'Field: ' . $title['und'][0]['value'];  ?>
+                            </td>
+                            <td><input type="radio" name="<?php echo $area; ?>" id="<?php echo $area; ?>Vis" value="1" <?php echo ($rows['settings'][$area] == '1' || $rows['settings'] == 0) ? 'checked' : ''; ?>></td>
+                            <td><input type="radio" name="<?php echo $area; ?>" id="<?php echo $area; ?>Hid" value="0" <?php echo $rows['settings'][$area] == '0' ? 'checked' : ''; ?>></td>
+                        <?php elseif (substr($area, 0, 6) == 'upload') : ?>
+                            <td>
+                                <?php   $field = 'field_op_custom_upload_' . substr($area, -1);
+                                        $title =  $rows['opportunity']->$field;
+                                        echo 'Upload: ' . $title['und'][0]['value'];  ?>
+                            </td>
+                            <td><input type="radio" name="<?php echo $area; ?>" id="<?php echo $area; ?>Vis" value="1" <?php echo ($rows['settings'][$area] == '1' || $rows['settings'] == 0)  ? 'checked' : ''; ?>></td>
+                            <td><input type="radio" name="<?php echo $area; ?>" id="<?php echo $area; ?>Hid" value="0" <?php echo $rows['settings'][$area] == '0' ? 'checked' : ''; ?>></td>
                         <?php endif; ?>
-                    </tbody>
-                </table>
+                    </tr>
+                    <?php endforeach; ?>
+
+                    <?php if(isset($rows['opportunity']->op_work_types['und'])) : ?>
+                    <tr>
+                        <td>Artwork</td>
+                        <td><input type="radio" name="artwork" id="artworkVis" value="1" <?php echo ($rows['settings']['artwork'] == '1' || $rows['settings'] == 0) ? 'checked' : ''; ?>></td>
+                        <td><input type="radio" name="artwork" id="artworkHid" value="0" <?php echo $rows['settings']['artwork'] == '0' ? 'checked' : ''; ?>></td>
+                    </tr>
+                    <?php endif; ?>
+                </tbody>
+            </table>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="form-type-select">
+                <div class="col-sm-2">
+                    <label class="control-label">Jury Round</label>
+                </div>
+                <div class="col-sm-4">
+                    <select class="form-select" name="round" id="round">
+                        <option <?php echo $rows['settings']['round'] == 1 ? 'selected' : ''; ?>>1</option>
+                        <option <?php echo $rows['settings']['round'] == 2 ? 'selected' : ''; ?>>2</option>
+                        <option <?php echo $rows['settings']['round'] == 3 ? 'selected' : ''; ?>>3</option>
+                        <option <?php echo $rows['settings']['round'] == 4 ? 'selected' : ''; ?>>4</option>
+                        <option <?php echo $rows['settings']['round'] == 5 ? 'selected' : ''; ?>>5</option>
+                        <option <?php echo $rows['settings']['round'] == 6 ? 'selected' : ''; ?>>6</option>
+                        <option <?php echo $rows['settings']['round'] == 7 ? 'selected' : ''; ?>>7</option>
+                        <option <?php echo $rows['settings']['round'] == 8 ? 'selected' : ''; ?>>8</option>
+                        <option <?php echo $rows['settings']['round'] == 9 ? 'selected' : ''; ?>>9</option>
+                    </select>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-sm-8">
-                <div class="form-group pull-right">
-                    <input class="btn ap-btn-default" type="submit" value="Submit">
-                </div>
-                </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <p>First round shows all applicants. Later rounds only show applicants that you have selected as "In" the applicant pool.</p>
             </div>
-        </form>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-8">
+            <div class="form-group pull-right">
+                <input class="btn ap-btn-default" type="submit" value="Submit">
+            </div>
+            </div>
+        </div>
+    </form>
     <div class="row">
         <div class="col-sm-8">
             <hr>
@@ -266,7 +303,7 @@
     <?php endif; ?>
     <div class="row">
         <div class="col-md-12">
-            <a class="prev" href="<?php echo url('opportunities/', array()); ?>">Back</a>
+            <a class="prev" href="<?php echo url('opportunities/', array()); ?>">Back to Opportunities</a>
         </div>
     </div>
 </div>
