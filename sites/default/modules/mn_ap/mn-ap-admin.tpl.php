@@ -106,7 +106,11 @@
 			<div class="col-sm-4 artwork-info">
 				<div><em><?php echo $artwork->title; ?></em></div>
             	<div><?php echo $artwork->date; ?></div>
-            	<div><?php foreach(json_decode($artwork->medium) as $medium) { echo $medium . ' '; } ?></div>
+            	<div>
+            		<?php if(json_decode($artwork->medium)) : ?>
+            			<?php foreach(json_decode($artwork->medium) as $medium) { echo $medium . ' '; } ?>
+            		<?php endif; ?>
+            	</div>
             	<div><?php echo $artwork->dimensions; ?></div>
             	<div class="ap-artwork-body"><?php echo $artwork->description; ?></div>
             	<?php if(strlen($artwork->description) > 300) : ?>

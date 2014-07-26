@@ -79,7 +79,7 @@ dpm($rows); ?>
                             <?php endif; ?>
                             <?php if($artwork->file_type == 'soundcloud') : ?>
                               <li class="sound thumb-list">
-                                <a class="btn btn-default btn-sound" href="<?php echo urlencode($artwork->file); ?>" target="_blank">
+                                <a class="btn btn-default btn-sound" href="<?php echo $artwork->file; ?>" target="_blank">
                                   <span class="glyphicon glyphicon-volume-up"></span> Listen
                                 </a>
                               </li>
