@@ -592,16 +592,13 @@ function mn_ap_get_all_reviews($nid) {
 }
 
 function get_juror_reviews($nid, $uid, $round) {
-  $query = db_select('op_applications', 'ap');
-  $query->join('op_rating', 'r', 'ap.uid = r.aid');
-  $query->condition('r.uid', $uid, '=')
-      ->condition('ap.nid', $nid, '=')
-      ->condition('r.nid', $nid, '=');
-  if ($round > 1 ) $query->condition('ap.accept', '1', '=');
-  $query->orderBy('pid', 'asc');
-  $query->fields('ap',array('uid', 'first_name', 'last_name'))
-      ->fields('r',array('rating', 'comment', 'round'));
-  $results = $query->execute()->fetchAll();
+  $results = mn_ap_get_round_submissions($nid, $round);
+
+  $query = db_select('op_rating', 'r');
+  $query->condition('r.nid', $nid, '=');
+  $query->condition('r.round', $round, '=');
+  $query->fields('r');
+  $reviews = $query->execute()->fetchAll();
 
   $works = db_select('op_artworks', 'op')
       ->fields('op')
@@ -612,18 +609,21 @@ function get_juror_reviews($nid, $uid, $round) {
   $combined = array();
   foreach ($results as $result) {
     $temp = array();
-    if($result->round != $round) {
-      $temp['rating'] = '';
-      $temp['comment'] = '';
+    foreach ($reviews as $review) {
+      if($review->aid == $result['uid']) {
+        $temp['rating'] = $review->rating;
+        $temp['comment'] = $review->comment;
+      }
     }
     $w = 0;
     foreach ($works as $work) {
-      if($work->uid == $result->uid) {
+      if($work->uid == $result['uid']) {
         $temp['artworks'][$w] = $work;
         $w++;
       }
     }
     $combined[] = array_merge((array)$result, (array)$temp);
+
   }
   return $combined;
 }
