@@ -38,10 +38,10 @@ function mn_ap_menu() {
     'page arguments' => array(1,3),
     'file' => 'mn_ap.admin.inc',
   );
-  $items['opportunity/%/submissions/%/xls'] = array(
+  $items['opportunity/%/submissions/%/xls/%'] = array(
     'type' => MENU_CALLBACK,
     'page callback' => 'ap_submissions_xls',
-    'page arguments' => array(1,3),
+    'page arguments' => array(1,3,5),
     'access arguments' => array('access content'),
   );
   $items['opportunity/%/apply/submit'] = array(
@@ -527,6 +527,21 @@ function mn_ap_get_submissions($nid) {
   return $resultArray;
 }
 
+function mn_ap_get_round_submissions($nid, $round) {
+  $results = db_select('op_applications', 'op')
+      ->fields('op')
+      ->condition('nid', $nid, '=')
+      ->orderBy('uid', 'asc')
+      ->condition('accept', 1, '=')
+      ->execute()
+      ->fetchAll();
+  $resultArray = array();
+  foreach ($results as $result) {
+    $resultArray[] = (array)$result;
+  }
+  return $resultArray;
+}
+
 function mn_ap_get_all_reviews($nid) {
   $query = db_select('op_applications', 'ap');
   $query->join('op_rating', 'r', 'ap.uid = r.aid');
@@ -616,12 +631,17 @@ function get_juror_reviews($nid, $uid, $round) {
 /*
 * Get all fields used in application and all applications for
 */
-function mn_ap_get_all_for_xls($nid) {
+function mn_ap_get_all_for_xls($nid, $round) {
   //opportunity node
   $node = node_load($nid);
   //submissions
-  $submissions = mn_ap_get_submissions($nid);
-  $submissions = (array)$submissions;
+  if ($round  == 1) {
+    $submissions = mn_ap_get_submissions($nid);
+    $submissions = (array)$submissions;
+  } else {
+    $submissions = mn_ap_get_round_submissions($nid, $round);
+    $submissions = (array)$submissions;
+  }
   //reviews
   // $query = db_select('op_applications', 'ap');
   // $query->join('op_rating', 'r', 'ap.uid = r.aid');
@@ -631,8 +651,9 @@ function mn_ap_get_all_for_xls($nid) {
   //       ->fields('r',array('uid', 'aid', 'rating', 'comment'))
   //       ->orderBy('ap.uid', 'desc');
   $query = db_select('op_rating', 'r');
-  $query->condition('r.nid', $nid, '=')
-        ->fields('r');
+  $query->condition('r.nid', $nid, '=');
+  $query->condition('r.round', $round, '=');
+  $query->fields('r');
   $reviews = $query->execute()->fetchAll();
   //$reviews = (array)$reviews;
 
@@ -686,12 +707,12 @@ function mn_ap_get_all_for_xls($nid) {
             $rating += $review->rating;
             $avg = $rating / $c;
             $c++;
-            $reviewFields['review ' . $j . ' - Round ' . $juror->round] = $juror->name . ', ' . $juror->mail . ', ' . $review->rating . ', ' . $review->comment;
+            $reviewFields['review ' . $j] = $juror->name . ', ' . $juror->mail . ', ' . $review->rating . ', ' . $review->comment;
           }
         }
       }
       //if no review field has been created - make one that says - no review
-      if (! $reviewFields['review ' . $j]) {
+      if (! array_key_exists('review ' . $j, $reviewFields)) {
         $reviewFields['review ' . $j] = $juror->name . ', ' . $juror->mail . ', No Review';
       }
       $j++; //increment juror count
@@ -710,9 +731,9 @@ function mn_ap_get_all_for_xls($nid) {
   return $combined;
 }
 
-function ap_submissions_xls($nid, $title) {
-  $filename = $title . '.xls';
-  $submissions = mn_ap_get_all_for_xls($nid);
+function ap_submissions_xls($nid, $title, $round) {
+  $filename = $title .'-round-' .  $round . '.xls';
+  $submissions = mn_ap_get_all_for_xls($nid, $round);
   //$submissions = mn_ap_get_all_reviews($nid);
   if ($submissions) {
     $submissionArray[] = array_keys($submissions[0]);

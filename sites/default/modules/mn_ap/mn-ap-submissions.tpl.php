@@ -20,11 +20,13 @@ dpm($rows); ?>
       </div>
       <?php //admin table ?>
       <?php if(user_access('administrator') || $rows['owner']) : ?>
+      <?php for ($i = 1; $rows['settings']['round'] >= $i; $i++) : ?>
       <div class="row">
         <div class="col-md-12">
-          <a class="pull-right" href="<?php echo url('opportunity/' . $rows['opportunity']->vid . '/submissions/' . drupal_html_id($rows['opportunity']->title) . '/xls', array()); ?>">Download XLS</a>
+          <a class="pull-right" href="<?php echo url('opportunity/' . $rows['opportunity']->vid . '/submissions/' . str_replace(" ", "-", $rows['opportunity']->title) . '/xls/' . $i, array()); ?>">Download XLS - Round<?php echo $i; ?></a>
         </div>
       </div>
+      <?php endfor; ?>
       <div class="row">
         <div class="col-md-12">
             <table id="subTable" class="table">

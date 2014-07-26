@@ -12,7 +12,7 @@ function mn_ap_review($nid, $uid) {
 	$steps = get_form_steps($node->field_op_required, $node->field_op_optional, $node->op_work_types);
 	$review = _get_ap_review($nid, $user->uid, $uid, $settings['round']);
 
-	$paging = _get_submission_paging($nid);
+	$paging = _get_submission_paging($nid, $settings['round']);
 	//look for a POST request
 	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		if($review) {
@@ -50,6 +50,7 @@ function _get_ap_review($nid, $uid, $aid, $round){
       ->condition('nid', $nid, '=')
       ->condition('uid', $uid, '=')
       ->condition('aid', $aid, '=')
+      ->condition('round', $round, '=')
       ->execute()
       ->fetchAssoc();
     return $result;
@@ -100,14 +101,14 @@ function _update_ap_review($nid, $uid, $aid, $data) {
 	return $review;
 }
 
-function _get_submission_paging($nid) {
-  $results = db_select('op_applications', 'op')
+function _get_submission_paging($nid, $round) {
+  $query = db_select('op_applications', 'op')
       ->fields('op', array('uid'))
       ->condition('nid', $nid, '=')
       ->condition('complete', 1, '=')
-      ->orderBy('uid', 'asc')
-      ->execute()
-      ->fetchAll();
+      ->orderBy('uid', 'asc');
+    if ($round > 1 ) $query->condition('op.accept', '1', '=');
+    $results = $query->execute()->fetchAll();
   $resultArray = array();
   foreach ($results as $result) {
     $resultArray[] = $result->uid;
