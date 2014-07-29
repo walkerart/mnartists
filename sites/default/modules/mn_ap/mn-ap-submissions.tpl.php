@@ -52,44 +52,43 @@ dpm($rows); ?>
                         <td><?php echo $review['first_name']; ?></td>
                         <td><?php echo $review['last_name']; ?></td>
                         <td>
-                          <ul class="list-inline thumb-list">
-                          <div class="lightbox-parent-<?php echo $review['uid']; ?>">
+                          <div class="row table-thumb lightbox-parent-<?php echo $review['uid']; ?>">
                           <?php if(isset($review['artworks'])) : ?>
                           <?php foreach ($review['artworks'] as $artwork) : ?>
                             <?php if($artwork->file_type == 'image') : ?>
-                              <li class="thumb-list">
+                              <span class="thumb-list">
                                 <a href="<?php  print $GLOBALS['base_url'] . '/sites/default/files/opportunity/'. $artwork->nid . '/' . $artwork->uid . '/' . $artwork->file; ?>" data-toggle="lightbox" data-gallery="multiimages" data-title="<?php echo $artwork->title; ?>" data-parent=".lightbox-parent-<?php echo $artwork->uid; ?>">
                                   <img src="<?php  print $GLOBALS['base_url'] . '/sites/default/files/opportunity/'. $artwork->nid . '/' . $artwork->uid . '/thumb_' . $artwork->file; ?>">
                                 </a>
-                              </li>
+                              </span>
                             <?php endif; ?>
                             <?php if($artwork->file_type == 'youtube') : ?>
-                            <li class="video thumb-list">
+                            <span class="thumb-list video">
                               <a href="<?php echo $artwork->file; ?>" data-toggle="lightbox" data-gallery="multiimages" data-title="<?php echo $artwork->title; ?>" data-parent=".lightbox-parent-<?php echo $artwork->uid; ?>">
                                 <img src="http://img.youtube.com/vi/<?php echo substr($artwork->file, -22, 11); ?>/default.jpg" style="width:60px;">
                               </a>
-                            </li>
+                            </span>
                             <?php endif; ?>
                             <?php if($artwork->file_type == 'vimeo') : ?>
-                            <li class="video thumb-list">
+                            <span class="thumb-list video">
                               <a href="<?php echo $artwork->file; ?>" data-toggle="lightbox" data-gallery="multiimages" data-title="<?php echo $artwork->title; ?>" data-parent=".lightbox-parent-<?php echo $artwork->uid; ?>">
                                 <img src="http://placehold.it/60x60" data-vimeo-id="<?php echo substr($artwork->file, -8, 8); ?>" class="small" style="width:60px;">
                               </a>
-                            </li>
+                            </span>
                             <?php endif; ?>
                             <?php if($artwork->file_type == 'soundcloud') : ?>
-                              <li class="sound thumb-list">
+                              <span class="thumb-list sound">
                                 <a class="btn btn-default btn-sound" href="<?php echo $artwork->file; ?>" target="_blank">
                                   <span class="glyphicon glyphicon-volume-up"></span> Listen
                                 </a>
-                              </li>
+                              </span>
                             <?php endif; ?>
                             <?php if ($artwork->file_type == 'document') : ?>
-                              <li class="document thumb-list">
+                              <span class="thumb-list document">
                                 <a class="btn btn-default btn-document" href="<?php  print $GLOBALS['base_url'] . '/sites/default/files/opportunity/'. $artwork->nid . '/' . $artwork->uid . '/' . urlencode($artwork->file); ?>" target="_blank">
                                   <span class="glyphicon glyphicon-file"></span> Read
                                 </a>
-                              </li>
+                              </span>
                             <?php endif; ?>
                           <?php endforeach; ?>
                           <?php endif; ?>
@@ -167,19 +166,45 @@ dpm($rows); ?>
                                     <?php endif; ?>
                                     <?php if($rows['settings']['artwork'] == 1) : ?>
                                     <td>
-                                      <ul class="list-inline thumb-list">
-                                      <div class="jury-parent-<?php echo $review['uid']; ?>">
-                                      <?php foreach ($review['artworks'] as $artwork) : ?>
-                                        <?php if($artwork->file_type == 'image') : ?>
-                                          <li class="thumb-list">
-                                            <a href="<?php  print $GLOBALS['base_url'] . '/sites/default/files/opportunity/'. $artwork->nid . '/' . $artwork->uid . '/' . $artwork->file; ?>" data-toggle="lightbox" data-gallery="multiimages" data-title="<?php echo $artwork->title; ?>" data-parent=".jury-parent-<?php echo $artwork->uid; ?>">
-                                              <img src="<?php  print $GLOBALS['base_url'] . '/sites/default/files/opportunity/'. $artwork->nid . '/' . $artwork->uid . '/thumb_' . $artwork->file; ?>">
+                                      <div class="row table-thumb jury-parent-<?php echo $review['uid']; ?>">
+                                        <?php foreach ($review['artworks'] as $artwork) : ?>
+                                          <?php if($artwork->file_type == 'image') : ?>
+                                            <span class="thumb-list">
+                                              <a href="<?php  print $GLOBALS['base_url'] . '/sites/default/files/opportunity/'. $artwork->nid . '/' . $artwork->uid . '/' . $artwork->file; ?>" data-toggle="lightbox" data-gallery="multiimages" data-title="<?php echo $artwork->title; ?>" data-parent=".jury-parent-<?php echo $artwork->uid; ?>">
+                                                <img src="<?php  print $GLOBALS['base_url'] . '/sites/default/files/opportunity/'. $artwork->nid . '/' . $artwork->uid . '/thumb_' . $artwork->file; ?>">
+                                              </a>
+                                            </span>
+                                          <?php endif; ?>
+                                          <?php if($artwork->file_type == 'youtube') : ?>
+                                          <span class="thumb-list video">
+                                            <a href="<?php echo $artwork->file; ?>" data-toggle="lightbox" data-gallery="multiimages" data-title="<?php echo $artwork->title; ?>" data-parent=".jury-parent-<?php echo $artwork->uid; ?>">
+                                              <img src="http://img.youtube.com/vi/<?php echo substr($artwork->file, -22, 11); ?>/default.jpg" style="width:60px;">
                                             </a>
-                                          </li>
-                                        <?php endif; ?>
-                                      <?php endforeach; ?>
+                                          </span>
+                                          <?php endif; ?>
+                                          <?php if($artwork->file_type == 'vimeo') : ?>
+                                          <span class="thumb-list video">
+                                            <a href="<?php echo $artwork->file; ?>" data-toggle="lightbox" data-gallery="multiimages" data-title="<?php echo $artwork->title; ?>" data-parent=".jury-parent-<?php echo $artwork->uid; ?>">
+                                              <img src="http://placehold.it/60x60" data-vimeo-id="<?php echo substr($artwork->file, -8, 8); ?>" class="small" style="width:60px;">
+                                            </a>
+                                          </span>
+                                          <?php endif; ?>
+                                          <?php if($artwork->file_type == 'soundcloud') : ?>
+                                            <span class="thumb-list sound">
+                                              <a class="btn btn-default btn-sound" href="<?php echo $artwork->file; ?>" target="_blank">
+                                                <span class="glyphicon glyphicon-volume-up"></span> Listen
+                                              </a>
+                                            </span>
+                                          <?php endif; ?>
+                                          <?php if ($artwork->file_type == 'document') : ?>
+                                            <span class="thumb-list document">
+                                              <a class="btn btn-default btn-document" href="<?php  print $GLOBALS['base_url'] . '/sites/default/files/opportunity/'. $artwork->nid . '/' . $artwork->uid . '/' . urlencode($artwork->file); ?>" target="_blank">
+                                                <span class="glyphicon glyphicon-file"></span> Read
+                                              </a>
+                                            </span>
+                                          <?php endif; ?>
+                                        <?php endforeach; ?>
                                       </div>
-                                      </ul>
                                     </td>
                                     <?php endif; ?>
                                     <td><?php echo isset($review['comment']) ? $review['comment'] : 'None'; ?></td>
