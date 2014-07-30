@@ -124,12 +124,16 @@ jQuery(document).ready(function () {
                     var testHeight = item.height();
                     if (child.hasClass('file-video-vimeo')) {
                         if (typeof Froogaloop == 'undefined') addJavascript('http://a.vimeocdn.com/js/froogaloop2.min.js', 'head');
-                    }
-                    //if (child.hasClass('file-video-youtube')) {
-                    //    if (typeof YT == 'undefined') addJavascript('//www.youtube.com/iframe_api', 'head');
-                    //}
-                    if (child.hasClass('file-audio-soundcloud')) {
+                    } else if (child.hasClass('file-audio-soundcloud')) {
                         if (typeof SC == 'undefined') addJavascript('https://w.soundcloud.com/player/api.js', 'head');
+                    } else {
+                        var images = item.find('img');
+                        if (images.length > 0) {
+                            var firstImageEl = jQuery(images[0]);
+                            var naturalHeight = parseInt(firstImageEl.attr('height'));
+                            var setMaxHeight = parseInt(firstImageEl.css('max-height'));
+                            testHeight = (naturalHeight < setMaxHeight) ? naturalHeight : setMaxHeight;
+                        }
                     }
                     maxHeight = testHeight > maxHeight ? testHeight : maxHeight;
                 });
