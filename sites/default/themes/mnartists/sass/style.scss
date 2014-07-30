@@ -10167,6 +10167,14 @@ div.warning {
     max-width:90%;
     font-size:14px;
   }
+  .pane-custon.pane-1 {
+    @media screen and (max-width: $break-mobile) {
+      margin-bottom:5px;
+      display:block;
+      width:100%;
+      clear:both;
+    }
+  }
   .pane-node-author {
     font-size:13px;
     width:45%;

@@ -14921,19 +14921,28 @@ div.warning {
   max-width: 90%;
   font-size: 14px;
 }
-/* line 10170, ../sass/style.scss */
+@media screen and (max-width: 480px) {
+  /* line 10170, ../sass/style.scss */
+  .article-page .pane-custon.pane-1 {
+    margin-bottom: 5px;
+    display: block;
+    width: 100%;
+    clear: both;
+  }
+}
+/* line 10178, ../sass/style.scss */
 .article-page .pane-node-author {
   font-size: 13px;
   width: 45%;
   float: left;
   margin-bottom: 20px;
 }
-/* line 10175, ../sass/style.scss */
+/* line 10183, ../sass/style.scss */
 .article-page .pane-node-author a {
   text-decoration: none;
 }
 @media screen and (max-width: 480px) {
-  /* line 10170, ../sass/style.scss */
+  /* line 10178, ../sass/style.scss */
   .article-page .pane-node-author {
     margin-bottom: 5px;
     display: block;
@@ -14941,12 +14950,12 @@ div.warning {
     clear: both;
   }
 }
-/* line 10185, ../sass/style.scss */
+/* line 10193, ../sass/style.scss */
 .article-page .pane-custom {
   width: 35%;
   float: left;
 }
-/* line 10189, ../sass/style.scss */
+/* line 10197, ../sass/style.scss */
 .article-page .pane-node-created {
   font-size: 13px;
   width: 55%;
@@ -14955,7 +14964,7 @@ div.warning {
   margin-bottom: 20px;
 }
 @media screen and (max-width: 480px) {
-  /* line 10189, ../sass/style.scss */
+  /* line 10197, ../sass/style.scss */
   .article-page .pane-node-created {
     text-align: left;
     clear: both;
@@ -14963,18 +14972,18 @@ div.warning {
     display: block;
   }
 }
-/* line 10205, ../sass/style.scss */
+/* line 10213, ../sass/style.scss */
 .article-page .pane-node-field-images .field-label {
   display: none;
 }
-/* line 10209, ../sass/style.scss */
+/* line 10217, ../sass/style.scss */
 .article-page .field-name-field-body {
   font-size: 17px;
   font-family: "adobe-text-pro", "Times New Roman", Times, serif;
   line-height: 1.6em;
 }
 
-/* line 10218, ../sass/style.scss */
+/* line 10226, ../sass/style.scss */
 .edit-button a {
   border-radius: 0px;
   color: #fff;
@@ -14987,60 +14996,60 @@ div.warning {
   margin: 0 0 15px 15px;
 }
 
-/* line 10233, ../sass/style.scss */
+/* line 10241, ../sass/style.scss */
 .pane-comment-reply-form .item-inside {
   display: none;
 }
 
-/* line 10241, ../sass/style.scss */
+/* line 10249, ../sass/style.scss */
 #modalBackdrop {
   background: rgba(0, 0, 0, 0.6) !important;
 }
 
-/* line 10244, ../sass/style.scss */
+/* line 10252, ../sass/style.scss */
 div.ctools-modal-content .form-item label {
   width: 33%;
 }
 
-/* line 10250, ../sass/style.scss */
+/* line 10258, ../sass/style.scss */
 #modalContent .ctools-modal-content {
   padding: 0px!important;
   border: none!important;
   margin: 0px;
   background: #f2f2f2;
 }
-/* line 10256, ../sass/style.scss */
+/* line 10264, ../sass/style.scss */
 #modalContent .ctools-modal-content .modal-header {
   padding: 10px;
   background: none;
 }
-/* line 10260, ../sass/style.scss */
+/* line 10268, ../sass/style.scss */
 #modalContent .ctools-modal-content .modal-header .modal-title {
   color: #222;
 }
-/* line 10263, ../sass/style.scss */
+/* line 10271, ../sass/style.scss */
 #modalContent .ctools-modal-content .modal-header .close {
   color: #888;
   font-size: 11px;
 }
-/* line 10267, ../sass/style.scss */
+/* line 10275, ../sass/style.scss */
 #modalContent .ctools-modal-content .modal-header .close img {
   margin-left: 5px;
   vertical-align: middle;
   display: none;
 }
-/* line 10276, ../sass/style.scss */
+/* line 10284, ../sass/style.scss */
 #modalContent .ctools-modal-content #modal-content .form-actions input[type=submit] {
   margin-top: 0px;
 }
-/* line 10279, ../sass/style.scss */
+/* line 10287, ../sass/style.scss */
 #modalContent .ctools-modal-content #modal-content .form-actions .button {
   font-family: "Apercu Regular", Arial, Helvetica, sans-serif;
   border: none;
 }
 
 /* banner animation h1 styles */
-/* line 10289, ../sass/style.scss */
+/* line 10297, ../sass/style.scss */
 .organization-header h1 {
   font-size: 20px;
   line-height: 24px;
@@ -15048,21 +15057,21 @@ div.ctools-modal-content .form-item label {
 }
 
 @media (min-width: 680px) {
-  /* line 10295, ../sass/style.scss */
+  /* line 10303, ../sass/style.scss */
   .organization-header h1 {
     font-size: 37px;
     line-height: 40px;
   }
 }
 @media (min-width: 920px) {
-  /* line 10301, ../sass/style.scss */
+  /* line 10309, ../sass/style.scss */
   .organization-header h1 {
     font-size: 45px;
     line-height: 48px;
   }
 }
 /* more link */
-/* line 10308, ../sass/style.scss */
+/* line 10316, ../sass/style.scss */
 .user-profile-slideshow-artwork-body-more-link {
   background: url("../images/icon-more-chevron.png") no-repeat right center transparent;
   padding-right: 16px;
@@ -15070,16 +15079,16 @@ div.ctools-modal-content .form-item label {
   padding-left: 5px;
 }
 
-/* line 10315, ../sass/style.scss */
+/* line 10323, ../sass/style.scss */
 .pane-mnartist-profiles-mna-all-artworks-link .block-inner .block-content {
   background: none;
 }
-/* line 10318, ../sass/style.scss */
+/* line 10326, ../sass/style.scss */
 .pane-mnartist-profiles-mna-all-artworks-link .block-inner .block-content .all-artworks {
   background: #fff;
   padding: 0 10px;
 }
-/* line 10321, ../sass/style.scss */
+/* line 10329, ../sass/style.scss */
 .pane-mnartist-profiles-mna-all-artworks-link .block-inner .block-content .all-artworks a {
   text-transform: uppercase;
   white-space: nowrap;
@@ -15094,44 +15103,44 @@ div.ctools-modal-content .form-item label {
   margin-bottom: 5px;
 }
 
-/* line 10338, ../sass/style.scss */
+/* line 10346, ../sass/style.scss */
 .form-required {
   color: #f00!important;
 }
 
 @media screen and (max-width: 768px) {
-  /* line 10343, ../sass/style.scss */
+  /* line 10351, ../sass/style.scss */
   .event-sidebar {
     max-width: 300px;
   }
 }
-/* line 10347, ../sass/style.scss */
+/* line 10355, ../sass/style.scss */
 .event-sidebar .inside {
   padding-left: 20px;
 }
 @media screen and (max-width: 480px) {
-  /* line 10347, ../sass/style.scss */
+  /* line 10355, ../sass/style.scss */
   .event-sidebar .inside {
     padding-left: 0px;
   }
 }
 @media screen and (max-width: 768px) {
-  /* line 10347, ../sass/style.scss */
+  /* line 10355, ../sass/style.scss */
   .event-sidebar .inside {
     padding-left: 0px;
   }
 }
-/* line 10355, ../sass/style.scss */
+/* line 10363, ../sass/style.scss */
 .event-sidebar .inside h2 {
   height: 15px;
   line-height: 12px;
 }
-/* line 10360, ../sass/style.scss */
+/* line 10368, ../sass/style.scss */
 .event-sidebar .inside .pane-node-author .widget-content {
   padding: 10px;
   background: none;
 }
-/* line 10365, ../sass/style.scss */
+/* line 10373, ../sass/style.scss */
 .event-sidebar .inside .pane-node-author .widget-content a img {
   display: block;
   width: 80%;
@@ -15139,7 +15148,7 @@ div.ctools-modal-content .form-item label {
   border-radius: 50%;
   margin: 0px auto 20px auto;
 }
-/* line 10372, ../sass/style.scss */
+/* line 10380, ../sass/style.scss */
 .event-sidebar .inside .pane-node-author .widget-content a span {
   display: block;
   font-family: "adobe-text-pro", "Times New Roman", Times, serif;
@@ -15148,21 +15157,21 @@ div.ctools-modal-content .form-item label {
   text-align: center;
 }
 
-/* line 10387, ../sass/style.scss */
+/* line 10395, ../sass/style.scss */
 .node-type-opportunity .inside h2 {
   height: 15px;
   line-height: 12px;
 }
-/* line 10391, ../sass/style.scss */
+/* line 10399, ../sass/style.scss */
 .node-type-opportunity .inside .pane-node-author {
   width: 100%;
 }
-/* line 10394, ../sass/style.scss */
+/* line 10402, ../sass/style.scss */
 .node-type-opportunity .inside .pane-node-author .widget-content {
   padding: 10px;
   background: none;
 }
-/* line 10399, ../sass/style.scss */
+/* line 10407, ../sass/style.scss */
 .node-type-opportunity .inside .pane-node-author .widget-content a img {
   display: block;
   width: 80%;
@@ -15170,7 +15179,7 @@ div.ctools-modal-content .form-item label {
   border-radius: 50%;
   margin: 0px auto 20px auto;
 }
-/* line 10406, ../sass/style.scss */
+/* line 10414, ../sass/style.scss */
 .node-type-opportunity .inside .pane-node-author .widget-content a span {
   display: block;
   font-family: "adobe-text-pro", "Times New Roman", Times, serif;
@@ -15179,28 +15188,28 @@ div.ctools-modal-content .form-item label {
   text-align: center;
 }
 
-/* line 10420, ../sass/style.scss */
+/* line 10428, ../sass/style.scss */
 .node-type-opportunity .edit-button {
   margin-top: 20px;
 }
-/* line 10422, ../sass/style.scss */
+/* line 10430, ../sass/style.scss */
 .node-type-opportunity .edit-button a {
   color: #fff!important;
   margin-left: 0px;
 }
 
-/* line 10429, ../sass/style.scss */
+/* line 10437, ../sass/style.scss */
 .node-type-opportunity .layout-b .main-content .inside .pane-custom.pane-1 {
   /*float:none;
   width:100%;*/
   margin-bottom: 2em;
 }
-/* line 10434, ../sass/style.scss */
+/* line 10442, ../sass/style.scss */
 .node-type-opportunity .layout-b .main-content .inside .pane-custom.pane-1 {
   text-align: left;
   margin-bottom: 2em;
 }
-/* line 10438, ../sass/style.scss */
+/* line 10446, ../sass/style.scss */
 .node-type-opportunity .pane-custom.pane-3 {
   clear: both;
   float: none;
@@ -15211,18 +15220,18 @@ div.ctools-modal-content .form-item label {
 }
 
 /* weird */
-/* line 10449, ../sass/style.scss */
+/* line 10457, ../sass/style.scss */
 .pane-mnartist-article-other-articles-by-this-author {
   float: none;
   clear: both;
 }
 
-/* line 10454, ../sass/style.scss */
+/* line 10462, ../sass/style.scss */
 .node-type-artwork .slidesjs-container {
   min-height: 200px;
 }
 
-/* line 10459, ../sass/style.scss */
+/* line 10467, ../sass/style.scss */
 .page-file.page-file-edit .sidebar-button {
   display: none;
 }
