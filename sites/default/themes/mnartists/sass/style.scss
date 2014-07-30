@@ -10093,6 +10093,11 @@ div.warning {
       text-decoration:underline;
     }
   }
+  .pane-custom {
+    .panel-node-author {
+
+    }
+  }
   .field-type-image {
     margin-bottom:1.5em;
 
@@ -10172,6 +10177,9 @@ div.warning {
     }
     @media screen and (max-width: $break-mobile) {
       margin-bottom:5px;
+      display:block;
+      width:100%;
+      clear:both;
     }
   }
   .pane-custom {
@@ -10187,7 +10195,11 @@ div.warning {
 
     @media screen and (max-width: $break-mobile) {
       text-align:left;
+      clear:both;
+      width:100%;
+      display:block;
     }
+
   }
   .pane-node-field-images {
     .field-label {
