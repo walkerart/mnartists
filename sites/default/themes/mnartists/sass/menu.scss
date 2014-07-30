@@ -124,9 +124,18 @@
 				padding:0 8px 0 8px;
 				right:0;top:0;
 				position:absolute;
-				background:none;
 				font-size:18px;
 				line-height:30px;
+				background: url('../images/bg-icon-plus-menu.png') no-repeat right 10px center transparent;
+				text-indent:40px;
+				text-overflow:hidden;
+				overflow:hidden;
+				max-width:20px;
+				white-space:nowrap;
+				text-align:left;
+			}
+			a.expand.open {
+				background: url('../images/bg-icon-minus-menu.png') no-repeat right 10px center transparent;
 			}
             a.user-view {
                 color:#888888!important;

@@ -7607,6 +7607,9 @@ ul.menu.follow-menu li:hover a.flag {
         }
     }
 }
+.search-results .artist-profile .follow-menu li .flag-wrapper .flag.flagged img {
+    opacity:1;
+}
 .pane-mnartist-collections-mna-collections-star {
   .flag-count {
     display:none!important;
@@ -10090,6 +10093,11 @@ div.warning {
       text-decoration:underline;
     }
   }
+  .pane-custom {
+    .panel-node-author {
+
+    }
+  }
   .field-type-image {
     margin-bottom:1.5em;
 
@@ -10159,6 +10167,14 @@ div.warning {
     max-width:90%;
     font-size:14px;
   }
+  .pane-custon.pane-1 {
+    @media screen and (max-width: $break-mobile) {
+      margin-bottom:5px;
+      display:block;
+      width:100%;
+      clear:both;
+    }
+  }
   .pane-node-author {
     font-size:13px;
     width:45%;
@@ -10169,6 +10185,9 @@ div.warning {
     }
     @media screen and (max-width: $break-mobile) {
       margin-bottom:5px;
+      display:block;
+      width:100%;
+      clear:both;
     }
   }
   .pane-custom {
@@ -10184,7 +10203,11 @@ div.warning {
 
     @media screen and (max-width: $break-mobile) {
       text-align:left;
+      clear:both;
+      width:100%;
+      display:block;
     }
+
   }
   .pane-node-field-images {
     .field-label {
