@@ -293,6 +293,28 @@ function mnartist_profiles_collective_or_fullname_or_username($uid, $prefer_full
     return $context_user->name;
 }
 
+function mnartist_profiles_get_sort_by_name($uid) {
+    $context_user = user_load($uid);
+    if (array_intersect(array('Organization'), array_values($context_user->roles))) {
+        $context_org = profile2_load_by_user($uid, 'organization');
+        if (isset($context_org->field_organization_name[LANGUAGE_NONE]) &&
+            $context_org->field_organization_name[LANGUAGE_NONE][0]['value'] !== '') {
+            return $context_org->field_organization_name[LANGUAGE_NONE][0]['value'];
+        }
+    } else {
+        $context_profile = profile2_load_by_user($uid, 'main');
+        if (isset($context_profile->field_pseudonym[LANGUAGE_NONE]) && $prefer_full_name !== true) {
+            return $context_profile->field_pseudonym[LANGUAGE_NONE][0]['value'];
+        } else if (isset($context_profile->field_full_name[LANGUAGE_NONE])) {
+            $entity = field_collection_item_load($context_profile->field_full_name[LANGUAGE_NONE][0]['value']);
+            if (isset($entity->field_last_name[LANGUAGE_NONE][0]['value'])) {
+                return $entity->field_last_name[LANGUAGE_NONE][0]['value'];
+            }
+        }
+    }
+    return $context_user->name;
+}
+
 // get all a user's roles from artworks they have submitted
 function mnartist_profiles_get_artwork_roles_for_user($uid) {
     $all_roles = array();
@@ -1317,7 +1339,7 @@ function mnartist_profiles_sort_by_name_callback($item) {
     if (isset($item->type)) {
         return $item->title;
     } else {
-        return mnartist_profiles_collective_or_fullname_or_username($item->uid);
+        return mnartist_profiles_get_sort_by_name($item->uid);
     }
 }
 
