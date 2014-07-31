@@ -6717,6 +6717,16 @@ tr.odd .form-item, tr.even .form-item {
 
     }
 }
+.field-name-field-additional-links {
+    .field-items {
+        .field-item {
+            margin-bottom:1.5em;
+            &:last-child {
+                margin-bottom:0px;
+            }
+        }
+    }
+}
 .logged-in.admin-menu .page-user-edit #tasks .primary {
   display:block;
 }
@@ -10041,12 +10051,14 @@ div.warning {
             position:absolute;
             &.slidesjs-previous  {
                 background: url('../images/icon-sprite-slider-arrows.png') no-repeat left top transparent;
-                left:-40px;top:50%;
+                left:0px;top:auto;
+                bottom:5px;
                 margin-top:-13px;
             }
             &.slidesjs-next  {
                 background: url('../images/icon-sprite-slider-arrows.png') no-repeat -50px top transparent;
-                right:-40px;top:50%;
+                right:0px;top:auto;
+                bottom:5px;
                 margin-top:-13px;
             }
         }
