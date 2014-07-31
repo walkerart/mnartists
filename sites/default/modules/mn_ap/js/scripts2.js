@@ -484,7 +484,6 @@ $(document).ready(function(){
 
     // set message if form field edited and not saved
     $("form :input").keyup(function() {
-        console.log('changed');
         $(window).on('beforeunload', function(){
             return 'You will lose the changes made in the form.';
         });
