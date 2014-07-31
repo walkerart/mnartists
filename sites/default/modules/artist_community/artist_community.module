@@ -50,7 +50,7 @@ define('AC_SORT_BY_DATE_FIELD', 'ds_sort_by_date');
 define('AC_SORT_BY_RECENT_FIELD', 'ds_created');
 define('AC_ORG_CATEGORY_FIELD', 'is_profile_organization:field_organization_type');
 define('AC_OPP_TYPE_FIELD', 'is_field_op_type');
-
+define('AC_OPP_ANNOUNCE_DATE_FIELD', 'ds_field_announce_date');
 
 define('DEFAULT_DOCUMENT_IMAGE', 'icon-media-document.png');
 
@@ -895,9 +895,9 @@ function _artist_community_get_items_query ($local_og = null,
         }
     } else {
         if ($filtered_by_event_include_past) {
-            $nodeQueryBuilder[] = '('.AC_TYPE_FIELD.':article OR '.AC_TYPE_FIELD.':artwork OR '.AC_TYPE_FIELD.':event OR '.AC_TYPE_FIELD.':opportunity)';
+            $nodeQueryBuilder[] = '('.AC_TYPE_FIELD.':article OR '.AC_TYPE_FIELD.':artwork OR '.AC_TYPE_FIELD.':event OR ('.AC_TYPE_FIELD.':opportunity AND '.AC_OPP_ANNOUNCE_DATE_FIELD.':[* TO NOW]))';
         } else {
-            $nodeQueryBuilder[] = '('.AC_TYPE_FIELD.':article OR '.AC_TYPE_FIELD.':artwork OR '.AC_TYPE_FIELD.':opportunity OR ('.AC_TYPE_FIELD.":event AND ds_field_date\:value:[NOW TO *]))";
+            $nodeQueryBuilder[] = '('.AC_TYPE_FIELD.':article OR '.AC_TYPE_FIELD.':artwork OR ('.AC_TYPE_FIELD.':opportunity AND '.AC_OPP_ANNOUNCE_DATE_FIELD.':[* TO NOW]) OR ('.AC_TYPE_FIELD.":event AND ds_field_date\:value:[NOW TO *]))";
         }
     }
 
@@ -1215,7 +1215,12 @@ function _set_community_query_facets ($filter_query_string = null) {
         if (isset($_GET['global_search']) && !empty($_GET['global_search'])) {
             $finished_query_string = $filter_query_string;
         } else {
-            $base_query_string = (isset($_GET['content']['event_include_past']) && $_GET['content']['event_include_past'] == '1') ? "(index_id:default_node_index AND ((ss_type:article OR ss_type:artwork OR ss_type:opportunity OR ss_type:event))) OR (index_id:users)" : "(index_id:default_node_index AND ((ss_type:article OR ss_type:artwork OR ss_type:opportunity OR (ss_type:event AND ds_field_date\:value:[NOW TO *])))) OR (index_id:users)";
+            // switch to AC_TYPE_FIELD here
+            if (isset($_GET['content']['event_include_past']) && $_GET['content']['event_include_past'] == '1') {
+                $base_query_string = "(index_id:default_node_index AND ((".AC_TYPE_FIELD.":article OR ss_type:artwork OR (".AC_TYPE_FIELD.":opportunity AND ".AC_OPP_ANNOUNCE_DATE_FIELD.":[* TO NOW]) OR ".AC_TYPE_FIELD.":event))) OR (".AC_TYPE_FIELD.":users)";
+            } else {
+                $base_query_string = "(index_id:default_node_index AND ((".AC_TYPE_FIELD.":article OR ss_type:artwork OR (".AC_TYPE_FIELD.":opportunity AND ".AC_OPP_ANNOUNCE_DATE_FIELD.":[* TO NOW]) OR (".AC_TYPE_FIELD.":event AND ds_field_date\:value:[NOW TO *])))) OR (index_id:users)";
+            }
             $finished_query_string = (!is_null($filter_query_string)) ? "($base_query_string) AND $filter_query_string" : $base_query_string;
         }
         $solarium_query->createFilterQuery('community')->setQuery($finished_query_string);
