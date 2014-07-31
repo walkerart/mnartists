@@ -1182,6 +1182,17 @@ div.entityconnect-edit {
             margin-bottom:64px!important;
         }
     }
+    .field-type-taxonomy-term-reference-form {
+        .description {
+            margin-left: 33%;
+        }
+    }
+    .field-type-taxonomy-term-reference-form {
+        .description {
+            clear:both;
+            margin-left:33%;
+        }
+    }
     .ui-multiselect {
         margin-bottom:8px;
     }
@@ -1826,6 +1837,16 @@ form .description {
             input {
                 color:#00B22D!important;
             }
+        }
+    }
+}
+
+
+/* this is a hack for ie (cant click through input) */
+.form-type-checkbox {
+    .icheckbox {
+        .form-checkbox {
+            z-index:-1;
         }
     }
 }
