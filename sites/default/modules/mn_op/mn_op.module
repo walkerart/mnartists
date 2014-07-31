@@ -89,6 +89,25 @@ function mn_op_theme() {
   );
 }
 
+function mn_op_node_view($node, $view_mode, $langcode) {
+  // if context user does not own opportunity, or is
+  // not an admin, then deny access to node view if
+  // current date is prior to announce date
+  global $user;
+  if ($node->type === 'opportunity') {
+    if ($node->uid !== $user->uid && !in_array('administrator', $user->roles)) {
+      if (isset($node->field_announce_date[LANGUAGE_NONE])) {
+        $now = new DateTime();
+        $announce_date = new DateTime($node->field_announce_date[LANGUAGE_NONE][0]['value']);
+        if ($now < $announce_date) {
+          drupal_access_denied();
+          drupal_exit();
+        }
+      }
+    }
+  }
+}
+
 function mn_op_get_jurors($nid) {
     $result = db_select('op_jurors', 'op')
       ->fields('op')
