@@ -1840,3 +1840,13 @@ form .description {
         }
     }
 }
+
+
+/* this is a hack for ie (cant click through input) */
+.form-type-checkbox {
+    .icheckbox {
+        .form-checkbox {
+            z-index:-1;
+        }
+    }
+}

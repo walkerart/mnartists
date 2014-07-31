@@ -2620,6 +2620,12 @@ form .description {
   color: #00B22D!important;
 }
 
+/* this is a hack for ie (cant click through input) */
+/* line 1848, ../sass/_forms.scss */
+.form-type-checkbox .icheckbox .form-checkbox {
+  z-index: -1;
+}
+
 /* user profile page */
 /* line 6, ../sass/_user-profile.scss */
 .user-picture a {
