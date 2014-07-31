@@ -34,7 +34,12 @@
                 padding-bottom:20px;
                 margin-bottom:20px;
                 border-bottom:1px solid #ccc;
-
+                .award-block {
+                  margin-bottom:1.5em;
+                  &:last-child {
+                    margin-bottom:0px;
+                  }
+                }
                 &:last-child {
                     border-bottom:none;
                     margin-bottom:0;
