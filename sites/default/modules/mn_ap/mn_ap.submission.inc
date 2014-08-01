@@ -39,7 +39,7 @@ function mn_ap_submission($nid) {
 	    }
 
 	    if(user_access('administrator') || $owner ) {
-	    	$reviews = mn_ap_get_all_reviews($nid);
+	    	$reviews = mn_ap_get_all_reviews($nid, $settings['round']);
 	      	$rows['reviews'] = $reviews;
 	    }
 

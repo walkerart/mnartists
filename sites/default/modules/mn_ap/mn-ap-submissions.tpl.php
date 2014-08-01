@@ -10,12 +10,16 @@
       drupal_add_js(drupal_get_path('module', 'mn_ap') . '/js/jquery.dataTables.js');
       drupal_add_js(drupal_get_path('module', 'mn_ap') . '/js/ekko-lightbox.min.js');
       drupal_add_js(drupal_get_path('module', 'mn_ap') . '/js/subScript.js');
-
 dpm($rows); ?>
 <div class="container">
       <div class="row">
             <div class="col-md-6">
-                  <h1><?php echo $rows['opportunity']->title; ?></h1>
+                  <h1>
+                    <?php echo $rows['opportunity']->title; ?>
+                    <?php if($rows['settings']['round'] > 1) : ?>
+                      <small> Round <?php echo $rows['settings']['round']; ?></small>
+                    <?php endif; ?>
+                  </h1>
             </div>
       </div>
       <?php //admin table ?>
@@ -57,8 +61,8 @@ dpm($rows); ?>
                           <?php foreach ($review['artworks'] as $artwork) : ?>
                             <?php if($artwork->file_type == 'image') : ?>
                               <span class="thumb-list">
-                                <a href="<?php  print $GLOBALS['base_url'] . '/sites/default/files/opportunity/'. $artwork->nid . '/' . $artwork->uid . '/' . $artwork->file; ?>" data-toggle="lightbox" data-gallery="multiimages" data-title="<?php echo $artwork->title; ?>" data-parent=".lightbox-parent-<?php echo $artwork->uid; ?>">
-                                  <img src="<?php  print $GLOBALS['base_url'] . '/sites/default/files/opportunity/'. $artwork->nid . '/' . $artwork->uid . '/thumb_' . $artwork->file; ?>">
+                                <a href="<?php  print file_create_url(file_build_uri('opportunity/' . $artwork->nid . '/' . $artwork->uid . '/' . $artwork->file)); ?>" data-toggle="lightbox" data-gallery="multiimages" data-title="<?php echo $artwork->title; ?>" data-parent=".lightbox-parent-<?php echo $artwork->uid; ?>">
+                                  <img src="<?php  print file_create_url(file_build_uri('opportunity/'. $artwork->nid . '/' . $artwork->uid . '/thumb_' . $artwork->file)); ?>">
                                 </a>
                               </span>
                             <?php endif; ?>
@@ -85,7 +89,7 @@ dpm($rows); ?>
                             <?php endif; ?>
                             <?php if ($artwork->file_type == 'document') : ?>
                               <span class="thumb-list document">
-                                <a class="btn btn-default btn-document" href="<?php  print $GLOBALS['base_url'] . '/sites/default/files/opportunity/'. $artwork->nid . '/' . $artwork->uid . '/' . urlencode($artwork->file); ?>" target="_blank">
+                                <a class="btn btn-default btn-document" href="<?php  print file_create_url(file_build_uri('opportunity/' . $artwork->nid . '/' . $artwork->uid . '/' . urlencode($artwork->file))); ?>" target="_blank">
                                   <span class="glyphicon glyphicon-file"></span> Read
                                 </a>
                               </span>
@@ -121,12 +125,14 @@ dpm($rows); ?>
               <a class="prev" href="<?php echo url('opportunities/', array()); ?>">Back to Opportunities</a>
           </div>
       </div>
+      <?php if($rows['juror']) : ?>
+        <hr>
+      <?php endif; ?>
       <?php endif; ?>
 
       <?php if($rows['juror']) : ?>
       <div class="row">
             <div class="col-md-12">
-                  <hr>
                   <h3><?php echo $rows['juror'] ? '<p>Welcome Juror.</p>' : ''; ?></h3>
                   <p class="help-block"><?php echo isset($rows['opportunity']->field_op_juror_note['und'][0]['value']) ? $rows['opportunity']->field_op_juror_note['und'][0]['value'] : ''; ?></p>
             </div>
@@ -170,8 +176,8 @@ dpm($rows); ?>
                                         <?php foreach ($review['artworks'] as $artwork) : ?>
                                           <?php if($artwork->file_type == 'image') : ?>
                                             <span class="thumb-list">
-                                              <a href="<?php  print $GLOBALS['base_url'] . '/sites/default/files/opportunity/'. $artwork->nid . '/' . $artwork->uid . '/' . $artwork->file; ?>" data-toggle="lightbox" data-gallery="multiimages" data-title="<?php echo $artwork->title; ?>" data-parent=".jury-parent-<?php echo $artwork->uid; ?>">
-                                                <img src="<?php  print $GLOBALS['base_url'] . '/sites/default/files/opportunity/'. $artwork->nid . '/' . $artwork->uid . '/thumb_' . $artwork->file; ?>">
+                                              <a href="<?php  print file_create_url(file_build_uri('opportunity/' . $artwork->nid . '/' . $artwork->uid . '/' . $artwork->file)); ?>" data-toggle="lightbox" data-gallery="multiimages" data-title="<?php echo $artwork->title; ?>" data-parent=".jury-parent-<?php echo $artwork->uid; ?>">
+                                                <img src="<?php  print file_create_url(file_build_uri('opportunity/' . $artwork->nid . '/' . $artwork->uid . '/thumb_' . $artwork->file)); ?>">
                                               </a>
                                             </span>
                                           <?php endif; ?>
@@ -198,7 +204,7 @@ dpm($rows); ?>
                                           <?php endif; ?>
                                           <?php if ($artwork->file_type == 'document') : ?>
                                             <span class="thumb-list document">
-                                              <a class="btn btn-default btn-document" href="<?php  print $GLOBALS['base_url'] . '/sites/default/files/opportunity/'. $artwork->nid . '/' . $artwork->uid . '/' . urlencode($artwork->file); ?>" target="_blank">
+                                              <a class="btn btn-default btn-document" href="<?php  print file_create_url(file_build_uri('opportunity/' . $artwork->nid . '/' . $artwork->uid . '/' . urlencode($artwork->file))); ?>" target="_blank">
                                                 <span class="glyphicon glyphicon-file"></span> Read
                                               </a>
                                             </span>

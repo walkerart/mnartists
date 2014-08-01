@@ -2,6 +2,7 @@
 
 function mn_op_settings($nid) {
     global $user;
+    dpm($user);
     $uid = $user->uid;
     $node = node_load($nid);
     $owner = $node->uid == $uid ? 1 : 0;
@@ -13,7 +14,7 @@ function mn_op_settings($nid) {
                 _remove_juror_from_opportunity($nid, $_POST['juror_email']);
             } elseif(isset($_POST['juror_email'])) {
                 //run status update on nid
-                _add_juror_to_opportunity($nid, $_POST['juror_email']);
+                _add_juror_to_opportunity($nid, $_POST['juror_email'], $node->title);
             } elseif(isset($_POST['settings'])) {
                 //update general review settings
                 _add_settings_to_opportunity($nid, $_POST);
@@ -42,7 +43,7 @@ function mn_op_settings($nid) {
     }
 }
 
-function _add_juror_to_opportunity($nid, $mail) {
+function _add_juror_to_opportunity($nid, $mail, $title) {
     $user = user_load_by_mail($mail);
     $juror = array(
             'nid' => $nid,
@@ -64,6 +65,7 @@ function _add_juror_to_opportunity($nid, $mail) {
               ->fields($juror)
               ->execute();
             //send mail to registered user
+            _mail_to_juror($mail, 1, $nid, $title);
         }
     } else {
         //user is not in the system
@@ -72,6 +74,7 @@ function _add_juror_to_opportunity($nid, $mail) {
               ->fields($juror)
               ->execute();
             //send mail to non registered user
+            _mail_to_juror($mail, 0, $nid, $title);
         }
     }
 }
@@ -111,4 +114,19 @@ function _add_settings_to_opportunity($nid, $fields) {
           ->fields($fields)
           ->execute();
     }
+}
+
+function _mail_to_juror($mail, $status, $nid, $title) {
+    global $user;
+    global $base_url;
+    $to = $mail;
+    $from = $user->mail;
+    $subject = $title + "Jury";
+
+    if ($status) {
+        $body = 'You have been added as a juror for ' + $title + ' on the MNArtist website. Please visit: ' + $base_url + '/opportunity/' + $nid + '/submissions to begin the review process. Thank You.';
+    } else {
+        $body = 'You have been added as a juror for ' + $title + ' on the MNArtist website. Please register at: " +  $base_url + "/user After you have registered visit: ' + $base_url + '/opportunity/' + $nid + '/submissions to begin the review process. Thank You.';
+    }
+    $message = drupal_mail('mn_op', 'C3512995DB53EC882694983BA2273', $to, user_preferred_language($user), array('body' => $body, 'subject' => $subject, $from, TRUE));
 }
