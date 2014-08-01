@@ -654,12 +654,28 @@ if (in_array('statement', $rows['opportunity']['areas'])) {
     CKEDITOR.replace( "statementEditor", {
       customConfig: CKEDITOR_BASEPATH + "/custom/config.js"
     });
+    var statementEditor = CKEDITOR.instances["statementEditor"];
+    statementEditor.on("instanceReady", function(){
+      this.document.on("keyup", function(){
+        $(window).on("beforeunload", function(){
+          return "You will lose the changes made in the editor.";
+        });
+      });
+    });
    }); })(jQuery);', 'inline' );
 }
 if (in_array('bio', $rows['opportunity']['areas'])) {
   drupal_add_js('(function ($) { $(document).ready(function() {
     CKEDITOR.replace( "bioEditor", {
       customConfig: CKEDITOR_BASEPATH + "/custom/config.js"
+    });
+    var bioEditor = CKEDITOR.instances["bioEditor"];
+    bioEditor.on("instanceReady", function(){
+      this.document.on("keyup", function(){
+        $(window).on("beforeunload", function(){
+          return "You will lose the changes made in the editor.";
+        });
+      });
     });
   }); })(jQuery);', 'inline' );
 }
@@ -668,12 +684,28 @@ if (in_array('proposal', $rows['opportunity']['areas'])) {
     CKEDITOR.replace( "proposalEditor", {
       customConfig: CKEDITOR_BASEPATH + "/custom/config.js"
     });
+    var proposalEditor = CKEDITOR.instances["proposalEditor"];
+    proposalEditor.on("instanceReady", function(){
+      this.document.on("keyup", function(){
+        $(window).on("beforeunload", function(){
+          return "You will lose the changes made in the editor.";
+        });
+      });
+    });
   }); })(jQuery);', 'inline' );
 }
 if (in_array('field1', $rows['opportunity']['areas'])) {
   drupal_add_js('(function ($) { $(document).ready(function() {
     CKEDITOR.replace( "field1Editor", {
       customConfig: CKEDITOR_BASEPATH + "/custom/config.js"
+    });
+    var field1Editor = CKEDITOR.instances["field1Editor"];
+    field1Editor.on("instanceReady", function(){
+      this.document.on("keyup", function(){
+        $(window).on("beforeunload", function(){
+          return "You will lose the changes made in the editor.";
+        });
+      });
     });
   }); })(jQuery);', 'inline' );
 }
@@ -682,6 +714,14 @@ if (in_array('field2', $rows['opportunity']['areas'])) {
     CKEDITOR.replace( "field2Editor", {
       customConfig: CKEDITOR_BASEPATH + "/custom/config.js"
     });
+    var field2Editor = CKEDITOR.instances["field2Editor"];
+    field2Editor.on("instanceReady", function(){
+      this.document.on("keyup", function(){
+        $(window).on("beforeunload", function(){
+          return "You will lose the changes made in the editor.";
+        });
+      });
+    });
   }); })(jQuery);', 'inline' );
 }
 if (in_array('field3', $rows['opportunity']['areas'])) {
@@ -689,12 +729,28 @@ if (in_array('field3', $rows['opportunity']['areas'])) {
     CKEDITOR.replace( "field3Editor", {
       customConfig: CKEDITOR_BASEPATH + "/custom/config.js"
     });
+    var field3Editor = CKEDITOR.instances["field3Editor"];
+    field3Editor.on("instanceReady", function(){
+      this.document.on("keyup", function(){
+        $(window).on("beforeunload", function(){
+          return "You will lose the changes made in the editor.";
+        });
+      });
+    });
   }); })(jQuery);', 'inline' );
 }
 if (in_array('field4', $rows['opportunity']['areas'])) {
   drupal_add_js('(function ($) { $(document).ready(function() {
     CKEDITOR.replace( "field4Editor", {
       customConfig: CKEDITOR_BASEPATH + "/custom/config.js"
+    });
+    var field4Editor = CKEDITOR.instances["field4Editor"];
+    field4Editor.on("instanceReady", function(){
+      this.document.on("keyup", function(){
+        $(window).on("beforeunload", function(){
+          return "You will lose the changes made in the editor.";
+        });
+      });
     });
   }); })(jQuery);', 'inline' );
 }
