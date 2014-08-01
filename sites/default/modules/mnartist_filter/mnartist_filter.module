@@ -228,7 +228,7 @@ function _mnartist_filter_create_filter()
         {
             $output .= " active";
         }
-        $output .= "'><img src=".drupal_get_path('theme', 'mnartists')."'/images/fav-star.svg' class='star-icon' /></a>";
+        $output .= "'><img src='".drupal_get_path('theme', 'mnartists')."/images/fav-star.svg' class='star-icon' /></a>";
         $output .= "<ul>";
             $output .= "<li><a href='#' id='create-new-filter'>Save this Filter</a></li>";
             $output .= "<hr />";
