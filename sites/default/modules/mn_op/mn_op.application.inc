@@ -29,20 +29,20 @@ function mn_op_ap($nid) {
 
 function mn_op_get_user_ap($uid, $nid) {
 	$result = db_select('op_applications', 'op')
-			->fields('op')
-			->condition('nid', $nid, '=')
-			->condition('uid', $uid, '=')
-			->execute()
-			->fetchAssoc();
+					->fields('op')
+					->condition('nid', $nid, '=')
+					->condition('uid', $uid, '=')
+					->execute()
+					->fetchAssoc();
 	return $result;
 }
 
 function mn_op_get_user_ap_artworks($uid, $nid) {
 	$result = db_select('op_artworks', 'op')
-			->fields('op')
-			->condition('nid', $nid, '=')
-			->condition('uid', $uid, '=')
-			->execute()
-			->fetchAll();
+					->fields('op')
+					->condition('nid', $nid, '=')
+					->condition('uid', $uid, '=')
+					->execute()
+					->fetchAll();
 	return $result;
 }
