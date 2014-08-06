@@ -512,14 +512,14 @@ function ap_ajax_callback() {
   }
 }
 
-function mn_ap_get_submissions($nid) {
-  $results = db_select('op_applications', 'op')
+function mn_ap_get_submissions($nid, $accepted, $completed) {
+  $query = db_select('op_applications', 'op')
       ->fields('op')
       ->condition('nid', $nid, '=')
-      ->orderBy('uid', 'asc')
-      //->condition('complete', 1, '=')
-      ->execute()
-      ->fetchAll();
+      ->orderBy('uid', 'asc');
+      if($completed) $query->condition('complete', $completed, '=');
+      if($accepted) $query->condition('accept', $accepted, '=');
+    $results = $query->execute()->fetchAll();
   $resultArray = array();
   foreach ($results as $result) {
     $resultArray[] = (array)$result;
@@ -527,32 +527,33 @@ function mn_ap_get_submissions($nid) {
   return $resultArray;
 }
 
-function mn_ap_get_round_submissions($nid, $round) {
-  $results = db_select('op_applications', 'op')
-      ->fields('op')
-      ->condition('nid', $nid, '=')
-      ->orderBy('uid', 'asc')
-      ->condition('accept', 1, '=')
-      ->execute()
-      ->fetchAll();
-  $resultArray = array();
-  foreach ($results as $result) {
-    $resultArray[] = (array)$result;
-  }
-  return $resultArray;
-}
+// function mn_ap_get_submissions($nid, 1, 1) {
+//   $results = db_select('op_applications', 'op')
+//       ->fields('op')
+//       ->condition('nid', $nid, '=')
+//       ->orderBy('uid', 'asc')
+//       ->condition('accept', 1, '=')
+//       ->execute()
+//       ->fetchAll();
+//   $resultArray = array();
+//   foreach ($results as $result) {
+//     $resultArray[] = (array)$result;
+//   }
+//   return $resultArray;
+// }
 
-function mn_ap_get_all_reviews($nid) {
+function mn_ap_get_all_reviews($nid, $round) {
   $query = db_select('op_applications', 'ap');
   $query->join('op_rating', 'r', 'ap.uid = r.aid');
   $query->condition('ap.nid', $nid, '=')
       ->condition('r.nid', $nid, '=')
+      ->condition('r.round', $round, '=')
       ->fields('ap',array('uid'))
             ->fields('r',array('rating', 'comment'))
             ->orderBy('ap.uid', 'desc');
   $results = $query->execute()->fetchAll();
 
-  $submissions = mn_ap_get_submissions($nid);
+  $submissions = mn_ap_get_submissions($nid, 0, 0);
   $submissions = (array)$submissions;
 
   $works = db_select('op_artworks', 'op')
@@ -592,7 +593,11 @@ function mn_ap_get_all_reviews($nid) {
 }
 
 function get_juror_reviews($nid, $uid, $round) {
-  $results = mn_ap_get_round_submissions($nid, $round);
+  if ($round > 1) {
+    $results = mn_ap_get_submissions($nid, 1, 1);
+  } else {
+    $results = mn_ap_get_submissions($nid, 0, 1);
+  }
 
   $query = db_select('op_rating', 'r');
   $query->condition('r.nid', $nid, '=');
@@ -636,10 +641,10 @@ function mn_ap_get_all_for_xls($nid, $round) {
   $node = node_load($nid);
   //submissions
   if ($round  == 1) {
-    $submissions = mn_ap_get_submissions($nid);
+    $submissions = mn_ap_get_submissions($nid, 0, 0);
     $submissions = (array)$submissions;
   } else {
-    $submissions = mn_ap_get_round_submissions($nid, $round);
+    $submissions = mn_ap_get_submissions($nid, 1, 1);
     $submissions = (array)$submissions;
   }
   //reviews

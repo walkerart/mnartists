@@ -34,9 +34,9 @@ function mn_op_node_data() {
 
 	$query =  new EntityFieldQuery();
 	$query->entityCondition('entity_type', 'node')
-		->entityCondition('bundle', 'opportunity')
-		//->propertyCondition('status', '1') //status is visbility to public
-		->propertyOrderBy('created', 'DESC');
+			->entityCondition('bundle', 'opportunity')
+			//->propertyCondition('status', '1') //status is visbility to public
+			->propertyOrderBy('created', 'DESC');
 
 	if (! user_access('administrator')) {
 		$query->propertyCondition('uid', $uid, '=');
@@ -95,9 +95,9 @@ function mn_ap_get_submissions_count($nid, $site) {
 	      ->condition('complete', 1, '=')
 	      ->execute()
 	      ->fetchAll();
-	    $count = count($result);
+	  $count = count($result);
 	}
-  	return $count;
+  return $count;
 }
 
 /**
@@ -117,8 +117,8 @@ function _update_published_status($input) {
   			->fields('n', array('title'))
   			->condition('n.type', 'opportunity', '=')
   			->condition('nid', $input['nid'])
-			->execute()
-			->fetchAll();
+				->execute()
+				->fetchAll();
 		$select = (array)$select['0'];
 		if ($input['status'] == '1') {
 			drupal_set_message(t($select['title'] . ' - Opportunity Published'), 'status');

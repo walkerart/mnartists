@@ -150,3 +150,20 @@ function mn_op_check_existing_settings($nid) {
       ->fetchAssoc();
     return $result;
 }
+
+/**
+ * Implementation of hook_mail().
+ **/
+function mn_op_mail($key, &$message, $params) {
+  if($key ==  'C3512995DB53EC882694983BA2273') {
+    if (isset($params['subject'])) {
+      $message['subject'] = $params['subject'];
+    }
+    if (isset($params['body'])) {
+      $message['body'][] = $params['body'];
+    }
+    if (isset($params['headers']) && is_array($params['headers'])) {
+      $message['headers'] += $params['headers'];
+    }
+  }
+}

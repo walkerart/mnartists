@@ -5,7 +5,7 @@
  */
 function mn_op_aps() {
 	global $user;
-    $uid = $user->uid;
+	$uid = $user->uid;
 
 	$output = '';
 	$completed = mn_op_get_completed_applications($uid);
@@ -28,40 +28,40 @@ function mn_op_aps() {
 
 function mn_op_get_completed_applications($uid) {
 	$query = db_select('op_applications', 'op');
-	$query->join('node', 'n', 'op.nid = n.nid');
-	$query->join('field_data_op_dates ', 'd', 'op.nid = d.entity_id');
-    $query->fields('op');
-    $query->condition('op.uid', $uid, '=');
-    $query->condition('op.complete', 1, '=');
-    $query->fields('n', array('title'));
-    $query->fields('d', array('op_dates_value2'));
-    $result = $query->execute()->fetchAll();
-    return $result;
+						$query->join('node', 'n', 'op.nid = n.nid');
+						$query->join('field_data_op_dates ', 'd', 'op.nid = d.entity_id');
+						$query->fields('op');
+						$query->condition('op.uid', $uid, '=');
+						$query->condition('op.complete', 1, '=');
+						$query->fields('n', array('title'));
+						$query->fields('d', array('op_dates_value2'));
+	$result = $query->execute()->fetchAll();
+	return $result;
 }
 
 function mn_op_get_started_applications($uid) {
 	$query = db_select('op_applications', 'op');
-	$query->join('node', 'n', 'op.nid = n.nid');
-	$query->join('field_data_op_dates ', 'd', 'op.nid = d.entity_id');
-    $query->fields('op');
-    $query->condition('op.uid', $uid, '=');
-    $query->condition('op.complete', 0, '=');
-    $query->fields('n', array('title'));
-    $query->fields('d', array('op_dates_value2'));
-    $result = $query->execute()->fetchAll();
-    return $result;
+						$query->join('node', 'n', 'op.nid = n.nid');
+						$query->join('field_data_op_dates ', 'd', 'op.nid = d.entity_id');
+						$query->fields('op');
+						$query->condition('op.uid', $uid, '=');
+						$query->condition('op.complete', 0, '=');
+						$query->fields('n', array('title'));
+						$query->fields('d', array('op_dates_value2'));
+	$result = $query->execute()->fetchAll();
+	return $result;
 }
 
 function mn_op_get_juror_opportunites($email) {
 	$query = db_select('op_jurors', 'op');
-	$query->join('node', 'n', 'op.nid = n.nid');
-	$query->join('field_data_op_dates ', 'd', 'op.nid = d.entity_id');
-	$query->fields('op');
-    $query->condition('op.mail', $email, '=');
-    $query->fields('n', array('title'));
-    $query->fields('d', array('op_dates_value2'));
-    $result = $query->execute()->fetchAll();
-    return $result;
+						$query->join('node', 'n', 'op.nid = n.nid');
+						$query->join('field_data_op_dates ', 'd', 'op.nid = d.entity_id');
+						$query->fields('op');
+						$query->condition('op.mail', $email, '=');
+						$query->fields('n', array('title'));
+						$query->fields('d', array('op_dates_value2'));
+	$result = $query->execute()->fetchAll();
+	return $result;
 }
 
 

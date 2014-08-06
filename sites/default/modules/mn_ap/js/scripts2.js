@@ -38,14 +38,7 @@ $(document).ready(function(){
 
     // Define our update menu function - as this is used a lot
     var updateMenu = function(state){
-        // stateId = state.substr(5, 1);
-        // console.log(stateId);
         $menu.children('li:has(a[href="#'+state+'"])').addClass('active').siblings('.active').removeClass('active').removeClass('disabled');
-        //$menu.children('li:has(a[href="#'+state+'"])').find("a").removeAttr('disabled').addClass('enabled');
-        // $('a[class=enabled]').unbind('click', handler);
-        // $menu.children().addClass('active').siblings('.active').removeClass('active').removeClass('disabled');
-        // $menu.children().find("a").removeAttr('disabled').addClass('enabled');
-        // $('a[class=enabled]').unbind('click', handler);
     };
 
     //function used in Ajax to checkif field exists
@@ -115,8 +108,6 @@ $(document).ready(function(){
 
     // Bind a handler for ALL hash/state changes
     $.History.bind(function(state){
-        // Update the current element to indicate which state we are now on
-        //$current.text('Our current state is: ['+state+']');
         // Update the page's title with our current state on the end
         document.title = document_title + ' | ' + state;
     });
@@ -136,7 +127,6 @@ $(document).ready(function(){
         // Show apricots tab, hide the other tabs
         $tabs.hide();
         $step1.stop(true,true).fadeIn(200);
-        //updateAjax();
         updateConfirmationView();
     });
 
@@ -221,8 +211,6 @@ $(document).ready(function(){
         updateAjax();
         updateConfirmationView();
     });
-
-    //$('input[class=ap-check]').iCheck();
 
     $('.ap-more').click(function() {
         $(this).prev('.ap-artwork-body').css({'height': 'auto'});
@@ -475,10 +463,9 @@ $(document).ready(function(){
             steps: steps,
             titles : Drupal.settings.titles
         };
-        //var output = Mustache.render("{{first_name}} {{last_name}}<br>{{address}}; {{city}}, {{state}} {{zip}}<br>", view);
+
         var confirmTemplate = $('#confirmTpl').html();
         var confirmHtml = Mustache.to_html(confirmTemplate, view);
-        //console.log(confirmHtml);
         $('#profileAjax').html(confirmHtml);
     }
 

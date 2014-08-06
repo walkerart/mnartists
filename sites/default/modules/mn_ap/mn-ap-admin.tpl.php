@@ -119,8 +119,8 @@
 			</div>
 			<div class="col-sm-6">
 				<?php if($artwork->file_type == 'image') : ?>
-					<a href="<?php  print $GLOBALS['base_url'] . '/sites/default/files/opportunity/'. $artwork->nid . '/' . $artwork->uid . '/' . urlencode($artwork->file); ?>" data-toggle="lightbox" data-gallery="multiimages" data-title="<?php echo $artwork->title; ?>" data-parent=".lightbox-parent">
-					<img class="img-responsive" src="<?php  print $GLOBALS['base_url'] . '/sites/default/files/opportunity/'. $artwork->nid . '/' . $artwork->uid . '/' . urlencode($artwork->file); ?>">
+					<a href="<?php  print file_create_url(file_build_uri('opportunity/' . $artwork->nid . '/' . $artwork->uid . '/' . $artwork->file)); ?>" data-toggle="lightbox" data-gallery="multiimages" data-title="<?php echo $artwork->title; ?>" data-parent=".lightbox-parent">
+					<img class="img-responsive" src="<?php  print file_create_url(file_build_uri('opportunity/' . $artwork->nid . '/' . $artwork->uid . '/' . urlencode($artwork->file))); ?>">
 					</a>
 				<?php endif; ?>
 				<?php if($artwork->file_type == 'vimeo') : ?>
@@ -143,7 +143,7 @@
 					<?php $sci++; ?>
 				<?php endif; ?>
 				<?php if ($artwork->file_type == 'document') : ?>
-                	<a href="<?php  print $GLOBALS['base_url'] . '/sites/default/files/opportunity/'. $artwork->nid . '/' . $artwork->uid . '/' . urlencode($artwork->file); ?>" target="_blank">
+                	<a href="<?php  print file_create_url(file_build_uri('opportunity/' . $artwork->nid . '/' . $artwork->uid . '/' . $artwork->file)); ?>" target="_blank">
                 		<div class="img-responsive doc-icon"></div><?php echo urldecode($artwork->file); ?>
                 	</a>
 				<?php endif; ?>
@@ -170,7 +170,7 @@
                         $title =  $rows['opportunity'][$field];
                         echo 'Upload: ' . $title['und'][0]['value'];  ?></h2>
                     <p>
-                    	<a href="<?php  print $GLOBALS['base_url'] . '/sites/default/files/opportunity/'. $artwork->nid . '/' . $artwork->uid . '/' . $rows['reviews'][$area]; ?>" target="_blank"><?php echo $rows['reviews'][$area];  ?></a>
+                    	<a href="<?php  print file_create_url(file_build_uri('opportunity/' . $artwork->nid . '/' . $artwork->uid . '/' . $rows['reviews'][$area])); ?>" target="_blank"><?php echo $rows['reviews'][$area];  ?></a>
                     </p>
                 </div>
 			<?php endif; ?>
