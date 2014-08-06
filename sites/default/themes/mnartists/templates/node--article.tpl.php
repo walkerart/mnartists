@@ -19,8 +19,8 @@ if ($teaser) {
   }
 
   $text_excerpt = '';
-  if (isset($node->field_body[LANGUAGE_NONE])) {
-      $text_excerpt = trim(text_summary(strip_tags($node->field_body[LANGUAGE_NONE][0]['safe_value']), 'text', 120));
+  if (isset($node->field_article_subheader[LANGUAGE_NONE])) {
+      $text_excerpt = trim(text_summary(strip_tags($node->field_article_subheader[LANGUAGE_NONE][0]['safe_value']), 'text', 120));
   }
 
   ?>
