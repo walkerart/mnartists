@@ -49,7 +49,19 @@ function mnartist_register_user_form() {
     global $user;
     return array(
         'help' => array(
-            '#markup' => 'Enter your old email and password from your existing mnartists.org and click Import.  You will then be brought to your new profile page. After import, click on My Stuff to view and update your profile information and work samples. Forgot your old password? Reset your old password by emailing <a href="mailto:info@mnartists.org">info@mnartists.org</a>.',
+            '#markup' => '<p>
+                            <ol>
+                                <li>Enter your old email and password from your existing mnartists.org and click Import.</li>
+                                <li>You will then be brought to your new account with data imported from your old account.</li>
+                                <li>After import, click on My Stuff to view and update your migrated account, profile information, work samples and resume data.</li>
+                            </ol>
+                        </p>
+                        <p>
+                            <ul>
+                                <li>Want to start fresh? Decline to import your old account information, work samples, and resume info by clicking the \'Proceed without Importing Button\'</li>
+                                <li>Have questions about migrating your account or fogot your old password? Reset your old password or contact us with questions by emailing <a href="mailto:info@mnartists.org">info@mnartists.org</a>.</li>
+                            </ul>
+                        </p>',
         ),
         'username' => array(
             '#type' => 'textfield',
