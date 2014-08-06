@@ -1035,16 +1035,16 @@ function _artist_community_get_items_query ($local_og = null,
         }
         $contentFilterQueryStrings = array();
         if (!empty($contentFilters['node'])) {
-            $contentFilterQueryStrings[] = '(index_id:default_node_index AND '.implode(' AND ', $contentFilters['node']).')';
+            $contentFilterQueryStrings[] = '(index_id:'.NODE_INDEX.' AND '.implode(' AND ', $contentFilters['node']).')';
         }
         if (!empty($contentFilters['user'])) {
-            $contentFilterQueryStrings[] = '(index_id:users AND '.implode(' AND ', $contentFilters['user']).')';
+            $contentFilterQueryStrings[] = '(index_id:'.USER_INDEX.'AND '.implode(' AND ', $contentFilters['user']).')';
         }
         $contentFilterQueryString = implode(' OR ', $contentFilterQueryStrings);
         $solarium_query->createFilterQuery($type)->setQuery($contentFilterQueryString);
     }
 
-    $communityQueryString = "(index_id:default_node_index$nodeQueryBuilderString AND is_status:1) OR (index_id:users$userQueryBuilderString)";
+    $communityQueryString = "(index_id:".NODE_INDEX."$nodeQueryBuilderString AND is_status:1) OR (index_id:".USER_INDEX."$userQueryBuilderString)";
 
     $solarium_query->createFilterQuery('the_thing')->setQuery($communityQueryString);
     if ($offset !== null && is_int($offset)) {
@@ -1139,11 +1139,11 @@ function _artist_community_get_items_query ($local_og = null,
             foreach($resultset as $item) {
                 $the_element_string = '';
                 switch ($item->index_id) {
-                    case 'users':
+                    case USER_INDEX:
                         $the_class_suffix = 'user';
                         $the_element_string = theme('artist_community_artist_profile', array('user' => user_load($item->is_uid)));
                         break;
-                    case 'default_node_index':
+                    case NODE_INDEX:
                         $the_node = node_load($item->is_nid);
                         $the_class_suffix = $the_node->type;
                         $the_element_string = render(node_view($the_node, 'teaser'));
@@ -1177,10 +1177,10 @@ function _artist_community_get_items_query ($local_og = null,
     } else {
         foreach($resultset as $item) {
             switch ($item->index_id) {
-                case 'users':
+                case USER_INDEX:
                     $all_results[] = array('type' => 'user', 'item' => user_load($item->is_uid));
                     break;
-                case 'default_node_index':
+                case NODE_INDEX:
                     $all_results[] = array('type' => 'node', 'item' => node_load($item->is_nid));
                     break;
             }
@@ -1219,11 +1219,10 @@ function _set_community_query_facets ($filter_query_string = null) {
         if (isset($_GET['global_search']) && !empty($_GET['global_search'])) {
             $finished_query_string = $filter_query_string;
         } else {
-            // switch to AC_TYPE_FIELD here
             if (isset($_GET['content']['event_include_past']) && $_GET['content']['event_include_past'] == '1') {
-                $base_query_string = "(index_id:default_node_index AND ((".AC_TYPE_FIELD.":article OR ss_type:artwork OR (".AC_TYPE_FIELD.":opportunity AND ".AC_OPP_ANNOUNCE_DATE_FIELD.":[* TO NOW]) OR ".AC_TYPE_FIELD.":event))) OR (".AC_TYPE_FIELD.":users)";
+                $base_query_string = "(index_id:".NODE_INDEX." AND ((".AC_TYPE_FIELD.":article OR ss_type:artwork OR (".AC_TYPE_FIELD.":opportunity AND ".AC_OPP_ANNOUNCE_DATE_FIELD.":[* TO NOW]) OR ".AC_TYPE_FIELD.":event))) OR (index_id:".USER_INDEX.")";
             } else {
-                $base_query_string = "(index_id:default_node_index AND ((".AC_TYPE_FIELD.":article OR ss_type:artwork OR (".AC_TYPE_FIELD.":opportunity AND ".AC_OPP_ANNOUNCE_DATE_FIELD.":[* TO NOW]) OR (".AC_TYPE_FIELD.":event AND ds_field_date\:value:[NOW TO *])))) OR (index_id:users)";
+                $base_query_string = "(index_id:".NODE_INDEX." AND ((".AC_TYPE_FIELD.":article OR ss_type:artwork OR (".AC_TYPE_FIELD.":opportunity AND ".AC_OPP_ANNOUNCE_DATE_FIELD.":[* TO NOW]) OR (".AC_TYPE_FIELD.":event AND ds_field_date\:value:[NOW TO *])))) OR (index_id:".USER_INDEX.")";
             }
             $finished_query_string = (!is_null($filter_query_string)) ? "($base_query_string) AND $filter_query_string" : $base_query_string;
         }
@@ -1245,17 +1244,17 @@ function _set_community_query_facets ($filter_query_string = null) {
         $facetSet->createFacetField('opportunity_type')->setField(AC_OPP_TYPE_FIELD);
 
         // use constants here for index_id and field and so on
-        $facetSet->createFacetQuery('artists')->setQuery('index_id:users AND im_roles:'.ARTIST_ROLE);
-        $facetSet->createFacetQuery('organizations')->setQuery('index_id:users AND im_roles:'.ORG_ROLE);
+        $facetSet->createFacetQuery('artists')->setQuery('index_id:'.USER_INDEX.' AND im_roles:'.ARTIST_ROLE);
+        $facetSet->createFacetQuery('organizations')->setQuery('index_id:'.USER_INDEX.' AND im_roles:'.ORG_ROLE);
         if (isset($_GET['content']['event_include_past']) && $_GET['content']['event_include_past'] == '1') {
-            $facetSet->createFacetQuery('events')->setQuery('index_id:default_node_index AND '.AC_TYPE_FIELD.':event');
+            $facetSet->createFacetQuery('events')->setQuery('index_id:'.NODE_INDEX.' AND '.AC_TYPE_FIELD.':event');
         } else {
-            $facetSet->createFacetQuery('events')->setQuery('index_id:default_node_index AND '.AC_TYPE_FIELD.':event  AND ds_field_date\:value:[NOW TO *]');
+            $facetSet->createFacetQuery('events')->setQuery('index_id:'.NODE_INDEX.' AND '.AC_TYPE_FIELD.':event  AND ds_field_date\:value:[NOW TO *]');
         }
-        $facetSet->createFacetQuery('articles')->setQuery('index_id:default_node_index AND '.AC_TYPE_FIELD.':article');
-        $facetSet->createFacetQuery('artworks')->setQuery('index_id:default_node_index AND '.AC_TYPE_FIELD.':artwork');
-        $facetSet->createFacetQuery('opportunities')->setQuery('index_id:default_node_index AND '.AC_TYPE_FIELD.':opportunity');
-        $facetSet->createFacetQuery('all_content')->setQuery('(index_id:default_node_index AND (('.AC_TYPE_FIELD.':article OR '.AC_TYPE_FIELD.':artwork OR '.AC_TYPE_FIELD.':event))) OR (index_id:users)');
+        $facetSet->createFacetQuery('articles')->setQuery('index_id:'.NODE_INDEX.' AND '.AC_TYPE_FIELD.':article');
+        $facetSet->createFacetQuery('artworks')->setQuery('index_id:'.NODE_INDEX.' AND '.AC_TYPE_FIELD.':artwork');
+        $facetSet->createFacetQuery('opportunities')->setQuery('index_id:'.NODE_INDEX.' AND '.AC_TYPE_FIELD.':opportunity');
+        $facetSet->createFacetQuery('all_content')->setQuery('(index_id:'.NODE_INDEX.' AND (('.AC_TYPE_FIELD.':article OR '.AC_TYPE_FIELD.':artwork OR '.AC_TYPE_FIELD.':event))) OR (index_id:'.USER_INDEX.')');
 
         $resultset = $client->select($solarium_query);
         $search_facets = $resultset->getFacetSet();
