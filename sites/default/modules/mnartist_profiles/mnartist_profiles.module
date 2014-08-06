@@ -282,15 +282,14 @@ function mnartist_profiles_collective_or_fullname_or_username($uid, $prefer_full
             return $context_profile->field_pseudonym[LANGUAGE_NONE][0]['value'];
         } else if (isset($context_profile->field_full_name[LANGUAGE_NONE])) {
             $entity = field_collection_item_load($context_profile->field_full_name[LANGUAGE_NONE][0]['value']);
-            if (isset($entity->field_first_name[LANGUAGE_NONE][0]['value']) &&
-                isset($entity->field_last_name[LANGUAGE_NONE][0]['value'])) {
-                $first_name = $entity->field_first_name[LANGUAGE_NONE][0]['value'];
+            if (isset($entity->field_last_name[LANGUAGE_NONE][0]['value'])) {
                 $last_name = $entity->field_last_name[LANGUAGE_NONE][0]['value'];
-                return "$first_name $last_name";
+                $full_name = (isset($entity->field_first_name[LANGUAGE_NONE][0]['value'])) ? $entity->field_first_name[LANGUAGE_NONE][0]['value']." $last_name" : $last_name;
+                return $full_name;
             }
         }
     }
-    return $context_user->name;
+    return '';
 }
 
 function mnartist_profiles_get_sort_by_name($uid) {
@@ -312,7 +311,7 @@ function mnartist_profiles_get_sort_by_name($uid) {
             }
         }
     }
-    return $context_user->name;
+    return '';
 }
 
 // get all a user's roles from artworks they have submitted
