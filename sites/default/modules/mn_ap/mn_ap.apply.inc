@@ -12,41 +12,48 @@ function mn_ap_apply($nid) {
 
 	//get information defined in the Opportunity Content Type
 	$op_data = mn_ap_opportunity_data($nid);
+	//check for exiting application
+	$ap_data = mn_ap_application_data($nid, $uid);
+
 	if(isset($op_data['error'][0])) {
 		return drupal_set_message(t('This opportunity is not available for applications.'), 'error');
 	}
 
-	//check if application deadline has passed
-	if (strtotime($op_data['end_date']) < strtotime($op_data['today'])) {
-		return drupal_set_message(t('The application deadline: ' . $op_data['end_date']  . ' for this opportunity has passed.'), 'warning');
-	} elseif (strtotime($op_data['start_date']) > strtotime($op_data['today'])) {
-		return drupal_set_message(t('The applications will not be accepted for this opportunity until: ' . $op_data['start_date']), 'warning');
+	//if this is not a reopened application
+	if($ap_data['reopen'] == 0) {
+		//check if application deadline has passed
+		if (strtotime($op_data['end_date']) < strtotime($op_data['today'])) {
+			return drupal_set_message(t('The application deadline: ' . $op_data['end_date']  . ' for this opportunity has passed.'), 'warning');
+		} elseif (strtotime($op_data['start_date']) > strtotime($op_data['today'])) {
+			return drupal_set_message(t('The applications will not be accepted for this opportunity until: ' . $op_data['start_date']), 'warning');
+		}
 	}
 
 	//check if application is onsite
-	dpm($op_data);
 	if (! $op_data['apply_on_site']) {
 		return drupal_set_message(t('The applications for this opportunity are on an external site.'), 'warning');
 	}
 
 	$output = '';
-	//check for exiting application
-	$ap_data = mn_ap_application_data($nid, $uid);
 	//check id completed or still in progress
 	$user_artworks = mn_ap_artworks_data($uid);
 	$resume = mnartist_profiles_resume_download($uid);
 
-	if (! $ap_data || $ap_data['complete'] == '0') {
+	if (! $ap_data || $ap_data['complete'] == '0' || $ap_data['reopen'] == '1') {
 		//if non-existing do drupal queries
 		//if exists query op_applicaiton table and image table
 		if ($ap_data) {
-			$application_data[] = array(
+			$application_data = array(
 					'opportunity' => $op_data,
 					'artworks' => $user_artworks,
 					'application' => $ap_data,
 					'resume_view' => $resume
 			);
-			$rows = mn_ap_parse_data($application_data['0'], $nid);
+			//if application is reopened get previous artworks selected
+			if ($ap_data['reopen'] == '1') {
+				$application_data['ap_artworks'] = mn_ap_get_ap_artworks($nid, $uid);
+			}
+			$rows = mn_ap_parse_data($application_data, $nid);
 		} else {
 			$user_profile = (array) user_load($uid);
 			$main_profile =  (array) _profile2_by_uid_load($uid, 'main');
@@ -270,13 +277,14 @@ function mn_ap_profile2_data($profile, $nid) {
 	return $rows;
 }
 /*
-* 
+*
 */
 function mn_ap_parse_data($profile, $nid) {
 		$opportunity = $profile['opportunity'];
 		$application = $profile['application'];
 		$artworks = $profile['artworks'];
 		$resume_view = $profile['resume_view'];
+		$ap_artworks = isset($profile['ap_artworks']) ? $profile['ap_artworks'] : '';
 
 		$rows[] = array(
 		'nid' => $nid,
@@ -302,12 +310,18 @@ function mn_ap_parse_data($profile, $nid) {
 		'field2' => isset($application['field2']) ? $application['field2'] : '',
 		'field3' => isset($application['field3']) ? $application['field3'] : '',
 		'field4' => isset($application['field4']) ? $application['field4'] : '',
+		'upload1' => isset($application['upload1']) ? $application['upload1'] : '',
+		'upload2' => isset($application['upload2']) ? $application['upload2'] : '',
+		'upload3' => isset($application['upload3']) ? $application['upload3'] : '',
+		'upload4' => isset($application['upload4']) ? $application['upload4'] : '',
+		'reopen' => $application['reopen'],
 		'resume_statement' => isset($application['statement']) ? $application['statement'] : '',
 		'resume_bio' => isset($application['bio']) ? $application['bio'] : '',
 		'proposal' =>	isset($application['proposal']) ? $application['proposal'] : '',
 		'artworks' => $artworks,
 		'profile' => $profile,
 		'resume' => $resume_view,
+		'ap_artworks'=> isset($ap_artworks) ? $ap_artworks : ''
 	);
 	return $rows;
 }
