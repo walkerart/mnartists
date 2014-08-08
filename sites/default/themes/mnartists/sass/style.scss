@@ -9115,6 +9115,8 @@ table.table thead .sorting {
                 display:block;
                 box-sizing:border-box;
                 padding:0 0 10px 0;
+                min-height:68px;
+                border-bottom: 1px dotted #888888;
 
                 a {
 
@@ -9134,6 +9136,8 @@ table.table thead .sorting {
                 }
                 &.user-thing-more {
                   min-height:10px;
+                  border-bottom:none;
+
                     a {
                         /*background: url('../images/arrow-down-more.svg') no-repeat center center transparent;
                         background-size:18px 10px;
