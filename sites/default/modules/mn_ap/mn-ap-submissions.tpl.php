@@ -45,6 +45,7 @@
 						<th>Avg. Rating</th>
 						<th class="work"></th>
 						<th>Status</th>
+						<th>Unsubmit</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -106,10 +107,27 @@
 							<form action="<?php echo url('opportunity/' . $review['nid'] . '/submissions', array()); ?>" method="POST">
 								<input type="hidden" name="status" value="<?php echo $review['accept']; ?>">
 								<input type="hidden" name="uid" value="<?php echo $review['uid']; ?>">
-								<?php if($review['accept'] != 1) : ?>
-									<input class="ap-btn-margin" type="submit" value="Out">
+								<?php if($review['complete'] == 1 && $review['reopen'] == 0) : ?>
+									<?php if($review['accept'] != 1) : ?>
+										<input class="ap-btn-margin" type="submit" value="Out">
+									<?php else : ?>
+										<input class="ap-btn-margin" type="submit" value="In">
+									<?php endif; ?>
+								<?php elseif ($review['reopen'] == 1) : ?>
+									<?php echo "Reopened"; ?>
 								<?php else : ?>
-									<input class="ap-btn-margin" type="submit" value="In">
+									<?php echo "Not complete"; ?>
+								<?php endif; ?>
+							</form>
+						</td>
+						<td>
+							<form action="<?php echo url('opportunity/' . $review['nid'] . '/submissions', array()); ?>" method="POST">
+								<input type="hidden" name="reopen" value="<?php echo $review['reopen']; ?>">
+								<input type="hidden" name="uid" value="<?php echo $review['uid']; ?>">
+								<?php if($review['reopen'] != 1) : ?>
+									<input class="ap-btn-margin" type="submit" value="Unsubmit">
+								<?php else : ?>
+									<input class="ap-btn-margin" type="submit" value="Close">
 								<?php endif; ?>
 							</form>
 						</td>

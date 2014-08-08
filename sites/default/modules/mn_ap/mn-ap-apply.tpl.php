@@ -55,6 +55,7 @@
                     <div id="step1">
                         <input type="hidden" id="nid" name="nid" value="<?php echo $rows['nid']; ?>">
                         <input type="hidden" id="title" name="title" value="<?php echo $rows['op_title']; ?>">
+                        <input type="hidden" id="reopen" name="reopen" value="<?php echo $rows['reopen']; ?>">
                         <fieldset>
                             <div class="row">
                                 <div class="col-sm-8 col-sm-offset-2">
@@ -289,7 +290,7 @@
                                                 <img class="img-responsive" src="<?php echo image_style_url('large', $image['file']); ?>">
                                                 <div class="caption">
                                                     <div>
-                                                        <input type="checkbox" class="ap-check" data-id="f<?php echo $image['fid']; ?>" name="artwork['<?php echo $image['fid']; ?>']" value="<?php echo $image['fid']; ?>" data-vid="v<?php echo $artwork['vid']; ?>">
+                                                        <input type="checkbox" class="ap-check" data-id="f<?php echo $image['fid']; ?>" name="artwork['<?php echo $image['fid']; ?>']" value="<?php echo $image['fid']; ?>" data-vid="v<?php echo $artwork['vid']; ?>" <?php echo in_array($image['fid'], $rows['ap_artworks']) ? 'checked' : ''; ?>>
                                                         <?php echo $image['filename']; ?>
                                                     </div>
                                                 </div>
@@ -303,7 +304,7 @@
                                                 <span id="url<?php echo $sci; // populated by soundcloud embed iframe ?>"></span>
                                                 <div class="caption">
                                                     <div>
-                                                        <input type="checkbox" class="ap-check" data-id="f<?php echo $image['fid']; ?>" name="artwork['<?php echo $image['fid']; ?>']" value="<?php echo $image['fid']; ?>" data-vid="v<?php echo $artwork['vid']; ?>">
+                                                        <input type="checkbox" class="ap-check" data-id="f<?php echo $image['fid']; ?>" name="artwork['<?php echo $image['fid']; ?>']" value="<?php echo $image['fid']; ?>" data-vid="v<?php echo $artwork['vid']; ?>" <?php echo $rows['ap_artworks'] != '' && in_array($image['fid'], $rows['ap_artworks']) ? 'checked' : ''; ?>>
                                                         <?php echo $image['filename']; ?>
                                                     </div>
                                                 </div>
@@ -327,7 +328,7 @@
                                                 <iframe class="img-responsive" src="<?php echo $image['file']; ?>" id="ytplayer" frameborder="0"></iframe>
                                                 <div class="caption">
                                                     <div>
-                                                        <input type="checkbox" class="ap-check" data-id="f<?php echo $image['fid']; ?>" name="artwork['<?php echo $image['fid']; ?>']" value="<?php echo $image['fid']; ?>" data-vid="v<?php echo $artwork['vid']; ?>">
+                                                        <input type="checkbox" class="ap-check" data-id="f<?php echo $image['fid']; ?>" name="artwork['<?php echo $image['fid']; ?>']" value="<?php echo $image['fid']; ?>" data-vid="v<?php echo $artwork['vid']; ?>" <?php echo $rows['ap_artworks'] != '' && in_array($image['fid'], $rows['ap_artworks']) ? 'checked' : ''; ?>>
                                                         <?php echo $image['filename']; ?>
                                                     </div>
                                                 </div>
@@ -341,7 +342,7 @@
                                                 <iframe class="img-responsive" src="<?php echo $image['file']; ?>" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
                                                 <div class="caption">
                                                     <div>
-                                                        <input type="checkbox" class="ap-check" data-id="f<?php echo $image['fid']; ?>" name="artwork['<?php echo $image['fid']; ?>']" value="<?php echo $image['fid']; ?>" data-vid="v<?php echo $artwork['vid']; ?>">
+                                                        <input type="checkbox" class="ap-check" data-id="f<?php echo $image['fid']; ?>" name="artwork['<?php echo $image['fid']; ?>']" value="<?php echo $image['fid']; ?>" data-vid="v<?php echo $artwork['vid']; ?>" <?php echo $rows['ap_artworks'] != '' && in_array($image['fid'], $rows['ap_artworks']) ? 'checked' : ''; ?>>
                                                         <?php echo $image['filename']; ?>
                                                     </div>
                                                 </div>
@@ -355,7 +356,7 @@
                                                 <div class="img-responsive doc-icon"></div>
                                                 <div class="caption">
                                                     <div>
-                                                        <input type="checkbox" class="ap-check" data-id="f<?php echo $image['fid']; ?>" name="artwork['<?php echo $image['fid']; ?>']" value="<?php echo $image['fid']; ?>" data-vid="v<?php echo $artwork['vid']; ?>">
+                                                        <input type="checkbox" class="ap-check" data-id="f<?php echo $image['fid']; ?>" name="artwork['<?php echo $image['fid']; ?>']" value="<?php echo $image['fid']; ?>" data-vid="v<?php echo $artwork['vid']; ?>" <?php echo $rows['ap_artworks'] != '' && in_array($image['fid'], $rows['ap_artworks']) ? 'checked' : ''; ?>>
                                                         <a href="<?php echo file_create_url($image['file']); ?>" target="_blank"><?php echo $image['filename']; ?></a>
                                                     </div>
                                                 </div>
@@ -443,49 +444,113 @@
                                 <?php if (in_array('upload1', $rows['opportunity']['areas'])) : ?>
                                 <div class="row">
                                     <div class="form-group">
-                                        <label class="col-sm-2" for="upload1"><?php echo $rows['opportunity']['custom_up_1_title']; ?><?php if(in_array('upload1', $rows['opportunity']['required'])) echo '*'; ?> <div class="small"><?php echo $rows['opportunity']['custom_up_1_desc']; ?></div></label>
-                                        <div class="col-sm-4">
-                                            <input class="custom-upload" type="file" id="upload1" name="upload[]">
-                                            <div id="upload1Display" class="col-sm-4"></div>
+                                        <label class="col-sm-3" for="upload1"><?php echo $rows['opportunity']['custom_up_1_title']; ?><?php if(in_array('upload1', $rows['opportunity']['required'])) echo '*'; ?> <div class="small"><?php echo $rows['opportunity']['custom_up_1_desc']; ?></div></label>
+                                        <div class="col-sm-9">
+                                        <?php if ($rows['upload1'] == '' || ! in_array('upload1', $rows['opportunity']['required'])) : ?>
+                                            <div class="col-sm-6">
+                                                <input class="custom-upload" type="file" id="upload1" name="upload1[]">
+                                                <?php if ($rows['upload1'] != '') : ?>
+                                                    <p class="pull-right">
+                                                        You previously uploaded: <a href="<?php  print file_create_url(file_build_uri('opportunity/' . $rows['nid'] . '/' . $rows['uid'] . '/' . $rows['upload1'])); ?>" target="_blank"><?php echo $rows['upload1'];  ?></a>
+                                                    </p>
+                                                <?php endif; ?>
+                                            </div>
+                                            <div id="upload1Display" class="col-sm-3"></div>
+                                        <?php else : ?>
+                                            <div class="col-sm-6">
+                                                <p class="pull-right">
+                                                    You previously uploaded: <a href="<?php  print file_create_url(file_build_uri('opportunity/' . $rows['nid'] . '/' . $rows['uid'] . '/' . $rows['upload1'])); ?>" target="_blank"><?php echo $rows['upload1'];  ?></a>
+                                                </p>
+                                            </div>
+                                        <?php endif; ?>
                                         </div>
                                     </div>
                                 </div>
+                                <hr>
                                 <?php endif; ?>
 
                                 <?php if (in_array('upload2', $rows['opportunity']['areas'])) : ?>
                                 <div class="row">
                                     <div class="form-group">
-                                        <label class="col-sm-2" for="upload2"><?php echo $rows['opportunity']['custom_up_2_title']; ?><?php if(in_array('upload2', $rows['opportunity']['required'])) echo '*'; ?> <div class="small"><?php echo $rows['opportunity']['custom_up_2_desc']; ?></div></label>
-                                        <div class="col-sm-4">
-                                            <input class="custom-upload" type="file" id="upload2" name="upload[]">
-                                            <div id="upload2Display" class="col-sm-4"></div>
+                                        <label class="col-sm-3" for="upload2"><?php echo $rows['opportunity']['custom_up_2_title']; ?><?php if(in_array('upload2', $rows['opportunity']['required'])) echo '*'; ?> <div class="small"><?php echo $rows['opportunity']['custom_up_2_desc']; ?></div></label>
+                                        <div class="col-sm-9">
+                                        <?php if ($rows['upload2'] == '' || ! in_array('upload2', $rows['opportunity']['required'])) : ?>
+                                            <div class="col-sm-6">
+                                                <input class="custom-upload" type="file" id="upload2" name="upload2[]">
+                                                <?php if ($rows['upload2'] != '') : ?>
+                                                    <p class="pull-right">
+                                                        You previously uploaded: <a href="<?php  print file_create_url(file_build_uri('opportunity/' . $rows['nid'] . '/' . $rows['uid'] . '/' . $rows['upload2'])); ?>" target="_blank"><?php echo $rows['upload2'];  ?></a>
+                                                    </p>
+                                                <?php endif; ?>
+                                            </div>
+                                            <div id="upload2Display" class="col-sm-3"></div>
+                                        <?php else : ?>
+                                            <div class="col-sm-6">
+                                                <p class="pull-right">
+                                                    You previously uploaded: <a href="<?php  print file_create_url(file_build_uri('opportunity/' . $rows['nid'] . '/' . $rows['uid'] . '/' . $rows['upload2'])); ?>" target="_blank"><?php echo $rows['upload2'];  ?></a>
+                                                </p>
+                                            </div>
+                                        <?php endif; ?>
                                         </div>
                                     </div>
                                 </div>
+                                <hr>
                                 <?php endif; ?>
 
                                 <?php if (in_array('upload3', $rows['opportunity']['areas'])) : ?>
                                 <div class="row">
                                     <div class="form-group">
-                                        <label class="col-sm-2" for="upload3"><?php echo $rows['opportunity']['custom_up_3_title']; ?><?php if(in_array('upload3', $rows['opportunity']['required'])) echo '*'; ?> <div class="small"><?php echo $rows['opportunity']['custom_up_3_desc']; ?></div></label>
-                                        <div class="col-sm-4">
-                                            <input class="custom-upload" type="file" id="upload3" name="upload[]">
-                                            <div id="upload3Display" class="col-sm-4"></div>
+                                        <label class="col-sm-3" for="upload3"><?php echo $rows['opportunity']['custom_up_3_title']; ?><?php if(in_array('upload3', $rows['opportunity']['required'])) echo '*'; ?> <div class="small"><?php echo $rows['opportunity']['custom_up_3_desc']; ?></div></label>
+                                        <div class="col-sm-9">
+                                        <?php if ($rows['upload3'] == '' || ! in_array('upload3', $rows['opportunity']['required'])) : ?>
+                                            <div class="col-sm-6">
+                                                <input class="custom-upload" type="file" id="upload3" name="upload3[]">
+                                                <?php if ($rows['upload3'] != '') : ?>
+                                                    <p class="pull-right">
+                                                        You previously uploaded: <a href="<?php  print file_create_url(file_build_uri('opportunity/' . $rows['nid'] . '/' . $rows['uid'] . '/' . $rows['upload3'])); ?>" target="_blank"><?php echo $rows['upload3'];  ?></a>
+                                                    </p>
+                                                <?php endif; ?>
+                                            </div>
+                                            <div id="upload3Display" class="col-sm-3"></div>
+                                        <?php else : ?>
+                                            <div class="col-sm-6">
+                                                <p class="pull-right">
+                                                    You previously uploaded: <a href="<?php  print file_create_url(file_build_uri('opportunity/' . $rows['nid'] . '/' . $rows['uid'] . '/' . $rows['upload3'])); ?>" target="_blank"><?php echo $rows['upload3'];  ?></a>
+                                                </p>
+                                            </div>
+                                        <?php endif; ?>
                                         </div>
                                     </div>
                                 </div>
+                                <hr>
                                 <?php endif; ?>
 
                                 <?php if (in_array('upload4', $rows['opportunity']['areas'])) : ?>
                                 <div class="row">
                                     <div class="form-group">
-                                        <label class="col-sm-2" for="upload4"><?php echo $rows['opportunity']['custom_up_4_title']; ?><?php if(in_array('upload4', $rows['opportunity']['required'])) echo '*'; ?> <div class="small"><?php echo $rows['opportunity']['custom_up_4_desc']; ?></div></label>
-                                        <div class="col-sm-4">
-                                            <input class="custom-upload" type="file" id="upload4" name="upload[]">
-                                            <div id="upload3Display" class="col-sm-4"></div>
+                                        <label class="col-sm-3" for="upload4"><?php echo $rows['opportunity']['custom_up_4_title']; ?><?php if(in_array('upload4', $rows['opportunity']['required'])) echo '*'; ?> <div class="small"><?php echo $rows['opportunity']['custom_up_4_desc']; ?></div></label>
+                                        <div class="col-sm-9">
+                                        <?php if ($rows['upload4'] == '' || ! in_array('upload4', $rows['opportunity']['required'])) : ?>
+                                            <div class="col-sm-6">
+                                                <input class="custom-upload" type="file" id="upload4" name="upload4[]">
+                                                <?php if ($rows['upload4'] != '') : ?>
+                                                    <p class="pull-right">
+                                                        You previously uploaded: <a href="<?php  print file_create_url(file_build_uri('opportunity/' . $rows['nid'] . '/' . $rows['uid'] . '/' . $rows['upload4'])); ?>" target="_blank"><?php echo $rows['upload4'];  ?></a>
+                                                    </p>
+                                                <?php endif; ?>
+                                            </div>
+                                            <div id="upload4Display" class="col-sm-3"></div>
+                                        <?php else : ?>
+                                            <div class="col-sm-6">
+                                                <p class="pull-right">
+                                                    You previously uploaded: <a href="<?php  print file_create_url(file_build_uri('opportunity/' . $rows['nid'] . '/' . $rows['uid'] . '/' . $rows['upload4'])); ?>" target="_blank"><?php echo $rows['upload4'];  ?></a>
+                                                </p>
+                                            </div>
+                                        <?php endif; ?>
                                         </div>
                                     </div>
                                 </div>
+                                <hr>
                                 <?php endif; ?>
 
                                 <div class="row">
@@ -619,19 +684,58 @@
                             </div>
                             <?php endif; ?>
                             <?php  if (in_array('fields-uploads', $rows['opportunity']['steps'])) : ?>
-                                <div id="addUploadsView" class="row">
+                                <div id="addUploadsView">
                                     <hr>
                                     <h3>Additional Materials</h3>
-                                    <div id="upload1View" class="col-md-3"></div>
-                                    <div id="upload2View" class="col-md-3"></div>
-                                    <div id="upload3View" class="col-md-3"></div>
-                                    <div id="upload4View" class="col-md-3"></div>
+                                    <div class="row">
+                                        <div id="upload1View">
+                                        <?php if ($rows['ap_artworks'] != '' && $rows['upload1'] != '') : ?>
+                                            <div class="col-sm-12">
+                                                <label class="col-sm-4" for="upload1">Upload: <?php echo $rows['opportunity']['custom_up_1_title']; ?></label>
+                                                <a href="<?php  print file_create_url(file_build_uri('opportunity/' . $rows['nid'] . '/' . $rows['uid'] . '/' . $rows['upload1'])); ?>" target="_blank"><?php echo $rows['upload1'];  ?></a>
+                                            </div>
+                                        <?php endif; ?>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div id="upload2View">
+                                        <?php if ($rows['ap_artworks'] != '' && $rows['upload2'] != '') : ?>
+                                            <div class="col-sm-12">
+                                                <label class="col-sm-4" for="upload2">Upload: <?php echo $rows['opportunity']['custom_up_2_title']; ?></label>
+                                                <a href="<?php  print file_create_url(file_build_uri('opportunity/' . $rows['nid'] . '/' . $rows['uid'] . '/' . $rows['upload2'])); ?>" target="_blank"><?php echo $rows['upload2'];  ?></a>
+                                            </div>
+                                        <?php endif; ?>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div id="upload3View">
+                                        <?php if ($rows['ap_artworks'] != '' && $rows['upload3'] != '') : ?>
+                                            <div class="col-sm-12">
+                                                <label class="col-sm-4" for="upload3">Upload: <?php echo $rows['opportunity']['custom_up_3_title']; ?></label>
+                                                <a href="<?php  print file_create_url(file_build_uri('opportunity/' . $rows['nid'] . '/' . $rows['uid'] . '/' . $rows['upload3'])); ?>" target="_blank"><?php echo $rows['upload3'];  ?></a>
+                                            </div>
+                                        <?php endif; ?>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div id="upload4View">
+                                        <?php if ($rows['ap_artworks'] != '' && $rows['upload4'] != '') : ?>
+                                            <div class="col-sm-12">
+                                                <label class="col-sm-4" for="upload4">Upload: <?php echo $rows['opportunity']['custom_up_4_title']; ?></label>
+                                                <a href="<?php  print file_create_url(file_build_uri('opportunity/' . $rows['nid'] . '/' . $rows['uid'] . '/' . $rows['upload4'])); ?>" target="_blank"><?php echo $rows['upload4'];  ?></a>
+                                            </div>
+                                        <?php endif; ?>
+                                        </div>
+                                    </div>
                                 </div>
                             <?php endif; ?>
+
                             <div class="form-group">
-                                <div class="col-sm-12">
-                                    <div class="prev" id="gotoStep<?php echo count($rows['opportunity']['steps']) + 1; ?>" role="button">Back</div>
-                                    <input id="SaveApplication" type="submit" class="pull-right submit" value="Submit">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="prev" id="gotoStep<?php echo count($rows['opportunity']['steps']) + 1; ?>" role="button">Back</div>
+                                        <input id="SaveApplication" type="submit" class="pull-right submit" value="Submit">
+                                    </div>
                                 </div>
                             </div>
                         </fieldset>
@@ -752,4 +856,7 @@ drupal_add_js(array('required' => $rows['opportunity']['required']), 'setting');
 drupal_add_js(array('steps' =>  $rows['opportunity']['steps']), 'setting');
 drupal_add_js(array('titles' =>  $rows['opportunity']['step_titles']), 'setting');
 drupal_add_js(array('works' => array('max' => $rows['opportunity']['max_works'], 'min' => $rows['opportunity']['min_works'])), 'setting');
+if ($rows['ap_artworks']) {
+    drupal_add_js(array('ap_artworks' => $rows['ap_artworks']), 'setting');
+}
 ?>

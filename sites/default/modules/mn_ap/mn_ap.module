@@ -79,6 +79,24 @@ function mn_ap_theme() {
   );
 }
 
+function mn_ap_get_ap_artworks($nid, $uid) {
+  $ap_artworks = '';
+  $results = db_select('op_artworks', 'op')
+    ->fields('op')
+    ->condition('nid', $nid, '=')
+    ->condition('uid', $uid, '=')
+    ->execute()
+    ->fetchAll();
+  if ($results) {
+    foreach ($results as $result) {
+      if ($result->fid) {
+        $ap_artworks[$result->vid] =  $result->fid;
+      }
+    }
+  }
+  return $ap_artworks;
+}
+
 /**
  * Submit form for the op_applications table
  * Uploads files from custom  upload fields
@@ -90,9 +108,15 @@ function ap_submit_form() {
   $uid = $user->uid;
   $name = $user->name;
   $ap_folder = $nid;
-  $user_folder = '/'.$uid;
+  $user_folder = '/' . $uid;
   $ap_folder_path = variable_get('file_public_path', conf_path() . '/files/opportunity/' . $ap_folder);
   $user_folder_path = $ap_folder_path . $user_folder;
+
+  $reopen = $_POST['reopen'];
+  // if this is a reopen application get previous artwork data
+  if ($reopen == 1) {
+    $previous_artworks = mn_ap_get_ap_artworks($nid, $uid);
+  }
 
   $input = array(
       'nid' => $nid,
@@ -118,7 +142,8 @@ function ap_submit_form() {
       'field2' => !empty($_POST['field2Editor']) ? $_POST['field2Editor'] : '',
       'field3' => !empty($_POST['field3Editor']) ? $_POST['field3Editor'] : '',
       'field4' => !empty($_POST['field4Editor']) ? $_POST['field4Editor'] : '',
-      'complete' => 1
+      'complete' => 1,
+      'reopen' => 0
   );
 
   //create application folder if doesn't exist
@@ -136,71 +161,96 @@ function ap_submit_form() {
   if (!empty($_POST['artwork'])) {
     $artwork_data = mn_ap_artworks_data($uid);
     array_pop($artwork_data);
+    //loop through the checked artwork fids from the form
     foreach($_POST['artwork'] as $fid) {
-      foreach($artwork_data as $data) {
-        foreach($data['images'] as $image) {
-          if ($image['fid'] == $fid) {
-            $work['uid'] = $uid;
-            $work['nid'] = $nid;
-            $work['title'] = isset($data['title']) ? $data['title'] : '';
-            $work['medium'] = isset($data['medium']) ? json_encode($data['medium']) : '';
-            $work['date'] = isset($data['date']) ? $data['date'] : '';
-            $work['dimensions'] = isset($data['dimensions']) ? $data['dimensions'] : '';
-            $work['description'] = isset($data['body']) ? $data['body'] : '';
-            $work['file_type'] = isset($image['type']) ? $image['type'] : '';
-            $work['file'] = isset($image['file']) ? $image['file'] : '';
-            if ($image['type'] == 'image') {
-              $url = image_style_url('large', $image['file']);
-              $data = drupal_http_request($url);
-              $thumb = image_style_url('ap_tiny', $image['file']);
-              $thumb_data = drupal_http_request($thumb);
-              if (file_prepare_directory($ap_folder_path, $options = FILE_MODIFY_PERMISSIONS) && file_prepare_directory($user_folder_path, $options = FILE_MODIFY_PERMISSIONS)) {
-                //get filepath of existing image
-                $filepath = str_replace($GLOBALS['base_url'], "", file_create_url($image['file']));
-                $file = drupal_basename($filepath);
-                $work['file'] = $file;
-                //move the the image to new location
-                file_unmanaged_save_data($data->data, "$user_folder_path/$file", $replace = FILE_EXISTS_RENAME);
-                file_unmanaged_save_data($thumb_data->data, "$user_folder_path/thumb_$file", $replace = FILE_EXISTS_RENAME);
+      //if the artwork doesn't already exist then save it
+      if (!in_array($fid, $previous_artworks)) {
+        //loop thourgh all artwork data
+        foreach($artwork_data as $data) {
+          //find correct data for upload
+          foreach($data['images'] as $image) {
+            if ($image['fid'] == $fid) {
+              $work['fid'] = $fid;
+              $work['vid'] = $data['vid'];
+              $work['uid'] = $uid;
+              $work['nid'] = $nid;
+              $work['title'] = isset($data['title']) ? $data['title'] : '';
+              $work['medium'] = isset($data['medium']) ? json_encode($data['medium']) : '';
+              $work['date'] = isset($data['date']) ? $data['date'] : '';
+              $work['dimensions'] = isset($data['dimensions']) ? $data['dimensions'] : '';
+              $work['description'] = isset($data['body']) ? $data['body'] : '';
+              $work['file_type'] = isset($image['type']) ? $image['type'] : '';
+              $work['file'] = isset($image['file']) ? $image['file'] : '';
+              if ($image['type'] == 'image') {
+                $url = image_style_url('large', $image['file']);
+                $data = drupal_http_request($url);
+                $thumb = image_style_url('ap_tiny', $image['file']);
+                $thumb_data = drupal_http_request($thumb);
+                if (file_prepare_directory($ap_folder_path, $options = FILE_MODIFY_PERMISSIONS) && file_prepare_directory($user_folder_path, $options = FILE_MODIFY_PERMISSIONS)) {
+                  //get filepath of existing image
+                  $filepath = str_replace($GLOBALS['base_url'], "", file_create_url($image['file']));
+                  $file = drupal_basename($filepath);
+                  $work['file'] = $file;
+                  //move the the image to new location
+                  file_unmanaged_save_data($data->data, "$user_folder_path/$file", $replace = FILE_EXISTS_RENAME);
+                  file_unmanaged_save_data($thumb_data->data, "$user_folder_path/thumb_$file", $replace = FILE_EXISTS_RENAME);
+                }
               }
-            }
-            if ($image['type'] == 'document') {
-              $url = file_create_url($image['file']);
-              $data = drupal_http_request($url);
-              if (file_prepare_directory($ap_folder_path, $options = FILE_MODIFY_PERMISSIONS) && file_prepare_directory($user_folder_path, $options = FILE_MODIFY_PERMISSIONS)) {
-                $filepath = str_replace($GLOBALS['base_url'], "", file_create_url($image['file']));
-                $file = drupal_basename($filepath);
-                $work['file'] = $file;
-                file_unmanaged_save_data($data->data, "$user_folder_path/$file", $replace = FILE_EXISTS_RENAME);
+              if ($image['type'] == 'document') {
+                $url = file_create_url($image['file']);
+                $data = drupal_http_request($url);
+                if (file_prepare_directory($ap_folder_path, $options = FILE_MODIFY_PERMISSIONS) && file_prepare_directory($user_folder_path, $options = FILE_MODIFY_PERMISSIONS)) {
+                  $filepath = str_replace($GLOBALS['base_url'], "", file_create_url($image['file']));
+                  $file = drupal_basename($filepath);
+                  $work['file'] = $file;
+                  file_unmanaged_save_data($data->data, "$user_folder_path/$file", $replace = FILE_EXISTS_RENAME);
+                }
               }
+              // write data to op_artwork table
+              db_insert('op_artworks')
+                ->fields($work)
+                ->execute();
             }
-            // write data to op_artwork table
-            db_insert('op_artworks')
-              ->fields($work)
-              ->execute();
           }
         }
       }
     }
   }
 
-  //do uploads use $i for increment through keys used in input array
-  $i = 1;
-  if(!empty($_FILES["upload"])) {
-    foreach ($_FILES["upload"]["error"] as $key => $error) {
-      if ($error == UPLOAD_ERR_OK) {
-        $tmp_name = $_FILES["upload"]["tmp_name"][$key];
-        $name = $_FILES["upload"]["name"][$key];
-        if (!file_exists("$user_folder_path/$name")) {
-          move_uploaded_file($tmp_name, "$user_folder_path/$name");
-          $input['upload'.$i] = $name;
-        } else {
-          $new_name = file_newname($user_folder_path, $name);
-          move_uploaded_file($tmp_name, "$user_folder_path/$new_name");
-          $input['upload'.$i] = $new_name;
-        }
-        $i++;
-      }
+  //remove unselected works from op_artworks
+  foreach ($previous_artworks as $previous) {
+    if (!in_array($previous, $_POST['artwork'])) {
+      //delete
+      db_delete('op_artworks')
+        ->condition('fid', $previous, '=')
+        ->condition('uid', $uid, '=')
+        ->condition('nid', $nid, '=')
+        ->execute();
+    }
+  }
+
+  if(!empty($_FILES["upload1"])) {
+    $name = do_file_upload($_FILES["upload1"], $user_folder_path);
+    if (!empty($name)) {
+      $input["upload1"] = $name;
+    }
+  }
+  if(!empty($_FILES["upload2"])) {
+    $name = do_file_upload($_FILES["upload2"], $user_folder_path);
+    if (!empty($name)) {
+      $input["upload2"] = $name;
+    }
+  }
+  if(!empty($_FILES["upload3"])) {
+    $name = do_file_upload($_FILES["upload3"], $user_folder_path);
+    if (!empty($name)) {
+      $input["upload3"] = $name;
+    }
+  }
+  if(!empty($_FILES["upload4"])) {
+    $name = do_file_upload($_FILES["upload4"], $user_folder_path);
+    if (!empty($name)) {
+      $input["upload4"] = $name;
     }
   }
 
@@ -219,7 +269,32 @@ function ap_submit_form() {
         ->fields($input)
         ->execute();
   }
-  return drupal_set_message(t('Your application has been submitted.'), 'error');
+
+  drupal_set_message(t('Your application has been submitted.'), 'error');
+  return drupal_goto('application/' . $nid);
+}
+
+/*
+* function to handle file upload
+*/
+function do_file_upload($file, $user_folder_path){
+  foreach ($file["error"] as $key => $error) {
+    if ($error == UPLOAD_ERR_OK) {
+      $tmp_name = $file["tmp_name"][$key];
+      $name = $file["name"][$key];
+      if (!file_exists("$user_folder_path/$name")) {
+        move_uploaded_file($tmp_name, "$user_folder_path/$name");
+        $result = $name;
+      } else {
+        $new_name = file_newname($user_folder_path, $name);
+        move_uploaded_file($tmp_name, "$user_folder_path/$new_name");
+        $result = $new_name;
+      }
+    }
+  }
+  if (!empty($result)) {
+    return $result;
+  }
 }
 
 /*
@@ -512,7 +587,7 @@ function ap_ajax_callback() {
   }
 }
 
-function mn_ap_get_submissions($nid, $accepted, $completed) {
+function mn_ap_get_submissions($nid, $accepted = NULL, $completed = NULL) {
   $query = db_select('op_applications', 'op')
       ->fields('op')
       ->condition('nid', $nid, '=')
@@ -526,21 +601,6 @@ function mn_ap_get_submissions($nid, $accepted, $completed) {
   }
   return $resultArray;
 }
-
-// function mn_ap_get_submissions($nid, 1, 1) {
-//   $results = db_select('op_applications', 'op')
-//       ->fields('op')
-//       ->condition('nid', $nid, '=')
-//       ->orderBy('uid', 'asc')
-//       ->condition('accept', 1, '=')
-//       ->execute()
-//       ->fetchAll();
-//   $resultArray = array();
-//   foreach ($results as $result) {
-//     $resultArray[] = (array)$result;
-//   }
-//   return $resultArray;
-// }
 
 function mn_ap_get_all_reviews($nid, $round) {
   $query = db_select('op_applications', 'ap');
@@ -648,25 +708,16 @@ function mn_ap_get_all_for_xls($nid, $round) {
     $submissions = (array)$submissions;
   }
   //reviews
-  // $query = db_select('op_applications', 'ap');
-  // $query->join('op_rating', 'r', 'ap.uid = r.aid');
-  // $query->condition('ap.nid', $nid, '=')
-  //       ->condition('r.nid', $nid, '=')
-  //       ->fields('ap',array('uid'))
-  //       ->fields('r',array('uid', 'aid', 'rating', 'comment'))
-  //       ->orderBy('ap.uid', 'desc');
   $query = db_select('op_rating', 'r');
   $query->condition('r.nid', $nid, '=');
   $query->condition('r.round', $round, '=');
   $query->fields('r');
   $reviews = $query->execute()->fetchAll();
-  //$reviews = (array)$reviews;
 
   //form areas incuded in opportunity
   $areas = get_form_areas($node->field_op_required, $node->field_op_optional);
   //jurors
   $jurors = mn_op_get_jurors($nid);
-  //$jurors = (array)$jurors;
 
   //combine reviews with juror names
   $combined = array();
@@ -751,22 +802,22 @@ function ap_submissions_xls($nid, $title, $round) {
 }
 
 function array_to_xls_download($array, $filename = "export.xls", $delimiter="\t") {
-    // open raw memory as file so no temp files needed, you might run out of memory though
-    $f = fopen('php://memory', 'w');
-    // loop over the input array
-    foreach ($array as $line) {
-        // generate xls lines from the inner arrays
-        fputcsv($f, $line, $delimiter, '"');
-    }
-    // rewind the "file" with the xls lines
-    fseek($f, 0);
-    // tell the browser it's going to be a xls file
-    header('Content-Type:   application/vnd.ms-excel; charset=utf-8');
-    // tell the browser we want to save it instead of displaying it
-    header('Content-Disposition: attachement; filename="'.$filename.'";');
+  // open raw memory as file so no temp files needed, you might run out of memory though
+  $f = fopen('php://memory', 'w');
+  // loop over the input array
+  foreach ($array as $line) {
+      // generate xls lines from the inner arrays
+      fputcsv($f, $line, $delimiter, '"');
+  }
+  // rewind the "file" with the xls lines
+  fseek($f, 0);
+  // tell the browser it's going to be a xls file
+  header('Content-Type:   application/vnd.ms-excel; charset=utf-8');
+  // tell the browser we want to save it instead of displaying it
+  header('Content-Disposition: attachement; filename="'.$filename.'";');
 
-    // make php send the generated xls lines to the browser
-    fpassthru($f);
+  // make php send the generated xls lines to the browser
+  fpassthru($f);
 }
 
 function mn_ap_check_juror($nid, $mail){
@@ -782,17 +833,68 @@ function mn_ap_check_juror($nid, $mail){
 }
 
 function mn_ap_update_ap_status($nid, $uid, $status) {
-    $input['accepted_at'] = date("Y-m-d H:i:s");
-    //toggle the currently set status
-    if ($status == 0) {
-        $input['accept'] = 1;
-    } elseif($status == 1) {
-        $input['accept'] = 0;
-        $input['accepted_at'] = NULL;
-    }
-    db_update('op_applications')
-        ->condition('nid', $nid, '=')
-        ->condition('uid', $uid, '=')
-        ->fields($input)
-        ->execute();
+  $input['accepted_at'] = date("Y-m-d H:i:s");
+  //toggle the currently set status
+  if ($status == 0) {
+      $input['accept'] = 1;
+  } elseif($status == 1) {
+      $input['accept'] = 0;
+      $input['accepted_at'] = NULL;
+  }
+  db_update('op_applications')
+      ->condition('nid', $nid, '=')
+      ->condition('uid', $uid, '=')
+      ->fields($input)
+      ->execute();
+}
+
+function mn_ap_reopen_ap($nid, $uid, $reopen) {
+  //toggle reopen bool
+  if ($reopen == 0) {
+      $input['reopen'] = 1;
+  } elseif($reopen == 1) {
+      $input['reopen'] = 0;
+  }
+  db_update('op_applications')
+      ->condition('nid', $nid, '=')
+      ->condition('uid', $uid, '=')
+      ->fields($input)
+      ->execute();
+}
+
+function mn_ap_reopen_all_aps($nid, $reopen) {
+  $submissions = mn_ap_get_submissions($nid);
+
+  foreach ($submissions as $submission) {
+    mn_ap_reopen_ap($nid, $submission['uid'], $reopen);
+  }
+
+  //toggle reopen bool
+  if ($reopen == 0) {
+      $reopen = 1;
+      mn_ap_update_reopen_setting($nid, $reopen);
+      drupal_set_message('Warning: You have reopened all applications to accept further materials. Please add any additional fields you require below. If you remove an exisiting field you will lose access to that information.', 'error');
+      return drupal_goto('node/' . $nid . '/edit');
+  } elseif($reopen == 1) {
+      $reopen = 0;
+      mn_ap_update_reopen_setting($nid, $reopen);
+      return drupal_set_message('You have closed all reopened applications.', 'error');
+  }
+}
+
+function mn_ap_update_reopen_setting($nid, $reopen) {
+    //check for exisiting settings
+  $existing = mn_op_check_existing_settings($nid);
+  if ($existing) {
+    //update
+    db_update('op_jury_settings')
+      ->condition('nid', $nid, '=')
+      ->fields(array('reopen' => $reopen))
+      ->execute();
+  } else {
+    //create
+    db_insert('op_jury_settings')
+      ->fields(array('reopen' => $reopen))
+      ->execute();
+  }
 }

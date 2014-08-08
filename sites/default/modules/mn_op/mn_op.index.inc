@@ -7,12 +7,16 @@ function mn_op_index() {
 	$output = '';
 	//look for a POST request
 	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-		$input = array(
-			'nid' => $_POST['node_id'],
-			'status' => $_POST['status']
-		);
-		//run status update on nid
-		_update_published_status($input);
+		if (isset($_POST['status'])) {
+			$input = array(
+				'nid' => $_POST['node_id'],
+				'status' => $_POST['status']
+			);
+			//run status update on nid
+			_update_published_status($input);
+		} elseif (isset($_POST['reopen'])) {
+        	mn_ap_reopen_all_aps($_POST['node_id'], $_POST['reopen']);
+      	}
 	}
 	//get row node data
 	$rows = mn_op_node_data();
@@ -58,6 +62,7 @@ function mn_op_node_data() {
 		$r = array();
 		foreach ($rows as $row) {
 			if(!empty($row)){
+				$settings = mn_op_check_existing_settings($row['nid']);
 				$startDate = mn_ap_get_date($row['op_dates']['und']['0']['value'], $row['op_dates']['und']['0']['timezone'], $row['op_dates']['und']['0']['timezone_db']);
 				$endDate = mn_ap_get_date($row['op_dates']['und']['0']['value2'], $row['op_dates']['und']['0']['timezone'], $row['op_dates']['und']['0']['timezone_db']);
 				$announceDate = mn_ap_get_date($row['field_announce_date']['und']['0']['value'], $row['field_announce_date']['und']['0']['timezone'], $row['field_announce_date']['und']['0']['timezone_db']);
@@ -69,6 +74,7 @@ function mn_op_node_data() {
 					//'row' => $row, //return entire row for use with dpt($rows)
 					'nid' => isset($row['nid']) ? $row['nid'] : '',
 					'status' => $row['status'],
+					'reopen' => isset($settings['reopen']) ? $settings['reopen'] : '',
 					'title' => isset($row['title']) ? $row['title'] : '',
 					'start_date' => $startDate, //$row['op_dates']['und']['0']['value'],
 					'end_date' => $endDate, //$row['op_dates']['und']['0']['value2'],

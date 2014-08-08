@@ -2,7 +2,7 @@
 	drupal_add_css(drupal_get_path('module', 'mn_ap') . '/css/bootstrap.min.css');
 	drupal_add_css(drupal_get_path('module', 'mn_op') . '/css/mn-op.css');
 	drupal_add_js(drupal_get_path('module', 'mn_op') . '/js/mn-op.js');
-	dpm($rows);
+	//dpm($rows);
 ?>
 
 
@@ -35,6 +35,31 @@
 <?php if($rows['started'] || $rows['completed']) : ?>
 <h1>Your Applications</h1>
 <?php endif; ?>
+
+<?php if($rows['reopened']) : ?>
+<div class="panel panel-default">
+	<div class="panel-heading"><span class="h4">Reopened</span></div>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Opportunity Name</th>
+				<th>Completed On</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<?php foreach($rows['reopened'] as $reopen): ?>
+			<tr>
+				<td><?php echo $reopen->title; ?></td>
+				<td><?php echo $reopen->updated_at; ?></td>
+				<td><a class="btn btn-default btn-xs btn-op" href="<?php echo url('opportunity/' . $reopen->nid . '/apply'); ?>">Resume Application</a></td>
+			</tr>
+			<?php endforeach; ?>
+		</tbody>
+	</table>
+</div>
+<?php endif; ?>
+
 
 <?php if($rows['started']) : ?>
 <div class="panel panel-default">
@@ -75,7 +100,7 @@
 			<?php foreach($rows['completed'] as $complete): ?>
 			<tr>
 				<td><?php echo $complete->title; ?></td>
-				<td><?php echo $complete->op_dates_value2; ?></td>
+				<td><?php echo $complete->updated_at; ?></td>
 				<td><a class="btn btn-default btn-xs btn-op" href="<?php echo url('application/' . $complete->nid); ?>">View Application</a></td>
 			</tr>
 			<?php endforeach; ?>

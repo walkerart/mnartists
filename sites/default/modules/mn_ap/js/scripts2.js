@@ -417,6 +417,18 @@ $(document).ready(function(){
         }
     });
 
+    if (Drupal.settings.ap_artworks) {
+        $('div.ap-artrow').addClass('hidden');
+        $('span.ap-artwork').addClass('hidden');
+        $.each(Drupal.settings.ap_artworks, function(key, value) {
+            workVid = 'v' + key;
+            workId = 'f' + value;
+            $('div#' + workVid).removeClass('hidden');
+            workIdEl = $('.ap-artwork#' + workId);
+            $(workIdEl).removeClass('hidden');
+        });
+    }
+
     function updateConfirmationView(works) {
         steps = [];
         $.each(Drupal.settings.steps, function(index, value) {
@@ -424,6 +436,7 @@ $(document).ready(function(){
         });
 
         if(works){
+            console.log(works);
             $('div.ap-artrow').addClass('hidden');
             $('span.ap-artwork').addClass('hidden');
             $.each(works, function() {
