@@ -8226,6 +8226,7 @@ li.collect-this, li.add-this {
             margin: 0 0 1em 0; padding: 0;
             clear: both;
             min-height:68px;
+            border-bottom: 1px dotted #888888;
 
             img {
                 border-radius: 50%;
@@ -8236,6 +8237,7 @@ li.collect-this, li.add-this {
                 display:block;
                 float:none;
                 padding-left:80px;
+                min-height:68px;
             }
             .user-thing-name {
                 font-family: $serif_font;
@@ -8252,6 +8254,10 @@ li.collect-this, li.add-this {
                 text-transform:uppercase;
                 color:#888;
                 font-size:11px;
+            }
+
+            &.user-thing-more {
+                border-bottom:none;
             }
         }
     }
@@ -10490,6 +10496,8 @@ div.ctools-modal-content .form-item label {
     text-align:center;
     padding-left:0px;
     padding-right:0px;
+    padding-top:45px;
+    margin-top:0px;
 }
 
 .from-the-network-thing {
