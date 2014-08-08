@@ -25,6 +25,10 @@ function artist_community_search_page() {
     $kill_content   = false;
     $filtered_by_events_only = false;
 
+    // how many articles to include in featured
+    // articles section
+    $number_of_featured_articles = 5;
+
     // pull in solarium config
     global $solarium_config;
 
@@ -103,10 +107,9 @@ function artist_community_search_page() {
             $article_filters = array_merge($article_filters, $filters);
         }
         $articles = artist_community_execute_query(NODE_INDEX, $article_filters, array(array('promote', 'ASC'), array('changed', 'DESC')));
-        $maxArticles = 8;
         $articleCounter = 0;
         foreach($articles as $index => $article) {
-            if ($articleCounter >= $maxArticles) {
+            if ($articleCounter >= $number_of_featured_articles) {
                 break;
             }
             $context_article_data = new StdClass();
