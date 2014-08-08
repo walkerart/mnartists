@@ -17,7 +17,7 @@
     			});
         		window.CKEDITOR_BASEPATH = "/sites/all/libraries/ckeditor";
     		}); })(jQuery);', 'inline' );
-dpm($rows); ?>
+//dpm($rows); ?>
 
 <div class="container">
 	<div class="row">

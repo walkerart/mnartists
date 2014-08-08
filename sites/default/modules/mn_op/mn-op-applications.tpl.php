@@ -2,7 +2,7 @@
 	drupal_add_css(drupal_get_path('module', 'mn_ap') . '/css/bootstrap.min.css');
 	drupal_add_css(drupal_get_path('module', 'mn_op') . '/css/mn-op.css');
 	drupal_add_js(drupal_get_path('module', 'mn_op') . '/js/mn-op.js');
-	dpm($rows);
+	//dpm($rows);
 ?>
 
 

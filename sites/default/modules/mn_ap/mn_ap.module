@@ -217,6 +217,18 @@ function ap_submit_form() {
     }
   }
 
+  //remove unselected works from op_artworks
+  foreach ($previous_artworks as $previous) {
+    if (!in_array($previous, $_POST['artwork'])) {
+      //delete
+      db_delete('op_artworks')
+        ->condition('fid', $previous, '=')
+        ->condition('uid', $uid, '=')
+        ->condition('nid', $nid, '=')
+        ->execute();
+    }
+  }
+
   if(!empty($_FILES["upload1"])) {
     $name = do_file_upload($_FILES["upload1"], $user_folder_path);
     if (!empty($name)) {
@@ -856,13 +868,22 @@ function mn_ap_reopen_all_aps($nid, $reopen) {
   foreach ($submissions as $submission) {
     mn_ap_reopen_ap($nid, $submission['uid'], $reopen);
   }
+
   //toggle reopen bool
   if ($reopen == 0) {
       $reopen = 1;
+      mn_ap_update_reopen_setting($nid, $reopen);
+      drupal_set_message('Warning: You have reopened all applications to accept further materials. Please add any additional fields you require below. If you remove an exisiting field you will lose access to that information.', 'error');
+      return drupal_goto('node/' . $nid . '/edit');
   } elseif($reopen == 1) {
       $reopen = 0;
+      mn_ap_update_reopen_setting($nid, $reopen);
+      return drupal_set_message('You have closed all reopened applications.', 'error');
   }
-  //check for exisiting settings
+}
+
+function mn_ap_update_reopen_setting($nid, $reopen) {
+    //check for exisiting settings
   $existing = mn_op_check_existing_settings($nid);
   if ($existing) {
     //update
@@ -876,5 +897,4 @@ function mn_ap_reopen_all_aps($nid, $reopen) {
       ->fields(array('reopen' => $reopen))
       ->execute();
   }
-
 }

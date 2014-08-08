@@ -15,7 +15,7 @@
             window.CKEDITOR_BASEPATH = "/sites/all/libraries/ckeditor";
             }); })(jQuery);', 'inline' );
         drupal_add_js(drupal_get_path('module', 'mn_ap') . '/js/scripts2.js');
-        dpm($rows); ?>
+        //dpm($rows); ?>
 <div class="container">
     <div class="row">
         <div class="col-md-12">
@@ -494,6 +494,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                <hr>
                                 <?php endif; ?>
 
                                 <?php if (in_array('upload3', $rows['opportunity']['areas'])) : ?>
@@ -521,6 +522,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                <hr>
                                 <?php endif; ?>
 
                                 <?php if (in_array('upload4', $rows['opportunity']['areas'])) : ?>
@@ -548,6 +550,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                <hr>
                                 <?php endif; ?>
 
                                 <div class="row">
