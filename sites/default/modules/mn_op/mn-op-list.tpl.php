@@ -7,7 +7,11 @@
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 	//dpm($rows); ?>
+=======
+	dpm($rows); ?>
+>>>>>>> Stashed changes
 =======
 	dpm($rows); ?>
 >>>>>>> Stashed changes
