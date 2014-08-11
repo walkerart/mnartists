@@ -1864,8 +1864,10 @@ form .description {
             border:none;
 
             .panel-heading {
-                h4 {
-                    font-size:16px;
+                .h4 {
+                    font-size:13px;
+                    font-family: $sans_bold_font;
+                    font-weight:normal;
                 }
             }
             .table {
@@ -1874,8 +1876,10 @@ form .description {
             }
         }
         h1 {
-            font-size:16px;
+            font-size:13px;
             color:#fff;
+            font-family: $sans_bold_font;
+            font-weight:normal;
         }
     }
 }
