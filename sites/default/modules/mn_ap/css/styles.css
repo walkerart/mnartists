@@ -228,3 +228,21 @@ label>.small {
 	height: inherit;
 	content:url(../images/application-octet-stream.png);
 }
+
+
+/* opportunity video thumbs */
+.table-thumb .thumb-list.video img {
+	position:relative;
+}
+.table-thumb .thumb-list.video img:after {
+	content:"";
+	width: 0;
+	height: 0;
+	border-top: 40px solid transparent;
+	border-bottom: 40px solid transparent;
+	border-left: 40px solid green;
+	position:absolute;
+	left:50%;top:50%;
+	margin-top:-20px;
+	margin-left:-20px;
+}
