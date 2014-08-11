@@ -231,18 +231,22 @@ label>.small {
 
 
 /* opportunity video thumbs */
-.table-thumb .thumb-list.video img {
+.table-thumb .thumb-list.video a {
 	position:relative;
+	display:block;
 }
-.table-thumb .thumb-list.video img:after {
+.table-thumb .thumb-list.video a:after {
 	content:"";
 	width: 0;
 	height: 0;
 	border-top: 40px solid transparent;
 	border-bottom: 40px solid transparent;
-	border-left: 40px solid green;
+	border-left: 40px solid #fff;
 	position:absolute;
 	left:50%;top:50%;
 	margin-top:-20px;
 	margin-left:-20px;
+}
+.table-thumb .thumb-list.video img {
+	display:inline-block;
 }
