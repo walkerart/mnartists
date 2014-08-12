@@ -10517,6 +10517,22 @@ div.ctools-modal-content .form-item label {
         .nodes {
             .item {
                 width:25%;
+                @media screen and (max-width: $break-tablet) {
+                    width:50%;
+                }
+                @media screen and (max-width: $break-mobile) {
+                    width:50%;
+                }
+                .item-inside {
+                    h3 {
+                        margin-left:0px;
+                        margin-right:0px;
+                    }
+                    .node {
+                        margin-left:0px;
+                        margin-right:0px;
+                    }
+                }
             }
         }
     }
