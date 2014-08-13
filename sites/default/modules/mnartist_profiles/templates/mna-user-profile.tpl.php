@@ -10,8 +10,14 @@
     $working_uri = (!is_null($context_user->picture)) ? $context_user->picture->uri : variable_get('user_picture_default');
     $picture_uri = image_style_url('artist-profile-photo', $working_uri);
 
+    $profile_type_display = 'User';
+    if (isset($context_user->roles[ARTIST_ROLE])) {
+        $profile_type_display = 'Artist';
+    } else if (isset($context_user->roles[ORG_ROLE])) {
+        $profile_type_display = 'Org';
+    }
 ?>
-
+<h2 class="pane-title block-title"><?= $profile_type_display ?></h2>
 <h1><?= $top_name ?></h1>
 <?php if(user_is_logged_in()) { ?>
     <ul class="menu follow-menu">
