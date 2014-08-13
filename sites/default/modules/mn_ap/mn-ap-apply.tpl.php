@@ -290,7 +290,7 @@
                                                 <img class="img-responsive" src="<?php echo image_style_url('large', $image['file']); ?>">
                                                 <div class="caption">
                                                     <div>
-                                                        <input type="checkbox" class="ap-check" data-id="f<?php echo $image['fid']; ?>" name="artwork['<?php echo $image['fid']; ?>']" value="<?php echo $image['fid']; ?>" data-vid="v<?php echo $artwork['vid']; ?>" <?php echo in_array($image['fid'], $rows['ap_artworks']) ? 'checked' : ''; ?>>
+                                                        <input type="checkbox" class="ap-check" data-id="f<?php echo $image['fid']; ?>" name="artwork['<?php echo $image['fid']; ?>']" value="<?php echo $image['fid']; ?>" data-vid="v<?php echo $artwork['vid']; ?>" <?php echo $rows['ap_artworks'] != '' && in_array($image['fid'], $rows['ap_artworks']) ? 'checked' : ''; ?>>
                                                         <?php echo $image['filename']; ?>
                                                     </div>
                                                 </div>
