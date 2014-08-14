@@ -4,6 +4,13 @@
  * Render a index of entries in the database.
  */
 function mn_op_index() {
+	global $user;
+
+	//if user is not admin or an org admin send them to opportunities list page
+	if (! in_array('administrator', $user->roles) || ! in_array('Organizational Admin', $user->roles)) {
+		return drupal_goto('http://mnartist.imalab.us/community?content[opportunity]=1');
+	}
+
 	$output = '';
 	//look for a POST request
 	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -19,9 +26,7 @@ function mn_op_index() {
       	}
 	}
 	//get row node data
-	$rows = mn_op_node_data();
-
-	if (empty($rows[0])) return drupal_set_message(t('You have not created any opportunities.'), 'error');
+	$rows = mn_op_node_data($user);
 
 	//apply theme to node data
 	$output = theme('mn_op_list', array('rows' => $rows)); //used without template
@@ -32,17 +37,17 @@ function mn_op_index() {
 /**
  * Populate rows data from opportunity node
  */
-function mn_op_node_data() {
-	global $user;
+function mn_op_node_data($user) {
+
 	$uid = $user->uid;
 
 	$query =  new EntityFieldQuery();
 	$query->entityCondition('entity_type', 'node')
 			->entityCondition('bundle', 'opportunity')
-			//->propertyCondition('status', '1') //status is visbility to public
 			->propertyOrderBy('created', 'DESC');
 
-	if (! user_access('administrator')) {
+	//if role is not admin show only user created opps
+	if (! in_array('administrator', $user->roles)) {
 		$query->propertyCondition('uid', $uid, '=');
 	}
 
