@@ -17,17 +17,18 @@
     		}); })(jQuery);', 'inline' );
 	//dpm($rows);
 ?>
-
+<div id="content">
 <div class="container">
 	<br>
 	<div class="row">
 		<a class="prev" href="/applications">Back to Applications</a>
 	</div>
 	<div class="row">
-		<h1><?php echo $rows['opportunity']['title']; ?> Application submited: <?php echo $rows['application']['updated_at']; ?></h1>
+		<h1><?php echo $rows['opportunity']['title']; ?> 
+			<br><small>Application submited: <?php echo $rows['application']['updated_at']; ?></small></h1>
 	</div>
 	<div class="row">
-      	<div class="col-md-8">
+      	<div class="col-md-12">
       		<h3>
       			<?php echo $rows['application']['first_name'] . ' ' . $rows['application']['last_name']; ?>
       		</h3>
@@ -133,4 +134,5 @@
 			<?php endif; ?>
         <?php endforeach; ?>
 	<?php endif; ?>
+</div>
 </div>
