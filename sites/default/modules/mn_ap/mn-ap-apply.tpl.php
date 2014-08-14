@@ -55,7 +55,9 @@
                     <div id="step1">
                         <input type="hidden" id="nid" name="nid" value="<?php echo $rows['nid']; ?>">
                         <input type="hidden" id="title" name="title" value="<?php echo $rows['op_title']; ?>">
+                        <?php if (isset($rows['reopen'])) : ?>
                         <input type="hidden" id="reopen" name="reopen" value="<?php echo $rows['reopen']; ?>">
+                        <?php endif; ?>
                         <fieldset>
                             <div class="row">
                                 <div class="col-sm-8 col-sm-offset-2">
@@ -258,7 +260,11 @@
                                     <div class="next" id="gotoStep<?php echo array_search('work', $rows['opportunity']['steps']) + 3; ?>" role="button">Next</div>
                                 </div>
                             </div>
-                            <p id="artHelp">Choose at least <?php echo $rows['opportunity']['min_works']; ?> and no more than <?php echo $rows['opportunity']['max_works']; ?> pieces of documentation to represent your work.</p>
+                            <?php if($rows['opportunity']['min_works'] != $rows['opportunity']['max_works']): ?>
+                            <label id="artHelp">Choose at least <?php echo $rows['opportunity']['min_works']; ?> and no more than <?php echo $rows['opportunity']['max_works']; ?> pieces of documentation to represent your work.</label>
+                            <?php else: ?>
+                            <label id="artHelp">Choose <?php echo $rows['opportunity']['min_works']; ?> pieces of documentation to represent your work.</label>
+                            <?php endif; ?>
                             <div class="row">
                                 <div class="col-sm-2">
                                     <a class="ap-button btn" href="http://mnartist.imalab.us/node/add/artwork" target="_blank">Add New Work</a>
@@ -290,7 +296,7 @@
                                                 <img class="img-responsive" src="<?php echo image_style_url('large', $image['file']); ?>">
                                                 <div class="caption">
                                                     <div>
-                                                        <input type="checkbox" class="ap-check" data-id="f<?php echo $image['fid']; ?>" name="artwork['<?php echo $image['fid']; ?>']" value="<?php echo $image['fid']; ?>" data-vid="v<?php echo $artwork['vid']; ?>" <?php echo $rows['ap_artworks'] != '' && in_array($image['fid'], $rows['ap_artworks']) ? 'checked' : ''; ?>>
+                                                        <input type="checkbox" class="ap-check" data-id="f<?php echo $image['fid']; ?>" name="artwork['<?php echo $image['fid']; ?>']" value="<?php echo $image['fid']; ?>" data-vid="v<?php echo $artwork['vid']; ?>" <?php echo isset($rows['ap_artworks']) && $rows['ap_artworks'] != '' && in_array($image['fid'], $rows['ap_artworks']) ? 'checked' : ''; ?>>
                                                         <?php echo $image['filename']; ?>
                                                     </div>
                                                 </div>
@@ -304,7 +310,7 @@
                                                 <span id="url<?php echo $sci; // populated by soundcloud embed iframe ?>"></span>
                                                 <div class="caption">
                                                     <div>
-                                                        <input type="checkbox" class="ap-check" data-id="f<?php echo $image['fid']; ?>" name="artwork['<?php echo $image['fid']; ?>']" value="<?php echo $image['fid']; ?>" data-vid="v<?php echo $artwork['vid']; ?>" <?php echo $rows['ap_artworks'] != '' && in_array($image['fid'], $rows['ap_artworks']) ? 'checked' : ''; ?>>
+                                                        <input type="checkbox" class="ap-check" data-id="f<?php echo $image['fid']; ?>" name="artwork['<?php echo $image['fid']; ?>']" value="<?php echo $image['fid']; ?>" data-vid="v<?php echo $artwork['vid']; ?>" <?php echo isset($rows['ap_artworks']) && $rows['ap_artworks'] != '' && in_array($image['fid'], $rows['ap_artworks']) ? 'checked' : ''; ?>>
                                                         <?php echo $image['filename']; ?>
                                                     </div>
                                                 </div>
@@ -328,7 +334,7 @@
                                                 <iframe class="img-responsive" src="<?php echo $image['file']; ?>" id="ytplayer" frameborder="0"></iframe>
                                                 <div class="caption">
                                                     <div>
-                                                        <input type="checkbox" class="ap-check" data-id="f<?php echo $image['fid']; ?>" name="artwork['<?php echo $image['fid']; ?>']" value="<?php echo $image['fid']; ?>" data-vid="v<?php echo $artwork['vid']; ?>" <?php echo $rows['ap_artworks'] != '' && in_array($image['fid'], $rows['ap_artworks']) ? 'checked' : ''; ?>>
+                                                        <input type="checkbox" class="ap-check" data-id="f<?php echo $image['fid']; ?>" name="artwork['<?php echo $image['fid']; ?>']" value="<?php echo $image['fid']; ?>" data-vid="v<?php echo $artwork['vid']; ?>" <?php echo isset($rows['ap_artworks']) && $rows['ap_artworks'] != '' && in_array($image['fid'], $rows['ap_artworks']) ? 'checked' : ''; ?>>
                                                         <?php echo $image['filename']; ?>
                                                     </div>
                                                 </div>
@@ -342,7 +348,7 @@
                                                 <iframe class="img-responsive" src="<?php echo $image['file']; ?>" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
                                                 <div class="caption">
                                                     <div>
-                                                        <input type="checkbox" class="ap-check" data-id="f<?php echo $image['fid']; ?>" name="artwork['<?php echo $image['fid']; ?>']" value="<?php echo $image['fid']; ?>" data-vid="v<?php echo $artwork['vid']; ?>" <?php echo $rows['ap_artworks'] != '' && in_array($image['fid'], $rows['ap_artworks']) ? 'checked' : ''; ?>>
+                                                        <input type="checkbox" class="ap-check" data-id="f<?php echo $image['fid']; ?>" name="artwork['<?php echo $image['fid']; ?>']" value="<?php echo $image['fid']; ?>" data-vid="v<?php echo $artwork['vid']; ?>" <?php echo isset($rows['ap_artworks']) && $rows['ap_artworks'] != '' && in_array($image['fid'], $rows['ap_artworks']) ? 'checked' : ''; ?>>
                                                         <?php echo $image['filename']; ?>
                                                     </div>
                                                 </div>
@@ -356,7 +362,7 @@
                                                 <div class="img-responsive doc-icon"></div>
                                                 <div class="caption">
                                                     <div>
-                                                        <input type="checkbox" class="ap-check" data-id="f<?php echo $image['fid']; ?>" name="artwork['<?php echo $image['fid']; ?>']" value="<?php echo $image['fid']; ?>" data-vid="v<?php echo $artwork['vid']; ?>" <?php echo $rows['ap_artworks'] != '' && in_array($image['fid'], $rows['ap_artworks']) ? 'checked' : ''; ?>>
+                                                        <input type="checkbox" class="ap-check" data-id="f<?php echo $image['fid']; ?>" name="artwork['<?php echo $image['fid']; ?>']" value="<?php echo $image['fid']; ?>" data-vid="v<?php echo $artwork['vid']; ?>" <?php echo isset($rows['ap_artworks']) && $rows['ap_artworks'] != '' && in_array($image['fid'], $rows['ap_artworks']) ? 'checked' : ''; ?>>
                                                         <a href="<?php echo file_create_url($image['file']); ?>" target="_blank"><?php echo $image['filename']; ?></a>
                                                     </div>
                                                 </div>
@@ -856,7 +862,7 @@ drupal_add_js(array('required' => $rows['opportunity']['required']), 'setting');
 drupal_add_js(array('steps' =>  $rows['opportunity']['steps']), 'setting');
 drupal_add_js(array('titles' =>  $rows['opportunity']['step_titles']), 'setting');
 drupal_add_js(array('works' => array('max' => $rows['opportunity']['max_works'], 'min' => $rows['opportunity']['min_works'])), 'setting');
-if ($rows['ap_artworks']) {
+if (isset($rows['ap_artworks'])) {
     drupal_add_js(array('ap_artworks' => $rows['ap_artworks']), 'setting');
 }
 ?>

@@ -355,13 +355,9 @@ $(document).ready(function(){
             minAllowed = Drupal.settings.works.min;
             if (works <= maxAllowed && works >= minAllowed){
                 $.History.go('#/step'  + (stepIndex + 3));
-                $( "label.error" ).remove();
-                $("p#artHelp").show();
+                $( "label#artHelp" ).removeClass('error');
             } else {
-                worksError = '<label id="artHelp" class="error">Choose at least ' + minAllowed + ' and no more than ' + maxAllowed + ' pieces of documentation to represent your work.</label>';
-                $(worksError).addClass('error');
-                $(worksError).insertBefore("p#artHelp");
-                $("p#artHelp").hide();
+                $("label#artHelp").addClass('error');
                 $('html, body').animate({ scrollTop: 0 }, 0);
             }
         } else if (Drupal.settings.steps[stepIndex] == 'fields-uploads') {
