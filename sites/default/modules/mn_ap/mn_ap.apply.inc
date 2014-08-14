@@ -86,8 +86,6 @@ function mn_ap_opportunity_data($nid) {
 		->propertyCondition('status', '1') //status is visbility to public
 		->propertyOrderBy('created', 'DESC');
 
-	//if (! user_access('administrator')) $query->propertyCondition('status', '1');
-
 	$result = $query->execute();
 
 	$out = '';

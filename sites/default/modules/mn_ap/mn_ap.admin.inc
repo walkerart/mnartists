@@ -35,7 +35,7 @@ function mn_ap_admin($nid, $uid) {
 	);
 
 	$output = '';
-	if(user_access('administrator') || $owner ) {
+	if(in_array('administrator', $user->roles) || $owner ) {
 		$output = theme('mn_ap_admin', array('rows' => $rows));
 		return $output;
 	} else {
