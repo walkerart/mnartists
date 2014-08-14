@@ -5,7 +5,6 @@
 	drupal_add_js(drupal_get_path('module', 'mn_ap') . '/js/jquery.dataTables.js');
 	drupal_add_js(drupal_get_path('module', 'mn_op') . '/js/mn-op.js');
 	//dpm($rows); ?>
-<?php if (user_access('administrator') || $row['owner']) : ?>
 <h1>Opportunities</h1>
 <table class="table" id="opList">
 	<thead>
@@ -81,4 +80,3 @@
 		<?php endforeach; ?>
 	</tbody>
 </table>
-<?php endif; ?>
