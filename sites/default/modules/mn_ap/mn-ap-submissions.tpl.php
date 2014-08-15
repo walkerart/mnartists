@@ -62,21 +62,21 @@ dpm($rows); ?>
 							<?php foreach ($review['artworks'] as $artwork) : ?>
 								<?php if($artwork->file_type == 'image') : ?>
 									<span class="thumb-list">
-										<a href="<?php  print file_create_url(file_build_uri('opportunity/' . $artwork->nid . '/' . $artwork->uid . '/' . $artwork->file)); ?>" data-toggle="lightbox" data-gallery="multiimages" data-title="<?php echo $artwork->title; ?>" data-parent=".lightbox-parent-<?php echo $artwork->uid; ?>">
+										<a href="<?php  print file_create_url(file_build_uri('opportunity/' . $artwork->nid . '/' . $artwork->uid . '/' . $artwork->file)); ?>" data-toggle="lightbox" data-gallery="mixedgallery" data-title="<?php echo $artwork->title; ?>" data-parent=".lightbox-parent-<?php echo $artwork->uid; ?>">
 											<img src="<?php  print file_create_url(file_build_uri('opportunity/'. $artwork->nid . '/' . $artwork->uid . '/thumb_' . $artwork->file)); ?>">
 										</a>
 									</span>
 								<?php endif; ?>
 								<?php if($artwork->file_type == 'youtube') : ?>
 								<span class="thumb-list video">
-									<a href="<?php echo $artwork->file; ?>" data-toggle="lightbox" data-gallery="multiimages" data-title="<?php echo $artwork->title; ?>" data-parent=".lightbox-parent-<?php echo $artwork->uid; ?>">
+									<a href="<?php echo $artwork->file; ?>" data-toggle="lightbox" data-gallery="mixedgallery" data-title="<?php echo $artwork->title; ?>" data-parent=".lightbox-parent-<?php echo $artwork->uid; ?>">
 										<img src="http://img.youtube.com/vi/<?php echo substr($artwork->file, -22, 11); ?>/default.jpg" style="width:60px;">
 									</a>
 								</span>
 								<?php endif; ?>
 								<?php if($artwork->file_type == 'vimeo') : ?>
 								<span class="thumb-list video">
-									<a href="<?php echo $artwork->file; ?>" data-toggle="lightbox" data-gallery="multiimages" data-title="<?php echo $artwork->title; ?>" data-parent=".lightbox-parent-<?php echo $artwork->uid; ?>">
+									<a href="<?php echo $artwork->file; ?>" data-toggle="lightbox" data-gallery="mixedgallery" data-title="<?php echo $artwork->title; ?>" data-parent=".lightbox-parent-<?php echo $artwork->uid; ?>">
 										<img src="http://placehold.it/60x60" data-vimeo-id="<?php echo substr($artwork->file, -8, 8); ?>" class="small" style="width:60px;">
 									</a>
 								</span>
@@ -194,21 +194,21 @@ dpm($rows); ?>
 								<?php foreach ($review['artworks'] as $artwork) : ?>
 									<?php if($artwork->file_type == 'image') : ?>
 										<span class="thumb-list">
-											<a href="<?php  print file_create_url(file_build_uri('opportunity/' . $artwork->nid . '/' . $artwork->uid . '/' . $artwork->file)); ?>" data-toggle="lightbox" data-gallery="multiimages" data-title="<?php echo $artwork->title; ?>" data-parent=".jury-parent-<?php echo $artwork->uid; ?>">
+											<a href="<?php  print file_create_url(file_build_uri('opportunity/' . $artwork->nid . '/' . $artwork->uid . '/' . $artwork->file)); ?>" data-toggle="lightbox" data-gallery="mixedgallery" data-title="<?php echo $artwork->title; ?>" data-parent=".jury-parent-<?php echo $artwork->uid; ?>">
 												<img src="<?php  print file_create_url(file_build_uri('opportunity/' . $artwork->nid . '/' . $artwork->uid . '/thumb_' . $artwork->file)); ?>">
 											</a>
 										</span>
 									<?php endif; ?>
 									<?php if($artwork->file_type == 'youtube') : ?>
 									<span class="thumb-list video">
-										<a href="<?php echo $artwork->file; ?>" data-toggle="lightbox" data-gallery="multiimages" data-title="<?php echo $artwork->title; ?>" data-parent=".jury-parent-<?php echo $artwork->uid; ?>">
+										<a href="<?php echo $artwork->file; ?>" data-toggle="lightbox" data-gallery="mixedgallery" data-title="<?php echo $artwork->title; ?>" data-parent=".jury-parent-<?php echo $artwork->uid; ?>">
 											<img src="http://img.youtube.com/vi/<?php echo substr($artwork->file, -22, 11); ?>/default.jpg" style="width:60px;">
 										</a>
 									</span>
 									<?php endif; ?>
 									<?php if($artwork->file_type == 'vimeo') : ?>
 									<span class="thumb-list video">
-										<a href="<?php echo $artwork->file; ?>" data-toggle="lightbox" data-gallery="multiimages" data-title="<?php echo $artwork->title; ?>" data-parent=".jury-parent-<?php echo $artwork->uid; ?>">
+										<a href="<?php echo $artwork->file; ?>" data-toggle="lightbox" data-gallery="mixedgallery" data-title="<?php echo $artwork->title; ?>" data-parent=".jury-parent-<?php echo $artwork->uid; ?>">
 											<img src="http://placehold.it/60x60" data-vimeo-id="<?php echo substr($artwork->file, -8, 8); ?>" class="small" style="width:60px;">
 										</a>
 									</span>
