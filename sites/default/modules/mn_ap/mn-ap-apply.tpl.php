@@ -603,15 +603,19 @@
                                     <legend class="text-center">Confirm Submission</legend>
                                 </div>
                                 <div class="col-sm-2">
-                                    <input id="SaveApplication" type="submit" class="pull-right submit" value="Submit">
+                                    <input id="SaveApplication" type="submit" class="pull-right next" value="Submit">
                                 </div>
                             </div>
-                            <div id="ConfirmView">
-                                <div id="profileAjax" class="row"></div>
+                            <div class="row">
+                                    <div class="col-md-12">
+                                        <div id="ConfirmView">
+                                        <div id="profileAjax"></div>
+                                    </div>
+                                </div>
                             </div>
                             <script id="confirmTpl" type="text/template">
-                                <h3>Profile and Info</h3>
-                                {{first_name}} {{last_name}}<br>
+                                <h3 class="clearPadding clearMargin">Profile and Info</h3>
+                                <p>{{first_name}} {{last_name}}<br>
                                 {{address}}; {{city}}, {{state}} {{zip}}<br>
                                 {{#county}}County: {{county}}<br>{{/county}}
                                 {{#country}}Country: {{country}}<br>{{/country}}
@@ -620,23 +624,24 @@
                                 {{#gender}}Gender: {{gender}}<br>{{/gender}}
                                 {{#ethnicity}}Ethnicity: {{ethnicity}}<br>{{/ethnicity}}
                                 {{#age}}Age: {{age}}<br>{{/age}}
+                                </p>
 
                                 {{#steps.statement-proposal}}
                                 <br><br>
-                                <h3>{{titles.statement-proposal}}</h3>
+                                <h3 class="clearPadding clearMargin">{{titles.statement-proposal}}</h3>
                                 {{#statement}}Statement: {{&statement}}<br>{{/statement}}
                                 {{#proposal}}Proposal: {{&proposal}}{{/proposal}}
                                 {{/steps.statement-proposal}}
 
                                 {{#steps.bio-resume}}
-                                <h3>{{titles.bio-resume}}</h3>
+                                <h3 class="clearPadding clearMargin">{{titles.bio-resume}}</h3>
                                 {{#bio}}Bio: {{&bio}}<br>{{/bio}}
-                                {{#resume}}<div id="resumeView"></div>{{/resume}}
+                                {{#resume}} {{&resume}} {{/resume}}
                                 {{/steps.bio-resume}}
                             </script>
                             <?php if (in_array('work', $rows['opportunity']['steps'])) : ?>
                             <div id="worksView">
-                                <h3>Selected Work</h3>
+                                <h3 class="clearPadding clearMargin">Selected Work</h3>
                                 <?php foreach ($rows['artworks'] as $artwork) : ?>
                                 <div class="ap-artrow row" id="v<?php echo $artwork['vid']; ?>">
                                     <hr>
@@ -714,7 +719,7 @@
                             <?php  if (in_array('fields-uploads', $rows['opportunity']['steps'])) : ?>
                                 <div id="addUploadsView">
                                     <hr>
-                                    <h3>Additional Materials</h3>
+                                    <h3 class="clearPadding clearMargin">Additional Materials</h3>
                                     <div class="row">
                                         <div id="upload1View">
                                         <?php if ($rows['ap_artworks'] != '' && $rows['upload1'] != '') : ?>

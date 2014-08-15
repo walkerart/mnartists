@@ -118,24 +118,14 @@ function mn_ap_get_submissions_count($nid, $site) {
 function _update_published_status($input) {
 	$return_value = NULL;
 	try {
-		$tables = array('node', 'node_revision');
-		foreach ($tables as $table) {
-			$return_value = db_update($table)
-				->fields(array('status' => $input['status']))
-				->condition('nid', $input['nid'])
-				->execute();
-		}
-		$select = db_select('node', 'n')
-  			->fields('n', array('title'))
-  			->condition('n.type', 'opportunity', '=')
-  			->condition('nid', $input['nid'])
-				->execute()
-				->fetchAll();
-		$select = (array)$select['0'];
+		$node = node_load($input['nid']);
+		$node->status = $input['status'];
+		node_save($node);
+
 		if ($input['status'] == '1') {
-			drupal_set_message(t($select['title'] . ' - Opportunity Published'), 'status');
+			drupal_set_message(t($node->title . ' - Opportunity Published'), 'status');
 		} else {
-			drupal_set_message(t($select['title'] . ' - Opportunity Unpublished'), 'status');
+			drupal_set_message(t($node->title . ' - Opportunity Unpublished'), 'status');
 		}
 	}
   	catch (Exception $e) {
