@@ -23,7 +23,7 @@ dpm($rows); ?>
 		</div>
 	</div>
 	<?php //admin table ?>
-	<?php if(user_access('administrator') || $rows['owner']) : ?>
+	<?php if(in_array('administrator', $user->roles) || $rows['owner']) : ?>
 	<?php for ($i = 1; $rows['settings']['round'] >= $i; $i++) : ?>
 	<div class="row">
 		<div class="col-md-12">

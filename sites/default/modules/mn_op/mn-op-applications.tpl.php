@@ -1,15 +1,14 @@
 <?php
 	drupal_add_css(drupal_get_path('module', 'mn_ap') . '/css/bootstrap.min.css');
 	drupal_add_css(drupal_get_path('module', 'mn_op') . '/css/mn-op.css');
-	drupal_add_js(drupal_get_path('module', 'mn_op') . '/js/mn-op.js');
+	drupal_add_js(drupal_get_path('module', 'mn_op') . '/js/applications.js');
 	//dpm($rows);
 ?>
 
-
-<?php if(count($rows['juries']) > 0) : ?>
-<h1>For Your Review</h1>
-<div class="panel panel-default">
-	<div class="panel-heading"><span class="h4">Juries</span></div>
+<div class="container" id="myContent">
+	<?php if(count($rows['juries']) > 0) : ?>
+	<h1>For Your Review</h1>
+	<h3>Juries</h3>
 	<table class="table">
 		<thead>
 			<tr>
@@ -28,17 +27,15 @@
 			<?php endforeach; ?>
 		</tbody>
 	</table>
-</div>
-<?php endif; ?>
+	<?php endif; ?>
 
 
-<?php if($rows['started'] || $rows['completed']) : ?>
-<h1>Your Applications</h1>
-<?php endif; ?>
+	<?php if($rows['started'] || $rows['completed']) : ?>
+	<h1>Your Applications</h1>
+	<?php endif; ?>
 
-<?php if($rows['reopened']) : ?>
-<div class="panel panel-default">
-	<div class="panel-heading"><span class="h4">Reopened</span></div>
+	<?php if($rows['reopened']) : ?>
+	<h3>Reopened</h3>
 	<table class="table">
 		<thead>
 			<tr>
@@ -57,13 +54,11 @@
 			<?php endforeach; ?>
 		</tbody>
 	</table>
-</div>
-<?php endif; ?>
+	<?php endif; ?>
 
 
-<?php if($rows['started']) : ?>
-<div class="panel panel-default">
-	<div class="panel-heading"><span class="h4">In Progress</span></div>
+	<?php if($rows['started']) : ?>
+	<h3>In Progress</h3>
 	<table class="table">
 		<thead>
 			<tr>
@@ -82,12 +77,10 @@
 			<?php endforeach; ?>
 		</tbody>
 	</table>
-</div>
-<?php endif; ?>
+	<?php endif; ?>
 
-<?php if($rows['completed']) : ?>
-<div class="panel panel-default">
-	<div class="panel-heading"><span class="h4">Completed</span></div>
+	<?php if($rows['completed']) : ?>
+	<h3>Completed</h3>
 	<table class="table">
 		<thead>
 			<tr>
@@ -106,5 +99,5 @@
 			<?php endforeach; ?>
 		</tbody>
 	</table>
+	<?php endif; ?>
 </div>
-<?php endif; ?>

@@ -16,7 +16,7 @@
             }); })(jQuery);', 'inline' );
         drupal_add_js(drupal_get_path('module', 'mn_ap') . '/js/scripts2.js');
         dpm($rows); ?>
-<div class="container">
+<div class="container" id="content">
     <div class="row">
         <div class="col-md-12">
             <h1><?php echo $rows['op_title']; ?></h1>
@@ -67,94 +67,114 @@
                                     <div class="next" id="gotoStep2" role="button">Next</div>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label" for="first_name">First Name*</label>
-                                <div class="col-sm-4">
-                                    <input type="text" class="form-control" name="first_name" id="first_name" value="<?php echo $rows['first_name']; ?>" required>
-                                </div>
-                                <label class="col-sm-2 control-label" for="last_name">Last Name*</label>
-                                <div class="col-sm-4">
-                                    <input type="text" class="form-control" name="last_name" id="last_name" value="<?php echo $rows['last_name']; ?>" required>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label" for="email">Email*</label>
-                                <div class="col-sm-4">
-                                    <input type="text" class="form-control" name="email" id="email" value="<?php echo $rows['email']; ?>" required>
-                                </div>
-
-                                <label class="col-sm-2 control-label" for="phone">Phone*</label>
-                                <div class="col-sm-4">
-                                    <input type="text" class="form-control" name="phone" id="phone" value="<?php echo $rows['phone']; ?>">
+                            <div class="row">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label" for="first_name">First Name*</label>
+                                    <div class="col-sm-4">
+                                        <input type="text" class="form-control" name="first_name" id="first_name" value="<?php echo $rows['first_name']; ?>" required>
+                                    </div>
+                                    <label class="col-sm-2 control-label" for="last_name">Last Name*</label>
+                                    <div class="col-sm-4">
+                                        <input type="text" class="form-control" name="last_name" id="last_name" value="<?php echo $rows['last_name']; ?>" required>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label" for="address">Address*</label>
-                                <div class="col-sm-4">
-                                    <input type="text" class="form-control" name="address" id="address" value="<?php echo $rows['address']; ?>" required>
-                                </div>
+                            <div class="row">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label" for="email">Email*</label>
+                                    <div class="col-sm-4">
+                                        <input type="text" class="form-control" name="email" id="email" value="<?php echo $rows['email']; ?>" required>
+                                    </div>
 
-                                <label class="col-sm-2 control-label" for="city">City*</label>
-                                <div class="col-sm-4">
-                                    <input type="text" class="form-control" name="city" id="city" value="<?php echo $rows['city']; ?>" required>
+                                    <label class="col-sm-2 control-label" for="phone">Phone*</label>
+                                    <div class="col-sm-4">
+                                        <input type="text" class="form-control" name="phone" id="phone" value="<?php echo $rows['phone']; ?>">
+                                    </div>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label" for="state">State*</label>
-                                <div class="col-sm-4">
-                                    <input type="text" class="form-control" name="state" id="state" value="<?php echo $rows['state']; ?>" required>
-                                </div>
+                            <div class="row">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label" for="address">Address*</label>
+                                    <div class="col-sm-4">
+                                        <input type="text" class="form-control" name="address" id="address" value="<?php echo $rows['address']; ?>" required>
+                                    </div>
 
-                                <label class="col-sm-2 control-label" for="zip">Zip*</label>
-                                <div class="col-sm-4">
-                                    <input type="text" class="form-control" name="zip" id="zip" value="<?php echo $rows['zip']; ?>" required>
+                                    <label class="col-sm-2 control-label" for="city">City*</label>
+                                    <div class="col-sm-4">
+                                        <input type="text" class="form-control" name="city" id="city" value="<?php echo $rows['city']; ?>" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label" for="state">State*</label>
+                                    <div class="col-sm-4">
+                                        <input type="text" class="form-control" name="state" id="state" value="<?php echo $rows['state']; ?>" required>
+                                    </div>
+
+                                    <label class="col-sm-2 control-label" for="zip">Zip*</label>
+                                    <div class="col-sm-4">
+                                        <input type="text" class="form-control" name="zip" id="zip" value="<?php echo $rows['zip']; ?>" required>
+                                    </div>
                                 </div>
                             </div>
                             <?php if (in_array('website', $rows['opportunity']['areas'])) : ?>
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label" for="website">Website<?php if(is_array($rows['opportunity']['required']) && in_array('website', $rows['opportunity']['required'])) echo '*'; ?></label>
-                                <div class="col-sm-4">
-                                    <input type="text" class="form-control" name="website" id="website" value="<?php echo $rows['website']; ?>" <?php if(is_array($rows['opportunity']['required']) && in_array('website', $rows['opportunity']['required'])) echo 'required'; ?>>
+                            <div class="row">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label" for="website">Website<?php if(is_array($rows['opportunity']['required']) && in_array('website', $rows['opportunity']['required'])) echo '*'; ?></label>
+                                    <div class="col-sm-4">
+                                        <input type="text" class="form-control" name="website" id="website" value="<?php echo $rows['website']; ?>" <?php if(is_array($rows['opportunity']['required']) && in_array('website', $rows['opportunity']['required'])) echo 'required'; ?>>
+                                    </div>
                                 </div>
                             </div>
                             <?php endif; ?>
                             <?php if (in_array('county', $rows['opportunity']['areas'])) : ?>
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label" for="county">County<?php if(is_array($rows['opportunity']['required']) && in_array('county', $rows['opportunity']['required'])) echo '*'; ?></label>
-                                <div class="col-sm-4">
-                                    <input type="text" class="form-control" name="county" id="county" value="<?php echo $rows['county']; ?>" <?php if(is_array($rows['opportunity']['required']) && in_array('county', $rows['opportunity']['required'])) echo 'required'; ?>>
+                            <div class="row">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label" for="county">County<?php if(is_array($rows['opportunity']['required']) && in_array('county', $rows['opportunity']['required'])) echo '*'; ?></label>
+                                    <div class="col-sm-4">
+                                        <input type="text" class="form-control" name="county" id="county" value="<?php echo $rows['county']; ?>" <?php if(is_array($rows['opportunity']['required']) && in_array('county', $rows['opportunity']['required'])) echo 'required'; ?>>
+                                    </div>
                                 </div>
                             </div>
                             <?php endif; ?>
                             <?php if (in_array('country', $rows['opportunity']['areas'])) : ?>
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label" for="country">Country<?php if(is_array($rows['opportunity']['required']) && in_array('country', $rows['opportunity']['required'])) echo '*'; ?></label>
-                                <div class="col-sm-4">
-                                    <input type="text" class="form-control" name="country" id="country" value="<?php echo $rows['country']; ?>" <?php if(is_array($rows['opportunity']['required']) && in_array('country', $rows['opportunity']['required'])) echo 'required'; ?>>
+                            <div class="row">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label" for="country">Country<?php if(is_array($rows['opportunity']['required']) && in_array('country', $rows['opportunity']['required'])) echo '*'; ?></label>
+                                    <div class="col-sm-4">
+                                        <input type="text" class="form-control" name="country" id="country" value="<?php echo $rows['country']; ?>" <?php if(is_array($rows['opportunity']['required']) && in_array('country', $rows['opportunity']['required'])) echo 'required'; ?>>
+                                    </div>
                                 </div>
                             </div>
                             <?php endif; ?>
                             <?php if (in_array('gender', $rows['opportunity']['areas'])) : ?>
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label" for="gender">Gender<?php if(is_array($rows['opportunity']['required']) && in_array('gender', $rows['opportunity']['required'])) echo '*'; ?></label>
-                                <div class="col-sm-4">
-                                    <input type="text" class="form-control" name="gender" id="gender" value="<?php echo $rows['gender']; ?>" <?php if(is_array($rows['opportunity']['required']) && in_array('gender', $rows['opportunity']['required'])) echo 'required'; ?>>
+                            <div class="row">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label" for="gender">Gender<?php if(is_array($rows['opportunity']['required']) && in_array('gender', $rows['opportunity']['required'])) echo '*'; ?></label>
+                                    <div class="col-sm-4">
+                                        <input type="text" class="form-control" name="gender" id="gender" value="<?php echo $rows['gender']; ?>" <?php if(is_array($rows['opportunity']['required']) && in_array('gender', $rows['opportunity']['required'])) echo 'required'; ?>>
+                                    </div>
                                 </div>
                             </div>
                             <?php endif; ?>
                             <?php if (in_array('ethnicity', $rows['opportunity']['areas'])) : ?>
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label" for="ethnicity">Ethnicity<?php if(is_array($rows['opportunity']['required']) && in_array('ethnicity', $rows['opportunity']['required'])) echo '*'; ?></label>
-                                <div class="col-sm-4">
-                                    <input type="text" class="form-control" name="ethnicity" id="ethnicity" value="<?php echo $rows['ethnicity']; ?>" <?php if(is_array($rows['opportunity']['required']) && in_array('ethnicity', $rows['opportunity']['required'])) echo 'required'; ?>>
+                            <div class="row">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label" for="ethnicity">Ethnicity<?php if(is_array($rows['opportunity']['required']) && in_array('ethnicity', $rows['opportunity']['required'])) echo '*'; ?></label>
+                                    <div class="col-sm-4">
+                                        <input type="text" class="form-control" name="ethnicity" id="ethnicity" value="<?php echo $rows['ethnicity']; ?>" <?php if(is_array($rows['opportunity']['required']) && in_array('ethnicity', $rows['opportunity']['required'])) echo 'required'; ?>>
+                                    </div>
                                 </div>
                             </div>
                             <?php endif; ?>
                             <?php if (in_array('age', $rows['opportunity']['areas'])) : ?>
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label" for="age">Age<?php if(is_array($rows['opportunity']['required']) && in_array('age', $rows['opportunity']['required'])) echo '*'; ?></label>
-                                <div class="col-sm-4">
-                                    <input type="text" class="form-control" name="age" id="age" value="<?php echo $rows['age'] != 0 ? $rows['age'] : ''; ?>" <?php if(is_array($rows['opportunity']['required']) && in_array('age', $rows['opportunity']['required'])) echo 'required'; ?>>
+                            <div class="row">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label" for="age">Age<?php if(is_array($rows['opportunity']['required']) && in_array('age', $rows['opportunity']['required'])) echo '*'; ?></label>
+                                    <div class="col-sm-4">
+                                        <input type="text" class="form-control" name="age" id="age" value="<?php echo $rows['age'] != 0 ? $rows['age'] : ''; ?>" <?php if(is_array($rows['opportunity']['required']) && in_array('age', $rows['opportunity']['required'])) echo 'required'; ?>>
+                                    </div>
                                 </div>
                             </div>
                             <?php endif; ?>
@@ -236,11 +256,13 @@
                                 <?php echo $rows['resume']['content']['#markup']; ?>
                             </div>
                             <?php endif; ?>
+                            <div class="row">
                             <div class="form-group">
                                 <div class="col-sm-12">
                                     <div class="prev" id="gotoStep<?php echo array_search('bio-resume', $rows['opportunity']['steps']) + 1; ?>" role="button">Back</div>
                                     <div class="next" id="gotoStep<?php echo array_search('bio-resume', $rows['opportunity']['steps']) + 3; ?>" role="button">Next</div>
                                 </div>
+                            </div>
                             </div>
                         </fieldset>
                     </div>

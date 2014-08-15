@@ -5,10 +5,11 @@
  */
 function mn_op_index() {
 	global $user;
+	global $base_root;
 
 	//if user is not admin or an org admin send them to opportunities list page
 	if (! in_array('administrator', $user->roles) || ! in_array('Organizational Admin', $user->roles)) {
-		return drupal_goto('http://mnartist.imalab.us/community?content[opportunity]=1');
+		return drupal_goto($base_root . '/community?content[opportunity]=1');
 	}
 
 	$output = '';
