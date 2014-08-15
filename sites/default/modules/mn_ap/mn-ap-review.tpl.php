@@ -22,18 +22,36 @@
 <div class="container">
     <div class="row">
         <?php if(isset($rows['paging'][array_search($rows['application']['uid'], $rows['paging'])+1]) && isset($rows['paging'][array_search($rows['application']['uid'], $rows['paging'])-1])) : ?>
-            <a class="paging pull-right" href="<?php echo url('opportunity/' . $rows['opportunity']['vid'] . '/submission/' . $rows['paging'][array_search($rows['application']['uid'], $rows['paging'])+1], array()); ?>">Next<span class="glyphicon glyphicon-chevron-right"></a>
-            <a class="paging" href="<?php echo url('opportunity/' . $rows['opportunity']['vid'] . '/submission/' . $rows['paging'][array_search($rows['application']['uid'], $rows['paging'])-1], array()); ?>"><span class="glyphicon glyphicon-chevron-left">Previous</a>
+            <div class="col-md-4">
+                <a class="paging" href="<?php echo url('opportunity/' . $rows['opportunity']['vid'] . '/submission/' . $rows['paging'][array_search($rows['application']['uid'], $rows['paging'])-1], array()); ?>"><span class="glyphicon glyphicon-chevron-left">Previous</a>
+            </div>
+            <div class="col-md-4 text-center">
+                <a href="<?php echo url('opportunity/' . $rows['opportunity']['vid'] . '/submissions'); ?>">
+                    Application <?php echo array_search($rows['application']['uid'], $rows['paging']) + 1 . ' of ' . count($rows['paging']); ?>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a class="paging pull-right" href="<?php echo url('opportunity/' . $rows['opportunity']['vid'] . '/submission/' . $rows['paging'][array_search($rows['application']['uid'], $rows['paging'])+1], array()); ?>">Next<span class="glyphicon glyphicon-chevron-right"></a>
+            </div>
         <?php elseif(isset($rows['paging'][array_search($rows['application']['uid'], $rows['paging'])+1])) : ?>
-            <a class="paging pull-right" href="<?php echo url('opportunity/' . $rows['opportunity']['vid'] . '/submission/' . $rows['paging'][array_search($rows['application']['uid'], $rows['paging'])+1], array()); ?>">Next<span class="glyphicon glyphicon-chevron-right"></a>
+            <div class="col-md-4 col-md-offset-4 text-center">
+                <a href="<?php echo url('opportunity/' . $rows['opportunity']['vid'] . '/submissions'); ?>">
+                    Application <?php echo array_search($rows['application']['uid'], $rows['paging']) + 1 . ' of ' . count($rows['paging']); ?>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a class="paging pull-right" href="<?php echo url('opportunity/' . $rows['opportunity']['vid'] . '/submission/' . $rows['paging'][array_search($rows['application']['uid'], $rows['paging'])+1], array()); ?>">Next<span class="glyphicon glyphicon-chevron-right"></a>
+            </div>
         <?php elseif(isset($rows['paging'][array_search($rows['application']['uid'], $rows['paging'])-1])) : ?>
-            <a class="paging" href="<?php echo url('opportunity/' . $rows['opportunity']['vid'] . '/submission/' . $rows['paging'][array_search($rows['application']['uid'], $rows['paging'])-1], array()); ?>"><span class="glyphicon glyphicon-chevron-left">Previous</span></a>
+            <div class="col-md-4">
+                <a class="paging" href="<?php echo url('opportunity/' . $rows['opportunity']['vid'] . '/submission/' . $rows['paging'][array_search($rows['application']['uid'], $rows['paging'])-1], array()); ?>"><span class="glyphicon glyphicon-chevron-left">Previous</span></a>
+            </div>
+            <div class="col-md-4 text-center">
+                <a href="<?php echo url('opportunity/' . $rows['opportunity']['vid'] . '/submissions'); ?>">
+                    Application <?php echo array_search($rows['application']['uid'], $rows['paging']) + 1 . ' of ' . count($rows['paging']); ?>
+                </a>
+            </div>
         <?php endif; ?>
-        <div class="text-center">
-            <a href="<?php echo url('opportunity/' . $rows['opportunity']['vid'] . '/submissions'); ?>">
-                Application <?php echo array_search($rows['application']['uid'], $rows['paging']) + 1 . ' of ' . count($rows['paging']); ?>
-            </a>
-        </div>
     </div>
     <div class="row">
         <div class="col-md-8">
