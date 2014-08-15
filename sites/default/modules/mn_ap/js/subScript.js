@@ -12,7 +12,5 @@ $(document).ready(function(){
 
 	$('img').VimeoThumb();
 
-	$('.ekko-lightbox-nav-overlay').css('display', 'show');
-
 });
 })(jQuery);
