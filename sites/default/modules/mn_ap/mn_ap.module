@@ -363,7 +363,7 @@ function mn_ap_artworks_data($uid, $vid = NULL) {
   foreach ($out['nodes'] as $row) {
     //getting object and converting to array
     $object = (array)$row['field_media']['#object'];
-    //dpm($object); 
+    dpm($object);
     //get medium from tid
     $medium = isset($object['field_medium']['und']) ? mn_ap_medium_data($object['field_medium']['und']) : '';
     //clean up artwork
@@ -372,7 +372,9 @@ function mn_ap_artworks_data($uid, $vid = NULL) {
     $day = isset($object['field_created_date']['und']['0']['from']['day']) ? (int)$object['field_created_date']['und']['0']['from']['day'] : '';
     $month = isset($object['field_created_date']['und']['0']['from']['month']) ? (int)$object['field_created_date']['und']['0']['from']['month'] : '';
     $year = isset($object['field_created_date']['und']['0']['from']['year']) ? (int)$object['field_created_date']['und']['0']['from']['year'] : '';
+    $excerpt = isset($object['field_artwork_excerpt']['und']['0']['safe_value']) ? $object['field_artwork_excerpt']['und']['0']['safe_value'] : '';
     $date = get_artwork_date($month, $day, $year);
+    $other_artists = isset($object['field_other_artists_involved']['und']) ? mn_ap_get_other_artists($object['field_other_artists_involved']['und']) : '';
 
     $rows[] = array(
       'vid' => isset($object['vid']) ? $object['vid'] : '',
@@ -380,13 +382,26 @@ function mn_ap_artworks_data($uid, $vid = NULL) {
       'body' => isset($object['body']['und']['0']['safe_value']) ? strip_tags($object['body']['und']['0']['safe_value']) : '',
       'date' => $date,
       'dimensions' => isset($object['field_dimensions']['und']['0']['value']) ? $object['field_dimensions']['und']['0']['value'] : '',
+      'excerpt' => $excerpt,
       'medium' => $medium,
       'images' => $images,
+      'other_artists' => $other_artists,
       //'field_media' => isset($object['field_media']) ? $object['field_media'] : '',
       //'row' => $row
     );
   }
   return $rows; //$out['nodes'];
+}
+
+/*
+** Term look up to get other artists for artworks
+*/
+function mn_ap_get_other_artists($artists) {
+  foreach ($artists as $artist) {
+    $term = (array)taxonomy_term_load($artist['tid']);
+    $other_artists[] = $term['name'];
+  }
+  return $other_artists;
 }
 
 /*
