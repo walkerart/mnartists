@@ -112,7 +112,7 @@ function ap_submit_form() {
   $ap_folder_path = variable_get('file_public_path', conf_path() . '/files/opportunity/' . $ap_folder);
   $user_folder_path = $ap_folder_path . $user_folder;
 
-  $reopen = $_POST['reopen'];
+  $reopen = isset($_POST['reopen']) ? $_POST['reopen'] : 0;
   // if this is a reopen application get previous artwork data
   if ($reopen == 1) {
     $previous_artworks = mn_ap_get_ap_artworks($nid, $uid);
