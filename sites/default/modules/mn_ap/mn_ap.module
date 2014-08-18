@@ -178,6 +178,8 @@ function ap_submit_form() {
               $work['medium'] = isset($data['medium']) ? json_encode($data['medium']) : '';
               $work['date'] = isset($data['date']) ? $data['date'] : '';
               $work['dimensions'] = isset($data['dimensions']) ? $data['dimensions'] : '';
+              $work['excerpt'] = '';
+              $work['other_artists'] = '';
               $work['description'] = isset($data['body']) ? $data['body'] : '';
               $work['file_type'] = isset($image['type']) ? $image['type'] : '';
               $work['file'] = isset($image['file']) ? $image['file'] : '';
@@ -352,7 +354,6 @@ function mn_ap_artworks_data($uid, $vid = NULL) {
   if (!empty($result['node'])) {
     $resultKeys = array_keys($result['node']);
     $out = node_view_multiple(node_load_multiple($resultKeys));
-    //$out = node_view_multiple(node_load_multiple(array_keys($result['node'])));
   }
 
   if (empty($out['nodes'])) {
@@ -375,6 +376,7 @@ function mn_ap_artworks_data($uid, $vid = NULL) {
     $excerpt = isset($object['field_artwork_excerpt']['und']['0']['safe_value']) ? $object['field_artwork_excerpt']['und']['0']['safe_value'] : '';
     $date = get_artwork_date($month, $day, $year);
     $other_artists = isset($object['field_other_artists_involved']['und']) ? mn_ap_get_other_artists($object['field_other_artists_involved']['und']) : '';
+    $venue = isset($object['field_venue']['und']) ? mn_ap_get_venues($object['field_venue']['und']) : '';
 
     $rows[] = array(
       'vid' => isset($object['vid']) ? $object['vid'] : '',
@@ -386,11 +388,34 @@ function mn_ap_artworks_data($uid, $vid = NULL) {
       'medium' => $medium,
       'images' => $images,
       'other_artists' => $other_artists,
+      'venue' => $venue,
       //'field_media' => isset($object['field_media']) ? $object['field_media'] : '',
       //'row' => $row
     );
   }
   return $rows; //$out['nodes'];
+}
+
+/*
+** Entity Lookup for Venue Title
+*/
+function mn_ap_get_venues($venues) {
+  $artwork_venue = '';
+  foreach ($venues as $venue) {
+    $venue_id = $venue['target_id'];
+    $query =  new EntityFieldQuery();
+    $query->entityCondition('entity_type', 'node')
+    ->entityCondition('type', 'venue')
+    ->propertyCondition('nid', $venue_id, '=');
+    $result = $query->execute();
+    $out = array();
+    if (!empty($result['node'])) {
+      $resultKeys = array_keys($result['node']);
+      $out = node_view_multiple(node_load_multiple($resultKeys));
+    }
+    $artwork_venue = $out['nodes'][$venue_id]['#node']->title;
+  }
+  return $artwork_venue;
 }
 
 /*
