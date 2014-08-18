@@ -637,21 +637,28 @@
                                         <div><?php echo $artwork['date']; ?></div>
                                         <div><?php foreach ($artwork['medium'] as $medium) { echo $medium . ' '; } ?></div>
                                         <div><?php echo $artwork['dimensions']; ?></div>
-                                        <?php if($artwork['excerpt'] != '') : ?>
-                                        <div>
-                                            Excerpt: <?php echo $artwork['excerpt']; ?>
+                                        <div class="ap-body">
+                                            <?php if($artwork['excerpt'] != '') : ?>
+                                            <div>
+                                                Excerpt: <?php echo $artwork['excerpt']; ?>
+                                            </div>
+                                            <?php endif; ?>
+                                            <?php if ($artwork['venue'] != '') : ?>
+                                            <div>
+                                                Venue: <?php echo $artwork['venue'] ?>
+                                            </div>
+                                            <?php endif; ?>
+                                            <?php if ($artwork['other_artists'] != '') : ?>
+                                            <div>
+                                                Others Artists Involved:
+                                                <?php $other_artists = $artwork['other_artists'];
+                                                foreach ($artwork['other_artists'] as $others) {
+                                                    echo $others ;
+                                                    if (next($other_artists)) echo ', ';
+                                                } ?>
+                                            </div>
+                                            <?php endif; ?>
                                         </div>
-                                        <?php endif; ?>
-                                        <?php if ($artwork['other_artists'] != '') : ?>
-                                        <div>
-                                            Others Artists Involved:
-                                            <?php $other_artists = $artwork['other_artists'];
-                                            foreach ($artwork['other_artists'] as $others) {
-                                                echo $others ;
-                                                if (next($other_artists)) echo ', ';
-                                            } ?>
-                                        </div>
-                                        <?php endif; ?>
                                         <div class="ap-artwork-body"><?php echo $artwork['body']; ?></div>
                                         <?php if(strlen($artwork['body']) > 144) : ?>
                                             <div class="ap-more text-center">View More</div>
