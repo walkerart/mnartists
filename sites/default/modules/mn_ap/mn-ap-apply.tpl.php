@@ -118,24 +118,26 @@
                                     </div>
                                 </div>
                             </div>
-                            <?php $count = 1; ?>
-                            <?php foreach ($rows['opportunity']['additional_fields'] as $field) : ?>
-                                <?php if($count == 1): ?>
-                                    <div class="row">
-                                        <div class="form-group">
-                                <?php endif; ?>
-                                            <label class="col-sm-2 control-label" for="<?php echo $field; ?>"><?php echo $field; ?><?php if(is_array($rows['opportunity']['required']) && in_array($field, $rows['opportunity']['required'])) echo '*'; ?></label>
-                                            <div class="col-sm-4">
-                                                <input type="text" class="form-control" name="<?php echo $field; ?>" id="<?php echo $field; ?>" value="<?php echo $rows[$field]; ?>" <?php if(is_array($rows['opportunity']['required']) && in_array($field, $rows['opportunity']['required'])) echo 'required'; ?>>
+                            <?php if ($rows['opportunity']['additional_fields'] != '') : ?>
+                                <?php $count = 1; ?>
+                                <?php foreach ($rows['opportunity']['additional_fields'] as $field) : ?>
+                                    <?php if($count == 1): ?>
+                                        <div class="row">
+                                            <div class="form-group">
+                                    <?php endif; ?>
+                                                <label class="col-sm-2 control-label" for="<?php echo $field; ?>"><?php echo $field; ?><?php if(is_array($rows['opportunity']['required']) && in_array($field, $rows['opportunity']['required'])) echo '*'; ?></label>
+                                                <div class="col-sm-4">
+                                                    <input type="text" class="form-control" name="<?php echo $field; ?>" id="<?php echo $field; ?>" value="<?php echo $rows[$field]; ?>" <?php if(is_array($rows['opportunity']['required']) && in_array($field, $rows['opportunity']['required'])) echo 'required'; ?>>
+                                                </div>
+                                    <?php if($count == 2): ?>
                                             </div>
-                                <?php if($count == 2): ?>
                                         </div>
-                                    </div>
-                                    <?php $count = 1; ?>
-                                <?php else : ?>
-                                    <?php $count++; ?>
-                                <?php endif; ?>
-                            <?php endforeach; ?>
+                                        <?php $count = 1; ?>
+                                    <?php else : ?>
+                                        <?php $count++; ?>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
                             <div class="form-group row">
                                 <div class="col-sm-12">
                                     <div class="next" id="gotoStep2" role="button">Next</div>
