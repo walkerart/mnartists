@@ -164,7 +164,7 @@ function ap_submit_form() {
     //loop through the checked artwork fids from the form
     foreach($_POST['artwork'] as $fid) {
       //if the artwork doesn't already exist then save it
-      if (!in_array($fid, $previous_artworks)) {
+      if (! isset($previous_artworks) || !in_array($fid, $previous_artworks)) {
         //loop thourgh all artwork data
         foreach($artwork_data as $data) {
           //find correct data for upload
@@ -178,8 +178,9 @@ function ap_submit_form() {
               $work['medium'] = isset($data['medium']) ? json_encode($data['medium']) : '';
               $work['date'] = isset($data['date']) ? $data['date'] : '';
               $work['dimensions'] = isset($data['dimensions']) ? $data['dimensions'] : '';
-              $work['excerpt'] = '';
-              $work['other_artists'] = '';
+              $work['excerpt'] = isset($data['excerpt']) ? $data['excerpt'] : '';
+              $work['other_artists'] = $data['other_artists'] != '' ? json_encode($data['other_artists']) : '';
+              $work['venue'] = isset($data['venue']) ? $data['venue'] : '';
               $work['description'] = isset($data['body']) ? $data['body'] : '';
               $work['file_type'] = isset($image['type']) ? $image['type'] : '';
               $work['file'] = isset($image['file']) ? $image['file'] : '';
@@ -220,14 +221,16 @@ function ap_submit_form() {
   }
 
   //remove unselected works from op_artworks
-  foreach ($previous_artworks as $previous) {
-    if (!in_array($previous, $_POST['artwork'])) {
-      //delete
-      db_delete('op_artworks')
-        ->condition('fid', $previous, '=')
-        ->condition('uid', $uid, '=')
-        ->condition('nid', $nid, '=')
-        ->execute();
+  if(isset($previous_artworks)) {
+    foreach ($previous_artworks as $previous) {
+      if (!in_array($previous, $_POST['artwork'])) {
+        //delete
+        db_delete('op_artworks')
+          ->condition('fid', $previous, '=')
+          ->condition('uid', $uid, '=')
+          ->condition('nid', $nid, '=')
+          ->execute();
+      }
     }
   }
 
