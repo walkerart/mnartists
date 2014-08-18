@@ -363,7 +363,7 @@ function mn_ap_artworks_data($uid, $vid = NULL) {
   foreach ($out['nodes'] as $row) {
     //getting object and converting to array
     $object = (array)$row['field_media']['#object'];
-    dpm($object);
+    //dpm($object);
     //get medium from tid
     $medium = isset($object['field_medium']['und']) ? mn_ap_medium_data($object['field_medium']['und']) : '';
     //clean up artwork

@@ -118,66 +118,24 @@
                                     </div>
                                 </div>
                             </div>
-                            <?php if (in_array('website', $rows['opportunity']['areas'])) : ?>
-                            <div class="row">
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label" for="website">Website<?php if(is_array($rows['opportunity']['required']) && in_array('website', $rows['opportunity']['required'])) echo '*'; ?></label>
-                                    <div class="col-sm-4">
-                                        <input type="text" class="form-control" name="website" id="website" value="<?php echo $rows['website']; ?>" <?php if(is_array($rows['opportunity']['required']) && in_array('website', $rows['opportunity']['required'])) echo 'required'; ?>>
+                            <?php $count = 1; ?>
+                            <?php foreach ($rows['opportunity']['additional_fields'] as $field) : ?>
+                                <?php if($count == 1): ?>
+                                    <div class="row">
+                                        <div class="form-group">
+                                <?php endif; ?>
+                                            <label class="col-sm-2 control-label" for="<?php echo $field; ?>"><?php echo $field; ?><?php if(is_array($rows['opportunity']['required']) && in_array($field, $rows['opportunity']['required'])) echo '*'; ?></label>
+                                            <div class="col-sm-4">
+                                                <input type="text" class="form-control" name="<?php echo $field; ?>" id="<?php echo $field; ?>" value="<?php echo $rows[$field]; ?>" <?php if(is_array($rows['opportunity']['required']) && in_array($field, $rows['opportunity']['required'])) echo 'required'; ?>>
+                                            </div>
+                                <?php if($count == 2): ?>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                            <?php endif; ?>
-                            <?php if (in_array('county', $rows['opportunity']['areas'])) : ?>
-                            <div class="row">
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label" for="county">County<?php if(is_array($rows['opportunity']['required']) && in_array('county', $rows['opportunity']['required'])) echo '*'; ?></label>
-                                    <div class="col-sm-4">
-                                        <input type="text" class="form-control" name="county" id="county" value="<?php echo $rows['county']; ?>" <?php if(is_array($rows['opportunity']['required']) && in_array('county', $rows['opportunity']['required'])) echo 'required'; ?>>
-                                    </div>
-                                </div>
-                            </div>
-                            <?php endif; ?>
-                            <?php if (in_array('country', $rows['opportunity']['areas'])) : ?>
-                            <div class="row">
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label" for="country">Country<?php if(is_array($rows['opportunity']['required']) && in_array('country', $rows['opportunity']['required'])) echo '*'; ?></label>
-                                    <div class="col-sm-4">
-                                        <input type="text" class="form-control" name="country" id="country" value="<?php echo $rows['country']; ?>" <?php if(is_array($rows['opportunity']['required']) && in_array('country', $rows['opportunity']['required'])) echo 'required'; ?>>
-                                    </div>
-                                </div>
-                            </div>
-                            <?php endif; ?>
-                            <?php if (in_array('gender', $rows['opportunity']['areas'])) : ?>
-                            <div class="row">
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label" for="gender">Gender<?php if(is_array($rows['opportunity']['required']) && in_array('gender', $rows['opportunity']['required'])) echo '*'; ?></label>
-                                    <div class="col-sm-4">
-                                        <input type="text" class="form-control" name="gender" id="gender" value="<?php echo $rows['gender']; ?>" <?php if(is_array($rows['opportunity']['required']) && in_array('gender', $rows['opportunity']['required'])) echo 'required'; ?>>
-                                    </div>
-                                </div>
-                            </div>
-                            <?php endif; ?>
-                            <?php if (in_array('ethnicity', $rows['opportunity']['areas'])) : ?>
-                            <div class="row">
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label" for="ethnicity">Ethnicity<?php if(is_array($rows['opportunity']['required']) && in_array('ethnicity', $rows['opportunity']['required'])) echo '*'; ?></label>
-                                    <div class="col-sm-4">
-                                        <input type="text" class="form-control" name="ethnicity" id="ethnicity" value="<?php echo $rows['ethnicity']; ?>" <?php if(is_array($rows['opportunity']['required']) && in_array('ethnicity', $rows['opportunity']['required'])) echo 'required'; ?>>
-                                    </div>
-                                </div>
-                            </div>
-                            <?php endif; ?>
-                            <?php if (in_array('age', $rows['opportunity']['areas'])) : ?>
-                            <div class="row">
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label" for="age">Age<?php if(is_array($rows['opportunity']['required']) && in_array('age', $rows['opportunity']['required'])) echo '*'; ?></label>
-                                    <div class="col-sm-4">
-                                        <input type="text" class="form-control" name="age" id="age" value="<?php echo $rows['age'] != 0 ? $rows['age'] : ''; ?>" <?php if(is_array($rows['opportunity']['required']) && in_array('age', $rows['opportunity']['required'])) echo 'required'; ?>>
-                                    </div>
-                                </div>
-                            </div>
-                            <?php endif; ?>
+                                    <?php $count = 1; ?>
+                                <?php else : ?>
+                                    <?php $count++; ?>
+                                <?php endif; ?>
+                            <?php endforeach; ?>
                             <div class="form-group row">
                                 <div class="col-sm-12">
                                     <div class="next" id="gotoStep2" role="button">Next</div>
