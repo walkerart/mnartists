@@ -17,7 +17,7 @@
                 });
                 window.CKEDITOR_BASEPATH = "/sites/all/libraries/ckeditor";
             }); })(jQuery);', 'inline' );
-//dpm($rows); ?>
+dpm($rows); ?>
 
 <div class="container">
     <div class="row">
@@ -122,11 +122,35 @@
                 <div><em><?php echo $artwork->title; ?></em></div>
                 <div><?php echo $artwork->date; ?></div>
                 <div>
-                    <?php if (json_decode($artwork->medium)) : ?>
-                        <?php foreach(json_decode($artwork->medium) as $medium) { echo $medium . ' '; } ?>
-                    <?php endif; ?>
+                    <?php $mediums = json_decode($artwork->medium);
+                        foreach (json_decode($artwork->medium) as $medium) {
+                        echo $medium;
+                        if (next($mediums)) echo ', ';
+                    } ?>
                 </div>
                 <div><?php echo $artwork->dimensions; ?></div>
+                <div class="ap-body">
+                    <?php if($artwork->excerpt != '') : ?>
+                    <div>
+                        Excerpt: <?php echo $artwork->excerpt; ?>
+                    </div>
+                    <?php endif; ?>
+                    <?php if ($artwork->venue != '') : ?>
+                    <div>
+                        Venue: <?php echo $artwork->venue ?>
+                    </div>
+                    <?php endif; ?>
+                    <?php if ($artwork->other_artists != '') : ?>
+                    <div>
+                        Others Artists Involved:
+                        <?php $other_artists = json_decode($artwork->other_artists);
+                        foreach (json_decode($artwork->other_artists) as $others) {
+                            echo $others ;
+                            if (next($other_artists)) echo ', ';
+                        } ?>
+                    </div>
+                    <?php endif; ?>
+                </div>
                 <div class="ap-artwork-body"><?php echo $artwork->description; ?></div>
                 <?php if(strlen($artwork->description) > 300) : ?>
                   <div class="ap-more text-center">View More</div>
