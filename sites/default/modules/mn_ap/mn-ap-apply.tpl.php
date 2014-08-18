@@ -738,7 +738,7 @@
                                     <h3 class="clearPadding clearMargin">Additional Materials</h3>
                                     <div class="row">
                                         <div id="upload1View">
-                                        <?php if ($rows['ap_artworks'] != '' && $rows['upload1'] != '') : ?>
+                                        <?php if (isset($rows['ap_artworks']) || $rows['upload1'] != '') : ?>
                                             <div class="col-sm-12">
                                                 <label class="col-sm-4" for="upload1">Upload: <?php echo $rows['opportunity']['custom_up_1_title']; ?></label>
                                                 <a href="<?php  print file_create_url(file_build_uri('opportunity/' . $rows['nid'] . '/' . $rows['uid'] . '/' . $rows['upload1'])); ?>" target="_blank"><?php echo $rows['upload1'];  ?></a>
@@ -748,7 +748,7 @@
                                     </div>
                                     <div class="row">
                                         <div id="upload2View">
-                                        <?php if ($rows['ap_artworks'] != '' && $rows['upload2'] != '') : ?>
+                                        <?php if (isset($rows['ap_artworks']) && $rows['upload2'] != '') : ?>
                                             <div class="col-sm-12">
                                                 <label class="col-sm-4" for="upload2">Upload: <?php echo $rows['opportunity']['custom_up_2_title']; ?></label>
                                                 <a href="<?php  print file_create_url(file_build_uri('opportunity/' . $rows['nid'] . '/' . $rows['uid'] . '/' . $rows['upload2'])); ?>" target="_blank"><?php echo $rows['upload2'];  ?></a>
@@ -758,7 +758,7 @@
                                     </div>
                                     <div class="row">
                                         <div id="upload3View">
-                                        <?php if ($rows['ap_artworks'] != '' && $rows['upload3'] != '') : ?>
+                                        <?php if (isset($rows['ap_artworks']) && $rows['upload3'] != '') : ?>
                                             <div class="col-sm-12">
                                                 <label class="col-sm-4" for="upload3">Upload: <?php echo $rows['opportunity']['custom_up_3_title']; ?></label>
                                                 <a href="<?php  print file_create_url(file_build_uri('opportunity/' . $rows['nid'] . '/' . $rows['uid'] . '/' . $rows['upload3'])); ?>" target="_blank"><?php echo $rows['upload3'];  ?></a>
@@ -768,7 +768,7 @@
                                     </div>
                                     <div class="row">
                                         <div id="upload4View">
-                                        <?php if ($rows['ap_artworks'] != '' && $rows['upload4'] != '') : ?>
+                                        <?php if (isset($rows['ap_artworks']) && $rows['upload4'] != '') : ?>
                                             <div class="col-sm-12">
                                                 <label class="col-sm-4" for="upload4">Upload: <?php echo $rows['opportunity']['custom_up_4_title']; ?></label>
                                                 <a href="<?php  print file_create_url(file_build_uri('opportunity/' . $rows['nid'] . '/' . $rows['uid'] . '/' . $rows['upload4'])); ?>" target="_blank"><?php echo $rows['upload4'];  ?></a>
