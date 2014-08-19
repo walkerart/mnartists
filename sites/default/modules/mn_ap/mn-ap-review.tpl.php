@@ -87,6 +87,14 @@ dpm($rows); ?>
             <?php endif; ?>
         </div>
         <div class="col-md-4">
+            <div class="row">
+                <h1 class="clearPadding">
+                    <?php echo $rows['opportunity']['title']; ?>
+                    <?php if($rows['settings']['round'] > 1) : ?>
+                        <small> Round <?php echo $rows['settings']['round']; ?></small>
+                    <?php endif; ?>
+                </h1>
+            </div>
             <form class="form form-review" action="<?php echo url('opportunity/' . $rows['application']['nid'] . '/submission/' . $rows['application']['uid'], array()); ?>" method="POST">
                 <input type="hidden" name="round" id="round" value="<?php echo $rows['settings']['round']; ?>">
                 <div class="form-group row">
@@ -102,7 +110,7 @@ dpm($rows); ?>
                 </div>
                 <div class="form-group">
                     <div class="row"><input class="btn btn-default pull-right" type="submit" value="Submit"></div>
-                    <div class="row help-block pull-right">Next:
+                    <div class="help-block pull-right">Next:
                         <?php if(isset($rows['paging'][array_search($rows['application']['uid'], $rows['paging'])+1])) : ?>
                             Application</div>
                         <?php else : ?>

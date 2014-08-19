@@ -87,20 +87,28 @@ dpm($rows); ?>
         </div>
         <!-- Jury Review Area -->
         <div class="col-md-4">
-            <h1 class="clearPadding"><?php echo isset($rows['reviews']['voteCount']) ? $rows['reviews']['voteCount'] . '/' . count($rows['jurors'])  : '0/'. count($rows['jurors']); ?> Reviews Complete</h1>
-            <?php if(array_search( $rows['reviews']['uid'], $rows['paging'])+1 < count($rows['paging'])) : ?>
-            <input type="hidden" name="next" id="next" value="<?php echo $rows['paging'][array_search($rows['reviews']['uid'], $rows['paging'])+1]; ?>">
-            <?php endif; ?>
-            <h3 class="clearPadding clearMargin">Average Rating</h3>
-            <input type="number" name="rating" id="input-star" data-disabled="true" class="rating" min="0" max="<?php echo isset($rows['settings']['scale']) ? $rows['settings']['scale'] : '10'; ?>" data-stars="<?php echo isset($rows['settings']['scale']) ? $rows['settings']['scale'] : '10'; ?>" data-size="sm" data-show-clear="false" step="0.5" value="<?php echo isset($rows['reviews']['avgRating']) ? $rows['reviews']['avgRating'] : ''; ?>"></input>
+            <div class="roundWrapper">
+                <h1 class="clearPadding">
+                    <?php echo $rows['opportunity']['title']; ?>
+                    <?php if($rows['settings']['round'] > 1) : ?>
+                        <small> Round <?php echo $rows['settings']['round']; ?></small>
+                    <?php endif; ?>
+                </h1>
+                <h1 class="clearPadding"><?php echo isset($rows['reviews']['voteCount']) ? $rows['reviews']['voteCount'] . '/' . count($rows['jurors'])  : '0/'. count($rows['jurors']); ?> Reviews Complete</h1>
+                <?php if(array_search( $rows['reviews']['uid'], $rows['paging'])+1 < count($rows['paging'])) : ?>
+                <input type="hidden" name="next" id="next" value="<?php echo $rows['paging'][array_search($rows['reviews']['uid'], $rows['paging'])+1]; ?>">
+                <?php endif; ?>
+                <h3 class="clearPadding clearMargin">Average Rating</h3>
+                <input type="number" name="rating" id="input-star" data-disabled="true" class="rating" min="0" max="<?php echo isset($rows['settings']['scale']) ? $rows['settings']['scale'] : '10'; ?>" data-stars="<?php echo isset($rows['settings']['scale']) ? $rows['settings']['scale'] : '10'; ?>" data-size="sm" data-show-clear="false" step="0.5" value="<?php echo isset($rows['reviews']['avgRating']) ? $rows['reviews']['avgRating'] : ''; ?>"></input>
 
-            <?php if(isset($rows['reviews']['reviews'])) : ?>
-            <hr>
-                <h3 class="clearPadding clearMargin">Reviews</h3>
-                <?php foreach($rows['reviews']['reviews'] as $review) : ?>
-                    <p><?php echo 'Juror: ' . $review->r_uid . '<br>Rating: ' . $review->rating . '<br>Comment: ' . $review->comment; ?></p>
-                <?php endforeach; ?>
-            <?php endif; ?>
+                <?php if(isset($rows['reviews']['reviews'])) : ?>
+                <hr>
+                    <h3 class="clearPadding clearMargin">Reviews</h3>
+                    <?php foreach($rows['reviews']['reviews'] as $review) : ?>
+                        <p><?php echo 'Juror: ' . $review->r_uid . '<br>Rating: ' . $review->rating . '<br>Comment: ' . $review->comment; ?></p>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+            </div><!-- end roundWrapper used for show hiding previous reviews -->
             <hr>
             <form class="form form-review" action="<?php echo url('opportunity/' . $rows['reviews']['nid'] . '/submission/' . $rows['reviews']['uid'] . '/admin', array()); ?>" method="POST">
                 <input type="hidden" name="status" value="<?php echo $rows['reviews']['accept']; ?>">
