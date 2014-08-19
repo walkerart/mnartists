@@ -519,12 +519,14 @@ input {
         .description {
             display:block;clear:both;float:none;
             margin-left:33%;
+            width:auto;
         }
     }
     .form-type-password-confirm {
         .description {
             display:block;clear:both;float:none;
             margin-left:33%;
+            width:auto;
         }
     }
 }
@@ -1168,6 +1170,20 @@ div.entityconnect-edit {
 
 
 // add artwork form only
+#artwork-node-form {
+    .form-item {
+        .field-add-more-submit {
+            width:192px;
+            height:91px;
+            text-overflow:hidden;
+            overflow:hidden;
+            white-space:nowrap;
+            display:inline-block;
+            background: url('../images/bg-icon-add-another.png') no-repeat left top transparent!important;
+        }
+    }
+
+}
 .node-artwork-form {
     .field-type-text-with-summary,
     .field-name-field-tags-form,
