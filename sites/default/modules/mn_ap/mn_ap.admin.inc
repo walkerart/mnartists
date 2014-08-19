@@ -22,6 +22,7 @@ function mn_ap_admin($nid, $uid) {
 
 	$reviews = mn_ap_get_review($nid, $uid, $settings['round']);
 
+
 	$rows = array(
 		'opportunity' => (array)$node,
 		'owner' => $owner,
@@ -33,6 +34,17 @@ function mn_ap_admin($nid, $uid) {
 		'steps' => $steps,
 		'artworks' => $artworks
 	);
+
+	//get previous reviews if not round 1
+	if ($settings['round'] != 1) {
+		$i = 1;
+		while ($i < $settings['round']) {
+			$previous_reviews[] = mn_ap_get_review($nid, $uid, $i);
+			$i++;
+
+		}
+		$rows['previous_reviews'] = $previous_reviews;
+	}
 
 	$output = '';
 	if(in_array('administrator', $user->roles) || $owner ) {

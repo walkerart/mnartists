@@ -85,6 +85,7 @@ dpm($rows); ?>
                 <a href="<?php echo url('user/' . $rows['reviews']['uid'] . '/resume/download'); ?>" class="btn btn-default ap-btn" target="_blank">View Resume</a>
             <?php endif; ?>
         </div>
+        <!-- Jury Review Area -->
         <div class="col-md-4">
             <h1 class="clearPadding"><?php echo isset($rows['reviews']['voteCount']) ? $rows['reviews']['voteCount'] . '/' . count($rows['jurors'])  : '0/'. count($rows['jurors']); ?> Reviews Complete</h1>
             <?php if(array_search( $rows['reviews']['uid'], $rows['paging'])+1 < count($rows['paging'])) : ?>
