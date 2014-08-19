@@ -23,7 +23,7 @@ dpm($rows); ?>
     <div class="row">
         <?php if(isset($rows['paging'][array_search($rows['reviews']['uid'], $rows['paging'])+1]) && isset($rows['paging'][array_search($rows['reviews']['uid'], $rows['paging'])-1])) : ?>
             <div class="col-md-4">
-                <a class="paging" href="<?php echo url('opportunity/' . $rows['opportunity']['vid'] . '/submission/' . $rows['paging'][array_search($rows['reviews']['uid'], $rows['paging'])-1], array()); ?>"><span class="glyphicon glyphicon-chevron-left">Previous</a>
+                <a class="paging" href="<?php echo url('opportunity/' . $rows['opportunity']['vid'] . '/submission/' . $rows['paging'][array_search($rows['reviews']['uid'], $rows['paging'])-1], array()) . '/admin'; ?>"><span class="glyphicon glyphicon-chevron-left">Previous</a>
             </div>
             <div class="col-md-4 text-center">
                 <a href="<?php echo url('opportunity/' . $rows['opportunity']['vid'] . '/submissions'); ?>">
@@ -31,7 +31,7 @@ dpm($rows); ?>
                 </a>
             </div>
             <div class="col-md-4">
-                <a class="paging pull-right" href="<?php echo url('opportunity/' . $rows['opportunity']['vid'] . '/submission/' . $rows['paging'][array_search($rows['reviews']['uid'], $rows['paging'])+1], array()); ?>">Next<span class="glyphicon glyphicon-chevron-right"></a>
+                <a class="paging pull-right" href="<?php echo url('opportunity/' . $rows['opportunity']['vid'] . '/submission/' . $rows['paging'][array_search($rows['reviews']['uid'], $rows['paging'])+1], array()) . '/admin'; ?>">Next<span class="glyphicon glyphicon-chevron-right"></a>
             </div>
         <?php elseif(isset($rows['paging'][array_search($rows['reviews']['uid'], $rows['paging'])+1])) : ?>
             <div class="col-md-4 col-md-offset-4 text-center">
@@ -40,11 +40,11 @@ dpm($rows); ?>
                 </a>
             </div>
             <div class="col-md-4">
-                <a class="paging pull-right" href="<?php echo url('opportunity/' . $rows['opportunity']['vid'] . '/submission/' . $rows['paging'][array_search($rows['reviews']['uid'], $rows['paging'])+1], array()); ?>">Next<span class="glyphicon glyphicon-chevron-right"></a>
+                <a class="paging pull-right" href="<?php echo url('opportunity/' . $rows['opportunity']['vid'] . '/submission/' . $rows['paging'][array_search($rows['reviews']['uid'], $rows['paging'])+1], array()) . '/admin'; ?>">Next<span class="glyphicon glyphicon-chevron-right"></a>
             </div>
         <?php elseif(isset($rows['paging'][array_search($rows['reviews']['uid'], $rows['paging'])-1])) : ?>
             <div class="col-md-4">
-                <a class="paging" href="<?php echo url('opportunity/' . $rows['opportunity']['vid'] . '/submission/' . $rows['paging'][array_search($rows['reviews']['uid'], $rows['paging'])-1], array()); ?>"><span class="glyphicon glyphicon-chevron-left">Previous</span></a>
+                <a class="paging" href="<?php echo url('opportunity/' . $rows['opportunity']['vid'] . '/submission/' . $rows['paging'][array_search($rows['reviews']['uid'], $rows['paging'])-1], array()) . '/admin'; ?>"><span class="glyphicon glyphicon-chevron-left">Previous</span></a>
             </div>
             <div class="col-md-4 text-center">
                 <a href="<?php echo url('opportunity/' . $rows['opportunity']['vid'] . '/submissions'); ?>">
