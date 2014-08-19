@@ -20,7 +20,7 @@ function mn_ap_admin($nid, $uid) {
 		}
 	}
 
-	$reviews = mn_ap_get_review($nid, $uid);
+	$reviews = mn_ap_get_review($nid, $uid, $settings['round']);
 
 	$rows = array(
 		'opportunity' => (array)$node,
@@ -69,12 +69,13 @@ function _get_ap_artworks($nid, $uid) {
 	return $results;
 }
 
-function mn_ap_get_review($nid, $uid) {
+function mn_ap_get_review($nid, $uid, $round) {
 	$query = db_select('op_applications', 'ap');
 	$query->join('op_rating', 'r', 'ap.uid = r.aid');
 	$query->condition('ap.nid', $nid, '=')
 				->condition('ap.uid', $uid, '=')
 				->condition('r.nid', $nid, '=')
+				->condition('r.round', $round, '=')
 				->fields('ap',array('uid'))
 				->fields('r',array('uid', 'aid', 'rating', 'comment'))
 				->orderBy('ap.uid', 'desc');
