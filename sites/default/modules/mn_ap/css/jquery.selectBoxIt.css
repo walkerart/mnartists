@@ -11,6 +11,7 @@
 
 /* SelectBoxIt container */
 .selectboxit-container {
+  color: #888;
   position: relative;
   display: inline-block;
   vertical-align: top;
@@ -153,14 +154,14 @@
 }
 
 /* Drop Down down arrow */
-.selectboxit .selectboxit-arrow-container .selectboxit-arrow {
-  /* Horizontally centers the down arrow */
+/*.selectboxit .selectboxit-arrow-container .selectboxit-arrow {
+   Horizontally centers the down arrow 
   margin: 0 auto;
   position: absolute;
   top: 50%;
   right: 0;
   left: 0;
-}
+}*/
 
 /* Drop Down down arrow for jQueryUI and jQuery Mobile */
 .selectboxit .selectboxit-arrow-container .selectboxit-arrow.ui-icon {
@@ -275,4 +276,10 @@
 
 .selectboxit-list > .selectboxit-disabled > .selectboxit-option-anchor {
   color: #999999;
+}
+
+.icon-down {
+  width: 10px;
+  margin-left: 10px;
+  content: url("../images/icon-select-arrow.png");
 }

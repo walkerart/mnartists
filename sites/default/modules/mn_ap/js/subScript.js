@@ -32,7 +32,10 @@ $(document).ready(function(){
 
 	$('img').VimeoThumb();
 
-	$("select").selectBoxIt();
+	$("select").selectBoxIt({
+		downArrowIcon: "icon-down"
+		// downArrowIcon: "glyphicon glyphicon-chevron-down"
+	});
 
 });
 })(jQuery);
