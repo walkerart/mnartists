@@ -1,6 +1,7 @@
 <?php
 	drupal_add_css(drupal_get_path('module', 'mn_ap') . '/css/bootstrap.min.css');
 	drupal_add_css(drupal_get_path('module', 'mn_ap') . '/css/DT_bootstrap.css');
+	drupal_add_css(drupal_get_path('module', 'mn_ap') . '/css/jquery.selectBoxIt.css');
 	drupal_add_css(drupal_get_path('module', 'mn_ap') . '/css/ekko-lightbox.min.css');
 	drupal_add_css(drupal_get_path('module', 'mn_ap') . '/css/dark.css');
 	drupal_add_css(drupal_get_path('module', 'mn_ap') . '/css/styles.css');
@@ -9,6 +10,7 @@
 	drupal_add_js(drupal_get_path('module', 'mn_ap') . '/js/jquery-vimeothumb.min.js');
 	drupal_add_js(drupal_get_path('module', 'mn_ap') . '/js/jquery.dataTables.js');
 	drupal_add_js(drupal_get_path('module', 'mn_ap') . '/js/ekko-lightbox.min.js');
+	drupal_add_js(drupal_get_path('module', 'mn_ap') . '/js/jquery.selectBoxIt.js');
 	drupal_add_js(drupal_get_path('module', 'mn_ap') . '/js/subScript.js');
 dpm($rows); ?>
 <div class="container">
@@ -149,6 +151,16 @@ dpm($rows); ?>
 	<?php endif; ?>
 
 	<?php if($rows['juror']) : ?>
+	<div class="row">
+		<div class="col-md-6">
+			<h1>
+				<?php echo $rows['opportunity']->title; ?>
+				<?php if($rows['settings']['round'] > 1) : ?>
+					<small> Round <?php echo $rows['settings']['round']; ?></small>
+				<?php endif; ?>
+			</h1>
+		</div>
+	</div>
 	<div class="row">
 		<div class="col-md-12">
 			<h3><?php echo $rows['juror'] ? '<p>Welcome Juror.</p>' : ''; ?></h3>
