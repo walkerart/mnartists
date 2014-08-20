@@ -35,7 +35,7 @@ dpm($rows); ?>
 	<?php endfor; ?>
 	<div class="row">
 		<div class="col-md-12">
-			<table id="subTable" class="table">
+			<table id="subTable" class="table op-table">
 				<thead>
 					<tr>
 						<th>#</th>
@@ -169,7 +169,7 @@ dpm($rows); ?>
 	</div>
 	<div class="row">
 		<div class="col-md-12">
-			<table id="juryTable" class="table table-hover">
+			<table id="juryTable" class="table op-table">
 				<thead>
 					<tr>
 						<?php if($rows['settings']['name'] == 1) : ?>
@@ -247,9 +247,9 @@ dpm($rows); ?>
 						<td><?php echo isset($review['rating']) ? $review['rating'] : 'None'; ?></td>
 						<td>
 							<?php if(isset($review['comment']) && isset($review['rating'])) : ?>
-								<a class="btn ap-btn btn-success" href="<?php echo url('opportunity/' . $rows['opportunity']->vid . '/submission/' . $review['uid'], array()); ?>">Reviewed</a>
+								<a class="ap-btn-table" href="<?php echo url('opportunity/' . $rows['opportunity']->vid . '/submission/' . $review['uid'], array()); ?>">Reviewed</a>
 							<?php else : ?>
-								<a class="btn ap-btn btn-danger" href="<?php echo url('opportunity/' . $rows['opportunity']->vid . '/submission/' . $review['uid'], array()); ?>">Review</a>
+								<a class="ap-btn-table" href="<?php echo url('opportunity/' . $rows['opportunity']->vid . '/submission/' . $review['uid'], array()); ?>">Review</a>
 							<?php endif; ?>
 						</td>
 					</tr>
