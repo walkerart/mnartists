@@ -100,7 +100,16 @@ function mnartist_profiles_user_update(&$edit, $account, $category) {
         if (!empty($node_keys)) {
             $nodes = node_load_multiple($node_keys);
             foreach ($nodes as $node) {
+
+                // unpublish
                 $node->status = '0';
+
+                // and set public field to 0
+                $new_pub_value = array();
+                $new_pub_value[LANGUAGE_NONE] = array();
+                $new_pub_value[LANGUAGE_NONE][] = array('value' => '0');
+                $node->field_public = $new_pub_value;
+
                 node_save($node);
             }
         }
