@@ -6,6 +6,19 @@ table {
 	background-color: #FFF;
 }
 
+#content {
+	background: #f2f2f2;
+	padding: 15px 25px;
+	margin: 20px 0;
+}
+
+#appContent {
+	background: #f2f2f2;
+	padding: 40px 60px;
+	margin: 20px 0;
+	color: #000;
+}
+
 .clearPadding {
 	padding: 0;
 }
@@ -226,6 +239,7 @@ label>.small {
 }
 
 .table-thumb {
+	margin-left: 0;
 	width: 300px;
 }
 
@@ -245,7 +259,6 @@ label>.small {
 	height: inherit;
 	content:url(../images/application-octet-stream.png);
 }
-
 
 /* opportunity video thumbs */
 .table-thumb .thumb-list.video a {
@@ -267,24 +280,6 @@ label>.small {
 }
 .table-thumb .thumb-list.video img {
 	display:inline-block;
-}
-
-#content {
-	background: #f2f2f2;
-	padding: 15px 25px;
-	margin: 20px 0;
-}
-
-#appContent {
-	background: #f2f2f2;
-	padding: 40px 60px;
-	margin: 20px 0;
-	color: #000;
-}
-
-input[type=text] {
-	border-radius: 0;
-	height: 24px;
 }
 
 .page-taxonomy {
