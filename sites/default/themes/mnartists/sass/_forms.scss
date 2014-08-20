@@ -947,6 +947,9 @@ a.tabledrag-handle .handle {
 
 
 // chosen overrides
+.chosen-container.chosen-with-drop .chosen-drop {
+    box-shadow: 0 1px 4px rgba(0,0,0,.2);
+}
 .chosen-container {
     box-sizing:border-box;
     margin:0 0 8px 0;
@@ -1174,12 +1177,14 @@ div.entityconnect-edit {
     .form-item {
         .field-add-more-submit {
             width:192px;
-            height:91px;
+            height:21px;
             text-overflow:hidden;
             overflow:hidden;
             white-space:nowrap;
             display:inline-block;
             background: url('../images/bg-icon-add-another.png') no-repeat left top transparent!important;
+            border:none;
+            text-indent:999px;
         }
     }
 
