@@ -142,7 +142,7 @@ dpm($rows); ?>
 	</div>
 	<div class="row">
 		<div class="col-md-12">
-				<a class="prev" href="<?php echo url('opportunities/', array()); ?>">Back to Opportunities</a>
+				<a class="next" href="<?php echo url('opportunities/', array()); ?>">Back to Opportunities</a>
 		</div>
 	</div>
 	<?php if($rows['juror']) : ?>
@@ -261,7 +261,7 @@ dpm($rows); ?>
 	</div>
 	<div class="row">
 		<div class="col-md-12">
-			<a class="prev" href="<?php echo url('applications/', array()); ?>">Back to Applications</a>
+			<a class="next" href="<?php echo url('applications/', array()); ?>">Back to Applications</a>
 		</div>
 	</div>
 	<?php endif; ?>

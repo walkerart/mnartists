@@ -353,10 +353,32 @@ tr.odd {
 	color: #000;
 }
 
-input[type=text] {
+.dataTables_filter input[type=text] {
+	margin-top: 10px;
 	border-radius: 0;
+	border: none;
 	height: 24px;
 }
+
+
+
+/* placeholder text style */
+::-webkit-input-placeholder {
+   font-weight: normal;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   font-weight: normal;
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   font-weight: normal;
+}
+
+:-ms-input-placeholder {
+   font-weight: normal;
+}
+
 
 .page-taxonomy {
 	#block-system-main {
