@@ -6,6 +6,19 @@ table {
 	background-color: #FFF;
 }
 
+#content {
+	background: #f2f2f2;
+	padding: 15px 25px;
+	margin: 20px 0;
+}
+
+#appContent {
+	background: #f2f2f2;
+	padding: 40px 60px;
+	margin: 20px 0;
+	color: #000;
+}
+
 .clearPadding {
 	padding: 0;
 }
@@ -268,117 +281,6 @@ label>.small {
 .table-thumb .thumb-list.video img {
 	display:inline-block;
 }
-
-.op-table,
-.op-table>thead,
-.op-table>body,
-.op-table>thead>tr,
-.op-table>thead>tr>th,
-.op-table>tbody>tr>td {
-	border-collapse:collapse;
-	background-color: transparent;
-	border-bottom: none;
-	border: none;
-	border-style: none;
-	border-color: #a3a3a3;
-}
-
-.op-table>thead {
-	color: #888;
-	font-size: 14px;
-	font-weight: normal;
-}
-
-.op-table>thead>tr>th,
-.op-table>tbody>tr>td {
-	border: 1px solid #a3a3a3;
-	border-bottom: none;
-}
-
-.op-table>thead>tr>th:last-child,
-.op-table>tbody>tr>td:last-child {
-	border-right: none;
-}
-
-.op-table>thead>tr>th:first-child,
-.op-table>tbody>tr>td:first-child {
-	border-left: none;
-}
-
-.ap-btn-table {
-	/*float: right;*/
-	width: auto;
-	height: auto;
-	padding: 5px 10px;
-	border: 1px solid #333;
-	font-family: "Apercu Regular", Arial, Helvetica, sans-serif;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	-webkit-border-radius: 1px;
-	-moz-border-radius: 1px;
-	border-radius: 1px;
-	cursor: pointer;
-	margin-left: 0;
-	margin-right: 10px;
-	background: #333;
-	color: #fff;
-	text-transform: capitalize;
-	font-size: 12px;
-	font-weight: normal;
-	letter-spacing: 0;
-	margin: 10px 0;
-}
-
-.ap-btn-table:hover {
-  background: #222;
-  color: #fff;
-}
-
-tr.even,
-tr.odd {
-	border-bottom: none;
-}
-
-#content {
-	background: #f2f2f2;
-	padding: 15px 25px;
-	margin: 20px 0;
-}
-
-#appContent {
-	background: #f2f2f2;
-	padding: 40px 60px;
-	margin: 20px 0;
-	color: #000;
-}
-
-.dataTables_filter input[type=text] {
-	margin-top: 10px;
-	border-radius: 0;
-	border: none;
-	height: 24px;
-}
-
-
-
-/* placeholder text style */
-::-webkit-input-placeholder {
-   font-weight: normal;
-}
-
-:-moz-placeholder { /* Firefox 18- */
-   font-weight: normal;
-}
-
-::-moz-placeholder {  /* Firefox 19+ */
-   font-weight: normal;
-}
-
-:-ms-input-placeholder {
-   font-weight: normal;
-}
-
 
 .page-taxonomy {
 	#block-system-main {
