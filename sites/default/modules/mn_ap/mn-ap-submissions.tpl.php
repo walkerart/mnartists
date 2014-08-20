@@ -85,8 +85,8 @@ dpm($rows); ?>
 								<?php endif; ?>
 								<?php if($artwork->file_type == 'soundcloud') : ?>
 									<span class="thumb-list sound">
-										<a class="btn btn-default btn-sound" href="<?php echo $artwork->file; ?>" target="_blank">
-											<span class="glyphicon glyphicon-volume-up"></span> Listen
+										<a href="<?php echo $artwork->file; ?>" data-toggle="lightbox" data-gallery="mixedgallery" data-title="<?php echo $artwork->title; ?>" data-parent=".lightbox-parent-<?php echo $artwork->uid; ?>">
+											<img src="<?php  print file_create_url(file_build_uri('soundcloud.jpg')); ?>" data-soundcloud-id="<?php echo $artwork->file; ?>">
 										</a>
 									</span>
 								<?php endif; ?>
