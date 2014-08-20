@@ -86,7 +86,7 @@ dpm($rows); ?>
 								<?php if($artwork->file_type == 'soundcloud') : ?>
 									<span class="thumb-list sound">
 										<a href="<?php echo $artwork->file; ?>" data-toggle="lightbox" data-gallery="mixedgallery" data-title="<?php echo $artwork->title; ?>" data-parent=".lightbox-parent-<?php echo $artwork->uid; ?>">
-											<img src="http://placehold.it/60x60" data-soundcloud-id="<?php echo $artwork->file; ?>">
+											<img src="<?php  print file_create_url(file_build_uri('soundcloud.jpg')); ?>" data-soundcloud-id="<?php echo $artwork->file; ?>">
 										</a>
 									</span>
 								<?php endif; ?>
