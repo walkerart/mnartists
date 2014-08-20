@@ -3,13 +3,14 @@ $(document).ready(function(){
 
 	$('#subTable').dataTable( {
 		"oLanguage": {
-		"sLengthMenu":  '<select class="dt-select">'+
-			'<option value="10">Show 10 Rows</option>'+
-			'<option value="25">Show 25 Rows</option>'+
-			'<option value="50">Show 50 Rows</option>'+
-			'<option value="100">Show 100 Rows</option>'+
-			'<option value="-1">Show All Rows</option>'+
-			'</select>'
+			"sLengthMenu":  '<select class="dt-select">'+
+				'<option value="10">Show 10 Rows</option>'+
+				'<option value="25">Show 25 Rows</option>'+
+				'<option value="50">Show 50 Rows</option>'+
+				'<option value="100">Show 100 Rows</option>'+
+				'<option value="-1">Show All Rows</option>'+
+				'</select>',
+			"sSearch": ""
 		}
 	});
 
@@ -21,9 +22,12 @@ $(document).ready(function(){
 			'<option value="50">Show 50 Rows</option>'+
 			'<option value="100">Show 100 Rows</option>'+
 			'<option value="-1">Show All Rows</option>'+
-			'</select>'
+			'</select>',
+			"sSearch": ""
 		}
 	});
+
+	$('.dataTables_filter input').attr("placeholder", " Search...");
 
 	$(document).delegate('*[data-toggle="lightbox"]', 'click', function(event) {
 		event.preventDefault();
