@@ -1146,6 +1146,12 @@ function mnartist_profiles_entity_property_info_alter(&$info) {
         'sanitized' => TRUE,
         'getter callback' => 'mnartist_profiles_sort_by_name_callback',
     );
+    $info['node']['bundles']['opportunity']['properties']['sort_by_name'] = array(
+        'type' => 'string',
+        'label' => t('Sort By Name'),
+        'sanitized' => TRUE,
+        'getter callback' => 'mnartist_profiles_sort_by_name_callback',
+    );
 
 
     // creating a common date sort field between users and nodes
@@ -1173,6 +1179,12 @@ function mnartist_profiles_entity_property_info_alter(&$info) {
         'sanitized' => TRUE,
         'getter callback' => 'mnartist_profiles_sort_by_date_callback',
     );
+    $info['node']['bundles']['opportunity']['properties']['sort_by_date'] = array(
+        'type' => 'date',
+        'label' => t('Sort By Date'),
+        'sanitized' => TRUE,
+        'getter callback' => 'mnartist_profiles_sort_by_date_callback',
+    );
 
 
     // index flag counts for nodes
@@ -1190,6 +1202,18 @@ function mnartist_profiles_entity_property_info_alter(&$info) {
         'getter callback' => 'mnartist_profiles_flags_count_callback',
     );
     $info['node']['bundles']['event']['properties']['flags_count'] = array(
+        'type' => 'integer',
+        'label' => t('Flags Count'),
+        'sanitized' => TRUE,
+        'getter callback' => 'mnartist_profiles_flags_count_callback',
+    );
+    $info['node']['bundles']['opportunity']['properties']['flags_count'] = array(
+        'type' => 'integer',
+        'label' => t('Flags Count'),
+        'sanitized' => TRUE,
+        'getter callback' => 'mnartist_profiles_flags_count_callback',
+    );
+    $info['user']['bundles']['user']['properties']['flags_count'] = array(
         'type' => 'integer',
         'label' => t('Flags Count'),
         'sanitized' => TRUE,
@@ -1283,11 +1307,22 @@ function mnartist_profiles_search_api_data_type_info() {
 }
 
 function mnartist_profiles_flags_count_callback($item) {
-    $sql = "SELECT count FROM flag_lists_counts WHERE content_id = $item->nid";
-    $result = db_query($sql);
     $count = 0;
-    foreach ($result as $row) {
-        $count += $row->count;
+    if (isset($item->type)) {
+        $sql = "SELECT count FROM flag_lists_counts WHERE content_id = $item->nid";
+        $result = db_query($sql);
+        foreach ($result as $row) {
+            $count += $row->count;
+        }
+        $node_counts = flag_get_counts('node', $item->nid);
+        if (isset($node_counts['collections'])) {
+            $count += intval($node_counts['collections']);
+        }
+    } else {
+        $user_counts = flag_get_counts('user', $item->uid);
+        if (isset($user_counts['usercollections'])) {
+            $count += intval($user_counts['usercollections']);
+        }
     }
     return $count;
 }
