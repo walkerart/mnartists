@@ -235,11 +235,21 @@ label>.small {
 }
 
 .ekko-lightbox .glyphicon-chevron-right {
+	position: relative;
+	/*width: 50px !important;*/
 	right: -50px;
 }
 
 .ekko-lightbox .glyphicon-chevron-left {
+	position: relative;
+	/*width: 50px !important;*/
 	left: -50px;
+}
+
+.ekko-lightbox .glyphicon-chevron-left:hover {
+	position: relative;
+	/*width: 50px !important;*/
+	padding-right: 50px;
 }
 
 .table-thumb {
