@@ -1,15 +1,18 @@
 <?php
 	drupal_add_css(drupal_get_path('module', 'mn_ap') . '/css/bootstrap.min.css');
 	drupal_add_css(drupal_get_path('module', 'mn_ap') . '/css/DT_bootstrap.css');
+	drupal_add_css(drupal_get_path('module', 'mn_ap') . '/css/jquery.selectBoxIt.css');
 	drupal_add_css(drupal_get_path('module', 'mn_op') . '/css/mn-op.css');
+
 	drupal_add_js(drupal_get_path('module', 'mn_ap') . '/js/jquery.dataTables.js');
+	drupal_add_js(drupal_get_path('module', 'mn_ap') . '/js/jquery.selectBoxIt.js');
 	drupal_add_js(drupal_get_path('module', 'mn_op') . '/js/mn-op.js');
 	//dpm($rows); ?>
 
 <div class="container" id="listContent">
 	<h1>Opportunities</h1>
 	<div class="table-responsive">
-		<table class="table" id="opList">
+		<table class="table op-table" id="opList">
 			<thead>
 				<tr>
 					<th>Title</th>

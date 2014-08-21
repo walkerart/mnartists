@@ -135,7 +135,7 @@
                     <?php $sci++; ?>
                 <?php endif; ?>
                 <?php if ($artwork->file_type == 'document') : ?>
-                    <a href="<?php  print file_create_url(file_build_uri('opportunity/' . $artwork->nid . '/' . $artwork->uid . '/' . urlencode($artwork->file))); ?>" target="_blank">
+                    <a href="<?php  print file_create_url(file_build_uri('opportunity/' . $artwork->nid . '/' . $artwork->uid . '/' . $artwork->file)); ?>" target="_blank">
                         <div class="img-responsive doc-icon"></div><?php echo urldecode($artwork->file); ?>
                     </a>
                 <?php endif; ?>

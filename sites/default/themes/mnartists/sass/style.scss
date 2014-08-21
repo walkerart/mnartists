@@ -5901,6 +5901,17 @@ depending on the template so needs unified a bit */
         display: none!important;
     }
 }
+.item-info-flag {
+    .follow-this,
+    .collect-this {
+        .flag-count {
+            line-height:1.3em;
+            display:inline-block!important;
+            vertical-align:middle;
+        }
+    }
+
+}
 
 /* collection block */
 .collections {
@@ -9717,6 +9728,7 @@ table.table thead .sorting {
         border-radius: 0px 0px 0px 3px;
         position:relative;
         z-index:2;
+        z-index:999;
 
         &.open {
             display:block;
