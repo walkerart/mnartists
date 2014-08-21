@@ -14,6 +14,8 @@
 	drupal_add_js(drupal_get_path('module', 'mn_ap') . '/js/subScript.js');
 dpm($rows); ?>
 <div class="container">
+	<?php //admin table ?>
+	<?php if(in_array('administrator', $user->roles) || $rows['owner']) : ?>
 	<div class="row">
 		<div class="col-md-6">
 			<h1>
@@ -24,8 +26,6 @@ dpm($rows); ?>
 			</h1>
 		</div>
 	</div>
-	<?php //admin table ?>
-	<?php if(in_array('administrator', $user->roles) || $rows['owner']) : ?>
 	<?php for ($i = 1; $rows['settings']['round'] >= $i; $i++) : ?>
 	<div class="row">
 		<div class="col-md-12">
