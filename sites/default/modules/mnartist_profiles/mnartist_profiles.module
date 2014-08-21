@@ -274,8 +274,9 @@ function _mnartist_profiles_get_feed_data($row_offset = null, $row_limit = null)
     return $feed_data;
 }
 
-// gives you either the collective name, or fullname, or username
-// for a given uid
+// Gives you either the collective name, or fullname. Used
+// to include username option (thus the name), but now does
+// not ever do that.
 function mnartist_profiles_collective_or_fullname_or_username($uid, $prefer_full_name = false) {
     $context_user = user_load($uid);
 
@@ -840,7 +841,7 @@ function _mnartist_profile_all_artworks_link() {
     if($context_user) {
         $link_fragment_arr = array();
         $link_fragment_arr[] = '<div class="all-artworks">';
-        $link_fragment_arr[] = "<a href='/community?content[artwork]=1&global_search=\"".check_plain(mnartist_profiles_collective_or_fullname_or_username($context_user->uid))."\"'>All Artworks</a>";
+        $link_fragment_arr[] = "<a href='/community?content[artwork]=1&global_search=".check_plain(mnartist_profiles_collective_or_fullname_or_username($context_user->uid))."'>All Artworks</a>";
         $link_fragment_arr[] = '</div>';
         return implode('', $link_fragment_arr);
     }
@@ -1163,6 +1164,40 @@ function mnartist_profiles_entity_property_info_alter(&$info) {
     );
 
 
+    // creating an actual full name field that can be added to
+    // the aggregated search field
+    $info['user']['bundles']['user']['properties']['full_name_actual'] = array(
+        'type' => 'string',
+        'label' => t('Full Name Actual'),
+        'sanitized' => TRUE,
+        'getter callback' => 'mnartist_profiles_full_name_actual_callback',
+    );
+    $info['node']['bundles']['artwork']['properties']['full_name_actual'] = array(
+        'type' => 'string',
+        'label' => t('Full Name Actual'),
+        'sanitized' => TRUE,
+        'getter callback' => 'mnartist_profiles_full_name_actual_callback',
+    );
+    $info['node']['bundles']['article']['properties']['full_name_actual'] = array(
+        'type' => 'string',
+        'label' => t('Full Name Actual'),
+        'sanitized' => TRUE,
+        'getter callback' => 'mnartist_profiles_full_name_actual_callback',
+    );
+    $info['node']['bundles']['event']['properties']['full_name_actual'] = array(
+        'type' => 'string',
+        'label' => t('Full Name Actual'),
+        'sanitized' => TRUE,
+        'getter callback' => 'mnartist_profiles_full_name_actual_callback',
+    );
+    $info['node']['bundles']['opportunity']['properties']['full_name_actual'] = array(
+        'type' => 'string',
+        'label' => t('Full Name Actual'),
+        'sanitized' => TRUE,
+        'getter callback' => 'mnartist_profiles_full_name_actual_callback',
+    );
+
+
     // creating a common date sort field between users and nodes
     $info['user']['bundles']['user']['properties']['sort_by_date'] = array(
         'type' => 'date',
@@ -1230,6 +1265,9 @@ function mnartist_profiles_entity_property_info_alter(&$info) {
     );
 }
 
+function mnartist_profiles_full_name_actual_callback($item) {
+    return mnartist_profiles_collective_or_fullname_or_username($item->uid);
+}
 
 function mnartist_profiles_sort_by_date_callback($item) {
     if (isset($item->type)) {
