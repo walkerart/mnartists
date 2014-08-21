@@ -172,7 +172,7 @@ dpm($rows); ?>
 			<table id="juryTable" class="table op-table">
 				<thead>
 					<tr>
-						<?php if($rows['settings']['name'] == 1) : ?>
+						<?php if($rows['settings']['name'] == 1 || $rows['settings'] == 0) : ?>
 						<th>#</th>
 						<th>User ID</th>
 						<th>First Name</th>
@@ -180,7 +180,7 @@ dpm($rows); ?>
 						<?php else : ?>
 						<th>Applicant</th>
 						<?php endif; ?>
-						<?php if($rows['settings']['artwork'] == 1) : ?>
+						<?php if($rows['settings']['artwork'] == 1 || $rows['settings'] == 0) : ?>
 						<th>Work</th>
 						<?php endif; ?>
 						<th>Comment</th>
@@ -192,7 +192,7 @@ dpm($rows); ?>
 					<?php $i=1; ?>
 					<?php foreach ($rows['juror_reviews'] as $review) : ?>
 					<tr>
-						<?php if($rows['settings']['name'] == 1) : ?>
+						<?php if($rows['settings']['name'] == 1 || $rows['settings'] == 0) : ?>
 						<td><?php echo $i; ?></td>
 						<td><?php echo $review['uid']; ?></td>
 						<td><?php echo $review['first_name']; ?></td>
@@ -200,7 +200,7 @@ dpm($rows); ?>
 						<?php else : ?>
 						<td>Application <?php echo $i; ?></td>
 						<?php endif; ?>
-						<?php if($rows['settings']['artwork'] == 1) : ?>
+						<?php if($rows['settings']['artwork'] == 1 || $rows['settings'] == 0) : ?>
 						<td>
 							<div class="row table-thumb jury-parent-<?php echo $review['uid']; ?>">
 								<?php foreach ($review['artworks'] as $artwork) : ?>
@@ -227,8 +227,8 @@ dpm($rows); ?>
 									<?php endif; ?>
 									<?php if($artwork->file_type == 'soundcloud') : ?>
 										<span class="thumb-list sound">
-											<a class="btn btn-default btn-sound" href="<?php echo $artwork->file; ?>" target="_blank">
-												<span class="glyphicon glyphicon-volume-up"></span> Listen
+											<a href="<?php echo $artwork->file; ?>" data-toggle="lightbox" data-gallery="mixedgallery" data-title="<?php echo $artwork->title; ?>" data-parent=".jury-parent-<?php echo $artwork->uid; ?>">
+												<img src="<?php  print file_create_url(file_build_uri('soundcloud.jpg')); ?>" data-soundcloud-id="<?php echo $artwork->file; ?>">
 											</a>
 										</span>
 									<?php endif; ?>
