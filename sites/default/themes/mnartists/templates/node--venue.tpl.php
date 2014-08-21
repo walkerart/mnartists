@@ -17,7 +17,7 @@ if ($teaser) {
     <header<?php print $header_attributes; ?>>
       <?php if ($title): ?>
         <h1<?php print $title_attributes; ?>>
-          <a href="<?php print $node_url; ?>" rel="bookmark"><?php print $title; ?></a>
+          <?php print $title; ?>
         </h1>
       <?php endif; ?>
     </header>
