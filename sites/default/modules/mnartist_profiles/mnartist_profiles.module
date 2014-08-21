@@ -1318,6 +1318,11 @@ function mnartist_profiles_search_api_data_type_info() {
 function mnartist_profiles_flags_count_callback($item) {
     $count = 0;
     if (isset($item->type)) {
+        $sql = "SELECT count FROM flag_lists_counts WHERE content_id = $item->nid";
+        $result = db_query($sql);
+        foreach ($result as $row) {
+            $count += $row->count;
+        }
         $node_counts = flag_get_counts('node', $item->nid);
         if (isset($node_counts['collections'])) {
             $count += intval($node_counts['collections']);
