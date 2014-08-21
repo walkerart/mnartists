@@ -234,7 +234,7 @@ dpm($rows); ?>
 									<?php endif; ?>
 									<?php if ($artwork->file_type == 'document') : ?>
 										<span class="thumb-list document">
-											<a class="btn btn-default btn-document" href="<?php  print file_create_url(file_build_uri('opportunity/' . $artwork->nid . '/' . $artwork->uid . '/' . urlencode($artwork->file))); ?>" target="_blank">
+											<a class="btn btn-default btn-document" href="<?php  print file_create_url(file_build_uri('opportunity/' . $artwork->nid . '/' . $artwork->uid . '/' . $artwork->file)); ?>" target="_blank">
 												<span class="glyphicon glyphicon-file"></span> Read
 											</a>
 										</span>
