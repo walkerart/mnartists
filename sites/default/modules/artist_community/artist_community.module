@@ -987,6 +987,10 @@ function _artist_community_get_items_query ($local_og = null,
                     $typeQuery = AC_TYPE_FIELD.":$type";
                     $subQuery = null;
                     $subQueryTargetField = AC_CATEGORY_FIELD;
+                    if (isset($local_content[$type]) &&
+                        is_array($local_content[$type])) {
+                        $subQuery = implode(' OR ', $local_content[$type]);
+                    }
                     if (!isset($_GET['content']['event_include_past']) ||
                         (isset($_GET['content']['event_include_past']) && isset($_GET['content']['event_include_past']) != '1')) {
                         $typeQuery .= " AND ds_field_date\:value:[NOW TO *]";
@@ -996,7 +1000,12 @@ function _artist_community_get_items_query ($local_og = null,
                         $eventLocationSearchString = '{!geofilt sfield='.AC_USER_LATLNG_FIELD." pt=$event_coords d=".NEAR_ME_RADIUS.'}';
                         $solarium_query->createFilterQuery('event_location')->setQuery($eventLocationSearchString);
                     }
-                    $contextQueryString = "($typeQuery)";
+
+                    if (!is_null($subQuery) && is_null($forSaleQuery)) {
+                        $contextQueryString = "($typeQuery AND ($subQueryTargetField:($subQuery)))";
+                    } else {
+                        $contextQueryString = "($typeQuery)";
+                    }
                     $contentFilters['node'][] = $contextQueryString;
                     break;
                 case 'artists':
