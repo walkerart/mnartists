@@ -5895,6 +5895,32 @@ depending on the template so needs unified a bit */
     }
 
 }
+.follow-menu {
+    li {
+        &:hover {
+            background: #323232;
+            .star-link {
+                img {
+                    -webkit-filter: invert(100%);
+                    filter: invert(100%);
+                    opacity:.8;
+
+                }
+            }
+        }
+        .star-link {
+            margin:0;
+            padding:5px;
+        }
+        ul {
+            li {
+                a {
+
+                }
+            }
+        }
+    }
+}
 
 .item-info-flag {
     .flag-count {
@@ -5911,6 +5937,18 @@ depending on the template so needs unified a bit */
         }
     }
 
+}
+.item-user {
+    .item-into-flag {
+        .follow-this {
+            a {
+
+            }
+            .flag-count {
+
+            }
+        }
+    }
 }
 
 /* collection block */
