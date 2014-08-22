@@ -1,6 +1,7 @@
 <?php
 	drupal_add_css(drupal_get_path('module', 'mn_ap') . '/css/bootstrap.min.css');
 	drupal_add_css(drupal_get_path('module', 'mn_ap') . '/css/DT_bootstrap.css');
+	drupal_add_css(drupal_get_path('module', 'mn_ap') . '/css/jquery.selectBoxIt.css');
 	drupal_add_css(drupal_get_path('module', 'mn_ap') . '/css/ekko-lightbox.min.css');
 	drupal_add_css(drupal_get_path('module', 'mn_ap') . '/css/dark.css');
 	drupal_add_css(drupal_get_path('module', 'mn_ap') . '/css/styles.css');
@@ -9,6 +10,7 @@
 	drupal_add_js(drupal_get_path('module', 'mn_ap') . '/js/jquery-vimeothumb.min.js');
 	drupal_add_js(drupal_get_path('module', 'mn_ap') . '/js/jquery.dataTables.js');
 	drupal_add_js(drupal_get_path('module', 'mn_ap') . '/js/ekko-lightbox.min.js');
+	drupal_add_js(drupal_get_path('module', 'mn_ap') . '/js/jquery.selectBoxIt.js');
 	drupal_add_js(drupal_get_path('module', 'mn_ap') . '/js/subScript.js');
 dpm($rows); ?>
 <div class="container">
@@ -23,7 +25,7 @@ dpm($rows); ?>
 		</div>
 	</div>
 	<?php //admin table ?>
-	<?php if(user_access('administrator') || $rows['owner']) : ?>
+	<?php if(in_array('administrator', $user->roles) || $rows['owner']) : ?>
 	<?php for ($i = 1; $rows['settings']['round'] >= $i; $i++) : ?>
 	<div class="row">
 		<div class="col-md-12">
@@ -33,7 +35,7 @@ dpm($rows); ?>
 	<?php endfor; ?>
 	<div class="row">
 		<div class="col-md-12">
-			<table id="subTable" class="table">
+			<table id="subTable" class="table op-table">
 				<thead>
 					<tr>
 						<th>#</th>
@@ -62,29 +64,29 @@ dpm($rows); ?>
 							<?php foreach ($review['artworks'] as $artwork) : ?>
 								<?php if($artwork->file_type == 'image') : ?>
 									<span class="thumb-list">
-										<a href="<?php  print file_create_url(file_build_uri('opportunity/' . $artwork->nid . '/' . $artwork->uid . '/' . $artwork->file)); ?>" data-toggle="lightbox" data-gallery="multiimages" data-title="<?php echo $artwork->title; ?>" data-parent=".lightbox-parent-<?php echo $artwork->uid; ?>">
+										<a href="<?php  print file_create_url(file_build_uri('opportunity/' . $artwork->nid . '/' . $artwork->uid . '/' . $artwork->file)); ?>" data-toggle="lightbox" data-gallery="mixedgallery" data-title="<?php echo $artwork->title; ?>" data-parent=".lightbox-parent-<?php echo $artwork->uid; ?>">
 											<img src="<?php  print file_create_url(file_build_uri('opportunity/'. $artwork->nid . '/' . $artwork->uid . '/thumb_' . $artwork->file)); ?>">
 										</a>
 									</span>
 								<?php endif; ?>
 								<?php if($artwork->file_type == 'youtube') : ?>
 								<span class="thumb-list video">
-									<a href="<?php echo $artwork->file; ?>" data-toggle="lightbox" data-gallery="multiimages" data-title="<?php echo $artwork->title; ?>" data-parent=".lightbox-parent-<?php echo $artwork->uid; ?>">
+									<a href="<?php echo $artwork->file; ?>" data-toggle="lightbox" data-gallery="mixedgallery" data-title="<?php echo $artwork->title; ?>" data-parent=".lightbox-parent-<?php echo $artwork->uid; ?>">
 										<img src="http://img.youtube.com/vi/<?php echo substr($artwork->file, -22, 11); ?>/default.jpg" style="width:60px;">
 									</a>
 								</span>
 								<?php endif; ?>
 								<?php if($artwork->file_type == 'vimeo') : ?>
 								<span class="thumb-list video">
-									<a href="<?php echo $artwork->file; ?>" data-toggle="lightbox" data-gallery="multiimages" data-title="<?php echo $artwork->title; ?>" data-parent=".lightbox-parent-<?php echo $artwork->uid; ?>">
+									<a href="<?php echo $artwork->file; ?>" data-toggle="lightbox" data-gallery="mixedgallery" data-title="<?php echo $artwork->title; ?>" data-parent=".lightbox-parent-<?php echo $artwork->uid; ?>">
 										<img src="http://placehold.it/60x60" data-vimeo-id="<?php echo substr($artwork->file, -8, 8); ?>" class="small" style="width:60px;">
 									</a>
 								</span>
 								<?php endif; ?>
 								<?php if($artwork->file_type == 'soundcloud') : ?>
 									<span class="thumb-list sound">
-										<a class="btn btn-default btn-sound" href="<?php echo $artwork->file; ?>" target="_blank">
-											<span class="glyphicon glyphicon-volume-up"></span> Listen
+										<a href="<?php echo $artwork->file; ?>" data-toggle="lightbox" data-gallery="mixedgallery" data-title="<?php echo $artwork->title; ?>" data-parent=".lightbox-parent-<?php echo $artwork->uid; ?>">
+											<img src="<?php  print file_create_url(file_build_uri('soundcloud.jpg')); ?>" data-soundcloud-id="<?php echo $artwork->file; ?>">
 										</a>
 									</span>
 								<?php endif; ?>
@@ -140,7 +142,7 @@ dpm($rows); ?>
 	</div>
 	<div class="row">
 		<div class="col-md-12">
-				<a class="prev" href="<?php echo url('opportunities/', array()); ?>">Back to Opportunities</a>
+				<a class="next" href="<?php echo url('opportunities/', array()); ?>">Back to Opportunities</a>
 		</div>
 	</div>
 	<?php if($rows['juror']) : ?>
@@ -150,6 +152,16 @@ dpm($rows); ?>
 
 	<?php if($rows['juror']) : ?>
 	<div class="row">
+		<div class="col-md-6">
+			<h1>
+				<?php echo $rows['opportunity']->title; ?>
+				<?php if($rows['settings']['round'] > 1) : ?>
+					<small> Round <?php echo $rows['settings']['round']; ?></small>
+				<?php endif; ?>
+			</h1>
+		</div>
+	</div>
+	<div class="row">
 		<div class="col-md-12">
 			<h3><?php echo $rows['juror'] ? '<p>Welcome Juror.</p>' : ''; ?></h3>
 			<p class="help-block"><?php echo isset($rows['opportunity']->field_op_juror_note['und'][0]['value']) ? $rows['opportunity']->field_op_juror_note['und'][0]['value'] : ''; ?></p>
@@ -157,7 +169,7 @@ dpm($rows); ?>
 	</div>
 	<div class="row">
 		<div class="col-md-12">
-			<table id="juryTable" class="table table-hover">
+			<table id="juryTable" class="table op-table">
 				<thead>
 					<tr>
 						<?php if($rows['settings']['name'] == 1) : ?>
@@ -194,21 +206,21 @@ dpm($rows); ?>
 								<?php foreach ($review['artworks'] as $artwork) : ?>
 									<?php if($artwork->file_type == 'image') : ?>
 										<span class="thumb-list">
-											<a href="<?php  print file_create_url(file_build_uri('opportunity/' . $artwork->nid . '/' . $artwork->uid . '/' . $artwork->file)); ?>" data-toggle="lightbox" data-gallery="multiimages" data-title="<?php echo $artwork->title; ?>" data-parent=".jury-parent-<?php echo $artwork->uid; ?>">
+											<a href="<?php  print file_create_url(file_build_uri('opportunity/' . $artwork->nid . '/' . $artwork->uid . '/' . $artwork->file)); ?>" data-toggle="lightbox" data-gallery="mixedgallery" data-title="<?php echo $artwork->title; ?>" data-parent=".jury-parent-<?php echo $artwork->uid; ?>">
 												<img src="<?php  print file_create_url(file_build_uri('opportunity/' . $artwork->nid . '/' . $artwork->uid . '/thumb_' . $artwork->file)); ?>">
 											</a>
 										</span>
 									<?php endif; ?>
 									<?php if($artwork->file_type == 'youtube') : ?>
 									<span class="thumb-list video">
-										<a href="<?php echo $artwork->file; ?>" data-toggle="lightbox" data-gallery="multiimages" data-title="<?php echo $artwork->title; ?>" data-parent=".jury-parent-<?php echo $artwork->uid; ?>">
+										<a href="<?php echo $artwork->file; ?>" data-toggle="lightbox" data-gallery="mixedgallery" data-title="<?php echo $artwork->title; ?>" data-parent=".jury-parent-<?php echo $artwork->uid; ?>">
 											<img src="http://img.youtube.com/vi/<?php echo substr($artwork->file, -22, 11); ?>/default.jpg" style="width:60px;">
 										</a>
 									</span>
 									<?php endif; ?>
 									<?php if($artwork->file_type == 'vimeo') : ?>
 									<span class="thumb-list video">
-										<a href="<?php echo $artwork->file; ?>" data-toggle="lightbox" data-gallery="multiimages" data-title="<?php echo $artwork->title; ?>" data-parent=".jury-parent-<?php echo $artwork->uid; ?>">
+										<a href="<?php echo $artwork->file; ?>" data-toggle="lightbox" data-gallery="mixedgallery" data-title="<?php echo $artwork->title; ?>" data-parent=".jury-parent-<?php echo $artwork->uid; ?>">
 											<img src="http://placehold.it/60x60" data-vimeo-id="<?php echo substr($artwork->file, -8, 8); ?>" class="small" style="width:60px;">
 										</a>
 									</span>
@@ -235,9 +247,9 @@ dpm($rows); ?>
 						<td><?php echo isset($review['rating']) ? $review['rating'] : 'None'; ?></td>
 						<td>
 							<?php if(isset($review['comment']) && isset($review['rating'])) : ?>
-								<a class="btn ap-btn btn-success" href="<?php echo url('opportunity/' . $rows['opportunity']->vid . '/submission/' . $review['uid'], array()); ?>">Reviewed</a>
+								<a class="ap-btn-table" href="<?php echo url('opportunity/' . $rows['opportunity']->vid . '/submission/' . $review['uid'], array()); ?>">Reviewed</a>
 							<?php else : ?>
-								<a class="btn ap-btn btn-danger" href="<?php echo url('opportunity/' . $rows['opportunity']->vid . '/submission/' . $review['uid'], array()); ?>">Review</a>
+								<a class="ap-btn-table" href="<?php echo url('opportunity/' . $rows['opportunity']->vid . '/submission/' . $review['uid'], array()); ?>">Review</a>
 							<?php endif; ?>
 						</td>
 					</tr>
@@ -249,7 +261,7 @@ dpm($rows); ?>
 	</div>
 	<div class="row">
 		<div class="col-md-12">
-			<a class="prev" href="<?php echo url('applications/', array()); ?>">Back to Applications</a>
+			<a class="next" href="<?php echo url('applications/', array()); ?>">Back to Applications</a>
 		</div>
 	</div>
 	<?php endif; ?>

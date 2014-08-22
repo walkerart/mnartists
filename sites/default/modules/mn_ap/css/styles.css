@@ -6,11 +6,36 @@ table {
 	background-color: #FFF;
 }
 
+#content {
+	background: #f2f2f2;
+	padding: 15px 25px;
+	margin: 20px 0;
+}
+
+#appContent {
+	background: #f2f2f2;
+	padding: 40px 60px;
+	margin: 20px 0;
+	color: #000;
+}
+
+.clearPadding {
+	padding: 0;
+}
+
+.clearMargin {
+	margin-left: 0;
+}
+
 .prev, .next { background-color:#b0232a; padding:5px 10px; color:#fff; text-decoration:none; border-radius: 0; margin-bottom: 10px;}
 .prev:hover, .next:hover { background-color:#000; text-decoration:none; cursor: pointer;}
 .prev { float:left;}
 .next { float:right;}
-.submit { margin-bottom: 10px; }
+.submitNext {
+	padding:5px 10px;
+	margin-bottom: 10px;
+	float: right;
+}
 
 #ap-menu li {
 	display: table-cell;
@@ -146,6 +171,11 @@ li.active .enabled:hover .arrow-right {
     overflow:hidden;
 }
 
+.ap-body {
+	font-size: 12px;
+	margin: 15px 0;
+}
+
 .ap-more {
 	font-family: "Apercu Regular", Arial, Helvetica, sans-serif;
 	padding: 0;
@@ -200,6 +230,10 @@ label>.small {
 	font-family: "Apercu Regular", Arial, Helvetica, sans-serif;
 }
 
+.ekko-lightbox-nav-overlay {
+	z-index: -1;
+}
+
 .ekko-lightbox .glyphicon-chevron-right {
 	right: -50px;
 }
@@ -209,6 +243,7 @@ label>.small {
 }
 
 .table-thumb {
+	margin-left: 0;
 	width: 300px;
 }
 
@@ -228,7 +263,6 @@ label>.small {
 	height: inherit;
 	content:url(../images/application-octet-stream.png);
 }
-
 
 /* opportunity video thumbs */
 .table-thumb .thumb-list.video a {

@@ -16,7 +16,7 @@
             }); })(jQuery);', 'inline' );
         drupal_add_js(drupal_get_path('module', 'mn_ap') . '/js/scripts2.js');
         dpm($rows); ?>
-<div class="container">
+<div class="container" id="content">
     <div class="row">
         <div class="col-md-12">
             <h1><?php echo $rows['op_title']; ?></h1>
@@ -55,7 +55,9 @@
                     <div id="step1">
                         <input type="hidden" id="nid" name="nid" value="<?php echo $rows['nid']; ?>">
                         <input type="hidden" id="title" name="title" value="<?php echo $rows['op_title']; ?>">
+                        <?php if (isset($rows['reopen'])) : ?>
                         <input type="hidden" id="reopen" name="reopen" value="<?php echo $rows['reopen']; ?>">
+                        <?php endif; ?>
                         <fieldset>
                             <div class="row">
                                 <div class="col-sm-8 col-sm-offset-2">
@@ -65,96 +67,76 @@
                                     <div class="next" id="gotoStep2" role="button">Next</div>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label" for="first_name">First Name*</label>
-                                <div class="col-sm-4">
-                                    <input type="text" class="form-control" name="first_name" id="first_name" value="<?php echo $rows['first_name']; ?>" required>
-                                </div>
-                                <label class="col-sm-2 control-label" for="last_name">Last Name*</label>
-                                <div class="col-sm-4">
-                                    <input type="text" class="form-control" name="last_name" id="last_name" value="<?php echo $rows['last_name']; ?>" required>
+                            <div class="row">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label" for="first_name">First Name*</label>
+                                    <div class="col-sm-4">
+                                        <input type="text" class="form-control" name="first_name" id="first_name" value="<?php echo $rows['first_name']; ?>" required>
+                                    </div>
+                                    <label class="col-sm-2 control-label" for="last_name">Last Name*</label>
+                                    <div class="col-sm-4">
+                                        <input type="text" class="form-control" name="last_name" id="last_name" value="<?php echo $rows['last_name']; ?>" required>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label" for="email">Email*</label>
-                                <div class="col-sm-4">
-                                    <input type="text" class="form-control" name="email" id="email" value="<?php echo $rows['email']; ?>" required>
-                                </div>
+                            <div class="row">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label" for="email">Email*</label>
+                                    <div class="col-sm-4">
+                                        <input type="text" class="form-control" name="email" id="email" value="<?php echo $rows['email']; ?>" required>
+                                    </div>
 
-                                <label class="col-sm-2 control-label" for="phone">Phone*</label>
-                                <div class="col-sm-4">
-                                    <input type="text" class="form-control" name="phone" id="phone" value="<?php echo $rows['phone']; ?>">
+                                    <label class="col-sm-2 control-label" for="phone">Phone*</label>
+                                    <div class="col-sm-4">
+                                        <input type="text" class="form-control" name="phone" id="phone" value="<?php echo $rows['phone']; ?>">
+                                    </div>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label" for="address">Address*</label>
-                                <div class="col-sm-4">
-                                    <input type="text" class="form-control" name="address" id="address" value="<?php echo $rows['address']; ?>" required>
-                                </div>
+                            <div class="row">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label" for="address">Address*</label>
+                                    <div class="col-sm-4">
+                                        <input type="text" class="form-control" name="address" id="address" value="<?php echo $rows['address']; ?>" required>
+                                    </div>
 
-                                <label class="col-sm-2 control-label" for="city">City*</label>
-                                <div class="col-sm-4">
-                                    <input type="text" class="form-control" name="city" id="city" value="<?php echo $rows['city']; ?>" required>
+                                    <label class="col-sm-2 control-label" for="city">City*</label>
+                                    <div class="col-sm-4">
+                                        <input type="text" class="form-control" name="city" id="city" value="<?php echo $rows['city']; ?>" required>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label" for="state">State*</label>
-                                <div class="col-sm-4">
-                                    <input type="text" class="form-control" name="state" id="state" value="<?php echo $rows['state']; ?>" required>
-                                </div>
+                            <div class="row">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label" for="state">State*</label>
+                                    <div class="col-sm-4">
+                                        <input type="text" class="form-control" name="state" id="state" value="<?php echo $rows['state']; ?>" required>
+                                    </div>
 
-                                <label class="col-sm-2 control-label" for="zip">Zip*</label>
-                                <div class="col-sm-4">
-                                    <input type="text" class="form-control" name="zip" id="zip" value="<?php echo $rows['zip']; ?>" required>
+                                    <label class="col-sm-2 control-label" for="zip">Zip*</label>
+                                    <div class="col-sm-4">
+                                        <input type="text" class="form-control" name="zip" id="zip" value="<?php echo $rows['zip']; ?>" required>
+                                    </div>
                                 </div>
                             </div>
-                            <?php if (in_array('website', $rows['opportunity']['areas'])) : ?>
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label" for="website">Website<?php if(is_array($rows['opportunity']['required']) && in_array('website', $rows['opportunity']['required'])) echo '*'; ?></label>
-                                <div class="col-sm-4">
-                                    <input type="text" class="form-control" name="website" id="website" value="<?php echo $rows['website']; ?>" <?php if(is_array($rows['opportunity']['required']) && in_array('website', $rows['opportunity']['required'])) echo 'required'; ?>>
-                                </div>
-                            </div>
-                            <?php endif; ?>
-                            <?php if (in_array('county', $rows['opportunity']['areas'])) : ?>
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label" for="county">County<?php if(is_array($rows['opportunity']['required']) && in_array('county', $rows['opportunity']['required'])) echo '*'; ?></label>
-                                <div class="col-sm-4">
-                                    <input type="text" class="form-control" name="county" id="county" value="<?php echo $rows['county']; ?>" <?php if(is_array($rows['opportunity']['required']) && in_array('county', $rows['opportunity']['required'])) echo 'required'; ?>>
-                                </div>
-                            </div>
-                            <?php endif; ?>
-                            <?php if (in_array('country', $rows['opportunity']['areas'])) : ?>
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label" for="country">Country<?php if(is_array($rows['opportunity']['required']) && in_array('country', $rows['opportunity']['required'])) echo '*'; ?></label>
-                                <div class="col-sm-4">
-                                    <input type="text" class="form-control" name="country" id="country" value="<?php echo $rows['country']; ?>" <?php if(is_array($rows['opportunity']['required']) && in_array('country', $rows['opportunity']['required'])) echo 'required'; ?>>
-                                </div>
-                            </div>
-                            <?php endif; ?>
-                            <?php if (in_array('gender', $rows['opportunity']['areas'])) : ?>
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label" for="gender">Gender<?php if(is_array($rows['opportunity']['required']) && in_array('gender', $rows['opportunity']['required'])) echo '*'; ?></label>
-                                <div class="col-sm-4">
-                                    <input type="text" class="form-control" name="gender" id="gender" value="<?php echo $rows['gender']; ?>" <?php if(is_array($rows['opportunity']['required']) && in_array('gender', $rows['opportunity']['required'])) echo 'required'; ?>>
-                                </div>
-                            </div>
-                            <?php endif; ?>
-                            <?php if (in_array('ethnicity', $rows['opportunity']['areas'])) : ?>
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label" for="ethnicity">Ethnicity<?php if(is_array($rows['opportunity']['required']) && in_array('ethnicity', $rows['opportunity']['required'])) echo '*'; ?></label>
-                                <div class="col-sm-4">
-                                    <input type="text" class="form-control" name="ethnicity" id="ethnicity" value="<?php echo $rows['ethnicity']; ?>" <?php if(is_array($rows['opportunity']['required']) && in_array('ethnicity', $rows['opportunity']['required'])) echo 'required'; ?>>
-                                </div>
-                            </div>
-                            <?php endif; ?>
-                            <?php if (in_array('age', $rows['opportunity']['areas'])) : ?>
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label" for="age">Age<?php if(is_array($rows['opportunity']['required']) && in_array('age', $rows['opportunity']['required'])) echo '*'; ?></label>
-                                <div class="col-sm-4">
-                                    <input type="text" class="form-control" name="age" id="age" value="<?php echo $rows['age'] != 0 ? $rows['age'] : ''; ?>" <?php if(is_array($rows['opportunity']['required']) && in_array('age', $rows['opportunity']['required'])) echo 'required'; ?>>
-                                </div>
-                            </div>
+                            <?php if ($rows['opportunity']['additional_fields'] != '') : ?>
+                                <?php $count = 1; ?>
+                                <?php foreach ($rows['opportunity']['additional_fields'] as $field) : ?>
+                                    <?php if($count == 1): ?>
+                                        <div class="row">
+                                            <div class="form-group">
+                                    <?php endif; ?>
+                                                <label class="col-sm-2 control-label" for="<?php echo $field; ?>"><?php echo $field; ?><?php if(is_array($rows['opportunity']['required']) && in_array($field, $rows['opportunity']['required'])) echo '*'; ?></label>
+                                                <div class="col-sm-4">
+                                                    <input type="text" class="form-control" name="<?php echo $field; ?>" id="<?php echo $field; ?>" value="<?php echo $rows[$field]; ?>" <?php if(is_array($rows['opportunity']['required']) && in_array($field, $rows['opportunity']['required'])) echo 'required'; ?>>
+                                                </div>
+                                    <?php if($count == 2): ?>
+                                            </div>
+                                        </div>
+                                        <?php $count = 1; ?>
+                                    <?php else : ?>
+                                        <?php $count++; ?>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
                             <?php endif; ?>
                             <div class="form-group row">
                                 <div class="col-sm-12">
@@ -234,11 +216,13 @@
                                 <?php echo $rows['resume']['content']['#markup']; ?>
                             </div>
                             <?php endif; ?>
+                            <div class="row">
                             <div class="form-group">
                                 <div class="col-sm-12">
                                     <div class="prev" id="gotoStep<?php echo array_search('bio-resume', $rows['opportunity']['steps']) + 1; ?>" role="button">Back</div>
                                     <div class="next" id="gotoStep<?php echo array_search('bio-resume', $rows['opportunity']['steps']) + 3; ?>" role="button">Next</div>
                                 </div>
+                            </div>
                             </div>
                         </fieldset>
                     </div>
@@ -258,7 +242,11 @@
                                     <div class="next" id="gotoStep<?php echo array_search('work', $rows['opportunity']['steps']) + 3; ?>" role="button">Next</div>
                                 </div>
                             </div>
-                            <p id="artHelp">Choose at least <?php echo $rows['opportunity']['min_works']; ?> and no more than <?php echo $rows['opportunity']['max_works']; ?> pieces of documentation to represent your work.</p>
+                            <?php if($rows['opportunity']['min_works'] != $rows['opportunity']['max_works']): ?>
+                            <label id="artHelp">Choose at least <?php echo $rows['opportunity']['min_works']; ?> and no more than <?php echo $rows['opportunity']['max_works']; ?> pieces of documentation to represent your work.</label>
+                            <?php else: ?>
+                            <label id="artHelp">Choose <?php echo $rows['opportunity']['min_works']; ?> pieces of documentation to represent your work.</label>
+                            <?php endif; ?>
                             <div class="row">
                                 <div class="col-sm-2">
                                     <a class="ap-button btn" href="http://mnartist.imalab.us/node/add/artwork" target="_blank">Add New Work</a>
@@ -272,8 +260,36 @@
                                     <div class="col-sm-2 artwork-info">
                                         <div><em><?php echo $artwork['title']; ?></em></div>
                                         <div><?php echo $artwork['date']; ?></div>
-                                        <div><?php foreach ($artwork['medium'] as $medium) { echo $medium . ' '; } ?></div>
+                                        <div>
+                                            <?php $mediums = $artwork['medium'];
+                                                foreach ($artwork['medium'] as $medium) {
+                                                echo $medium;
+                                                if (next($mediums)) echo ', ';
+                                            } ?>
+                                        </div>
                                         <div><?php echo $artwork['dimensions']; ?></div>
+                                        <div class="ap-body">
+                                            <?php if($artwork['excerpt'] != '') : ?>
+                                            <div>
+                                                Excerpt: <?php echo $artwork['excerpt']; ?>
+                                            </div>
+                                            <?php endif; ?>
+                                            <?php if ($artwork['venue'] != '') : ?>
+                                            <div>
+                                                Venue: <?php echo $artwork['venue'] ?>
+                                            </div>
+                                            <?php endif; ?>
+                                            <?php if ($artwork['other_artists'] != '') : ?>
+                                            <div>
+                                                Others Artists Involved:
+                                                <?php $other_artists = $artwork['other_artists'];
+                                                foreach ($artwork['other_artists'] as $others) {
+                                                    echo $others ;
+                                                    if (next($other_artists)) echo ', ';
+                                                } ?>
+                                            </div>
+                                            <?php endif; ?>
+                                        </div>
                                         <div class="ap-artwork-body"><?php echo $artwork['body']; ?></div>
                                         <?php if(strlen($artwork['body']) > 144) : ?>
                                         <div class="ap-more text-center">View More</div>
@@ -290,7 +306,7 @@
                                                 <img class="img-responsive" src="<?php echo image_style_url('large', $image['file']); ?>">
                                                 <div class="caption">
                                                     <div>
-                                                        <input type="checkbox" class="ap-check" data-id="f<?php echo $image['fid']; ?>" name="artwork['<?php echo $image['fid']; ?>']" value="<?php echo $image['fid']; ?>" data-vid="v<?php echo $artwork['vid']; ?>" <?php echo $rows['ap_artworks'] != '' && in_array($image['fid'], $rows['ap_artworks']) ? 'checked' : ''; ?>>
+                                                        <input type="checkbox" class="ap-check" data-id="f<?php echo $image['fid']; ?>" name="artwork['<?php echo $image['fid']; ?>']" value="<?php echo $image['fid']; ?>" data-vid="v<?php echo $artwork['vid']; ?>" <?php echo isset($rows['ap_artworks']) && $rows['ap_artworks'] != '' && in_array($image['fid'], $rows['ap_artworks']) ? 'checked' : ''; ?>>
                                                         <?php echo $image['filename']; ?>
                                                     </div>
                                                 </div>
@@ -304,7 +320,7 @@
                                                 <span id="url<?php echo $sci; // populated by soundcloud embed iframe ?>"></span>
                                                 <div class="caption">
                                                     <div>
-                                                        <input type="checkbox" class="ap-check" data-id="f<?php echo $image['fid']; ?>" name="artwork['<?php echo $image['fid']; ?>']" value="<?php echo $image['fid']; ?>" data-vid="v<?php echo $artwork['vid']; ?>" <?php echo $rows['ap_artworks'] != '' && in_array($image['fid'], $rows['ap_artworks']) ? 'checked' : ''; ?>>
+                                                        <input type="checkbox" class="ap-check" data-id="f<?php echo $image['fid']; ?>" name="artwork['<?php echo $image['fid']; ?>']" value="<?php echo $image['fid']; ?>" data-vid="v<?php echo $artwork['vid']; ?>" <?php echo isset($rows['ap_artworks']) && $rows['ap_artworks'] != '' && in_array($image['fid'], $rows['ap_artworks']) ? 'checked' : ''; ?>>
                                                         <?php echo $image['filename']; ?>
                                                     </div>
                                                 </div>
@@ -328,7 +344,7 @@
                                                 <iframe class="img-responsive" src="<?php echo $image['file']; ?>" id="ytplayer" frameborder="0"></iframe>
                                                 <div class="caption">
                                                     <div>
-                                                        <input type="checkbox" class="ap-check" data-id="f<?php echo $image['fid']; ?>" name="artwork['<?php echo $image['fid']; ?>']" value="<?php echo $image['fid']; ?>" data-vid="v<?php echo $artwork['vid']; ?>" <?php echo $rows['ap_artworks'] != '' && in_array($image['fid'], $rows['ap_artworks']) ? 'checked' : ''; ?>>
+                                                        <input type="checkbox" class="ap-check" data-id="f<?php echo $image['fid']; ?>" name="artwork['<?php echo $image['fid']; ?>']" value="<?php echo $image['fid']; ?>" data-vid="v<?php echo $artwork['vid']; ?>" <?php echo isset($rows['ap_artworks']) && $rows['ap_artworks'] != '' && in_array($image['fid'], $rows['ap_artworks']) ? 'checked' : ''; ?>>
                                                         <?php echo $image['filename']; ?>
                                                     </div>
                                                 </div>
@@ -342,7 +358,7 @@
                                                 <iframe class="img-responsive" src="<?php echo $image['file']; ?>" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
                                                 <div class="caption">
                                                     <div>
-                                                        <input type="checkbox" class="ap-check" data-id="f<?php echo $image['fid']; ?>" name="artwork['<?php echo $image['fid']; ?>']" value="<?php echo $image['fid']; ?>" data-vid="v<?php echo $artwork['vid']; ?>" <?php echo $rows['ap_artworks'] != '' && in_array($image['fid'], $rows['ap_artworks']) ? 'checked' : ''; ?>>
+                                                        <input type="checkbox" class="ap-check" data-id="f<?php echo $image['fid']; ?>" name="artwork['<?php echo $image['fid']; ?>']" value="<?php echo $image['fid']; ?>" data-vid="v<?php echo $artwork['vid']; ?>" <?php echo isset($rows['ap_artworks']) && $rows['ap_artworks'] != '' && in_array($image['fid'], $rows['ap_artworks']) ? 'checked' : ''; ?>>
                                                         <?php echo $image['filename']; ?>
                                                     </div>
                                                 </div>
@@ -356,7 +372,7 @@
                                                 <div class="img-responsive doc-icon"></div>
                                                 <div class="caption">
                                                     <div>
-                                                        <input type="checkbox" class="ap-check" data-id="f<?php echo $image['fid']; ?>" name="artwork['<?php echo $image['fid']; ?>']" value="<?php echo $image['fid']; ?>" data-vid="v<?php echo $artwork['vid']; ?>" <?php echo $rows['ap_artworks'] != '' && in_array($image['fid'], $rows['ap_artworks']) ? 'checked' : ''; ?>>
+                                                        <input type="checkbox" class="ap-check" data-id="f<?php echo $image['fid']; ?>" name="artwork['<?php echo $image['fid']; ?>']" value="<?php echo $image['fid']; ?>" data-vid="v<?php echo $artwork['vid']; ?>" <?php echo isset($rows['ap_artworks']) && $rows['ap_artworks'] != '' && in_array($image['fid'], $rows['ap_artworks']) ? 'checked' : ''; ?>>
                                                         <a href="<?php echo file_create_url($image['file']); ?>" target="_blank"><?php echo $image['filename']; ?></a>
                                                     </div>
                                                 </div>
@@ -575,15 +591,19 @@
                                     <legend class="text-center">Confirm Submission</legend>
                                 </div>
                                 <div class="col-sm-2">
-                                    <input id="SaveApplication" type="submit" class="pull-right submit" value="Submit">
+                                    <input id="SaveApplication" type="submit" class="pull-right next" value="Submit">
                                 </div>
                             </div>
-                            <div id="ConfirmView">
-                                <div id="profileAjax" class="row"></div>
+                            <div class="row">
+                                    <div class="col-md-12">
+                                        <div id="ConfirmView">
+                                        <div id="profileAjax"></div>
+                                    </div>
+                                </div>
                             </div>
                             <script id="confirmTpl" type="text/template">
-                                <h3>Profile and Info</h3>
-                                {{first_name}} {{last_name}}<br>
+                                <h3 class="clearPadding clearMargin">Profile and Info</h3>
+                                <p>{{first_name}} {{last_name}}<br>
                                 {{address}}; {{city}}, {{state}} {{zip}}<br>
                                 {{#county}}County: {{county}}<br>{{/county}}
                                 {{#country}}Country: {{country}}<br>{{/country}}
@@ -592,23 +612,24 @@
                                 {{#gender}}Gender: {{gender}}<br>{{/gender}}
                                 {{#ethnicity}}Ethnicity: {{ethnicity}}<br>{{/ethnicity}}
                                 {{#age}}Age: {{age}}<br>{{/age}}
+                                </p>
 
                                 {{#steps.statement-proposal}}
                                 <br><br>
-                                <h3>{{titles.statement-proposal}}</h3>
+                                <h3 class="clearPadding clearMargin">{{titles.statement-proposal}}</h3>
                                 {{#statement}}Statement: {{&statement}}<br>{{/statement}}
                                 {{#proposal}}Proposal: {{&proposal}}{{/proposal}}
                                 {{/steps.statement-proposal}}
 
                                 {{#steps.bio-resume}}
-                                <h3>{{titles.bio-resume}}</h3>
+                                <h3 class="clearPadding clearMargin">{{titles.bio-resume}}</h3>
                                 {{#bio}}Bio: {{&bio}}<br>{{/bio}}
-                                {{#resume}}<div id="resumeView"></div>{{/resume}}
+                                {{#resume}} {{&resume}} {{/resume}}
                                 {{/steps.bio-resume}}
                             </script>
                             <?php if (in_array('work', $rows['opportunity']['steps'])) : ?>
                             <div id="worksView">
-                                <h3>Selected Work</h3>
+                                <h3 class="clearPadding clearMargin">Selected Work</h3>
                                 <?php foreach ($rows['artworks'] as $artwork) : ?>
                                 <div class="ap-artrow row" id="v<?php echo $artwork['vid']; ?>">
                                     <hr>
@@ -616,8 +637,36 @@
                                     <div class="col-sm-2 artwork-info">
                                         <div><em><?php echo $artwork['title']; ?></em></div>
                                         <div><?php echo $artwork['date']; ?></div>
-                                        <div><?php foreach ($artwork['medium'] as $medium) { echo $medium . ' '; } ?></div>
+                                        <div>
+                                            <?php $mediums = $artwork['medium'];
+                                                foreach ($artwork['medium'] as $medium) {
+                                                echo $medium;
+                                                if (next($mediums)) echo ', ';
+                                            } ?>
+                                        </div>
                                         <div><?php echo $artwork['dimensions']; ?></div>
+                                        <div class="ap-body">
+                                            <?php if($artwork['excerpt'] != '') : ?>
+                                            <div>
+                                                Excerpt: <?php echo $artwork['excerpt']; ?>
+                                            </div>
+                                            <?php endif; ?>
+                                            <?php if ($artwork['venue'] != '') : ?>
+                                            <div>
+                                                Venue: <?php echo $artwork['venue'] ?>
+                                            </div>
+                                            <?php endif; ?>
+                                            <?php if ($artwork['other_artists'] != '') : ?>
+                                            <div>
+                                                Others Artists Involved:
+                                                <?php $other_artists = $artwork['other_artists'];
+                                                foreach ($artwork['other_artists'] as $others) {
+                                                    echo $others ;
+                                                    if (next($other_artists)) echo ', ';
+                                                } ?>
+                                            </div>
+                                            <?php endif; ?>
+                                        </div>
                                         <div class="ap-artwork-body"><?php echo $artwork['body']; ?></div>
                                         <?php if(strlen($artwork['body']) > 144) : ?>
                                             <div class="ap-more text-center">View More</div>
@@ -686,10 +735,10 @@
                             <?php  if (in_array('fields-uploads', $rows['opportunity']['steps'])) : ?>
                                 <div id="addUploadsView">
                                     <hr>
-                                    <h3>Additional Materials</h3>
+                                    <h3 class="clearPadding clearMargin">Additional Materials</h3>
                                     <div class="row">
                                         <div id="upload1View">
-                                        <?php if ($rows['ap_artworks'] != '' && $rows['upload1'] != '') : ?>
+                                        <?php if (isset($rows['ap_artworks']) || $rows['upload1'] != '') : ?>
                                             <div class="col-sm-12">
                                                 <label class="col-sm-4" for="upload1">Upload: <?php echo $rows['opportunity']['custom_up_1_title']; ?></label>
                                                 <a href="<?php  print file_create_url(file_build_uri('opportunity/' . $rows['nid'] . '/' . $rows['uid'] . '/' . $rows['upload1'])); ?>" target="_blank"><?php echo $rows['upload1'];  ?></a>
@@ -699,7 +748,7 @@
                                     </div>
                                     <div class="row">
                                         <div id="upload2View">
-                                        <?php if ($rows['ap_artworks'] != '' && $rows['upload2'] != '') : ?>
+                                        <?php if (isset($rows['ap_artworks']) && $rows['upload2'] != '') : ?>
                                             <div class="col-sm-12">
                                                 <label class="col-sm-4" for="upload2">Upload: <?php echo $rows['opportunity']['custom_up_2_title']; ?></label>
                                                 <a href="<?php  print file_create_url(file_build_uri('opportunity/' . $rows['nid'] . '/' . $rows['uid'] . '/' . $rows['upload2'])); ?>" target="_blank"><?php echo $rows['upload2'];  ?></a>
@@ -709,7 +758,7 @@
                                     </div>
                                     <div class="row">
                                         <div id="upload3View">
-                                        <?php if ($rows['ap_artworks'] != '' && $rows['upload3'] != '') : ?>
+                                        <?php if (isset($rows['ap_artworks']) && $rows['upload3'] != '') : ?>
                                             <div class="col-sm-12">
                                                 <label class="col-sm-4" for="upload3">Upload: <?php echo $rows['opportunity']['custom_up_3_title']; ?></label>
                                                 <a href="<?php  print file_create_url(file_build_uri('opportunity/' . $rows['nid'] . '/' . $rows['uid'] . '/' . $rows['upload3'])); ?>" target="_blank"><?php echo $rows['upload3'];  ?></a>
@@ -719,7 +768,7 @@
                                     </div>
                                     <div class="row">
                                         <div id="upload4View">
-                                        <?php if ($rows['ap_artworks'] != '' && $rows['upload4'] != '') : ?>
+                                        <?php if (isset($rows['ap_artworks']) && $rows['upload4'] != '') : ?>
                                             <div class="col-sm-12">
                                                 <label class="col-sm-4" for="upload4">Upload: <?php echo $rows['opportunity']['custom_up_4_title']; ?></label>
                                                 <a href="<?php  print file_create_url(file_build_uri('opportunity/' . $rows['nid'] . '/' . $rows['uid'] . '/' . $rows['upload4'])); ?>" target="_blank"><?php echo $rows['upload4'];  ?></a>
@@ -856,7 +905,7 @@ drupal_add_js(array('required' => $rows['opportunity']['required']), 'setting');
 drupal_add_js(array('steps' =>  $rows['opportunity']['steps']), 'setting');
 drupal_add_js(array('titles' =>  $rows['opportunity']['step_titles']), 'setting');
 drupal_add_js(array('works' => array('max' => $rows['opportunity']['max_works'], 'min' => $rows['opportunity']['min_works'])), 'setting');
-if ($rows['ap_artworks']) {
+if (isset($rows['ap_artworks'])) {
     drupal_add_js(array('ap_artworks' => $rows['ap_artworks']), 'setting');
 }
 ?>

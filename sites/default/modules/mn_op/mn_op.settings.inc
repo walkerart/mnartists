@@ -8,7 +8,7 @@ function mn_op_settings($nid) {
 	$owner = $node->uid == $uid ? 1 : 0;
 
 	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-		if (user_access('administrator') || $owner) {
+		if (in_array('administrator', $user->roles) || $owner) {
 			if(isset($_POST['remove']) && isset($_POST['juror_email'])) {
 				//remove a juror by email address
 				_remove_juror_from_opportunity($nid, $_POST['juror_email']);
@@ -22,7 +22,7 @@ function mn_op_settings($nid) {
 		}
 	}
 
-	if (user_access('administrator') || $owner) {
+	if (in_array('administrator', $user->roles) || $owner) {
 		$areas = get_form_areas($node->field_op_required, $node->field_op_optional);
 		$output = '';
 		$jurors = mn_op_get_jurors($nid);

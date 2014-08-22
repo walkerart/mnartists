@@ -21,7 +21,7 @@ function mn_ap_submission($nid) {
         }
     }
 
-    if(user_access('administrator') || $owner || $juror) {
+    if(in_array('administrator', $user->roles) || $owner || $juror) {
         $output = '';
 
         $settings = mn_op_check_existing_settings($nid);
@@ -40,12 +40,12 @@ function mn_ap_submission($nid) {
             $rows['juror_reviews'] = $juror_reviews;
         }
 
-        if(user_access('administrator') || $owner ) {
+        if(in_array('administrator', $user->roles) || $owner ) {
             $reviews = mn_ap_get_all_reviews($nid, $settings['round']);
             $rows['reviews'] = $reviews;
         }
 
-        if (user_access('administrator') || $owner) {
+        if (in_array('administrator', $user->roles) || $owner) {
             $jurors = mn_op_get_jurors($nid);
             $rows['jurorCount'] = count($jurors);
         }

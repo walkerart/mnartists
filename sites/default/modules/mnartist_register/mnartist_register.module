@@ -50,6 +50,10 @@ function mnartist_register_user_form() {
     return array(
         'help' => array(
             '#markup' => '<p>
+                            Welcome to an all-new mnartists.org!<br>
+                            Follow these 3 easy steps to import your exisitng account to the new mnartists.org, or click &lsquo;Proceed without importing&rsquo; to continue to the new site without import.
+                          </p>
+                          <p>
                             <ol>
                                 <li>Enter your old email and password from your existing mnartists.org and click Import.</li>
                                 <li>You will then be brought to your new account with data imported from your old account.</li>
@@ -58,7 +62,7 @@ function mnartist_register_user_form() {
                         </p>
                         <p>
                             <ul>
-                                <li>Want to start fresh? Decline to import your old account information, work samples, and resume info by clicking the \'Proceed without Importing\' button.</li>
+                                <li>Want to start fresh? Decline to import your old account information, work samples, and resume info by clicking the &lsquo;Proceed without Importing&rsquo; button.</li>
                                 <li>Have questions about migrating your account or fogot your old password? Reset your old password or contact us with questions by emailing <a href="mailto:info@mnartists.org">info@mnartists.org</a>.</li>
                             </ul>
                         </p>',
@@ -173,7 +177,7 @@ function _mnartist_register_batch_handler($action, $data, &$context) {
 
 function _mnartist_register_batch_finished($success, $results, $operations) {
     if ($success) {
-        drupal_set_message('MNArtists Account data successfully imported.');
+        drupal_set_message('Your old mnartists.org account data has been successfully imported. View and update your account information by using the options on the left-hand menu.');
         drupal_goto('/user/feed');
     }
     else {

@@ -223,19 +223,24 @@ jQuery(document).ready(function () {
         jQuery('body').toggleClass('sidebar-show');
     });
 
-    // attach to flag link click events to toggle a
-    // used collected class on the container
-    // @TODO assess whether this is interfering with
-    // other handlers for clicks on these
-    jQuery('ul.menu .flag').click(function (evt) {
-        var parentMenu = jQuery(this).closest('ul.menu');
-        if (parentMenu) {
-            var hasUnflagLinks = (parentMenu.find('a.unflag-action').length > 0);
-            if (hasUnflagLinks) {
-                parentMenu.addClass('collected');
-            } else {
-                parentMenu.removeClass('collected');
-            }
+
+    jQuery(document).bind('flagGlobalAfterLinkUpdate', function(event, data) {
+
+        var flagEl = jQuery(data.link);
+        var verbEl = flagEl.siblings('ul').find('li.follow-this a .flag-verb');
+        var parentUlEl = (flagEl.parent().parent().hasClass('follow-menu')) ? flagEl.parent().parent() : flagEl.parent().parent().parent().parent();
+        var hasUnflagLinks = (parentUlEl.find('a.unflag-action').length > 0);
+
+        if (data.flagStatus === 'unflagged' && verbEl) {
+            verbEl.text('Follow');
+            parentUlEl.removeClass('collected');
+        } else if (data.flagStatus === 'flagged' && verbEl) {
+            verbEl.text('Unfollow');
+            parentUlEl.addClass('collected');
+        } else if (data.flagStatus === 'unflag' && !hasUnflagLinks) {
+            parentUlEl.removeClass('collected');
+        } else if (data.flagStatus === 'flag') {
+            parentUlEl.addClass('collected');
         }
     });
 

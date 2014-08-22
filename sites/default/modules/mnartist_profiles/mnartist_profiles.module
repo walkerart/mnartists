@@ -100,7 +100,16 @@ function mnartist_profiles_user_update(&$edit, $account, $category) {
         if (!empty($node_keys)) {
             $nodes = node_load_multiple($node_keys);
             foreach ($nodes as $node) {
+
+                // unpublish
                 $node->status = '0';
+
+                // and set public field to 0
+                $new_pub_value = array();
+                $new_pub_value[LANGUAGE_NONE] = array();
+                $new_pub_value[LANGUAGE_NONE][] = array('value' => '0');
+                $node->field_public = $new_pub_value;
+
                 node_save($node);
             }
         }
@@ -645,7 +654,7 @@ function _mnartist_profile_block_visibility() {
     global $user;
 
     if ((arg(0) == "user" && in_array(arg(2), array("edit", "mailchimp"))) ||
-        (in_array(arg(0), array('opportunities', 'applications'))) ||
+        (in_array(arg(0), array('opportunity', 'application', 'opportunities', 'applications'))) ||
         (!user_is_logged_in() && arg(0) == "user" && (is_null(arg(1)) || in_array(arg(1), array("password", "register")))) ||
         (arg(0) == "node" && in_array(arg(1), array("edit", "add"))) ||
         (arg(0) == "node" && in_array(arg(2), array("edit"))) ||
@@ -792,7 +801,7 @@ function _mnartist_profile_my_stuff() {
         ));
         $editItems = array();
         if (_get_role($user) == 'artist' || in_array('administrator', array_values($user->roles))) {
-            $editItems[] = l("Add Artwork", "node/add/artwork");
+            $editItems[] = l("Add Artwork", "node/add/artwork") . l("Manage", "manage-artworks", array("attributes" => array("class" => array("user-view"))));
         }
         if (count(array_intersect(array('administrator', 'Artist', 'Organization'), array_values($user->roles)))) {
             $editItems[] = l("Add Event", "node/add/event");
@@ -1146,6 +1155,12 @@ function mnartist_profiles_entity_property_info_alter(&$info) {
         'sanitized' => TRUE,
         'getter callback' => 'mnartist_profiles_sort_by_name_callback',
     );
+    $info['node']['bundles']['opportunity']['properties']['sort_by_name'] = array(
+        'type' => 'string',
+        'label' => t('Sort By Name'),
+        'sanitized' => TRUE,
+        'getter callback' => 'mnartist_profiles_sort_by_name_callback',
+    );
 
 
     // creating a common date sort field between users and nodes
@@ -1173,6 +1188,12 @@ function mnartist_profiles_entity_property_info_alter(&$info) {
         'sanitized' => TRUE,
         'getter callback' => 'mnartist_profiles_sort_by_date_callback',
     );
+    $info['node']['bundles']['opportunity']['properties']['sort_by_date'] = array(
+        'type' => 'date',
+        'label' => t('Sort By Date'),
+        'sanitized' => TRUE,
+        'getter callback' => 'mnartist_profiles_sort_by_date_callback',
+    );
 
 
     // index flag counts for nodes
@@ -1190,6 +1211,18 @@ function mnartist_profiles_entity_property_info_alter(&$info) {
         'getter callback' => 'mnartist_profiles_flags_count_callback',
     );
     $info['node']['bundles']['event']['properties']['flags_count'] = array(
+        'type' => 'integer',
+        'label' => t('Flags Count'),
+        'sanitized' => TRUE,
+        'getter callback' => 'mnartist_profiles_flags_count_callback',
+    );
+    $info['node']['bundles']['opportunity']['properties']['flags_count'] = array(
+        'type' => 'integer',
+        'label' => t('Flags Count'),
+        'sanitized' => TRUE,
+        'getter callback' => 'mnartist_profiles_flags_count_callback',
+    );
+    $info['user']['bundles']['user']['properties']['flags_count'] = array(
         'type' => 'integer',
         'label' => t('Flags Count'),
         'sanitized' => TRUE,
@@ -1283,11 +1316,17 @@ function mnartist_profiles_search_api_data_type_info() {
 }
 
 function mnartist_profiles_flags_count_callback($item) {
-    $sql = "SELECT count FROM flag_lists_counts WHERE content_id = $item->nid";
-    $result = db_query($sql);
     $count = 0;
-    foreach ($result as $row) {
-        $count += $row->count;
+    if (isset($item->type)) {
+        $node_counts = flag_get_counts('node', $item->nid);
+        if (isset($node_counts['collections'])) {
+            $count += intval($node_counts['collections']);
+        }
+    } else {
+        $user_counts = flag_get_counts('user', $item->uid);
+        if (isset($user_counts['usercollections'])) {
+            $count += intval($user_counts['usercollections']);
+        }
     }
     return $count;
 }

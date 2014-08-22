@@ -178,6 +178,11 @@ function mn_op_block_info() {
           'cache' => DRUPAL_NO_CACHE,
           'visibility' => BLOCK_VISIBILITY_PHP
       ),
+      'mna_op_external_apply_button' => array(
+          'info' => 'Opportunity External Apply Button',
+          'cache' => DRUPAL_NO_CACHE,
+          'visibility' => BLOCK_VISIBILITY_PHP
+      ),
     );
 }
 
@@ -189,6 +194,10 @@ function mn_op_block_view($delta = '') {
         case 'mna_op_apply_button':
             $block['subject'] = 'Opportunity Apply Button';
             $block['content'] = _mn_op_apply_button();
+        break;
+        case 'mna_op_external_apply_button':
+            $block['subject'] = 'Opportunity External Apply Button';
+            $block['content'] = _mn_op_external_apply_button();
         break;
     }
 
@@ -214,4 +223,25 @@ function _mn_op_apply_button() {
     $button_fragment_arr[] = '</div>';
     return implode('', $button_fragment_arr);
   }
+}
+
+function _mn_op_external_apply_button() {
+  $context_opp = node_load(arg(1));
+  $internal = (isset($context_opp-> op_application_type[LANGUAGE_NONE]) && $context_opp-> op_application_type[LANGUAGE_NONE][0]['value'] === '1') ? TRUE : FALSE;
+  $start_date = date_create_from_format('Y-n-d G:i:s', $context_opp->op_dates[LANGUAGE_NONE][0]['value']);
+  $end_date = date_create_from_format('Y-n-d G:i:s', $context_opp->op_dates[LANGUAGE_NONE][0]['value2']);
+  $now = new DateTime();
+
+  $button_fragment_arr = array();
+  if (!$internal) {
+      if (!empty($context_opp->field_op_uri) && $now >= $start_date && $now <= $end_date) {
+          $button_fragment_arr[] = '<a href="'.$context_opp->field_op_uri[LANGUAGE_NONE][0]['value'].'" target="_blank">Apply Here</a>';
+      } else {
+          $button_fragment_arr[] = 'External Site';
+      }
+  } else {
+      $button_fragment_arr[] = 'MNArtists.org';
+  }
+  return implode('', $button_fragment_arr);
+
 }

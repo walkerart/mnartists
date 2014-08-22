@@ -4,6 +4,14 @@
  * Render a index of entries in the database.
  */
 function mn_op_index() {
+	global $user;
+	global $base_root;
+
+	//if user is not admin or an org admin send them to opportunities list page
+	if (! in_array('administrator', $user->roles) || ! in_array('Organizational Admin', $user->roles)) {
+		return drupal_goto($base_root . '/community?content[opportunity]=1');
+	}
+
 	$output = '';
 	//look for a POST request
 	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -19,9 +27,7 @@ function mn_op_index() {
       	}
 	}
 	//get row node data
-	$rows = mn_op_node_data();
-
-	if (empty($rows[0])) return drupal_set_message(t('You have not created any opportunities.'), 'error');
+	$rows = mn_op_node_data($user);
 
 	//apply theme to node data
 	$output = theme('mn_op_list', array('rows' => $rows)); //used without template
@@ -32,17 +38,17 @@ function mn_op_index() {
 /**
  * Populate rows data from opportunity node
  */
-function mn_op_node_data() {
-	global $user;
+function mn_op_node_data($user) {
+
 	$uid = $user->uid;
 
 	$query =  new EntityFieldQuery();
 	$query->entityCondition('entity_type', 'node')
 			->entityCondition('bundle', 'opportunity')
-			//->propertyCondition('status', '1') //status is visbility to public
 			->propertyOrderBy('created', 'DESC');
 
-	if (! user_access('administrator')) {
+	//if role is not admin show only user created opps
+	if (! in_array('administrator', $user->roles)) {
 		$query->propertyCondition('uid', $uid, '=');
 	}
 
@@ -112,24 +118,14 @@ function mn_ap_get_submissions_count($nid, $site) {
 function _update_published_status($input) {
 	$return_value = NULL;
 	try {
-		$tables = array('node', 'node_revision');
-		foreach ($tables as $table) {
-			$return_value = db_update($table)
-				->fields(array('status' => $input['status']))
-				->condition('nid', $input['nid'])
-				->execute();
-		}
-		$select = db_select('node', 'n')
-  			->fields('n', array('title'))
-  			->condition('n.type', 'opportunity', '=')
-  			->condition('nid', $input['nid'])
-				->execute()
-				->fetchAll();
-		$select = (array)$select['0'];
+		$node = node_load($input['nid']);
+		$node->status = $input['status'];
+		node_save($node);
+
 		if ($input['status'] == '1') {
-			drupal_set_message(t($select['title'] . ' - Opportunity Published'), 'status');
+			drupal_set_message(t($node->title . ' - Opportunity Published'), 'status');
 		} else {
-			drupal_set_message(t($select['title'] . ' - Opportunity Unpublished'), 'status');
+			drupal_set_message(t($node->title . ' - Opportunity Unpublished'), 'status');
 		}
 	}
   	catch (Exception $e) {

@@ -12,6 +12,7 @@ function mn_op_aps() {
 	$completed = _get_completed_applications($uid);
 	$started = _get_started_applications($uid);
 	$juries = _get_juror_opportunites($user->mail);
+	$incomplete = '';
 
 	if (! $completed && ! $started && ! $juries) {
 		return drupal_set_message(t('You have no applications.'), 'error');
@@ -48,6 +49,7 @@ function _get_completed_applications($uid) {
 						$query->fields('op');
 						$query->condition('op.uid', $uid, '=');
 						$query->condition('op.complete', 1, '=');
+						$query->condition('op.reopen', 0, '=');
 						$query->fields('n', array('title'));
 						$query->fields('d', array('op_dates_value2'));
 	$result = $query->execute()->fetchAll();
@@ -61,6 +63,7 @@ function _get_started_applications($uid) {
 						$query->fields('op');
 						$query->condition('op.uid', $uid, '=');
 						$query->condition('op.complete', 0, '=');
+						$query->condition('op.reopen', 0, '=');
 						$query->fields('n', array('title'));
 						$query->fields('d', array('op_dates_value2'));
 	$result = $query->execute()->fetchAll();

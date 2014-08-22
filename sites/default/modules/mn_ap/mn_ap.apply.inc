@@ -86,8 +86,6 @@ function mn_ap_opportunity_data($nid) {
 		->propertyCondition('status', '1') //status is visbility to public
 		->propertyOrderBy('created', 'DESC');
 
-	//if (! user_access('administrator')) $query->propertyCondition('status', '1');
-
 	$result = $query->execute();
 
 	$out = '';
@@ -109,6 +107,9 @@ function mn_ap_opportunity_data($nid) {
 		if(!empty($row)){
 			$form_steps = get_form_steps($row['field_op_required'], $row['field_op_optional'], $row['op_work_types']);
 			$form_areas = get_form_areas($row['field_op_required'], $row['field_op_optional']);
+			$form_areas_separate = _separate_form_areas($form_areas);
+			$form_inputs = isset($form_areas_separate['inputs']) ? $form_areas_separate['inputs'] : '';
+			$form_editors = "";
 			$step_titles = get_form_titles($form_areas);
 			$work_types = isset($row['op_work_types']['und']) ? get_work_types($row['op_work_types']) : '';
 			//$steps = get_form_step_count($row['field_op_required'], $row['field_op_optional'], $row['op_work_types']);
@@ -126,6 +127,7 @@ function mn_ap_opportunity_data($nid) {
 				'steps' => isset($form_steps) ? $form_steps : '',
 				'textareas' => '',
 				'areas' => isset($form_areas) ? $form_areas : '',
+				'additional_fields' => $form_inputs,
 				'step_titles' => $step_titles != '' ? $step_titles : '',
 				'title' => $row['title'],
 				'apply_on_site' => $row['op_application_type']['und']['0']['value'],
@@ -171,6 +173,21 @@ function mn_ap_opportunity_data($nid) {
 	}
 	//dpr($r);
 	return $r;
+}
+
+/*
+* Separate Form Areas to allow them to be stepped through in template
+*/
+function _separate_form_areas($areas) {
+	$separate_areas = '';
+	foreach ($areas as $area) {
+		if ($area == 'bio' || $area == 'statement' || $area == 'proposal' || substr($area, 0, 5) == 'field' ) {
+			$separate_areas['editors'][] = $area;
+		} elseif ($area != 'resume' && substr($area, 0, 6) != 'upload')  {
+			$separate_areas['inputs'][] = $area;
+		}
+	}
+	return $separate_areas;
 }
 
 /*
@@ -267,6 +284,10 @@ function mn_ap_profile2_data($profile, $nid) {
 		'field2' => isset($application['field2']) ? $application['field2'] : '',
 		'field3' => isset($application['field3']) ? $application['field3'] : '',
 		'field4' => isset($application['field4']) ? $application['field4'] : '',
+		'upload1' => isset($application['upload1']) ? $application['upload1'] : '',
+		'upload2' => isset($application['upload2']) ? $application['upload2'] : '',
+		'upload3' => isset($application['upload3']) ? $application['upload3'] : '',
+		'upload4' => isset($application['upload4']) ? $application['upload4'] : '',
 		'resume_statement' => isset($resume['field_general_statement']['und']['0']['safe_value']) ? $resume['field_general_statement']['und']['0']['safe_value'] : '',
 		'resume_bio' => isset($resume['field_biography']['und']['0']['safe_value']) ? $resume['field_biography']['und']['0']['safe_value'] : '',
 		'proposal' =>	isset($application['proposal']) ? $application['proposal'] : '',

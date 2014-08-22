@@ -34,22 +34,5 @@
             $(this).find('.follow-menu').each(followMenuInit);
         });
 
-        // and when a follow/flag action occurs, deal with that
-        $(document).bind('flagGlobalAfterLinkUpdate', function(event, data) {
-            var flagEl = $(data.link);
-            var verbEl = flagEl.siblings('ul').find('li.follow-this a .flag-verb');
-            var parentUlEl = (flagEl.parent().parent().hasClass('follow-menu')) ? flagEl.parent().parent() : flagEl.parent().parent().parent().parent();
-
-            if (verbEl) {
-                if (data.flagStatus === 'unflagged') {
-                    verbEl.text('Follow');
-                    parentUlEl.removeClass('collected');
-                } else if (data.flagStatus === 'flagged') {
-                    verbEl.text('Unfollow');
-                    parentUlEl.addClass('collected');
-                }
-            }
-        });
-
     });
 })(jQuery);

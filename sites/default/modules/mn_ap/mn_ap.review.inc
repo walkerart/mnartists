@@ -36,7 +36,7 @@ function mn_ap_review($nid, $uid) {
 	);
 
 	$output = '';
-	if(user_access('administrator') || $owner || $juror) {
+	if(in_array('administrator', $user->roles) || $owner || $juror) {
 		$output = theme('mn_ap_review', array('rows' => $rows));
 		return $output;
 	} else {
