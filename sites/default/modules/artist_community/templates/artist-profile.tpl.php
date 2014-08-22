@@ -4,12 +4,6 @@
     if ($context_user_flag && $context_user_flag->is_flagged($user->uid)) {
         $is_flagged = TRUE;
     }
-
-    $count = 0;
-    $user_counts = flag_get_counts('user', $user->uid);
-    if (isset($user_counts['usercollections'])) {
-        $count += intval($user_counts['usercollections']);
-    }
 ?>
 <div class="artist-profile">
     <h3><?php echo (isset($user->roles[ORG_ROLE])) ? 'Org' : 'Artist' ?></h3>
@@ -25,9 +19,10 @@
     <?php if(user_is_logged_in()) { ?>
         <ul class="menu follow-menu<?php if ($is_flagged) { ?> collected<? } ?>">
             <li class="first">
-                <?= flag_create_link('usercollections', $user->uid) ?>
+                <a class='star-link'><img src='/<?= drupal_get_path('theme', 'mnartists') ?>/images/fav-star.svg' class='star-icon' alt="flag this" /></a>
                 <ul>
-                    <li class="follow-this"><a href="#"><span class="flag-verb">Follow</span> this <?php echo (isset($user->roles[ORG_ROLE])) ? 'Organization' : 'Artist' ?></a> <span class="follow-count">(<?= $count ?>)</span></li>
+                    <li class='follow-this'><?= flag_create_link('usercollections', $user->uid) ?></li>
+                    <hr>
                     <li class='share-this collect-title'>SHARE VIA:</li>
                     <li class='share-this'><a href='#' onclick='window.open("https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent("<?= $base_url.$url ?>"), "facebook-share-dialog", "width=626,height=436"); return false;'>FACEBOOK</a></li>
                     <li class='share-this'><a href='#' onclick='window.open("https://twitter.com/share?url=" + encodeURIComponent("<?= $base_url.$url ?>"), "twitter-share-dialog", "width=626,height=436"); return false;'>TWITTER</a></li>

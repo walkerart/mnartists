@@ -8,18 +8,12 @@
 
             $flag = flag_get_flag('collections');
             $is_flagged = (_mnartist_collections_node_has_been_collected($node->nid) || $flag->is_flagged($node->nid));
-
-            $count = 0;
-            $node_counts = flag_get_counts('node', $node->nid);
-            if (isset($node_counts['collections'])) {
-                $count += intval($node_counts['collections']);
-            }
         ?>
         <ul class='menu<?= $is_flagged ? " collected" : "" ?>'>
             <li class='first'>
                 <a class='star-link'><img src='/<?= drupal_get_path('theme', 'mnartists') ?>/images/fav-star.svg' class='star-icon' alt="flag this" /></a>
                 <ul>
-                    <li class='collect-this'><?= flag_create_link('collections', $node_id) ?> <span class="collect-count">(<?= $count ?>)</span></li>
+                    <li class='collect-this'><?= flag_create_link('collections', $node_id) ?></li>
                     <hr>
                     <li class='add-this collect-title'>ADD TO:</li>
                     <?php if(is_array($flags)) {

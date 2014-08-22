@@ -7,32 +7,34 @@ function mn_op_index() {
 	global $user;
 	global $base_root;
 
-	//if user is not admin or an org admin send them to opportunities list page
-	if (! in_array('administrator', $user->roles) || ! in_array('Organizational Admin', $user->roles)) {
+	//if user is an admin or an org admin send show them the the manage page for opportunities
+	if (in_array('administrator', $user->roles) || in_array('Organizational Admin', $user->roles)) {
+
+		$output = '';
+		//look for a POST request
+		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+			if (isset($_POST['status'])) {
+				$input = array(
+					'nid' => $_POST['node_id'],
+					'status' => $_POST['status']
+				);
+				//run status update on nid
+				_update_published_status($input);
+			} elseif (isset($_POST['reopen'])) {
+				mn_ap_reopen_all_aps($_POST['node_id'], $_POST['reopen']);
+			}
+		}
+		//get row node data
+		$rows = mn_op_node_data($user);
+
+		//apply theme to node data
+		$output = theme('mn_op_list', array('rows' => $rows)); //used without template
+
+		return $output;
+	} else {
+		// they are not an admin or org admin send them to list of all opps
 		return drupal_goto($base_root . '/community?content[opportunity]=1');
 	}
-
-	$output = '';
-	//look for a POST request
-	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-		if (isset($_POST['status'])) {
-			$input = array(
-				'nid' => $_POST['node_id'],
-				'status' => $_POST['status']
-			);
-			//run status update on nid
-			_update_published_status($input);
-		} elseif (isset($_POST['reopen'])) {
-        	mn_ap_reopen_all_aps($_POST['node_id'], $_POST['reopen']);
-      	}
-	}
-	//get row node data
-	$rows = mn_op_node_data($user);
-
-	//apply theme to node data
-	$output = theme('mn_op_list', array('rows' => $rows)); //used without template
-
-	return $output;
 }
 
 /**
@@ -102,11 +104,11 @@ function mn_ap_get_submissions_count($nid, $site) {
 	$count = 0;
 	if ($site) {
 		$result = db_select('op_applications', 'op')
-	      ->fields('op')
-	      ->condition('nid', $nid, '=')
-	      ->condition('complete', 1, '=')
-	      ->execute()
-	      ->fetchAll();
+		  ->fields('op')
+		  ->condition('nid', $nid, '=')
+		  ->condition('complete', 1, '=')
+		  ->execute()
+		  ->fetchAll();
 	  $count = count($result);
 	}
   return $count;
@@ -128,9 +130,9 @@ function _update_published_status($input) {
 			drupal_set_message(t($node->title . ' - Opportunity Unpublished'), 'status');
 		}
 	}
-  	catch (Exception $e) {
-  		drupal_set_message(t('db_update failed. Message = %message, query= %query',
-    		array('%message' => $e->getMessage(), '%query' => $e->query_string)), 'error');
+	catch (Exception $e) {
+		drupal_set_message(t('db_update failed. Message = %message, query= %query',
+			array('%message' => $e->getMessage(), '%query' => $e->query_string)), 'error');
 	}
 	return $return_value;
 }

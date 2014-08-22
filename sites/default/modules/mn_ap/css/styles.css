@@ -27,8 +27,8 @@ table {
 	margin-left: 0;
 }
 
-.prev, .next { background-color:#b0232a; padding:5px 10px; color:#fff; text-decoration:none; border-radius: 0; margin-bottom: 10px;}
-.prev:hover, .next:hover { background-color:#000; text-decoration:none; cursor: pointer;}
+.prev, .next { background-color:#333; font-family: "Apercu Regular", Arial, Helvetica, sans-serif; border: 1px solid #333; padding:5px 10px; color:#fff; text-decoration:none; border-radius: 1px; margin-bottom: 10px;}
+.prev:hover, .next:hover {   background: #222; color: #f9f9f9; text-decoration:none; cursor: pointer; }
 .prev { float:left;}
 .next { float:right;}
 .submitNext {
@@ -235,11 +235,21 @@ label>.small {
 }
 
 .ekko-lightbox .glyphicon-chevron-right {
+	position: relative;
+	/*width: 50px !important;*/
 	right: -50px;
 }
 
 .ekko-lightbox .glyphicon-chevron-left {
+	position: relative;
+	/*width: 50px !important;*/
 	left: -50px;
+}
+
+.ekko-lightbox .glyphicon-chevron-left:hover {
+	position: relative;
+	/*width: 50px !important;*/
+	padding-right: 50px;
 }
 
 .table-thumb {
