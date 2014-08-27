@@ -2,6 +2,7 @@
     drupal_add_css(drupal_get_path('module', 'mn_ap') . '/css/bootstrap.min.css');
     drupal_add_css(drupal_get_path('module', 'mn_op') . '/css/mn-op.css');
     drupal_add_css(drupal_get_path('module', 'mn_ap') . '/css/styles.css');
+    drupal_add_css(drupal_get_path('module', 'mn_ap') . '/css/DT_bootstrap.css');
     //dpm($rows); ?>
 <div class="container" id="content">
     <div class="row">
@@ -58,7 +59,7 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-sm-12">
+                    <div class="col-sm-offset-3 col-sm-9">
                         <table>
                             <tbody>
                                 <tr>
@@ -74,7 +75,7 @@
 
                 <div class="row">
                     <div class="col-md-12">
-                    <table>
+                    <table class="table op-table">
                         <thead>
                             <tr>
                                 <th></th>
@@ -213,7 +214,7 @@
                         <div class="col-sm-3">
                             <label class="control-label">Jury Round</label>
                         </div>
-                        <div class="col-sm-9">
+                        <div class="col-sm-8">
                             <select class="form-select" name="round" id="round">
                                 <option <?php echo $rows['settings']['round'] == 1 ? 'selected' : ''; ?>>1</option>
                                 <option <?php echo $rows['settings']['round'] == 2 ? 'selected' : ''; ?>>2</option>
@@ -225,22 +226,17 @@
                                 <option <?php echo $rows['settings']['round'] == 8 ? 'selected' : ''; ?>>8</option>
                                 <option <?php echo $rows['settings']['round'] == 9 ? 'selected' : ''; ?>>9</option>
                             </select>
+                            <p class="help-block">First round shows all applicants. Later rounds only show applicants that you have selected as "In" the applicant pool.</p>
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <p>First round shows all applicants. Later rounds only show applicants that you have selected as "In" the applicant pool.</p>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group pull-right">
+                                <button class="btn ap-btn" type="submit" value="Submit">Submit</button>
+                            </div>
+                        </div>
                     </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-sm-12">
-                    <div class="form-group pull-right">
-                        <input class="btn ap-btn-default" type="submit" value="Submit">
-                    </div>
-                    </div>
-                </div>
             </form>
             <div class="row">
                 <div class="col-sm-12">
@@ -265,14 +261,14 @@
                         <input type="text" id="juror_email" class="form-control" name="juror_email" required>
                     </div>
                     <div class="col-sm-2">
-                        <input class="btn btn-default" type="submit" value="Add">
+                        <button class="btn btn-default" type="submit" value="Add">Add</button>
                     </div>
                 </div>
             </form>
             <?php if(count($rows['jurors']) != 0) : ?>
             <div class="row">
                 <div class="col-md-12">
-                    <table class="table">
+                    <table class="table op-table">
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -292,10 +288,9 @@
                                         <input type="hidden" id="node_id" name="node_id" value="<?php echo $rows['opportunity']->nid; ?>">
                                         <input type="hidden" id="remove" name="remove" value="remove">
                                         <input type="hidden" id="juror_email" name="juror_email" value="<?php echo $juror->mail; ?>">
-                                        <input class="btn btn-default" type="submit" value="Remove">
+                                        <button class="btn btn-default" type="submit" value="Remove">Remove</button>
                                     </form>
                                 </td>
-                                <?php //TODO: avg.rating, number of ratings for jurors ?>
                             </tr>
                             <?php endforeach; ?>
                         </tbody>

@@ -2,7 +2,6 @@
 
 function mn_op_settings($nid) {
 	global $user;
-	dpm($user);
 	$uid = $user->uid;
 	$node = node_load($nid);
 	$owner = $node->uid == $uid ? 1 : 0;
