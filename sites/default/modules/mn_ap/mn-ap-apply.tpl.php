@@ -249,7 +249,7 @@
                             <?php endif; ?>
                             <div class="row">
                                 <div class="col-sm-2">
-                                    <a class="ap-button btn" href="http://mnartist.imalab.us/node/add/artwork" target="_blank">Add New Work</a>
+                                    <a class="ap-button btn" href="<?php echo url('node/add/artwork', array()); ?>" target="_blank">Add New Work</a>
                                 </div>
                             </div>
                             <?php $sci = "0"; //used to increment soundcloud embeds ?>

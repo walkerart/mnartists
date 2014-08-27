@@ -72,7 +72,8 @@ function mn_ap_apply($nid) {
 		$output = theme('mn_ap_apply', array('rows' => $rows['0'])); //used without template
 		return $output;
 	} else {
-		return drupal_set_message(t('You have already completed an application for the ' .  $op_data['title'] . ' at ' . $ap_data['updated_at'] . '.'), 'warning');
+		//add drupal goto - back to opp page
+		return drupal_set_message(t('You have already completed an application for the ' .  $op_data['title'] . ' on ' . date("F d, Y h:i a", strtotime($ap_data['updated_at'])) . '.'), 'warning');
 	}
 }
 /*
