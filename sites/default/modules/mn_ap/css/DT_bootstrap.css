@@ -201,13 +201,18 @@ table.dataTable th:active {
 
 tr.even,
 tr.odd {
-        border-bottom: none;
+  border-bottom: none;
 }
 
 .dataTables_filter input[type=text] {
-        border-radius: 0;
-        border: none;
-        height: 24px;
+  border-radius: 0;
+  border: none;
+  height: 24px;
+}
+
+.search-container {
+  background: url("../images/icon-magnify-sidebar.png") no-repeat right center #e5e5e5;
+  border-bottom: 1px #888 solid !important;
 }
 
 /* placeholder text style */
