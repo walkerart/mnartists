@@ -83,7 +83,7 @@
         <?php if ($featured_articles_will_show) { ?>
             <?php if (!empty($articles)) { ?>
                 <div class="article-thing widget">
-                    <h3>Top Stories</h3>
+                    <h3>Featured Stories</h3>
                     <?php foreach($articles as $article) { ?>
                         <div class="article-detail" id="article-detail-<?= $article->nid ?>" style="display: none;">
                             <a href="/node/<?= $article->nid ?>"><img src="<?= $article->image_uri ?>"></a>
@@ -116,7 +116,7 @@
             if (!empty($from_the_network_posts)) { ?>
                 <div class="from-the-network-thing widget">
                     <div class="wrapper">
-                        <h3>From The Network</h3>
+                        <h3>Editor's Picks</h3>
                         <?php foreach($from_the_network_posts as $post) { ?>
                             <div class="network-post">
                                 <a href="<?= $post->url ?>" target="_blank">
