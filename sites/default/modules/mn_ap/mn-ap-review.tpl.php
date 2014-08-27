@@ -96,26 +96,30 @@ dpm($rows); ?>
                 </h1>
             </div>
             <form class="form form-review" action="<?php echo url('opportunity/' . $rows['application']['nid'] . '/submission/' . $rows['application']['uid'], array()); ?>" method="POST">
-                <input type="hidden" name="round" id="round" value="<?php echo $rows['settings']['round']; ?>">
-                <div class="form-group row">
-                    <?php if(array_search( $rows['application']['uid'], $rows['paging'])+1 < count($rows['paging'])) : ?>
+                <input type="hidden" name="round" id="round" value="<?php echo isset($rows['settings']['round']) ? $rows['settings']['round'] : 1; ?>">
+                <?php if(array_search( $rows['application']['uid'], $rows['paging'])+1 < count($rows['paging'])) : ?>
                     <input type="hidden" name="next" id="next" value="<?php echo $rows['paging'][array_search($rows['application']['uid'], $rows['paging'])+1]; ?>">
-                    <?php endif; ?>
+                <?php endif; ?>
+                <div class="form-group">
                     <input type="number" name="rating" id="input-star" class="rating" min="0" max="<?php echo isset($rows['settings']['scale']) ? $rows['settings']['scale'] : '10'; ?>" data-stars="<?php echo isset($rows['settings']['scale']) ? $rows['settings']['scale'] : '10'; ?>" data-size="sm" data-show-clear="false" step="0.5" value="<?php echo isset($rows['review']) ? $rows['review']['rating'] : ''; ?>" required>
-                    <div class="form-item form-type-textearea">
-                    <label>Comment</label>
-                    <textarea name="comment" class="form-control text-full form-textarea" rows="3" <?php echo $rows['settings']['note_required'] == 1 ? 'required' : ''; ?>><?php echo isset($rows['review']) ? $rows['review']['comment'] : ''; ?></textarea>
-                    <p class="help-block"><?php echo isset($rows['settings']['note']) ? $rows['settings']['note'] : ''; ?></p>
-                    </div>
                 </div>
                 <div class="form-group">
-                    <div class="row"><input class="btn btn-default pull-right" type="submit" value="Submit"></div>
+                    <div class="form-item form-type-textearea">
+                        <label>Comment</label>
+                        <textarea name="comment" class="form-control text-full form-textarea" rows="3" <?php echo $rows['settings']['note_required'] == 1 ? 'required' : ''; ?>><?php echo isset($rows['review']) ? $rows['review']['comment'] : ''; ?></textarea>
+                        <p class="help-block"><?php echo isset($rows['settings']['note']) ? $rows['settings']['note'] : ''; ?></p>
+                    </div>
+                </div>
+                <div class="form-group pull-right">
+                    <button class="btn ap-btn pull-right" type="submit" value="Submit">Submit</button>
+                    <br>
                     <div class="help-block pull-right">Next:
                         <?php if(isset($rows['paging'][array_search($rows['application']['uid'], $rows['paging'])+1])) : ?>
                             Application</div>
                         <?php else : ?>
                             Submission List</div>
                         <?php endif; ?>
+                    </div>
                 </div>
             </form>
         </div>

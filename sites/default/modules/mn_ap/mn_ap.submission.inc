@@ -25,6 +25,7 @@ function mn_ap_submission($nid) {
         $output = '';
 
         $settings = mn_op_check_existing_settings($nid);
+        $round = isset($settings['round']) ? $settings['round'] : 1;
         $areas = get_form_areas($node->field_op_required, $node->field_op_optional);
 
         $rows = array(
@@ -36,12 +37,12 @@ function mn_ap_submission($nid) {
         );
 
         if($juror) {
-            $juror_reviews = get_juror_reviews($nid, $uid, $settings['round']);
+            $juror_reviews = get_juror_reviews($nid, $uid, $round);
             $rows['juror_reviews'] = $juror_reviews;
         }
 
         if(in_array('administrator', $user->roles) || $owner ) {
-            $reviews = mn_ap_get_all_reviews($nid, $settings['round']);
+            $reviews = mn_ap_get_all_reviews($nid, $round);
             $rows['reviews'] = $reviews;
         }
 

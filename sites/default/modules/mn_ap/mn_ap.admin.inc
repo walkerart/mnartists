@@ -36,14 +36,15 @@ function mn_ap_admin($nid, $uid) {
 	);
 
 	//get previous reviews if not round 1
-	if ($settings['round'] != 1) {
+	if ($settings != NULL && $settings['round'] != 1) {
 		$i = 1;
 		while ($i < $settings['round']) {
 			$previous_reviews[] = mn_ap_get_review($nid, $uid, $i);
 			$i++;
-
 		}
 		$rows['previous_reviews'] = $previous_reviews;
+	} else {
+		$rows['previous_reviews'] = '';
 	}
 
 	$output = '';

@@ -10,9 +10,9 @@ function mn_ap_review($nid, $uid) {
 	$artworks  = _get_ap_artworks($nid, $uid);
 	$settings = _get_jury_settings($nid);
 	$steps = get_form_steps($node->field_op_required, $node->field_op_optional, $node->op_work_types);
-	$review = _get_ap_review($nid, $user->uid, $uid, $settings['round']);
-
-	$paging = _get_submission_paging($nid, $settings['round']);
+	$round = isset($settings['round']) ? $settings['round'] : 1;
+	$review = _get_ap_review($nid, $user->uid, $uid, $round);
+	$paging = _get_submission_paging($nid, $round);
 	//look for a POST request
 	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		if($review) {
