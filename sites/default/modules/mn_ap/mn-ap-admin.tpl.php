@@ -82,7 +82,7 @@ dpm($rows); ?>
                 <p><?php echo $rows['reviews']['bio']; ?></p>
             <?php endif; ?>
             <?php if (in_array("resume", $rows['areas'])) : ?>
-                <a href="<?php echo url('user/' . $rows['reviews']['uid'] . '/resume/download'); ?>" class="btn btn-default ap-btn" target="_blank">View Resume</a>
+                <a href="<?php echo url('user/' . $rows['reviews']['uid'] . '/resume/download'); ?>" class="btn ap-btn" target="_blank">View Resume</a>
             <?php endif; ?>
         </div>
         <!-- Jury Review Area -->
@@ -114,11 +114,11 @@ dpm($rows); ?>
                 <input type="hidden" name="status" value="<?php echo $rows['reviews']['accept']; ?>">
                 <?php if($rows['reviews']['accept'] != 1) : ?>
                     <p>Application has not been accepted.
-                    <input class="btn btn-default pull-right" type="submit" value="Accept">
+                    <button class="btn ap-btn pull-right" type="submit" value="Accept">Accept</button>
                     </p>
                 <?php else : ?>
                     <p>Application is currently accepted.
-                    <input class="btn btn-default pull-right" type="submit" value="Unaccept">
+                    <button class="btn ap-btn pull-right" type="submit" value="Unaccept">Unaccept</button>
                     </p>
                 <?php endif; ?>
             </form>

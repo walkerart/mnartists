@@ -109,9 +109,33 @@ table {
 	margin: 10px 0;
 }
 
-.ap-button:hover {
+.ap-btn {
+	height: auto;
+	padding: 5px 10px;
+	border: 1px solid #333;
+	font-family: "Apercu Regular", Arial, Helvetica, sans-serif;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	-webkit-border-radius: 1px;
+	-moz-border-radius: 1px;
+	border-radius: 1px;
+	cursor: pointer;
+	margin-left: 0;
+	margin-right: 10px;
+	margin-bottom: 10px;
+	background: #333;
+	color: #fff;
+	text-transform: capitalize;
+	font-size: 12px;
+	font-weight: normal;
+	letter-spacing: 0;
+}
+
+.ap-button:hover,
+.ap-btn:hover {
   background: #222;
-  color: #fff;
+  color: #f9f9f9;
 }
 
 /*resume*/
@@ -216,13 +240,6 @@ label>.small {
 
 .form-review {
 	margin-top: 20px;
-}
-
-.ap-btn {
-	border-radius: 1px;
-	font-family: "Apercu Regular", Arial, Helvetica, sans-serif;
-	padding: 5px 10px;
-	margin-bottom: 15px;
 }
 
 .caption .label{
