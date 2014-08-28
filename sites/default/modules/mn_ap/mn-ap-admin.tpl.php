@@ -114,6 +114,7 @@ dpm($rows); ?>
                     <?php foreach ($rows['previous_reviews'] as $previous_reviews) : ?>
                         <hr>
                         <h3 class="clearPadding clearMargin">Round <?php echo $previous_reviews['round']; ?></h3>
+                        <p>Average Rating: <?php echo $previous_reviews['avgRating']; ?></p>
                         <?php foreach($previous_reviews['reviews'] as $review) : ?>
                             <p><?php echo 'Juror: ' . $review->r_uid . '<br>Rating: ' . $review->rating . '<br>Comment: ' . $review->comment; ?></p>
                         <?php endforeach; ?>
