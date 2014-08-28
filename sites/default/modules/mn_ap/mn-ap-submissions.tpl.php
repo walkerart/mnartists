@@ -26,15 +26,21 @@ dpm($rows); ?>
 			</h1>
 		</div>
 	</div>
+
+	<div class="row row-margin-bottom">
 	<?php if(isset($rows['settings']['round'])) : ?>
 		<?php for ($i = 1; $rows['settings']['round'] >= $i; $i++) : ?>
-		<div class="row">
-			<div class="col-md-12">
-				<a class="pull-right" href="<?php echo url('opportunity/' . $rows['opportunity']->vid . '/submissions/' . str_replace(" ", "-", $rows['opportunity']->title) . '/xls/' . $i, array()); ?>">Download XLS - Round<?php echo $i; ?></a>
-			</div>
+		<div class="col-md-12">
+			<a class="pull-right" href="<?php echo url('opportunity/' . $rows['opportunity']->vid . '/submissions/' . str_replace(" ", "-", $rows['opportunity']->title) . '/xls/' . $i, array()); ?>">Download XLS - Round<?php echo $i; ?></a>
 		</div>
 		<?php endfor; ?>
+	<?php else : ?>
+		<div class="col-md-12">
+			<a class="pull-right" href="<?php echo url('opportunity/' . $rows['opportunity']->vid . '/submissions/' . str_replace(" ", "-", $rows['opportunity']->title) . '/xls/1', array()); ?>">Download XLS - Round1</a>
+		</div>
 	<?php endif; ?>
+	</div>
+
 	<div class="row">
 		<div class="col-md-12">
 			<table id="subTable" class="table op-table">

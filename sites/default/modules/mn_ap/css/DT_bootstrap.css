@@ -211,8 +211,16 @@ tr.odd {
 }
 
 .search-container {
+  font-family: "Apercu Regular", Arial, Helvetica, sans-serif;
+  font-weight: normal;
+  padding: 0 5px;
   background: url("../images/icon-magnify-sidebar.png") no-repeat right center #e5e5e5;
   border-bottom: 1px #888 solid !important;
+}
+
+.search-container:focus {
+  outline: 0;
+
 }
 
 /* placeholder text style */
