@@ -15,10 +15,10 @@
     $form['field_op_custom_upload_2']['und'][0]['value']['#title'] = '';
     $form['field_op_custom_upload_3']['und'][0]['value']['#title'] = '';
     $form['field_op_custom_upload_4']['und'][0]['value']['#title'] = '';
+    $form['field_op_uri']['und']['0']['title']['#title'] = 'Website Title';
     $form['field_op_uri']['und']['0']['value']['#title'] = 'Website';
     $form['field_op_uri']['und']['#title'] = '';
     //dpm($form);
-    // hide($form['op_short_description']);
 ?>
 <div class="row">
     <div class="form-group">
@@ -27,7 +27,7 @@
 </div>
 
 <div class="row">
-    <div class="form-group textarea">
+    <div class="form-group">
         <?php print drupal_render_children($form['op_short_description']); ?>
     </div>
 </div>
@@ -39,11 +39,12 @@
 </div>
 
 <div class="row">
-    <div class="form-group">
+    <div class="form-group body-margin">
         <?php print drupal_render_children($form['body']); ?>
     </div>
 </div>
-<div class="row">
+
+<div class="row row-margin-top">
     <div class="form-group">
         <label class="col-md-4 control-label">Open Date</label>
         <?php print drupal_render_children($form['op_dates']['und']['0']['value']); //start date ?>
@@ -66,12 +67,12 @@
         <?php print drupal_render_children($form['op_cover_image']); ?>
     </div>
 </div>
-<div class="row">
+<div class="row row-margin-top">
     <div class="form-group">
         <?php print drupal_render_children($form['op_email']); ?>
     </div>
 </div>
-<div class="row">
+<div class="row row-margin-top">
     <div class="form-group">
         <?php print drupal_render_children($form['field_op_uri']); ?>
     </div>
@@ -108,7 +109,7 @@
             <?php print drupal_render_children($form['op_max_works']); ?>
         </div>
     </div>
-        <div class="row">
+    <div class="row row-margin-top">
         <div class="form-group form-table">
             <table class="table">
                 <thead>
@@ -214,7 +215,7 @@
             </table>
         </div>
     </div>
-    <div class="row">
+    <div class="row row-margin-top">
         <div class="panel-group" id="accordion">
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -348,7 +349,7 @@
             </div>
         </div>
     </div>
-    <div class="row">
+    <div class="row row-margin-top">
         <div class="form-group textarea">
             <?php print drupal_render($form['field_op_juror_note']['und'][0]['value']); ?>
         </div>
