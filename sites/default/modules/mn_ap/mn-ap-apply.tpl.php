@@ -1,12 +1,11 @@
 <?php   drupal_add_css(drupal_get_path('module', 'mn_ap') . '/css/bootstrap.min.css');
         drupal_add_css(drupal_get_path('module', 'mn_ap') . '/css/styles.css');
+
         drupal_add_js(drupal_get_path('libraries', 'ckeditor') . '/sites/all/libraries/ckeditor/ckeditor.js');
         drupal_add_js(drupal_get_path('module', 'mn_ap') . '/js/mustache.js');
         drupal_add_js(drupal_get_path('module', 'mn_ap') . '/js/jquery.validate.min.js');
         drupal_add_js(drupal_get_path('module', 'mn_ap') . '/js/jquery.history2.js');
-        //need to pass in the max image count
-        drupal_add_js('//connect.soundcloud.com/sdk.js', 'external');
-        //initialize SC soundcloud with client_id
+
         //inline javascript to limit # of selected artworks to the maximum defined in opportunity content type
         drupal_add_js('(function ($) { $(document).ready(function() {
             window.CKEDITOR_BASEPATH = "/sites/all/libraries/ckeditor";

@@ -21,7 +21,7 @@ dpm($rows); ?>
 			<h1>
 				<?php echo $rows['opportunity']->title; ?>
 				<?php if(isset($rows['settings']['round']) && $rows['settings']['round'] > 1) : ?>
-					<small> Round <?php echo $rows['settings']['round']; ?></small>
+					- Round <?php echo $rows['settings']['round']; ?>
 				<?php endif; ?>
 			</h1>
 		</div>
@@ -164,7 +164,7 @@ dpm($rows); ?>
 			<h1>
 				<?php echo $rows['opportunity']->title; ?>
 				<?php if(isset($rows['settings']['round']) && $rows['settings']['round'] > 1) : ?>
-					<small> Round <?php echo $rows['settings']['round']; ?></small>
+					- Round <?php echo $rows['settings']['round']; ?>
 				<?php endif; ?>
 			</h1>
 		</div>

@@ -13,6 +13,7 @@ function mn_ap_review($nid, $uid) {
 	$round = isset($settings['round']) ? $settings['round'] : 1;
 	$review = _get_ap_review($nid, $user->uid, $uid, $round);
 	$paging = _get_submission_paging($nid, $round);
+
 	//look for a POST request
 	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		if($review) {
@@ -25,7 +26,6 @@ function mn_ap_review($nid, $uid) {
 	$rows = array(
 		'opportunity' => (array)$node,
 		'juror' => $juror,
-		'owner' => $owner,
 		'review' => $review,
 		'paging' => $paging,
 		'settings' => $settings,
@@ -34,6 +34,18 @@ function mn_ap_review($nid, $uid) {
 		'steps' => $steps,
 		'artworks' => $artworks
 	);
+
+	//get previous reviews if not round 1
+	if ($settings != NULL && $settings['round'] != 1) {
+		$i = 1;
+		while ($i < $settings['round']) {
+			$previous_reviews[] = _get_ap_review($nid, $user->uid, $uid, $i);
+			$i++;
+		}
+		$rows['previous_reviews'] = $previous_reviews;
+	} else {
+		$rows['previous_reviews'] = '';
+	}
 
 	$output = '';
 	if(in_array('administrator', $user->roles) || $owner || $juror) {

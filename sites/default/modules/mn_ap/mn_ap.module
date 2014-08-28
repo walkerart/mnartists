@@ -705,6 +705,7 @@ function get_juror_reviews($nid, $uid, $round) {
   $query = db_select('op_rating', 'r');
   $query->condition('r.nid', $nid, '=');
   $query->condition('r.round', $round, '=');
+  $query->condition('r.uid', $uid, '=');
   $query->fields('r');
   $reviews = $query->execute()->fetchAll();
 
