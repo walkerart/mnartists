@@ -178,7 +178,7 @@ dpm($rows); ?>
                     <iframe class="img-responsive" src="<?php echo $artwork->file; ?>" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
                 <?php endif; ?>
                 <?php if($artwork->file_type == 'youtube') : ?>
-                    <iframe class="img-responsive" src="<?php echo $artwork->file; ?>" id="ytplayer" frameborder="0"></iframe>
+                    <iframe class="img-responsive" src="<?php echo $artwork->file; ?>&showinfo=0&badge=0" id="ytplayer" frameborder="0"></iframe>
                 <?php endif; ?>
                 <?php if($artwork->file_type == 'soundcloud') : ?>
                     <span id="url<?php echo $sci; // populated by soundcloud embed iframe ?>"></span>
@@ -187,7 +187,7 @@ dpm($rows); ?>
                         urls = Drupal.settings.soundcloud_url;
                             $.each(urls, function(index, value){
                                 //console.log("INDEX: " + index + " VALUE: " + value);
-                                SC.oEmbed(value, {iframe: "true", show_comments:"false", maxheight:"150px", class:"img-responsive"},  document.getElementById(index));
+                                SC.oEmbed(value, {iframe: "true", show_comments:"false", show_user:"false", show_artwork:"false", maxheight:"150px", class:"img-responsive"},  document.getElementById(index));
                             });
                         }); })(jQuery);', 'inline' )
                     ?>

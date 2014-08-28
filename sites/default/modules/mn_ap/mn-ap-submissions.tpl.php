@@ -20,19 +20,21 @@ dpm($rows); ?>
 		<div class="col-md-6">
 			<h1>
 				<?php echo $rows['opportunity']->title; ?>
-				<?php if($rows['settings']['round'] > 1) : ?>
+				<?php if(isset($rows['settings']['round']) && $rows['settings']['round'] > 1) : ?>
 					<small> Round <?php echo $rows['settings']['round']; ?></small>
 				<?php endif; ?>
 			</h1>
 		</div>
 	</div>
-	<?php for ($i = 1; $rows['settings']['round'] >= $i; $i++) : ?>
-	<div class="row">
-		<div class="col-md-12">
-			<a class="pull-right" href="<?php echo url('opportunity/' . $rows['opportunity']->vid . '/submissions/' . str_replace(" ", "-", $rows['opportunity']->title) . '/xls/' . $i, array()); ?>">Download XLS - Round<?php echo $i; ?></a>
+	<?php if(isset($rows['settings']['round'])) : ?>
+		<?php for ($i = 1; $rows['settings']['round'] >= $i; $i++) : ?>
+		<div class="row">
+			<div class="col-md-12">
+				<a class="pull-right" href="<?php echo url('opportunity/' . $rows['opportunity']->vid . '/submissions/' . str_replace(" ", "-", $rows['opportunity']->title) . '/xls/' . $i, array()); ?>">Download XLS - Round<?php echo $i; ?></a>
+			</div>
 		</div>
-	</div>
-	<?php endfor; ?>
+		<?php endfor; ?>
+	<?php endif; ?>
 	<div class="row">
 		<div class="col-md-12">
 			<table id="subTable" class="table op-table">
@@ -155,7 +157,7 @@ dpm($rows); ?>
 		<div class="col-md-6">
 			<h1>
 				<?php echo $rows['opportunity']->title; ?>
-				<?php if($rows['settings']['round'] > 1) : ?>
+				<?php if(isset($rows['settings']['round']) && $rows['settings']['round'] > 1) : ?>
 					<small> Round <?php echo $rows['settings']['round']; ?></small>
 				<?php endif; ?>
 			</h1>
@@ -172,7 +174,7 @@ dpm($rows); ?>
 			<table id="juryTable" class="table op-table">
 				<thead>
 					<tr>
-						<?php if($rows['settings']['name'] == 1 || $rows['settings'] == 0) : ?>
+						<?php if(isset($rows['settings']['name']) && $rows['settings']['name'] == 1) : ?>
 						<th>#</th>
 						<th>User ID</th>
 						<th>First Name</th>
@@ -180,7 +182,7 @@ dpm($rows); ?>
 						<?php else : ?>
 						<th>Applicant</th>
 						<?php endif; ?>
-						<?php if($rows['settings']['artwork'] == 1 || $rows['settings'] == 0) : ?>
+						<?php if(isset($rows['settings']['artwork']) && $rows['settings']['artwork'] == 1) : ?>
 						<th>Work</th>
 						<?php endif; ?>
 						<th>Comment</th>
@@ -192,7 +194,7 @@ dpm($rows); ?>
 					<?php $i=1; ?>
 					<?php foreach ($rows['juror_reviews'] as $review) : ?>
 					<tr>
-						<?php if($rows['settings']['name'] == 1 || $rows['settings'] == 0) : ?>
+						<?php if(isset($rows['settings']['name']) && $rows['settings']['name'] == 1) : ?>
 						<td><?php echo $i; ?></td>
 						<td><?php echo $review['uid']; ?></td>
 						<td><?php echo $review['first_name']; ?></td>
@@ -200,7 +202,7 @@ dpm($rows); ?>
 						<?php else : ?>
 						<td>Application <?php echo $i; ?></td>
 						<?php endif; ?>
-						<?php if($rows['settings']['artwork'] == 1 || $rows['settings'] == 0) : ?>
+						<?php if(isset($rows['settings']['artwork']) && $rows['settings']['artwork'] == 1) : ?>
 						<td>
 							<div class="row table-thumb jury-parent-<?php echo $review['uid']; ?>">
 								<?php foreach ($review['artworks'] as $artwork) : ?>

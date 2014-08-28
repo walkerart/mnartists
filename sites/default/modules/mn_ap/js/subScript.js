@@ -27,7 +27,8 @@ $(document).ready(function(){
 		}
 	});
 
-	$('.dataTables_filter input').attr("placeholder", " Search...");
+	$('.dataTables_filter input').attr("placeholder", " Search");
+	$('.dataTables_filter input').addClass("search-container");
 
 	$(document).delegate('*[data-toggle="lightbox"]', 'click', function(event) {
 		event.preventDefault();

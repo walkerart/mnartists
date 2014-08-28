@@ -15,14 +15,15 @@ $(document).ready(function(){
 				'<option value="100">Show 100 Rows</option>'+
 				'<option value="-1">Show All Rows</option>'+
 				'</select>',
-			"sSearch": ""
+			"sSearch": "<span></span>"
 		},
     	"aoColumnDefs": [
           { "bSortable": false, "aTargets": [7,8,9, 10] }
        ]
     });
 
-    $('.dataTables_filter input').attr("placeholder", " Search...");
+    $('.dataTables_filter input').attr("placeholder", " Search");
+    $('.dataTables_filter input').addClass("search-container");
 
     $("select").selectBoxIt({
 		downArrowIcon: "icon-down"

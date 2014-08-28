@@ -26,6 +26,7 @@ function mn_ap_submission($nid) {
 
         $settings = mn_op_check_existing_settings($nid);
         $round = isset($settings['round']) ? $settings['round'] : 1;
+        if (! isset($settings['scale'])) $settings = array('scale' => 10);
         $areas = get_form_areas($node->field_op_required, $node->field_op_optional);
 
         $rows = array(
