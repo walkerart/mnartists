@@ -8,14 +8,7 @@
     drupal_add_js(drupal_get_path('module', 'mn_ap') . '/js/bootstrap.min.js');
     drupal_add_js(drupal_get_path('module', 'mn_ap') . '/js/ekko-lightbox.min.js');
     drupal_add_js(drupal_get_path('module', 'mn_op') . '/js/view-script.js');
-    drupal_add_js('//connect.soundcloud.com/sdk.js', 'external');
-    drupal_add_js('(function ($) { $(document).ready(function() {
-            SC.initialize({
-                client_id: "29800bb0ab961280619c6721dca3aa3d",
-                });
-                window.CKEDITOR_BASEPATH = "/sites/all/libraries/ckeditor";
-            }); })(jQuery);', 'inline' );
-    //dpm($rows);
+
 ?>
 <div class="container" id="appContent">
     <br>
@@ -67,7 +60,6 @@
     </div>
     <?php if(in_array('work', $rows['steps'])) : ?>
     <div class="lightbox-parent">
-        <?php $sci = "0"; //used to increment soundcloud embeds ?>
         <?php foreach($rows['artworks'] as $artwork) : ?>
         <hr>
         <div class="row">
@@ -119,20 +111,10 @@
                     <iframe class="img-responsive" src="<?php echo $artwork->file; ?>" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
                 <?php endif; ?>
                 <?php if($artwork->file_type == 'youtube') : ?>
-                    <iframe class="img-responsive" src="<?php echo $artwork->file; ?>" id="ytplayer" frameborder="0"></iframe>
+                    <iframe class="img-responsive" src="<?php echo $artwork->file; ?>&amp;showinfo=0&amp;badge=0" id="ytplayer" frameborder="0"></iframe>
                 <?php endif; ?>
                 <?php if($artwork->file_type == 'soundcloud') : ?>
-                    <span id="url<?php echo $sci; // populated by soundcloud embed iframe ?>"></span>
-                    <?php   drupal_add_js(array('soundcloud_url' => array('url' . $sci => $artwork->file)), 'setting');
-                        drupal_add_js('(function ($) { $(document).ready(function() {
-                        urls = Drupal.settings.soundcloud_url;
-                            $.each(urls, function(index, value){
-                                //console.log("INDEX: " + index + " VALUE: " + value);
-                                SC.oEmbed(value, {iframe: "true", show_comments:"false", maxheight:"150px", class:"img-responsive"},  document.getElementById(index));
-                            });
-                        }); })(jQuery);', 'inline' )
-                    ?>
-                    <?php $sci++; ?>
+                    <iframe class="img-responsive" scrolling="no" frameborder="no" width="" height="150" src="//w.soundcloud.com/player/?url=<?php echo $artwork->file; ?>&amp;show_user=false&amp;show_artwork=false"></iframe>
                 <?php endif; ?>
                 <?php if ($artwork->file_type == 'document') : ?>
                     <a href="<?php  print file_create_url(file_build_uri('opportunity/' . $artwork->nid . '/' . $artwork->uid . '/' . $artwork->file)); ?>" target="_blank">
