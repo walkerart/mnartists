@@ -103,6 +103,15 @@ dpm($rows); ?>
                         <p class="help-block"><?php echo isset($rows['settings']['note']) ? $rows['settings']['note'] : ''; ?></p>
                     </div>
                 </div>
+                <div class="form-group">
+                    <hr>
+                    <h1 class="clearPadding">Previous Reviews</h1>
+                    <?php foreach ($rows['previous_reviews'] as $previous_reviews) : ?>
+                        <hr>
+                        <h3 class="clearPadding clearMargin">Round <?php echo $previous_reviews['round']; ?></h3>
+                        <p>Rating: <?php echo $previous_reviews['rating']; ?><br> Comment: <?php echo $previous_reviews['comment']; ?></p>
+                    <?php endforeach; ?>
+                </div>
                 <div class="form-group pull-right">
                     <button class="btn ap-btn pull-right" type="submit" value="Submit">Submit</button>
                     <br>
