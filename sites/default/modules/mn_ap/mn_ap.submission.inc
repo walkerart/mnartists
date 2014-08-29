@@ -54,6 +54,6 @@ function mn_ap_submission($nid) {
         $output = theme('mn_ap_submissions', array('rows' => $rows));
         return $output;
     } else {
-        return drupal_set_message(t('You do not have access.'), 'status');
+        return drupal_set_message(t('You do not have access.'), 'warning');
     }
 }

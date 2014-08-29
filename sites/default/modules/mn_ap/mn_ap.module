@@ -275,7 +275,7 @@ function ap_submit_form() {
         ->execute();
   }
 
-  drupal_set_message(t('Your application has been submitted.'), 'error');
+  drupal_set_message(t('Your application has been submitted.'), 'status');
   return drupal_goto('application/' . $nid);
 }
 
@@ -360,7 +360,7 @@ function mn_ap_artworks_data($uid, $vid = NULL) {
   }
 
   if (empty($out['nodes'])) {
-    return drupal_set_message(t('You have not added any artworks to your profile.'), 'status');
+    return drupal_set_message(t('You have not added any artworks to your profile.'), 'error');
   }
 
   $rows = array();
@@ -922,7 +922,7 @@ function mn_ap_reopen_all_aps($nid, $reopen) {
   } elseif($reopen == 1) {
       $reopen = 0;
       mn_ap_update_reopen_setting($nid, $reopen);
-      return drupal_set_message('You have closed all reopened applications.', 'error');
+      return drupal_set_message('You have closed all reopened applications.', 'status');
   }
 }
 

@@ -139,7 +139,7 @@ function _mail_to_juror($mail, $status, $nid, $title) {
 
 	$result = drupal_mail($module, $key, $to, $language, $params, $from, $send);
 	if ($result['result'] == TRUE) {
-		return drupal_set_message(t('Your invite has been sent.'), 'error');
+		return drupal_set_message(t('Your invite has been sent.'), 'status');
 	} else {
 		return drupal_set_message(t('There was a problem sending your invitation and it was not sent.'), 'error');
   }
