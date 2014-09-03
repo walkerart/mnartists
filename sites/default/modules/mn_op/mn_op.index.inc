@@ -136,22 +136,3 @@ function _update_published_status($input) {
 	}
 	return $return_value;
 }
-
-/*
-* convert datetime to correct site db set time
-*/
-function mn_ap_get_date($date, $timezone, $timezone_db) {
-	if($date && $timezone && $timezone_db) {
-		$timezone = new DateTimeZone($timezone);
-		$timezone_db = new DateTimeZone($timezone_db);
-
-		$resultDate = new DateTime($date, $timezone_db);
-		$resultDate->setTimezone($timezone);
-		$resultDate = (array) $resultDate;
-		$resultDate = new DateTime($resultDate['date']);
-		$resultDate = $resultDate->format("F j, Y, g:i a");
-	} else {
-		$resultDate = '';
-	}
-	return $resultDate;
-}

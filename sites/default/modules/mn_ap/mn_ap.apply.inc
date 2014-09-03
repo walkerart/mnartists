@@ -25,7 +25,7 @@ function mn_ap_apply($nid) {
 		if (strtotime($op_data['end_date']) < strtotime($op_data['today'])) {
 			return drupal_set_message(t('The application deadline: ' . date("F d, Y h:i a", strtotime($op_data['end_date']))  . ' for this opportunity has passed.'), 'warning');
 		} elseif (strtotime($op_data['start_date']) > strtotime($op_data['today'])) {
-			return drupal_set_message(t('The applications will not be accepted for this opportunity until: ' . date("F d, Y h:i a", strtotime($op_data['start_date'])), 'warning');
+			return drupal_set_message(t('The applications will not be accepted for this opportunity until: ' . date("F d, Y h:i a", strtotime($op_data['start_date']))), 'warning');
 		}
 	}
 
@@ -216,17 +216,17 @@ function get_form_titles($areas) {
 /*
 * convert datetime to correct site db set time
 */
-function mn_ap_get_date($date, $timezone, $timezone_db) {
-	$timezone = new DateTimeZone($timezone);
-	$timezone_db = new DateTimeZone($timezone_db);
+// function mn_ap_get_date($date, $timezone, $timezone_db) {
+// 	$timezone = new DateTimeZone($timezone);
+// 	$timezone_db = new DateTimeZone($timezone_db);
 
-	$resultDate = new DateTime($date, $timezone_db);
-	$resultDate->setTimezone($timezone);
-	$resultDate = (array) $resultDate;
-	$resultDate = new DateTime($resultDate['date']);
-	$resultDate = $resultDate->format("F j, Y, g:i a");
-	return $resultDate;
-}
+// 	$resultDate = new DateTime($date, $timezone_db);
+// 	$resultDate->setTimezone($timezone);
+// 	$resultDate = (array) $resultDate;
+// 	$resultDate = new DateTime($resultDate['date']);
+// 	$resultDate = $resultDate->format("F j, Y, g:i a");
+// 	return $resultDate;
+// }
 
 // simply flatten the array to get rid of drupalness ['und'][0]['value'] junk
 function get_work_types($types) {

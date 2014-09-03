@@ -89,6 +89,35 @@ function mn_op_theme() {
   );
 }
 
+/**
+ * Implements hook_cron().
+ * This cron checks announce date and publishes opportunities
+ */
+function mn_op_cron() {
+  // $interval = variable_get('cron_example_interval', 60 * 60);
+  $type = "opportunity"; 
+  $now = new DateTime();
+  $result = NULL;
+  $query = new EntityFieldQuery();
+  $query->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', $type)
+    ->propertyCondition('status', 0);
+  $result = $query->execute();
+  
+  if ($result != NULL) {
+    $nodes = node_load_multiple(array_keys($result['node']));
+    foreach($nodes as $opportunity) {
+      $announce_date = mn_ap_get_comparable_date($opportunity->field_announce_date['und']['0']['value'], $opportunity->field_announce_date['und']['0']['timezone'], $opportunity->field_announce_date['und']['0']['timezone_db']);
+      if ($now > $announce_date) {
+        $nid = $opportunity->nid;
+        $node = node_load($nid);
+        $node->status = 1;
+        node_save($node);
+      }
+    }
+  }
+}
+
 function mn_op_node_view($node, $view_mode, $langcode) {
   // if context user does not own opportunity, or is
   // not an admin, then deny access to node view if
@@ -149,6 +178,43 @@ function mn_op_check_existing_settings($nid) {
       ->execute()
       ->fetchAssoc();
     return $result;
+}
+
+/*
+* convert datetime to correct site db set time
+*/
+function mn_ap_get_date($date, $timezone, $timezone_db) {
+  if($date && $timezone && $timezone_db) {
+    $timezone = new DateTimeZone($timezone);
+    $timezone_db = new DateTimeZone($timezone_db);
+
+    $resultDate = new DateTime($date, $timezone_db);
+    $resultDate->setTimezone($timezone);
+    $resultDate = (array) $resultDate;
+    $resultDate = new DateTime($resultDate['date']);
+    $resultDate = $resultDate->format("F j, Y, g:i a");
+  } else {
+    $resultDate = '';
+  }
+  return $resultDate;
+}
+
+/*
+* convert datetime to correct site db set time in a comparable format
+*/
+function mn_ap_get_comparable_date($date, $timezone, $timezone_db) {
+  if($date && $timezone && $timezone_db) {
+    $timezone = new DateTimeZone($timezone);
+    $timezone_db = new DateTimeZone($timezone_db);
+
+    $resultDate = new DateTime($date, $timezone_db);
+    $resultDate->setTimezone($timezone);
+    $resultDate = (array) $resultDate;
+    $resultDate = new DateTime($resultDate['date']);
+  } else {
+    $resultDate = '';
+  }
+  return $resultDate;
 }
 
 /**
