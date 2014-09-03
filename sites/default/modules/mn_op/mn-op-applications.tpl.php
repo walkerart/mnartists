@@ -13,8 +13,8 @@
 	<table class="table op-table">
 		<thead>
 			<tr>
-				<th>Opportunity Name</th>
-				<th>Deadline for Applications</th>
+				<th class="half-width">Opportunity Name</th>
+				<th class="quarter-width">Deadline for Applications</th>
 				<th></th>
 			</tr>
 		</thead>
@@ -40,8 +40,8 @@
 	<table class="table op-table">
 		<thead>
 			<tr>
-				<th>Opportunity Name</th>
-				<th>Completed On</th>
+				<th class="half-width">Opportunity Name</th>
+				<th class="quarter-width">Completed On</th>
 				<th></th>
 			</tr>
 		</thead>
@@ -63,8 +63,8 @@
 	<table class="table op-table">
 		<thead>
 			<tr>
-				<th>Opportunity Name</th>
-				<th>Deadline</th>
+				<th class="half-width">Opportunity Name</th>
+				<th class="quarter-width">Deadline</th>
 				<th></th>
 			</tr>
 		</thead>
@@ -85,8 +85,8 @@
 	<table class="table op-table">
 		<thead>
 			<tr>
-				<th>Opportunity Name</th>
-				<th>Completed On</th>
+				<th class="half-width">Opportunity Name</th>
+				<th class="quarter-width">Completed On</th>
 				<th></th>
 			</tr>
 		</thead>
