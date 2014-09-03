@@ -60,16 +60,16 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-sm-offset-3 col-sm-9">
-                        <table>
-                            <tbody>
-                                <tr>
-                                    <td>Comments Required:</td>
-                                    <td>Yes  <input type="radio" name="note_required" value="1" <?php echo ($rows['settings']['note_required'] == '1' || $rows['settings'] == 0) ? 'checked' : ''; ?>></td>
-                                    <td>No  <input type="radio" name="note_required" value="0" <?php echo $rows['settings']['note_required'] == '0' ? 'checked' : ''; ?>></td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div class="form-group">
+                        <div class="col-sm-3">
+                            <label class="control-label">Comments Required</label>
+                        </div>
+                        <div class="col-sm-3">
+                            Yes  <input type="radio" name="note_required" value="1" <?php echo ($rows['settings']['note_required'] == '1' || $rows['settings'] == 0) ? 'checked' : ''; ?>>
+                        </div>
+                        <div class="col-sm-3">
+                            No  <input type="radio" name="note_required" value="0" <?php echo $rows['settings']['note_required'] == '0' ? 'checked' : ''; ?>>
+                        </div>
                     </div>
                 </div>
 
