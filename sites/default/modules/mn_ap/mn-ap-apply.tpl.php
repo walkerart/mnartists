@@ -133,6 +133,7 @@
                                         <?php $count++; ?>
                                     <?php endif; ?>
                                 <?php endforeach; ?>
+                                <?php if (count($rows['opportunity']['additional_fields'] % 2 == 0)) echo '</div></div>'; ?>
                             <?php endif; ?>
                             <div class="form-group row">
                                 <div class="col-sm-12">
@@ -243,10 +244,11 @@
                             <?php else: ?>
                             <label id="artHelp">Choose <?php echo $rows['opportunity']['min_works']; ?> pieces of documentation to represent your work.</label>
                             <?php endif; ?>
-                            <hr>
+                            
                             <div class="row">
+                            <hr>
                                 <div class="col-sm-2">
-                                    <a class="ap-button btn ap-tooltip ap-tooltip" href="<?php echo url('node/add/artwork', array()); ?>">Add More Work</a>
+                                    <a class="ap-button btn" href="<?php echo url('node/add/artwork', array()); ?>">Add More Work</a>
                                 </div>
                             </div>
                             <div class="row">
