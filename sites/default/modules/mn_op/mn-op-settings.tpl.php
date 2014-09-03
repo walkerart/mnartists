@@ -39,14 +39,6 @@
                                 <option <?php echo ($rows['settings']['scale'] == 10 || $rows['settings'] == 0) ? 'selected' : ''; ?>>10</option>
                                 <option <?php echo $rows['settings']['scale'] == 11 ? 'selected' : ''; ?>>11</option>
                                 <option <?php echo $rows['settings']['scale'] == 12 ? 'selected' : ''; ?>>12</option>
-                                <option <?php echo $rows['settings']['scale'] == 13 ? 'selected' : ''; ?>>13</option>
-                                <option <?php echo $rows['settings']['scale'] == 14 ? 'selected' : ''; ?>>14</option>
-                                <option <?php echo $rows['settings']['scale'] == 15 ? 'selected' : ''; ?>>15</option>
-                                <option <?php echo $rows['settings']['scale'] == 16 ? 'selected' : ''; ?>>16</option>
-                                <option <?php echo $rows['settings']['scale'] == 17 ? 'selected' : ''; ?>>17</option>
-                                <option <?php echo $rows['settings']['scale'] == 18 ? 'selected' : ''; ?>>18</option>
-                                <option <?php echo $rows['settings']['scale'] == 19 ? 'selected' : ''; ?>>19</option>
-                                <option <?php echo $rows['settings']['scale'] == 20 ? 'selected' : ''; ?>>20</option>
                             </select>
                         </div>
                     </div>
