@@ -584,7 +584,7 @@
                                     <legend class="text-center">Confirm Submission</legend>
                                 </div>
                                 <div class="col-sm-2">
-                                    <input id="SaveApplication" type="submit" class="pull-right next" value="Submit">
+                                    <button id="SaveApplication" type="submit" class="pull-right ap-btn" value="Submit">Submit</button>
                                 </div>
                             </div>
                             <div class="row">
@@ -766,7 +766,7 @@
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <div class="prev" id="gotoStep<?php echo count($rows['opportunity']['steps']) + 1; ?>" role="button">Back</div>
-                                        <input id="SaveApplication" type="submit" class="pull-right submit" value="Submit">
+                                        <button id="SaveApplication" type="submit" class="pull-right btn ap-btn" value="Submit">Submit</button>
                                     </div>
                                 </div>
                             </div>
