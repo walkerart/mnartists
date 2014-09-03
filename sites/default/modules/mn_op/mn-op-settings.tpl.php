@@ -2,7 +2,10 @@
     drupal_add_css(drupal_get_path('module', 'mn_ap') . '/css/bootstrap.min.css');
     drupal_add_css(drupal_get_path('module', 'mn_op') . '/css/mn-op.css');
     drupal_add_css(drupal_get_path('module', 'mn_ap') . '/css/styles.css');
+    drupal_add_css(drupal_get_path('module', 'mn_ap') . '/css/jquery.selectBoxIt.css');
     drupal_add_css(drupal_get_path('module', 'mn_ap') . '/css/DT_bootstrap.css');
+
+    drupal_add_js(drupal_get_path('module', 'mn_ap') . '/js/jquery.selectBoxIt.js');
     drupal_add_js(drupal_get_path('theme', 'mnartists') . '/scripts/jquery.icheck.min.js');
     drupal_add_js(drupal_get_path('module', 'mn_op') . '/js/op-settings.js');
     //dpm($rows); ?>
@@ -263,7 +266,7 @@
                         <input type="text" id="juror_email" class="form-control" name="juror_email" required>
                     </div>
                     <div class="col-sm-2">
-                        <button class="btn btn-default" type="submit" value="Add">Add</button>
+                        <button class="btn ap-btn" type="submit" value="Add">Add</button>
                     </div>
                 </div>
             </form>
@@ -290,7 +293,7 @@
                                         <input type="hidden" id="node_id" name="node_id" value="<?php echo $rows['opportunity']->nid; ?>">
                                         <input type="hidden" id="remove" name="remove" value="remove">
                                         <input type="hidden" id="juror_email" name="juror_email" value="<?php echo $juror->mail; ?>">
-                                        <button class="btn btn-default" type="submit" value="Remove">Remove</button>
+                                        <button class="btn ap-btn" type="submit" value="Remove">Remove</button>
                                     </form>
                                 </td>
                             </tr>
