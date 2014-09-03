@@ -21,7 +21,7 @@
         <div class="col-md-12">
             <h1>
                 <?php echo $rows['opportunity']['title']; ?>
-                <br><small>Application submited: <?php echo $rows['application']['updated_at']; ?></small>
+                <br><small>Application submited: <?php echo date("F d, Y h:i a", strtotime($rows['application']['updated_at'])); ?></small>
             </h1>
         </div>
     </div>
