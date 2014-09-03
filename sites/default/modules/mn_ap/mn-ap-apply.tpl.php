@@ -243,9 +243,15 @@
                             <?php else: ?>
                             <label id="artHelp">Choose <?php echo $rows['opportunity']['min_works']; ?> pieces of documentation to represent your work.</label>
                             <?php endif; ?>
+                            <hr>
                             <div class="row">
                                 <div class="col-sm-2">
-                                    <a class="ap-button btn" href="<?php echo url('node/add/artwork', array()); ?>" target="_blank">Add New Work</a>
+                                    <a class="ap-button btn ap-tooltip ap-tooltip" href="<?php echo url('node/add/artwork', array()); ?>">Add More Work</a>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <p class="help-text">After you 'Add More Work' or 'Edit/Add' documentation for a work, return to this tab and refresh your page to see and select newly added work.</p>
                                 </div>
                             </div>
                             <?php foreach ($rows['artworks'] as $artwork) : ?>
