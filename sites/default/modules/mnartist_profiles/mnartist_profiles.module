@@ -659,7 +659,7 @@ function _mnartist_profile_block_visibility() {
     global $user;
 
     if ((arg(0) == "user" && in_array(arg(2), array("edit", "mailchimp"))) ||
-        (in_array(arg(0), array('opportunity', 'application', 'opportunities', 'applications', 'manage-artworks'))) ||
+        (in_array(arg(0), array('opportunity', 'application', 'opportunities', 'applications', 'manage-artworks', 'manage-events'))) ||
         (!user_is_logged_in() && arg(0) == "user" && (is_null(arg(1)) || in_array(arg(1), array("password", "register")))) ||
         (arg(0) == "node" && in_array(arg(1), array("edit", "add"))) ||
         (arg(0) == "node" && in_array(arg(2), array("edit"))) ||
@@ -809,7 +809,7 @@ function _mnartist_profile_my_stuff() {
             $editItems[] = l("Add Artwork", "node/add/artwork") . l("Manage", "manage-artworks", array("attributes" => array("class" => array("user-view"))));
         }
         if (count(array_intersect(array('administrator', 'Artist', 'Organization'), array_values($user->roles)))) {
-            $editItems[] = l("Add Event", "node/add/event");
+            $editItems[] = l("Add Event", "node/add/event") . l("Manage", "manage-events", array("attributes" => array("class" => array("user-view"))));
         }
         if (in_array('administrator', array_values($user->roles)) ||
             in_array('Organizational Admin', array_values($user->roles))) {
