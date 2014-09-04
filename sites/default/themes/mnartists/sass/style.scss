@@ -9819,6 +9819,14 @@ table.table thead .sorting {
                     display:block;
                     background: url('../images/icon-filter-arrow-down.png') no-repeat center center transparent;
                     background-size:7px 8px;
+
+                    &.sort-asc {
+                        -webkit-transform: rotate(180deg);
+                        -moz-transform: rotate(180deg);
+                        -ms-transform: rotate(180deg);
+                        -o-transform: rotate(180deg);
+                        transform: rotate(180deg);
+                    }
                 }
             }
 
