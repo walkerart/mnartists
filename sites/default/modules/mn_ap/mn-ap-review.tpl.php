@@ -46,56 +46,19 @@ dpm($rows); ?>
             </div>
         <?php endif; ?>
     </div>
+
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-lg-5 col-lg-push-7 col-md-12">
             <h1 class="clearPadding">
-                <?php echo ($rows['settings']['name'] == '1' || $rows['settings'] == 0) ? $rows['application']['first_name'] . ' ' . $rows['application']['last_name'] : 'Applicaiton ' . (array_search($rows['application']['uid'], $rows['paging']) + 1); ?>
+                <?php echo $rows['opportunity']['title']; ?>
+                <?php if(isset($rows['settings']['round']) && $rows['settings']['round'] > 1) : ?> - Round <?php echo $rows['settings']['round']; ?><?php endif; ?>
             </h1>
-            <?php if ($rows['settings']['address'] == '1' || $rows['settings'] == 0) : ?>
-                <p><?php echo $rows['application']['address']; ?></br>
-                <?php echo $rows['application']['city'] . ', ' . $rows['application']['state'] . ' ' . $rows['application']['zip'] ; ?></p>
-            <?php endif; ?>
-            <?php echo (in_array("county", $rows['areas']) && ($rows['settings']['county'] == 1 || $rows['settings'] == 0) && $rows['application']['county'] != '') ? '<p>County: ' . $rows['application']['county'] . '</p>' : ''; ?>
-            <?php echo (in_array("country", $rows['areas']) && ($rows['settings']['country'] == 1 || $rows['settings'] == 0) && $rows['application']['country'] != '') ? '<p>Country: ' . $rows['application']['country'] . '</p>' : ''; ?>
-            <?php echo ($rows['settings']['email'] == '1') ? '<p>Email: ' . $rows['application']['email'] . '</p>' : ''; ?>
-            <?php echo ($rows['settings']['phone'] == '1' && $rows['application']['phone'] != '') ? '<p>Phone: ' . $rows['application']['phone'] . '</p>' : ''; ?>
-            <?php echo (in_array("website", $rows['areas']) && ($rows['settings']['website'] == 1 || $rows['settings'] == 0) && $rows['application']['website'] != '') ? '<p>Website: ' . $rows['application']['website'] . '</p>' : ''; ?>
-            <?php echo (in_array("gender", $rows['areas']) && ($rows['settings']['gender'] == 1 || $rows['settings'] == 0) && $rows['application']['gender'] != '') ? '<p>Gender: ' . $rows['application']['gender'] . '</p>' : ''; ?>
-            <?php echo (in_array("ethnicity", $rows['areas']) && ($rows['settings']['ethnicity'] == 1 || $rows['settings'] == 0) && $rows['application']['ethnicity'] != '') ? '<p>Ethnicity: ' . $rows['application']['ethnicity'] . '</p>' : ''; ?>
-            <?php echo (in_array("age", $rows['areas']) && ($rows['settings']['age'] == '1' || $rows['settings'] == 0) && $rows['application']['age'] != '0') ? '<p>Age: ' . $rows['application']['age'] . '</p>' : ''; ?>
-            <?php if ($rows['application']['statement'] != '' && ($rows['settings']['statement'] == 1 || $rows['settings'] == 0) && in_array("statement", $rows['areas'])) : ?>
-                <h3 class="clearPadding clearMargin">Statement</h3>
-                <p><?php echo $rows['application']['statement']; ?></p>
-            <?php endif; ?>
-            <?php if ($rows['application']['proposal'] != '' && ($rows['settings']['proposal'] == 1 || $rows['settings'] == 0) && in_array("proposal", $rows['areas'])) : ?>
-                <h3 class="clearPadding clearMargin">Proposal</h3>
-                <p><?php echo $rows['application']['proposal']; ?></p>
-            <?php endif; ?>
-            <?php if ($rows['application']['bio'] != '' && in_array("bio", $rows['areas']) && ($rows['settings']['bio'] == 1 || $rows['settings'] == 0)) : ?>
-                <h3 class="clearPadding clearMargin">Bio</h3>
-                <p><?php echo $rows['application']['bio']; ?></p>
-            <?php endif; ?>
-            <?php if (in_array("resume", $rows['areas']) && ($rows['settings']['resume'] == 1 || $rows['settings'] == 0)) : ?>
-                <a href="<?php echo url('user/' . $rows['application']['uid'] . '/resume/download'); ?>" class="btn btn-default ap-btn" target="_blank">View Resume</a>
-            <?php endif; ?>
-        </div>
-        <div class="col-md-4">
-            <div class="row">
-                <h1 class="clearPadding">
-                    <?php echo $rows['opportunity']['title']; ?>
-                    <?php if(isset($rows['settings']['round']) && $rows['settings']['round'] > 1) : ?>
-                        - Round <?php echo $rows['settings']['round']; ?>
-                    <?php endif; ?>
-                </h1>
-            </div>
             <form class="form form-review" action="<?php echo url('opportunity/' . $rows['application']['nid'] . '/submission/' . $rows['application']['uid'], array()); ?>" method="POST">
                 <input type="hidden" name="round" id="round" value="<?php echo isset($rows['settings']['round']) ? $rows['settings']['round'] : 1; ?>">
                 <?php if(array_search( $rows['application']['uid'], $rows['paging'])+1 < count($rows['paging'])) : ?>
                     <input type="hidden" name="next" id="next" value="<?php echo $rows['paging'][array_search($rows['application']['uid'], $rows['paging'])+1]; ?>">
                 <?php endif; ?>
-                <div class="form-group">
-                    <input type="number" name="rating" id="input-star" class="rating" min="0" max="<?php echo isset($rows['settings']['scale']) ? $rows['settings']['scale'] : '10'; ?>" data-stars="<?php echo isset($rows['settings']['scale']) ? $rows['settings']['scale'] : '10'; ?>" data-size="sm" data-show-clear="false" step="0.5" value="<?php echo isset($rows['review']) ? $rows['review']['rating'] : ''; ?>" required>
-                </div>
+                <input type="number" name="rating" id="input-star" class="rating" min="0" max="<?php echo isset($rows['settings']['scale']) ? $rows['settings']['scale'] : '10'; ?>" data-stars="<?php echo isset($rows['settings']['scale']) ? $rows['settings']['scale'] : '10'; ?>" data-size="sm" data-show-clear="false" step="0.5" value="<?php echo isset($rows['review']) ? $rows['review']['rating'] : ''; ?>" required>
                 <div class="form-group">
                     <div class="form-item form-type-textearea">
                         <label>Comment</label>
@@ -117,15 +80,50 @@ dpm($rows); ?>
                     <br>
                     <div class="help-block pull-right">Next:
                         <?php if(isset($rows['paging'][array_search($rows['application']['uid'], $rows['paging'])+1])) : ?>
-                            Application</div>
-                        <?php else : ?>
-                            Submission List</div>
-                        <?php endif; ?>
+                        Application
                     </div>
+                        <?php else : ?>
+                        Submission List
+                    </div>
+                        <?php endif; ?>
                 </div>
             </form>
         </div>
+
+        <div class="col-lg-7 col-lg-pull-5 col-md-12">
+        <h1 class="clearPadding">
+            <?php echo ($rows['settings']['name'] == '1' || $rows['settings'] == 0) ? $rows['application']['first_name'] . ' ' . $rows['application']['last_name'] : 'Applicaiton ' . (array_search($rows['application']['uid'], $rows['paging']) + 1); ?>
+        </h1>
+        <?php if ($rows['settings']['address'] == '1' || $rows['settings'] == 0) : ?>
+            <p><?php echo $rows['application']['address']; ?></br>
+            <?php echo $rows['application']['city'] . ', ' . $rows['application']['state'] . ' ' . $rows['application']['zip'] ; ?></p>
+        <?php endif; ?>
+        <?php echo (in_array("county", $rows['areas']) && ($rows['settings']['county'] == 1 || $rows['settings'] == 0) && $rows['application']['county'] != '') ? '<p>County: ' . $rows['application']['county'] . '</p>' : ''; ?>
+        <?php echo (in_array("country", $rows['areas']) && ($rows['settings']['country'] == 1 || $rows['settings'] == 0) && $rows['application']['country'] != '') ? '<p>Country: ' . $rows['application']['country'] . '</p>' : ''; ?>
+        <?php echo ($rows['settings']['email'] == '1') ? '<p>Email: ' . $rows['application']['email'] . '</p>' : ''; ?>
+        <?php echo ($rows['settings']['phone'] == '1' && $rows['application']['phone'] != '') ? '<p>Phone: ' . $rows['application']['phone'] . '</p>' : ''; ?>
+        <?php echo (in_array("website", $rows['areas']) && ($rows['settings']['website'] == 1 || $rows['settings'] == 0) && $rows['application']['website'] != '') ? '<p>Website: ' . $rows['application']['website'] . '</p>' : ''; ?>
+        <?php echo (in_array("gender", $rows['areas']) && ($rows['settings']['gender'] == 1 || $rows['settings'] == 0) && $rows['application']['gender'] != '') ? '<p>Gender: ' . $rows['application']['gender'] . '</p>' : ''; ?>
+        <?php echo (in_array("ethnicity", $rows['areas']) && ($rows['settings']['ethnicity'] == 1 || $rows['settings'] == 0) && $rows['application']['ethnicity'] != '') ? '<p>Ethnicity: ' . $rows['application']['ethnicity'] . '</p>' : ''; ?>
+        <?php echo (in_array("age", $rows['areas']) && ($rows['settings']['age'] == '1' || $rows['settings'] == 0) && $rows['application']['age'] != '0') ? '<p>Age: ' . $rows['application']['age'] . '</p>' : ''; ?>
+        <?php if ($rows['application']['statement'] != '' && ($rows['settings']['statement'] == 1 || $rows['settings'] == 0) && in_array("statement", $rows['areas'])) : ?>
+            <h3 class="clearPadding clearMargin">Statement</h3>
+            <p><?php echo $rows['application']['statement']; ?></p>
+        <?php endif; ?>
+        <?php if ($rows['application']['proposal'] != '' && ($rows['settings']['proposal'] == 1 || $rows['settings'] == 0) && in_array("proposal", $rows['areas'])) : ?>
+            <h3 class="clearPadding clearMargin">Proposal</h3>
+            <p><?php echo $rows['application']['proposal']; ?></p>
+        <?php endif; ?>
+        <?php if ($rows['application']['bio'] != '' && in_array("bio", $rows['areas']) && ($rows['settings']['bio'] == 1 || $rows['settings'] == 0)) : ?>
+            <h3 class="clearPadding clearMargin">Bio</h3>
+            <p><?php echo $rows['application']['bio']; ?></p>
+        <?php endif; ?>
+        <?php if (in_array("resume", $rows['areas']) && ($rows['settings']['resume'] == 1 || $rows['settings'] == 0)) : ?>
+            <a href="<?php echo url('user/' . $rows['application']['uid'] . '/resume/download'); ?>" class="btn btn-default ap-btn" target="_blank">View Resume</a>
+        <?php endif; ?>
+        </div>
     </div>
+
     <?php if(in_array('work', $rows['steps'])) : ?>
     <div class="lightbox-parent">
         <?php foreach($rows['artworks'] as $artwork) : ?>

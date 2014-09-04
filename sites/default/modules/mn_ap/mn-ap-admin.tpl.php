@@ -47,39 +47,8 @@ dpm($rows); ?>
         <?php endif; ?>
     </div>
     <div class="row">
-        <div class="col-md-8">
-            <h1 class="clearPadding"><?php echo $rows['reviews']['first_name'] . ' ' . $rows['reviews']['last_name']; ?></h1>
-            <p>
-                <?php echo $rows['reviews']['address']; ?></br>
-                <?php echo $rows['reviews']['city'] . ', ' . $rows['reviews']['state'] . ' ' . $rows['reviews']['zip'] ; ?>
-            </p>
-
-            <?php echo (in_array("county", $rows['areas']) && $rows['reviews']['county'] != '') ? '<p>County: ' . $rows['reviews']['county'] . '</p>' : ''; ?>
-            <?php echo (in_array("country", $rows['areas']) && $rows['reviews']['country'] != '') ? '<p>Country: ' . $rows['reviews']['country'] . '</p>' : ''; ?>
-            <?php echo '<p>Email: ' . $rows['reviews']['email'] . '</p>'; ?>
-            <?php echo ($rows['reviews']['phone'] != '') ? '<p>Phone: ' . $rows['reviews']['phone'] . '</p>' : ''; ?>
-            <?php echo (in_array("website", $rows['areas']) && $rows['reviews']['website'] != '') ? '<p>Website: ' . $rows['reviews']['website'] . '</p>' : ''; ?>
-            <?php echo (in_array("gender", $rows['areas']) && $rows['reviews']['gender'] != '') ? '<p>Gender: ' . $rows['reviews']['gender'] . '</p>' : ''; ?>
-            <?php echo (in_array("ethnicity", $rows['areas']) && $rows['reviews']['ethnicity'] != '') ? '<p>Ethnicity: ' . $rows['reviews']['ethnicity'] . '</p>' : ''; ?>
-            <?php echo (in_array("age", $rows['areas']) && $rows['reviews']['age'] != '0') ? '<p>Age: ' . $rows['reviews']['age'] . '</p>' : ''; ?>
-            <?php if ($rows['reviews']['statement'] != '' && in_array("statement", $rows['areas'])) : ?>
-                <h3 class="clearPadding clearMargin">Statement</h3>
-                <p><?php echo $rows['reviews']['statement']; ?></p>
-            <?php endif; ?>
-            <?php if ($rows['reviews']['proposal'] != '' && in_array("proposal", $rows['areas'])) : ?>
-                <h3 class="clearPadding clearMargin">Proposal</h3>
-                <p><?php echo $rows['reviews']['proposal']; ?></p>
-            <?php endif; ?>
-            <?php if ($rows['reviews']['bio'] != '' && in_array("bio", $rows['areas'])) : ?>
-                <h3 class="clearPadding clearMargin">Bio</h3>
-                <p><?php echo $rows['reviews']['bio']; ?></p>
-            <?php endif; ?>
-            <?php if (in_array("resume", $rows['areas'])) : ?>
-                <a href="<?php echo url('user/' . $rows['reviews']['uid'] . '/resume/download'); ?>" class="btn ap-btn" target="_blank">View Resume</a>
-            <?php endif; ?>
-        </div>
         <!-- Jury Review Area -->
-        <div class="col-md-4">
+        <div class="col-lg-5 col-lg-push-7 col-md-12">
             <div class="roundWrapper">
                 <h1 class="clearPadding">
                     <?php echo $rows['opportunity']['title']; ?>
@@ -92,8 +61,9 @@ dpm($rows); ?>
                 <input type="hidden" name="next" id="next" value="<?php echo $rows['paging'][array_search($rows['reviews']['uid'], $rows['paging'])+1]; ?>">
                 <?php endif; ?>
                 <h3 class="clearPadding clearMargin">Average Rating</h3>
-                <input type="number" name="rating" id="input-star" data-disabled="true" class="rating" min="0" max="<?php echo isset($rows['settings']['scale']) ? $rows['settings']['scale'] : '10'; ?>" data-stars="<?php echo isset($rows['settings']['scale']) ? $rows['settings']['scale'] : '10'; ?>" data-size="sm" data-show-clear="false" step="0.5" value="<?php echo isset($rows['reviews']['avgRating']) ? $rows['reviews']['avgRating'] : ''; ?>"></input>
-
+                <div class="form-group">
+                    <input type="number" name="rating" id="input-star" data-disabled="true" class="rating" min="0" max="<?php echo isset($rows['settings']['scale']) ? $rows['settings']['scale'] : '10'; ?>" data-stars="<?php echo isset($rows['settings']['scale']) ? $rows['settings']['scale'] : '10'; ?>" data-size="sm" data-show-clear="false" step="0.5" value="<?php echo isset($rows['reviews']['avgRating']) ? $rows['reviews']['avgRating'] : ''; ?>"></input>
+                </div>
                 <?php if(isset($rows['reviews']['reviews'])) : ?>
                 <hr>
                     <h3 class="clearPadding clearMargin">
@@ -134,6 +104,37 @@ dpm($rows); ?>
                     </p>
                 <?php endif; ?>
             </form>
+        </div>
+        <div class="col-lg-7 col-lg-pull-5 col-md-12">
+            <h1 class="clearPadding"><?php echo $rows['reviews']['first_name'] . ' ' . $rows['reviews']['last_name']; ?></h1>
+            <p>
+                <?php echo $rows['reviews']['address']; ?></br>
+                <?php echo $rows['reviews']['city'] . ', ' . $rows['reviews']['state'] . ' ' . $rows['reviews']['zip'] ; ?>
+            </p>
+
+            <?php echo (in_array("county", $rows['areas']) && $rows['reviews']['county'] != '') ? '<p>County: ' . $rows['reviews']['county'] . '</p>' : ''; ?>
+            <?php echo (in_array("country", $rows['areas']) && $rows['reviews']['country'] != '') ? '<p>Country: ' . $rows['reviews']['country'] . '</p>' : ''; ?>
+            <?php echo '<p>Email: ' . $rows['reviews']['email'] . '</p>'; ?>
+            <?php echo ($rows['reviews']['phone'] != '') ? '<p>Phone: ' . $rows['reviews']['phone'] . '</p>' : ''; ?>
+            <?php echo (in_array("website", $rows['areas']) && $rows['reviews']['website'] != '') ? '<p>Website: ' . $rows['reviews']['website'] . '</p>' : ''; ?>
+            <?php echo (in_array("gender", $rows['areas']) && $rows['reviews']['gender'] != '') ? '<p>Gender: ' . $rows['reviews']['gender'] . '</p>' : ''; ?>
+            <?php echo (in_array("ethnicity", $rows['areas']) && $rows['reviews']['ethnicity'] != '') ? '<p>Ethnicity: ' . $rows['reviews']['ethnicity'] . '</p>' : ''; ?>
+            <?php echo (in_array("age", $rows['areas']) && $rows['reviews']['age'] != '0') ? '<p>Age: ' . $rows['reviews']['age'] . '</p>' : ''; ?>
+            <?php if ($rows['reviews']['statement'] != '' && in_array("statement", $rows['areas'])) : ?>
+                <h3 class="clearPadding clearMargin">Statement</h3>
+                <p><?php echo $rows['reviews']['statement']; ?></p>
+            <?php endif; ?>
+            <?php if ($rows['reviews']['proposal'] != '' && in_array("proposal", $rows['areas'])) : ?>
+                <h3 class="clearPadding clearMargin">Proposal</h3>
+                <p><?php echo $rows['reviews']['proposal']; ?></p>
+            <?php endif; ?>
+            <?php if ($rows['reviews']['bio'] != '' && in_array("bio", $rows['areas'])) : ?>
+                <h3 class="clearPadding clearMargin">Bio</h3>
+                <p><?php echo $rows['reviews']['bio']; ?></p>
+            <?php endif; ?>
+            <?php if (in_array("resume", $rows['areas'])) : ?>
+                <a href="<?php echo url('user/' . $rows['reviews']['uid'] . '/resume/download'); ?>" class="btn ap-btn" target="_blank">View Resume</a>
+            <?php endif; ?>
         </div>
     </div>
     <?php if(in_array('work', $rows['steps'])) : ?>

@@ -1,5 +1,6 @@
 (function($){
 $(document).ready(function(){
+
     //hide redundant information from resume
     $(".general-statement").hide();
     $(".biography").hide();

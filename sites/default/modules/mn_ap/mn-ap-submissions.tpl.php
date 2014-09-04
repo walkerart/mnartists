@@ -150,6 +150,11 @@ dpm($rows); ?>
 	</div>
 	<div class="row">
 		<div class="col-md-12">
+			<p class="pull-right"><?php echo $rows['completeCount']; ?></p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
 				<a class="next" href="<?php echo url('opportunities/', array()); ?>">Back to Opportunities</a>
 		</div>
 	</div>

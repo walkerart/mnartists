@@ -1,13 +1,13 @@
 (function($){
 $(document).ready(function(){
 
-    $("#opList").dataTable({
-    	"aaSorting": [[ 1, "desc" ]],
-    	'aoColumns': [
+	$("#opList").dataTable({
+		"aaSorting": [[ 1, "desc" ]],
+		'aoColumns': [
 			null,
 			{ 'sSortDataType': 'dom-text', 'sType': 'date' }
 		],
-    	"oLanguage": {
+		"oLanguage": {
 			"sLengthMenu":  '<select class="dt-select">'+
 				'<option value="10">Show 10 Rows</option>'+
 				'<option value="25">Show 25 Rows</option>'+
@@ -17,15 +17,15 @@ $(document).ready(function(){
 				'</select>',
 			"sSearch": "<span></span>"
 		},
-    	"aoColumnDefs": [
-          { "bSortable": false, "aTargets": [7,8,9, 10] }
-       ]
-    });
+		"aoColumnDefs": [
+			{ "bSortable": false, "aTargets": [7,8,9, 10] }
+	    ]
+	});
 
-    $('.dataTables_filter input').attr("placeholder", " Search");
-    $('.dataTables_filter input').addClass("search-container");
+	$('.dataTables_filter input').attr("placeholder", " Search");
+	$('.dataTables_filter input').addClass("search-container");
 
-    $("select").selectBoxIt({
+	$("select").selectBoxIt({
 		downArrowIcon: "icon-down"
 		// downArrowIcon: "glyphicon glyphicon-chevron-down"
 	});
