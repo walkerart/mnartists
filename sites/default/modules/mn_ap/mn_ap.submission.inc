@@ -45,6 +45,7 @@ function mn_ap_submission($nid) {
         if(in_array('administrator', $user->roles) || $owner ) {
             $reviews = mn_ap_get_all_reviews($nid, $round);
             $rows['reviews'] = $reviews;
+            $rows['completeCount'] = _get_submission_count($reviews);
         }
 
         if (in_array('administrator', $user->roles) || $owner) {
@@ -56,4 +57,16 @@ function mn_ap_submission($nid) {
     } else {
         return drupal_set_message(t('You do not have access.'), 'warning');
     }
+}
+
+// get count of complete entries for display
+function _get_submission_count($reviews) {
+    $totalCount = count($reviews);
+    $completeCount = 0;
+    foreach($reviews as $review) {
+        if ($review['complete'] != 0) {
+            $completeCount++;
+        }
+    }
+    return $completeCount . ' of ' . $totalCount . ' entries complete'; 
 }
