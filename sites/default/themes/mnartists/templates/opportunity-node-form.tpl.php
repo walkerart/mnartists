@@ -18,7 +18,7 @@
     $form['field_op_uri']['und']['0']['title']['#title'] = 'Website Title';
     $form['field_op_uri']['und']['0']['value']['#title'] = 'Website';
     $form['field_op_uri']['und']['#title'] = '';
-    //dpm($form);
+    dpm($form);
 ?>
 <div class="row">
     <div class="form-group">
@@ -129,7 +129,7 @@
                     </tr>
                     <tr class="hidden" id="proposal">
                         <td colspan="4">
-                            <div class="form-group"><?php print drupal_render($form['field_op_proposal_desc']['und'][0]['value']); ?></div>
+                            <div class="form-group"><?php print drupal_render($form['field_op_proposal_desc']); ?></div>
                         </td>
                     </tr>
                     <tr>
@@ -140,7 +140,7 @@
                     </tr>
                     <tr class="hidden" id="statement">
                         <td colspan="4">
-                            <div class="form-group"><?php print drupal_render($form['field_op_statement_desc']['und'][0]['value']); ?></div>
+                            <div class="form-group"><?php print drupal_render($form['field_op_statement_desc']); ?></div>
                         </td>
                     </tr>
                     <tr>
@@ -151,7 +151,7 @@
                     </tr>
                     <tr class="hidden" id="bio">
                         <td colspan="4">
-                            <div class="form-group"><?php print drupal_render($form['field_op_bio_desc']['und'][0]['value']); ?></div>
+                            <div class="form-group"><?php print drupal_render($form['field_op_bio_desc']); ?></div>
                         </td>
                     </tr>
                     <tr>
@@ -162,7 +162,7 @@
                     </tr>
                     <tr class="hidden" id="resume">
                         <td colspan="4">
-                            <div class="form-group"><?php print drupal_render($form['field_op_resume_desc']['und'][0]['value']); ?></div>
+                            <div class="form-group"><?php print drupal_render($form['field_op_resume_desc']); ?></div>
                         </td>
                     </tr>
                 </tbody>
@@ -242,7 +242,7 @@
                             </tr>
                             <tr id="field1" class="hidden">
                                 <td colspan="4">
-                                    <div class="form-group"><?php print drupal_render($form['field_op_custom_desc_1']['und'][0]['value']); ?></div>
+                                    <div class="form-group"><?php print drupal_render($form['field_op_custom_desc_1']); ?></div>
                                 </td>
                             </tr>
                             <tr>
@@ -253,7 +253,7 @@
                             </tr>
                             <tr id="field2" class="hidden">
                                 <td colspan="4">
-                                    <div class="form-group"><?php print drupal_render($form['field_op_custom_desc_2']['und'][0]['value']); ?></div>
+                                    <div class="form-group"><?php print drupal_render($form['field_op_custom_desc_2']); ?></div>
                                 </td>
                             </tr>
                             <tr>
@@ -264,7 +264,7 @@
                             </tr>
                             <tr id="field3" class="hidden">
                                 <td colspan="4">
-                                    <div class="form-group"><?php print drupal_render($form['field_op_custom_desc_3']['und'][0]['value']); ?></div>
+                                    <div class="form-group"><?php print drupal_render($form['field_op_custom_desc_3']); ?></div>
                                 </td>
                             </tr>
                             <tr>
@@ -275,7 +275,7 @@
                             </tr>
                             <tr id="field4" class="hidden">
                                 <td colspan="4">
-                                    <div class="form-group"><?php print drupal_render($form['field_op_custom_desc_4']['und'][0]['value']); ?></div>
+                                    <div class="form-group"><?php print drupal_render($form['field_op_custom_desc_4']); ?></div>
                                 </td>
                             </tr>
                         </tbody>
@@ -307,7 +307,7 @@
                             </tr>
                             <tr id="upload1" class="hidden">
                                 <td colspan="4">
-                                    <div class="form-group"><?php print drupal_render($form['field_op_custom_up_desc_1']['und'][0]['value']); ?></div>
+                                    <div class="form-group"><?php print drupal_render($form['field_op_custom_up_desc_1']); ?></div>
                                 </td>
                             </tr>
                             <tr>
@@ -318,7 +318,7 @@
                             </tr>
                             <tr id="upload2" class="hidden">
                                 <td colspan="4">
-                                    <div class="form-group"><?php print drupal_render($form['field_op_custom_up_desc_2']['und'][0]['value']); ?></div>
+                                    <div class="form-group"><?php print drupal_render($form['field_op_custom_up_desc_2']); ?></div>
                                 </td>
                             </tr>
                             <tr>
@@ -329,7 +329,7 @@
                             </tr>
                             <tr id="upload3" class="hidden">
                                 <td colspan="4">
-                                    <div class="form-group"><?php print drupal_render($form['field_op_custom_up_desc_3']['und'][0]['value']); ?></div>
+                                    <div class="form-group"><?php print drupal_render($form['field_op_custom_up_desc_3']); ?></div>
                                 </td>
                             </tr>
                             <tr>
@@ -340,7 +340,7 @@
                             </tr>
                             <tr id="upload4" class="hidden">
                                 <td colspan="4">
-                                    <div class="form-group"><?php print drupal_render($form['field_op_custom_up_desc_4']['und'][0]['value']); ?></div>
+                                    <div class="form-group"><?php print drupal_render($form['field_op_custom_up_desc_4']); ?></div>
                                 </td>
                             </tr>
                         </tbody>
