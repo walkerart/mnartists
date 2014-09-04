@@ -61,17 +61,21 @@
 
                         foreach ($sort_terms as $sort_term => $sort_label) {
                             $class = '';
+                            if ($sort_term === 'alpha') {
+                                $sortDir = "ASC";
+                            } else {
+                                $sortDir = "DESC";
+                            }
+                            $sortClass = "sort-desc";
                             if (isset($_GET['sort']) && $_GET['sort'] === $sort_term) {
                                 $class = "active";
+                                $sortDir = $_GET['sort_direction'] === "ASC" ? "DESC" : "ASC";
+                                $sortClass = $sortDir === "ASC" ? "sort-desc" : "sort-asc";
                             }
                             $st_href = $qs.'sort='.$sort_term;
                             ?>
                             <li class="<?= $class ?>">
-                                <?php if ($sort_term === 'alpha') { ?>
-                                    <a href="?<?= $st_href ?>&sort_direction=ASC"><?= $sort_label ?></a> <a href="?<?= $st_href ?>&sort_direction=DESC">&#8595;</a>
-                                <?php } else { ?>
-                                    <a href="?<?= $st_href ?>&sort_direction=DESC"><?= $sort_label ?></a> <a href="?<?= $st_href ?>&sort_direction=ASC">&#8595;</a>
-                                <?php } ?>
+                                <a href="?<?= $st_href ?>&sort_direction=<?= $sortDir ?>"><?= $sort_label ?></a> <a class="<?= $sortClass ?>" href="?<?= $st_href ?>&sort_direction=<?= $sortDir ?>">&#8595;</a>
                             </li>
                     <?php } ?>
                 </ul>
