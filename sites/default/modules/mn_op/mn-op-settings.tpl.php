@@ -14,7 +14,7 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="row">
                 <div class="col-md-12">
-                    <h1><?php echo $rows['opportunity']->title; ?>: Jury Settings</h1>
+                    <h1 class="clearPadding"><?php echo $rows['opportunity']->title; ?>: Jury Settings</h1>
                 </div>
             </div>
             <form role="form" action="<?php echo url('opportunity/'. $rows['opportunity']->nid .'/jury-settings', array()); ?>" method="POST">
@@ -238,7 +238,7 @@
             <div class="row">
                 <div class="col-sm-12">
                     <hr>
-                    <legend>Invite Jurors</legend>
+                    <h1 class="clearPadding">Invite Jurors</h1>
                     <p>
                         Juror Area Link: <a href ="<?php echo url('opportunity/' . $rows['opportunity']->nid . '/submissions', array()); ?>">
                         <?php echo $rows['opportunity']->title; ?> - Submissions</a>
