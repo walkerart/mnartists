@@ -16,7 +16,7 @@ $uncollected_result = mnartist_collections_get_uncollected_favorites($user->uid)
 $my_bin_noun = (arg(1) === $user->uid) ? 'My' : mnartist_profiles_collective_or_fullname_or_username(arg(1))."'s";
 ?>
 <h2>Collections</h2>
-<p class="intro-text">Collect artwork you like, bookmark articles to read, and gather opportunities and events that interest you.</p>
+<p class="intro-text">Collect artwork you like, bookmark articles to read, and gather opportunities and events that interest you. Hover over the gray star by any artwork, article, event, or opportunity to add it to a public or private collection.</p>
 <div class="user-list-wrap">
     <h2><?= $my_bin_noun ?> Bin</h2>
     <ul class="user-list">

@@ -6,7 +6,7 @@
     $came_from_welcome = ($parsed_referrer['path'] === '/user/welcome');
 ?>
 <h2>My Feed</h2>
-<p class="intro-text">Find and follow artists to see updates in your feed.</p>
+<p class="intro-text">Follow artists by hovering over the gray star by their name, and see updates in your feed about the artwork and events they post.</p>
 <?php if (count($feed_data) > 0) { ?>
     <ul class="user-feed">
         <?php foreach ($feed_data as $feed_event) { ?>
