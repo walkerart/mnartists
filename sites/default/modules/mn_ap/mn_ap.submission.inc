@@ -15,7 +15,7 @@ function mn_ap_submission($nid) {
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (isset($_POST['status'])) {
-            mn_ap_update_ap_status($nid, $uid, $_POST['status']);
+            mn_ap_update_ap_status($nid, $_POST['uid'], $_POST['status']);
         } elseif (isset($_POST['reopen'])) {
             mn_ap_reopen_ap($nid, $_POST['uid'], $_POST['reopen']);
         }

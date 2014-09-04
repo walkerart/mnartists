@@ -879,7 +879,7 @@ function mn_ap_check_juror($nid, $mail){
 function mn_ap_update_ap_status($nid, $uid, $status) {
   $input['accepted_at'] = date("Y-m-d H:i:s");
   //toggle the currently set status
-  if ($status == 0) {
+  if ($status == 0 || $status == '0') {
       $input['accept'] = 1;
   } elseif($status == 1) {
       $input['accept'] = 0;
