@@ -107,6 +107,10 @@ function mnartists_preprocess_page(&$vars) {
     drupal_add_library('system', 'ui.datepicker');
 }
 function mnartists_process_page(&$vars) {
+  if($_GET['q'] == 'manage-artworks')
+  {
+    drupal_add_css(drupal_get_path('module', 'mn_ap') . '/css/DT_bootstrap.css');
+  }
 }
 
 
