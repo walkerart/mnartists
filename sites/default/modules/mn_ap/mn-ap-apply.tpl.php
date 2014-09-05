@@ -1,17 +1,13 @@
 <?php   drupal_add_css(drupal_get_path('module', 'mn_ap') . '/css/bootstrap.min.css');
         drupal_add_css(drupal_get_path('module', 'mn_ap') . '/css/styles.css');
+
         drupal_add_js(drupal_get_path('libraries', 'ckeditor') . '/sites/all/libraries/ckeditor/ckeditor.js');
         drupal_add_js(drupal_get_path('module', 'mn_ap') . '/js/mustache.js');
         drupal_add_js(drupal_get_path('module', 'mn_ap') . '/js/jquery.validate.min.js');
         drupal_add_js(drupal_get_path('module', 'mn_ap') . '/js/jquery.history2.js');
-        //need to pass in the max image count
-        drupal_add_js('//connect.soundcloud.com/sdk.js', 'external');
-        //initialize SC soundcloud with client_id
+
         //inline javascript to limit # of selected artworks to the maximum defined in opportunity content type
         drupal_add_js('(function ($) { $(document).ready(function() {
-            SC.initialize({
-                client_id: "29800bb0ab961280619c6721dca3aa3d",
-            });
             window.CKEDITOR_BASEPATH = "/sites/all/libraries/ckeditor";
             }); })(jQuery);', 'inline' );
         drupal_add_js(drupal_get_path('module', 'mn_ap') . '/js/scripts2.js');
@@ -137,6 +133,7 @@
                                         <?php $count++; ?>
                                     <?php endif; ?>
                                 <?php endforeach; ?>
+                                <?php if (count($rows['opportunity']['additional_fields'] % 2 == 0)) echo '</div></div>'; ?>
                             <?php endif; ?>
                             <div class="form-group row">
                                 <div class="col-sm-12">
@@ -247,12 +244,18 @@
                             <?php else: ?>
                             <label id="artHelp">Choose <?php echo $rows['opportunity']['min_works']; ?> pieces of documentation to represent your work.</label>
                             <?php endif; ?>
+                            
                             <div class="row">
+                            <hr>
                                 <div class="col-sm-2">
-                                    <a class="ap-button btn" href="http://mnartist.imalab.us/node/add/artwork" target="_blank">Add New Work</a>
+                                    <a class="ap-button btn" href="<?php echo url('node/add/artwork', array()); ?>">Add More Work</a>
                                 </div>
                             </div>
-                            <?php $sci = "0"; //used to increment soundcloud embeds ?>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <p class="help-text">After you 'Add More Work' or 'Edit/Add' documentation for a work, return to this tab and refresh your page to see and select newly added work.</p>
+                                </div>
+                            </div>
                             <?php foreach ($rows['artworks'] as $artwork) : ?>
                                 <div class="row ap-row">
                                     <hr>
@@ -317,23 +320,13 @@
                                         <?php $noneOfTypes = 'false'; ?>
                                         <div class="ap-image col-sm-4">
                                             <div class="thumbnail ap-artwork-thumbnail">
-                                                <span id="url<?php echo $sci; // populated by soundcloud embed iframe ?>"></span>
+                                                <iframe class="img-responsive" scrolling="no" frameborder="no" width="" height="150" src="//w.soundcloud.com/player/?url=<?php echo $image['file']; ?>&amp;show_user=false&amp;show_artwork=false"></iframe>
                                                 <div class="caption">
                                                     <div>
                                                         <input type="checkbox" class="ap-check" data-id="f<?php echo $image['fid']; ?>" name="artwork['<?php echo $image['fid']; ?>']" value="<?php echo $image['fid']; ?>" data-vid="v<?php echo $artwork['vid']; ?>" <?php echo isset($rows['ap_artworks']) && $rows['ap_artworks'] != '' && in_array($image['fid'], $rows['ap_artworks']) ? 'checked' : ''; ?>>
                                                         <?php echo $image['filename']; ?>
                                                     </div>
                                                 </div>
-                                                <?php drupal_add_js(array('soundcloud_url' => array('url' . $sci => $image['file'])), 'setting');
-                                                    drupal_add_js('(function ($) { $(document).ready(function() {
-                                                    urls = Drupal.settings.soundcloud_url;
-                                                      $.each(urls, function(index, value){
-                                                        //console.log("INDEX: " + index + " VALUE: " + value);
-                                                        SC.oEmbed(value, {iframe: "true", show_comments:"false", maxheight:"300px", class:"img-responsive"},  document.getElementById(index));
-                                                      });
-                                                    }); })(jQuery);', 'inline' )
-                                                ?>
-                                                <?php $sci++; ?>
                                             </div>
                                         </div>
 
@@ -591,7 +584,7 @@
                                     <legend class="text-center">Confirm Submission</legend>
                                 </div>
                                 <div class="col-sm-2">
-                                    <input id="SaveApplication" type="submit" class="pull-right next" value="Submit">
+                                    <button id="SaveApplication" type="submit" class="pull-right ap-btn" value="Submit">Submit</button>
                                 </div>
                             </div>
                             <div class="row">
@@ -686,17 +679,7 @@
                                         <span class="ap-artwork hidden" id="f<?php echo $image['fid']; ?>">
                                             <div class="ap-image col-sm-6">
                                                 <label for="artwork['<?php echo $image['fid']; ?>']"></label>
-                                                <span id="url<?php echo $sci; // populated by soundcloud embed iframe ?>"></span>
-                                                <?php drupal_add_js(array('soundcloud_url' => array('url' . $sci => $image['file'])), 'setting');
-                                                  drupal_add_js('(function ($) { $(document).ready(function() {
-                                                  urls = Drupal.settings.soundcloud_url;
-                                                    $.each(urls, function(index, value){
-                                                      //console.log("INDEX: " + index + " VALUE: " + value);
-                                                      SC.oEmbed(value, {iframe: "true", show_comments:"false", maxheight:"150px", class:"img-responsive"},  document.getElementById(index));
-                                                    });
-                                                  }); })(jQuery);', 'inline' )
-                                                ?>
-                                                <?php $sci++; ?>
+                                                <iframe class="img-responsive" scrolling="no" frameborder="no" width="" height="150" src="//w.soundcloud.com/player/?url=<?php echo $image['file']; ?>&amp;show_user=false&amp;show_artwork=false"></iframe>
                                             </div>
                                         </span>
 
@@ -783,7 +766,7 @@
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <div class="prev" id="gotoStep<?php echo count($rows['opportunity']['steps']) + 1; ?>" role="button">Back</div>
-                                        <input id="SaveApplication" type="submit" class="pull-right submit" value="Submit">
+                                        <button id="SaveApplication" type="submit" class="pull-right btn ap-btn" value="Submit">Submit</button>
                                     </div>
                                 </div>
                             </div>

@@ -5883,7 +5883,7 @@ depending on the template so needs unified a bit */
         opacity:1;
     }
     .flag-throbber {
-      display:none!important;
+      // display:none!important;
     }
     span {
         line-height:20px;
@@ -5933,7 +5933,7 @@ depending on the template so needs unified a bit */
         .flag-count {
             line-height:1.3em;
             display:inline-block!important;
-            vertical-align:middle;
+            // vertical-align:middle;
         }
     }
 
@@ -6446,52 +6446,52 @@ body.page-node-edit {
           float:right;
           .flag-wrapper {
             .flag {
-              height:30px;
-              width:27px;
-              display:block;
-              padding:0px;
-              text-align:center;
-              box-sizing:border-box;
-              padding-top:5px;
+              // height:30px;
+              // width:27px;
+              // display:block;
+              // padding:0px;
+              // text-align:center;
+              // box-sizing:border-box;
+              // padding-top:5px;
               img {
                 opacity:.3;
               }
             }
           }
-          &:hover {
-            .flag-wrapper {
-              .flag {
-                background:$mystuff_bg_dark;
-                img {
-                  -webkit-filter: invert(100%);
-                  filter: invert(100%);
-                }
-              }
-            }
-          }
+          // &:hover {
+          //   .flag-wrapper {
+          //     .flag {
+          //       background:$mystuff_bg_dark;
+          //       img {
+          //         -webkit-filter: invert(100%);
+          //         filter: invert(100%);
+          //       }
+          //     }
+          //   }
+          // }
           ul {
-            padding:10px;
-            position:absolute;
-            overflow:hidden;
-            top:40px;
-            right:0px;
-            left:auto;
-            font-size:12px;
+            // padding:10px;
+            // position:absolute;
+            // overflow:hidden;
+            // top:40px;
+            // right:0px;
+            // left:auto;
+            // font-size:12px;
             li {
               float:none;
               display:block;
               clear:both;
-              a {
-                padding:4px 0;
-                margin:0;
-                border-radius:0px;
-                &:hover {
-                  color:#888;
-                }
-              }
+              // a {
+              //   padding:4px 0;
+              //   margin:0;
+              //   border-radius:0px;
+              //   &:hover {
+              //     color:#888;
+              //   }
+              // }
               &.share-this {
                 &.collect-title {
-                  border-top:1px solid #fff;
+                  // border-top:1px solid #fff;
                   padding-top:5px;
                   a {
                     padding-left:0px;
@@ -6525,7 +6525,7 @@ body.page-node-edit {
             border-radius:50%;
             height:100%;
             width:auto;
-            margin:0 20px 10px 20px;
+            // margin:0 20px 10px 20px;
 
             img {
                 display:block;
@@ -6536,13 +6536,14 @@ body.page-node-edit {
             }
         }
         .flag-wrapper {
-          position: absolute;
-          right: 0px;
+          // position: absolute;
+          // right: 0px;
 
           a {
             border-radius:0px;
             border-radius:0px;
             margin:0;
+            padding:0;
             display:inline-block;
 
             img {
@@ -6552,7 +6553,10 @@ body.page-node-edit {
             }
           }
           .flag-count {
-            display:none;
+            display: inline !important;
+            line-height: 12px !important;
+            padding: 0 !important;
+            margin: 0 !important;
           }
         }
         .username {
@@ -9405,7 +9409,29 @@ table.table thead .sorting {
             text-align:center;
         }
     }
-    #content {
+
+    h2 {
+        padding-top: 20px;
+    }
+
+    .intro-text, h2 {
+        padding: 0 0 5px 0;
+        display: inline;
+        float: left;
+        overflow: hidden;
+        width: 56.517%;
+        margin-right: 2.409%;
+        margin-right: 0;
+        margin-left: auto!important;
+        margin-right: auto!important;
+        display: block;
+        float: none;
+        text-align: left;
+        color: #fff;
+        margin-bottom: 0px;
+    }
+
+    .user-feed {
         background: $mystuff_bg_dark;
         padding:20px;
         margin-bottom:20px;
@@ -9564,6 +9590,27 @@ table.table thead .sorting {
     .view-content {
         @include container;
         text-align:center;
+
+        .intro-text {
+          padding:0 0 20px 0;
+          @include column(14);
+          @include last;
+          margin-left:auto!important;
+          margin-right:auto!important;
+          display:block;
+          float:none;
+          text-align:left;
+          color:#fff;
+          @media screen and (max-width: $break-mobile) {
+            @include column(24);
+          }
+          @media screen and (max-width: $break-tablet) {
+            @include column(24);
+          }
+          @media screen and (max-width: $break-desktop-small) {
+            @include column(24);
+          }
+        }
 
         .view-flag-lists-user-list {
 
@@ -9815,6 +9862,14 @@ table.table thead .sorting {
                     display:block;
                     background: url('../images/icon-filter-arrow-down.png') no-repeat center center transparent;
                     background-size:7px 8px;
+
+                    &.sort-asc {
+                        -webkit-transform: rotate(180deg);
+                        -moz-transform: rotate(180deg);
+                        -ms-transform: rotate(180deg);
+                        -o-transform: rotate(180deg);
+                        transform: rotate(180deg);
+                    }
                 }
             }
 

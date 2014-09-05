@@ -15,10 +15,10 @@
     $form['field_op_custom_upload_2']['und'][0]['value']['#title'] = '';
     $form['field_op_custom_upload_3']['und'][0]['value']['#title'] = '';
     $form['field_op_custom_upload_4']['und'][0]['value']['#title'] = '';
+    $form['field_op_uri']['und']['0']['title']['#title'] = 'Website Title';
     $form['field_op_uri']['und']['0']['value']['#title'] = 'Website';
     $form['field_op_uri']['und']['#title'] = '';
-    //dpm($form);
-    // hide($form['op_short_description']);
+    dpm($form);
 ?>
 <div class="row">
     <div class="form-group">
@@ -27,7 +27,7 @@
 </div>
 
 <div class="row">
-    <div class="form-group textarea">
+    <div class="form-group">
         <?php print drupal_render_children($form['op_short_description']); ?>
     </div>
 </div>
@@ -39,11 +39,12 @@
 </div>
 
 <div class="row">
-    <div class="form-group">
+    <div class="form-group body-margin">
         <?php print drupal_render_children($form['body']); ?>
     </div>
 </div>
-<div class="row">
+
+<div class="row row-margin-top">
     <div class="form-group">
         <label class="col-md-4 control-label">Open Date</label>
         <?php print drupal_render_children($form['op_dates']['und']['0']['value']); //start date ?>
@@ -66,12 +67,12 @@
         <?php print drupal_render_children($form['op_cover_image']); ?>
     </div>
 </div>
-<div class="row">
+<div class="row row-margin-top">
     <div class="form-group">
         <?php print drupal_render_children($form['op_email']); ?>
     </div>
 </div>
-<div class="row">
+<div class="row row-margin-top">
     <div class="form-group">
         <?php print drupal_render_children($form['field_op_uri']); ?>
     </div>
@@ -108,7 +109,7 @@
             <?php print drupal_render_children($form['op_max_works']); ?>
         </div>
     </div>
-        <div class="row">
+    <div class="row row-margin-top">
         <div class="form-group form-table">
             <table class="table">
                 <thead>
@@ -128,7 +129,7 @@
                     </tr>
                     <tr class="hidden" id="proposal">
                         <td colspan="4">
-                            <div class="form-group"><?php print drupal_render($form['field_op_proposal_desc']['und'][0]['value']); ?></div>
+                            <div class="form-group"><?php print drupal_render($form['field_op_proposal_desc']); ?></div>
                         </td>
                     </tr>
                     <tr>
@@ -139,7 +140,7 @@
                     </tr>
                     <tr class="hidden" id="statement">
                         <td colspan="4">
-                            <div class="form-group"><?php print drupal_render($form['field_op_statement_desc']['und'][0]['value']); ?></div>
+                            <div class="form-group"><?php print drupal_render($form['field_op_statement_desc']); ?></div>
                         </td>
                     </tr>
                     <tr>
@@ -150,7 +151,7 @@
                     </tr>
                     <tr class="hidden" id="bio">
                         <td colspan="4">
-                            <div class="form-group"><?php print drupal_render($form['field_op_bio_desc']['und'][0]['value']); ?></div>
+                            <div class="form-group"><?php print drupal_render($form['field_op_bio_desc']); ?></div>
                         </td>
                     </tr>
                     <tr>
@@ -161,7 +162,7 @@
                     </tr>
                     <tr class="hidden" id="resume">
                         <td colspan="4">
-                            <div class="form-group"><?php print drupal_render($form['field_op_resume_desc']['und'][0]['value']); ?></div>
+                            <div class="form-group"><?php print drupal_render($form['field_op_resume_desc']); ?></div>
                         </td>
                     </tr>
                 </tbody>
@@ -214,7 +215,7 @@
             </table>
         </div>
     </div>
-    <div class="row">
+    <div class="row row-margin-top">
         <div class="panel-group" id="accordion">
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -241,7 +242,7 @@
                             </tr>
                             <tr id="field1" class="hidden">
                                 <td colspan="4">
-                                    <div class="form-group"><?php print drupal_render($form['field_op_custom_desc_1']['und'][0]['value']); ?></div>
+                                    <div class="form-group"><?php print drupal_render($form['field_op_custom_desc_1']); ?></div>
                                 </td>
                             </tr>
                             <tr>
@@ -252,7 +253,7 @@
                             </tr>
                             <tr id="field2" class="hidden">
                                 <td colspan="4">
-                                    <div class="form-group"><?php print drupal_render($form['field_op_custom_desc_2']['und'][0]['value']); ?></div>
+                                    <div class="form-group"><?php print drupal_render($form['field_op_custom_desc_2']); ?></div>
                                 </td>
                             </tr>
                             <tr>
@@ -263,7 +264,7 @@
                             </tr>
                             <tr id="field3" class="hidden">
                                 <td colspan="4">
-                                    <div class="form-group"><?php print drupal_render($form['field_op_custom_desc_3']['und'][0]['value']); ?></div>
+                                    <div class="form-group"><?php print drupal_render($form['field_op_custom_desc_3']); ?></div>
                                 </td>
                             </tr>
                             <tr>
@@ -274,7 +275,7 @@
                             </tr>
                             <tr id="field4" class="hidden">
                                 <td colspan="4">
-                                    <div class="form-group"><?php print drupal_render($form['field_op_custom_desc_4']['und'][0]['value']); ?></div>
+                                    <div class="form-group"><?php print drupal_render($form['field_op_custom_desc_4']); ?></div>
                                 </td>
                             </tr>
                         </tbody>
@@ -306,7 +307,7 @@
                             </tr>
                             <tr id="upload1" class="hidden">
                                 <td colspan="4">
-                                    <div class="form-group"><?php print drupal_render($form['field_op_custom_up_desc_1']['und'][0]['value']); ?></div>
+                                    <div class="form-group"><?php print drupal_render($form['field_op_custom_up_desc_1']); ?></div>
                                 </td>
                             </tr>
                             <tr>
@@ -317,7 +318,7 @@
                             </tr>
                             <tr id="upload2" class="hidden">
                                 <td colspan="4">
-                                    <div class="form-group"><?php print drupal_render($form['field_op_custom_up_desc_2']['und'][0]['value']); ?></div>
+                                    <div class="form-group"><?php print drupal_render($form['field_op_custom_up_desc_2']); ?></div>
                                 </td>
                             </tr>
                             <tr>
@@ -328,7 +329,7 @@
                             </tr>
                             <tr id="upload3" class="hidden">
                                 <td colspan="4">
-                                    <div class="form-group"><?php print drupal_render($form['field_op_custom_up_desc_3']['und'][0]['value']); ?></div>
+                                    <div class="form-group"><?php print drupal_render($form['field_op_custom_up_desc_3']); ?></div>
                                 </td>
                             </tr>
                             <tr>
@@ -339,7 +340,7 @@
                             </tr>
                             <tr id="upload4" class="hidden">
                                 <td colspan="4">
-                                    <div class="form-group"><?php print drupal_render($form['field_op_custom_up_desc_4']['und'][0]['value']); ?></div>
+                                    <div class="form-group"><?php print drupal_render($form['field_op_custom_up_desc_4']); ?></div>
                                 </td>
                             </tr>
                         </tbody>
@@ -348,7 +349,7 @@
             </div>
         </div>
     </div>
-    <div class="row">
+    <div class="row row-margin-top">
         <div class="form-group textarea">
             <?php print drupal_render($form['field_op_juror_note']['und'][0]['value']); ?>
         </div>

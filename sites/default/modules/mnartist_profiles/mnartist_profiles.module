@@ -659,7 +659,7 @@ function _mnartist_profile_block_visibility() {
     global $user;
 
     if ((arg(0) == "user" && in_array(arg(2), array("edit", "mailchimp"))) ||
-        (in_array(arg(0), array('opportunity', 'application', 'opportunities', 'applications'))) ||
+        (in_array(arg(0), array('opportunity', 'application', 'opportunities', 'applications', 'manage-artworks', 'manage-events'))) ||
         (!user_is_logged_in() && arg(0) == "user" && (is_null(arg(1)) || in_array(arg(1), array("password", "register")))) ||
         (arg(0) == "node" && in_array(arg(1), array("edit", "add"))) ||
         (arg(0) == "node" && in_array(arg(2), array("edit"))) ||
@@ -809,7 +809,7 @@ function _mnartist_profile_my_stuff() {
             $editItems[] = l("Add Artwork", "node/add/artwork") . l("Manage", "manage-artworks", array("attributes" => array("class" => array("user-view"))));
         }
         if (count(array_intersect(array('administrator', 'Artist', 'Organization'), array_values($user->roles)))) {
-            $editItems[] = l("Add Event", "node/add/event");
+            $editItems[] = l("Add Event", "node/add/event") . l("Manage", "manage-events", array("attributes" => array("class" => array("user-view"))));
         }
         if (in_array('administrator', array_values($user->roles)) ||
             in_array('Organizational Admin', array_values($user->roles))) {
@@ -1035,10 +1035,16 @@ function mnartist_profiles_form_alter(&$form, $form_state, $form_id) {
 
     if ($form_id == 'user_profile_form') {
 
-        if (isset($form["#user_category"]) && $form["#user_category"] == 'main') {
+        if (isset($form["#user_category"]) && $form["#user_category"] == 'account') {
+
+            // include account instructions
+            $form['instructions']['#markup'] = "<div class='privacy-instructions'>Manage your password, email address, profile picture, and newsletter subscription here.</div>";
+            $form['instructions']['#weight'] = -100;
+
+        } else if (isset($form["#user_category"]) && $form["#user_category"] == 'main') {
 
             // include main profile instructions
-            $form['privacy_instructions']['#markup'] = "<div class='privacy-instructions'>Manage information that will appear on your public profile.<br>Help our funders learn more about our artistic communities by filling out as many fields as possible, even if you keep them private.</div>";
+            $form['privacy_instructions']['#markup'] = "<div class='privacy-instructions'>Manage information that will appear on your public profile. <br> Help mnartists.org and our partners, the McKnight Foundation and the Walker Art Center, learn more about our artistic communities by filling out as many fields as possible, even if you keep them private.</div>";
             $form['privacy_instructions']['#weight'] = -100;
 
         } else if (isset($form["#user_category"]) && $form["#user_category"] == 'resume') {

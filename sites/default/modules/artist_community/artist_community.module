@@ -119,7 +119,7 @@ function artist_community_theme() {
             'template' => 'templates/artist-profile',
         ),
         'artist_community_menu_search' => array(
-            'variables' => array(),
+            'variables' => array('rows' => array()),
             'template' => 'templates/mna-search-block'
         ),
         'artist_community_menu_location_search' => array(
@@ -173,7 +173,7 @@ function _artist_community_block_visibility() {
     global $user;
 
     if ((arg(0) == "user" && in_array(arg(2), array("edit", "mailchimp", "welcome"))) ||
-            (in_array(arg(0), array('opportunity', 'application', 'opportunities', 'applications'))) ||
+            (in_array(arg(0), array('opportunity', 'application', 'opportunities', 'applications', 'manage-artworks', 'manage-events'))) ||
             (!user_is_logged_in() && arg(0) == "user" && (is_null(arg(1)) || in_array(arg(1), array("password", "register")))) ||
             (arg(0) == "node" && in_array(arg(1), array("edit", "add"))) ||
             (arg(0) == "node" && in_array(arg(2), array("edit"))) ||
@@ -218,9 +218,8 @@ function _community_block_event_category_link () {
 }
 
 function _community_block_search() {
-    return theme("artist_community_menu_search", array(
-
-    ));
+    global $user;
+    return theme("artist_community_menu_search", array('rows' => $user));
 }
 
 /**
@@ -986,6 +985,10 @@ function _artist_community_get_items_query ($local_og = null,
                     $typeQuery = AC_TYPE_FIELD.":$type";
                     $subQuery = null;
                     $subQueryTargetField = AC_CATEGORY_FIELD;
+                    if (isset($local_content[$type]) &&
+                        is_array($local_content[$type])) {
+                        $subQuery = implode(' OR ', $local_content[$type]);
+                    }
                     if (!isset($_GET['content']['event_include_past']) ||
                         (isset($_GET['content']['event_include_past']) && isset($_GET['content']['event_include_past']) != '1')) {
                         $typeQuery .= " AND ds_field_date\:value:[NOW TO *]";
@@ -995,7 +998,12 @@ function _artist_community_get_items_query ($local_og = null,
                         $eventLocationSearchString = '{!geofilt sfield='.AC_USER_LATLNG_FIELD." pt=$event_coords d=".NEAR_ME_RADIUS.'}';
                         $solarium_query->createFilterQuery('event_location')->setQuery($eventLocationSearchString);
                     }
-                    $contextQueryString = "($typeQuery)";
+
+                    if (!is_null($subQuery) && is_null($forSaleQuery)) {
+                        $contextQueryString = "($typeQuery AND ($subQueryTargetField:($subQuery)))";
+                    } else {
+                        $contextQueryString = "($typeQuery)";
+                    }
                     $contentFilters['node'][] = $contextQueryString;
                     break;
                 case 'artists':

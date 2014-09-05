@@ -275,7 +275,7 @@ function ap_submit_form() {
         ->execute();
   }
 
-  drupal_set_message(t('Your application has been submitted.'), 'error');
+  drupal_set_message(t('Your application has been submitted.'), 'status');
   return drupal_goto('application/' . $nid);
 }
 
@@ -360,7 +360,7 @@ function mn_ap_artworks_data($uid, $vid = NULL) {
   }
 
   if (empty($out['nodes'])) {
-    return drupal_set_message(t('You have not added any artworks to your profile.'), 'status');
+    return drupal_set_message(t('You have not added any artworks to your profile.'), 'error');
   }
 
   $rows = array();
@@ -705,6 +705,7 @@ function get_juror_reviews($nid, $uid, $round) {
   $query = db_select('op_rating', 'r');
   $query->condition('r.nid', $nid, '=');
   $query->condition('r.round', $round, '=');
+  $query->condition('r.uid', $uid, '=');
   $query->fields('r');
   $reviews = $query->execute()->fetchAll();
 
@@ -878,7 +879,7 @@ function mn_ap_check_juror($nid, $mail){
 function mn_ap_update_ap_status($nid, $uid, $status) {
   $input['accepted_at'] = date("Y-m-d H:i:s");
   //toggle the currently set status
-  if ($status == 0) {
+  if ($status == 0 || $status == '0') {
       $input['accept'] = 1;
   } elseif($status == 1) {
       $input['accept'] = 0;
@@ -921,7 +922,7 @@ function mn_ap_reopen_all_aps($nid, $reopen) {
   } elseif($reopen == 1) {
       $reopen = 0;
       mn_ap_update_reopen_setting($nid, $reopen);
-      return drupal_set_message('You have closed all reopened applications.', 'error');
+      return drupal_set_message('You have closed all reopened applications.', 'status');
   }
 }
 

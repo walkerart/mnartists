@@ -1,5 +1,11 @@
 <p class="site-description">
-    Select communities and content to create a homepage tailored to your interests.
+
+    <?php if(! $rows->uid) : ?>
+    Welcome to the new MN Artists! To move your artwork and information from the old site to the new site, <a class="ap-button btn" href="<?php echo url('user/register', array()); ?>">click here</a>.
+    <?php else : ?>
+    Welcome back to MN Artists!
+    <?php endif; ?>
+
 </p>
 <div class="search-container">
     <form method="get" action="/community">

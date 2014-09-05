@@ -61,17 +61,21 @@
 
                         foreach ($sort_terms as $sort_term => $sort_label) {
                             $class = '';
+                            if ($sort_term === 'alpha') {
+                                $sortDir = "ASC";
+                            } else {
+                                $sortDir = "DESC";
+                            }
+                            $sortClass = "sort-desc";
                             if (isset($_GET['sort']) && $_GET['sort'] === $sort_term) {
                                 $class = "active";
+                                $sortDir = $_GET['sort_direction'] === "ASC" ? "DESC" : "ASC";
+                                $sortClass = $sortDir === "ASC" ? "sort-desc" : "sort-asc";
                             }
                             $st_href = $qs.'sort='.$sort_term;
                             ?>
                             <li class="<?= $class ?>">
-                                <?php if ($sort_term === 'alpha') { ?>
-                                    <a href="?<?= $st_href ?>&sort_direction=ASC"><?= $sort_label ?></a> <a href="?<?= $st_href ?>&sort_direction=DESC">&#8595;</a>
-                                <?php } else { ?>
-                                    <a href="?<?= $st_href ?>&sort_direction=DESC"><?= $sort_label ?></a> <a href="?<?= $st_href ?>&sort_direction=ASC">&#8595;</a>
-                                <?php } ?>
+                                <a href="?<?= $st_href ?>&sort_direction=<?= $sortDir ?>"><?= $sort_label ?></a> <a class="<?= $sortClass ?>" href="?<?= $st_href ?>&sort_direction=<?= $sortDir ?>">&#8595;</a>
                             </li>
                     <?php } ?>
                 </ul>
@@ -83,7 +87,7 @@
         <?php if ($featured_articles_will_show) { ?>
             <?php if (!empty($articles)) { ?>
                 <div class="article-thing widget">
-                    <h3>Top Stories</h3>
+                    <h3>Featured Stories</h3>
                     <?php foreach($articles as $article) { ?>
                         <div class="article-detail" id="article-detail-<?= $article->nid ?>" style="display: none;">
                             <a href="/node/<?= $article->nid ?>"><img src="<?= $article->image_uri ?>"></a>
@@ -116,7 +120,7 @@
             if (!empty($from_the_network_posts)) { ?>
                 <div class="from-the-network-thing widget">
                     <div class="wrapper">
-                        <h3>From The Network</h3>
+                        <h3>Editor's Picks</h3>
                         <?php foreach($from_the_network_posts as $post) { ?>
                             <div class="network-post">
                                 <a href="<?= $post->url ?>" target="_blank">

@@ -2,13 +2,19 @@
     drupal_add_css(drupal_get_path('module', 'mn_ap') . '/css/bootstrap.min.css');
     drupal_add_css(drupal_get_path('module', 'mn_op') . '/css/mn-op.css');
     drupal_add_css(drupal_get_path('module', 'mn_ap') . '/css/styles.css');
+    drupal_add_css(drupal_get_path('module', 'mn_ap') . '/css/jquery.selectBoxIt.css');
+    drupal_add_css(drupal_get_path('module', 'mn_ap') . '/css/DT_bootstrap.css');
+
+    drupal_add_js(drupal_get_path('module', 'mn_ap') . '/js/jquery.selectBoxIt.js');
+    drupal_add_js(drupal_get_path('theme', 'mnartists') . '/scripts/jquery.icheck.min.js');
+    drupal_add_js(drupal_get_path('module', 'mn_op') . '/js/op-settings.js');
     //dpm($rows); ?>
 <div class="container" id="content">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="row">
                 <div class="col-md-12">
-                    <h1><?php echo $rows['opportunity']->title; ?>: Jury Settings</h1>
+                    <h1 class="clearPadding"><?php echo $rows['opportunity']->title; ?>: Jury Settings</h1>
                 </div>
             </div>
             <form role="form" action="<?php echo url('opportunity/'. $rows['opportunity']->nid .'/jury-settings', array()); ?>" method="POST">
@@ -33,14 +39,6 @@
                                 <option <?php echo ($rows['settings']['scale'] == 10 || $rows['settings'] == 0) ? 'selected' : ''; ?>>10</option>
                                 <option <?php echo $rows['settings']['scale'] == 11 ? 'selected' : ''; ?>>11</option>
                                 <option <?php echo $rows['settings']['scale'] == 12 ? 'selected' : ''; ?>>12</option>
-                                <option <?php echo $rows['settings']['scale'] == 13 ? 'selected' : ''; ?>>13</option>
-                                <option <?php echo $rows['settings']['scale'] == 14 ? 'selected' : ''; ?>>14</option>
-                                <option <?php echo $rows['settings']['scale'] == 15 ? 'selected' : ''; ?>>15</option>
-                                <option <?php echo $rows['settings']['scale'] == 16 ? 'selected' : ''; ?>>16</option>
-                                <option <?php echo $rows['settings']['scale'] == 17 ? 'selected' : ''; ?>>17</option>
-                                <option <?php echo $rows['settings']['scale'] == 18 ? 'selected' : ''; ?>>18</option>
-                                <option <?php echo $rows['settings']['scale'] == 19 ? 'selected' : ''; ?>>19</option>
-                                <option <?php echo $rows['settings']['scale'] == 20 ? 'selected' : ''; ?>>20</option>
                             </select>
                         </div>
                     </div>
@@ -58,23 +56,23 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-sm-12">
-                        <table>
-                            <tbody>
-                                <tr>
-                                    <td>Comments Required:</td>
-                                    <td>Yes  <input type="radio" name="note_required" value="1" <?php echo ($rows['settings']['note_required'] == '1' || $rows['settings'] == 0) ? 'checked' : ''; ?>></td>
-                                    <td>No  <input type="radio" name="note_required" value="0" <?php echo $rows['settings']['note_required'] == '0' ? 'checked' : ''; ?>></td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div class="form-group">
+                        <div class="col-sm-3">
+                            <label class="control-label">Comments Required</label>
+                        </div>
+                        <div class="col-sm-3">
+                            Yes  <input type="radio" name="note_required" value="1" <?php echo ($rows['settings']['note_required'] == '1' || $rows['settings'] == 0) ? 'checked' : ''; ?>>
+                        </div>
+                        <div class="col-sm-3">
+                            No  <input type="radio" name="note_required" value="0" <?php echo $rows['settings']['note_required'] == '0' ? 'checked' : ''; ?>>
+                        </div>
                     </div>
                 </div>
 
 
                 <div class="row">
                     <div class="col-md-12">
-                    <table>
+                    <table class="table op-table">
                         <thead>
                             <tr>
                                 <th></th>
@@ -213,7 +211,7 @@
                         <div class="col-sm-3">
                             <label class="control-label">Jury Round</label>
                         </div>
-                        <div class="col-sm-9">
+                        <div class="col-sm-8">
                             <select class="form-select" name="round" id="round">
                                 <option <?php echo $rows['settings']['round'] == 1 ? 'selected' : ''; ?>>1</option>
                                 <option <?php echo $rows['settings']['round'] == 2 ? 'selected' : ''; ?>>2</option>
@@ -225,27 +223,22 @@
                                 <option <?php echo $rows['settings']['round'] == 8 ? 'selected' : ''; ?>>8</option>
                                 <option <?php echo $rows['settings']['round'] == 9 ? 'selected' : ''; ?>>9</option>
                             </select>
+                            <p class="help-block">First round shows all applicants. Later rounds only show applicants that you have selected as "In" the applicant pool.</p>
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <p>First round shows all applicants. Later rounds only show applicants that you have selected as "In" the applicant pool.</p>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group pull-right">
+                                <button class="btn ap-btn" type="submit" value="Submit">Submit</button>
+                            </div>
+                        </div>
                     </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-sm-12">
-                    <div class="form-group pull-right">
-                        <input class="btn ap-btn-default" type="submit" value="Submit">
-                    </div>
-                    </div>
-                </div>
             </form>
             <div class="row">
                 <div class="col-sm-12">
                     <hr>
-                    <legend>Invite Jurors</legend>
+                    <h1 class="clearPadding">Invite Jurors</h1>
                     <p>
                         Juror Area Link: <a href ="<?php echo url('opportunity/' . $rows['opportunity']->nid . '/submissions', array()); ?>">
                         <?php echo $rows['opportunity']->title; ?> - Submissions</a>
@@ -265,14 +258,14 @@
                         <input type="text" id="juror_email" class="form-control" name="juror_email" required>
                     </div>
                     <div class="col-sm-2">
-                        <input class="btn btn-default" type="submit" value="Add">
+                        <button class="btn ap-btn" type="submit" value="Add">Add</button>
                     </div>
                 </div>
             </form>
             <?php if(count($rows['jurors']) != 0) : ?>
             <div class="row">
                 <div class="col-md-12">
-                    <table class="table">
+                    <table class="table op-table">
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -292,10 +285,9 @@
                                         <input type="hidden" id="node_id" name="node_id" value="<?php echo $rows['opportunity']->nid; ?>">
                                         <input type="hidden" id="remove" name="remove" value="remove">
                                         <input type="hidden" id="juror_email" name="juror_email" value="<?php echo $juror->mail; ?>">
-                                        <input class="btn btn-default" type="submit" value="Remove">
+                                        <button class="btn ap-btn" type="submit" value="Remove">Remove</button>
                                     </form>
                                 </td>
-                                <?php //TODO: avg.rating, number of ratings for jurors ?>
                             </tr>
                             <?php endforeach; ?>
                         </tbody>
