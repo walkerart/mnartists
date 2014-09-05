@@ -1044,7 +1044,7 @@ function mnartist_profiles_form_alter(&$form, $form_state, $form_id) {
         } else if (isset($form["#user_category"]) && $form["#user_category"] == 'main') {
 
             // include main profile instructions
-            $form['privacy_instructions']['#markup'] = "<div class='privacy-instructions'>Manage information that will appear on your public profile.<br>Help our funders learn more about our artistic communities by filling out as many fields as possible, even if you keep them private.</div>";
+            $form['privacy_instructions']['#markup'] = "<div class='privacy-instructions'>Manage information that will appear on your public profile. <br> Help mnartists.org and our partners, the McKnight Foundation and the Walker Art Center, learn more about our artistic communities by filling out as many fields as possible, even if you keep them private.</div>";
             $form['privacy_instructions']['#weight'] = -100;
 
         } else if (isset($form["#user_category"]) && $form["#user_category"] == 'resume') {
