@@ -120,7 +120,7 @@ function artist_community_theme() {
             'template' => 'templates/artist-profile',
         ),
         'artist_community_menu_search' => array(
-            'variables' => array(),
+            'variables' => array('rows' => array()),
             'template' => 'templates/mna-search-block'
         ),
         'artist_community_menu_location_search' => array(
@@ -219,9 +219,8 @@ function _community_block_event_category_link () {
 }
 
 function _community_block_search() {
-    return theme("artist_community_menu_search", array(
-
-    ));
+    global $user;
+    return theme("artist_community_menu_search", array('rows' => $user));
 }
 
 /**
