@@ -1,6 +1,7 @@
 <h2>MY FILTERS</h2>
 <p class="intro-text">Create new Saved Filters to bookmark and store your searches on MN Artists to create personalized homepages of the content that most interests you.</p>
 
+<?php if($filters) : ?>
 <div class="user-feed">
     <table>
         <thead>
@@ -40,3 +41,8 @@
         </tbody>
     </table>
 </div>
+<?php else : ?>
+    <br>
+    <br>
+    <p class="intro-text">You have no saved filters. After filtering content and communities, click on the Star above the search box to save a filter.</p>
+<?php endif; ?>
