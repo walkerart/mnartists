@@ -36,6 +36,7 @@
             <h1><a class="organization" href="/">Mn Artists</a><?= (isset($banner_string) && $banner_string !== '') ? " $banner_string" : '' ?></h1>
         </header>
 
+        <!-- Sort Thing -->
         <div class="sort-thing sort-thing-fully-retracted">
             <div class="wrap">
                 <h2>SORT</h2>
@@ -75,20 +76,20 @@
                             $st_href = $qs.'sort='.$sort_term;
                             ?>
                             <li class="<?= $class ?>">
-                                <a href="?<?= $st_href ?>&sort_direction=<?= $sortDir ?>"><?= $sort_label ?></a> <a class="<?= $sortClass ?>" href="?<?= $st_href ?>&sort_direction=<?= $sortDir ?>">&#8595;</a>
+                                <a href="?<?= $st_href ?>&amp;sort_direction=<?= $sortDir ?>"><?= $sort_label ?></a> <a class="<?= $sortClass ?>" href="?<?= $st_href ?>&amp;sort_direction=<?= $sortDir ?>">&#8595;</a>
                             </li>
                     <?php } ?>
                 </ul>
-
             </div>
             <div class="sort-thing-current-sort" id="sort-thing-opener">SORT</div>
         </div>
 
-        <?php if ($featured_articles_will_show) { ?>
-            <?php if (!empty($articles)) { ?>
+        <!-- Article Thing -->
+        <?php if ($featured_articles_will_show) : ?>
+            <?php if (!empty($articles)) : ?>
                 <div class="article-thing widget">
                     <h3>Featured Stories</h3>
-                    <?php foreach($articles as $article) { ?>
+                    <?php foreach($articles as $article) : ?>
                         <div class="article-detail" id="article-detail-<?= $article->nid ?>" style="display: none;">
                             <a href="/node/<?= $article->nid ?>"><img src="<?= $article->image_uri ?>"></a>
                             <div class="article-content">
@@ -101,27 +102,28 @@
                                 <div class="article-detail-photo-credit"><?= $article->photo_credit ?></div>
                             </div>
                         </div>
-                    <?php } ?>
+                    <?php endforeach; ?>
 
                     <div class="the-list-of-articles-container">
                         <ul>
-                            <?php foreach($articles as $article) { ?>
+                            <?php foreach($articles as $article) : ?>
                                 <li class="<?= strtolower($article->category) ?>" data-target-article="article-detail-<?= $article->nid ?>">
                                     <a href="/node/<?= $article->nid ?>">
                                         <h4><?= $article->category ?></h4>
                                         <p><?= $article->title ?></p>
                                     </a>
                                 </li>
-                            <?php } ?>
+                            <?php endforeach; ?>
                         </ul>
                     </div>
                 </div>
-            <?php }
-            if (!empty($from_the_network_posts)) { ?>
+            <?php endif; ?>
+            <!--  Editor's Picks -->
+            <?php if (!empty($from_the_network_posts)) : ?>
                 <div class="from-the-network-thing widget">
                     <div class="wrapper">
                         <h3>Editor's Picks</h3>
-                        <?php foreach($from_the_network_posts as $post) { ?>
+                        <?php foreach($from_the_network_posts as $post) : ?>
                             <div class="network-post">
                                 <a href="<?= $post->url ?>" target="_blank">
                                     <img src="<?= $post->image_url ?>" title="<?= $post->title ?>">
@@ -129,24 +131,25 @@
                                 <div class="network-source"><?= $post->source ?></div>
                                 <div class="network-title"><a href="<?= $post->url ?>" target="_blank"><?= $post->title ?></a></div>
                             </div>
-                        <?php } ?>
+                        <?php endforeach; ?>
                     </div>
                 </div>
-            <?php }
-        }
-        if ($layout_mode === 3) {
+            <?php endif; ?>
+        <?php endif; ?>
+
+
+        <?php if ($layout_mode === 3) {
             print theme('artist_community_page_search_results', array(
                 'total_num_results' => $total_num_results,
                 'all_event_results' => $all_event_results,
                 'content' => $content,
                 'has_filters' => $has_filters
             ));
-        }
-        ?>
+        } ?>
     </div>
     <?php if ($sidebar_will_show) { ?>
         <div class="panel-panel panel-col-last sidebar-right">
-            <?php if(!empty($all_event_results)) { ?>
+            <?php if(!empty($all_event_results)) : ?>
                 <div class="widget-standard widget my-events">
                     <h3>My Events</h3>
                     <div class="widget-content">
@@ -155,7 +158,7 @@
                 </div>
 
                 <div class="widget-standard widget highlighted-event-thing">
-                    <h3><?= $highlighted_event->date->format('F'); ?> Highlight</h3>
+                    <h3><?php $highlighted_event->date->format('F'); ?> Highlight</h3>
                     <div class="widget-content">
                         <div class="event-date">
                             <span class="month"><?= $highlighted_event->date->format('M'); ?></span> <?= $highlighted_event->date->format('d'); ?>
@@ -168,7 +171,7 @@
                         <div class="event-excerpt"><?= $highlighted_event->body ?></div>
                     </div>
                 </div>
-            <?php } ?>
+            <?php endif; ?>
 
             <?php if (empty($all_event_results)) { ?>
                 <?php if (!empty($latest_users)) { ?>
@@ -176,7 +179,7 @@
                         <h3>Newest Artists</h3>
                         <div class="widget-content">
                         <ul>
-                            <?php foreach($latest_users as $context_user) { ?>
+                            <?php foreach($latest_users as $context_user) : ?>
                                 <li>
                                     <a href="/user/<?= $context_user->uid ?>">
                                         <img src="<?= $context_user->image_uri ?>" width="68" height="68">
@@ -186,7 +189,7 @@
                                         </div>
                                     </a>
                                 </li>
-                            <?php } ?>
+                            <?php endforeach; ?>
                             <li class="user-thing-more"><a href="/community?content[artists]=1&?sort=recent&sort_direction=DESC<?php if ($og_get_string != '') { echo "&$og_get_string"; } ?>" style="font-size: 4em;">More</a></li>
                         </ul>
                         </div>
