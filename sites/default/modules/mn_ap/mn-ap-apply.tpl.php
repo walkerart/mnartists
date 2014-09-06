@@ -133,7 +133,6 @@
                                         <?php $count++; ?>
                                     <?php endif; ?>
                                 <?php endforeach; ?>
-                                <?php if (count($rows['opportunity']['additional_fields'] % 2 == 0)) echo '</div></div>'; ?>
                             <?php endif; ?>
                             <div class="form-group row">
                                 <div class="col-sm-12">
