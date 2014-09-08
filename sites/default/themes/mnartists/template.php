@@ -81,7 +81,7 @@ function mnartists_preprocess_html(&$vars) {
           (arg(0) == "user" && in_array(arg(2), array("edit", "mailchimp"))) ||
           (arg(0) == "node" && in_array(arg(1), array("edit", "add"))) ||
           (arg(0) == "node" && in_array(arg(2), array("edit"))) ||
-          (arg(0) == 'user' && in_array(arg(1), array("saved-filters", "feed", "welcome")) ||
+          (arg(0) == 'user' && in_array(arg(1), array("saved-filters", "feed", "welcome", "migrate")) ||
           (user_is_logged_in() && (arg(0) == "user" && in_array(arg(2), array("flags")) && flag_lists_is_owner('edit', arg(4)))) ||
           (user_is_logged_in() && (arg(0) == "user" && in_array(arg(2), array("flags")) && !is_numeric(arg(3)))) ||
           (user_is_logged_in() && (arg(0) == "flags" && flag_lists_is_owner('edit', arg(2)))))
