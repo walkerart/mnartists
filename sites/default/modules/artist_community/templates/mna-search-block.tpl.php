@@ -36,6 +36,6 @@
     </form>
 </div>
 
-<p class="site-description">
+<p class="site-description site-description-after">
     Explore Minnesota's art scene by browsing communities and content.
 </p>
