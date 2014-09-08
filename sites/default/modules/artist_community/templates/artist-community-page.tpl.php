@@ -86,9 +86,8 @@
 
         <!-- Article Thing -->
         <?php if ($featured_articles_will_show) : ?>
-            <div class="article-thing widget">
             <?php if (!empty($articles)) : ?>
-                <div class="article-thing-background">
+                <div class="article-thing widget">
                     <h3>Featured Stories</h3>
                     <?php foreach($articles as $article) : ?>
                         <div class="article-detail" id="article-detail-<?= $article->nid ?>" style="display: none;">
@@ -136,7 +135,6 @@
                     </div>
                 </div>
             <?php endif; ?>
-            </div>
         <?php endif; ?>
 
 
