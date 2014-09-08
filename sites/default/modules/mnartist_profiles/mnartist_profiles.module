@@ -740,23 +740,27 @@ function _mnartist_profile_my_stuff() {
         $userBlock = module_invoke('user', 'block', 'view', 'login');
         $output = $userBlock['content'];
 
-        $links = array();
-        $links[] = l("Login", "user");
-        $links[] = l("Register", "user/register");
-        $links[] = l("Forgot Password", "user/password");
+        $loginItems = array();
+        $loginItems[] = l("Login", "user");
+        $loginItems[] = l("Register", "user/register");
+        $loginItems[] = l("Forgot Password", "user/password");
 
-        $output .= theme_item_list(array(
-            'items' => $links,
-            'title' => null,
-            'type' => 'ul',
-            'attributes' => array(
-                'class' => array('my-stuff-menu', 'login-menu')
-            )
+        // $output .= theme_item_list(array(
+        //     'items' => $links,
+        //     'title' => null,
+        //     'type' => 'ul',
+        //     'attributes' => array(
+        //         'class' => array('my-stuff-menu', 'login-menu')
+        //     )
+        // ));
+
+        $output = theme("mna_my_stuff_menu", array(
+            'loginItems' => $loginItems
         ));
     } else {
-        $links = array();
+        $myLinks = array();
 
-        $links[] = l("Feed", "user/feed");
+        $myLinks[] = l("Feed", "user/feed");
 
         $account = user_load($user->uid);
         $flagLists = flag_lists_get_user_flags(NULL, $account);
@@ -772,32 +776,32 @@ function _mnartist_profile_my_stuff() {
         foreach($flagLists as $flag) {
             $flags[] = l($flag->title, "user/{$user->uid}/flags/lists/{$flag->fid}");
         }
-        $links[] = array(
+        $myLinks[] = array(
             'data' => l("Collections", "user/{$user->uid}/flags/lists"),
             'children' => $flags
         );
-        $links[] = array(
+        $myLinks[] = array(
             'data' => l("Applications", "applications"),
         );
-        $links[] = array(
+        $myLinks[] = array(
             'data' => l("Saved Filters", "user/saved-filters"),
             'children' => _mnartist_filter_view_filter()
         );
 
         // check for artist role
-        $links[] = l("Account", "user/{$user->uid}/edit");
+        $myLinks[] = l("Account", "user/{$user->uid}/edit");
         if (_get_role($user) === 'artist') {
-            $links[] = l("Profile", "user/{$user->uid}/edit/main") . l("View", "user/{$user->uid}", array("attributes" => array("class" => array("user-view"))));
+            $myLinks[] = l("Profile", "user/{$user->uid}/edit/main") . l("View", "user/{$user->uid}", array("attributes" => array("class" => array("user-view"))));
         }
         if (_get_role($user) === 'org' || in_array('administrator', array_values($user->roles))) {
-            $links[] = l("Organization", "user") . l("edit", "user/{$user->uid}/edit/organization", array("attributes" => array("class" => array("user-view"))));
+            $myLinks[] = l("Organization", "user") . l("edit", "user/{$user->uid}/edit/organization", array("attributes" => array("class" => array("user-view"))));
         }
         if (_get_role($user) === 'artist') {
-            $links[] = l("Résumé", "user/{$user->uid}/edit/resume", array()) . l("View", "user/{$user->uid}/resume/download", array("attributes" => array("class" => array("user-view"), "target" => "_blank")));
+            $myLinks[] = l("Résumé", "user/{$user->uid}/edit/resume", array()) . l("View", "user/{$user->uid}/resume/download", array("attributes" => array("class" => array("user-view"), "target" => "_blank")));
         }
 
         $renderedLinks = theme_item_list(array(
-            'items' => $links,
+            'items' => $myLinks,
             'title' => null,
             'type' => 'ul',
             'attributes' => array(
@@ -832,7 +836,7 @@ function _mnartist_profile_my_stuff() {
         ));
 
         $output = theme("mna_my_stuff_menu", array(
-            'links' => $renderedLinks,
+            'renderedLinks' => $renderedLinks,
             'editLinks' => $editLinks
         ));
     }
