@@ -8034,13 +8034,14 @@ li.collect-this, li.add-this {
 .article-thing {
     clear: both;
     display: table;
-    height: 600px; /* tmp should it be variable? */
+    height: auto; /* tmp should it be variable? */
 
     @media screen and (max-width: $break-tablet) {
       height:auto;
     }
     .article-thing-background {
         background-color: white;
+        height: 100%;
     }
 
     .article-detail-title {
@@ -8135,7 +8136,7 @@ li.collect-this, li.add-this {
         display: table-cell;
         height: 100%;
         width: 36%;
-        padding-left:20px;
+        margin-left:20px;
         box-sizing:border-box;
         @media screen and (max-width: $break-tablet) {
             @include column(24);
