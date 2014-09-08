@@ -3,7 +3,7 @@
     <?php if(! $rows->uid) : ?>
     Welcome to the new MN Artists! To move your artwork and information from the old site to the new site, <a class="ap-button btn" href="<?php echo url('user/register', array()); ?>">click here</a>.
     <?php else : ?>
-    Welcome back to MN Artists!
+    Save your search; create a personalized homepage.
     <?php endif; ?>
 
 </p>
@@ -35,3 +35,7 @@
         <button type="submit"></button>
     </form>
 </div>
+
+<p class="site-description">
+    Explore Minnesota's art scene by browsing communities and content.
+</p>
