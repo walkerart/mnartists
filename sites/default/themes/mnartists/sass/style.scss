@@ -8033,6 +8033,7 @@ li.collect-this, li.add-this {
 /* @group Article Slideshow Block for Communities */
 .article-thing {
     clear: both;
+    display: table;
     height: 600px; /* tmp should it be variable? */
 
     @media screen and (max-width: $break-tablet) {
@@ -8129,8 +8130,9 @@ li.collect-this, li.add-this {
         }
     }
     .the-list-of-articles-container {
-        float: left;
+        // float: left;
         background-color: white;
+        display: table-cell;
         height: 100%;
         width: 36%;
         padding-left:20px;
