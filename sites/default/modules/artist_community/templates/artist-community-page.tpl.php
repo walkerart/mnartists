@@ -28,13 +28,15 @@
 
     $has_filters = (isset($_GET['og']) || isset($_GET['content']) || isset($_GET['global_search']));
 ?>
+<div>
+    <!-- banner -->
+    <header class="organization-header<?php if (count($_GET) <= 1) { ?> has-taglines<?php } ?>">
+        <h1><a class="organization" href="/">Mn Artists</a><?= (isset($banner_string) && $banner_string !== '') ? " $banner_string" : '' ?></h1>
+    </header>
+</div>
+
 <div class="panel-2col layout-a">
     <div class="panel-panel panel-col-first main-content<?php if (!$featured_articles_will_show) { ?> has-featured-articles<?php } ?>">
-
-        <!-- banner -->
-        <header class="organization-header<?php if (count($_GET) <= 1) { ?> has-taglines<?php } ?>">
-            <h1><a class="organization" href="/">Mn Artists</a><?= (isset($banner_string) && $banner_string !== '') ? " $banner_string" : '' ?></h1>
-        </header>
 
         <!-- Sort Thing -->
         <div class="sort-thing sort-thing-fully-retracted">
