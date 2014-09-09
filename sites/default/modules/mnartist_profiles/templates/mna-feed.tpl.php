@@ -4,9 +4,11 @@
     $should_show_welcome = _mnartist_profiles_should_show_welcome();
     $parsed_referrer = parse_url($_SERVER['HTTP_REFERER']);
     $came_from_welcome = ($parsed_referrer['path'] === '/user/welcome');
+    $aristsUrl = url("community", array("query" => array("content[artists]" => "1")));
+    $orgUrl = url("community", array("query" => array("content[organizations]" => "1")));
 ?>
 <h2>My Feed</h2>
-<p class="intro-text">Follow artists by hovering over the gray star by their name, and see updates in your feed about the artwork and events they post.</p>
+<p class="intro-text">Follow <a href="<?= $aristsUrl ?>">artists</a> and <a href="<?= $orgUrl ?>">orgs</a> by hovering over the gray star by their name, and see updates in your feed about the artwork and events they post.</p>
 <?php if (count($feed_data) > 0) { ?>
     <ul class="user-feed">
         <?php foreach ($feed_data as $feed_event) { ?>
