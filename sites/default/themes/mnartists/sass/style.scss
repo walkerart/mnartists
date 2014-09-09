@@ -5422,9 +5422,19 @@ only screen and (min-device-pixel-ratio: 1.5) {
       margin-right:0px;
     }
   }
-  .field-item {
-    p {
-        font-size: 15px;
+  .panel-pane {
+    .block-inner {
+      .block-content {
+        .field {
+          .field-items {
+            .field-item {
+              p {
+                font-size: 15px;
+              }
+            }
+          }
+        }
+      }
     }
   }
 }
