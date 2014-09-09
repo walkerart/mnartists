@@ -120,6 +120,12 @@ jQuery(document).ready(function () {
             if (slideItems.length > 1) {
                 slideItems.each(function () {
                     var item = jQuery(this);
+                    var caption = item.find("figure");
+                    if (caption.length) {
+                        caption = caption.text();
+                    } else {
+                        caption = "";
+                    }
                     var child = item.children();
                     var testHeight = item.height();
                     if (child.hasClass('file-video-vimeo')) {
@@ -133,6 +139,7 @@ jQuery(document).ready(function () {
                             var naturalHeight = parseInt(firstImageEl.attr('height'));
                             var setMaxHeight = parseInt(firstImageEl.css('max-height'));
                             testHeight = (naturalHeight < setMaxHeight) ? naturalHeight : setMaxHeight;
+                            firstImageEl.attr("title", caption).attr("alt", caption);
                         }
                     }
                     maxHeight = testHeight > maxHeight ? testHeight : maxHeight;
