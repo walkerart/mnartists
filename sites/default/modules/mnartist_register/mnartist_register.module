@@ -97,7 +97,7 @@ function mnartist_register_user_form_validate($form, &$form_state) {
     global $user;
 
     if (isset($form_state["values"]["op"]) && $form_state["values"]["op"] === "Proceed Without Importing") {
-        drupal_goto("user/$user->uid/edit");
+        drupal_goto("user/feed");
         return;
     }
 
