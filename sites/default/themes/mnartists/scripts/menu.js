@@ -33,14 +33,25 @@
         });
 
         var datePickerContainer = menu.find(".menu-event-datepicker");
-        var incomingDate = new Date(loadPageVar('event_date') + ' 00:00:00 GMT-0500') || null;
-        datePickerContainer.datepicker({
+        var incomingDate = null;
+        var pageDate = loadPageVar('event_date');
+        if (pageDate !== null && pageDate !== "") {
+            incomingDate = new Date(pageDate + ' 00:00:00 GMT-0500') || null;
+        }
+        var dateOptions = {
             defaultDate: incomingDate,
             dateFormat: "yy-mm-dd",
             onSelect: function(dateText, inst) {
                 window.location = '/community?content[event]=1&event_date=' + dateText;
             }
-        });
+        };
+
+        datePickerContainer.datepicker(dateOptions);
+        if (incomingDate === null) {
+            window.setTimeout(function(){
+               jQuery('.ui-state-active').removeClass('ui-state-active');
+           },10);
+        }
 
         // open menu sub-items that have selections
         $('div.item-list').each(function () {
