@@ -75,9 +75,8 @@
                 $the_class_suffix = ($item['type'] === 'user') ? 'users' : $the_thing->type;
                 ?>
                 <div class="item item-<?= $the_class_suffix ?>">
-                    <?php if ($item['type'] === 'node') { 
-                         $node_view = node_view($the_thing, 'tesser');
-                            render($node_view); ?>
+                    <?php if ($item['type'] === 'node') { ?>
+                        <?= render(node_view($the_thing, 'teaser')); ?>
                     <?php } else if ($item['type'] === 'user') { ?>
                         <?= theme('artist_community_artist_profile', array('user' => $the_thing)) ?>
                     <?php } ?>
