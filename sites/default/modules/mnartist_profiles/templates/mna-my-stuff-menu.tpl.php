@@ -5,7 +5,12 @@
 <div id="my-stuff-menu">
     <p class="site-description">
     <?php if($user->uid) : ?>
-    	Hi <?php print mnartist_profiles_collective_or_fullname_or_username($user->uid); ?>, use the left-hand menu to manage your account, profile, artwork, events, collections, resume and applications.
+        <?php $name = mnartist_profiles_collective_or_fullname_or_username($user->uid); ?>
+    	<?php if($name) : ?>
+            Hi <?php print $name; ?>, use the left-hand menu to manage your account, profile, artwork, events, collections, resume and applications.
+        <?php else : ?>
+            Use the left-hand menu to manage your account, profile, artwork, events, collections, resume and applications.
+        <?php endif; ?>
     <?php else : ?>
     	Welcome to the new MN Artists! To move your artwork and information from the old site to the new site, <a class="my-stuff-link" href="<?php echo url('user/register', array()); ?>">click here</a>.
     <?php endif; ?>
