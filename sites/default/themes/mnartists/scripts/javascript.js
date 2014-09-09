@@ -211,7 +211,7 @@ jQuery(document).ready(function () {
     }
 
     // select boxes
-    // jQuery('select.form-select').customSelect();
+    jQuery('select.form-select').chosen();
 
     // nice file input
     jQuery('input[type=file]').nicefileinput();
@@ -244,5 +244,19 @@ jQuery(document).ready(function () {
         }
     });
 
+    var termsLink = jQuery("a.terms-link");
+    if (termsLink.length) {
+        jQuery("#terms").dialog({
+            autoOpen: false,
+            maxHeight: 600,
+            maxWidth: 600,
+            modal: true
+        });
+        termsLink.click(function(e) {
+            e.preventDefault();
+            e.stopPropagation();
 
+            jQuery("#terms").dialog( "open" );
+        });
+    }
 });

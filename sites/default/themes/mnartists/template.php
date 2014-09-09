@@ -81,7 +81,7 @@ function mnartists_preprocess_html(&$vars) {
           (arg(0) == "user" && in_array(arg(2), array("edit", "mailchimp"))) ||
           (arg(0) == "node" && in_array(arg(1), array("edit", "add"))) ||
           (arg(0) == "node" && in_array(arg(2), array("edit"))) ||
-          (arg(0) == 'user' && in_array(arg(1), array("saved-filters", "feed", "welcome", "migrate")) ||
+          (arg(0) == 'user' && in_array(arg(1), array("saved-filters", "feed", "welcome", "migrate", "password")) ||
           (user_is_logged_in() && (arg(0) == "user" && in_array(arg(2), array("flags")) && flag_lists_is_owner('edit', arg(4)))) ||
           (user_is_logged_in() && (arg(0) == "user" && in_array(arg(2), array("flags")) && !is_numeric(arg(3)))) ||
           (user_is_logged_in() && (arg(0) == "flags" && flag_lists_is_owner('edit', arg(2)))))
@@ -105,6 +105,7 @@ function mnartists_process_html(&$vars) {
  */
 function mnartists_preprocess_page(&$vars) {
     drupal_add_library('system', 'ui.datepicker');
+    drupal_add_library('system', 'ui.dialog');
 }
 function mnartists_process_page(&$vars) {
   if($_GET['q'] == 'manage-artworks' || $_GET['q'] == 'manage-events')
