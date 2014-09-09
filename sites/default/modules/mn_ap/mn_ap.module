@@ -42,6 +42,7 @@ function mn_ap_menu() {
     'type' => MENU_CALLBACK,
     'page callback' => 'ap_submissions_xls',
     'page arguments' => array(1,3,5),
+    'access callback' => 'user_is_logged_in',
     'access arguments' => array('access content'),
   );
   $items['opportunity/%/apply/submit'] = array(
@@ -49,6 +50,7 @@ function mn_ap_menu() {
     'type' => MENU_CALLBACK,
     'page callback' => 'ap_submit_form',
     'page arguments' => array(1),
+    'access callback' => 'user_is_logged_in',
     'access arguments' => array('access content'),
   );
 
