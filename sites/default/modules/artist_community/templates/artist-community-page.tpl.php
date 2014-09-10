@@ -215,13 +215,14 @@
                         <div class="event-thing-event-block event-thing-event-block-hero">
                             <a href="/node/<?= $event_widget_items['hero']->nid ?>">
                                 <img src="<?= $event_widget_items['hero']->image_uri ?>">
-                                <div class="event-thing-event-title"><?= $event_widget_items['hero']->title ?></div>
+                                <div class="event-thing-event-title"><?= date("M d", $event_widget_items['hero']->date) ?>: <?= $event_widget_items['hero']->title ?></div>
                             </a>
                         </div>
                         <?php foreach ($event_widget_items['others'] as $event) { ?>
+                            <?php //dpm($event); ?>
                             <div class="event-thing-event-block">
                                 <a href="/node/<?= $event->nid ?>">
-                                    <div class="event-thing-event-title"><?= $event->title ?></div>
+                                    <div class="event-thing-event-title"><?= date("M d", $event->date) ?>: <?= $event->title ?></div>
                                 </a>
                             </div>
                         <?php } ?>

@@ -180,6 +180,7 @@ function artist_community_search_page() {
                 $context_event_data = new StdClass();
                 $context_event_data->nid = $event->nid;
                 $context_event_data->title = $event->title;
+                $context_event_data->date = strtotime($event->field_date['und'][0]['value']);
                 $context_event_data->text = text_summary($event->body['und'][0]['value'], 'html', 300);
                 $context_event_data->image_uri = image_style_url('medium', $event->field_images['und'][0]['uri']);
 
