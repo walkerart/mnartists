@@ -1402,6 +1402,11 @@ div.entityconnect-edit {
 
 // user profile form only
 #user-profile-form {
+    .sticky-table {
+        thead {
+            display:block;
+        }
+    }
     .form-item-profile-resume-field-biography-und-0-value {
         label {
             color:transparent;
@@ -1414,6 +1419,7 @@ div.entityconnect-edit {
 
     thead {
         border:none;
+        display:none; /* because its just duplicate title */
         tr {
             border:none;
             border-bottom:1px solid #ccc;
