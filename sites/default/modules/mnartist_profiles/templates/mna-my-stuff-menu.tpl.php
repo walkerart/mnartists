@@ -6,21 +6,19 @@
     <p class="site-description">
     <?php if($user->uid) : ?>
         <?php $name = mnartist_profiles_collective_or_fullname_or_username($user->uid); ?>
-    	<?php if($name) : ?>
+        <?php if($name) : ?>
             Hi <?php print $name; ?>, use the left-hand menu to manage your account, profile, artwork, events, collections, resume and applications.
         <?php else : ?>
             Use the left-hand menu to manage your account, profile, artwork, events, collections, resume and applications.
         <?php endif; ?>
-    <?php else : ?>
-    	Welcome to the new MN Artists! To move your artwork and information from the old site to the new site, <a class="my-stuff-link" href="<?php echo url('user/register', array()); ?>">click here</a>.
     <?php endif; ?>
     </p>
     <?php if(isset($loginItems)) : ?>
-    	<ul>
-    	<?php foreach ($loginItems as $item) : ?>
-    		<li><?php print $item; ?></li>
-    	<?php endforeach; ?>
-    	</ul>
+        <ul>
+        <?php foreach ($loginItems as $item) : ?>
+            <li><?php print $item; ?></li>
+        <?php endforeach; ?>
+        </ul>
     <?php endif; ?>
     <?php if(isset($renderedLinks)) print $renderedLinks; ?>
     <?php if(isset($editLinks)) print $editLinks; ?>
