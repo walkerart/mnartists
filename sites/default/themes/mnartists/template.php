@@ -152,6 +152,5 @@ function mnartists_process_block(&$vars) {
 
 function mnartists_preprocess_flag(&$vars) {
     $content_id = $vars['content_id'];
-    dpm($vars);
-    $vars['link_count'] = flag_get_counts('node', $content_id, true);
+    $vars['link_count'] = flag_get_counts($vars['flag']->content_type, $content_id, true);
 }
