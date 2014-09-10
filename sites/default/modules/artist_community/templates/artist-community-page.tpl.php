@@ -97,7 +97,9 @@
                             <div class="article-content">
                                 <div class="article-detail-title"><?= $article->title ?></div>
                                 <div class="article-detail-byline">by <?= $article->author ?></div>
+                                <?php if(user_is_logged_in()) { ?>
                                 <div class="article-detail-flag pane-mnartist-collections-mna-collections-star"><?= theme("mnartist_collections_star", array('node_id' => $article->nid)) ?></div>
+                                <?php } ?>
                                 <div class="article-detail-subhead"><?= $article->subhead ?></div>
                                 <div class="article-detail-excerpt"><?= trim($article->excerpt) ?>&hellip;</div>
                                 <a class="article-detail-excerpt-more" href="/node/<?= $article->nid ?>">More</a>
