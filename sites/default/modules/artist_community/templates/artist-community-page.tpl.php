@@ -97,7 +97,9 @@
                             <div class="article-content">
                                 <div class="article-detail-title"><?= $article->title ?></div>
                                 <div class="article-detail-byline">by <?= $article->author ?></div>
+                                <?php if(user_is_logged_in()) { ?>
                                 <div class="article-detail-flag pane-mnartist-collections-mna-collections-star"><?= theme("mnartist_collections_star", array('node_id' => $article->nid)) ?></div>
+                                <?php } ?>
                                 <div class="article-detail-subhead"><?= $article->subhead ?></div>
                                 <div class="article-detail-excerpt"><?= trim($article->excerpt) ?>&hellip;</div>
                                 <a class="article-detail-excerpt-more" href="/node/<?= $article->nid ?>">More</a>
@@ -215,13 +217,14 @@
                         <div class="event-thing-event-block event-thing-event-block-hero">
                             <a href="/node/<?= $event_widget_items['hero']->nid ?>">
                                 <img src="<?= $event_widget_items['hero']->image_uri ?>">
-                                <div class="event-thing-event-title"><?= $event_widget_items['hero']->title ?></div>
+                                <div class="event-thing-event-title"><?= date("M d", $event_widget_items['hero']->date) ?>: <?= $event_widget_items['hero']->title ?></div>
                             </a>
                         </div>
                         <?php foreach ($event_widget_items['others'] as $event) { ?>
+                            <?php //dpm($event); ?>
                             <div class="event-thing-event-block">
                                 <a href="/node/<?= $event->nid ?>">
-                                    <div class="event-thing-event-title"><?= $event->title ?></div>
+                                    <div class="event-thing-event-title"><?= date("M d", $event->date) ?>: <?= $event->title ?></div>
                                 </a>
                             </div>
                         <?php } ?>

@@ -36,13 +36,14 @@ if ($teaser) {
           <a href="<?= $node_url ?>" class="item-image"><img src="<?= $image_uri ?>" width="<?= $known_width ?>" height="<?=$computed_height ?>"></a>
       <?php } ?>
       <div class="item-info-container">
-        <p class="item-info-title"><a href="<?= $node_url ?>"><?php print $node->title; ?></a></p>
         <p class="item-info-author"><a href="/user/<?= $node->uid ?>"><?php print mnartist_profiles_collective_or_fullname_or_username($node->uid); ?></a></p>
-        <?php if ($date_string !== '') { ?>
+        <p class="item-info-title"><a href="<?= $node_url ?>"><?php print $node->title; ?></a></p>
+        <?php if ($date_string !== '') : ?>
+        <p class="item-info-deadline">Closes: <?= $date_string ?></p>
         <div<?php print $content_attributes; ?>>
           <?php if ($text_excerpt !== '') { ?><?= $text_excerpt ?> <a href="<?= $node_url ?>" class="item-more-button-link-indicator">&gt;</a><?php } ?>
         </div>
-        <p class="item-info-deadline">Closes: <?= $date_string ?></p><?php } ?>
+        <?php endif; ?>
         <?php if(user_is_logged_in()) { ?>
           <div class="item-info-flag pane-mnartist-collections-mna-collections-star"><?= theme("mnartist_collections_star", array('node_id' => $node->nid)) ?></div>
         <?php } ?>
