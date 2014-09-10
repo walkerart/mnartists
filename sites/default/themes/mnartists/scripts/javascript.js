@@ -218,7 +218,7 @@ jQuery(document).ready(function () {
     }
 
     // select boxes
-    jQuery('select.form-select').chosen();
+    //jQuery('select.form-select').chosen();
 
     // nice file input
     jQuery('input[type=file]').nicefileinput();
