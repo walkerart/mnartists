@@ -3880,14 +3880,17 @@ header[role=banner],
 
 /* messages */
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/jtubbs\/Sites\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.base\.scss}line{font-family:\00003707}}
-.messages .error {
+.messages.error {
   background: #df362b;
   background-image: none;
   color: #fff;
   border: none;
-  padding: 10px;
   border-top: 2px solid #3f3f3f;
   -webkit-box-shadow: 0 -1px 0 #df362b;
   -moz-box-shadow: 0 -1px 0 #df362b;
   box-shadow: 0 -1px 0 #df362b;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/jtubbs\/Sites\/mnartists\/sites\/default\/themes\/mnartists\/sass\/global\.base\.scss}line{font-family:\00003716}}
+.messages.error .error {
+  color: #fff;
 }
