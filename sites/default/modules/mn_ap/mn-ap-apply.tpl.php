@@ -244,17 +244,6 @@
                             <label id="artHelp">Choose <?php echo $rows['opportunity']['min_works']; ?> pieces of documentation to represent your work.</label>
                             <?php endif; ?>
                             
-                            <div class="row">
-                            <hr>
-                                <div class="col-sm-2">
-                                    <a class="ap-button btn" href="<?php echo url('node/add/artwork', array()); ?>">Add More Work</a>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <p class="help-text">After you 'Add More Work' or 'Edit/Add' documentation for a work, return to this tab and refresh your page to see and select newly added work.</p>
-                                </div>
-                            </div>
                             <?php foreach ($rows['artworks'] as $artwork) : ?>
                                 <div class="row ap-row">
                                     <hr>
@@ -380,6 +369,18 @@
                                 </div>
                             <?php endforeach; ?>
                             <div class="row">
+                                <div class="col-sm-2">
+                                    <a class="ap-button btn" href="<?php echo url('node/add/artwork', array()); ?>">Add More Work</a>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <p class="help-text">After you 'Add More Work' or 'Edit/Add' documentation for a work, return to this tab and refresh your page to see and select newly added work.</p>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <hr>
                                 <div class="form-group">
                                     <div class="col-sm-12">
                                         <div class="prev" id="gotoStep<?php echo array_search('work', $rows['opportunity']['steps']) + 1; ?>" role="button">Back</div>
