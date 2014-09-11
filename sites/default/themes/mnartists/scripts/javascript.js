@@ -99,7 +99,7 @@ jQuery(document).ready(function () {
         ".field-items"
     ];
     var slideItemSelectors = [
-        ".field-item"
+        "div.field-item"
     ];
 
     for (var i = 0, len = slideContainerSelectors.length; i < len; i++) {
@@ -113,7 +113,7 @@ jQuery(document).ready(function () {
         }
         slideContainer.each(function () {
             var $this = jQuery(this);
-            var slideElem = $this.find(slideSelector);
+            var slideElem = $this.children(slideSelector);
             var slideItems = slideElem.find(slideItemSelector);
             var maxHeight = 0;
 
@@ -151,6 +151,7 @@ jQuery(document).ready(function () {
             }
         });
     }
+
     jQuery(".slidesjs-navigation").click(function () {
         for (var i = 0, len = slideContainerSelectors.length; i < len; i++) {
             var slideContainerSelector = slideContainerSelectors[i];

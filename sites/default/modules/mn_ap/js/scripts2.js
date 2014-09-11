@@ -398,8 +398,6 @@ $(document).ready(function(){
         }
     }
 
-    $('input[class="ap-check"]').iCheck();
-
     $('input[class="ap-check"]').change(function () {
         var maxAllowed = Drupal.settings.works.max;
         var minAllowed = Drupal.settings.works.min;
@@ -479,6 +477,10 @@ $(document).ready(function(){
         var confirmTemplate = $('#confirmTpl').html();
         var confirmHtml = Mustache.to_html(confirmTemplate, view);
         $('#profileAjax').html(confirmHtml);
+
+        var additionalTemplate = $('#additionalTpl').html();
+        var additionalHtml = Mustache.to_html(additionalTemplate, view);
+        $('#additionalAjax').html(additionalHtml);
     }
 
     // set message if form field edited and not saved

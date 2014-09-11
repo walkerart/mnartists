@@ -332,3 +332,33 @@ label>.small {
 .row-margin-bottom {
 	margin-bottom: 10px;
 }
+
+/* .ap-icheck */
+.ap-icheck {
+	position: relative;
+	cursor: pointer;
+}
+
+.ap-icheck label {
+    display: block;
+    margin: 0;
+    padding: 0;
+    width: 18px;
+    height: 18px;
+    background: url('../images/icheck-sprites.png') no-repeat;
+    background-position: 0 0;
+    border: none;
+}
+
+.ap-icheck input[type=checkbox] {
+  opacity: 0;
+  cursor: pointer;
+}
+
+.ap-icheck input[type=checkbox]:hover + label {
+  background-position: -20px 0;
+}
+
+.ap-icheck input[type=checkbox]:checked + label {
+  background-position: -40px 0;
+}

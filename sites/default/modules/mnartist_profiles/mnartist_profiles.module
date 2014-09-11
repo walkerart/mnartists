@@ -60,6 +60,13 @@ function mnartist_profiles_menu() {
 
 }
 
+function mnartist_profiles_node_access($node, $op, $account) {
+    var_dump($node);
+    if ($node->type === "artwork") {
+        dpm($node);
+    }
+}
+
 
 function mnartist_profiles_ac_fullname($string) {
     // get the data
