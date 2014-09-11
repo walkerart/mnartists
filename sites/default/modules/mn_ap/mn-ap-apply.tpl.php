@@ -11,7 +11,7 @@
             window.CKEDITOR_BASEPATH = "/sites/all/libraries/ckeditor";
             }); })(jQuery);', 'inline' );
         drupal_add_js(drupal_get_path('module', 'mn_ap') . '/js/scripts2.js');
-        dpm($rows); ?>
+        //dpm($rows); ?>
 <div class="container" id="content">
     <div class="row">
         <div class="col-md-12">

@@ -37,7 +37,7 @@
 					<td><?php echo $row['announce_date']; ?></td>
 					<td><?php echo $row['start_date']; ?></td>
 					<td><?php echo $row['end_date']; ?></td>
-					<td><?php echo ($row['submissions'] != 0 && $row['apply_on_site'] == 1) ? '<a href ="' . url('opportunity/' . $row['nid'] . '/submissions', array()) . '"><span class="badge">' . $row['submissions'] . '</span></a>' : 'N/A'; ?></td>
+					<td><?php echo ($row['submissions'] != '0/0' && $row['apply_on_site'] == 1) ? '<a href ="' . url('opportunity/' . $row['nid'] . '/submissions', array()) . '"><span class="badge">' . $row['submissions'] . '</span></a>' : 'N/A'; ?></td>
 					<td><?php echo ($row['apply_on_site'] == 1) ? '<a href ="' . url('opportunity/' . $row['nid'] . '/apply/', array()) . '">MnArtists</a>' : 'External'; ?></td>
 					<td><?php echo $row['user']; ?></td>
 					<td>
