@@ -703,44 +703,6 @@ header[role=banner],
 
 
 /* messages */
-.my-stuff {
-  .messages {
-    &.error {
-      background:#df362b;
-      background-image:none;
-      color:#fff;
-      border:none;
-      padding: 10px;
-      border-top: 2px solid #3f3f3f;
-      -webkit-box-shadow: 0 -1px 0 #df362b;
-      -moz-box-shadow: 0 -1px 0 #df362b;
-      box-shadow: 0 -1px 0 #df362b;
-    }
-    &.status {
-      background-color: #40B34F;
-      background-image: none;
-      border: none;
-      color: #FFF;
-      border-top: 2px solid #3f3f3f;
-      padding: 10px;
-      -webkit-box-shadow: 0 -1px 0 #40b34f;
-      -moz-box-shadow: 0 -1px 0 #40b34f;
-      box-shadow: 0 -1px 0 #40b34f;
-    }
-    &.warning {
-      border:none!important;
-      outline:none;
-      color:#fff!important;
-      background-image:none!important;
-      background-color:#d90000!important;
-      padding:10px!important;
-      border-top: 2px solid #3f3f3f;
-      -webkit-box-shadow: 0 -1px 0 #d90000;
-      -moz-box-shadow: 0 -1px 0 #d90000;
-      box-shadow: 0 -1px 0 #d90000;
-    }
-  }
-}
 .messages {
   &.error {
     background:#df362b;
@@ -748,32 +710,20 @@ header[role=banner],
     color:#fff;
     border:none;
     padding: 10px;
-    border-top: 2px solid #f2f2f2;
-    -webkit-box-shadow: 0 -1px 0 #df362b;
-    -moz-box-shadow: 0 -1px 0 #df362b;
-    box-shadow: 0 -1px 0 #df362b;
   }
   &.status {
     background-color: #40B34F;
     background-image: none;
     border: none;
     color: #FFF;
-    border-top: 2px solid #f2f2f2;
     padding: 10px;
-    -webkit-box-shadow: 0 -1px 0 #40b34f;
-    -moz-box-shadow: 0 -1px 0 #40b34f;
-    box-shadow: 0 -1px 0 #40b34f;
   }
   &.warning {
-    border:none!important;
+    border:none;
     outline:none;
-    color:#fff!important;
-    background-image:none!important;
-    background-color:#d90000!important;
-    padding:10px!important;
-    border-top: 2px solid #f2f2f2;
-    -webkit-box-shadow: 0 -1px 0 #d90000;
-    -moz-box-shadow: 0 -1px 0 #d90000;
-    box-shadow: 0 -1px 0 #d90000;
+    color:#fff;
+    background-image:none;
+    background-color:#d90000;
+    padding:10px;
   }
 }
