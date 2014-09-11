@@ -398,6 +398,8 @@ $(document).ready(function(){
         }
     }
 
+    $('input[class="ap-check"]').iCheck();
+
     $('input[class="ap-check"]').change(function () {
         var maxAllowed = Drupal.settings.works.max;
         var minAllowed = Drupal.settings.works.min;

@@ -18,7 +18,6 @@ function mn_ap_apply($nid) {
 	if(isset($op_data['error'][0])) {
 		return drupal_set_message(t('This opportunity is not available for applications.'), 'error');
 	}
-
 	//if this is not a reopened application
 	if($ap_data['reopen'] == 0) {
 		//check if application deadline has passed

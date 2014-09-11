@@ -101,17 +101,25 @@ function mn_op_node_data($user) {
 }
 
 function mn_ap_get_submissions_count($nid, $site) {
+	$complete = 0;
 	$count = 0;
 	if ($site) {
 		$result = db_select('op_applications', 'op')
 		  ->fields('op')
 		  ->condition('nid', $nid, '=')
-		  ->condition('complete', 1, '=')
 		  ->execute()
 		  ->fetchAll();
-	  $count = count($result);
+	  	$count = count($result);
 	}
-  return $count;
+	if(isset($result)) {
+		foreach ($result as $counter) {
+			if ($counter->complete == 1) {
+				$complete++;
+			}
+		}
+		return $complete . '/' . $count;
+	}
+  	return $count;
 }
 
 /**
