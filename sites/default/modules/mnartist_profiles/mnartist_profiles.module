@@ -61,9 +61,8 @@ function mnartist_profiles_menu() {
 }
 
 function mnartist_profiles_node_access($node, $op, $account) {
-    var_dump($node);
-    if ($node->type === "artwork") {
-        dpm($node);
+    if (is_object($node) && $node->type === "artwork" && $node->field_public['und'][0]['value'] === "0" && $account->uid !== $node->uid) {
+        return NODE_ACCESS_DENY;
     }
 }
 
