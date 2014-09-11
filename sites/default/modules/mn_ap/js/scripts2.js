@@ -433,7 +433,6 @@ $(document).ready(function(){
         });
 
         if(works){
-            console.log(works);
             $('div.ap-artrow').addClass('hidden');
             $('span.ap-artwork').addClass('hidden');
             $.each(works, function() {
@@ -466,10 +465,6 @@ $(document).ready(function(){
             field2: $('#field2Editor').exists() ? CKEDITOR.instances['field2Editor'].getData() : false,
             field3: $('#field3Editor').exists() ? CKEDITOR.instances['field3Editor'].getData() : false,
             field4: $('#field4Editor').exists() ? CKEDITOR.instances['field4Editor'].getData() : false,
-            upload1: $('#upload1').exists() ? $('#upload1').val() : false,
-            upload2: $('#upload2').exists() ? $('#upload2').val() : false,
-            upload3: $('#upload3').exists() ? $('#upload3').val() : false,
-            upload4: $('#upload4').exists() ? $('#upload4').val() : false,
             steps: steps,
             titles : Drupal.settings.titles
         };

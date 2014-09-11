@@ -722,7 +722,38 @@
                                     <div id="additionalAjax"></div>
                                 </div>
                                 <script id="additionalTpl" type="text/template">
-                                    {{#field1}} {{&field1}} {{/field1}}
+                                    {{#field1}}
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <label class="clearPadding clearMargin"><?php echo $rows['opportunity']['custom_1_title']; ?>:</label>
+                                                {{&field1}} 
+                                            </div>
+                                        </div>
+                                    {{/field1}}
+                                    {{#field2}}
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <label class="clearPadding clearMargin"><?php echo $rows['opportunity']['custom_2_title']; ?>:</label>
+                                                {{&field2}} 
+                                            </div>
+                                        </div>
+                                    {{/field2}}
+                                    {{#field3}}
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <label class="clearPadding clearMargin"><?php echo $rows['opportunity']['custom_3_title']; ?>:</label>
+                                                {{&field3}} 
+                                            </div>
+                                        </div>
+                                    {{/field3}}
+                                    {{#field4}}
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <label class="clearPadding clearMargin"><?php echo $rows['opportunity']['custom_4_title']; ?>:</label>
+                                                {{&field4}} 
+                                            </div>
+                                        </div>
+                                    {{/field4}}
                                 </script>
                                 <div id="addUploadsView">
                                 <div class="row">
