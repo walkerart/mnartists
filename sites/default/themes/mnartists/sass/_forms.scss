@@ -1017,25 +1017,24 @@ a.tabledrag-handle .handle {
         box-sizing:border-box;
         font-size:13px !important;
 
-        li {
-            .search-field {
-                input {
-                    padding: 4px 0 6px 0;
-                    font-size:13px !important;
-                    background: none;
-                }
+        .search-field {
+            input {
+                padding: 4px 0 6px 0;
+                color: red;
+                font-size:13px !important;
+                background: none !important;
             }
+        }
 
-            &.search-choice {
-                border-radius:0;
-                background:#ccc;
-                border:none;
-                box-shadow:none;
-                font-size:12px;
+        &.search-choice {
+            border-radius:0;
+            background:#ccc;
+            border:none;
+            box-shadow:none;
+            font-size:12px;
 
-                &:hover {
-                    background:#ddd;
-                }
+            &:hover {
+                background:#ddd;
             }
         }
 
