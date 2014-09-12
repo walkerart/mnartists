@@ -40,8 +40,9 @@ function mnartist_register_migrate() {
     global $user;
 
     $html_fragment = array();
-    $html_fragment[] = '<h1>User Migration</h1>';
+    $html_fragment[] = '<div class="clearfix migrate-form">';
     $html_fragment[] = drupal_render(drupal_get_form('mnartist_register_user_form'));
+    $html_fragment[] = '</div>';
     return implode('', $html_fragment);
 }
 
@@ -49,7 +50,8 @@ function mnartist_register_user_form() {
     global $user;
     return array(
         'help' => array(
-            '#markup' => '<p>
+            '#markup' => '<h1>User Migration</h1>
+                          <p>
                             Welcome to an all-new mnartists.org!<br>
                             Follow these 3 easy steps to import your exisitng account to the new mnartists.org, or click &lsquo;Proceed without importing&rsquo; to continue to the new site without import.
                           </p>
@@ -95,7 +97,7 @@ function mnartist_register_user_form_validate($form, &$form_state) {
     global $user;
 
     if (isset($form_state["values"]["op"]) && $form_state["values"]["op"] === "Proceed Without Importing") {
-        drupal_goto("user/$user->uid/edit");
+        drupal_goto("user/feed");
         return;
     }
 

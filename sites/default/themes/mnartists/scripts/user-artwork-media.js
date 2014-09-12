@@ -32,6 +32,7 @@
             var mainMedia = row.find(".content");
             mainMedia.find('img').wrap('<a href="' + rowHref + '"></a>');
             mainMedia.parents(".file").remove();
+            mainMedia.find('figure').remove();
             var rightContent = row.find(".description").remove();
             var leftContent = row.html();
             var slide = $("<div>", {

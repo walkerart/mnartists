@@ -8,7 +8,7 @@ function mn_ap_menu() {
   $items['opportunity/%/apply'] = array(
     'title' => 'Apply',
     'page callback' => 'mn_ap_apply',
-    'access callback' => TRUE,
+    'access callback' => 'user_is_logged_in',
     'page arguments' => array(1),
     'file' => 'mn_ap.apply.inc',
   );
@@ -20,21 +20,21 @@ function mn_ap_menu() {
   $items['opportunity/%/submissions'] = array(
     'title' => 'Submissions',
     'page callback' => 'mn_ap_submission',
-    'access callback' => TRUE,
+    'access callback' => 'user_is_logged_in',
     'page arguments' => array(1),
     'file' => 'mn_ap.submission.inc',
   );
   $items['opportunity/%/submission/%'] = array(
     'title' => 'Applicant Review',
     'page callback' => 'mn_ap_review',
-    'access callback' => TRUE,
+    'access callback' => 'user_is_logged_in',
     'page arguments' => array(1,3),
     'file' => 'mn_ap.review.inc',
   );
   $items['opportunity/%/submission/%/admin'] = array(
     'title' => 'Admin Applicant View',
     'page callback' => 'mn_ap_admin',
-    'access callback' => TRUE,
+    'access callback' => 'user_is_logged_in',
     'page arguments' => array(1,3),
     'file' => 'mn_ap.admin.inc',
   );
@@ -42,6 +42,7 @@ function mn_ap_menu() {
     'type' => MENU_CALLBACK,
     'page callback' => 'ap_submissions_xls',
     'page arguments' => array(1,3,5),
+    'access callback' => 'user_is_logged_in',
     'access arguments' => array('access content'),
   );
   $items['opportunity/%/apply/submit'] = array(
@@ -49,6 +50,7 @@ function mn_ap_menu() {
     'type' => MENU_CALLBACK,
     'page callback' => 'ap_submit_form',
     'page arguments' => array(1),
+    'access callback' => 'user_is_logged_in',
     'access arguments' => array('access content'),
   );
 

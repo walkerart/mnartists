@@ -23,7 +23,7 @@ function mn_op_menu() {
   $items['opportunities'] = array(
     'title' => 'Opportunities',
     'page callback' => 'mn_op_index',
-    'access callback' => true,
+    'access callback' => 'user_is_logged_in',
     'file' => 'mn_op.index.inc',
     'type' => MENU_NORMAL_ITEM,
   );
@@ -31,7 +31,7 @@ function mn_op_menu() {
   $items['applications'] = array(
     'title' => 'Applications',
     'page callback' => 'mn_op_aps',
-    'access callback' => true,
+    'access callback' => 'user_is_logged_in',
     'file' => 'mn_op.applications.inc',
     'type' => MENU_NORMAL_ITEM,
   );
@@ -39,7 +39,7 @@ function mn_op_menu() {
   $items['application/%'] = array(
     'title' => 'Application',
     'page callback' => 'mn_op_ap',
-    'access callback' => true,
+    'access callback' => 'user_is_logged_in',
     'page arguments' => array(1),
     'file' => 'mn_op.application.inc',
   );
@@ -47,7 +47,7 @@ function mn_op_menu() {
   $items['opportunity/%/jury-settings'] = array(
     'title' => 'Jury Settings',
     'page callback' => 'mn_op_settings',
-    'access callback' => true,
+    'access callback' => 'user_is_logged_in',
     'page arguments' => array(1),
     'file' => 'mn_op.settings.inc',
   );
@@ -177,7 +177,12 @@ function mn_op_check_existing_settings($nid) {
       ->condition('nid', $nid, '=')
       ->execute()
       ->fetchAssoc();
-    return $result;
+  if (!$result) {
+    $result = db_insert('op_jury_settings')
+      ->fields(array('nid' => $nid))
+      ->execute();
+  }
+  return $result;
 }
 
 /*

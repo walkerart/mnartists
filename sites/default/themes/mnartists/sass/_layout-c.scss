@@ -29,54 +29,9 @@
           right:0px;
           top:5px;
 
-          li {
-              .flag-wrapper {
-                  a {
-                      height:26px;
-                      width:27px;
-                      padding:5px;
-                      box-sizing:border-box;
-
-                  }
-              }
-              ul {
-                  padding-left:10px;
-                  li {
-                      &.follow-this {
-                          padding-left:0px;
-                          margin-bottom:8px;
-                          border-bottom:1px solid #fff;
-                          a {
-                              padding-left:0px;
-                              text-transform:uppercase;
-                          }
-                      }
-                  }
-              }
-
-              &:hover {
-                  .flag-wrapper {
-                      a {
-                          background:#323232;
-                          img {
-                              -webkit-filter: invert(100%);
-                              filter: invert(100%);
-                              display:block;
-                          }
-                      }
-                  }
-                  ul {
-                      position:absolute;
-                      right:5px;
-                      top:46px;
-                      left:auto;
-                      bottom:auto;
-                      font-size: 12px;
-                      font-family: "Apercu Regular", Arial, Helvetica, sans-serif;
-
-                  }
-              }
-          }
+      }
+      .pane-mnartist-collections-mna-collections-star ul.menu li ul li .flag-wrapper span.flag-count {
+        display: inline-block;
       }
       .block-content {
           h1 {

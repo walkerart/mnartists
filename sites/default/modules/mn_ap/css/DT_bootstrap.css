@@ -286,6 +286,37 @@ tr.odd {
   }
 }
 
+#listContent {
+  background: #f2f2f2;
+  padding: 50px 40px;
+  margin: 20px 0;
+}
+
+a.icon {
+  border-radius:50%;
+  overflow:hidden;
+  height:21px;
+  width:21px;
+  text-indent:50px;
+  white-space:nowrap;
+  padding:0;
+  border:1px solid #666;
+  outline:none;
+  display:inline-block;
+  margin:0 auto;
+  background-color: #323232;
+}
+
+a.edit-icon {
+  background: url('../images/icon-form-edit.png') no-repeat center center transparent;
+}
+a.remove-icon {
+  background: url('../images/icon-form-remove.png') no-repeat center center transparent;
+}
+a.icon:hover {
+  border:1px solid #999;
+}
+
 @media screen and (max-width: 768px) {
   #listContent,
   #myContent {

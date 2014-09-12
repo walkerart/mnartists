@@ -5,10 +5,12 @@ function template_preprocess_artist_community_artist_profile(&$vars) {
     global $base_url;
 
     $vars['image'] = '';
-    $profile = profile2_load_by_user($vars['user']);
+    if($vars['user']) {
+      $profile = profile2_load_by_user($vars['user']->uid, 'main');
+    }
 
     // Use the psuedonym if available
-    if (isset($profile['main']->field_psuedonym['und'][0]['value'])) {
+    if (isset($profile->main->field_psuedonym['und'][0]['value'])) {
         $vars['name'] = $profile['main']->field_psuedonym['und'][0]['value'];
     } else {
         $vars['name'] = $vars['user']->name;

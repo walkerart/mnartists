@@ -3,7 +3,23 @@
     global $user;
 ?>
 <div id="my-stuff-menu">
-    <p class="site-description">Hi <?php print mnartist_profiles_collective_or_fullname_or_username($user->uid); ?>, use the left-hand menu to manage your account, profile, artwork, events, collections, resume and applications.</p>
-    <?php print $links; ?>
-    <?php print $editLinks; ?>
+    <p class="site-description">
+    <?php if($user->uid) : ?>
+        <?php $name = mnartist_profiles_collective_or_fullname_or_username($user->uid); ?>
+        <?php if($name) : ?>
+            Hi <?php print $name; ?>, use the left-hand menu to manage your account, profile, artwork, events, collections, resume and applications.
+        <?php else : ?>
+            Use the left-hand menu to manage your account, profile, artwork, events, collections, resume and applications.
+        <?php endif; ?>
+    <?php endif; ?>
+    </p>
+    <?php if(isset($loginItems)) : ?>
+        <ul>
+        <?php foreach ($loginItems as $item) : ?>
+            <li><?php print $item; ?></li>
+        <?php endforeach; ?>
+        </ul>
+    <?php endif; ?>
+    <?php if(isset($renderedLinks)) print $renderedLinks; ?>
+    <?php if(isset($editLinks)) print $editLinks; ?>
 </div>

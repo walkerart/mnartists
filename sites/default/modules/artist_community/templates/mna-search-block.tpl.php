@@ -1,12 +1,3 @@
-<p class="site-description">
-
-    <?php if(! $rows->uid) : ?>
-    Welcome to the new MN Artists! To move your artwork and information from the old site to the new site, <a class="ap-button btn" href="<?php echo url('user/register', array()); ?>">click here</a>.
-    <?php else : ?>
-    Welcome back to MN Artists!
-    <?php endif; ?>
-
-</p>
 <div class="search-container">
     <form method="get" action="/community">
         <?php
@@ -35,3 +26,14 @@
         <button type="submit"></button>
     </form>
 </div>
+
+<p class="site-description site-description-after">
+    Explore Minnesota's art scene by browsing communities and content.
+</p>
+
+
+<?php if($rows->uid && $url_query_string !== '' || drupal_is_front_page()) : ?>
+<p class="site-description">
+    Save your search; create a personalized homepage.
+</p>
+<?php endif; ?>

@@ -133,7 +133,6 @@
                                         <?php $count++; ?>
                                     <?php endif; ?>
                                 <?php endforeach; ?>
-                                <?php if (count($rows['opportunity']['additional_fields'] % 2 == 0)) echo '</div></div>'; ?>
                             <?php endif; ?>
                             <div class="form-group row">
                                 <div class="col-sm-12">
@@ -227,7 +226,6 @@
 
                     <?php if (in_array('work', $rows['opportunity']['steps'])) : ?>
                     <div id="step<?php echo array_search('work', $rows['opportunity']['steps']) + 2; ?>">
-                        <fieldset>
                             <div class="row">
                                 <div class="col-sm-2">
                                     <div class="prev" id="gotoStep<?php echo array_search('work', $rows['opportunity']['steps']) + 1; ?>" role="button">Back</div>
@@ -239,23 +237,14 @@
                                     <div class="next" id="gotoStep<?php echo array_search('work', $rows['opportunity']['steps']) + 3; ?>" role="button">Next</div>
                                 </div>
                             </div>
-                            <?php if($rows['opportunity']['min_works'] != $rows['opportunity']['max_works']): ?>
-                            <label id="artHelp">Choose at least <?php echo $rows['opportunity']['min_works']; ?> and no more than <?php echo $rows['opportunity']['max_works']; ?> pieces of documentation to represent your work.</label>
-                            <?php else: ?>
-                            <label id="artHelp">Choose <?php echo $rows['opportunity']['min_works']; ?> pieces of documentation to represent your work.</label>
-                            <?php endif; ?>
+                            <div class="row">
+                                <?php if($rows['opportunity']['min_works'] != $rows['opportunity']['max_works']): ?>
+                                <label id="artHelp">Choose at least <?php echo $rows['opportunity']['min_works']; ?> and no more than <?php echo $rows['opportunity']['max_works']; ?> pieces of documentation to represent your work.</label>
+                                <?php else: ?>
+                                <label id="artHelp">Choose <?php echo $rows['opportunity']['min_works']; ?> pieces of documentation to represent your work.</label>
+                                <?php endif; ?>
+                            </div>
                             
-                            <div class="row">
-                            <hr>
-                                <div class="col-sm-2">
-                                    <a class="ap-button btn" href="<?php echo url('node/add/artwork', array()); ?>">Add More Work</a>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <p class="help-text">After you 'Add More Work' or 'Edit/Add' documentation for a work, return to this tab and refresh your page to see and select newly added work.</p>
-                                </div>
-                            </div>
                             <?php foreach ($rows['artworks'] as $artwork) : ?>
                                 <div class="row ap-row">
                                     <hr>
@@ -308,10 +297,11 @@
                                             <div class="thumbnail ap-artwork-thumbnail">
                                                 <img class="img-responsive" src="<?php echo image_style_url('large', $image['file']); ?>">
                                                 <div class="caption">
-                                                    <div>
+                                                    <span class="ap-icheck pull-left">
                                                         <input type="checkbox" class="ap-check" data-id="f<?php echo $image['fid']; ?>" name="artwork['<?php echo $image['fid']; ?>']" value="<?php echo $image['fid']; ?>" data-vid="v<?php echo $artwork['vid']; ?>" <?php echo isset($rows['ap_artworks']) && $rows['ap_artworks'] != '' && in_array($image['fid'], $rows['ap_artworks']) ? 'checked' : ''; ?>>
-                                                        <?php echo $image['filename']; ?>
-                                                    </div>
+                                                        <label for="ap-icheck"></label>
+                                                    </span>
+                                                    <span><?php echo $image['filename']; ?></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -381,6 +371,18 @@
                                 </div>
                             <?php endforeach; ?>
                             <div class="row">
+                                <div class="col-sm-2">
+                                    <a class="ap-button btn" href="<?php echo url('node/add/artwork', array()); ?>">Add More Work</a>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <p class="help-text">After you 'Add More Work' or 'Edit/Add' documentation for a work, return to this tab and refresh your page to see and select newly added work.</p>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <hr>
                                 <div class="form-group">
                                     <div class="col-sm-12">
                                         <div class="prev" id="gotoStep<?php echo array_search('work', $rows['opportunity']['steps']) + 1; ?>" role="button">Back</div>
@@ -388,7 +390,6 @@
                                     </div>
                                 </div>
                             </div>
-                        </fieldset>
                     </div>
                     <?php endif; ?>
 
@@ -575,202 +576,237 @@
                     <?php endif; ?>
 
                     <div id="step<?php echo count($rows['opportunity']['steps']) + 2; ?>">
-                        <fieldset>
-                            <div class="row">
-                                <div class="col-sm-2">
-                                    <div class="prev" id="gotoStep<?php echo count($rows['opportunity']['steps']) + 1; ?>" role="button">Back</div>
-                                </div>
-                                <div class="col-sm-8">
-                                    <legend class="text-center">Confirm Submission</legend>
-                                </div>
-                                <div class="col-sm-2">
-                                    <button id="SaveApplication" type="submit" class="pull-right ap-btn" value="Submit">Submit</button>
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <div class="prev" id="gotoStep<?php echo count($rows['opportunity']['steps']) + 1; ?>" role="button">Back</div>
+                            </div>
+                            <div class="col-sm-8">
+                                <legend class="text-center">Confirm Submission</legend>
+                            </div>
+                            <div class="col-sm-2">
+                                <button id="SaveApplication" type="submit" class="pull-right ap-btn" value="Submit">Submit</button>
+                            </div>
+                        </div>
+                        <div class="row">
+                                <div class="col-md-12">
+                                    <div id="ConfirmView">
+                                    <div id="profileAjax"></div>
                                 </div>
                             </div>
-                            <div class="row">
-                                    <div class="col-md-12">
-                                        <div id="ConfirmView">
-                                        <div id="profileAjax"></div>
+                        </div>
+                        <script id="confirmTpl" type="text/template">
+                            <h3 class="clearPadding clearMargin">Profile and Info</h3>
+                            <p>{{first_name}} {{last_name}}<br>
+                            {{address}}; {{city}}, {{state}} {{zip}}<br>
+                            {{#county}}County: {{county}}<br>{{/county}}
+                            {{#country}}Country: {{country}}<br>{{/country}}
+                            {{#email}}Email: {{email}}<br>{{/email}}
+                            {{#phone}}Phone: {{phone}}<br>{{/phone}}
+                            {{#gender}}Gender: {{gender}}<br>{{/gender}}
+                            {{#ethnicity}}Ethnicity: {{ethnicity}}<br>{{/ethnicity}}
+                            {{#age}}Age: {{age}}<br>{{/age}}
+                            </p>
+
+                            {{#steps.statement-proposal}}
+                            <br><br>
+                            <h3 class="clearPadding clearMargin">{{titles.statement-proposal}}</h3>
+                            {{#statement}}Statement: {{&statement}}<br>{{/statement}}
+                            {{#proposal}}Proposal: {{&proposal}}{{/proposal}}
+                            {{/steps.statement-proposal}}
+
+                            {{#steps.bio-resume}}
+                            <h3 class="clearPadding clearMargin">{{titles.bio-resume}}</h3>
+                            {{#bio}}Bio: {{&bio}}<br>{{/bio}}
+                            {{#resume}} {{&resume}} {{/resume}}
+                            {{/steps.bio-resume}}
+                        </script>
+                        <?php if (in_array('work', $rows['opportunity']['steps'])) : ?>
+                        <div id="worksView">
+                            <h3 class="clearPadding clearMargin">Selected Work</h3>
+                            <?php foreach ($rows['artworks'] as $artwork) : ?>
+                            <div class="ap-artrow row" id="v<?php echo $artwork['vid']; ?>">
+                                <hr>
+                                <?php if ($artwork['images'] != '') : ?>
+                                <div class="col-sm-2 artwork-info">
+                                    <div><em><?php echo $artwork['title']; ?></em></div>
+                                    <div><?php echo $artwork['date']; ?></div>
+                                    <div>
+                                        <?php $mediums = $artwork['medium'];
+                                            foreach ($artwork['medium'] as $medium) {
+                                            echo $medium;
+                                            if (next($mediums)) echo ', ';
+                                        } ?>
                                     </div>
-                                </div>
-                            </div>
-                            <script id="confirmTpl" type="text/template">
-                                <h3 class="clearPadding clearMargin">Profile and Info</h3>
-                                <p>{{first_name}} {{last_name}}<br>
-                                {{address}}; {{city}}, {{state}} {{zip}}<br>
-                                {{#county}}County: {{county}}<br>{{/county}}
-                                {{#country}}Country: {{country}}<br>{{/country}}
-                                {{#email}}Email: {{email}}<br>{{/email}}
-                                {{#phone}}Phone: {{phone}}<br>{{/phone}}
-                                {{#gender}}Gender: {{gender}}<br>{{/gender}}
-                                {{#ethnicity}}Ethnicity: {{ethnicity}}<br>{{/ethnicity}}
-                                {{#age}}Age: {{age}}<br>{{/age}}
-                                </p>
-
-                                {{#steps.statement-proposal}}
-                                <br><br>
-                                <h3 class="clearPadding clearMargin">{{titles.statement-proposal}}</h3>
-                                {{#statement}}Statement: {{&statement}}<br>{{/statement}}
-                                {{#proposal}}Proposal: {{&proposal}}{{/proposal}}
-                                {{/steps.statement-proposal}}
-
-                                {{#steps.bio-resume}}
-                                <h3 class="clearPadding clearMargin">{{titles.bio-resume}}</h3>
-                                {{#bio}}Bio: {{&bio}}<br>{{/bio}}
-                                {{#resume}} {{&resume}} {{/resume}}
-                                {{/steps.bio-resume}}
-                            </script>
-                            <?php if (in_array('work', $rows['opportunity']['steps'])) : ?>
-                            <div id="worksView">
-                                <h3 class="clearPadding clearMargin">Selected Work</h3>
-                                <?php foreach ($rows['artworks'] as $artwork) : ?>
-                                <div class="ap-artrow row" id="v<?php echo $artwork['vid']; ?>">
-                                    <hr>
-                                    <?php if ($artwork['images'] != '') : ?>
-                                    <div class="col-sm-2 artwork-info">
-                                        <div><em><?php echo $artwork['title']; ?></em></div>
-                                        <div><?php echo $artwork['date']; ?></div>
+                                    <div><?php echo $artwork['dimensions']; ?></div>
+                                    <div class="ap-body">
+                                        <?php if($artwork['excerpt'] != '') : ?>
                                         <div>
-                                            <?php $mediums = $artwork['medium'];
-                                                foreach ($artwork['medium'] as $medium) {
-                                                echo $medium;
-                                                if (next($mediums)) echo ', ';
+                                            Excerpt: <?php echo $artwork['excerpt']; ?>
+                                        </div>
+                                        <?php endif; ?>
+                                        <?php if ($artwork['venue'] != '') : ?>
+                                        <div>
+                                            Venue: <?php echo $artwork['venue'] ?>
+                                        </div>
+                                        <?php endif; ?>
+                                        <?php if ($artwork['other_artists'] != '') : ?>
+                                        <div>
+                                            Others Artists Involved:
+                                            <?php $other_artists = $artwork['other_artists'];
+                                            foreach ($artwork['other_artists'] as $others) {
+                                                echo $others ;
+                                                if (next($other_artists)) echo ', ';
                                             } ?>
                                         </div>
-                                        <div><?php echo $artwork['dimensions']; ?></div>
-                                        <div class="ap-body">
-                                            <?php if($artwork['excerpt'] != '') : ?>
-                                            <div>
-                                                Excerpt: <?php echo $artwork['excerpt']; ?>
-                                            </div>
-                                            <?php endif; ?>
-                                            <?php if ($artwork['venue'] != '') : ?>
-                                            <div>
-                                                Venue: <?php echo $artwork['venue'] ?>
-                                            </div>
-                                            <?php endif; ?>
-                                            <?php if ($artwork['other_artists'] != '') : ?>
-                                            <div>
-                                                Others Artists Involved:
-                                                <?php $other_artists = $artwork['other_artists'];
-                                                foreach ($artwork['other_artists'] as $others) {
-                                                    echo $others ;
-                                                    if (next($other_artists)) echo ', ';
-                                                } ?>
-                                            </div>
-                                            <?php endif; ?>
-                                        </div>
-                                        <div class="ap-artwork-body"><?php echo $artwork['body']; ?></div>
-                                        <?php if(strlen($artwork['body']) > 144) : ?>
-                                            <div class="ap-more text-center">View More</div>
                                         <?php endif; ?>
                                     </div>
-                                    <div class="col-sm-10">
-                                    <?php foreach ($artwork['images'] as $image) : ?>
-                                        <?php if ($image['type'] == 'image' && in_array('image', $rows['opportunity']['work_types'])) : ?>
-                                        <span class="ap-artwork hidden" id="f<?php echo $image['fid']; ?>">
-                                            <div class="ap-image col-sm-6">
-                                                <label for="artwork"></label>
-                                                <img class="img-responsive" src="<?php echo image_style_url('large', $image['file']); ?>">
-                                            </div>
-                                        </span>
-
-                                        <?php elseif ($image['type'] == 'soundcloud' && in_array('sound', $rows['opportunity']['work_types'])) : ?>
-                                        <span class="ap-artwork hidden" id="f<?php echo $image['fid']; ?>">
-                                            <div class="ap-image col-sm-6">
-                                                <label for="artwork['<?php echo $image['fid']; ?>']"></label>
-                                                <iframe class="img-responsive" scrolling="no" frameborder="no" width="" height="150" src="//w.soundcloud.com/player/?url=<?php echo $image['file']; ?>&amp;show_user=false&amp;show_artwork=false"></iframe>
-                                            </div>
-                                        </span>
-
-                                        <?php elseif ($image['type'] == 'youtube' && in_array('video', $rows['opportunity']['work_types'])) : ?>
-                                        <span class="ap-artwork hidden" id="f<?php echo $image['fid']; ?>">
-                                            <div class="ap-image col-sm-6">
-                                                <label for="artwork['<?php echo $image['fid']; ?>']"></label>
-                                                <iframe class="img-responsive" src="<?php echo $image['file']; ?>" id="ytplayer" frameborder="0"></iframe>
-                                            </div>
-                                        </span>
-
-                                        <?php elseif ($image['type'] == 'vimeo' && in_array('video', $rows['opportunity']['work_types'])) : ?>
-                                        <span class="ap-artwork hidden" id="f<?php echo $image['fid']; ?>">
-                                            <div class="ap-image ap-artwork col-sm-6" id="<?php echo $image['fid']; ?>">
-                                                <label for="artwork['<?php echo $image['fid']; ?>']"></label>
-                                                <iframe class="img-responsive" src="<?php echo $image['file']; ?>" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-                                            </div>
-                                        </span>
-
-                                        <?php elseif ($image['type'] == 'document' && in_array('text', $rows['opportunity']['work_types'])) : ?>
-                                        <?php $noneOfTypes = 'false'; ?>
-                                        <span class="ap-artwork hidden" id="f<?php echo $image['fid']; ?>">
-                                            <div class="ap-image col-sm-4">
-                                                <div class="img-responsive doc-icon"></div>
-                                                <a href="<?php echo file_create_url($image['file']); ?>" target="_blank"><?php echo $image['filename']; ?></a>
-                                            </div>
-                                        </span>
-                                        <?php endif; ?>
-                                    <?php endforeach; ?>
-                                    </div>
+                                    <div class="ap-artwork-body"><?php echo $artwork['body']; ?></div>
+                                    <?php if(strlen($artwork['body']) > 144) : ?>
+                                        <div class="ap-more text-center">View More</div>
                                     <?php endif; ?>
                                 </div>
-                                <?php endforeach; ?>
-                            </div>
-                            <?php endif; ?>
-                            <?php  if (in_array('fields-uploads', $rows['opportunity']['steps'])) : ?>
-                                <div id="addUploadsView">
-                                    <hr>
-                                    <h3 class="clearPadding clearMargin">Additional Materials</h3>
-                                    <div class="row">
-                                        <div id="upload1View">
-                                        <?php if (isset($rows['ap_artworks']) || $rows['upload1'] != '') : ?>
-                                            <div class="col-sm-12">
-                                                <label class="col-sm-4" for="upload1">Upload: <?php echo $rows['opportunity']['custom_up_1_title']; ?></label>
-                                                <a href="<?php  print file_create_url(file_build_uri('opportunity/' . $rows['nid'] . '/' . $rows['uid'] . '/' . $rows['upload1'])); ?>" target="_blank"><?php echo $rows['upload1'];  ?></a>
-                                            </div>
-                                        <?php endif; ?>
+                                <div class="col-sm-10">
+                                <?php foreach ($artwork['images'] as $image) : ?>
+                                    <?php if ($image['type'] == 'image' && in_array('image', $rows['opportunity']['work_types'])) : ?>
+                                    <span class="ap-artwork hidden" id="f<?php echo $image['fid']; ?>">
+                                        <div class="ap-image col-sm-6">
+                                            <label for="artwork"></label>
+                                            <img class="img-responsive" src="<?php echo image_style_url('large', $image['file']); ?>">
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                        <div id="upload2View">
-                                        <?php if (isset($rows['ap_artworks']) && $rows['upload2'] != '') : ?>
-                                            <div class="col-sm-12">
-                                                <label class="col-sm-4" for="upload2">Upload: <?php echo $rows['opportunity']['custom_up_2_title']; ?></label>
-                                                <a href="<?php  print file_create_url(file_build_uri('opportunity/' . $rows['nid'] . '/' . $rows['uid'] . '/' . $rows['upload2'])); ?>" target="_blank"><?php echo $rows['upload2'];  ?></a>
-                                            </div>
-                                        <?php endif; ?>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div id="upload3View">
-                                        <?php if (isset($rows['ap_artworks']) && $rows['upload3'] != '') : ?>
-                                            <div class="col-sm-12">
-                                                <label class="col-sm-4" for="upload3">Upload: <?php echo $rows['opportunity']['custom_up_3_title']; ?></label>
-                                                <a href="<?php  print file_create_url(file_build_uri('opportunity/' . $rows['nid'] . '/' . $rows['uid'] . '/' . $rows['upload3'])); ?>" target="_blank"><?php echo $rows['upload3'];  ?></a>
-                                            </div>
-                                        <?php endif; ?>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div id="upload4View">
-                                        <?php if (isset($rows['ap_artworks']) && $rows['upload4'] != '') : ?>
-                                            <div class="col-sm-12">
-                                                <label class="col-sm-4" for="upload4">Upload: <?php echo $rows['opportunity']['custom_up_4_title']; ?></label>
-                                                <a href="<?php  print file_create_url(file_build_uri('opportunity/' . $rows['nid'] . '/' . $rows['uid'] . '/' . $rows['upload4'])); ?>" target="_blank"><?php echo $rows['upload4'];  ?></a>
-                                            </div>
-                                        <?php endif; ?>
-                                        </div>
-                                    </div>
-                                </div>
-                            <?php endif; ?>
+                                    </span>
 
-                            <div class="form-group">
+                                    <?php elseif ($image['type'] == 'soundcloud' && in_array('sound', $rows['opportunity']['work_types'])) : ?>
+                                    <span class="ap-artwork hidden" id="f<?php echo $image['fid']; ?>">
+                                        <div class="ap-image col-sm-6">
+                                            <label for="artwork['<?php echo $image['fid']; ?>']"></label>
+                                            <iframe class="img-responsive" scrolling="no" frameborder="no" width="" height="150" src="//w.soundcloud.com/player/?url=<?php echo $image['file']; ?>&amp;show_user=false&amp;show_artwork=false"></iframe>
+                                        </div>
+                                    </span>
+
+                                    <?php elseif ($image['type'] == 'youtube' && in_array('video', $rows['opportunity']['work_types'])) : ?>
+                                    <span class="ap-artwork hidden" id="f<?php echo $image['fid']; ?>">
+                                        <div class="ap-image col-sm-6">
+                                            <label for="artwork['<?php echo $image['fid']; ?>']"></label>
+                                            <iframe class="img-responsive" src="<?php echo $image['file']; ?>" id="ytplayer" frameborder="0"></iframe>
+                                        </div>
+                                    </span>
+
+                                    <?php elseif ($image['type'] == 'vimeo' && in_array('video', $rows['opportunity']['work_types'])) : ?>
+                                    <span class="ap-artwork hidden" id="f<?php echo $image['fid']; ?>">
+                                        <div class="ap-image ap-artwork col-sm-6" id="<?php echo $image['fid']; ?>">
+                                            <label for="artwork['<?php echo $image['fid']; ?>']"></label>
+                                            <iframe class="img-responsive" src="<?php echo $image['file']; ?>" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                                        </div>
+                                    </span>
+
+                                    <?php elseif ($image['type'] == 'document' && in_array('text', $rows['opportunity']['work_types'])) : ?>
+                                    <?php $noneOfTypes = 'false'; ?>
+                                    <span class="ap-artwork hidden" id="f<?php echo $image['fid']; ?>">
+                                        <div class="ap-image col-sm-4">
+                                            <div class="img-responsive doc-icon"></div>
+                                            <a href="<?php echo file_create_url($image['file']); ?>" target="_blank"><?php echo $image['filename']; ?></a>
+                                        </div>
+                                    </span>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
+                                </div>
+                                <?php endif; ?>
+                            </div>
+                            <?php endforeach; ?>
+                        </div>
+                        <?php endif; ?>
+                        <?php  if (in_array('fields-uploads', $rows['opportunity']['steps'])) : ?>
+                                <hr>
+                                <h3 class="clearPadding clearMargin">Additional Materials</h3>
+                                <div class="addFieldsView">
+                                    <div id="additionalAjax"></div>
+                                </div>
+                                <script id="additionalTpl" type="text/template">
+                                    {{#field1}}
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <label class="clearPadding clearMargin"><?php echo $rows['opportunity']['custom_1_title']; ?>:</label>
+                                                {{&field1}} 
+                                            </div>
+                                        </div>
+                                    {{/field1}}
+                                    {{#field2}}
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <label class="clearPadding clearMargin"><?php echo $rows['opportunity']['custom_2_title']; ?>:</label>
+                                                {{&field2}} 
+                                            </div>
+                                        </div>
+                                    {{/field2}}
+                                    {{#field3}}
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <label class="clearPadding clearMargin"><?php echo $rows['opportunity']['custom_3_title']; ?>:</label>
+                                                {{&field3}} 
+                                            </div>
+                                        </div>
+                                    {{/field3}}
+                                    {{#field4}}
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <label class="clearPadding clearMargin"><?php echo $rows['opportunity']['custom_4_title']; ?>:</label>
+                                                {{&field4}} 
+                                            </div>
+                                        </div>
+                                    {{/field4}}
+                                </script>
+                                <div id="addUploadsView">
                                 <div class="row">
-                                    <div class="col-sm-12">
-                                        <div class="prev" id="gotoStep<?php echo count($rows['opportunity']['steps']) + 1; ?>" role="button">Back</div>
-                                        <button id="SaveApplication" type="submit" class="pull-right btn ap-btn" value="Submit">Submit</button>
+                                    <div id="upload1View">
+                                    <?php if (isset($rows['ap_artworks']) && $rows['upload1'] != '') : ?>
+                                        <div class="col-sm-12">
+                                            <label class="col-sm-4" for="upload1">Upload: <?php echo $rows['opportunity']['custom_up_1_title']; ?></label>
+                                            <a href="<?php  print file_create_url(file_build_uri('opportunity/' . $rows['nid'] . '/' . $rows['uid'] . '/' . $rows['upload1'])); ?>" target="_blank"><?php echo $rows['upload1'];  ?></a>
+                                        </div>
+                                    <?php endif; ?>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div id="upload2View">
+                                    <?php if (isset($rows['ap_artworks']) && $rows['upload2'] != '') : ?>
+                                        <div class="col-sm-12">
+                                            <label class="col-sm-4" for="upload2">Upload: <?php echo $rows['opportunity']['custom_up_2_title']; ?></label>
+                                            <a href="<?php  print file_create_url(file_build_uri('opportunity/' . $rows['nid'] . '/' . $rows['uid'] . '/' . $rows['upload2'])); ?>" target="_blank"><?php echo $rows['upload2'];  ?></a>
+                                        </div>
+                                    <?php endif; ?>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div id="upload3View">
+                                    <?php if (isset($rows['ap_artworks']) && $rows['upload3'] != '') : ?>
+                                        <div class="col-sm-12">
+                                            <label class="col-sm-4" for="upload3">Upload: <?php echo $rows['opportunity']['custom_up_3_title']; ?></label>
+                                            <a href="<?php  print file_create_url(file_build_uri('opportunity/' . $rows['nid'] . '/' . $rows['uid'] . '/' . $rows['upload3'])); ?>" target="_blank"><?php echo $rows['upload3'];  ?></a>
+                                        </div>
+                                    <?php endif; ?>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div id="upload4View">
+                                    <?php if (isset($rows['ap_artworks']) && $rows['upload4'] != '') : ?>
+                                        <div class="col-sm-12">
+                                            <label class="col-sm-4" for="upload4">Upload: <?php echo $rows['opportunity']['custom_up_4_title']; ?></label>
+                                            <a href="<?php  print file_create_url(file_build_uri('opportunity/' . $rows['nid'] . '/' . $rows['uid'] . '/' . $rows['upload4'])); ?>" target="_blank"><?php echo $rows['upload4'];  ?></a>
+                                        </div>
+                                    <?php endif; ?>
                                     </div>
                                 </div>
                             </div>
-                        </fieldset>
+                        <?php endif; ?>
+
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="prev" id="gotoStep<?php echo count($rows['opportunity']['steps']) + 1; ?>" role="button">Back</div>
+                                    <button id="SaveApplication" type="submit" class="pull-right btn ap-btn" value="Submit">Submit</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </form>

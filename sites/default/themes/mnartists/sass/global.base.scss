@@ -709,8 +709,21 @@ header[role=banner],
     background-image:none;
     color:#fff;
     border:none;
-    .error {
-      color:#fff;
-    }
+    padding: 10px;
+  }
+  &.status {
+    background-color: #40B34F;
+    background-image: none;
+    border: none;
+    color: #FFF;
+    padding: 10px;
+  }
+  &.warning {
+    border:none;
+    outline:none;
+    color:#fff;
+    background-image:none;
+    background-color:#d90000;
+    padding:10px;
   }
 }
