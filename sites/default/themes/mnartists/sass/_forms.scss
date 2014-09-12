@@ -1187,6 +1187,7 @@ div.entityconnect-edit {
 // add artwork form only
 #artwork-node-form {
     .form-item {
+        margin-bottom: 64px;
         .field-add-more-submit {
             width:192px;
             height:21px;
@@ -1199,6 +1200,10 @@ div.entityconnect-edit {
             text-indent:999px;
         }
     }
+    .form-wrapper {
+        margin-bottom: 64px;
+    }
+
     .field-widget-url-external {
         .form-item {
             .field-add-more-submit {
@@ -1206,19 +1211,23 @@ div.entityconnect-edit {
             }
         }
     }
-    .field-name-field-venue-form {
-        margin-bottom: 64px;
-    }
-    .field-name-field-other-artists-involved-form {
-        margin-bottom: 64px;
-    }
+    // .field-name-field-venue-form {
+    //     .field-venue-add-more-wrapper {
+    //         .form-item {
+    //             margin-bottom: 64px;
+    //         }
+    //     }
+    // }
+    // .field-name-field-other-artists-involved-form {
+    //     margin-bottom: 64px;
+    // }
 }
 .node-artwork-form {
-    .field-type-text-with-summary,
-    .field-name-field-tags-form,
-    .field-name-field-public-form {
-        margin-bottom:64px;
-    }
+    // .field-type-text-with-summary,
+    // .field-name-field-tags-form,
+    // .field-name-field-public-form {
+    //     margin-bottom:64px;
+    // }
     .field-name-field-tags-form {
         overflow:hidden;
     }
