@@ -1022,7 +1022,6 @@ a.tabledrag-handle .handle {
                 padding: 4px 0 6px 0 !important;
                 height: 25px !important;
                 font-size:13px !important;
-                background-color: #FFF !important;
             }
         }
 
@@ -1044,7 +1043,7 @@ a.tabledrag-handle .handle {
         box-shadow:none;
         .chosen-results {
             .group-option {
-                .highlighted {
+                &.highlighted {
                     background:#ccc;
                     box-shadow:none;
                 }
