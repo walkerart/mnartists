@@ -1209,7 +1209,9 @@ div.entityconnect-edit {
     .field-name-field-venue-form {
         .field-venue-add-more-wrapper {
             .form-item {
-                margin-bottom: 64px;
+                #edit-field-venue-und-0-target-id {
+                    margin-bottom: 64px;
+                }
             }
         }
     }
@@ -1220,8 +1222,16 @@ div.entityconnect-edit {
 .node-artwork-form {
     .field-type-text-with-summary,
     .field-name-field-tags-form,
-    .field-name-field-public-form {
+    .field-name-field-public-form,
+    .field-name-field-medium3-form,
+    .field-name-field-medium-form,
+    .form-item-field-roles-und,
+    .field-name-field-created-date-form {
         margin-bottom:64px;
+    }
+    .field-name-field-for-sale-form,
+    .field-name-field-public-form {
+        margin-left:33%;
     }
     .field-name-field-tags-form {
         overflow:hidden;
