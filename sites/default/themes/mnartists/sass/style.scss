@@ -9491,108 +9491,108 @@ table.table thead .sorting {
         margin-top: 20px;
     }
 
-    .user-feed {
-        background: $mystuff_bg_dark;
-        padding:20px;
-        margin-bottom:20px;
-        margin-top:20px;
-        color:#fff;
-        position:relative;
-        text-align:left;
-        @include column(14);
-        display:inline-block;
-        margin-left:auto;margin-right:auto;
-        float:none;
-        overflow:visible;
-        box-sizing:border-box;
+    // .user-feed {
+    //     background: $mystuff_bg_dark;
+    //     padding:20px;
+    //     margin-bottom:20px;
+    //     margin-top:20px;
+    //     color:#fff;
+    //     position:relative;
+    //     text-align:left;
+    //     @include column(14);
+    //     display:inline-block;
+    //     margin-left:auto;margin-right:auto;
+    //     float:none;
+    //     overflow:visible;
+    //     box-sizing:border-box;
 
-        @media screen and (max-width: $break-mobile) {
-            @include column(24);
-            display:block;width:100%;
-            padding:20px;margin:20px 0;float:none;
-        }
-        @media screen and (max-width: $break-tablet) {
-            @include column(24);
-            display:block;width:100%;
-            padding:20px;margin:20px 0;float:none;
-        }
-        @media screen and (max-width: $break-desktop-small) {
-            @include column(24);
-            display:block;width:100%;
-            padding:20px;margin:20px 0;float:none;
-        }
+    //     @media screen and (max-width: $break-mobile) {
+    //         @include column(24);
+    //         display:block;width:100%;
+    //         padding:20px;margin:20px 0;float:none;
+    //     }
+    //     @media screen and (max-width: $break-tablet) {
+    //         @include column(24);
+    //         display:block;width:100%;
+    //         padding:20px;margin:20px 0;float:none;
+    //     }
+    //     @media screen and (max-width: $break-desktop-small) {
+    //         @include column(24);
+    //         display:block;width:100%;
+    //         padding:20px;margin:20px 0;float:none;
+    //     }
 
-        a {
-            color:#fff;
-            &:hover {
+    //     a {
+    //         color:#fff;
+    //         &:hover {
 
-            }
-        }
+    //         }
+    //     }
 
-        table {
-            border:none;
-            color:#fff;
-            thead {
-                tr {
-                    background:none;
-                    td {
-                        &:first-child {
-                            padding-left:0;
-                            width:33%;
-                        }
-                    }
-                }
-            }
-            tbody {
-                tr {
-                    border-top:none;
+    //     table {
+    //         border:none;
+    //         color:#fff;
+    //         thead {
+    //             tr {
+    //                 background:none;
+    //                 td {
+    //                     &:first-child {
+    //                         padding-left:0;
+    //                         width:33%;
+    //                     }
+    //                 }
+    //             }
+    //         }
+    //         tbody {
+    //             tr {
+    //                 border-top:none;
 
-                    td {
-                        vertical-align:top;
+    //                 td {
+    //                     vertical-align:top;
 
 
-                        &:first-child {
-                            padding-left:0;
-                            width:33%;
-                        }
+    //                     &:first-child {
+    //                         padding-left:0;
+    //                         width:33%;
+    //                     }
 
-                        &:nth-child(3) {
-                          color:transparent;
-                          text-align:center;
-                          line-height:.5em;
-                          min-width:100px;
-                          letter-spacing:-2px;
-                          text-align:right;
+    //                     &:nth-child(3) {
+    //                       color:transparent;
+    //                       text-align:center;
+    //                       line-height:.5em;
+    //                       min-width:100px;
+    //                       letter-spacing:-2px;
+    //                       text-align:right;
 
-                            a {
-                              border-radius:50%;
-                              overflow:hidden;
-                              height:21px;
-                              width:21px;
-                              text-indent:50px;
-                              white-space:nowrap;
-                              padding:0;
-                              border:1px solid #666;
-                              outline:none;
-                              display:inline-block;
-                              margin:0 auto;
-                            }
+    //                         a {
+    //                           border-radius:50%;
+    //                           overflow:hidden;
+    //                           height:21px;
+    //                           width:21px;
+    //                           text-indent:50px;
+    //                           white-space:nowrap;
+    //                           padding:0;
+    //                           border:1px solid #666;
+    //                           outline:none;
+    //                           display:inline-block;
+    //                           margin:0 auto;
+    //                         }
 
-                            a:first-child {
-                              background: url('../images/icon-form-edit.png') no-repeat center center transparent;
-                            }
-                            a:last-child {
-                              background: url('../images/icon-form-remove.png') no-repeat center center transparent;
-                            }
-                            a:hover {
-                              border:1px solid #999;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
+    //                         a:first-child {
+    //                           background: url('../images/icon-form-edit.png') no-repeat center center transparent;
+    //                         }
+    //                         a:last-child {
+    //                           background: url('../images/icon-form-remove.png') no-repeat center center transparent;
+    //                         }
+    //                         a:hover {
+    //                           border:1px solid #999;
+    //                         }
+    //                     }
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }
 }
 .rename-filter-editing-state {
   background:$main_bg;
