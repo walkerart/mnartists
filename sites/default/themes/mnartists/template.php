@@ -121,6 +121,20 @@ function mnartists_process_page(&$vars) {
     drupal_add_css(drupal_get_path('theme', 'mnartists') . '/css/table_style.css');
   }
 
+  
+  $path = drupal_get_path_alias();
+  //check path for node/add/ "* anything"
+  $pattern = "node/add/*\nfoo-page";
+  //check for path to user edit pages
+  $pattern2 = "user/*\n123/edit/*\nfoo-page";
+  //if pattern match add chosen to the page
+  if(drupal_match_path($path, $pattern) || drupal_match_path($path, $pattern2))
+  {
+    drupal_add_css(drupal_get_path('theme', 'mnartists') . '/css/chosen.min.css');
+    drupal_add_js(drupal_get_path('theme', 'mnartists') . '/scripts/chosen.jquery.min.js');
+    drupal_add_js(drupal_get_path('theme', 'mnartists') . '/scripts/node-add-user-edit-chosen.js');
+  }
+
 }
 
 
