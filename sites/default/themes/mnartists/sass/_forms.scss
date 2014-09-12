@@ -1013,7 +1013,7 @@ a.tabledrag-handle .handle {
         box-shadow:none;
         border:none;
         padding:0;
-        background:none;
+        background:none !important;
         box-sizing:border-box;
         font-size:13px !important;
 
@@ -1026,17 +1026,16 @@ a.tabledrag-handle .handle {
         }
 
         .search-choice {
-            border-radius:0;
-            background:#ccc;
-            border:none;
-            box-shadow:none;
-            font-size:12px;
+            border-radius:0 !important;
+            background:#ccc !important;
+            border:none !important;
+            box-shadow:none !important;
+            font-size:12px !important;
 
             &:hover {
-                background:#ddd;
+                background:#ddd !important;
             }
         }
-
     }
     .chosen-drop {
         border:none;
