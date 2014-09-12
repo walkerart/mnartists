@@ -8,7 +8,7 @@ function mn_ap_menu() {
   $items['opportunity/%/apply'] = array(
     'title' => 'Apply',
     'page callback' => 'mn_ap_apply',
-    'access callback' => TRUE,
+    'access callback' => 'user_is_logged_in',
     'page arguments' => array(1),
     'file' => 'mn_ap.apply.inc',
   );
@@ -20,21 +20,21 @@ function mn_ap_menu() {
   $items['opportunity/%/submissions'] = array(
     'title' => 'Submissions',
     'page callback' => 'mn_ap_submission',
-    'access callback' => TRUE,
+    'access callback' => 'user_is_logged_in',
     'page arguments' => array(1),
     'file' => 'mn_ap.submission.inc',
   );
   $items['opportunity/%/submission/%'] = array(
     'title' => 'Applicant Review',
     'page callback' => 'mn_ap_review',
-    'access callback' => TRUE,
+    'access callback' => 'user_is_logged_in',
     'page arguments' => array(1,3),
     'file' => 'mn_ap.review.inc',
   );
   $items['opportunity/%/submission/%/admin'] = array(
     'title' => 'Admin Applicant View',
     'page callback' => 'mn_ap_admin',
-    'access callback' => TRUE,
+    'access callback' => 'user_is_logged_in',
     'page arguments' => array(1,3),
     'file' => 'mn_ap.admin.inc',
   );
@@ -42,6 +42,7 @@ function mn_ap_menu() {
     'type' => MENU_CALLBACK,
     'page callback' => 'ap_submissions_xls',
     'page arguments' => array(1,3,5),
+    'access callback' => 'user_is_logged_in',
     'access arguments' => array('access content'),
   );
   $items['opportunity/%/apply/submit'] = array(
@@ -49,6 +50,7 @@ function mn_ap_menu() {
     'type' => MENU_CALLBACK,
     'page callback' => 'ap_submit_form',
     'page arguments' => array(1),
+    'access callback' => 'user_is_logged_in',
     'access arguments' => array('access content'),
   );
 
@@ -112,7 +114,7 @@ function ap_submit_form() {
   $ap_folder_path = variable_get('file_public_path', conf_path() . '/files/opportunity/' . $ap_folder);
   $user_folder_path = $ap_folder_path . $user_folder;
 
-  $reopen = $_POST['reopen'];
+  $reopen = isset($_POST['reopen']) ? $_POST['reopen'] : 0;
   // if this is a reopen application get previous artwork data
   if ($reopen == 1) {
     $previous_artworks = mn_ap_get_ap_artworks($nid, $uid);
@@ -164,7 +166,7 @@ function ap_submit_form() {
     //loop through the checked artwork fids from the form
     foreach($_POST['artwork'] as $fid) {
       //if the artwork doesn't already exist then save it
-      if (!in_array($fid, $previous_artworks)) {
+      if (! isset($previous_artworks) || !in_array($fid, $previous_artworks)) {
         //loop thourgh all artwork data
         foreach($artwork_data as $data) {
           //find correct data for upload
@@ -178,6 +180,9 @@ function ap_submit_form() {
               $work['medium'] = isset($data['medium']) ? json_encode($data['medium']) : '';
               $work['date'] = isset($data['date']) ? $data['date'] : '';
               $work['dimensions'] = isset($data['dimensions']) ? $data['dimensions'] : '';
+              $work['excerpt'] = isset($data['excerpt']) ? $data['excerpt'] : '';
+              $work['other_artists'] = $data['other_artists'] != '' ? json_encode($data['other_artists']) : '';
+              $work['venue'] = isset($data['venue']) ? $data['venue'] : '';
               $work['description'] = isset($data['body']) ? $data['body'] : '';
               $work['file_type'] = isset($image['type']) ? $image['type'] : '';
               $work['file'] = isset($image['file']) ? $image['file'] : '';
@@ -218,14 +223,16 @@ function ap_submit_form() {
   }
 
   //remove unselected works from op_artworks
-  foreach ($previous_artworks as $previous) {
-    if (!in_array($previous, $_POST['artwork'])) {
-      //delete
-      db_delete('op_artworks')
-        ->condition('fid', $previous, '=')
-        ->condition('uid', $uid, '=')
-        ->condition('nid', $nid, '=')
-        ->execute();
+  if(isset($previous_artworks)) {
+    foreach ($previous_artworks as $previous) {
+      if (!in_array($previous, $_POST['artwork'])) {
+        //delete
+        db_delete('op_artworks')
+          ->condition('fid', $previous, '=')
+          ->condition('uid', $uid, '=')
+          ->condition('nid', $nid, '=')
+          ->execute();
+      }
     }
   }
 
@@ -270,7 +277,7 @@ function ap_submit_form() {
         ->execute();
   }
 
-  drupal_set_message(t('Your application has been submitted.'), 'error');
+  drupal_set_message(t('Your application has been submitted.'), 'status');
   return drupal_goto('application/' . $nid);
 }
 
@@ -352,18 +359,17 @@ function mn_ap_artworks_data($uid, $vid = NULL) {
   if (!empty($result['node'])) {
     $resultKeys = array_keys($result['node']);
     $out = node_view_multiple(node_load_multiple($resultKeys));
-    //$out = node_view_multiple(node_load_multiple(array_keys($result['node'])));
   }
 
   if (empty($out['nodes'])) {
-    return drupal_set_message(t('You have not added any artworks to your profile.'), 'status');
+    return drupal_set_message(t('You have not added any artworks to your profile.'), 'error');
   }
 
   $rows = array();
   foreach ($out['nodes'] as $row) {
     //getting object and converting to array
     $object = (array)$row['field_media']['#object'];
-    //dpm($object); 
+    //dpm($object);
     //get medium from tid
     $medium = isset($object['field_medium']['und']) ? mn_ap_medium_data($object['field_medium']['und']) : '';
     //clean up artwork
@@ -372,7 +378,10 @@ function mn_ap_artworks_data($uid, $vid = NULL) {
     $day = isset($object['field_created_date']['und']['0']['from']['day']) ? (int)$object['field_created_date']['und']['0']['from']['day'] : '';
     $month = isset($object['field_created_date']['und']['0']['from']['month']) ? (int)$object['field_created_date']['und']['0']['from']['month'] : '';
     $year = isset($object['field_created_date']['und']['0']['from']['year']) ? (int)$object['field_created_date']['und']['0']['from']['year'] : '';
+    $excerpt = isset($object['field_artwork_excerpt']['und']['0']['safe_value']) ? $object['field_artwork_excerpt']['und']['0']['safe_value'] : '';
     $date = get_artwork_date($month, $day, $year);
+    $other_artists = isset($object['field_other_artists_involved']['und']) ? mn_ap_get_other_artists($object['field_other_artists_involved']['und']) : '';
+    $venue = isset($object['field_venue']['und']) ? mn_ap_get_venues($object['field_venue']['und']) : '';
 
     $rows[] = array(
       'vid' => isset($object['vid']) ? $object['vid'] : '',
@@ -380,13 +389,49 @@ function mn_ap_artworks_data($uid, $vid = NULL) {
       'body' => isset($object['body']['und']['0']['safe_value']) ? strip_tags($object['body']['und']['0']['safe_value']) : '',
       'date' => $date,
       'dimensions' => isset($object['field_dimensions']['und']['0']['value']) ? $object['field_dimensions']['und']['0']['value'] : '',
+      'excerpt' => $excerpt,
       'medium' => $medium,
       'images' => $images,
+      'other_artists' => $other_artists,
+      'venue' => $venue,
       //'field_media' => isset($object['field_media']) ? $object['field_media'] : '',
       //'row' => $row
     );
   }
   return $rows; //$out['nodes'];
+}
+
+/*
+** Entity Lookup for Venue Title
+*/
+function mn_ap_get_venues($venues) {
+  $artwork_venue = '';
+  foreach ($venues as $venue) {
+    $venue_id = $venue['target_id'];
+    $query =  new EntityFieldQuery();
+    $query->entityCondition('entity_type', 'node')
+    ->entityCondition('type', 'venue')
+    ->propertyCondition('nid', $venue_id, '=');
+    $result = $query->execute();
+    $out = array();
+    if (!empty($result['node'])) {
+      $resultKeys = array_keys($result['node']);
+      $out = node_view_multiple(node_load_multiple($resultKeys));
+    }
+    $artwork_venue = $out['nodes'][$venue_id]['#node']->title;
+  }
+  return $artwork_venue;
+}
+
+/*
+** Term look up to get other artists for artworks
+*/
+function mn_ap_get_other_artists($artists) {
+  foreach ($artists as $artist) {
+    $term = (array)taxonomy_term_load($artist['tid']);
+    $other_artists[] = $term['name'];
+  }
+  return $other_artists;
 }
 
 /*
@@ -662,6 +707,7 @@ function get_juror_reviews($nid, $uid, $round) {
   $query = db_select('op_rating', 'r');
   $query->condition('r.nid', $nid, '=');
   $query->condition('r.round', $round, '=');
+  $query->condition('r.uid', $uid, '=');
   $query->fields('r');
   $reviews = $query->execute()->fetchAll();
 
@@ -835,7 +881,7 @@ function mn_ap_check_juror($nid, $mail){
 function mn_ap_update_ap_status($nid, $uid, $status) {
   $input['accepted_at'] = date("Y-m-d H:i:s");
   //toggle the currently set status
-  if ($status == 0) {
+  if ($status == 0 || $status == '0') {
       $input['accept'] = 1;
   } elseif($status == 1) {
       $input['accept'] = 0;
@@ -878,7 +924,7 @@ function mn_ap_reopen_all_aps($nid, $reopen) {
   } elseif($reopen == 1) {
       $reopen = 0;
       mn_ap_update_reopen_setting($nid, $reopen);
-      return drupal_set_message('You have closed all reopened applications.', 'error');
+      return drupal_set_message('You have closed all reopened applications.', 'status');
   }
 }
 

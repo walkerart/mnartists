@@ -77,11 +77,11 @@ function mnartists_preprocess_html(&$vars) {
   $vars['classes_array'][] = css_browser_selector();
 
   if ((!user_is_logged_in() && arg(0) == "user" && (is_null(arg(1)) || in_array(arg(1), array('password', 'register')))) ||
-          (in_array(arg(0), array('opportunities', 'applications'))) ||
+          (in_array(arg(0), array('opportunity', 'application', 'opportunities', 'applications', 'manage-artworks', 'manage-events'))) ||
           (arg(0) == "user" && in_array(arg(2), array("edit", "mailchimp"))) ||
           (arg(0) == "node" && in_array(arg(1), array("edit", "add"))) ||
           (arg(0) == "node" && in_array(arg(2), array("edit"))) ||
-          (arg(0) == 'user' && in_array(arg(1), array("saved-filters", "feed", "welcome")) ||
+          (arg(0) == 'user' && in_array(arg(1), array("saved-filters", "feed", "welcome", "migrate", "password", "login")) ||
           (user_is_logged_in() && (arg(0) == "user" && in_array(arg(2), array("flags")) && flag_lists_is_owner('edit', arg(4)))) ||
           (user_is_logged_in() && (arg(0) == "user" && in_array(arg(2), array("flags")) && !is_numeric(arg(3)))) ||
           (user_is_logged_in() && (arg(0) == "flags" && flag_lists_is_owner('edit', arg(2)))))
@@ -105,8 +105,36 @@ function mnartists_process_html(&$vars) {
  */
 function mnartists_preprocess_page(&$vars) {
     drupal_add_library('system', 'ui.datepicker');
+    drupal_add_library('system', 'ui.dialog');
 }
 function mnartists_process_page(&$vars) {
+  if($_GET['q'] == 'manage-artworks' || $_GET['q'] == 'manage-events' )
+  {
+    drupal_add_css(drupal_get_path('module', 'mn_ap') . '/css/bootstrap.min.css');
+    drupal_add_css(drupal_get_path('module', 'mn_op') . '/css/mn-op.css');
+    drupal_add_css(drupal_get_path('module', 'mn_ap') . '/css/DT_bootstrap.css');
+    drupal_add_js(drupal_get_path('theme', 'mnartists') . '/scripts/manage-table.js');
+  }
+  if($_GET['q'] == 'user/saved-filters')
+  {
+    drupal_add_css(drupal_get_path('module', 'mn_ap') . '/css/bootstrap.min.css');
+    drupal_add_css(drupal_get_path('theme', 'mnartists') . '/css/table_style.css');
+  }
+
+  
+  $path = drupal_get_path_alias();
+  //check path for node/add/ "* anything"
+  $pattern = "node/add/*\nfoo-page";
+  //check for path to user edit pages
+  $pattern2 = "user/*\n123/edit/*\nfoo-page";
+  //if pattern match add chosen to the page
+  if(drupal_match_path($path, $pattern) || drupal_match_path($path, $pattern2))
+  {
+    drupal_add_css(drupal_get_path('theme', 'mnartists') . '/css/chosen.min.css');
+    drupal_add_js(drupal_get_path('theme', 'mnartists') . '/scripts/chosen.jquery.min.js');
+    drupal_add_js(drupal_get_path('theme', 'mnartists') . '/scripts/node-add-user-edit-chosen.js');
+  }
+
 }
 
 
@@ -144,5 +172,5 @@ function mnartists_process_block(&$vars) {
 
 function mnartists_preprocess_flag(&$vars) {
     $content_id = $vars['content_id'];
-    $vars['link_count'] = flag_get_counts('node', $content_id);
+    $vars['link_count'] = flag_get_counts($vars['flag']->content_type, $content_id, true);
 }

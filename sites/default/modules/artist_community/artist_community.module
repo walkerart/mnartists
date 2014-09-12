@@ -51,23 +51,28 @@ define('AC_SORT_BY_RECENT_FIELD', 'ds_created');
 define('AC_ORG_CATEGORY_FIELD', 'is_profile_organization:field_organization_type');
 define('AC_OPP_TYPE_FIELD', 'is_field_op_type');
 define('AC_OPP_ANNOUNCE_DATE_FIELD', 'ds_field_announce_date');
+define('AC_ARTWORK_PUBLIC_FIELD', 'bs_field_public');
 
 define('DEFAULT_DOCUMENT_IMAGE', 'icon-media-document.png');
 
 
 // config for solarium
-global $solarium_config;
-$solarium_config = array(
-    'endpoint' => array(
-        'localhost' => array(
-            'host' => '127.0.0.1',
-            'port' => 8080,
-            'path' => '/solr/',
-        )
-    )
-);
+function artist_community_init() {
+    if (module_exists('search_api') && function_exists("search_api_server_load")) {
+        $mna_search_api_server = search_api_server_load("localhost");
 
-
+        global $solarium_config;
+        $solarium_config = array(
+            'endpoint' => array(
+                'localhost' => array(
+                    'host' => $mna_search_api_server->options['host'],
+                    'port' => $mna_search_api_server->options['port'],
+                    'path' => $mna_search_api_server->options['path'],
+                )
+            )
+        );
+    }
+}
 
 /**
  * Implements hook_menu()
@@ -115,7 +120,7 @@ function artist_community_theme() {
             'template' => 'templates/artist-profile',
         ),
         'artist_community_menu_search' => array(
-            'variables' => array(),
+            'variables' => array('rows' => array()),
             'template' => 'templates/mna-search-block'
         ),
         'artist_community_menu_location_search' => array(
@@ -168,12 +173,12 @@ function artist_community_block_info() {
 function _artist_community_block_visibility() {
     global $user;
 
-    if ((arg(0) == "user" && in_array(arg(2), array("edit", "mailchimp", "welcome"))) ||
-            (in_array(arg(0), array('opportunities', 'applications'))) ||
-            (!user_is_logged_in() && arg(0) == "user" && (is_null(arg(1)) || in_array(arg(1), array("password", "register")))) ||
+    if ((arg(0) == "user" && (in_array(arg(2), array("edit", "mailchimp", "welcome")))) ||
+            (in_array(arg(0), array('opportunity', 'application', 'opportunities', 'applications', 'manage-artworks', 'manage-events'))) ||
+            (!user_is_logged_in() && arg(0) == "user" && (is_null(arg(1)) || in_array(arg(1), array("password", "register", "login")))) ||
             (arg(0) == "node" && in_array(arg(1), array("edit", "add"))) ||
             (arg(0) == "node" && in_array(arg(2), array("edit"))) ||
-            (arg(0) == "user" && in_array(arg(1), array("saved-filters", "feed", "welcome"))) ||
+            (arg(0) == "user" && in_array(arg(1), array("saved-filters", "feed", "welcome", "migrate"))) ||
             (user_is_logged_in() && (arg(0) == "user" && in_array(arg(2), array("flags")) && flag_lists_is_owner('edit', arg(4)))) ||
             (user_is_logged_in() && (arg(0) == "user" && in_array(arg(2), array("flags")) && !is_numeric(arg(3)))) ||
             (user_is_logged_in() && (arg(0) == "flags" && flag_lists_is_owner('edit', arg(2))))
@@ -214,9 +219,8 @@ function _community_block_event_category_link () {
 }
 
 function _community_block_search() {
-    return theme("artist_community_menu_search", array(
-
-    ));
+    global $user;
+    return theme("artist_community_menu_search", array('rows' => $user));
 }
 
 /**
@@ -900,9 +904,11 @@ function _artist_community_get_items_query ($local_og = null,
         }
     } else {
         if ($filtered_by_event_include_past) {
-            $nodeQueryBuilder[] = '('.AC_TYPE_FIELD.':article OR '.AC_TYPE_FIELD.':artwork OR '.AC_TYPE_FIELD.':event OR ('.AC_TYPE_FIELD.':opportunity AND '.AC_OPP_ANNOUNCE_DATE_FIELD.':[* TO NOW]))';
+            $nodeQueryBuilder[] = '('.AC_TYPE_FIELD.':article OR ('.AC_TYPE_FIELD.':artwork AND '.AC_ARTWORK_PUBLIC_FIELD
+                .':true) OR '.AC_TYPE_FIELD.':event OR ('.AC_TYPE_FIELD.':opportunity AND '.AC_OPP_ANNOUNCE_DATE_FIELD.':[* TO NOW]))';
         } else {
-            $nodeQueryBuilder[] = '('.AC_TYPE_FIELD.':article OR '.AC_TYPE_FIELD.':artwork OR ('.AC_TYPE_FIELD.':opportunity AND '.AC_OPP_ANNOUNCE_DATE_FIELD.':[* TO NOW]) OR ('.AC_TYPE_FIELD.":event AND ds_field_date\:value:[NOW TO *]))";
+            $nodeQueryBuilder[] = '('.AC_TYPE_FIELD.':article OR ('.AC_TYPE_FIELD.':artwork AND '.AC_ARTWORK_PUBLIC_FIELD
+                .':true) OR ('.AC_TYPE_FIELD.':opportunity AND '.AC_OPP_ANNOUNCE_DATE_FIELD.':[* TO NOW]) OR ('.AC_TYPE_FIELD.":event AND ds_field_date\:value:[NOW TO *]))";
         }
     }
 
@@ -980,6 +986,10 @@ function _artist_community_get_items_query ($local_og = null,
                     $typeQuery = AC_TYPE_FIELD.":$type";
                     $subQuery = null;
                     $subQueryTargetField = AC_CATEGORY_FIELD;
+                    if (isset($local_content[$type]) &&
+                        is_array($local_content[$type])) {
+                        $subQuery = implode(' OR ', $local_content[$type]);
+                    }
                     if (!isset($_GET['content']['event_include_past']) ||
                         (isset($_GET['content']['event_include_past']) && isset($_GET['content']['event_include_past']) != '1')) {
                         $typeQuery .= " AND ds_field_date\:value:[NOW TO *]";
@@ -989,7 +999,12 @@ function _artist_community_get_items_query ($local_og = null,
                         $eventLocationSearchString = '{!geofilt sfield='.AC_USER_LATLNG_FIELD." pt=$event_coords d=".NEAR_ME_RADIUS.'}';
                         $solarium_query->createFilterQuery('event_location')->setQuery($eventLocationSearchString);
                     }
-                    $contextQueryString = "($typeQuery)";
+
+                    if (!is_null($subQuery) && is_null($forSaleQuery)) {
+                        $contextQueryString = "($typeQuery AND ($subQueryTargetField:($subQuery)))";
+                    } else {
+                        $contextQueryString = "($typeQuery)";
+                    }
                     $contentFilters['node'][] = $contextQueryString;
                     break;
                 case 'artists':
@@ -1220,9 +1235,11 @@ function _set_community_query_facets ($filter_query_string = null) {
             $finished_query_string = $filter_query_string;
         } else {
             if (isset($_GET['content']['event_include_past']) && $_GET['content']['event_include_past'] == '1') {
-                $base_query_string = "(index_id:".NODE_INDEX." AND ((".AC_TYPE_FIELD.":article OR ss_type:artwork OR (".AC_TYPE_FIELD.":opportunity AND ".AC_OPP_ANNOUNCE_DATE_FIELD.":[* TO NOW]) OR ".AC_TYPE_FIELD.":event))) OR (index_id:".USER_INDEX." AND ".AC_SORT_BY_NAME_FIELD.":['' TO *])";
+                $base_query_string = "(index_id:".NODE_INDEX." AND ((".AC_TYPE_FIELD.":article OR (".AC_TYPE_FIELD.":artwork AND ".AC_ARTWORK_PUBLIC_FIELD
+                .":true) OR (".AC_TYPE_FIELD.":opportunity AND ".AC_OPP_ANNOUNCE_DATE_FIELD.":[* TO NOW]) OR ".AC_TYPE_FIELD.":event))) OR (index_id:".USER_INDEX." AND ".AC_SORT_BY_NAME_FIELD.":['' TO *])";
             } else {
-                $base_query_string = "(index_id:".NODE_INDEX." AND ((".AC_TYPE_FIELD.":article OR ss_type:artwork OR (".AC_TYPE_FIELD.":opportunity AND ".AC_OPP_ANNOUNCE_DATE_FIELD.":[* TO NOW]) OR (".AC_TYPE_FIELD.":event AND ds_field_date\:value:[NOW TO *])))) OR (index_id:".USER_INDEX." AND ".AC_SORT_BY_NAME_FIELD.":['' TO *])";
+                $base_query_string = "(index_id:".NODE_INDEX." AND ((".AC_TYPE_FIELD.":article OR (".AC_TYPE_FIELD.":artwork AND ".AC_ARTWORK_PUBLIC_FIELD
+                .":true) OR (".AC_TYPE_FIELD.":opportunity AND ".AC_OPP_ANNOUNCE_DATE_FIELD.":[* TO NOW]) OR (".AC_TYPE_FIELD.":event AND ds_field_date\:value:[NOW TO *])))) OR (index_id:".USER_INDEX." AND ".AC_SORT_BY_NAME_FIELD.":['' TO *])";
             }
             $finished_query_string = (!is_null($filter_query_string)) ? "($base_query_string) AND $filter_query_string" : $base_query_string;
         }
@@ -1252,9 +1269,9 @@ function _set_community_query_facets ($filter_query_string = null) {
             $facetSet->createFacetQuery('events')->setQuery('index_id:'.NODE_INDEX.' AND '.AC_TYPE_FIELD.':event  AND ds_field_date\:value:[NOW TO *]');
         }
         $facetSet->createFacetQuery('articles')->setQuery('index_id:'.NODE_INDEX.' AND '.AC_TYPE_FIELD.':article');
-        $facetSet->createFacetQuery('artworks')->setQuery('index_id:'.NODE_INDEX.' AND '.AC_TYPE_FIELD.':artwork');
+        $facetSet->createFacetQuery('artworks')->setQuery('index_id:'.NODE_INDEX.' AND '.AC_TYPE_FIELD.':artwork AND '.AC_ARTWORK_PUBLIC_FIELD.':true');
         $facetSet->createFacetQuery('opportunities')->setQuery('index_id:'.NODE_INDEX.' AND '.AC_TYPE_FIELD.':opportunity');
-        $facetSet->createFacetQuery('all_content')->setQuery('(index_id:'.NODE_INDEX.' AND (('.AC_TYPE_FIELD.':article OR '.AC_TYPE_FIELD.':artwork OR '.AC_TYPE_FIELD.':event))) OR (index_id:'.USER_INDEX.' AND '.AC_SORT_BY_NAME_FIELD.':[\'\' TO *])');
+        $facetSet->createFacetQuery('all_content')->setQuery('(index_id:'.NODE_INDEX.' AND (('.AC_TYPE_FIELD.':article OR ('.AC_TYPE_FIELD.':artwork AND '.AC_ARTWORK_PUBLIC_FIELD.':true) OR '.AC_TYPE_FIELD.':event))) OR (index_id:'.USER_INDEX.' AND '.AC_SORT_BY_NAME_FIELD.':[\'\' TO *])');
 
         $resultset = $client->select($solarium_query);
         $search_facets = $resultset->getFacetSet();

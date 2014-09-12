@@ -259,6 +259,18 @@
 	}
 }
 
+#block-mnartist-filter-mna-filter-create {
+	.block-inner {
+		.block-content {
+			.menu {
+				.first {
+					top: 85px;
+				}
+			}
+		}
+	}
+}
+
 #menu #block-mnartist-filter-mna-filter-create {
 	position:absolute;
 	top:9px;
@@ -353,7 +365,17 @@ p.site-description {
 	color:#888;
 	float:none;
 	display:block;
+
+	a {
+		color:#888;
+		text-decoration: underline;
+	}
 }
+
+p.site-description-after {
+	margin-bottom:0;
+}
+
 .menu-content {
 	display:block;
 }
@@ -498,7 +520,7 @@ p.site-description {
         ul.my-stuff-edit-menu li.last {
             margin-top:20px;
         }
-        ul.my-stuff-edit-menu li:nth-child(4) {
+        ul.my-stuff-edit-menu li:nth-child(5) {
             border-bottom:none;
         }
 		ul.my-stuff-menu,

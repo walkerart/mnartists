@@ -1,6 +1,3 @@
-<p class="site-description">
-    Select communities and content to create a homepage tailored to your interests.
-</p>
 <div class="search-container">
     <form method="get" action="/community">
         <?php
@@ -29,3 +26,14 @@
         <button type="submit"></button>
     </form>
 </div>
+
+<p class="site-description site-description-after">
+    Explore Minnesota's art scene by browsing communities and content.
+</p>
+
+
+<?php if($rows->uid && $url_query_string !== '' || drupal_is_front_page()) : ?>
+<p class="site-description">
+    Save your search; create a personalized homepage.
+</p>
+<?php endif; ?>

@@ -4,45 +4,53 @@
  * Render a index of entries in the database.
  */
 function mn_op_index() {
-	$output = '';
-	//look for a POST request
-	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-		if (isset($_POST['status'])) {
-			$input = array(
-				'nid' => $_POST['node_id'],
-				'status' => $_POST['status']
-			);
-			//run status update on nid
-			_update_published_status($input);
-		} elseif (isset($_POST['reopen'])) {
-        	mn_ap_reopen_all_aps($_POST['node_id'], $_POST['reopen']);
-      	}
+	global $user;
+	global $base_root;
+
+	//if user is an admin or an org admin send show them the the manage page for opportunities
+	if (in_array('administrator', $user->roles) || in_array('Organizational Admin', $user->roles)) {
+
+		$output = '';
+		//look for a POST request
+		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+			if (isset($_POST['status'])) {
+				$input = array(
+					'nid' => $_POST['node_id'],
+					'status' => $_POST['status']
+				);
+				//run status update on nid
+				_update_published_status($input);
+			} elseif (isset($_POST['reopen'])) {
+				mn_ap_reopen_all_aps($_POST['node_id'], $_POST['reopen']);
+			}
+		}
+		//get row node data
+		$rows = mn_op_node_data($user);
+
+		//apply theme to node data
+		$output = theme('mn_op_list', array('rows' => $rows)); //used without template
+
+		return $output;
+	} else {
+		// they are not an admin or org admin send them to list of all opps
+		return drupal_goto($base_root . '/community?content[opportunity]=1');
 	}
-	//get row node data
-	$rows = mn_op_node_data();
-
-	if (empty($rows[0])) return drupal_set_message(t('You have not created any opportunities.'), 'error');
-
-	//apply theme to node data
-	$output = theme('mn_op_list', array('rows' => $rows)); //used without template
-
-	return $output;
 }
 
 /**
  * Populate rows data from opportunity node
  */
-function mn_op_node_data() {
-	global $user;
+function mn_op_node_data($user) {
+
 	$uid = $user->uid;
 
 	$query =  new EntityFieldQuery();
 	$query->entityCondition('entity_type', 'node')
 			->entityCondition('bundle', 'opportunity')
-			//->propertyCondition('status', '1') //status is visbility to public
 			->propertyOrderBy('created', 'DESC');
 
-	if (! user_access('administrator')) {
+	//if role is not admin show only user created opps
+	if (! in_array('administrator', $user->roles)) {
 		$query->propertyCondition('uid', $uid, '=');
 	}
 
@@ -93,17 +101,25 @@ function mn_op_node_data() {
 }
 
 function mn_ap_get_submissions_count($nid, $site) {
+	$complete = 0;
 	$count = 0;
 	if ($site) {
 		$result = db_select('op_applications', 'op')
-	      ->fields('op')
-	      ->condition('nid', $nid, '=')
-	      ->condition('complete', 1, '=')
-	      ->execute()
-	      ->fetchAll();
-	  $count = count($result);
+		  ->fields('op')
+		  ->condition('nid', $nid, '=')
+		  ->execute()
+		  ->fetchAll();
+	  	$count = count($result);
 	}
-  return $count;
+	if(isset($result)) {
+		foreach ($result as $counter) {
+			if ($counter->complete == 1) {
+				$complete++;
+			}
+		}
+		return $complete . '/' . $count;
+	}
+  	return $count;
 }
 
 /**
@@ -112,48 +128,19 @@ function mn_ap_get_submissions_count($nid, $site) {
 function _update_published_status($input) {
 	$return_value = NULL;
 	try {
-		$tables = array('node', 'node_revision');
-		foreach ($tables as $table) {
-			$return_value = db_update($table)
-				->fields(array('status' => $input['status']))
-				->condition('nid', $input['nid'])
-				->execute();
-		}
-		$select = db_select('node', 'n')
-  			->fields('n', array('title'))
-  			->condition('n.type', 'opportunity', '=')
-  			->condition('nid', $input['nid'])
-				->execute()
-				->fetchAll();
-		$select = (array)$select['0'];
+		$node = node_load($input['nid']);
+		$node->status = $input['status'];
+		node_save($node);
+
 		if ($input['status'] == '1') {
-			drupal_set_message(t($select['title'] . ' - Opportunity Published'), 'status');
+			drupal_set_message(t($node->title . ' - Opportunity Published'), 'status');
 		} else {
-			drupal_set_message(t($select['title'] . ' - Opportunity Unpublished'), 'status');
+			drupal_set_message(t($node->title . ' - Opportunity Unpublished'), 'status');
 		}
 	}
-  	catch (Exception $e) {
-  		drupal_set_message(t('db_update failed. Message = %message, query= %query',
-    		array('%message' => $e->getMessage(), '%query' => $e->query_string)), 'error');
+	catch (Exception $e) {
+		drupal_set_message(t('db_update failed. Message = %message, query= %query',
+			array('%message' => $e->getMessage(), '%query' => $e->query_string)), 'error');
 	}
 	return $return_value;
-}
-
-/*
-* convert datetime to correct site db set time
-*/
-function mn_ap_get_date($date, $timezone, $timezone_db) {
-	if($date && $timezone && $timezone_db) {
-		$timezone = new DateTimeZone($timezone);
-		$timezone_db = new DateTimeZone($timezone_db);
-
-		$resultDate = new DateTime($date, $timezone_db);
-		$resultDate->setTimezone($timezone);
-		$resultDate = (array) $resultDate;
-		$resultDate = new DateTime($resultDate['date']);
-		$resultDate = $resultDate->format("F j, Y, g:i a");
-	} else {
-		$resultDate = '';
-	}
-	return $resultDate;
 }

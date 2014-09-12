@@ -28,14 +28,17 @@
 
     $has_filters = (isset($_GET['og']) || isset($_GET['content']) || isset($_GET['global_search']));
 ?>
+<div>
+    <!-- banner -->
+    <header class="organization-header<?php if (count($_GET) <= 1) { ?> has-taglines<?php } ?>">
+        <h1><a class="organization" href="/">Mn Artists</a><?= (isset($banner_string) && $banner_string !== '') ? " $banner_string" : '' ?></h1>
+    </header>
+</div>
+
 <div class="panel-2col layout-a">
     <div class="panel-panel panel-col-first main-content<?php if (!$featured_articles_will_show) { ?> has-featured-articles<?php } ?>">
 
-        <!-- banner -->
-        <header class="organization-header<?php if (count($_GET) <= 1) { ?> has-taglines<?php } ?>">
-            <h1><a class="organization" href="/">Mn Artists</a><?= (isset($banner_string) && $banner_string !== '') ? " $banner_string" : '' ?></h1>
-        </header>
-
+        <!-- Sort Thing -->
         <div class="sort-thing sort-thing-fully-retracted">
             <div class="wrap">
                 <h2>SORT</h2>
@@ -61,63 +64,70 @@
 
                         foreach ($sort_terms as $sort_term => $sort_label) {
                             $class = '';
+                            if ($sort_term === 'alpha') {
+                                $sortDir = "ASC";
+                            } else {
+                                $sortDir = "DESC";
+                            }
+                            $sortClass = "sort-desc";
                             if (isset($_GET['sort']) && $_GET['sort'] === $sort_term) {
                                 $class = "active";
+                                $sortDir = $_GET['sort_direction'] === "ASC" ? "DESC" : "ASC";
+                                $sortClass = $sortDir === "ASC" ? "sort-desc" : "sort-asc";
                             }
                             $st_href = $qs.'sort='.$sort_term;
                             ?>
                             <li class="<?= $class ?>">
-                                <?php if ($sort_term === 'alpha') { ?>
-                                    <a href="?<?= $st_href ?>&sort_direction=ASC"><?= $sort_label ?></a> <a href="?<?= $st_href ?>&sort_direction=DESC">&#8595;</a>
-                                <?php } else { ?>
-                                    <a href="?<?= $st_href ?>&sort_direction=DESC"><?= $sort_label ?></a> <a href="?<?= $st_href ?>&sort_direction=ASC">&#8595;</a>
-                                <?php } ?>
+                                <a href="?<?= $st_href ?>&amp;sort_direction=<?= $sortDir ?>"><?= $sort_label ?></a> <a class="<?= $sortClass ?>" href="?<?= $st_href ?>&amp;sort_direction=<?= $sortDir ?>">&#8595;</a>
                             </li>
                     <?php } ?>
                 </ul>
-
             </div>
             <div class="sort-thing-current-sort" id="sort-thing-opener">SORT</div>
         </div>
 
-        <?php if ($featured_articles_will_show) { ?>
-            <?php if (!empty($articles)) { ?>
+        <!-- Article Thing -->
+        <?php if ($featured_articles_will_show) : ?>
+            <?php if (!empty($articles)) : ?>
                 <div class="article-thing widget">
-                    <h3>Top Stories</h3>
-                    <?php foreach($articles as $article) { ?>
+                    <h3>Featured Stories</h3>
+                    <?php foreach($articles as $article) : ?>
                         <div class="article-detail" id="article-detail-<?= $article->nid ?>" style="display: none;">
                             <a href="/node/<?= $article->nid ?>"><img src="<?= $article->image_uri ?>"></a>
                             <div class="article-content">
                                 <div class="article-detail-title"><?= $article->title ?></div>
                                 <div class="article-detail-byline">by <?= $article->author ?></div>
+                                <?php if(user_is_logged_in()) { ?>
                                 <div class="article-detail-flag pane-mnartist-collections-mna-collections-star"><?= theme("mnartist_collections_star", array('node_id' => $article->nid)) ?></div>
+                                <?php } ?>
                                 <div class="article-detail-subhead"><?= $article->subhead ?></div>
                                 <div class="article-detail-excerpt"><?= trim($article->excerpt) ?>&hellip;</div>
                                 <a class="article-detail-excerpt-more" href="/node/<?= $article->nid ?>">More</a>
                                 <div class="article-detail-photo-credit"><?= $article->photo_credit ?></div>
                             </div>
                         </div>
-                    <?php } ?>
+                    <?php endforeach; ?>
 
                     <div class="the-list-of-articles-container">
                         <ul>
-                            <?php foreach($articles as $article) { ?>
+                            <?php foreach($articles as $article) : ?>
                                 <li class="<?= strtolower($article->category) ?>" data-target-article="article-detail-<?= $article->nid ?>">
                                     <a href="/node/<?= $article->nid ?>">
                                         <h4><?= $article->category ?></h4>
                                         <p><?= $article->title ?></p>
                                     </a>
                                 </li>
-                            <?php } ?>
+                            <?php endforeach; ?>
                         </ul>
                     </div>
                 </div>
-            <?php }
-            if (!empty($from_the_network_posts)) { ?>
+            <?php endif; ?>
+            <!--  Editor's Picks -->
+            <?php if (!empty($from_the_network_posts)) : ?>
                 <div class="from-the-network-thing widget">
                     <div class="wrapper">
-                        <h3>From The Network</h3>
-                        <?php foreach($from_the_network_posts as $post) { ?>
+                        <h3>Editor's Picks</h3>
+                        <?php foreach($from_the_network_posts as $post) : ?>
                             <div class="network-post">
                                 <a href="<?= $post->url ?>" target="_blank">
                                     <img src="<?= $post->image_url ?>" title="<?= $post->title ?>">
@@ -125,24 +135,25 @@
                                 <div class="network-source"><?= $post->source ?></div>
                                 <div class="network-title"><a href="<?= $post->url ?>" target="_blank"><?= $post->title ?></a></div>
                             </div>
-                        <?php } ?>
+                        <?php endforeach; ?>
                     </div>
                 </div>
-            <?php }
-        }
-        if ($layout_mode === 3) {
+            <?php endif; ?>
+        <?php endif; ?>
+
+
+        <?php if ($layout_mode === 3) {
             print theme('artist_community_page_search_results', array(
                 'total_num_results' => $total_num_results,
                 'all_event_results' => $all_event_results,
                 'content' => $content,
                 'has_filters' => $has_filters
             ));
-        }
-        ?>
+        } ?>
     </div>
     <?php if ($sidebar_will_show) { ?>
         <div class="panel-panel panel-col-last sidebar-right">
-            <?php if(!empty($all_event_results)) { ?>
+            <?php if(!empty($all_event_results)) : ?>
                 <div class="widget-standard widget my-events">
                     <h3>My Events</h3>
                     <div class="widget-content">
@@ -151,7 +162,7 @@
                 </div>
 
                 <div class="widget-standard widget highlighted-event-thing">
-                    <h3><?= $highlighted_event->date->format('F'); ?> Highlight</h3>
+                    <h3><?php $highlighted_event->date->format('F'); ?> Highlight</h3>
                     <div class="widget-content">
                         <div class="event-date">
                             <span class="month"><?= $highlighted_event->date->format('M'); ?></span> <?= $highlighted_event->date->format('d'); ?>
@@ -164,7 +175,7 @@
                         <div class="event-excerpt"><?= $highlighted_event->body ?></div>
                     </div>
                 </div>
-            <?php } ?>
+            <?php endif; ?>
 
             <?php if (empty($all_event_results)) { ?>
                 <?php if (!empty($latest_users)) { ?>
@@ -172,7 +183,7 @@
                         <h3>Newest Artists</h3>
                         <div class="widget-content">
                         <ul>
-                            <?php foreach($latest_users as $context_user) { ?>
+                            <?php foreach($latest_users as $context_user) : ?>
                                 <li>
                                     <a href="/user/<?= $context_user->uid ?>">
                                         <img src="<?= $context_user->image_uri ?>" width="68" height="68">
@@ -182,7 +193,7 @@
                                         </div>
                                     </a>
                                 </li>
-                            <?php } ?>
+                            <?php endforeach; ?>
                             <li class="user-thing-more"><a href="/community?content[artists]=1&?sort=recent&sort_direction=DESC<?php if ($og_get_string != '') { echo "&$og_get_string"; } ?>" style="font-size: 4em;">More</a></li>
                         </ul>
                         </div>
@@ -206,13 +217,14 @@
                         <div class="event-thing-event-block event-thing-event-block-hero">
                             <a href="/node/<?= $event_widget_items['hero']->nid ?>">
                                 <img src="<?= $event_widget_items['hero']->image_uri ?>">
-                                <div class="event-thing-event-title"><?= $event_widget_items['hero']->title ?></div>
+                                <div class="event-thing-event-title"><?= date("M d", $event_widget_items['hero']->date) ?>: <?= $event_widget_items['hero']->title ?></div>
                             </a>
                         </div>
                         <?php foreach ($event_widget_items['others'] as $event) { ?>
+                            <?php //dpm($event); ?>
                             <div class="event-thing-event-block">
                                 <a href="/node/<?= $event->nid ?>">
-                                    <div class="event-thing-event-title"><?= $event->title ?></div>
+                                    <div class="event-thing-event-title"><?= date("M d", $event->date) ?>: <?= $event->title ?></div>
                                 </a>
                             </div>
                         <?php } ?>

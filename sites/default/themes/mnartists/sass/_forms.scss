@@ -519,12 +519,14 @@ input {
         .description {
             display:block;clear:both;float:none;
             margin-left:33%;
+            width:auto;
         }
     }
     .form-type-password-confirm {
         .description {
             display:block;clear:both;float:none;
             margin-left:33%;
+            width:auto;
         }
     }
 }
@@ -945,12 +947,16 @@ a.tabledrag-handle .handle {
 
 
 // chosen overrides
+.chosen-container.chosen-with-drop .chosen-drop {
+    box-shadow: 0 1px 4px rgba(0,0,0,.2);
+}
 .chosen-container {
     box-sizing:border-box;
     margin:0 0 8px 0;
     padding:0;
     border:none;
     background: url('../images/icon-select-arrow.png') no-repeat 98% center #fff;
+    height: 25px;
 
     input.default {
         font-size:11px !important;
@@ -967,6 +973,7 @@ a.tabledrag-handle .handle {
             border:none;box-shadow:none;
             background:none;
             font-size:12px;
+            color: #777;
 
             div {
 
@@ -1007,31 +1014,41 @@ a.tabledrag-handle .handle {
         box-shadow:none;
         border:none;
         padding:0;
-        background:none;
+        background:none !important;
         box-sizing:border-box;
-        font-size:12px!important;
+        font-size:13px !important;
 
-        li {
-
-            &.search-choice {
-                border-radius:0;
-                background:#ccc;
-                border:none;
-                box-shadow:none;
-                font-size:12px;
-
-                &:hover {
-                    background:#ddd;
-                }
+        .search-field {
+            input {
+                padding: 4px 0 6px 0 !important;
+                height: 25px !important;
+                font-size:13px !important;
             }
         }
-        input {
-            font-size:11px;
+
+        .search-choice {
+            border-radius:0 !important;
+            background:#ccc !important;
+            border:none !important;
+            box-shadow:none !important;
+            font-size:12px !important;
+
+            &:hover {
+                background:#ddd !important;
+            }
         }
     }
     .chosen-drop {
         border:none;
         box-shadow:none;
+        .chosen-results {
+            .group-option {
+                &.highlighted {
+                    background:#ccc;
+                    box-shadow:none;
+                }
+            }
+        }
     }
 
     &.chosen-container-active {
@@ -1168,11 +1185,48 @@ div.entityconnect-edit {
 
 
 // add artwork form only
+#artwork-node-form {
+    .form-item {
+        .field-add-more-submit {
+            width:192px;
+            height:21px;
+            text-overflow:hidden;
+            overflow:hidden;
+            white-space:nowrap;
+            display:inline-block;
+            background: url('../images/bg-icon-add-another.png') no-repeat left top transparent!important;
+            border:none;
+            text-indent:999px;
+        }
+    }
+    .field-widget-url-external {
+        .form-item {
+            .field-add-more-submit {
+                background: url('../images/bg-icon-add-another-notext.png') no-repeat left top transparent!important;
+            }
+        }
+    }
+
+}
 .node-artwork-form {
     .field-type-text-with-summary,
     .field-name-field-tags-form,
-    .field-name-field-public-form {
+    .field-name-field-public-form,
+    .field-name-field-medium3-form,
+    .field-name-field-medium-form,
+    .field-name-field-roles-form,
+    .field-name-field-created-date-form {
         margin-bottom:64px;
+    }
+    .field-name-field-venue-form,
+    .field-name-field-other-artists-involved-form,
+    .form-item-title {
+        height: 25px;
+        margin-bottom:64px;
+    }
+    .field-name-field-for-sale-form,
+    .field-name-field-public-form {
+        margin-left:33%;
     }
     .field-name-field-tags-form {
         overflow:hidden;
@@ -1184,13 +1238,17 @@ div.entityconnect-edit {
     }
     .field-type-taxonomy-term-reference-form {
         .description {
-            margin-left: 33%;
-        }
-    }
-    .field-type-taxonomy-term-reference-form {
-        .description {
             clear:both;
             margin-left:33%;
+        }
+    }
+    .field-name-body {
+        #body-add-more-wrapper {
+            .text-format-wrapper {
+                .description {
+                    margin-left: 33%;
+                }
+            }
         }
     }
     .ui-multiselect {
@@ -1213,6 +1271,7 @@ div.entityconnect-edit {
         height:210px !important;
 
     }
+    .form-item-field-artwork-excerpt-und-0-value,
     .field-name-field-roles-form {
         .description {
             margin-left:33%;
@@ -1391,7 +1450,7 @@ div.entityconnect-edit {
 
     thead {
         border:none;
-        display:none; /* because its just duplicate title */
+        display: table-header-group;
         tr {
             border:none;
             border-bottom:1px solid #ccc;
@@ -1591,6 +1650,13 @@ fieldset.collapsible {
       }
       .summary {
         display:none;
+      }
+    }
+  }
+  fieldset {
+    legend {
+      .fieldset-legend {
+        background-image: none!important;
       }
     }
   }

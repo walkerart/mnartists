@@ -60,6 +60,12 @@ function mnartist_profiles_menu() {
 
 }
 
+function mnartist_profiles_node_access($node, $op, $account) {
+    if (is_object($node) && $node->type === "artwork" && $node->field_public['und'][0]['value'] === "0" && $account->uid !== $node->uid) {
+        return NODE_ACCESS_DENY;
+    }
+}
+
 
 function mnartist_profiles_ac_fullname($string) {
     // get the data
@@ -100,7 +106,16 @@ function mnartist_profiles_user_update(&$edit, $account, $category) {
         if (!empty($node_keys)) {
             $nodes = node_load_multiple($node_keys);
             foreach ($nodes as $node) {
+
+                // unpublish
                 $node->status = '0';
+
+                // and set public field to 0
+                $new_pub_value = array();
+                $new_pub_value[LANGUAGE_NONE] = array();
+                $new_pub_value[LANGUAGE_NONE][] = array('value' => '0');
+                $node->field_public = $new_pub_value;
+
                 node_save($node);
             }
         }
@@ -237,7 +252,11 @@ function _mnartist_profiles_get_feed_data($row_offset = null, $row_limit = null)
     $sql = "SELECT DISTINCT activity.type, activity.uid, activity.eid, activity.created, activity_messages.message FROM activity
             INNER JOIN activity_targets ON activity.aid = activity_targets.aid
             INNER JOIN activity_messages ON activity_targets.amid = activity_messages.amid
-            WHERE ((activity.uid = :my_uid and activity_targets.uid = :my_uid) OR (activity.uid != :my_uid AND activity_targets.uid = 0))
+            INNER JOIN node ON node.nid = activity.eid
+            LEFT JOIN field_data_field_public ON field_data_field_public.entity_id = activity.eid
+            WHERE node.status = 1
+            AND (field_data_field_public.field_public_value = 1 OR field_data_field_public.field_public_value IS NULL)
+            AND ((activity.uid = :my_uid and activity_targets.uid = :my_uid) OR (activity.uid != :my_uid AND activity_targets.uid = 0))
             AND activity.uid in (:flagged_users)
             ORDER BY activity.created DESC";
     if ($row_limit !== null) {
@@ -265,8 +284,9 @@ function _mnartist_profiles_get_feed_data($row_offset = null, $row_limit = null)
     return $feed_data;
 }
 
-// gives you either the collective name, or fullname, or username
-// for a given uid
+// Gives you either the collective name, or fullname. Used
+// to include username option (thus the name), but now does
+// not ever do that.
 function mnartist_profiles_collective_or_fullname_or_username($uid, $prefer_full_name = false) {
     $context_user = user_load($uid);
 
@@ -645,11 +665,11 @@ function _mnartist_profile_block_visibility() {
     global $user;
 
     if ((arg(0) == "user" && in_array(arg(2), array("edit", "mailchimp"))) ||
-        (in_array(arg(0), array('opportunities', 'applications'))) ||
+        (in_array(arg(0), array('opportunity', 'application', 'opportunities', 'applications', 'manage-artworks', 'manage-events'))) ||
         (!user_is_logged_in() && arg(0) == "user" && (is_null(arg(1)) || in_array(arg(1), array("password", "register")))) ||
         (arg(0) == "node" && in_array(arg(1), array("edit", "add"))) ||
         (arg(0) == "node" && in_array(arg(2), array("edit"))) ||
-        (arg(0) == "user" && in_array(arg(1), array("saved-filters", "feed", "welcome"))) ||
+        (arg(0) == "user" && in_array(arg(1), array("saved-filters", "feed", "welcome", "migrate"))) ||
         (user_is_logged_in() && (arg(0) == "user" && in_array(arg(2), array("flags")) && flag_lists_is_owner('edit', arg(4)))) ||
         (user_is_logged_in() && (arg(0) == "user" && in_array(arg(2), array("flags")) && !is_numeric(arg(3)))) ||
         (user_is_logged_in() && (arg(0) == "flags" && flag_lists_is_owner('edit', arg(2))))
@@ -726,23 +746,27 @@ function _mnartist_profile_my_stuff() {
         $userBlock = module_invoke('user', 'block', 'view', 'login');
         $output = $userBlock['content'];
 
-        $links = array();
-        $links[] = l("Login", "user");
-        $links[] = l("Register", "user/register");
-        $links[] = l("Forgot Password", "user/password");
+        $loginItems = array();
+        $loginItems[] = l("Login", "user");
+        $loginItems[] = l("Register", "user/register");
+        $loginItems[] = l("Forgot Password", "user/password");
 
-        $output .= theme_item_list(array(
-            'items' => $links,
-            'title' => null,
-            'type' => 'ul',
-            'attributes' => array(
-                'class' => array('my-stuff-menu', 'login-menu')
-            )
+        // $output .= theme_item_list(array(
+        //     'items' => $links,
+        //     'title' => null,
+        //     'type' => 'ul',
+        //     'attributes' => array(
+        //         'class' => array('my-stuff-menu', 'login-menu')
+        //     )
+        // ));
+
+        $output = theme("mna_my_stuff_menu", array(
+            'loginItems' => $loginItems
         ));
     } else {
-        $links = array();
+        $myLinks = array();
 
-        $links[] = l("Feed", "user/feed");
+        $myLinks[] = l("Feed", "user/feed");
 
         $account = user_load($user->uid);
         $flagLists = flag_lists_get_user_flags(NULL, $account);
@@ -758,32 +782,32 @@ function _mnartist_profile_my_stuff() {
         foreach($flagLists as $flag) {
             $flags[] = l($flag->title, "user/{$user->uid}/flags/lists/{$flag->fid}");
         }
-        $links[] = array(
+        $myLinks[] = array(
             'data' => l("Collections", "user/{$user->uid}/flags/lists"),
             'children' => $flags
         );
-        $links[] = array(
+        $myLinks[] = array(
             'data' => l("Applications", "applications"),
         );
-        $links[] = array(
+        $myLinks[] = array(
             'data' => l("Saved Filters", "user/saved-filters"),
             'children' => _mnartist_filter_view_filter()
         );
 
         // check for artist role
-        $links[] = l("Account", "user/{$user->uid}/edit");
+        $myLinks[] = l("Account", "user/{$user->uid}/edit");
         if (_get_role($user) === 'artist') {
-            $links[] = l("Profile", "user/{$user->uid}/edit/main") . l("View", "user/{$user->uid}", array("attributes" => array("class" => array("user-view"))));
+            $myLinks[] = l("Profile", "user/{$user->uid}/edit/main") . l("View", "user/{$user->uid}", array("attributes" => array("class" => array("user-view"))));
         }
         if (_get_role($user) === 'org' || in_array('administrator', array_values($user->roles))) {
-            $links[] = l("Organization", "user") . l("edit", "user/{$user->uid}/edit/organization", array("attributes" => array("class" => array("user-view"))));
+            $myLinks[] = l("Organization", "user") . l("edit", "user/{$user->uid}/edit/organization", array("attributes" => array("class" => array("user-view"))));
         }
         if (_get_role($user) === 'artist') {
-            $links[] = l("Résumé", "user/{$user->uid}/edit/resume", array()) . l("View", "user/{$user->uid}/resume/download", array("attributes" => array("class" => array("user-view"), "target" => "_blank")));
+            $myLinks[] = l("Résumé", "user/{$user->uid}/edit/resume", array()) . l("View", "user/{$user->uid}/resume/download", array("attributes" => array("class" => array("user-view"), "target" => "_blank")));
         }
 
         $renderedLinks = theme_item_list(array(
-            'items' => $links,
+            'items' => $myLinks,
             'title' => null,
             'type' => 'ul',
             'attributes' => array(
@@ -792,10 +816,10 @@ function _mnartist_profile_my_stuff() {
         ));
         $editItems = array();
         if (_get_role($user) == 'artist' || in_array('administrator', array_values($user->roles))) {
-            $editItems[] = l("Add Artwork", "node/add/artwork");
+            $editItems[] = l("Add Artwork", "node/add/artwork") . l("Manage", "manage-artworks", array("attributes" => array("class" => array("user-view"))));
         }
         if (count(array_intersect(array('administrator', 'Artist', 'Organization'), array_values($user->roles)))) {
-            $editItems[] = l("Add Event", "node/add/event");
+            $editItems[] = l("Add Event", "node/add/event") . l("Manage", "manage-events", array("attributes" => array("class" => array("user-view"))));
         }
         if (in_array('administrator', array_values($user->roles)) ||
             in_array('Organizational Admin', array_values($user->roles))) {
@@ -818,7 +842,7 @@ function _mnartist_profile_my_stuff() {
         ));
 
         $output = theme("mna_my_stuff_menu", array(
-            'links' => $renderedLinks,
+            'renderedLinks' => $renderedLinks,
             'editLinks' => $editLinks
         ));
     }
@@ -831,7 +855,7 @@ function _mnartist_profile_all_artworks_link() {
     if($context_user) {
         $link_fragment_arr = array();
         $link_fragment_arr[] = '<div class="all-artworks">';
-        $link_fragment_arr[] = "<a href='/community?content[artwork]=1&global_search=\"".check_plain(mnartist_profiles_collective_or_fullname_or_username($context_user->uid))."\"'>All Artworks</a>";
+        $link_fragment_arr[] = "<a href='/community?content[artwork]=1&global_search=".check_plain(mnartist_profiles_collective_or_fullname_or_username($context_user->uid))."'>All Artworks</a>";
         $link_fragment_arr[] = '</div>';
         return implode('', $link_fragment_arr);
     }
@@ -1021,10 +1045,16 @@ function mnartist_profiles_form_alter(&$form, $form_state, $form_id) {
 
     if ($form_id == 'user_profile_form') {
 
-        if (isset($form["#user_category"]) && $form["#user_category"] == 'main') {
+        if (isset($form["#user_category"]) && $form["#user_category"] == 'account') {
+
+            // include account instructions
+            $form['instructions']['#markup'] = "<div class='privacy-instructions'>Manage your password, email address, profile picture, and newsletter subscription here.</div>";
+            $form['instructions']['#weight'] = -100;
+
+        } else if (isset($form["#user_category"]) && $form["#user_category"] == 'main') {
 
             // include main profile instructions
-            $form['privacy_instructions']['#markup'] = "<div class='privacy-instructions'>Manage information that will appear on your public profile.<br>Help our funders learn more about our artistic communities by filling out as many fields as possible, even if you keep them private.</div>";
+            $form['privacy_instructions']['#markup'] = "<div class='privacy-instructions'>Manage information that will appear on your public profile. <br> Help mnartists.org and our partners, the McKnight Foundation and the Walker Art Center, learn more about our artistic communities by filling out as many fields as possible, even if you keep them private.</div>";
             $form['privacy_instructions']['#weight'] = -100;
 
         } else if (isset($form["#user_category"]) && $form["#user_category"] == 'resume') {
@@ -1146,6 +1176,46 @@ function mnartist_profiles_entity_property_info_alter(&$info) {
         'sanitized' => TRUE,
         'getter callback' => 'mnartist_profiles_sort_by_name_callback',
     );
+    $info['node']['bundles']['opportunity']['properties']['sort_by_name'] = array(
+        'type' => 'string',
+        'label' => t('Sort By Name'),
+        'sanitized' => TRUE,
+        'getter callback' => 'mnartist_profiles_sort_by_name_callback',
+    );
+
+
+    // creating an actual full name field that can be added to
+    // the aggregated search field
+    $info['user']['bundles']['user']['properties']['full_name_actual'] = array(
+        'type' => 'string',
+        'label' => t('Full Name Actual'),
+        'sanitized' => TRUE,
+        'getter callback' => 'mnartist_profiles_full_name_actual_callback',
+    );
+    $info['node']['bundles']['artwork']['properties']['full_name_actual'] = array(
+        'type' => 'string',
+        'label' => t('Full Name Actual'),
+        'sanitized' => TRUE,
+        'getter callback' => 'mnartist_profiles_full_name_actual_callback',
+    );
+    $info['node']['bundles']['article']['properties']['full_name_actual'] = array(
+        'type' => 'string',
+        'label' => t('Full Name Actual'),
+        'sanitized' => TRUE,
+        'getter callback' => 'mnartist_profiles_full_name_actual_callback',
+    );
+    $info['node']['bundles']['event']['properties']['full_name_actual'] = array(
+        'type' => 'string',
+        'label' => t('Full Name Actual'),
+        'sanitized' => TRUE,
+        'getter callback' => 'mnartist_profiles_full_name_actual_callback',
+    );
+    $info['node']['bundles']['opportunity']['properties']['full_name_actual'] = array(
+        'type' => 'string',
+        'label' => t('Full Name Actual'),
+        'sanitized' => TRUE,
+        'getter callback' => 'mnartist_profiles_full_name_actual_callback',
+    );
 
 
     // creating a common date sort field between users and nodes
@@ -1173,6 +1243,12 @@ function mnartist_profiles_entity_property_info_alter(&$info) {
         'sanitized' => TRUE,
         'getter callback' => 'mnartist_profiles_sort_by_date_callback',
     );
+    $info['node']['bundles']['opportunity']['properties']['sort_by_date'] = array(
+        'type' => 'date',
+        'label' => t('Sort By Date'),
+        'sanitized' => TRUE,
+        'getter callback' => 'mnartist_profiles_sort_by_date_callback',
+    );
 
 
     // index flag counts for nodes
@@ -1195,8 +1271,23 @@ function mnartist_profiles_entity_property_info_alter(&$info) {
         'sanitized' => TRUE,
         'getter callback' => 'mnartist_profiles_flags_count_callback',
     );
+    $info['node']['bundles']['opportunity']['properties']['flags_count'] = array(
+        'type' => 'integer',
+        'label' => t('Flags Count'),
+        'sanitized' => TRUE,
+        'getter callback' => 'mnartist_profiles_flags_count_callback',
+    );
+    $info['user']['bundles']['user']['properties']['flags_count'] = array(
+        'type' => 'integer',
+        'label' => t('Flags Count'),
+        'sanitized' => TRUE,
+        'getter callback' => 'mnartist_profiles_flags_count_callback',
+    );
 }
 
+function mnartist_profiles_full_name_actual_callback($item) {
+    return mnartist_profiles_collective_or_fullname_or_username($item->uid);
+}
 
 function mnartist_profiles_sort_by_date_callback($item) {
     if (isset($item->type)) {
@@ -1283,11 +1374,17 @@ function mnartist_profiles_search_api_data_type_info() {
 }
 
 function mnartist_profiles_flags_count_callback($item) {
-    $sql = "SELECT count FROM flag_lists_counts WHERE content_id = $item->nid";
-    $result = db_query($sql);
     $count = 0;
-    foreach ($result as $row) {
-        $count += $row->count;
+    if (isset($item->type)) {
+        $node_counts = flag_get_counts('node', $item->nid);
+        if (isset($node_counts['collections'])) {
+            $count += intval($node_counts['collections']);
+        }
+    } else {
+        $user_counts = flag_get_counts('user', $item->uid);
+        if (isset($user_counts['usercollections'])) {
+            $count += intval($user_counts['usercollections']);
+        }
     }
     return $count;
 }

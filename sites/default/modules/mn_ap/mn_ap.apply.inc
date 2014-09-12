@@ -18,14 +18,13 @@ function mn_ap_apply($nid) {
 	if(isset($op_data['error'][0])) {
 		return drupal_set_message(t('This opportunity is not available for applications.'), 'error');
 	}
-
 	//if this is not a reopened application
 	if($ap_data['reopen'] == 0) {
 		//check if application deadline has passed
 		if (strtotime($op_data['end_date']) < strtotime($op_data['today'])) {
-			return drupal_set_message(t('The application deadline: ' . $op_data['end_date']  . ' for this opportunity has passed.'), 'warning');
+			return drupal_set_message(t('The application deadline: ' . date("F d, Y h:i a", strtotime($op_data['end_date']))  . ' for this opportunity has passed.'), 'warning');
 		} elseif (strtotime($op_data['start_date']) > strtotime($op_data['today'])) {
-			return drupal_set_message(t('The applications will not be accepted for this opportunity until: ' . $op_data['start_date']), 'warning');
+			return drupal_set_message(t('The applications will not be accepted for this opportunity until: ' . date("F d, Y h:i a", strtotime($op_data['start_date']))), 'warning');
 		}
 	}
 
@@ -72,7 +71,8 @@ function mn_ap_apply($nid) {
 		$output = theme('mn_ap_apply', array('rows' => $rows['0'])); //used without template
 		return $output;
 	} else {
-		return drupal_set_message(t('You have already completed an application for the ' .  $op_data['title'] . ' at ' . $ap_data['updated_at'] . '.'), 'warning');
+		//add drupal goto - back to opp page
+		return drupal_set_message(t('You have already completed an application for the ' .  $op_data['title'] . ' on ' . date("F d, Y h:i a", strtotime($ap_data['updated_at'])) . '.'), 'warning');
 	}
 }
 /*
@@ -85,8 +85,6 @@ function mn_ap_opportunity_data($nid) {
 		->propertyCondition('nid', $nid, '=')
 		->propertyCondition('status', '1') //status is visbility to public
 		->propertyOrderBy('created', 'DESC');
-
-	//if (! user_access('administrator')) $query->propertyCondition('status', '1');
 
 	$result = $query->execute();
 
@@ -109,6 +107,9 @@ function mn_ap_opportunity_data($nid) {
 		if(!empty($row)){
 			$form_steps = get_form_steps($row['field_op_required'], $row['field_op_optional'], $row['op_work_types']);
 			$form_areas = get_form_areas($row['field_op_required'], $row['field_op_optional']);
+			$form_areas_separate = _separate_form_areas($form_areas);
+			$form_inputs = isset($form_areas_separate['inputs']) ? $form_areas_separate['inputs'] : '';
+			$form_editors = "";
 			$step_titles = get_form_titles($form_areas);
 			$work_types = isset($row['op_work_types']['und']) ? get_work_types($row['op_work_types']) : '';
 			//$steps = get_form_step_count($row['field_op_required'], $row['field_op_optional'], $row['op_work_types']);
@@ -126,6 +127,7 @@ function mn_ap_opportunity_data($nid) {
 				'steps' => isset($form_steps) ? $form_steps : '',
 				'textareas' => '',
 				'areas' => isset($form_areas) ? $form_areas : '',
+				'additional_fields' => $form_inputs,
 				'step_titles' => $step_titles != '' ? $step_titles : '',
 				'title' => $row['title'],
 				'apply_on_site' => $row['op_application_type']['und']['0']['value'],
@@ -174,6 +176,21 @@ function mn_ap_opportunity_data($nid) {
 }
 
 /*
+* Separate Form Areas to allow them to be stepped through in template
+*/
+function _separate_form_areas($areas) {
+	$separate_areas = '';
+	foreach ($areas as $area) {
+		if ($area == 'bio' || $area == 'statement' || $area == 'proposal' || substr($area, 0, 5) == 'field' ) {
+			$separate_areas['editors'][] = $area;
+		} elseif ($area != 'resume' && substr($area, 0, 6) != 'upload')  {
+			$separate_areas['inputs'][] = $area;
+		}
+	}
+	return $separate_areas;
+}
+
+/*
 * Checks areas to render names for sections of the form
 */
 function get_form_titles($areas) {
@@ -198,17 +215,17 @@ function get_form_titles($areas) {
 /*
 * convert datetime to correct site db set time
 */
-function mn_ap_get_date($date, $timezone, $timezone_db) {
-	$timezone = new DateTimeZone($timezone);
-	$timezone_db = new DateTimeZone($timezone_db);
+// function mn_ap_get_date($date, $timezone, $timezone_db) {
+// 	$timezone = new DateTimeZone($timezone);
+// 	$timezone_db = new DateTimeZone($timezone_db);
 
-	$resultDate = new DateTime($date, $timezone_db);
-	$resultDate->setTimezone($timezone);
-	$resultDate = (array) $resultDate;
-	$resultDate = new DateTime($resultDate['date']);
-	$resultDate = $resultDate->format("F j, Y, g:i a");
-	return $resultDate;
-}
+// 	$resultDate = new DateTime($date, $timezone_db);
+// 	$resultDate->setTimezone($timezone);
+// 	$resultDate = (array) $resultDate;
+// 	$resultDate = new DateTime($resultDate['date']);
+// 	$resultDate = $resultDate->format("F j, Y, g:i a");
+// 	return $resultDate;
+// }
 
 // simply flatten the array to get rid of drupalness ['und'][0]['value'] junk
 function get_work_types($types) {
@@ -267,6 +284,10 @@ function mn_ap_profile2_data($profile, $nid) {
 		'field2' => isset($application['field2']) ? $application['field2'] : '',
 		'field3' => isset($application['field3']) ? $application['field3'] : '',
 		'field4' => isset($application['field4']) ? $application['field4'] : '',
+		'upload1' => isset($application['upload1']) ? $application['upload1'] : '',
+		'upload2' => isset($application['upload2']) ? $application['upload2'] : '',
+		'upload3' => isset($application['upload3']) ? $application['upload3'] : '',
+		'upload4' => isset($application['upload4']) ? $application['upload4'] : '',
 		'resume_statement' => isset($resume['field_general_statement']['und']['0']['safe_value']) ? $resume['field_general_statement']['und']['0']['safe_value'] : '',
 		'resume_bio' => isset($resume['field_biography']['und']['0']['safe_value']) ? $resume['field_biography']['und']['0']['safe_value'] : '',
 		'proposal' =>	isset($application['proposal']) ? $application['proposal'] : '',

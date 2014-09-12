@@ -40,8 +40,9 @@ function mnartist_register_migrate() {
     global $user;
 
     $html_fragment = array();
-    $html_fragment[] = '<h1>User Migration</h1>';
+    $html_fragment[] = '<div class="clearfix migrate-form">';
     $html_fragment[] = drupal_render(drupal_get_form('mnartist_register_user_form'));
+    $html_fragment[] = '</div>';
     return implode('', $html_fragment);
 }
 
@@ -49,7 +50,12 @@ function mnartist_register_user_form() {
     global $user;
     return array(
         'help' => array(
-            '#markup' => '<p>
+            '#markup' => '<h1>User Migration</h1>
+                          <p>
+                            Welcome to an all-new mnartists.org!<br>
+                            Follow these 3 easy steps to import your exisitng account to the new mnartists.org, or click &lsquo;Proceed without importing&rsquo; to continue to the new site without import.
+                          </p>
+                          <p>
                             <ol>
                                 <li>Enter your old email and password from your existing mnartists.org and click Import.</li>
                                 <li>You will then be brought to your new account with data imported from your old account.</li>
@@ -58,7 +64,7 @@ function mnartist_register_user_form() {
                         </p>
                         <p>
                             <ul>
-                                <li>Want to start fresh? Decline to import your old account information, work samples, and resume info by clicking the \'Proceed without Importing\' button.</li>
+                                <li>Want to start fresh? Decline to import your old account information, work samples, and resume info by clicking the &lsquo;Proceed without Importing&rsquo; button.</li>
                                 <li>Have questions about migrating your account or fogot your old password? Reset your old password or contact us with questions by emailing <a href="mailto:info@mnartists.org">info@mnartists.org</a>.</li>
                             </ul>
                         </p>',
@@ -91,7 +97,7 @@ function mnartist_register_user_form_validate($form, &$form_state) {
     global $user;
 
     if (isset($form_state["values"]["op"]) && $form_state["values"]["op"] === "Proceed Without Importing") {
-        drupal_goto("user/$user->uid/edit");
+        drupal_goto("user/feed");
         return;
     }
 
@@ -173,7 +179,7 @@ function _mnartist_register_batch_handler($action, $data, &$context) {
 
 function _mnartist_register_batch_finished($success, $results, $operations) {
     if ($success) {
-        drupal_set_message('MNArtists Account data successfully imported.');
+        drupal_set_message('Your old mnartists.org account data has been successfully imported. View and update your account information by using the options on the left-hand menu.');
         drupal_goto('/user/feed');
     }
     else {

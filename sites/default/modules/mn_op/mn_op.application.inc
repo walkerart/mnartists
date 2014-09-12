@@ -11,8 +11,8 @@ function mn_op_ap($nid) {
 	$opportunity = node_load($nid);
 	$application = mn_op_get_user_ap($uid, $nid);
 	$artworks = mn_op_get_user_ap_artworks($uid, $nid);
-	$areas = get_form_areas($opportunity->field_op_required, $opportunity->field_op_optional);;
-	$steps = get_form_steps($opportunity->field_op_required, $opportunity->field_op_optional, $opportunity->op_work_types);;
+	$areas = get_form_areas($opportunity->field_op_required, $opportunity->field_op_optional);
+	$steps = get_form_steps($opportunity->field_op_required, $opportunity->field_op_optional, $opportunity->op_work_types);
 
 
 	$rows = array(

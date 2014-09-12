@@ -6,11 +6,40 @@ table {
 	background-color: #FFF;
 }
 
-.prev, .next { background-color:#b0232a; padding:5px 10px; color:#fff; text-decoration:none; border-radius: 0; margin-bottom: 10px;}
-.prev:hover, .next:hover { background-color:#000; text-decoration:none; cursor: pointer;}
+#content {
+	background: #f2f2f2;
+	padding: 15px 25px;
+	margin: 20px 0;
+}
+
+#appContent {
+	background: #f2f2f2;
+	padding: 40px 60px;
+	margin: 20px 0;
+	color: #000;
+}
+
+.clearPadding {
+	padding: 0;
+}
+
+.clearMargin {
+	margin-left: 0;
+}
+
+.small>p {
+	margin: 0 0 5px !important;
+}
+
+.prev, .next { background-color:#333; font-family: "Apercu Regular", Arial, Helvetica, sans-serif; border: 1px solid #333; padding:5px 10px; color:#fff; text-decoration:none; border-radius: 1px; margin-bottom: 10px;}
+.prev:hover, .next:hover {   background: #222; color: #f9f9f9; text-decoration:none; cursor: pointer; }
 .prev { float:left;}
 .next { float:right;}
-.submit { margin-bottom: 10px; }
+.submitNext {
+	padding:5px 10px;
+	margin-bottom: 10px;
+	float: right;
+}
 
 #ap-menu li {
 	display: table-cell;
@@ -38,6 +67,8 @@ table {
 
 .form-group input[type="text"]{
 	margin-bottom: 15px;
+	border-radius: 1px;
+	height: 24px;
 }
 
 .checkbox input[type="checkbox"],
@@ -84,9 +115,33 @@ table {
 	margin: 10px 0;
 }
 
-.ap-button:hover {
+.ap-btn {
+	height: auto;
+	padding: 5px 10px;
+	border: 1px solid #333;
+	font-family: "Apercu Regular", Arial, Helvetica, sans-serif;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	-webkit-border-radius: 1px;
+	-moz-border-radius: 1px;
+	border-radius: 1px;
+	cursor: pointer;
+	margin-left: 0;
+	margin-right: 0;
+	margin-bottom: 10px;
+	background: #333;
+	color: #fff;
+	text-transform: capitalize;
+	font-size: 12px;
+	font-weight: normal;
+	letter-spacing: 0;
+}
+
+.ap-button:hover,
+.ap-btn:hover {
   background: #222;
-  color: #fff;
+  color: #f9f9f9;
 }
 
 /*resume*/
@@ -146,6 +201,11 @@ li.active .enabled:hover .arrow-right {
     overflow:hidden;
 }
 
+.ap-body {
+	font-size: 12px;
+	margin: 15px 0;
+}
+
 .ap-more {
 	font-family: "Apercu Regular", Arial, Helvetica, sans-serif;
 	padding: 0;
@@ -188,27 +248,35 @@ label>.small {
 	margin-top: 20px;
 }
 
-.ap-btn {
-	border-radius: 1px;
-	font-family: "Apercu Regular", Arial, Helvetica, sans-serif;
-	padding: 5px 10px;
-	margin-bottom: 15px;
-}
-
 .caption .label{
 	border-radius: 1px;
 	font-family: "Apercu Regular", Arial, Helvetica, sans-serif;
 }
 
+.ekko-lightbox-nav-overlay {
+	z-index: -1;
+}
+
 .ekko-lightbox .glyphicon-chevron-right {
+	position: relative;
+	/*width: 50px !important;*/
 	right: -50px;
 }
 
 .ekko-lightbox .glyphicon-chevron-left {
+	position: relative;
+	/*width: 50px !important;*/
 	left: -50px;
 }
 
+.ekko-lightbox .glyphicon-chevron-left:hover {
+	position: relative;
+	/*width: 50px !important;*/
+	padding-right: 50px;
+}
+
 .table-thumb {
+	margin-left: 0;
 	width: 300px;
 }
 
@@ -228,7 +296,6 @@ label>.small {
 	height: inherit;
 	content:url(../images/application-octet-stream.png);
 }
-
 
 /* opportunity video thumbs */
 .table-thumb .thumb-list.video a {
@@ -260,4 +327,38 @@ label>.small {
 			}
 		}
 	}
+}
+
+.row-margin-bottom {
+	margin-bottom: 10px;
+}
+
+/* .ap-icheck */
+.ap-icheck {
+	position: relative;
+	cursor: pointer;
+}
+
+.ap-icheck label {
+    display: block;
+    margin: 0;
+    padding: 0;
+    width: 18px;
+    height: 18px;
+    background: url('../images/icheck-sprites.png') no-repeat;
+    background-position: 0 0;
+    border: none;
+}
+
+.ap-icheck input[type=checkbox] {
+  opacity: 0;
+  cursor: pointer;
+}
+
+.ap-icheck input[type=checkbox]:hover + label {
+  background-position: -20px 0;
+}
+
+.ap-icheck input[type=checkbox]:checked + label {
+  background-position: -40px 0;
 }

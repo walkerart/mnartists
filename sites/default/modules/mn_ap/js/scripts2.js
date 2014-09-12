@@ -1,5 +1,6 @@
 (function($){
 $(document).ready(function(){
+
     //hide redundant information from resume
     $(".general-statement").hide();
     $(".biography").hide();
@@ -355,13 +356,9 @@ $(document).ready(function(){
             minAllowed = Drupal.settings.works.min;
             if (works <= maxAllowed && works >= minAllowed){
                 $.History.go('#/step'  + (stepIndex + 3));
-                $( "label.error" ).remove();
-                $("p#artHelp").show();
+                $( "label#artHelp" ).removeClass('error');
             } else {
-                worksError = '<label id="artHelp" class="error">Choose at least ' + minAllowed + ' and no more than ' + maxAllowed + ' pieces of documentation to represent your work.</label>';
-                $(worksError).addClass('error');
-                $(worksError).insertBefore("p#artHelp");
-                $("p#artHelp").hide();
+                $("label#artHelp").addClass('error');
                 $('html, body').animate({ scrollTop: 0 }, 0);
             }
         } else if (Drupal.settings.steps[stepIndex] == 'fields-uploads') {
@@ -436,7 +433,6 @@ $(document).ready(function(){
         });
 
         if(works){
-            console.log(works);
             $('div.ap-artrow').addClass('hidden');
             $('span.ap-artwork').addClass('hidden');
             $.each(works, function() {
@@ -469,10 +465,6 @@ $(document).ready(function(){
             field2: $('#field2Editor').exists() ? CKEDITOR.instances['field2Editor'].getData() : false,
             field3: $('#field3Editor').exists() ? CKEDITOR.instances['field3Editor'].getData() : false,
             field4: $('#field4Editor').exists() ? CKEDITOR.instances['field4Editor'].getData() : false,
-            upload1: $('#upload1').exists() ? $('#upload1').val() : false,
-            upload2: $('#upload2').exists() ? $('#upload2').val() : false,
-            upload3: $('#upload3').exists() ? $('#upload3').val() : false,
-            upload4: $('#upload4').exists() ? $('#upload4').val() : false,
             steps: steps,
             titles : Drupal.settings.titles
         };
@@ -480,6 +472,10 @@ $(document).ready(function(){
         var confirmTemplate = $('#confirmTpl').html();
         var confirmHtml = Mustache.to_html(confirmTemplate, view);
         $('#profileAjax').html(confirmHtml);
+
+        var additionalTemplate = $('#additionalTpl').html();
+        var additionalHtml = Mustache.to_html(additionalTemplate, view);
+        $('#additionalAjax').html(additionalHtml);
     }
 
     // set message if form field edited and not saved

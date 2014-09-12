@@ -217,22 +217,21 @@
                 foreach ($resume_data['field_awards']['item'] as $field) {
                     if (!empty($field)) { ?>
                         <div class="award-block">
-                            <p><label><?=$field['field_award_name']['label']?></label><?=$field['field_award_name']['item'][0]['value']?></p>
-                            <?php if(!empty($field['field_description']['item'])) { ?>
-                                <p><label><?=$field['field_description']['label']?></label><?=$field['field_description']['item'][0]['value']?></p>
-                            <?php } ?>
-                            <?php if(!empty($field['field_award_year']['item'])) { ?>
-                                <p><label><?=$field['field_award_year']['label']?></label><?=date_format(new DateTime($field['field_award_year']['item'][0]['timestamp']), 'Y')?></p>
-                            <?php } ?>
-                            <?php if(!empty($field['field_award_organization']['item'])) { ?>
-                                <p><label><?=$field['field_award_organization']['label']?></label><?=$field['field_award_organization']['item'][0]['value']?></p>
-                            <?php } ?>
-                            <?php if(!empty($field['field_url']['item'])) { ?>
-                                <p>
-                                    <label><?=$field['field_url']['label']?></label>
-                                    <a href="<?=$field['field_url']['item'][0]['value']?>"><?=$field['field_url']['item'][0]['value']?></a>
-                                </p>
-                            <?php } ?>
+                            <p>
+                                <?php if(!empty($field['field_award_year']['item'])) { ?>
+                                    <?=date_format(new DateTime($field['field_award_year']['item'][0]['timestamp']), 'Y')?>
+                                <?php } ?>
+                                <?=$field['field_award_name']['item'][0]['value']?>
+                                <?php if(!empty($field['field_award_organization']['item'])) { ?>
+                                    <br /><span><?=$field['field_award_organization']['label']?>:</span> <?=$field['field_award_organization']['item'][0]['value']?>
+                                <?php } ?>
+                                <?php if(!empty($field['field_description']['item'])) { ?>
+                                    <br /><span><?=$field['field_description']['label']?>:</span> <?=$field['field_description']['item'][0]['value']?>
+                                <?php } ?>
+                                <?php if(!empty($field['field_url']['item'])) { ?>
+                                    <br /><span><?=$field['field_url']['label']?>:</span> <a href="<?=$field['field_url']['item'][0]['value']?>"><?=$field['field_url']['item'][0]['value']?></a>
+                                <?php } ?>
+                            </p>
                         </div>
                     <?php }
                 }

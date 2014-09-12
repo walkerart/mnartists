@@ -23,7 +23,7 @@ function mn_op_menu() {
   $items['opportunities'] = array(
     'title' => 'Opportunities',
     'page callback' => 'mn_op_index',
-    'access callback' => true,
+    'access callback' => 'user_is_logged_in',
     'file' => 'mn_op.index.inc',
     'type' => MENU_NORMAL_ITEM,
   );
@@ -31,7 +31,7 @@ function mn_op_menu() {
   $items['applications'] = array(
     'title' => 'Applications',
     'page callback' => 'mn_op_aps',
-    'access callback' => true,
+    'access callback' => 'user_is_logged_in',
     'file' => 'mn_op.applications.inc',
     'type' => MENU_NORMAL_ITEM,
   );
@@ -39,7 +39,7 @@ function mn_op_menu() {
   $items['application/%'] = array(
     'title' => 'Application',
     'page callback' => 'mn_op_ap',
-    'access callback' => true,
+    'access callback' => 'user_is_logged_in',
     'page arguments' => array(1),
     'file' => 'mn_op.application.inc',
   );
@@ -47,7 +47,7 @@ function mn_op_menu() {
   $items['opportunity/%/jury-settings'] = array(
     'title' => 'Jury Settings',
     'page callback' => 'mn_op_settings',
-    'access callback' => true,
+    'access callback' => 'user_is_logged_in',
     'page arguments' => array(1),
     'file' => 'mn_op.settings.inc',
   );
@@ -87,6 +87,35 @@ function mn_op_theme() {
       'template' => 'mn-op-settings',
     )
   );
+}
+
+/**
+ * Implements hook_cron().
+ * This cron checks announce date and publishes opportunities
+ */
+function mn_op_cron() {
+  // $interval = variable_get('cron_example_interval', 60 * 60);
+  $type = "opportunity"; 
+  $now = new DateTime();
+  $result = NULL;
+  $query = new EntityFieldQuery();
+  $query->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', $type)
+    ->propertyCondition('status', 0);
+  $result = $query->execute();
+  
+  if ($result != NULL) {
+    $nodes = node_load_multiple(array_keys($result['node']));
+    foreach($nodes as $opportunity) {
+      $announce_date = mn_ap_get_comparable_date($opportunity->field_announce_date['und']['0']['value'], $opportunity->field_announce_date['und']['0']['timezone'], $opportunity->field_announce_date['und']['0']['timezone_db']);
+      if ($now > $announce_date) {
+        $nid = $opportunity->nid;
+        $node = node_load($nid);
+        $node->status = 1;
+        node_save($node);
+      }
+    }
+  }
 }
 
 function mn_op_node_view($node, $view_mode, $langcode) {
@@ -148,24 +177,49 @@ function mn_op_check_existing_settings($nid) {
       ->condition('nid', $nid, '=')
       ->execute()
       ->fetchAssoc();
-    return $result;
+  if (!$result) {
+    $result = db_insert('op_jury_settings')
+      ->fields(array('nid' => $nid))
+      ->execute();
+  }
+  return $result;
 }
 
-/**
- * Implementation of hook_mail().
- **/
-function mn_op_mail($key, &$message, $params) {
-  if($key ==  'C3512995DB53EC882694983BA2273') {
-    if (isset($params['subject'])) {
-      $message['subject'] = $params['subject'];
-    }
-    if (isset($params['body'])) {
-      $message['body'][] = $params['body'];
-    }
-    if (isset($params['headers']) && is_array($params['headers'])) {
-      $message['headers'] += $params['headers'];
-    }
+/*
+* convert datetime to correct site db set time
+*/
+function mn_ap_get_date($date, $timezone, $timezone_db) {
+  if($date && $timezone && $timezone_db) {
+    $timezone = new DateTimeZone($timezone);
+    $timezone_db = new DateTimeZone($timezone_db);
+
+    $resultDate = new DateTime($date, $timezone_db);
+    $resultDate->setTimezone($timezone);
+    $resultDate = (array) $resultDate;
+    $resultDate = new DateTime($resultDate['date']);
+    $resultDate = $resultDate->format("F j, Y, g:i a");
+  } else {
+    $resultDate = '';
   }
+  return $resultDate;
+}
+
+/*
+* convert datetime to correct site db set time in a comparable format
+*/
+function mn_ap_get_comparable_date($date, $timezone, $timezone_db) {
+  if($date && $timezone && $timezone_db) {
+    $timezone = new DateTimeZone($timezone);
+    $timezone_db = new DateTimeZone($timezone_db);
+
+    $resultDate = new DateTime($date, $timezone_db);
+    $resultDate->setTimezone($timezone);
+    $resultDate = (array) $resultDate;
+    $resultDate = new DateTime($resultDate['date']);
+  } else {
+    $resultDate = '';
+  }
+  return $resultDate;
 }
 
 /**
@@ -175,6 +229,11 @@ function mn_op_block_info() {
   return array(
       'mna_op_apply_button' => array(
           'info' => 'Opportunity Apply Button',
+          'cache' => DRUPAL_NO_CACHE,
+          'visibility' => BLOCK_VISIBILITY_PHP
+      ),
+      'mna_op_external_apply_button' => array(
+          'info' => 'Opportunity External Apply Button',
           'cache' => DRUPAL_NO_CACHE,
           'visibility' => BLOCK_VISIBILITY_PHP
       ),
@@ -189,6 +248,10 @@ function mn_op_block_view($delta = '') {
         case 'mna_op_apply_button':
             $block['subject'] = 'Opportunity Apply Button';
             $block['content'] = _mn_op_apply_button();
+        break;
+        case 'mna_op_external_apply_button':
+            $block['subject'] = 'Opportunity External Apply Button';
+            $block['content'] = _mn_op_external_apply_button();
         break;
     }
 
@@ -214,4 +277,25 @@ function _mn_op_apply_button() {
     $button_fragment_arr[] = '</div>';
     return implode('', $button_fragment_arr);
   }
+}
+
+function _mn_op_external_apply_button() {
+  $context_opp = node_load(arg(1));
+  $internal = (isset($context_opp-> op_application_type[LANGUAGE_NONE]) && $context_opp-> op_application_type[LANGUAGE_NONE][0]['value'] === '1') ? TRUE : FALSE;
+  $start_date = date_create_from_format('Y-n-d G:i:s', $context_opp->op_dates[LANGUAGE_NONE][0]['value']);
+  $end_date = date_create_from_format('Y-n-d G:i:s', $context_opp->op_dates[LANGUAGE_NONE][0]['value2']);
+  $now = new DateTime();
+
+  $button_fragment_arr = array();
+  if (!$internal) {
+      if (!empty($context_opp->field_op_uri) && $now >= $start_date && $now <= $end_date) {
+          $button_fragment_arr[] = '<a href="'.$context_opp->field_op_uri[LANGUAGE_NONE][0]['value'].'" target="_blank">Apply Here</a>';
+      } else {
+          $button_fragment_arr[] = 'External Site';
+      }
+  } else {
+      $button_fragment_arr[] = 'MNArtists.org';
+  }
+  return implode('', $button_fragment_arr);
+
 }

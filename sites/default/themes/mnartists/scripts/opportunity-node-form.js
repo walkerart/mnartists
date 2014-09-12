@@ -120,6 +120,5 @@ $(document).ready(function(){
     $('.rowTextarea').children('label').prop('class', 'col-md-4');
     $('.rowTextarea').children('div.form-textarea-wrapper').addClass('col-md-8');
 
-
 });
 })(jQuery);

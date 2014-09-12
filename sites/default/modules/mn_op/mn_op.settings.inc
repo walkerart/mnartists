@@ -2,13 +2,12 @@
 
 function mn_op_settings($nid) {
 	global $user;
-	dpm($user);
 	$uid = $user->uid;
 	$node = node_load($nid);
 	$owner = $node->uid == $uid ? 1 : 0;
 
 	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-		if (user_access('administrator') || $owner) {
+		if (in_array('administrator', $user->roles) || $owner) {
 			if(isset($_POST['remove']) && isset($_POST['juror_email'])) {
 				//remove a juror by email address
 				_remove_juror_from_opportunity($nid, $_POST['juror_email']);
@@ -22,7 +21,7 @@ function mn_op_settings($nid) {
 		}
 	}
 
-	if (user_access('administrator') || $owner) {
+	if (in_array('administrator', $user->roles) || $owner) {
 		$areas = get_form_areas($node->field_op_required, $node->field_op_optional);
 		$output = '';
 		$jurors = mn_op_get_jurors($nid);
@@ -116,9 +115,14 @@ function _add_settings_to_opportunity($nid, $fields) {
 	}
 }
 
+
 function _mail_to_juror($mail, $status, $nid, $title) {
 	global $user;
 	global $base_url;
+
+	$module = 'mn_op';
+  	$key = 'C3512995DB53EC882694983BA2273';
+
 	$to = $mail;
 	$from = $user->mail;
 	$subject = $title + "Jury";
@@ -128,5 +132,36 @@ function _mail_to_juror($mail, $status, $nid, $title) {
 	} else {
 		$body = 'You have been added as a juror for ' + $title + ' on the MNArtist website. Please register at: " +  $base_url + "/user After you have registered visit: ' + $base_url + '/opportunity/' + $nid + '/submissions to begin the review process. Thank You.';
 	}
-	$message = drupal_mail('mn_op', 'C3512995DB53EC882694983BA2273', $to, user_preferred_language($user), array('body' => $body, 'subject' => $subject, $from, TRUE));
+
+	$params = $body;
+	$language = language_default();
+	$send = TRUE;
+
+	$result = drupal_mail($module, $key, $to, $language, $params, $from, $send);
+	if ($result['result'] == TRUE) {
+		return drupal_set_message(t('Your invite has been sent.'), 'status');
+	} else {
+		return drupal_set_message(t('There was a problem sending your invitation and it was not sent.'), 'error');
+  }
 }
+
+/**
+* Implements hook_mail()
+*/
+function mn_op_mail($key, &$message, $params) {
+	global $user;
+
+	$options = array(
+		'langcode' => $message['language']->language,
+	);
+
+	switch ($key) {
+    // Send a simple message from the contact form.
+    case 'C3512995DB53EC882694983BA2273':
+		$message['subject'] = t('E-mail sent from @site-name', array('@site-name' => variable_get('site_name', 'Drupal')), $options);
+		$message['body'][] = t('@name sent you the following message:', array('@name' => $user->name), $options);
+		$message['body'][] = check_plain($params['message']);
+		break;
+  }
+}
+

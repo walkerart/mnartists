@@ -99,7 +99,7 @@ jQuery(document).ready(function () {
         ".field-items"
     ];
     var slideItemSelectors = [
-        ".field-item"
+        "div.field-item"
     ];
 
     for (var i = 0, len = slideContainerSelectors.length; i < len; i++) {
@@ -113,13 +113,19 @@ jQuery(document).ready(function () {
         }
         slideContainer.each(function () {
             var $this = jQuery(this);
-            var slideElem = $this.find(slideSelector);
+            var slideElem = $this.children(slideSelector);
             var slideItems = slideElem.find(slideItemSelector);
             var maxHeight = 0;
 
             if (slideItems.length > 1) {
                 slideItems.each(function () {
                     var item = jQuery(this);
+                    var caption = item.find("figure");
+                    if (caption.length) {
+                        caption = caption.text();
+                    } else {
+                        caption = "";
+                    }
                     var child = item.children();
                     var testHeight = item.height();
                     if (child.hasClass('file-video-vimeo')) {
@@ -133,6 +139,7 @@ jQuery(document).ready(function () {
                             var naturalHeight = parseInt(firstImageEl.attr('height'));
                             var setMaxHeight = parseInt(firstImageEl.css('max-height'));
                             testHeight = (naturalHeight < setMaxHeight) ? naturalHeight : setMaxHeight;
+                            firstImageEl.attr("title", caption).attr("alt", caption);
                         }
                     }
                     maxHeight = testHeight > maxHeight ? testHeight : maxHeight;
@@ -144,6 +151,7 @@ jQuery(document).ready(function () {
             }
         });
     }
+
     jQuery(".slidesjs-navigation").click(function () {
         for (var i = 0, len = slideContainerSelectors.length; i < len; i++) {
             var slideContainerSelector = slideContainerSelectors[i];
@@ -211,7 +219,7 @@ jQuery(document).ready(function () {
     }
 
     // select boxes
-    // jQuery('select.form-select').customSelect();
+    //jQuery('select.form-select').chosen();
 
     // nice file input
     jQuery('input[type=file]').nicefileinput();
@@ -223,21 +231,40 @@ jQuery(document).ready(function () {
         jQuery('body').toggleClass('sidebar-show');
     });
 
-    // attach to flag link click events to toggle a
-    // used collected class on the container
-    // @TODO assess whether this is interfering with
-    // other handlers for clicks on these
-    jQuery('ul.menu .flag').click(function (evt) {
-        var parentMenu = jQuery(this).closest('ul.menu');
-        if (parentMenu) {
-            var hasUnflagLinks = (parentMenu.find('a.unflag-action').length > 0);
-            if (hasUnflagLinks) {
-                parentMenu.addClass('collected');
-            } else {
-                parentMenu.removeClass('collected');
-            }
+
+    jQuery(document).bind('flagGlobalAfterLinkUpdate', function(event, data) {
+
+        var flagEl = jQuery(data.link);
+        var verbEl = flagEl.siblings('ul').find('li.follow-this a .flag-verb');
+        var parentUlEl = (flagEl.parent().parent().hasClass('follow-menu')) ? flagEl.parent().parent() : flagEl.parent().parent().parent().parent();
+        var hasUnflagLinks = (parentUlEl.find('a.unflag-action').length > 0);
+
+        if (data.flagStatus === 'unflagged' && verbEl) {
+            verbEl.text('Follow');
+            parentUlEl.removeClass('collected');
+        } else if (data.flagStatus === 'flagged' && verbEl) {
+            verbEl.text('Unfollow');
+            parentUlEl.addClass('collected');
+        } else if (data.flagStatus === 'unflag' && !hasUnflagLinks) {
+            parentUlEl.removeClass('collected');
+        } else if (data.flagStatus === 'flag') {
+            parentUlEl.addClass('collected');
         }
     });
 
+    var termsLink = jQuery("a.terms-link");
+    if (termsLink.length) {
+        jQuery("#terms").dialog({
+            autoOpen: false,
+            maxHeight: 600,
+            maxWidth: 600,
+            modal: true
+        });
+        termsLink.click(function(e) {
+            e.preventDefault();
+            e.stopPropagation();
 
+            jQuery("#terms").dialog( "open" );
+        });
+    }
 });
