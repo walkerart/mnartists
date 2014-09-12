@@ -1042,6 +1042,14 @@ a.tabledrag-handle .handle {
     .chosen-drop {
         border:none;
         box-shadow:none;
+        .chosen-results {
+            .group-option {
+                .highlighted {
+                    background:#ccc;
+                    box-shadow:none;
+                }
+            }
+        }
     }
 
     &.chosen-container-active {
