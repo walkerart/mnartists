@@ -1017,6 +1017,14 @@ a.tabledrag-handle .handle {
         font-size:12px!important;
 
         li {
+            .search-field {
+                input {
+                    padding: 4px 0 6px 0;
+                    width: 94% !important;
+                    height: 25px;
+                    font-size:11px;
+                }
+            }
 
             &.search-choice {
                 border-radius:0;
@@ -1030,14 +1038,7 @@ a.tabledrag-handle .handle {
                 }
             }
         }
-        .search-field {
-            input {
-                padding: 4px 0 6px 0;
-                width: 94%;
-                height: 25px;
-                font-size:11px;
-            }
-        }
+
     }
     .chosen-drop {
         border:none;
