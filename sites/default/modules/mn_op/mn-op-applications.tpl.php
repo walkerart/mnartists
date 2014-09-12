@@ -14,7 +14,7 @@
 
 	<div class="container" id="listContent">
 		<?php if(count($rows['juries']) > 0) : ?>
-		<h3>Your Juries</h3>
+		<h3>Juries</h3>
 		<table class="table op-table">
 			<thead>
 				<tr>
