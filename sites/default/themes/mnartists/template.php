@@ -108,13 +108,19 @@ function mnartists_preprocess_page(&$vars) {
     drupal_add_library('system', 'ui.dialog');
 }
 function mnartists_process_page(&$vars) {
-  if($_GET['q'] == 'manage-artworks' || $_GET['q'] == 'manage-events')
+  if($_GET['q'] == 'manage-artworks' || $_GET['q'] == 'manage-events' )
   {
     drupal_add_css(drupal_get_path('module', 'mn_ap') . '/css/bootstrap.min.css');
     drupal_add_css(drupal_get_path('module', 'mn_op') . '/css/mn-op.css');
     drupal_add_css(drupal_get_path('module', 'mn_ap') . '/css/DT_bootstrap.css');
     drupal_add_js(drupal_get_path('theme', 'mnartists') . '/scripts/manage-table.js');
   }
+  if($_GET['q'] == 'user/saved-filters')
+  {
+    drupal_add_css(drupal_get_path('module', 'mn_ap') . '/css/bootstrap.min.css');
+    drupal_add_css(drupal_get_path('theme', 'mnartists') . '/css/table_style.css');
+  }
+
 }
 
 
