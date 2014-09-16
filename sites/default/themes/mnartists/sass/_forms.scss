@@ -917,7 +917,7 @@ input {
 
 //register form
 .register-form-container {
-    padding-bottom: 100px;
+    padding-bottom: 140px;
     div {
         fieldset {
             .form-wrapper {
@@ -926,9 +926,20 @@ input {
         }
     }
     .form-item-account-type {
-        .description {
+        margin: -200px auto 0;
+        #edit_account_type_choosen {
             float: right;
+        }
+        .description {
+            float: left;
             width: 66%
+        }
+    }
+
+    .form-actions {
+        .edit-submit {
+            float: none;
+            margin: 150px auto 0;
         }
     }
 }
