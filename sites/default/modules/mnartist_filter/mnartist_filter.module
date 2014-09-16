@@ -109,14 +109,39 @@ function mnartist_filter_user_view()
                         $string .= " ";
                     }
                 }
-                if(isset($vars['og']) && isset($vars['content']))
-                {
-                    $string .= '<br>';
-                }
+
+                if(isset($vars['og']) && isset($vars['content'])) $string .= '<br>';
+                
                 if(isset($vars['content']))
                 {
-                    $string .= "<b>Content: </b>";
-                    $string .= implode(', ', $vars['content']);
+                   	foreach($vars['content'] as $mkey => $mvalue)
+                    {
+                        $string .= '<b>';
+                        if ($mkey == 'opportunity') {
+                        	$string .= 'Opportunities';
+                        } elseif (substr($mkey, -1) == 's') {
+                        	$string .= ucfirst($mkey);
+                        } else {
+                        	$string .= ucfirst($mkey) . 's';
+                        }
+                        $string .= '</b> ';
+                        if(is_array($mvalue))
+                        {
+                        	$string .= ': ';
+                            $subm = array();
+                            foreach($mvalue as $skey => $svalue)
+                            {
+                                $term = taxonomy_term_load($svalue);
+                                if(isset($term->name))
+                                {
+                                    $subm[] = $term->name;
+                                }
+
+                            }
+                            $string .= implode(', ', $subm);
+                        }
+                        $string .= " ";
+                    }
                 }
             } else {
                 $string = '<b>All Communites</b>';
