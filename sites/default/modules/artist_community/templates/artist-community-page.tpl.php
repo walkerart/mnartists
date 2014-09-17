@@ -93,7 +93,7 @@
                     <h3>Featured Stories</h3>
                     <?php foreach($articles as $article) : ?>
                         <div class="article-detail" id="article-detail-<?= $article->nid ?>" style="display: none;">
-                            <a href="/node/<?= $article->nid ?>"><img src="<?= $article->image_uri ?>"></a>
+                            <a href="<?= url( 'node/'.$article->nid, array('absolute' => true, 'alias' => false )) ?>"><img src="<?= $article->image_uri ?>"></a>
                             <div class="article-content">
                                 <div class="article-detail-title"><?= $article->title ?></div>
                                 <div class="article-detail-byline">by <?= $article->author ?></div>
@@ -102,7 +102,7 @@
                                 <?php } ?>
                                 <div class="article-detail-subhead"><?= $article->subhead ?></div>
                                 <div class="article-detail-excerpt"><?= trim($article->excerpt) ?>&hellip;</div>
-                                <a class="article-detail-excerpt-more" href="/node/<?= $article->nid ?>">More</a>
+                                <a class="article-detail-excerpt-more" href="<?= url( 'node/'.$article->nid, array('absolute' => true, 'alias' => false )) ?>">More</a>
                                 <div class="article-detail-photo-credit"><?= $article->photo_credit ?></div>
                             </div>
                         </div>
@@ -112,7 +112,7 @@
                         <ul>
                             <?php foreach($articles as $article) : ?>
                                 <li class="<?= strtolower($article->category) ?>" data-target-article="article-detail-<?= $article->nid ?>">
-                                    <a href="/node/<?= $article->nid ?>">
+                                    <a href="<?= url( 'node/'.$article->nid, array('absolute' => true, 'alias' => false )) ?>">
                                         <h4><?= $article->category ?></h4>
                                         <p><?= $article->title ?></p>
                                     </a>
@@ -185,7 +185,7 @@
                         <ul>
                             <?php foreach($latest_users as $context_user) : ?>
                                 <li>
-                                    <a href="/user/<?= $context_user->uid ?>">
+                                    <a href="<?= url( 'user/' . $context_user->uid, array('absolute' => true, 'alias' => false )) ?>">
                                         <img src="<?= $context_user->image_uri ?>" width="68" height="68">
                                         <div class="user-thing-labels">
                                             <div class="user-thing-name"><?= $context_user->full_name ?></div>
@@ -194,7 +194,7 @@
                                     </a>
                                 </li>
                             <?php endforeach; ?>
-                            <li class="user-thing-more"><a href="/community?content[artists]=1&?sort=recent&sort_direction=DESC<?php if ($og_get_string != '') { echo "&$og_get_string"; } ?>" style="font-size: 4em;">More</a></li>
+                            <li class="user-thing-more"><a href="/community?content[artists]=1&amp;?sort=recent&amp;sort_direction=DESC<?php if ($og_get_string != '') { echo "&$og_get_string"; } ?>" style="font-size: 4em;">More</a></li>
                         </ul>
                         </div>
                     </div>
@@ -215,19 +215,18 @@
                     <h3>This Week</h3>
                     <div class="widget-content">
                         <div class="event-thing-event-block event-thing-event-block-hero">
-                            <a href="/node/<?= $event_widget_items['hero']->nid ?>">
+                            <a href="<?= url( 'node/'. $event_widget_items['hero']->nid, array('absolute' => true, 'alias' => false )) ?>">
                                 <img src="<?= $event_widget_items['hero']->image_uri ?>">
                                 <div class="event-thing-event-title"><?= date("M d", $event_widget_items['hero']->date) ?>: <?= $event_widget_items['hero']->title ?></div>
                             </a>
                         </div>
-                        <?php foreach ($event_widget_items['others'] as $event) { ?>
-                            <?php //dpm($event); ?>
+                        <?php foreach ($event_widget_items['others'] as $event) : ?>
                             <div class="event-thing-event-block">
-                                <a href="/node/<?= $event->nid ?>">
+                                <a href="<?= url( 'node/'. $event->nid, array('absolute' => true, 'alias' => false )) ?>">
                                     <div class="event-thing-event-title"><?= date("M d", $event->date) ?>: <?= $event->title ?></div>
                                 </a>
                             </div>
-                        <?php } ?>
+                        <?php endforeach; ?>
                     </div>
                 </div>
             <?php } ?>
