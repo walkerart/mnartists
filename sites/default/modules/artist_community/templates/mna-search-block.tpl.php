@@ -32,7 +32,7 @@
 </p>
 
 
-<?php if($rows->uid && $url_query_string !== '' || drupal_is_front_page()) : ?>
+<?php if($rows->uid && $url_query_string !== '' || drupal_is_front_page() && user_is_logged_in()) : ?>
 <p class="site-description">
     Save your search; create a personalized homepage.
 </p>

@@ -1,17 +1,19 @@
 <?php   drupal_add_css(drupal_get_path('module', 'mn_ap') . '/css/bootstrap.min.css');
+    drupal_add_css(drupal_get_path('theme', 'mnartists') . '/css/chosen.min.css');
         drupal_add_css(drupal_get_path('module', 'mn_ap') . '/css/styles.css');
 
         drupal_add_js(drupal_get_path('libraries', 'ckeditor') . '/sites/all/libraries/ckeditor/ckeditor.js');
         drupal_add_js(drupal_get_path('module', 'mn_ap') . '/js/mustache.js');
         drupal_add_js(drupal_get_path('module', 'mn_ap') . '/js/jquery.validate.min.js');
         drupal_add_js(drupal_get_path('module', 'mn_ap') . '/js/jquery.history2.js');
+        drupal_add_js(drupal_get_path('theme', 'mnartists') . '/scripts/chosen.jquery.min.js');
 
         //inline javascript to limit # of selected artworks to the maximum defined in opportunity content type
         drupal_add_js('(function ($) { $(document).ready(function() {
             window.CKEDITOR_BASEPATH = "/sites/all/libraries/ckeditor";
             }); })(jQuery);', 'inline' );
         drupal_add_js(drupal_get_path('module', 'mn_ap') . '/js/scripts2.js');
-        dpm($rows); ?>
+        //dpm($rows); ?>
 <div class="container" id="content">
     <div class="row">
         <div class="col-md-12">
@@ -121,9 +123,29 @@
                                         <div class="row">
                                             <div class="form-group">
                                     <?php endif; ?>
-                                                <label class="col-sm-2 control-label" for="<?php echo $field; ?>"><?php echo $field; ?><?php if(is_array($rows['opportunity']['required']) && in_array($field, $rows['opportunity']['required'])) echo '*'; ?></label>
+                                                <label class="col-sm-2 control-label" for="<?php echo $field; ?>"><?php echo ucfirst($field); ?><?php if(is_array($rows['opportunity']['required']) && in_array($field, $rows['opportunity']['required'])) echo '*'; ?></label>
                                                 <div class="col-sm-4">
+                                                <?php if($field == 'gender') : ?>
+                                                    <select class="form-control form-select" name="<?php echo $field; ?>" id="<?php echo $field; ?>" <?php if(is_array($rows['opportunity']['required']) && in_array($field, $rows['opportunity']['required'])) echo 'required'; ?>>
+                                                        <option disabled <?php if ($rows[$field] == '') echo 'selected'; ?> value="">Select Gender</option>
+                                                        <option value="Man" <?php if ($rows[$field] == 'Man') echo 'selected'; ?>>Man</option>
+                                                        <option value="Woman" <?php if ($rows[$field] == 'Woman') echo 'selected'; ?>>Woman</option>
+                                                        <option value="Trans" <?php if ($rows[$field] == 'Trans') echo 'selected'; ?>>Trans</option>
+                                                        <option value="Non-Binary" <?php if ($rows[$field] == 'Non-Binary') echo 'selected'; ?>>Non-Binary</option>
+                                                    </select>
+                                                <?php elseif($field == 'ethnicity') : ?>   
+                                                    <select class="form-control form-select" name="<?php echo $field; ?>" id="<?php echo $field; ?>" <?php if(is_array($rows['opportunity']['required']) && in_array($field, $rows['opportunity']['required'])) echo 'required'; ?>>
+                                                        <option disabled <?php if ($rows[$field] == '') echo 'selected'; ?> value="">Select Ethnicity</option>
+                                                        <option value="African-American/African/Black" <?php if ($rows[$field] == 'African-American/African/Black') echo 'selected'; ?>>African-American/African/Black</option>
+                                                        <option value="Caucasian/White" <?php if ($rows[$field] == 'Caucasian/White') echo 'selected'; ?>>Caucasian/White</option>
+                                                        <option value="Native American" <?php if ($rows[$field] == 'Native American') echo 'selected'; ?>>Native American</option>
+                                                        <option value="Asian-American/Pacific Islander" <?php if ($rows[$field] == 'Asian-American/Pacific Islander') echo 'selected'; ?>>Asian-American/Pacific Islander</option>
+                                                        <option value="Hispanic/Latino/Latina" <?php if ($rows[$field] == 'Hispanic/Latino/Latina') echo 'selected'; ?>>Hispanic/Latino/Latina</option>
+                                                        <option value="Multiracial" <?php if ($rows[$field] == 'Multiracial') echo 'selected'; ?>>Multiracial</option>
+                                                    </select>
+                                                <?php else : ?>
                                                     <input type="text" class="form-control" name="<?php echo $field; ?>" id="<?php echo $field; ?>" value="<?php echo $rows[$field]; ?>" <?php if(is_array($rows['opportunity']['required']) && in_array($field, $rows['opportunity']['required'])) echo 'required'; ?>>
+                                                <?php endif; ?>
                                                 </div>
                                     <?php if($count == 2): ?>
                                             </div>

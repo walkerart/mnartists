@@ -1,6 +1,8 @@
 (function($){
 $(document).ready(function(){
 
+    $('select.form-select').chosen();
+
     //hide redundant information from resume
     $(".general-statement").hide();
     $(".biography").hide();
