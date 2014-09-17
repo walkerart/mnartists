@@ -12,7 +12,7 @@
 	drupal_add_js(drupal_get_path('module', 'mn_ap') . '/js/ekko-lightbox.min.js');
 	drupal_add_js(drupal_get_path('module', 'mn_ap') . '/js/jquery.selectBoxIt.js');
 	drupal_add_js(drupal_get_path('module', 'mn_ap') . '/js/subScript.js');
-dpm($rows); ?>
+//dpm($rows); ?>
 <div class="container">
 	<?php //admin table ?>
 	<?php if(in_array('administrator', $user->roles) || $rows['owner']) : ?>
