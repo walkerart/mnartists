@@ -88,7 +88,6 @@ class MediaSoundCloudStreamWrapper extends MediaReadOnlyStreamWrapper {
       $dirname = drupal_dirname($local_path);
       file_prepare_directory($dirname, FILE_CREATE_DIRECTORY | FILE_MODIFY_PERMISSIONS);
       if($thumb_data) {
-        dpm('saving');
         file_save_data($thumb_data->data, $local_path);
       } else {
         @copy($this->getOriginalThumbnailPath(), $local_path);
