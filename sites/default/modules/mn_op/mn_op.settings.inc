@@ -118,22 +118,21 @@ function _add_settings_to_opportunity($nid, $fields) {
 
 function _mail_to_juror($mail, $status, $nid, $title) {
 	global $user;
-	global $base_url;
 
 	$module = 'mn_op';
-  	$key = 'C3512995DB53EC882694983BA2273';
-
+  	
 	$to = $mail;
 	$from = $user->mail;
 	$subject = $title + "Jury";
 
 	if ($status) {
-		$body = 'You have been added as a juror for ' + $title + ' on the MNArtist website. Please visit: ' + $base_url + '/opportunity/' + $nid + '/submissions to begin the review process. Thank You.';
+		$key = 'A3512995DB53EC882694983BA2273';
 	} else {
-		$body = 'You have been added as a juror for ' + $title + ' on the MNArtist website. Please register at: " +  $base_url + "/user After you have registered visit: ' + $base_url + '/opportunity/' + $nid + '/submissions to begin the review process. Thank You.';
+		$key = 'B3512995DB53EC882694983BA2273';
 	}
 
-	$params = $body;
+	$params = $nid;
+
 	$language = language_default();
 	$send = TRUE;
 
@@ -150,6 +149,7 @@ function _mail_to_juror($mail, $status, $nid, $title) {
 */
 function mn_op_mail($key, &$message, $params) {
 	global $user;
+	global $base_url;
 
 	$options = array(
 		'langcode' => $message['language']->language,
@@ -157,10 +157,15 @@ function mn_op_mail($key, &$message, $params) {
 
 	switch ($key) {
     // Send a simple message from the contact form.
-    case 'C3512995DB53EC882694983BA2273':
+    case 'A3512995DB53EC882694983BA2273':
 		$message['subject'] = t('E-mail sent from @site-name', array('@site-name' => variable_get('site_name', 'Drupal')), $options);
-		$message['body'][] = t('@name sent you the following message:', array('@name' => $user->name), $options);
-		$message['body'][] = check_plain($params['message']);
+		$message['body'][] = t("@name sent you the following message: You have been added as a juror on the MNArtist website. Please visit:  @$base_url/opportunity/@params/submissions to begin the review process. Thank You.", array('@name' => $user->name, '@base_url' => $base_url, '@params' => $params), $options);
+		dpm($message);
+		break;
+	case 'B3512995DB53EC882694983BA2273':
+		$message['subject'] = t('E-mail sent from @site-name', array('@site-name' => variable_get('site_name', 'Drupal')), $options);
+		$message['body'][] = t("@name sent you the following message: You have been added as a juror on the MNArtist website. Please register at: @base_url/user After you have registered visit: @base_url/opportunity/@params/submissions to begin the review process. Thank You.", array('@name' => $user->name, '@base_url' => $base_url, '@params' => $params), $options);
+		dpm($message);
 		break;
   }
 }

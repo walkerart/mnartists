@@ -915,6 +915,35 @@ input {
     }
 }
 
+//register form
+.register-form-container {
+    padding-bottom: 150px;
+    div {
+        fieldset {
+            .form-wrapper {
+                display: inline-block;
+            }
+        }
+    }
+    .form-item-account-type {
+        margin: -200px auto 0 !important;
+        #edit_account_type_choosen {
+            float: right;
+        }
+        .description {
+            float: right;
+            width: 66%
+        }
+    }
+
+    .form-actions {
+        .form-submit {
+            float: none !important;
+            margin: 150px auto 0 !important;
+        }
+    }
+}
+
 
 /* draggable icon thingy for sticky crosshairs etc */
 a.tabledrag-handle .handle {

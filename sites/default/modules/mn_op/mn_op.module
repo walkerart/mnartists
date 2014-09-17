@@ -179,7 +179,7 @@ function mn_op_check_existing_settings($nid) {
       ->fetchAssoc();
   if (!$result) {
     $result = db_insert('op_jury_settings')
-      ->fields(array('nid' => $nid))
+      ->fields(array('nid' => $nid, 'note' => ''))
       ->execute();
   }
   return $result;

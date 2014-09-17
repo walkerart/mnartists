@@ -48,28 +48,50 @@ class MediaSoundCloudStreamWrapper extends MediaReadOnlyStreamWrapper {
 
   function getLocalThumbnailPath() {
     $parts = $this->get_parameters();
+    $api = "http://api.soundcloud.com/resolve?client_id=29800bb0ab961280619c6721dca3aa3d&format=json&url=http://soundcloud.com/";
     $local_path = "";
     //user set
     if(isset($parts['u'])){
-        $local_path = 'public://media-soundcloud/u/' . check_plain($parts['u']) . '.jpg';   
+        $local_path = 'public://media-soundcloud/u/' . check_plain($parts['u']) . '.jpg';
+        $api_path = $api . check_plain($parts['u']);
     }
     //group set
     if(isset($parts['g'])){
-        $local_path = 'public://media-soundcloud/g/' . check_plain($parts['g']) . '.jpg';   
+        $local_path = 'public://media-soundcloud/g/' . check_plain($parts['g']) . '.jpg';  
+        $api_path = $api . check_plain($parts['g']); 
     }
     //single song
     if(isset($parts['u']) && isset($parts['a'])){
         $local_path = 'public://media-soundcloud/u/' . check_plain($parts['u']) . '/a/'.check_plain($parts['a']).'.jpg';
+        $api_path = $api . check_plain($parts['u']) . '/' . check_plain($parts['a']);
     }
     //audio sets
     if(isset($parts['u']) && isset($parts['s'])){
         $local_path = 'public://media-soundcloud/u/' . check_plain($parts['u']) . '/s/'.check_plain($parts['s']).'.jpg';
+        $api_path = $api . check_plain($parts['u']) . '/' . check_plain($parts['s']);
     }
-    
+
+
     if (!file_exists($local_path)) {
+      $api_response = drupal_http_request($api_path);
+      if($api_response) {
+        $api_json = json_decode($api_response->data);
+        if ($api_json->artwork_url != NULL) {
+          $thumb_image = str_replace("large", "t500x500", $api_json->artwork_url);
+        } else {
+          $thumb_image = str_replace("large", "t500x500", $api_json->user->avatar_url);
+        }
+        if($thumb_image){
+          $thumb_data = drupal_http_request($thumb_image);
+        }
+      }
       $dirname = drupal_dirname($local_path);
       file_prepare_directory($dirname, FILE_CREATE_DIRECTORY | FILE_MODIFY_PERMISSIONS);
-      @copy($this->getOriginalThumbnailPath(), $local_path);
+      if($thumb_data) {
+        file_save_data($thumb_data->data, $local_path);
+      } else {
+        @copy($this->getOriginalThumbnailPath(), $local_path);
+      }
     }
     return $local_path;
   }
