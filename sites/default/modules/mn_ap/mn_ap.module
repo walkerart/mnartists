@@ -552,7 +552,7 @@ function mn_ap_artwork_image_data($artworks) {
         $art[] = array(
           'fid' => $artwork['fid'],
           'type' => 'soundcloud',
-          'file' => "http://soundcloud.com/$url[0]/$url[2]",
+          'file' => isset($url[2]) ? "http://soundcloud.com/$url[0]/$url[2]" : "http://soundcloud.com/$url[0]",
           'filename' => $artwork['filename']
         );
       } elseif (substr($artwork['uri'], 0, 1) == 'y') {
