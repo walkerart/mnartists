@@ -127,21 +127,21 @@
                                                 <div class="col-sm-4">
                                                 <?php if($field == 'gender') : ?>
                                                     <select class="form-control form-select" name="<?php echo $field; ?>" id="<?php echo $field; ?>" <?php if(is_array($rows['opportunity']['required']) && in_array($field, $rows['opportunity']['required'])) echo 'required'; ?>>
-                                                        <option disabled selected value="">Select Gender</option>
-                                                        <option value="Man">Man</option>
-                                                        <option value="Woman">Woman</option>
-                                                        <option value="Trans">Trans</option>
-                                                        <option value="Non-Binary">Non-Binary</option>
+                                                        <option disabled <?php if ($rows[$field] == '') echo 'selected'; ?> value="">Select Gender</option>
+                                                        <option value="Man" <?php if ($rows[$field] == 'Man') echo 'selected'; ?>>Man</option>
+                                                        <option value="Woman" <?php if ($rows[$field] == 'Woman') echo 'selected'; ?>>Woman</option>
+                                                        <option value="Trans" <?php if ($rows[$field] == 'Trans') echo 'selected'; ?>>Trans</option>
+                                                        <option value="Non-Binary" <?php if ($rows[$field] == 'Non-Binary') echo 'selected'; ?>>Non-Binary</option>
                                                     </select>
                                                 <?php elseif($field == 'ethnicity') : ?>   
                                                     <select class="form-control form-select" name="<?php echo $field; ?>" id="<?php echo $field; ?>" <?php if(is_array($rows['opportunity']['required']) && in_array($field, $rows['opportunity']['required'])) echo 'required'; ?>>
-                                                        <option disabled selected value="">Select Ethnicity</option>
-                                                        <option value="African-American/African/Black">African-American/African/Black</option>
-                                                        <option value="Caucasian/White">Caucasian/White</option>
-                                                        <option value="Native American">Native American</option>
-                                                        <option value="Asian-American/Pacific Islander">Asian-American/Pacific Islander</option>
-                                                        <option value="Hispanic/Latino/Latina">Hispanic/Latino/Latina</option>
-                                                        <option value="Multiracial">Multiracial</option>
+                                                        <option disabled <?php if ($rows[$field] == '') echo 'selected'; ?> value="">Select Ethnicity</option>
+                                                        <option value="African-American/African/Black" <?php if ($rows[$field] == 'African-American/African/Black') echo 'selected'; ?>>African-American/African/Black</option>
+                                                        <option value="Caucasian/White" <?php if ($rows[$field] == 'Caucasian/White') echo 'selected'; ?>>Caucasian/White</option>
+                                                        <option value="Native American" <?php if ($rows[$field] == 'Native American') echo 'selected'; ?>>Native American</option>
+                                                        <option value="Asian-American/Pacific Islander" <?php if ($rows[$field] == 'Asian-American/Pacific Islander') echo 'selected'; ?>>Asian-American/Pacific Islander</option>
+                                                        <option value="Hispanic/Latino/Latina" <?php if ($rows[$field] == 'Hispanic/Latino/Latina') echo 'selected'; ?>>Hispanic/Latino/Latina</option>
+                                                        <option value="Multiracial" <?php if ($rows[$field] == 'Multiracial') echo 'selected'; ?>>Multiracial</option>
                                                     </select>
                                                 <?php else : ?>
                                                     <input type="text" class="form-control" name="<?php echo $field; ?>" id="<?php echo $field; ?>" value="<?php echo $rows[$field]; ?>" <?php if(is_array($rows['opportunity']['required']) && in_array($field, $rows['opportunity']['required'])) echo 'required'; ?>>
