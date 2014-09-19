@@ -127,8 +127,11 @@ function mnartists_process_page(&$vars) {
   $pattern = "node/add/*\nfoo-page";
   //check for path to user edit pages
   $pattern2 = "user/*\n123/edit/*\nfoo-page";
+  //check for node edit pattern
+  $pattern3 = "node/*\n123/edit";
+
   //if pattern match add chosen to the page
-  if(drupal_match_path($path, $pattern) || drupal_match_path($path, $pattern2))
+  if(drupal_match_path($path, $pattern) || drupal_match_path($path, $pattern2) || drupal_match_path($path, $pattern3))
   {
     drupal_add_css(drupal_get_path('theme', 'mnartists') . '/css/chosen.min.css');
     drupal_add_js(drupal_get_path('theme', 'mnartists') . '/scripts/chosen.jquery.min.js');
