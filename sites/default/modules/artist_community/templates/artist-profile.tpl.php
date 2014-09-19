@@ -32,10 +32,13 @@
             </ul>
         </div>
     <?php } ?>
-    <div class="username">
+    <div class="username" style="margin-top: -25px">
         <a href="<?php print $url; ?>">
             <?php print mnartist_profiles_collective_or_fullname_or_username($user->uid); ?>
         </a>
     </div>
-    <div class="roles"><?php print implode(', ', mnartist_profiles_get_artwork_roles_for_user($user->uid)); ?></div>
+    <?php $roles = mnartist_profiles_get_artwork_roles_for_user($user->uid); ?>
+    <?php if ($roles) : ?>
+        <div class="roles"><?php print implode(', ', $roles); ?></div>
+    <?php endif; ?>
 </div>
