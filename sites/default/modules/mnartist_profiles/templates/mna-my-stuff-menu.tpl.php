@@ -20,6 +20,7 @@
         <?php endforeach; ?>
         </ul>
     <?php endif; ?>
-    <?php if(isset($renderedLinks)) print $renderedLinks; ?>
+    <?php if(isset($myLinks)) print $myLinks; ?>
+    <?php if(isset($accountLinks)) print $accountLinks; ?>
     <?php if(isset($editLinks)) print $editLinks; ?>
 </div>
