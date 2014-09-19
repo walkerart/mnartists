@@ -508,7 +508,7 @@ function mnartist_profiles_form_user_register_form_alter(&$form, &$form_state, $
         '#type'     => 'select',
         '#title'    => t('Registration Type'),
         '#options'  => array(
-            'public'    => t('Public'),
+            'public'    => t('Basic'),
             'artist'    => t('Artist'),
             'org'       => t('Organization'),
         ),
