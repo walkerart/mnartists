@@ -36,7 +36,7 @@ function mnartists_preprocess_user_register_form(&$variables) {
 }
 
 function mnartists_preprocess_user_pass(&$variables) {
-  $variables['intro_text'] = t('Forgot your password?<br>If you&rsquo;ve created an account on the new mnartists.org, fill out your username or email and click the "E-Mail New Password" button.<br> If you haven&rsquo;t created an account on the new mnartists.org, retrieve your old password by emailing <a href="mailto:info@mnartists.org">info@mnartists.org</a>.');
+  $variables['intro_text'] = t('<div class="privacy-instructions" style="margin-top: -45px"><h2 style="padding-left: 0">Forgot your password</h2><p>If you&rsquo;ve created an account on the new mnartists.org, fill out your username or email and click the "E-Mail New Password" button.<br> If you haven&rsquo;t created an account on the new mnartists.org, retrieve your old password by emailing <a href="mailto:info@mnartists.org">info@mnartists.org</a>.</p></div>');
   $variables['rendered'] = drupal_render_children($variables['form']);
 }
 
