@@ -1057,12 +1057,18 @@ function mnartist_profiles_form_alter(&$form, $form_state, $form_id) {
         } else if (isset($form["#user_category"]) && $form["#user_category"] == 'main') {
 
             // include main profile instructions
-            $form['privacy_instructions']['#markup'] = "<div class='privacy-instructions'>Manage information that will appear on your public profile. <br> Help mnartists.org and our partners, the McKnight Foundation and the Walker Art Center, learn more about our artistic communities by filling out as many fields as possible, even if you keep them private.</div>";
+            $form['privacy_instructions']['#markup'] = "<div class='privacy-instructions'><p>Manage information that will appear on your public profile.</p><p>Help mnartists.org and our partners, the McKnight Foundation and the Walker Art Center, learn more about our artistic communities by filling out as many fields as possible, even if you keep them private.</p></div>";
+            $form['privacy_instructions']['#weight'] = -100;
+
+        } else if (isset($form["#user_category"]) && $form["#user_category"] == 'organization') {
+
+            // include organization profile instructions
+            $form['org_instructions']['#markup'] = "<div class='privacy-instructions'><p>Manage information that will appear on your organization profile.</p><p>Help mnartists.org and our partners, the McKnight Foundation and the Walker Art Center, learn more about our artistic communities by filling out as many fields as possible.</p></div>";
             $form['privacy_instructions']['#weight'] = -100;
 
         } else if (isset($form["#user_category"]) && $form["#user_category"] == 'resume') {
 
-            $form['resume_instructions']['#markup'] = "<div class='privacy-instructions'>Use this resume builder to manage and save your ongoing artistic experience. <br> Find data imported from your resume on the old mnartists.org stored in its entirety under the Imported Data field below.  Please take a moment to copy and paste this text in the new form, so that your new resume can be easily displayed and downloaded.</div>";
+            $form['resume_instructions']['#markup'] = "<div class='privacy-instructions'><p>Use this resume builder to manage and save your ongoing artistic experience.</p><p>Find data imported from your resume on the old mnartists.org stored in its entirety under the Imported Data field below.  Please take a moment to copy and paste this text in the new form, so that your new resume can be easily displayed and downloaded.</p></div>";
             $form['resume_instructions']['#weight'] = -100;
 
             // include form js
@@ -1072,7 +1078,7 @@ function mnartist_profiles_form_alter(&$form, $form_state, $form_id) {
             // @TODO is this test acceptable? or should it be tied to a specific user permission?
             if ($user->uid == $uid || in_array('administrator', $user->roles)) {
                 $form['resume_download'] = array(
-                    '#markup' => "<a href='/user/$uid/resume/download'>download resume</a>"
+                    '#markup' => "<a href='/user/$uid/resume/download'>View Resume</a>"
                 );
             }
         }
