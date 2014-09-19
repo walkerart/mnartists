@@ -76,7 +76,7 @@
                 ?>
                 <div class="item item-<?= $the_class_suffix ?>">
                     <?php if ($item['type'] === 'node') { ?>
-                        <?= render(node_view($the_thing, 'teaser')); ?>
+                        <?php $node_view = node_view($the_thing, 'teaser'); echo render($node_view); ?>
                     <?php } else if ($item['type'] === 'user') { ?>
                         <?= theme('artist_community_artist_profile', array('user' => $the_thing)) ?>
                     <?php } ?>

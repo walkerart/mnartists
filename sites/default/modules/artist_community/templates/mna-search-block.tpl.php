@@ -1,3 +1,8 @@
+<p class="site-description site-description-after">
+    Explore Minnesota's art scene by browsing communities and content.
+</p>
+<br>
+
 <div class="search-container">
     <form method="get" action="/community">
         <?php
@@ -26,11 +31,6 @@
         <button type="submit"></button>
     </form>
 </div>
-
-<p class="site-description site-description-after">
-    Explore Minnesota's art scene by browsing communities and content.
-</p>
-
 
 <?php if($rows->uid && $url_query_string !== '' || drupal_is_front_page() && user_is_logged_in()) : ?>
 <p class="site-description">
