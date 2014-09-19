@@ -14,7 +14,7 @@
     <?php endif; ?>
     </p>
     <?php if(isset($loginItems)) : ?>
-        <ul>
+        <ul class="my-stuff-menu">
         <?php foreach ($loginItems as $item) : ?>
             <li><?php print $item; ?></li>
         <?php endforeach; ?>
