@@ -237,7 +237,7 @@ function _mnartist_filter_create_filter()
 	ctools_add_css('filter', 'mnartist_filter');
 	$output = '';
 	$output .= '<div id="dialog-form" title="Create new filter">';
-		$output .= '<p class="validateTips">Save your favorite filters and searches to bookmark and store to create personalized homepages of the content that most interests you.</p>';
+		$output .= '<p class="validateTips">Save your favorite filters and searches to bookmark and store the content that most interests you.</p>';
 
 		$output .= '<form id="filter-form" action="/mnartist/filter/submit" method="post">';
 		$output .= '<fieldset>';
