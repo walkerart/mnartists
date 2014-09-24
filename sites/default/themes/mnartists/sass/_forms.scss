@@ -1366,18 +1366,29 @@ div.entityconnect-edit {
         .field-date-add-more-wrapper {
             .form-wrapper {
                 .fieldset-wrapper {
+                    margin-top: -40px;
+                    width: 66%;
+                    .date-float{
+                        width: 100%;
+                    }
                     .start-date-wrapper,
                     .end-date-wrapper {
+                        width: 100%;
                         .form-item-field-date-und-0-value,
                         .form-item-field-date-und-0-value2 {
-                            .form-item-field-date-und-0-value-date, 
-                            .form-item-field-date-und-0-value2-date {
-                                .edit-field-date-und-0-value-datepicker-popup-0,
-                                .edit-field-date-und-0-value-datepicker-popup-1,
-                                .edit-field-date-und-0-value2-datepicker-popup-0,
-                                .edit-field-date-und-0-value2-datepicker-popup-1  {
-                                    width: 66%;
-                                    float: right;
+                            width: 100%;
+                            #edit-field-date-und-0-value,
+                            #edit-field-date-und-0-value2 {
+                                width: 100%;
+                                .form-item-field-date-und-0-value-date, 
+                                .form-item-field-date-und-0-value2-date {
+                                    width: 100%;
+                                    #edit-field-date-und-0-value-datepicker-popup-0,
+                                    #edit-field-date-und-0-value-datepicker-popup-1,
+                                    #edit-field-date-und-0-value2-datepicker-popup-0,
+                                    #edit-field-date-und-0-value2-datepicker-popup-1  {
+                                        width: 100%;
+                                    }
                                 }
                             }
                         }
