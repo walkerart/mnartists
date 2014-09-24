@@ -26,17 +26,17 @@ function mnartists_theme() {
 }
 
 function mnartists_preprocess_user_login(&$variables) {
-  $variables['intro_text'] = t('Have you registered with the new mnartists.org? If so, log-in here with your new username and password.<br>If not, register first, then you can create a new profile or import your old account.');
+  $variables['intro_text'] = t('<p style="margin-top: -45px">Have you registered with the new mnartists.org? If so, log-in here with your new username and password.</p>If not, register first, then you can create a new profile or import your old account.</p>');
   $variables['rendered'] = drupal_render_children($variables['form']);
 }
 
 function mnartists_preprocess_user_register_form(&$variables) {
-  $variables['intro_text'] = t('Welcome to the all-new mnartists.org!  Whether you have an account on the old site or you&rsquo;d like to start fresh, you&rsquo;ll need to register with us by providing the information below.');
+  $variables['intro_text'] = t('<p style="margin-top: -45px">Welcome to the all-new mnartists.org!  Whether you have an account on the old site or you&rsquo;d like to start fresh, you&rsquo;ll need to register with us by providing the information below.</p>');
   $variables['rendered'] = drupal_render_children($variables['form']);
 }
 
 function mnartists_preprocess_user_pass(&$variables) {
-  $variables['intro_text'] = t('Forgot your password?<br>If you&rsquo;ve created an account on the new mnartists.org, fill out your username or email and click the "E-Mail New Password" button.<br> If you haven&rsquo;t created an account on the new mnartists.org, retrieve your old password by emailing <a href="mailto:info@mnartists.org">info@mnartists.org</a>.');
+  $variables['intro_text'] = t('<p style="margin-top: -45px">If you&rsquo;ve created an account on the new mnartists.org, fill out your username or email and click the "E-Mail New Password" button.</p><p>If you haven&rsquo;t created an account on the new mnartists.org, retrieve your old password by emailing <a href="mailto:info@mnartists.org">info@mnartists.org</a>.</p>');
   $variables['rendered'] = drupal_render_children($variables['form']);
 }
 
@@ -127,8 +127,11 @@ function mnartists_process_page(&$vars) {
   $pattern = "node/add/*\nfoo-page";
   //check for path to user edit pages
   $pattern2 = "user/*\n123/edit/*\nfoo-page";
+  //check for node edit pattern
+  $pattern3 = "node/*\n123/edit";
+
   //if pattern match add chosen to the page
-  if(drupal_match_path($path, $pattern) || drupal_match_path($path, $pattern2))
+  if(drupal_match_path($path, $pattern) || drupal_match_path($path, $pattern2) || drupal_match_path($path, $pattern3))
   {
     drupal_add_css(drupal_get_path('theme', 'mnartists') . '/css/chosen.min.css');
     drupal_add_js(drupal_get_path('theme', 'mnartists') . '/scripts/chosen.jquery.min.js');

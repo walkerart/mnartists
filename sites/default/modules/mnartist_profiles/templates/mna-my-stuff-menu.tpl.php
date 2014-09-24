@@ -14,12 +14,13 @@
     <?php endif; ?>
     </p>
     <?php if(isset($loginItems)) : ?>
-        <ul>
+        <ul class="my-stuff-menu">
         <?php foreach ($loginItems as $item) : ?>
             <li><?php print $item; ?></li>
         <?php endforeach; ?>
         </ul>
     <?php endif; ?>
-    <?php if(isset($renderedLinks)) print $renderedLinks; ?>
+    <?php if(isset($myLinks)) print $myLinks; ?>
+    <?php if(isset($accountLinks)) print $accountLinks; ?>
     <?php if(isset($editLinks)) print $editLinks; ?>
 </div>

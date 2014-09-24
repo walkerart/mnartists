@@ -508,7 +508,7 @@ function mnartist_profiles_form_user_register_form_alter(&$form, &$form_state, $
         '#type'     => 'select',
         '#title'    => t('Registration Type'),
         '#options'  => array(
-            'public'    => t('Public'),
+            'public'    => t('Basic'),
             'artist'    => t('Artist'),
             'org'       => t('Organization'),
         ),
@@ -751,23 +751,15 @@ function _mnartist_profile_my_stuff() {
         $loginItems[] = l("Register", "user/register");
         $loginItems[] = l("Forgot Password", "user/password");
 
-        // $output .= theme_item_list(array(
-        //     'items' => $links,
-        //     'title' => null,
-        //     'type' => 'ul',
-        //     'attributes' => array(
-        //         'class' => array('my-stuff-menu', 'login-menu')
-        //     )
-        // ));
-
         $output = theme("mna_my_stuff_menu", array(
             'loginItems' => $loginItems
         ));
     } else {
-        $myLinks = array();
+        $myItems = array();
+        $accountItems = array();
+        $editItems = array();
 
-        $myLinks[] = l("Feed", "user/feed");
-
+        $myItems[] = l("Feed", "user/feed");
         $account = user_load($user->uid);
         $flagLists = flag_lists_get_user_flags(NULL, $account);
         $flags = array();
@@ -782,39 +774,49 @@ function _mnartist_profile_my_stuff() {
         foreach($flagLists as $flag) {
             $flags[] = l($flag->title, "user/{$user->uid}/flags/lists/{$flag->fid}");
         }
-        $myLinks[] = array(
+        $myItems[] = array(
             'data' => l("Collections", "user/{$user->uid}/flags/lists"),
             'children' => $flags
         );
-        $myLinks[] = array(
+        $myItems[] = array(
             'data' => l("Applications", "applications"),
         );
-        $myLinks[] = array(
+        $myItems[] = array(
             'data' => l("Saved Filters", "user/saved-filters"),
             'children' => _mnartist_filter_view_filter()
         );
 
-        // check for artist role
-        $myLinks[] = l("Account", "user/{$user->uid}/edit");
-        if (_get_role($user) === 'artist') {
-            $myLinks[] = l("Profile", "user/{$user->uid}/edit/main") . l("View", "user/{$user->uid}", array("attributes" => array("class" => array("user-view"))));
-        }
-        if (_get_role($user) === 'org' || in_array('administrator', array_values($user->roles))) {
-            $myLinks[] = l("Organization", "user") . l("edit", "user/{$user->uid}/edit/organization", array("attributes" => array("class" => array("user-view"))));
-        }
-        if (_get_role($user) === 'artist') {
-            $myLinks[] = l("Résumé", "user/{$user->uid}/edit/resume", array()) . l("View", "user/{$user->uid}/resume/download", array("attributes" => array("class" => array("user-view"), "target" => "_blank")));
-        }
-
-        $renderedLinks = theme_item_list(array(
-            'items' => $myLinks,
+        $myLinks = theme_item_list(array(
+            'items' => $myItems,
             'title' => null,
             'type' => 'ul',
             'attributes' => array(
                 'class' => array('my-stuff-menu')
             )
         ));
-        $editItems = array();
+
+        // check for artist role
+        $accountItems[] = l("Account", "user/{$user->uid}/edit");
+        if (_get_role($user) === 'artist') {
+            $accountItems[] = l("Profile", "user/{$user->uid}/edit/main") . l("View", "user/{$user->uid}", array("attributes" => array("class" => array("user-view"))));
+        }
+        if (_get_role($user) === 'org' || in_array('administrator', array_values($user->roles))) {
+            $accountItems[] = l("Organization", "user") . l("edit", "user/{$user->uid}/edit/organization", array("attributes" => array("class" => array("user-view"))));
+        }
+        if (_get_role($user) === 'artist') {
+            $accountItems[] = l("Résumé", "user/{$user->uid}/edit/resume", array()) . l("View", "user/{$user->uid}/resume/download", array("attributes" => array("class" => array("user-view"), "target" => "_blank")));
+        }
+
+        $accountLinks = theme_item_list(array(
+            'items' => $accountItems,
+            'title' => null,
+            'type' => 'ul',
+            'attributes' => array(
+                'class' => array('my-stuff-menu')
+            )
+        ));
+
+
         if (_get_role($user) == 'artist' || in_array('administrator', array_values($user->roles))) {
             $editItems[] = l("Add Artwork", "node/add/artwork") . l("Manage", "manage-artworks", array("attributes" => array("class" => array("user-view"))));
         }
@@ -842,7 +844,8 @@ function _mnartist_profile_my_stuff() {
         ));
 
         $output = theme("mna_my_stuff_menu", array(
-            'renderedLinks' => $renderedLinks,
+            'myLinks' => $myLinks,
+            'accountLinks' => $accountLinks,
             'editLinks' => $editLinks
         ));
     }
@@ -1054,12 +1057,18 @@ function mnartist_profiles_form_alter(&$form, $form_state, $form_id) {
         } else if (isset($form["#user_category"]) && $form["#user_category"] == 'main') {
 
             // include main profile instructions
-            $form['privacy_instructions']['#markup'] = "<div class='privacy-instructions'>Manage information that will appear on your public profile. <br> Help mnartists.org and our partners, the McKnight Foundation and the Walker Art Center, learn more about our artistic communities by filling out as many fields as possible, even if you keep them private.</div>";
+            $form['privacy_instructions']['#markup'] = "<div class='privacy-instructions'><p>Manage information that will appear on your public profile.</p><p>Help mnartists.org and our partners, the McKnight Foundation and the Walker Art Center, learn more about our artistic communities by filling out as many fields as possible, even if you keep them private.</p></div>";
+            $form['privacy_instructions']['#weight'] = -100;
+
+        } else if (isset($form["#user_category"]) && $form["#user_category"] == 'organization') {
+
+            // include organization profile instructions
+            $form['org_instructions']['#markup'] = "<div class='privacy-instructions'><p>Manage information that will appear on your organization profile.</p><p>Help mnartists.org and our partners, the McKnight Foundation and the Walker Art Center, learn more about our artistic communities by filling out as many fields as possible.</p></div>";
             $form['privacy_instructions']['#weight'] = -100;
 
         } else if (isset($form["#user_category"]) && $form["#user_category"] == 'resume') {
 
-            $form['resume_instructions']['#markup'] = "<div class='privacy-instructions'>Use this resume builder to manage and save your ongoing artistic experience. <br> Find data imported from your resume on the old mnartists.org stored in its entirety under the Imported Data field below.  Please take a moment to copy and paste this text in the new form, so that your new resume can be easily displayed and downloaded.</div>";
+            $form['resume_instructions']['#markup'] = "<div class='privacy-instructions'><p>Use this resume builder to manage and save your ongoing artistic experience.</p><p>Find data imported from your resume on the old mnartists.org stored in its entirety under the Imported Data field below.  Please take a moment to copy and paste this text in the new form, so that your new resume can be easily displayed and downloaded.</p></div>";
             $form['resume_instructions']['#weight'] = -100;
 
             // include form js
@@ -1069,7 +1078,7 @@ function mnartist_profiles_form_alter(&$form, $form_state, $form_id) {
             // @TODO is this test acceptable? or should it be tied to a specific user permission?
             if ($user->uid == $uid || in_array('administrator', $user->roles)) {
                 $form['resume_download'] = array(
-                    '#markup' => "<a href='/user/$uid/resume/download'>download resume</a>"
+                    '#markup' => "<a href='/user/$uid/resume/download'>View Resume</a>"
                 );
             }
         }
