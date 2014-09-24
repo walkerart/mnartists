@@ -1362,16 +1362,31 @@ div.entityconnect-edit {
     #edit-submit {
         float:none;
     }
-
-    .edit-field-date-und-0-value-datepicker-popup-0,
-    .edit-field-date-und-0-value-datepicker-popup-1,
-    .edit-field-date-und-0-value2-datepicker-popup-0,
-    .edit-field-date-und-0-value2-datepicker-popup-1  {
-        width: 66%;
-        float: right;
+    .field-type-datetime-form {
+        .field-date-add-more-wrapper {
+            .form-wrapper {
+                .fieldset-wrapper {
+                    .start-date-wrapper,
+                    .end-date-wrapper {
+                        .form-item-field-date-und-0-value,
+                        .form-item-field-date-und-0-value2 {
+                            .form-item-field-date-und-0-value-date, 
+                            .form-item-field-date-und-0-value2-date {
+                                .edit-field-date-und-0-value-datepicker-popup-0,
+                                .edit-field-date-und-0-value-datepicker-popup-1,
+                                .edit-field-date-und-0-value2-datepicker-popup-0,
+                                .edit-field-date-und-0-value2-datepicker-popup-1  {
+                                    width: 66%;
+                                    float: right;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }
-
 
 // ALL ADD EDIT PAGES
 .page-node-add,
