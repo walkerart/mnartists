@@ -8211,11 +8211,9 @@ li.collect-this, li.add-this {
                 padding: 1em;
                 cursor:pointer;
                 .center-container {
-                    &.absolute-center:before {
+                    .absolute-center:before {
                         position: relative;
                         height: 100%;
-                    }
-                    .absolute-center:before {
                         content: '';
                         display: inline-block;
                         width: 0;
