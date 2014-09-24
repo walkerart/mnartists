@@ -1377,6 +1377,15 @@ div.entityconnect-edit {
                         width: 100%;
                         .form-item-field-date-und-0-value,
                         .form-item-field-date-und-0-value2 {
+                            label {
+                                display: none;
+                            }
+                            &:after{
+                                content: 'Boo';
+                            }
+                            .description {
+                                display: none;
+                            }
                             width: 100%;
                             #edit-field-date-und-0-value,
                             #edit-field-date-und-0-value2 {
