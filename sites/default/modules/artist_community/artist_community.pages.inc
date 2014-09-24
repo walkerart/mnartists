@@ -173,7 +173,7 @@ function artist_community_search_page() {
             $from_the_network_i++;
         }
 
-        $events = artist_community_execute_query(NODE_INDEX, $event_filters, array(array('promote', 'ASC'), array('field_date:value', 'ASC')), 3);
+        $events = artist_community_execute_query(NODE_INDEX, $event_filters, array(array('promote', 'ASC'), array('field_date:value', 'DESC')), 3);
         if (!empty($events)) {
             $events_data['others'] = array();
             foreach ($events as $index => $event) {
