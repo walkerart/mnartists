@@ -17,7 +17,7 @@
 				<tr>
 					<th>Title</th>
 					<th>Opportuntiy&nbspDates&nbsp</th>
-					<th>Submission</th>
+					<th>Submissions</th>
 					<th>Apply</th>
 					<th>Created By</th>
 					<th>Status</th>
