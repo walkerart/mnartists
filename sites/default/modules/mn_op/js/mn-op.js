@@ -5,7 +5,10 @@ $(document).ready(function(){
 		"aaSorting": [[ 1, "desc" ]],
 		'aoColumns': [
 			null,
-			{ 'sSortDataType': 'dom-text', 'sType': 'date' }
+			{ 'sSortDataType': 'dom-text', 'sType': 'date' },
+			null,
+			null,
+			null
 		],
 		"oLanguage": {
 			"sLengthMenu":  '<select class="dt-select">'+
@@ -18,7 +21,7 @@ $(document).ready(function(){
 			"sSearch": "<span></span>"
 		},
 		"aoColumnDefs": [
-			{ "bSortable": false, "aTargets": [7,8,9, 10] }
+			{ "bSortable": false, "aTargets": [5,6,7,8] }
 	    ]
 	});
 
