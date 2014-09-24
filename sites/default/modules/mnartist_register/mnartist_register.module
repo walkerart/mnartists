@@ -20,8 +20,49 @@ function mnartist_register_menu() {
         'type'              => MENU_CALLBACK,
     );
 
+    $items['admin/settings/mnartist_register'] = array(
+        'title' => 'MNArtist Register Settings',
+        'description' => 'Manage registration settings, including migration settings',
+        'page callback' => 'drupal_get_form',
+        'page arguments' => array('mnartist_register_admin'),
+        'access arguments' => array('administer settings'),
+        'type' => MENU_NORMAL_ITEM,
+    );
+
     return $items;
 
+}
+
+function mnartist_register_admin() {
+    $form = array();
+    $form['mnartist_postgres_db'] = array(
+        '#type' => 'textfield',
+        '#title' => t('Postgres Database Name'),
+        '#default_value' => variable_get('mnartist_postgres_db', 'mna_prod'),
+        '#size' => 60,
+        '#maxlength' => 250,
+        '#description' => t("The name of the postgres database."),
+        '#required' => TRUE,
+    );
+    $form['mnartist_postgres_user'] = array(
+        '#type' => 'textfield',
+        '#title' => t('Postgres Database Username'),
+        '#default_value' => variable_get('mnartist_postgres_user', 'postgres'),
+        '#size' => 60,
+        '#maxlength' => 250,
+        '#description' => t("The user of the postgres database."),
+        '#required' => TRUE,
+    );
+    $form['mnartist_postgres_pass'] = array(
+        '#type' => 'textfield',
+        '#title' => t('Postgres Database Password'),
+        '#default_value' => variable_get('mnartist_postgres_pass', ''),
+        '#size' => 60,
+        '#maxlength' => 250,
+        '#description' => t("The password of the postgres database."),
+        '#required' => FALSE,
+    );
+    return system_settings_form($form);
 }
 
 function mnartist_register_form_alter(&$form, &$form_state, $form_id) {
@@ -593,7 +634,11 @@ class ConnectionFactory
 
     public function getConnection() {
         if (!$this->db) {
-            $this->db = new PDO('pgsql:user=postgres dbname=mna_prod password=');
+            $username = variable_get('mnartist_postgres_user', 'postgres');
+            $password = variable_get('mnartist_postgres_pass', 'mna_prod');
+            $dbName = variable_get('mnartist_postgres_db', 'mna_prod');
+
+            $this->db = new PDO('pgsql:user=' . $username . ' dbname=' . $dbName . ' password=' . $password);
             $this->db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
         }
         return $this->db;
