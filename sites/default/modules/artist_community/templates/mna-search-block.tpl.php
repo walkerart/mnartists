@@ -33,7 +33,7 @@
 </div>
 
 <?php if($rows->uid && $url_query_string !== '' || drupal_is_front_page() && user_is_logged_in()) : ?>
-<p class="site-description">
-    Save your search; create a personalized homepage.
+<p class="site-description site-description-star">
+    Save your selections to create a personalized homepage or to bookmark saved searches.
 </p>
 <?php endif; ?>
