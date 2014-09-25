@@ -25,27 +25,27 @@ function mnartist_profiles_menu() {
     // @TODO pretty sure this belongs somewhere else, move it there
     $items['user/feed'] = array(
         'page callback'     => 'mnartist_profiles_feed',
-        'access callback'   => TRUE,
+        'access callback'   => 'user_is_logged_in',
         'type'              => MENU_CALLBACK,
     );
 
     // @TODO pretty sure this belongs somewhere else, move it there
     $items['user/feed/more'] = array(
         'page callback'     => 'mnartist_profiles_feed_more',
-        'access callback'   => TRUE,
+        'access callback'   => 'user_is_logged_in',
         'type'              => MENU_CALLBACK,
     );
 
     $items['user/welcome'] = array(
         'page callback'     => 'mnartist_profiles_welcome',
-        'access callback'   => TRUE,
+        'access callback'   => 'user_is_logged_in',
         'type'              => MENU_CALLBACK,
     );
 
     $items['user/%/setwelcome'] = array(
         'page callback'     => 'mnartist_profiles_set_welcome',
         'page arguments'    => array(1),
-        'access callback'   => TRUE,
+        'access callback'   => 'user_is_logged_in',
         'type'              => MENU_CALLBACK,
     );
 
@@ -139,7 +139,7 @@ function mnartist_profiles_set_welcome($uid) {
     $account = user_load($uid);
 
     // var_dump($account->field_show_welcome);
-    var_dump($_POST['no-welcome']);
+    //var_dump($_POST['no-welcome']);
     $welcome_value = (isset($_POST['no-welcome']) && $_POST['no-welcome'] === 'on') ? 1: 0;
     $field_show_welcome = array(
         LANGUAGE_NONE => array(
@@ -152,7 +152,7 @@ function mnartist_profiles_set_welcome($uid) {
     user_save($account);
 
     $account = user_load($uid);
-    var_dump($account->field_show_welcome);
+    //var_dump($account->field_show_welcome);
 
     drupal_exit();
 }
