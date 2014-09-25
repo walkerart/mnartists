@@ -669,7 +669,7 @@ function _mnartist_profile_block_visibility() {
         (!user_is_logged_in() && arg(0) == "user" && (is_null(arg(1)) || in_array(arg(1), array("password", "register")))) ||
         (arg(0) == "node" && in_array(arg(1), array("edit", "add"))) ||
         (arg(0) == "node" && in_array(arg(2), array("edit"))) ||
-        (arg(0) == "user" && in_array(arg(1), array("saved-filters", "feed", "welcome", "migrate"))) ||
+        (arg(0) == "user" && in_array(arg(1), array("saved-filters", "feed", "welcome", "migrate", "reset"))) ||
         (user_is_logged_in() && (arg(0) == "user" && in_array(arg(2), array("flags")) && flag_lists_is_owner('edit', arg(4)))) ||
         (user_is_logged_in() && (arg(0) == "user" && in_array(arg(2), array("flags")) && !is_numeric(arg(3)))) ||
         (user_is_logged_in() && (arg(0) == "flags" && flag_lists_is_owner('edit', arg(2))))
@@ -778,9 +778,13 @@ function _mnartist_profile_my_stuff() {
             'data' => l("Collections", "user/{$user->uid}/flags/lists"),
             'children' => $flags
         );
-        $myItems[] = array(
-            'data' => l("Applications", "applications"),
-        );
+        //add check for applications
+        $applications = _mnartists_get_applications($user->uid);
+        if ($applications != 0) {
+            $myItems[] = array(
+                'data' => l("Applications", "applications"),
+            );
+        }
         $myItems[] = array(
             'data' => l("Saved Filters", "user/saved-filters"),
             'children' => _mnartist_filter_view_filter()
@@ -850,6 +854,14 @@ function _mnartist_profile_my_stuff() {
         ));
     }
     return $output;
+}
+
+function _mnartists_get_applications($uid) {
+    $query = db_select('op_applications', 'op');
+            $query->fields('op');
+            $query->condition('op.uid', $uid, '=');
+    $result = $query->execute()->fetchAll();
+    return count($result);
 }
 
 function _mnartist_profile_all_artworks_link() {
