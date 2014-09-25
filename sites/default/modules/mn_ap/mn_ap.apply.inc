@@ -141,6 +141,7 @@ function mn_ap_opportunity_data($nid) {
 				'website' => isset($row['op_uri']['und']['0']['safe_value']) ? $row['op_uri']['und']['0']['safe_value'] : '',
 				'min_works' => isset($row['op_min_works']['und']['0']['value']) ? $row['op_min_works']['und']['0']['value'] : '',
 				'max_works' => isset($row['op_max_works']['und']['0']['value']) ? $row['op_max_works']['und']['0']['value'] : '',
+				'artwork_desc' => isset($row['field_op_artwork_desc']['und']['0']['safe_value']) ? $row['field_op_artwork_desc']['und']['0']['safe_value'] : '',
 				'communities' => isset($row['og_group_ref']) ? $row['og_group_ref'] : '',
 				'guidelines' => isset($row['op_guidelines']['und']['0']['safe_value']) ? $row['op_guidelines']['und']['0']['safe_value'] : '',
 				'work_types' => $work_types, //isset($row['op_work_types']['und']) ? $row['op_work_types']['und'] : '',
