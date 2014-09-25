@@ -1394,9 +1394,9 @@ div.entityconnect-edit {
                             #edit-field-date-und-0-value,
                             #edit-field-date-und-0-value2 {
                                 width: 100%;
-                                .form-item-field-date-und-0-value-date, 
+                                .form-item-field-date-und-0-value-date,
                                 .form-item-field-date-und-0-value2-date,
-                                .form-item-field-date-und-0-value-time, 
+                                .form-item-field-date-und-0-value-time,
                                 .form-item-field-date-und-0-value2-time  {
                                     width: 100%;
                                     #edit-field-date-und-0-value-datepicker-popup-0,
@@ -1895,6 +1895,9 @@ div[class*="-image-field-caption-value"] {
   padding-bottom:20px;
   font-size: 10px;
   line-height: 12px;
+  &:first-child {
+    font-size: 12px;
+  }
 }
 
 // edit event
