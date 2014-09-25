@@ -856,12 +856,22 @@ function _mnartist_profile_my_stuff() {
     return $output;
 }
 
+//check for applications then check for jurors
 function _mnartists_get_applications($uid) {
     $query = db_select('op_applications', 'op');
             $query->fields('op');
             $query->condition('op.uid', $uid, '=');
-    $result = $query->execute()->fetchAll();
-    return count($result);
+    $ap_result = $query->execute()->fetchAll();
+    $count = count($ap_result);
+    //only runs if no applications to save running an extra query
+    if ($count == 0) {
+        $query = db_select('op_jurors', 'op');
+            $query->fields('op');
+            $query->condition('op.uid', $uid, '=');
+        $juror_result = $query->execute()->fetchAll();
+        $count = count($juror_result);
+    }
+    return $count;
 }
 
 function _mnartist_profile_all_artworks_link() {
