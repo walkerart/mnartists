@@ -15,6 +15,7 @@ function mn_ap_menu() {
   $items['opportunity/%/apply/ajax'] = array(
     'type' => MENU_CALLBACK,
     'page callback' => 'ap_ajax_callback',
+    'access callback' => 'user_is_logged_in',
     'access arguments' => array('access content'),
   );
   $items['opportunity/%/submissions'] = array(
