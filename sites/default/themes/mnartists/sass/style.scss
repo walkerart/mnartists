@@ -8087,6 +8087,9 @@ li.collect-this, li.add-this {
 .article-thing {
     clear: both;
     height: 620px; /* tmp should it be variable? */
+    h3 {
+        font-family:$sans_bold_font;
+    }
 
     @media screen and (max-width: $break-tablet) {
       height:auto;
@@ -8600,10 +8603,9 @@ li.collect-this, li.add-this {
         .event-thing-event-title {
             margin: 0;
             padding: 0;
-            font-family: $sans_regular_font;
+            font-family: $sans_bold_font;
             color:#000;
             text-transform:uppercase;
-            font-weight: bold;
         }
 
         &.event-thing-event-block-hero {
