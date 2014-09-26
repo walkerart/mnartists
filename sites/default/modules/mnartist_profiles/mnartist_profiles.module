@@ -1064,7 +1064,7 @@ function mnartist_profiles_form_alter(&$form, $form_state, $form_id) {
         if (isset($form["#user_category"]) && $form["#user_category"] == 'account') {
 
             // include account instructions
-            $form['instructions']['#markup'] = "<div class='privacy-instructions'>Manage your password, email address, profile picture, and newsletter subscription here.</div>";
+            $form['instructions']['#markup'] = "<div class='privacy-instructions'><p>Manage your password, email address, profile picture, and newsletter subscription here.</p></div>";
             $form['instructions']['#weight'] = -100;
 
         } else if (isset($form["#user_category"]) && $form["#user_category"] == 'main') {
