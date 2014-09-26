@@ -265,13 +265,27 @@ function _mnartist_profiles_get_feed_data($row_offset = null, $row_limit = null)
         $context_object = new StdClass();
         $context_user = user_load($row->uid);
         $context_object->message = $row->message;
+        //if user is administrator replace with super admin
+        if(in_array('administrator', $context_user->roles)) {
+            $node = node_load($row->eid);
+            if($node->uid != $row->uid) {
+                $context_user = user_load(1);
+                $message = '<div class="feed-update-description">';
+                $message .= '<a href="';
+                $message .= url( 'user/'.$context_user->uid, array('absolute' => true, 'alias' => false ));
+                $message .= '">MNArtists Admin</a> updated the ' . $node->type . '<a href="';
+                $message .= url( 'node/'.$node->vid, array('absolute' => true, 'alias' => false ));
+                $message .= '"> ' . $node->title . '</a></div>';
+                $message .= preg_replace('/(\<div\ class="feed-update-description"\>.*?<\/div>)/si', '', $row->message);
+                $context_object->message = $message;
+            }
+        }
         $context_object->entity_id = $row->eid;
         $working_uri = (isset($context_user->picture->uri)) ? $context_user->picture->uri : variable_get('user_picture_default');
         $context_object->user_picture_uri = image_style_url('square_thumbnail', $working_uri);
         $context_object->update_timestamp = $row->created;
         $feed_data[] = $context_object;
     }
-
     return $feed_data;
 }
 
