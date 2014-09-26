@@ -6476,57 +6476,31 @@ body.page-node-edit {
 
     .artist-profile {
 
+      .artist-profile-img {
+        margin: 0 10px 0 10px;
+      }
+
+      .username {
+        margin-top: -25px;
+      }
+
       .follow-menu {
         li {
           float:right;
           .flag-wrapper {
             .flag {
-              // height:30px;
-              // width:27px;
-              // display:block;
-              // padding:0px;
-              // text-align:center;
-              // box-sizing:border-box;
-              // padding-top:5px;
               img {
                 opacity:.3;
               }
             }
           }
-          // &:hover {
-          //   .flag-wrapper {
-          //     .flag {
-          //       background:$mystuff_bg_dark;
-          //       img {
-          //         -webkit-filter: invert(100%);
-          //         filter: invert(100%);
-          //       }
-          //     }
-          //   }
-          // }
           ul {
-            // padding:10px;
-            // position:absolute;
-            // overflow:hidden;
-            // top:40px;
-            // right:0px;
-            // left:auto;
-            // font-size:12px;
             li {
               float:none;
               display:block;
               clear:both;
-              // a {
-              //   padding:4px 0;
-              //   margin:0;
-              //   border-radius:0px;
-              //   &:hover {
-              //     color:#888;
-              //   }
-              // }
               &.share-this {
                 &.collect-title {
-                  // border-top:1px solid #fff;
                   padding-top:5px;
                   a {
                     padding-left:0px;
@@ -6560,7 +6534,6 @@ body.page-node-edit {
             border-radius:50%;
             height:100%;
             width:auto;
-            //margin:0 20px 10px 20px;
 
             img {
                 display:block;
@@ -6571,8 +6544,6 @@ body.page-node-edit {
             }
         }
         .flag-wrapper {
-          // position: absolute;
-          // right: 0px;
 
           a {
             border-radius:0px;
