@@ -82,8 +82,7 @@ function mnartist_register_migrate() {
 
     $html_fragment = array();
     $html_fragment[] = '<div class="clearfix migrate-form">';
-    $temp_form = drupal_get_form('mnartist_register_user_form');
-    $html_fragment[] = drupal_render($temp_form);
+    $html_fragment[] = drupal_render(drupal_get_form('mnartist_register_user_form'));
     $html_fragment[] = '</div>';
     return implode('', $html_fragment);
 }
