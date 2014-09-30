@@ -1160,7 +1160,8 @@ function _artist_community_get_items_query ($local_og = null,
                     case NODE_INDEX:
                         $the_node = node_load($item->is_nid);
                         $the_class_suffix = $the_node->type;
-                        $the_element_string = render(node_view($the_node, 'teaser'));
+                        $node_view = node_view($the_node, 'teaser');
+                        $the_element_string = render($node_view);
                         break;
                 }
 
