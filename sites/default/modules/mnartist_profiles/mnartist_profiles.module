@@ -268,6 +268,7 @@ function _mnartist_profiles_get_feed_data($row_offset = null, $row_limit = null)
         //if user is administrator replace with super admin
         if(in_array('administrator', $context_user->roles)) {
             $node = node_load($row->eid);
+            //if the content is not the admins own content
             if($node->uid != $row->uid) {
                 $context_user = user_load(1);
                 $message = '<div class="feed-update-description">';
