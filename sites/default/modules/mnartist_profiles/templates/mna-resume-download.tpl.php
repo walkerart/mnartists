@@ -23,7 +23,13 @@
             <?php
                 foreach ($resume_data['field_education']['item'] as $field) { ?>
                     <div class="education-block award-block">
-                        <?=$field['field_school']['item'][0]['value']?>
+                        <?php if (!empty($field['field_school']['item'][0]['value'])  && !empty($field['field_school']['item'][0]['value'])) : ?>
+                            <a href="<?=$field['field_institution_url']['item'][0]['value']?>"><?=$field['field_school']['item'][0]['value']?></a>
+                        <?php elseif (!empty($field['field_institution_url']['item'][0]['value'])) : ?>
+                            <a href="<?=$field['field_institution_url']['item'][0]['value']?>"><?=$field['field_institution_url']['item'][0]['value']?></a>
+                        <?php elseif (!empty($field['field_school']['item'][0]['value'])) : ?>
+                            <?=$field['field_school']['item'][0]['value']?>
+                        <?php endif; ?>
                         <?php
                             if ($field['field_education_date_range']['item'] !== null) { ?>
                                 <?
@@ -60,9 +66,6 @@
                                 <?php }
                             }
                         ?>
-                        <?php if (!empty($field['field_institution_url']['item'])) { ?>
-                            <br /><a href="<?=$field['field_institution_url']['item'][0]['value']?>"><?=$field['field_institution_url']['item'][0]['value']?></a>
-                        <?php } ?>
                         <?php if (!empty($field['field_degree']['item'])) { ?>
                             <br /><?=$field['field_degree']['item'][0]['value']?>
                             <?php if (isset($field['field_areas_of_study']['item']) &&
@@ -86,7 +89,13 @@
             <?php
                 foreach ($resume_data['field_work_experience']['item'] as $field) {?>
                     <div class="experience-block award-block">
-                        <?=$field['field_employer']['item'][0]['value']?>
+                        <?php if (!empty($field['field_url']['item'][0]['value']) && !empty($field['field_employer']['item'][0]['value'])) : ?>
+                            <a href="<?=$field['field_url']['item'][0]['value']?>"><?=$field['field_employer']['item'][0]['value']?></a>
+                        <?php elseif(!empty($field['field_url']['item'][0]['value'])) : ?>
+                            <a href="<?=$field['field_url']['item'][0]['value']?>"><?=$field['field_url']['item'][0]['value']?></a>
+                        <?php elseif(!empty($field['field_employer']['item'][0]['value'])) : ?>
+                            <?=$field['field_employer']['item'][0]['value']?>
+                        <?php endif; ?>
                         <?php
                             $entity = field_collection_item_load($field['field_work_date_range']['item'][0]['value']);
                             $instances = field_info_instances('field_collection_item', 'field_work_date_range');
@@ -124,9 +133,6 @@
                         <?php if (!empty($field['field_description_of_position']['item'])) { ?>
                             <br /><?=$field['field_description_of_position']['item'][0]['value']?>
                         <?php } ?>
-                        <?php if (!empty($field['field_url']['item'])) { ?>
-                            <br /><a href="<?=$field['field_url']['item'][0]['value']?>"><?=$field['field_url']['item'][0]['value']?></a>
-                        <?php } ?>
                     </div>
                 <?}
             ?>
@@ -139,7 +145,14 @@
             <?php
                 foreach ($resume_data['field_teaching_experience']['item'] as $field) { ?>
                     <div class="experience-block award-block">
-                        <?=$field['field__teaching_venue']['item'][0]['value']?>
+                        <?php if(!empty($field['field_url']['item'][0]['value']) && !empty($field['field__teaching_venue']['item'][0]['value'])) : ?>
+                            <a href="<?=$field['field_url']['item'][0]['value']?>"><?=$field['field__teaching_venue']['item'][0]['value']?></a>
+                        <?php elseif(!empty($field['field_url']['item'][0]['value'])) : ?>
+                            <a href="<?=$field['field_url']['item'][0]['value']?>"><?=$field['field_url']['item'][0]['value']?></a>
+                        <?php elseif(!empty($field['field__teaching_venue']['item'][0]['value'])) : ?>
+                            <?=$field['field__teaching_venue']['item'][0]['value']?>
+                        <?php endif; ?>
+
                         <?php if(!empty($field['field_work_date_range']['item'])) { ?>
                                 <?php
                                     $entity = field_collection_item_load($field['field_work_date_range']['item'][0]['value']);
@@ -179,9 +192,6 @@
                         <?php if(!empty($field['field_course']['item'])) { ?>
                             <br /><?=$field['field_course']['item'][0]['value']?>
                         <?php } ?>
-                        <?php if(!empty($field['field_url']['item'])) { ?>
-                            <br /><a href="<?=$field['field_url']['item'][0]['value']?>"><?=$field['field_url']['item'][0]['value']?></a>
-                        <?php } ?>
                         <?php if(!empty($field['field_description_of_position']['item'])) { ?>
                             <br /><?=$field['field_description_of_position']['item'][0]['value']?>
                         <?php } ?>
@@ -198,19 +208,33 @@
                 foreach ($resume_data['field_awards']['item'] as $field) {
                     if (!empty($field)) { ?>
                         <div class="award-block">
-                            <?php if(!empty($field['field_award_year']['item'])) { ?>
-                                <?=date_format(new DateTime($field['field_award_year']['item'][0]['timestamp']), 'Y')?>
-                            <?php } ?>
-                            <?=$field['field_award_name']['item'][0]['value']?>
+                            <?php if(!empty($field['field_url']['item'][0]['value']) && !empty($field['field_award_name']['item'][0]['value']) ) : ?>
+                                <a href="<?=$field['field_url']['item'][0]['value']?>">
+                                    <?php if(!empty($field['field_award_year']['item'])) { ?>
+                                        <?=date_format(new DateTime($field['field_award_year']['item'][0]['timestamp']), 'Y')?>
+                                    <?php } ?>
+                                    <?=$field['field_award_name']['item'][0]['value']?>
+                                </a>
+                            <?php elseif(!empty($field['field_url']['item'][0]['value'])) : ?>
+                                <a href="<?=$field['field_url']['item'][0]['value']?>">
+                                    <?php if(!empty($field['field_award_year']['item'])) { ?>
+                                        <?=date_format(new DateTime($field['field_award_year']['item'][0]['timestamp']), 'Y')?>
+                                    <?php } ?>
+                                    <?=$field['field_url']['item'][0]['value']?>
+                                </a>
+                            <?php elseif(!empty($field['field_award_name']['item'][0]['value'])) : ?>
+                                <?php if(!empty($field['field_award_year']['item'])) { ?>
+                                    <?=date_format(new DateTime($field['field_award_year']['item'][0]['timestamp']), 'Y')?>
+                                <?php } ?>
+                                <?=$field['field_award_name']['item'][0]['value']?>
+                            <?php endif; ?>
                             <?php if(!empty($field['field_award_organization']['item'])) { ?>
                                 <br /><span><?=$field['field_award_organization']['label']?>:</span> <?=$field['field_award_organization']['item'][0]['value']?>
                             <?php } ?>
                             <?php if(!empty($field['field_description']['item'])) { ?>
                                 <br /><span><?=$field['field_description']['label']?>:</span> <?=$field['field_description']['item'][0]['value']?>
                             <?php } ?>
-                            <?php if(!empty($field['field_url']['item'])) { ?>
-                                <br /><span><?=$field['field_url']['label']?>:</span> <a href="<?=$field['field_url']['item'][0]['value']?>"><?=$field['field_url']['item'][0]['value']?></a>
-                            <?php } ?>
+
                         </div>
                     <?php }
                 }
@@ -225,12 +249,15 @@
                 foreach ($resume_data['field_exhibition_and_performance']['item'] as $field) {
                     if (!empty($field)) { ?>
                         <div class="exhibition-block award-block">
-                            <?=$field['field_title']['item'][0]['value']?>
+                            <?php if(!empty($field['field_url']['item']) && !empty($field['field_title']['item'][0]['value'])) : ?>
+                                <a href="<?=$field['field_url']['item'][0]['value']?>"><?=$field['field_title']['item'][0]['value']?></a>
+                            <?php elseif(!empty($field['field_url']['item'])) : ?>
+                                <a href="<?=$field['field_url']['item'][0]['value']?>"><?=$field['field_url']['item'][0]['value']?></a>
+                            <?php elseif(!empty($field['field_title']['item'][0]['value'])) : ?>
+                                <?=$field['field_title']['item'][0]['value']?>
+                            <?php endif; ?>
                             <?php if(!empty($field['field_description']['item'])) { ?>
                                 <br /><?=$field['field_description']['item'][0]['value']?>
-                            <?php } ?>
-                            <?php if(!empty($field['field_url']['item'])) { ?>
-                                <br /><a href="<?=$field['field_url']['item'][0]['value']?>"><?=$field['field_url']['item'][0]['value']?></a>
                             <?php } ?>
                             <?php if(!empty($field['field_venue_url']['item'])) { ?>
                                 <br /><a href="<?=$field['field_venue_url']['item'][0]['value']?>"><?=$field['field_venue_url']['item'][0]['value']?></a>
@@ -268,11 +295,13 @@
                 foreach ($resume_data['field_publications']['item'] as $field) {
                     if (!empty($field)) { ?>
                         <div class="publication-block award-block">
-                            <?=$field['field_publication_title']['item'][0]['value']?>
-                            <?php if(!empty($field['field_url']['item'])) { ?>
-                                <br />
+                            <?php if(!empty($field['field_url']['item'][0]['value']) && !empty($field['field_publication_title']['item'][0]['value'])) : ?>
+                                <a href="<?=$field['field_url']['item'][0]['value']?>"><?=$field['field_publication_title']['item'][0]['value']?></a>
+                            <?php elseif (!empty($field['field_url']['item'][0]['value']) ) : ?>
                                 <a href="<?=$field['field_url']['item'][0]['value']?>"><?=$field['field_url']['item'][0]['value']?></a>
-                            <?php } ?>
+                            <?php elseif (!empty($field['field_publication_title']['item'][0]['value'])) : ?>
+                                <?=$field['field_publication_title']['item'][0]['value']?>
+                            <?php endif; ?>
                             <?php if(!empty($field['field_author_editor']['item'])) { ?>
                                 <br /><?=$field['field_author_editor']['item'][0]['value']?>
                             <?php } ?>
@@ -308,13 +337,15 @@
                 foreach ($resume_data['field_galleries']['item'] as $field) {
                     if (!empty($field)) { ?>
                     <div class="gallery-block award-block">
-                        <?=$field['field_gallery_name']['item'][0]['value']?>
+                        <?php if(!empty($field['field_url']['item'][0]['value']) && !empty($field['field_gallery_name']['item'][0]['value'])) : ?>
+                            <a href="<?=$field['field_url']['item'][0]['value']?>"><?=$field['field_gallery_name']['item'][0]['value']?></a>
+                        <?php elseif(!empty($field['field_url']['item'][0]['value'])) : ?>
+                            <a href="<?=$field['field_url']['item'][0]['value']?>"><?=$field['field_url']['item'][0]['value']?></a>
+                        <?php elseif(!empty($field['field_gallery_name']['item'][0]['value'])) : ?>
+                            <?=$field['field_gallery_name']['item'][0]['value']?>
+                        <?php endif; ?>
                         <?php if(!empty($field['field_contact_name']['item'])) { ?>
                           <br /><?=$field['field_contact_name']['item'][0]['value']?>
-                        <?php } ?>
-                        <?php if(!empty($field['field_url']['item'])) { ?>
-                            <br />
-                            <a href="<?=$field['field_url']['item'][0]['value']?>"><?=$field['field_url']['item'][0]['value']?></a>
                         <?php } ?>
                     </div>
                 <?php }
@@ -329,11 +360,13 @@
                 foreach ($resume_data['field_collections']['item'] as $field) {
                     if (!empty($field)) { ?>
                         <div class="collection-block award-block">
-                            <?=$field['field_collection_name']['item'][0]['value']?>
-                            <?php if(!empty($field['field_url']['item'])) { ?>
-                                <br />
+                            <?php if(!empty($field['field_url']['item'][0]['value']) && !empty($field['field_collection_name']['item'][0]['value'])) : ?>
+                                <a href="<?=$field['field_url']['item'][0]['value']?>"><?=$field['field_collection_name']['item'][0]['value']?></a>
+                            <?php elseif(!empty($field['field_url']['item'][0]['value'])) : ?>
                                 <a href="<?=$field['field_url']['item'][0]['value']?>"><?=$field['field_url']['item'][0]['value']?></a>
-                            <?php } ?>
+                            <?php elseif(!empty($field['field_collection_name']['item'][0]['value'])) : ?>
+                                <?=$field['field_collection_name']['item'][0]['value']?>
+                            <?php endif; ?>
                         </div>
                 <?php }
             } ?>
@@ -347,7 +380,13 @@
                 foreach ($resume_data['field_related_organizations']['item'] as $field) {
                     if (!empty($field)) { ?>
                         <div class="organization-block award-block">
-                            <?=$field['field_organization']['item'][0]['value']?>
+                            <?php if(!empty($field['field_url']['item'][0]['value']) && !empty($field['field_organization']['item'][0]['value'])) : ?>
+                                <a href="<?=$field['field_url']['item'][0]['value']?>"><?=$field['field_organization']['item'][0]['value']?></a>
+                            <?php elseif(!empty($field['field_url']['item'][0]['value'])) : ?>
+                                <a href="<?=$field['field_url']['item'][0]['value']?>"><?=$field['field_url']['item'][0]['value']?></a>
+                            <?php elseif(!empty($field['field_organization']['item'][0]['value'])) : ?>
+                                <?=$field['field_organization']['item'][0]['value']?>
+                            <?php endif; ?>
                             <?php if(!empty($field['field_membership_date_range']['item'])) { ?>
                                     <?php
                                         $entity = field_collection_item_load($field['field_membership_date_range']['item'][0]['value']);
@@ -388,18 +427,22 @@
         </section>
     <?php } ?>
 
-    <?php if (!empty($resume_data['field_websites']['item'])) { ?>
+    <?php if (!empty($resume_data['field_websites']['item'])) : ?>
         <section class="resume-block resume-block-complex websites">
             <h2><?= $resume_data['field_websites']['label'] ?></h2>
             <ul>
-            <?php
-                if (isset($resume_data['field_websites']['item']) &&
-                    !(empty($resume_data['field_websites']['item']))) {
-                    foreach ($resume_data['field_websites']['item'] as $site) {?>
-                        <li><?php if (isset($site['title']) && $site['title'] !== '') { ?><?=$site['title'] ?> - <?php } ?><a href="<?=$site['value'] ?>"><?=$site['value'] ?></a></li>
-                <?}}
-            ?>
+            <?php if (isset($resume_data['field_websites']['item']) && !(empty($resume_data['field_websites']['item']))) : ?>
+                <?php foreach ($resume_data['field_websites']['item'] as $site) : ?>
+                        <li>
+                            <?php if (!empty($site['value']) && !empty($site['title'])) : ?>
+                                <a href="<?=$site['value'] ?>"><?=$site['title'] ?></a>
+                            <?php elseif (!empty($site['value'])) : ?>
+                                <a href="<?=$site['value'] ?>"><?=$site['value'] ?></a>
+                            <?php endif; ?>
+                        </li>
+                <?php endforeach; ?>
+            <?php endif; ?>
             </ul>
         </section>
-    <?php } ?>
+    <?php endif; ?>
 </div>
