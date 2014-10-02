@@ -20,8 +20,8 @@ define('EVENT_CATEGORY_VID', '2');
 define('ORGANIZATIONS_CATEGORY_VID', '7');
 define('OPPORTUNITY_TYPE_VID', '14');
 
-// for dev: define('ABOUT_TID', '645');
-define('ABOUT_TID', '702');
+define('ABOUT_TID', '645');
+// define('ABOUT_TID', '702');
 
 // default limits for search
 define('SEARCH_DEFAULT_ROWS', '20');
@@ -183,7 +183,8 @@ function _artist_community_block_visibility() {
             (arg(0) == "user" && in_array(arg(1), array("saved-filters", "feed", "welcome", "migrate", "reset"))) ||
             (user_is_logged_in() && (arg(0) == "user" && in_array(arg(2), array("flags")) && flag_lists_is_owner('edit', arg(4)))) ||
             (user_is_logged_in() && (arg(0) == "user" && in_array(arg(2), array("flags")) && !is_numeric(arg(3)))) ||
-            (user_is_logged_in() && (arg(0) == "flags" && flag_lists_is_owner('edit', arg(2))))
+            (user_is_logged_in() && (arg(0) == "flags" && flag_lists_is_owner('edit', arg(2)))) ||
+            (user_is_logged_in() && (arg(0) == "batch"))
         ) {
         return false;
     }

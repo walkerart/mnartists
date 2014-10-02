@@ -285,6 +285,9 @@ function _mnartist_profiles_get_feed_data($row_offset = null, $row_limit = null)
         $working_uri = (isset($context_user->picture->uri)) ? $context_user->picture->uri : variable_get('user_picture_default');
         $context_object->user_picture_uri = image_style_url('square_thumbnail', $working_uri);
         $context_object->update_timestamp = $row->created;
+        if(in_array('administrator', $context_user->roles) && !in_array('administrator', $user->roles)) {
+            $context_object = '';
+        }
         $feed_data[] = $context_object;
     }
     return $feed_data;
@@ -678,8 +681,9 @@ function _mnartist_profile_block_visibility() {
         (arg(0) == "user" && in_array(arg(1), array("saved-filters", "feed", "welcome", "migrate", "reset"))) ||
         (user_is_logged_in() && (arg(0) == "user" && in_array(arg(2), array("flags")) && flag_lists_is_owner('edit', arg(4)))) ||
         (user_is_logged_in() && (arg(0) == "user" && in_array(arg(2), array("flags")) && !is_numeric(arg(3)))) ||
-        (user_is_logged_in() && (arg(0) == "flags" && flag_lists_is_owner('edit', arg(2))))
-        ) {
+        (user_is_logged_in() && (arg(0) == "flags" && flag_lists_is_owner('edit', arg(2)))) ||
+        (user_is_logged_in() && (arg(0) == "batch"))
+    ) {
         return true;
     }
 
