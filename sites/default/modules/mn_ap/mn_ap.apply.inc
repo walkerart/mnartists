@@ -22,9 +22,10 @@ function mn_ap_apply($nid) {
 	if($ap_data['reopen'] == 0) {
 		//check if application deadline has passed
 		if (strtotime($op_data['end_date']) < strtotime($op_data['today'])) {
-			return drupal_set_message(t('The application deadline: ' . date("F d, Y h:i a", strtotime($op_data['end_date']))  . ' for this opportunity has passed.'), 'warning');
+			//dpm($op_data['end_date']);
+			return drupal_set_message(t('The application deadline: ' . $op_data['end_date']  . ' for this opportunity has passed.'), 'warning');
 		} elseif (strtotime($op_data['start_date']) > strtotime($op_data['today'])) {
-			return drupal_set_message(t('The applications will not be accepted for this opportunity until: ' . date("F d, Y h:i a", strtotime($op_data['start_date']))), 'warning');
+			return drupal_set_message(t('The applications will not be accepted for this opportunity until: ' . $op_data['start_date']), 'warning');
 		}
 	}
 
@@ -72,7 +73,7 @@ function mn_ap_apply($nid) {
 		return $output;
 	} else {
 		//add drupal goto - back to opp page
-		return drupal_set_message(t('You have already completed an application for the ' .  $op_data['title'] . ' on ' . date("F d, Y h:i a", strtotime($ap_data['updated_at'])) . '.'), 'warning');
+		return drupal_set_message(t('You have already completed an application for the ' .  $op_data['title'] . ' on ' . $ap_data['updated_at'] . '.'), 'warning');
 	}
 }
 /*
