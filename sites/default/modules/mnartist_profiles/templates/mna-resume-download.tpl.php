@@ -23,7 +23,7 @@
             <?php
                 foreach ($resume_data['field_education']['item'] as $field) { ?>
                     <div class="education-block award-block">
-                        <?php if (!empty($field['field_school']['item'][0]['value'])  && !empty($field['field_school']['item'][0]['value'])) : ?>
+                        <?php if (!empty($field['field_school']['item'][0]['value'])  && !empty($field['field_institution_url']['item'][0]['value'])) : ?>
                             <a href="<?=$field['field_institution_url']['item'][0]['value']?>"><?=$field['field_school']['item'][0]['value']?></a>
                         <?php elseif (!empty($field['field_institution_url']['item'][0]['value'])) : ?>
                             <a href="<?=$field['field_institution_url']['item'][0]['value']?>"><?=$field['field_institution_url']['item'][0]['value']?></a>
