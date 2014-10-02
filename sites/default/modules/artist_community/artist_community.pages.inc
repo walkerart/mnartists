@@ -112,6 +112,11 @@ function artist_community_search_page() {
             if ($articleCounter >= $number_of_featured_articles) {
                 break;
             }
+            //skip the about articles
+            $category_tid = (isset($article->field_article_category['und'])) ? $article->field_article_category['und'][0]['tid'] : null;
+            if ($category_tid == ABOUT_TID) {
+                continue;
+            }
             $context_article_data = new StdClass();
             $author_full_name = '';
             $context_user_main_profile = profile2_load_by_user($article->uid, 'main');
