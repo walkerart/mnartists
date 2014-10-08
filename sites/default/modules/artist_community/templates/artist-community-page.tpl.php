@@ -111,11 +111,13 @@
                     <div class="the-list-of-articles-container">
                         <ul>
                             <?php foreach($articles as $article) : ?>
-                                <li class="<?= strtolower($article->category) ?>" data-target-article="article-detail-<?= $article->nid ?>">
-                                    <a href="<?= url( 'node/'.$article->nid, array('absolute' => true, 'alias' => false )) ?>">
-                                        <h4><?= $article->category ?></h4>
-                                        <p><?= $article->title ?></p>
-                                    </a>
+                                <li class="<?= strtolower($article->category) ?> " data-target-article="article-detail-<?= $article->nid ?>">
+                                    <div class="center-container">
+                                        <a class="absolute-center" href="<?= url( 'node/'.$article->nid, array('absolute' => true, 'alias' => false )) ?>">
+                                            <h4><?= $article->category ?></h4>
+                                            <p><?= $article->title ?></p>
+                                        </a>
+                                    </div>
                                 </li>
                             <?php endforeach; ?>
                         </ul>
@@ -177,6 +179,27 @@
                 </div>
             <?php endif; ?>
 
+            <?php if (!empty($event_widget_items)) { ?>
+                <div class="event-thing widget-standard widget">
+                    <h3>This Week</h3>
+                    <div class="widget-content">
+                        <div class="event-thing-event-block event-thing-event-block-hero">
+                            <a href="<?= url( 'node/'. $event_widget_items['hero']->nid, array('absolute' => true, 'alias' => false )) ?>">
+                                <img src="<?= $event_widget_items['hero']->image_uri ?>">
+                                <div class="event-thing-event-title"><?= date("M d", $event_widget_items['hero']->date) ?>: <?= $event_widget_items['hero']->title ?></div>
+                            </a>
+                        </div>
+                        <?php foreach ($event_widget_items['others'] as $event) : ?>
+                            <div class="event-thing-event-block">
+                                <a href="<?= url( 'node/'. $event->nid, array('absolute' => true, 'alias' => false )) ?>">
+                                    <div class="event-thing-event-title"><?= date("M d", $event->date) ?>: <?= $event->title ?></div>
+                                </a>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+            <?php } ?>
+
             <?php if (empty($all_event_results)) { ?>
                 <?php if (!empty($latest_users)) { ?>
                     <div class="user-thing widget-standard widget">
@@ -210,26 +233,6 @@
                 <?php } ?>
             <?php } ?>
 
-            <?php if (!empty($event_widget_items)) { ?>
-                <div class="event-thing widget-standard widget">
-                    <h3>This Week</h3>
-                    <div class="widget-content">
-                        <div class="event-thing-event-block event-thing-event-block-hero">
-                            <a href="<?= url( 'node/'. $event_widget_items['hero']->nid, array('absolute' => true, 'alias' => false )) ?>">
-                                <img src="<?= $event_widget_items['hero']->image_uri ?>">
-                                <div class="event-thing-event-title"><?= date("M d", $event_widget_items['hero']->date) ?>: <?= $event_widget_items['hero']->title ?></div>
-                            </a>
-                        </div>
-                        <?php foreach ($event_widget_items['others'] as $event) : ?>
-                            <div class="event-thing-event-block">
-                                <a href="<?= url( 'node/'. $event->nid, array('absolute' => true, 'alias' => false )) ?>">
-                                    <div class="event-thing-event-title"><?= date("M d", $event->date) ?>: <?= $event->title ?></div>
-                                </a>
-                            </div>
-                        <?php endforeach; ?>
-                    </div>
-                </div>
-            <?php } ?>
         </div>
     <?php }
         if ($layout_mode === 4) {

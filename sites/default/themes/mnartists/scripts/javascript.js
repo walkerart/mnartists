@@ -267,4 +267,12 @@ jQuery(document).ready(function () {
             jQuery("#terms").dialog( "open" );
         });
     }
+
+    jQuery("#edit-commentaccess-settings").each(function() {
+        var $this = jQuery(this);
+        var num_children = $this.find(".form-item");
+        if (num_children.length === 2) {
+            $this.hide();
+        }
+    });
 });

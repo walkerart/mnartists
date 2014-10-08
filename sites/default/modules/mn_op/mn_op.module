@@ -197,7 +197,8 @@ function mn_ap_get_date($date, $timezone, $timezone_db) {
     $resultDate->setTimezone($timezone);
     $resultDate = (array) $resultDate;
     $resultDate = new DateTime($resultDate['date']);
-    $resultDate = $resultDate->format("F j, Y, g:i a");
+    $resultDate = $resultDate->format("M j, Y, g:i a");
+    $resultDate = str_replace(' ', '&nbsp', $resultDate);
   } else {
     $resultDate = '';
   }

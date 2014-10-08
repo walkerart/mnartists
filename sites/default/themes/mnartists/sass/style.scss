@@ -5876,6 +5876,11 @@ depending on the template so needs unified a bit */
     }
 }
 
+// add padding to top of my collections
+.view-flag-lists-user-lists {
+    padding-top: 20px;
+}
+
 /* add to collection flag */
 .flag-wrapper {
     line-height:20px;
@@ -6471,57 +6476,31 @@ body.page-node-edit {
 
     .artist-profile {
 
+      .artist-profile-img {
+        margin: 0 10px 0 10px;
+      }
+
+      .username {
+        margin-top: -25px;
+      }
+
       .follow-menu {
         li {
           float:right;
           .flag-wrapper {
             .flag {
-              // height:30px;
-              // width:27px;
-              // display:block;
-              // padding:0px;
-              // text-align:center;
-              // box-sizing:border-box;
-              // padding-top:5px;
               img {
                 opacity:.3;
               }
             }
           }
-          // &:hover {
-          //   .flag-wrapper {
-          //     .flag {
-          //       background:$mystuff_bg_dark;
-          //       img {
-          //         -webkit-filter: invert(100%);
-          //         filter: invert(100%);
-          //       }
-          //     }
-          //   }
-          // }
           ul {
-            // padding:10px;
-            // position:absolute;
-            // overflow:hidden;
-            // top:40px;
-            // right:0px;
-            // left:auto;
-            // font-size:12px;
             li {
               float:none;
               display:block;
               clear:both;
-              // a {
-              //   padding:4px 0;
-              //   margin:0;
-              //   border-radius:0px;
-              //   &:hover {
-              //     color:#888;
-              //   }
-              // }
               &.share-this {
                 &.collect-title {
-                  // border-top:1px solid #fff;
                   padding-top:5px;
                   a {
                     padding-left:0px;
@@ -6555,7 +6534,6 @@ body.page-node-edit {
             border-radius:50%;
             height:100%;
             width:auto;
-            // margin:0 20px 10px 20px;
 
             img {
                 display:block;
@@ -6566,8 +6544,6 @@ body.page-node-edit {
             }
         }
         .flag-wrapper {
-          // position: absolute;
-          // right: 0px;
 
           a {
             border-radius:0px;
@@ -8268,6 +8244,41 @@ li.collect-this, li.add-this {
         }
     }
 }
+
+//rules for adding min height and centering content
+.article-thing {
+    .the-list-of-articles-container {
+        ul {
+            li {
+                display: inline-block;
+                width: 100%;
+                height: 100%;
+                min-height: 69px;
+                position: relative;
+                padding: 0;
+                padding-top: 10px;
+                .center-container {
+                    position: relative;
+                    height: 100%;
+                    .absolute-center:before {
+                        content: '';
+                        display: inline-block;
+                        width: 0;
+                        height: 100%;
+                        vertical-align: middle;
+                        margin-left: -0.25em;
+                    }
+                    .absolute-center h4,
+                    .absolute-center p {
+                        position: relative;
+                        top: -10px;
+                    }
+                }
+            }
+        }
+    }
+}
+
 #content .main-content .the-list-of-articles-container ul li a {
   color:#808080;
   text-decoration:none;
@@ -8553,8 +8564,6 @@ li.collect-this, li.add-this {
         padding-bottom:1em;
         padding-left:10px;padding-right:10px;
 
-
-
         img {
             margin: 0;
             padding: 0;
@@ -8562,8 +8571,8 @@ li.collect-this, li.add-this {
         .event-thing-event-title {
             margin: 0;
             padding: 0;
-            font-family: $sans_regular_font;
-            color:#888;
+            font-family: $sans_bold_font;
+            color:#000;
             text-transform:uppercase;
         }
 
@@ -9005,6 +9014,7 @@ table.table thead .sorting {
 
 /* @group user feed */
 .page-user-feed {
+
   .intro-text {
     padding:0 0 20px 0;
     @include column(14);
@@ -10197,8 +10207,6 @@ body {
       }
     }
   }
-}
-.article-page {
   .panel-pane .block-inner .block-content {
     background:none;
   }
@@ -10217,6 +10225,14 @@ body {
     }
   }
   .pane-node-field-article-subheader {
+    font-size: 19px;
+    line-height: 24px;
+    -webkit-font-smoothing: antialiased;
+    margin-bottom:5px;
+    border-bottom:1px dotted #888;
+    padding-bottom:10px;
+  }
+  .pane-node-op-short-description {
     font-size: 19px;
     line-height: 24px;
     -webkit-font-smoothing: antialiased;
