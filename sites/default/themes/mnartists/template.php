@@ -81,13 +81,14 @@ function mnartists_preprocess_html(&$vars) {
           (arg(0) == "user" && in_array(arg(2), array("edit", "mailchimp"))) ||
           (arg(0) == "node" && in_array(arg(1), array("edit", "add"))) ||
           (arg(0) == "node" && in_array(arg(2), array("edit"))) ||
-          (arg(0) == 'user' && in_array(arg(1), array("saved-filters", "feed", "welcome", "migrate", "password", "login")) ||
+          (arg(0) == 'user' && in_array(arg(1), array("saved-filters", "feed", "welcome", "migrate", "password", "login", "reset")) ||
           (user_is_logged_in() && (arg(0) == "user" && in_array(arg(2), array("flags")) && flag_lists_is_owner('edit', arg(4)))) ||
           (user_is_logged_in() && (arg(0) == "user" && in_array(arg(2), array("flags")) && !is_numeric(arg(3)))) ||
-          (user_is_logged_in() && (arg(0) == "flags" && flag_lists_is_owner('edit', arg(2)))))
+          (user_is_logged_in() && (arg(0) == "flags" && flag_lists_is_owner('edit', arg(2))))) ||
+          (user_is_logged_in() && (arg(0) == "batch"))
       ) {
-    $vars['classes_array'][] = drupal_html_class("my-stuff");
-  }
+        $vars['classes_array'][] = drupal_html_class("my-stuff");
+      }
 }
 
 
@@ -121,7 +122,7 @@ function mnartists_process_page(&$vars) {
     drupal_add_css(drupal_get_path('theme', 'mnartists') . '/css/table_style.css');
   }
 
-  
+
   $path = drupal_get_path_alias();
   //check path for node/add/ "* anything"
   $pattern = "node/add/*\nfoo-page";

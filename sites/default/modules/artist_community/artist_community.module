@@ -20,6 +20,8 @@ define('EVENT_CATEGORY_VID', '2');
 define('ORGANIZATIONS_CATEGORY_VID', '7');
 define('OPPORTUNITY_TYPE_VID', '14');
 
+define('ABOUT_TID', '645');
+// define('ABOUT_TID', '702');
 
 // default limits for search
 define('SEARCH_DEFAULT_ROWS', '20');
@@ -177,10 +179,11 @@ function _artist_community_block_visibility() {
             (!user_is_logged_in() && arg(0) == "user" && (is_null(arg(1)) || in_array(arg(1), array("password", "register", "login")))) ||
             (arg(0) == "node" && in_array(arg(1), array("edit", "add"))) ||
             (arg(0) == "node" && in_array(arg(2), array("edit"))) ||
-            (arg(0) == "user" && in_array(arg(1), array("saved-filters", "feed", "welcome", "migrate"))) ||
+            (arg(0) == "user" && in_array(arg(1), array("saved-filters", "feed", "welcome", "migrate", "reset"))) ||
             (user_is_logged_in() && (arg(0) == "user" && in_array(arg(2), array("flags")) && flag_lists_is_owner('edit', arg(4)))) ||
             (user_is_logged_in() && (arg(0) == "user" && in_array(arg(2), array("flags")) && !is_numeric(arg(3)))) ||
-            (user_is_logged_in() && (arg(0) == "flags" && flag_lists_is_owner('edit', arg(2))))
+            (user_is_logged_in() && (arg(0) == "flags" && flag_lists_is_owner('edit', arg(2)))) ||
+            (user_is_logged_in() && (arg(0) == "batch"))
         ) {
         return false;
     }
@@ -303,10 +306,15 @@ function _community_block_content() {
     $all_content_classes = array('active-trail');
     if (!isset($_GET['content'])) { $all_content_classes[] = 'selected'; }
     $all_content_count = $search_facets->getFacet('all_content')->getValue();
-    $items[] = l('All Content'." ($all_content_count)", 'community', array('query' => $query,
-                                                                            'attributes' => array(
-                                                                                'class' => $all_content_classes)
-                                                                            ));
+    $items[] = l('All Content' . " ($all_content_count)",
+                 'community',
+                 array(
+                    'query' => $query,
+                    'attributes' => array(
+                        'class' => $all_content_classes
+                    )
+                 )
+                );
 
     foreach($menu_items as $key => $item) {
         $attributes = array();
@@ -317,6 +325,56 @@ function _community_block_content() {
         $link = url_query_master($item['title'], 'community', 'content', $key, $attributes);
         $items[] = $link . $item['subcontent'];
     }
+
+    //get user articles 492
+    //$user = user_load_by_name('MnArtists');
+    // $articlesQuery =  new EntityFieldQuery();
+    // $articlesQuery->entityCondition('entity_type', 'node')
+    //         ->entityCondition('bundle', 'article')
+    //         ->propertyCondition('status', 1)
+
+    //         ->propertyCondition('uid', 459)
+    //         // ->propertyCondition('uid', $user->uid)
+    //         ->propertyOrderBy('created', 'DESC');
+    // $result = $articlesQuery->execute();
+    // $out = '';
+    // if (!empty($result['node'])) {
+    //     $out['nodes'] = node_view_multiple(node_load_multiple(array_keys($result['node'])));
+    // }
+    // if (!empty($out['nodes'])) {
+    //     $rows = array();
+    //     foreach ($out['nodes']['nodes'] as $row) {
+    //         $rows[] = (array)$row['#node'];
+    //     }
+    //     $r = '<div class="item-list"><ul>';
+    //     $count = count($rows);
+    //     foreach ($rows as $row) {
+    //         if(!empty($row)){
+    //             $i = 0;
+    //             $class = $i == 0 ? 'first' : '';
+    //             $r .= '<li class="' . $class . '"><a href="' . url( 'node/' . $row['vid'], array('absolute' => true, 'alias' => false )) . '">' . $row['title'] . '</a></li>';
+    //             $i++;
+    //         }
+
+    //     }
+    //     $r .= '</ul></div>';
+    // }
+    $article_subject_facets = $search_facets->getFacet('node_article_category');
+    $facet_count = 0;
+    foreach ($article_subject_facets as $value => $count) {
+        if ($value == ABOUT_TID) {
+            $facet_count = $count;
+            break;
+        }
+    }
+    $link_class = "";
+    if (isset($_GET['content']['article']) && is_array($_GET['content']['article']) && $_GET['content']['article'][0] == ABOUT_TID) {
+        $link_class = "active-trail selected";
+    }
+    $aboutLink = '<a class="' . $link_class . '" href="' . url( 'community', array('absolute' => true, 'alias' => false)) . '?content[article][0]=' . ABOUT_TID . '">ABOUT (' . $facet_count . ')</a>';
+    // if ($out) {
+    $items[] = $aboutLink;
+    // }
 
     return theme('item_list', array(
         'items' => $items,
@@ -529,17 +587,16 @@ function url_query_master($text, $path, $key, $val, $attributes = array()) {
 
         }
     } else if ($key == 'content') {
-
         if (isset($_GET['content'][$val]) && $_GET['content'][$val] == 1) {
             $attributes['class'] = array('active-trail','selected');
-        } else if (isset($_GET['content'][$val]) && is_array($_GET['content'][$val])) {
+        } else if (isset($_GET['content'][$val]) && is_array($_GET['content'][$val]) && $_GET['content'][$val][0] !== ABOUT_TID) {
             $attributes['class'] = array('active-trail','active');
         }
 
         if (isset($query['content'][$val])) {
             unset($query['content'][$val]);
         } else {
-            $query['content'][$val] = TRUE;
+            $query['content'] = array($val => TRUE);
         }
 
         // should be able to just use the values for $val as index names and then put that into getFacet,
@@ -552,8 +609,17 @@ function url_query_master($text, $path, $key, $val, $attributes = array()) {
                 break;
             case 'event':
             case 'artwork':
+                $facet_count = intval($search_facets->getFacet($val.'s')->getValue());
+                break;
             case 'article':
                 $facet_count = intval($search_facets->getFacet($val.'s')->getValue());
+                $article_subject_facets = $search_facets->getFacet('node_article_category');
+                foreach ($article_subject_facets as $value => $count) {
+                    if ($value == ABOUT_TID) {
+                        $facet_count = $facet_count - $count;
+                        break;
+                    }
+                }
                 break;
             case 'opportunity':
                 $facet_count = intval($search_facets->getFacet('opportunities')->getValue());
@@ -644,14 +710,20 @@ function url_query_master($text, $path, $key, $val, $attributes = array()) {
         } else if ($val === 'article') {
             $article_sub_items = array();
             $article_category_vocabulary_tree = taxonomy_get_tree(ARTICLE_CATEGORY_VID);
-
+            $article_cats = array();
+            foreach($article_category_vocabulary_tree as $item) {
+                if ($item->tid == ABOUT_TID) {
+                    continue;
+                }
+                $article_cats[] = $item;
+            }
             // get artwork subject facet counts
             $article_subject_facets_rec = array();
             $article_subject_facets = $search_facets->getFacet('node_article_category');
             foreach ($article_subject_facets as $value => $count) {
                 $article_subject_facets_rec[$value] = $count;
             }
-            $article_sub_items = _artist_community_build_subitems_for_item($val, $article_category_vocabulary_tree, $article_subject_facets_rec, $query);
+            $article_sub_items = _artist_community_build_subitems_for_item($val, $article_cats, $article_subject_facets_rec, $query);
             if (isset($article_sub_items)) {
                 $output .= theme('item_list', array('items' => $article_sub_items));
             }
@@ -1323,6 +1395,11 @@ function artist_community_current_filters_as_banner_string () {
 
             if (is_array($value)) {
                 foreach ($local_content[$type] as $tid) {
+                    if ($tid == ABOUT_TID) {
+                        $pluralized_content_header = taxonomy_term_load($tid)->name;
+                        $context_content_arr = array();
+                        continue;
+                    }
                     $context_content_arr[] = taxonomy_term_load($tid)->name;
                 }
             }
@@ -1331,6 +1408,7 @@ function artist_community_current_filters_as_banner_string () {
             } else if ($type === 'event' && isset($_GET['event_location_search'])) {
                 $context_content_arr[] = $_GET['event_location_search'];
             }
+
             $content_arr[] = (!empty($context_content_arr)) ? sprintf('(%s / %s)', $pluralized_content_header, implode(' + ', $context_content_arr)) : "($pluralized_content_header)";
         }
     }

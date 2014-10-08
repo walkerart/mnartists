@@ -43,7 +43,7 @@ class MediaSoundCloudStreamWrapper extends MediaReadOnlyStreamWrapper {
 
   function getOriginalThumbnailPath() {
     //return a thumbnail image
-    return drupal_get_path('theme','mnartists') . "/images/icon-media-audio.png";
+    return drupal_get_path('module','media_soundcloud') . "/images/icon-media-audio.png";
   }
 
   function getLocalThumbnailPath() {

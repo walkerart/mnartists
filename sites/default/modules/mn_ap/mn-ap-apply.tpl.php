@@ -13,7 +13,7 @@
             window.CKEDITOR_BASEPATH = "/sites/all/libraries/ckeditor";
             }); })(jQuery);', 'inline' );
         drupal_add_js(drupal_get_path('module', 'mn_ap') . '/js/scripts2.js');
-        //dpm($rows); ?>
+        dpm($rows); ?>
 <div class="container" id="content">
     <div class="row">
         <div class="col-md-12">
@@ -260,11 +260,14 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <?php if($rows['opportunity']['min_works'] != $rows['opportunity']['max_works']): ?>
-                                <label id="artHelp">Choose at least <?php echo $rows['opportunity']['min_works']; ?> and no more than <?php echo $rows['opportunity']['max_works']; ?> pieces of documentation to represent your work.</label>
-                                <?php else: ?>
-                                <label id="artHelp">Choose <?php echo $rows['opportunity']['min_works']; ?> pieces of documentation to represent your work.</label>
-                                <?php endif; ?>
+                                <div class="col-sm-12">
+                                    <label>Artwork Guidelines: <div class="small"><?php echo $rows['opportunity']['artwork_desc']; ?></div></label><br>
+                                    <?php if($rows['opportunity']['min_works'] != $rows['opportunity']['max_works']): ?>
+                                    <label id="artHelp">Choose at least <?php echo $rows['opportunity']['min_works']; ?> and no more than <?php echo $rows['opportunity']['max_works']; ?> pieces of documentation to represent your work.</label>
+                                    <?php else: ?>
+                                    <label id="artHelp">Choose <?php echo $rows['opportunity']['min_works']; ?> pieces of documentation to represent your work.</label>
+                                    <?php endif; ?>
+                                </div>
                             </div>
                             
                             <?php foreach ($rows['artworks'] as $artwork) : ?>

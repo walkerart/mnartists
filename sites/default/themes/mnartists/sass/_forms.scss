@@ -602,7 +602,7 @@ input {
 
 
         .partial-date-year {
-            min-width:90px;
+            min-width:85px;
 
             .form-item {
                 width:100%;
@@ -629,7 +629,7 @@ input {
             }
         }
         .partial-date-month {
-            min-width:90px;
+            min-width:85px;
 
             .description {
                 float: none;
@@ -641,7 +641,7 @@ input {
             }
         }
         .partial-date-day {
-            min-width:90px;
+            min-width:85px;
 
             .description {
                 float: none;
@@ -1245,13 +1245,13 @@ div.entityconnect-edit {
     .field-name-field-medium-form,
     .field-name-field-roles-form,
     .field-name-field-created-date-form {
-        margin-bottom:64px;
+        margin-bottom:24px;
     }
     .field-name-field-venue-form,
     .field-name-field-other-artists-involved-form,
     .form-item-title {
         height: 25px;
-        margin-bottom:64px;
+        margin-bottom:24px;
     }
     .field-name-field-for-sale-form,
     .field-name-field-public-form {
@@ -1262,7 +1262,7 @@ div.entityconnect-edit {
     }
     .field-name-field-dimensions-form {
         .form-textarea-wrapper {
-            margin-bottom:64px!important;
+            margin-bottom:24px!important;
         }
     }
     .field-type-taxonomy-term-reference-form {
@@ -1362,8 +1362,66 @@ div.entityconnect-edit {
     #edit-submit {
         float:none;
     }
+    .field-type-datetime-form {
+        #field-date-add-more-wrapper {
+            .form-wrapper {
+                .fieldset-wrapper {
+                    float: right;
+                    margin-top: -40px;
+                    width: 66%;
+                    .date-float{
+                        width: 100%;
+                        margin-top: 180px;
+                    }
+                    .start-date-wrapper {
+                        margin-top: -200px;
+                    }
+                    .end-date-wrapper {
+                        margin-top: -110px;
+                    }
+                    .start-date-wrapper,
+                    .end-date-wrapper {
+                        width: 100%;
+                        .form-item-field-date-und-0-value:before{
+                            content: 'Start Date';
+                        }
+                        .form-item-field-date-und-0-value2:before{
+                            content: 'End Date';
+                        }
+                        .form-item-field-date-und-0-value,
+                        .form-item-field-date-und-0-value2 {
+                            label {
+                                display: none;
+                            }
+                            .description {
+                                display: none;
+                            }
+                            margin-bottom: 10px;
+                            width: 100%;
+                            #edit-field-date-und-0-value,
+                            #edit-field-date-und-0-value2 {
+                                width: 100%;
+                                .form-item-field-date-und-0-value-date,
+                                .form-item-field-date-und-0-value2-date,
+                                .form-item-field-date-und-0-value-time,
+                                .form-item-field-date-und-0-value2-time  {
+                                    width: 100%;
+                                    #edit-field-date-und-0-value-datepicker-popup-0,
+                                    #edit-field-date-und-0-value-timeEntry-popup-1,
+                                    #edit-field-date-und-0-value2-datepicker-popup-0,
+                                    #edit-field-date-und-0-value2-timeEntry-popup-1  {
+                                        width: 100%;
+                                        margin-bottom: 10px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
-
 
 // ALL ADD EDIT PAGES
 .page-node-add,
@@ -1839,11 +1897,14 @@ div[class*="-image-field-caption-value"] {
 }
 
 /* privacy statement */
-.privacy-instructions {
+div.privacy-instructions {
   color:#808080;
   padding-bottom:20px;
   font-size: 10px;
   line-height: 12px;
+  p:first-child {
+    font-size: 12px;
+  }
 }
 
 // edit event

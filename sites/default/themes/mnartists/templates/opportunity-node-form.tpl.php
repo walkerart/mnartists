@@ -18,7 +18,7 @@
     $form['field_op_uri']['und']['0']['title']['#title'] = 'Website Title';
     $form['field_op_uri']['und']['0']['value']['#title'] = 'Website';
     $form['field_op_uri']['und']['#title'] = '';
-    dpm($form);
+    //dpm($form);
 ?>
 <div class="row">
     <div class="form-group">
@@ -104,11 +104,17 @@
             <?php print drupal_render_children($form['op_min_works']); ?>
         </div>
     </div>
-        <div class="row">
+    <div class="row">
         <div class="form-group">
             <?php print drupal_render_children($form['op_max_works']); ?>
         </div>
     </div>
+    <div class="row">
+        <div class="form-group">
+            <div class="form-group"><?php print drupal_render($form['field_op_artwork_desc']); ?></div>
+        </div>
+    </div>
+
     <div class="row row-margin-top">
         <div class="form-group form-table">
             <table class="table">

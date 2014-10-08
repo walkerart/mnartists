@@ -29,6 +29,14 @@ function mnartist_register_menu() {
         'type' => MENU_NORMAL_ITEM,
     );
 
+    $items['admin/settings/mnartist_migrate'] = array(
+        'title' => 'MNArtist Migration',
+        'description' => 'Manage migration',
+        'page callback' => 'mnartist_register_migrate_content',
+        'access arguments' => array('administer settings'),
+        'type' => MENU_NORMAL_ITEM,
+    );
+
     return $items;
 
 }
@@ -207,14 +215,18 @@ function _mnartist_register_batch_handler($action, $data, &$context) {
         case 'loadWorks':
             if (!isset($context['sandbox']['progress'])) {
                 $context['sandbox']['progress'] = 0;
-                $context['sandbox']['max'] = count($context['results']['legacyData']['work']);
+                $context['sandbox']['max'] = isset($context['results']['legacyData']['work']) ? count($context['results']['legacyData']['work']) : 0;
             }
 
-            $work = $context['results']['legacyData']['work'][$context['sandbox']['progress']];
-            _mnartist_register_import_work($work);
+            if ($context['sandbox']['max'] == 0) {
+                $context['finished'] = 1;
+            } else {
+                $work = $context['results']['legacyData']['work'][$context['sandbox']['progress']];
+                _mnartist_register_import_work($work);
 
-            $context['sandbox']['progress']++;
-            $context['finished'] = $context['sandbox']['progress'] / $context['sandbox']['max'];
+                $context['sandbox']['progress']++;
+                $context['finished'] = $context['sandbox']['progress'] / $context['sandbox']['max'];
+            }
             break;
     }
 }
@@ -399,10 +411,6 @@ function _mnartist_register_validate_field($legacyData, $field) {
 
 function _mnartist_register_filter_legacy_tags($originalString) {
 
-    // @TODO this is probably a horrible place for
-    // this to live, but these are so darn specific
-    // @TODO do we need to do any extra escaping on
-    // the incoming string here?
     $legacySubstitutions = array(
         '[b]' => '<b>',
         '[/b]' => '</b>',
@@ -553,6 +561,10 @@ function _mnartist_register_getResourceFiles($resourceId) {
 function _mnartist_register_import_work($work) {
     global $user;
 
+    if ($work == null || $work == "") {
+        return;
+    }
+
     $node = new stdClass();
     $node->type = 'artwork';
     node_object_prepare($node);
@@ -585,7 +597,7 @@ function _mnartist_register_import_work($work) {
         }
     }
 
-    node_save($node);
+    // node_save($node);
 }
 
 function _mnartist_register_get_legacy_account($email) {
@@ -644,6 +656,120 @@ class ConnectionFactory
         }
         return $this->db;
     }
+}
+
+function mnartist_register_migrate_content() {
+    _mnartist_register_get_article_data();
+
+    return '';
+}
+
+function _mnartist_register_get_article_data() {
+    $dbh = ConnectionFactory::getFactory()->getConnection();
+
+    $stmt = $dbh->prepare("select
+    tr.title as topic,
+    ar.title as title,
+    ar.active as active,
+    ar.featured as featured,
+    a.*
+    from t_article a
+    join t_resource ar on ar.id=a.resourceid
+    join t_resource_child rc on rc.childid=ar.id
+    join t_resource tr on tr.id=rc.parentid
+    where rc.parentid in (
+      select childid from t_resource_child where parentid in (
+          select r.id from t_resource r
+            join t_resourcetype ty on ty.id = r.resourcetype
+           where ty.name = 'Resource Genre'
+            and  (r.title = 'Articles' or r.title = 'Articles by Discipline')
+      )
+    )
+    group by a.resourceid");
+    $stmt->execute();
+
+    $results = $stmt->fetchAll();
+    dpm(count($results));
+    foreach($results as $article) {
+        dpm($article);
+    }
+
+    //get resources
+    // $stmt = $dbh->prepare(
+    //     "SELECT tr.*,
+    //             trt.name as resource_type_name
+    //        FROM t_resource tr
+    //       INNER JOIN t_resourcetype trt ON tr.resourcetype = trt.id
+    //       WHERE owner = :creatorid");
+
+    // $stmt->bindParam(":creatorid", $userData['t_user.id']);
+    // $stmt->execute();
+    // $resources = $stmt->fetchAll();
+    // $userData['resources'] = $resources;
+
+    // foreach($resources as $resource) {
+    //     $contactStmt = $stmt = $dbh->prepare(
+    //      "SELECT tcp.*,
+    //              ts.name as state_name,
+    //              ts.code as state_code,
+    //              tc.name as country_name,
+    //              tc.code as country_code
+    //         FROM t_contactpoint tcp
+    //         LEFT JOIN t_state ts ON tcp.state = ts.id
+    //         LEFT JOIN t_country tc on tcp.country = tc.id
+    //        WHERE resourceid = :resourceId");
+
+    //     $stmt->bindParam(":resourceId", $resource['id']);
+    //     $stmt->execute();
+    //     $contactInfo = $stmt->fetch();
+
+    //     $type = strtolower($resource['resource_type_name']);
+    //     switch($type) {
+    //         case 'artist':
+    //             $stmt = $dbh->prepare("SELECT * FROM t_artist WHERE resourceid = :resourceId");
+    //             $stmt->bindParam(":resourceId", $resource['id']);
+    //             $stmt->execute();
+    //             $artistInfo = $stmt->fetch();
+    //             $userData['artist'] = $artistInfo;
+    //             $userData['artist']['childResources'] = _mnartist_register_getChildResources($resource['id']);
+    //             $userData['artist']['files'] = _mnartist_register_getResourceFiles($resource['id']);
+    //             if ($contactInfo) {
+    //                 $userData['artist']['contact'] = $contactInfo;
+    //             }
+    //             $userData['resource'] = $resource;
+
+    //             break;
+    //         case 'work':
+    //             if (!isset($userData[$type])) {
+    //                 $userData[$type] = array();
+    //             }
+
+    //             $work = $resource;
+
+    //             $stmt = $dbh->prepare("SELECT * FROM t_work WHERE resourceid = :resourceId");
+    //             $stmt->bindParam(":resourceId", $resource['id']);
+    //             $stmt->execute();
+    //             $work['work'] = $stmt->fetch();
+
+    //             $work['childResources'] = _mnartist_register_getChildResources($resource['id']);
+    //             $work['files'] = _mnartist_register_getResourceFiles($resource['id']);
+
+    //             if ($contactInfo) {
+    //                 $work['contact'] = $contactInfo;
+    //             }
+
+    //             $userData[$type][] = $work;
+    //             break;
+    //         default:
+    //             if (!isset($userData[$type])) {
+    //                 $userData[$type] = array();
+    //             }
+
+    //             $userData[$type][] = $resource;
+    //     }
+    // }
+
+    // return $userData;
 }
 
 ?>

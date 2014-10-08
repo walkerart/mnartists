@@ -7,7 +7,7 @@
 ?>
 <div class="artist-profile">
     <h3><?php echo (isset($user->roles[ORG_ROLE])) ? 'Org' : 'Artist' ?></h3>
-    <a href="<?php print $url; ?>">
+    <a href="<?php print $url; ?>" class="artist-profile-img">
         <?php
             // @TODO better default fallback here
             $working_uri = (isset($user->picture->uri)) ? $user->picture->uri : variable_get('user_picture_default');
@@ -32,7 +32,7 @@
             </ul>
         </div>
     <?php } ?>
-    <div class="username" style="margin-top: -25px">
+    <div class="username">
         <a href="<?php print $url; ?>">
             <?php print mnartist_profiles_collective_or_fullname_or_username($user->uid); ?>
         </a>

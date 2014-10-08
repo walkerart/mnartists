@@ -25,27 +25,27 @@ function mnartist_profiles_menu() {
     // @TODO pretty sure this belongs somewhere else, move it there
     $items['user/feed'] = array(
         'page callback'     => 'mnartist_profiles_feed',
-        'access callback'   => TRUE,
+        'access callback'   => 'user_is_logged_in',
         'type'              => MENU_CALLBACK,
     );
 
     // @TODO pretty sure this belongs somewhere else, move it there
     $items['user/feed/more'] = array(
         'page callback'     => 'mnartist_profiles_feed_more',
-        'access callback'   => TRUE,
+        'access callback'   => 'user_is_logged_in',
         'type'              => MENU_CALLBACK,
     );
 
     $items['user/welcome'] = array(
         'page callback'     => 'mnartist_profiles_welcome',
-        'access callback'   => TRUE,
+        'access callback'   => 'user_is_logged_in',
         'type'              => MENU_CALLBACK,
     );
 
     $items['user/%/setwelcome'] = array(
         'page callback'     => 'mnartist_profiles_set_welcome',
         'page arguments'    => array(1),
-        'access callback'   => TRUE,
+        'access callback'   => 'user_is_logged_in',
         'type'              => MENU_CALLBACK,
     );
 
@@ -138,8 +138,6 @@ function mnartist_profiles_welcome() {
 function mnartist_profiles_set_welcome($uid) {
     $account = user_load($uid);
 
-    // var_dump($account->field_show_welcome);
-    var_dump($_POST['no-welcome']);
     $welcome_value = (isset($_POST['no-welcome']) && $_POST['no-welcome'] === 'on') ? 1: 0;
     $field_show_welcome = array(
         LANGUAGE_NONE => array(
@@ -152,7 +150,6 @@ function mnartist_profiles_set_welcome($uid) {
     user_save($account);
 
     $account = user_load($uid);
-    var_dump($account->field_show_welcome);
 
     drupal_exit();
 }
@@ -223,12 +220,6 @@ function mnartist_profiles_feed() {
 
 // gets feed data for regular feed and raw feed
 function _mnartist_profiles_get_feed_data($row_offset = null, $row_limit = null)  {
-
-    // @TODO deal with user-not-logged-in case here
-    if (!user_is_logged_in()) {
-        return;
-    }
-
     global $user;
 
     $row_offset = (is_null($row_offset)) ? 0 : intval($row_offset);
@@ -245,7 +236,16 @@ function _mnartist_profiles_get_feed_data($row_offset = null, $row_limit = null)
     }
     $flagged_users = array_unique($flagged_users);
 
-    if (empty($flagged_users)) {
+    $flagged_nodes = array();
+    $flagged_stuff = flag_get_user_flags('node');
+    if (isset($flagged_stuff['collections'])) {
+        foreach ($flagged_stuff['collections'] as $thing) {
+            $flagged_nodes[] = $thing->content_id;
+        }
+    }
+    $flagged_nodes = array_unique($flagged_nodes);
+
+    if (empty($flagged_users) && empty($flagged_nodes)) {
         return array();
     }
 
@@ -256,16 +256,16 @@ function _mnartist_profiles_get_feed_data($row_offset = null, $row_limit = null)
             LEFT JOIN field_data_field_public ON field_data_field_public.entity_id = activity.eid
             WHERE node.status = 1
             AND (field_data_field_public.field_public_value = 1 OR field_data_field_public.field_public_value IS NULL)
-            AND ((activity.uid = :my_uid and activity_targets.uid = :my_uid) OR (activity.uid != :my_uid AND activity_targets.uid = 0))
-            AND activity.uid in (:flagged_users)
+            AND (activity.uid in (:flagged_users) OR activity.nid in (:flagged_nodes))
             ORDER BY activity.created DESC";
+            //            AND ((activity.uid = :my_uid and activity_targets.uid = :my_uid) OR (activity.uid != :my_uid AND activity_targets.uid = 0))
     if ($row_limit !== null) {
         $sql .= " LIMIT $row_limit";
     }
     if ($row_offset !== null) {
         $sql .= " OFFSET $row_offset";
     }
-    $result = db_query($sql, array(':flagged_users' => $flagged_users, ':my_uid' => $user->uid));
+    $result = db_query($sql, array(':flagged_users' => $flagged_users, ':flagged_nodes' => $flagged_nodes));
 
     // munge the data to send to the template, add user
     // picture uri's as you go
@@ -274,13 +274,31 @@ function _mnartist_profiles_get_feed_data($row_offset = null, $row_limit = null)
         $context_object = new StdClass();
         $context_user = user_load($row->uid);
         $context_object->message = $row->message;
+        //user is administrator replace with super admin
+        // if(in_array('administrator', $context_user->roles)) {
+        //     $node = node_load($row->eid);
+        //     //if the content is not the admins own content
+        //     if($node->uid != $row->uid) {
+        //         $context_user = user_load(1);
+        //         $message = '<div class="feed-update-description">';
+        //         $message .= '<a href="';
+        //         $message .= url( 'user/'.$context_user->uid, array('absolute' => true, 'alias' => false ));
+        //         $message .= '">MNArtists Admin</a> updated the ' . $node->type . '<a href="';
+        //         $message .= url( 'node/'.$node->vid, array('absolute' => true, 'alias' => false ));
+        //         $message .= '"> ' . $node->title . '</a></div>';
+        //         $message .= preg_replace('/(\<div\ class="feed-update-description"\>.*?<\/div>)/si', '', $row->message);
+        //         $context_object->message = $message;
+        //     }
+        // }
         $context_object->entity_id = $row->eid;
         $working_uri = (isset($context_user->picture->uri)) ? $context_user->picture->uri : variable_get('user_picture_default');
         $context_object->user_picture_uri = image_style_url('square_thumbnail', $working_uri);
         $context_object->update_timestamp = $row->created;
+        // if(in_array('administrator', $context_user->roles) && !in_array('administrator', $user->roles)) {
+        //     $context_object = '';
+        // }
         $feed_data[] = $context_object;
     }
-
     return $feed_data;
 }
 
@@ -669,11 +687,12 @@ function _mnartist_profile_block_visibility() {
         (!user_is_logged_in() && arg(0) == "user" && (is_null(arg(1)) || in_array(arg(1), array("password", "register")))) ||
         (arg(0) == "node" && in_array(arg(1), array("edit", "add"))) ||
         (arg(0) == "node" && in_array(arg(2), array("edit"))) ||
-        (arg(0) == "user" && in_array(arg(1), array("saved-filters", "feed", "welcome", "migrate"))) ||
+        (arg(0) == "user" && in_array(arg(1), array("saved-filters", "feed", "welcome", "migrate", "reset"))) ||
         (user_is_logged_in() && (arg(0) == "user" && in_array(arg(2), array("flags")) && flag_lists_is_owner('edit', arg(4)))) ||
         (user_is_logged_in() && (arg(0) == "user" && in_array(arg(2), array("flags")) && !is_numeric(arg(3)))) ||
-        (user_is_logged_in() && (arg(0) == "flags" && flag_lists_is_owner('edit', arg(2))))
-        ) {
+        (user_is_logged_in() && (arg(0) == "flags" && flag_lists_is_owner('edit', arg(2)))) ||
+        (user_is_logged_in() && (arg(0) == "batch"))
+    ) {
         return true;
     }
 
@@ -778,9 +797,13 @@ function _mnartist_profile_my_stuff() {
             'data' => l("Collections", "user/{$user->uid}/flags/lists"),
             'children' => $flags
         );
-        $myItems[] = array(
-            'data' => l("Applications", "applications"),
-        );
+        //add check for applications
+        $applications = _mnartists_get_applications($user->uid);
+        if ($applications != 0) {
+            $myItems[] = array(
+                'data' => l("Applications", "applications"),
+            );
+        }
         $myItems[] = array(
             'data' => l("Saved Filters", "user/saved-filters"),
             'children' => _mnartist_filter_view_filter()
@@ -850,6 +873,24 @@ function _mnartist_profile_my_stuff() {
         ));
     }
     return $output;
+}
+
+//check for applications then check for jurors
+function _mnartists_get_applications($uid) {
+    $query = db_select('op_applications', 'op');
+            $query->fields('op');
+            $query->condition('op.uid', $uid, '=');
+    $ap_result = $query->execute()->fetchAll();
+    $count = count($ap_result);
+    //only runs if no applications to save running an extra query
+    if ($count == 0) {
+        $query = db_select('op_jurors', 'op');
+            $query->fields('op');
+            $query->condition('op.uid', $uid, '=');
+        $juror_result = $query->execute()->fetchAll();
+        $count = count($juror_result);
+    }
+    return $count;
 }
 
 function _mnartist_profile_all_artworks_link() {
@@ -1051,7 +1092,7 @@ function mnartist_profiles_form_alter(&$form, $form_state, $form_id) {
         if (isset($form["#user_category"]) && $form["#user_category"] == 'account') {
 
             // include account instructions
-            $form['instructions']['#markup'] = "<div class='privacy-instructions'>Manage your password, email address, profile picture, and newsletter subscription here.</div>";
+            $form['instructions']['#markup'] = "<div class='privacy-instructions'><p>Manage your password, email address, profile picture, and newsletter subscription here.</p></div>";
             $form['instructions']['#weight'] = -100;
 
         } else if (isset($form["#user_category"]) && $form["#user_category"] == 'main') {
