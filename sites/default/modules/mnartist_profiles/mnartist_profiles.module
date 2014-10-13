@@ -428,10 +428,25 @@ function mnartist_profiles_resume_download($uid) {
 
                             $context_data = array();
                             foreach ($instances as $instance_field_name => $instance_field) {
-                                $context_data[$instance_field_name] = array(
-                                    'label' => $instances[$instance_field_name]['label'],
-                                    'item' => (isset($entity->{$instance_field_name}['und'])) ? $entity->{$instance_field_name}['und'] : null
-                                );
+                                if(substr($instance_field_name, -3) == 'url') {
+                                    // check for url starting with http:// or https://
+                                    if (isset($entity->{$instance_field_name}['und'][0]['value'])) {
+                                        if (preg_match('#https?://#', $entity->{$instance_field_name}['und'][0]['value']) === 0) {
+                                            $entity->{$instance_field_name}['und'][0]['value'] = 'http://' . $entity->{$instance_field_name}['und'][0]['value'];
+                                        }
+                                        $context_url = $entity->{$instance_field_name}['und'];
+
+                                        $context_data[$instance_field_name] = array(
+                                            'label' => $instances[$instance_field_name]['label'],
+                                            'item' => isset($context_url) ? $context_url : null
+                                        );
+                                    }
+                                } else {
+                                    $context_data[$instance_field_name] = array(
+                                        'label' => $instances[$instance_field_name]['label'],
+                                        'item' => (isset($entity->{$instance_field_name}['und'])) ? $entity->{$instance_field_name}['und'] : null
+                                    );
+                                }
                             }
                             $template_data[$field_name]['item'][] = $context_data;
                         }
