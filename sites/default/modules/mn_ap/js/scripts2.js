@@ -462,6 +462,7 @@ $(document).ready(function(){
             country: $('#country').exists() ? $('#country').val() : false,
             statement: $('#statementEditor').exists() ? CKEDITOR.instances['statementEditor'].getData() : false,
             bio: $('#bioEditor').exists() ? CKEDITOR.instances['bioEditor'].getData() : false,
+            resume: $( "#resumeContent" ).html(),
             proposal: $('#proposalEditor').exists() ? CKEDITOR.instances['proposalEditor'].getData() : false,
             field1: $('#field1Editor').exists() ? CKEDITOR.instances['field1Editor'].getData() : false,
             field2: $('#field2Editor').exists() ? CKEDITOR.instances['field2Editor'].getData() : false,
