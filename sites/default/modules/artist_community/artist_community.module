@@ -20,8 +20,8 @@ define('EVENT_CATEGORY_VID', '2');
 define('ORGANIZATIONS_CATEGORY_VID', '7');
 define('OPPORTUNITY_TYPE_VID', '14');
 
-define('ABOUT_TID', '645');
-// define('ABOUT_TID', '702');
+// define('ABOUT_TID', '645'); //for ima dev
+define('ABOUT_TID', '702'); //for O8 server
 
 // default limits for search
 define('SEARCH_DEFAULT_ROWS', '20');
@@ -326,39 +326,6 @@ function _community_block_content() {
         $items[] = $link . $item['subcontent'];
     }
 
-    //get user articles 492
-    //$user = user_load_by_name('MnArtists');
-    // $articlesQuery =  new EntityFieldQuery();
-    // $articlesQuery->entityCondition('entity_type', 'node')
-    //         ->entityCondition('bundle', 'article')
-    //         ->propertyCondition('status', 1)
-
-    //         ->propertyCondition('uid', 459)
-    //         // ->propertyCondition('uid', $user->uid)
-    //         ->propertyOrderBy('created', 'DESC');
-    // $result = $articlesQuery->execute();
-    // $out = '';
-    // if (!empty($result['node'])) {
-    //     $out['nodes'] = node_view_multiple(node_load_multiple(array_keys($result['node'])));
-    // }
-    // if (!empty($out['nodes'])) {
-    //     $rows = array();
-    //     foreach ($out['nodes']['nodes'] as $row) {
-    //         $rows[] = (array)$row['#node'];
-    //     }
-    //     $r = '<div class="item-list"><ul>';
-    //     $count = count($rows);
-    //     foreach ($rows as $row) {
-    //         if(!empty($row)){
-    //             $i = 0;
-    //             $class = $i == 0 ? 'first' : '';
-    //             $r .= '<li class="' . $class . '"><a href="' . url( 'node/' . $row['vid'], array('absolute' => true, 'alias' => false )) . '">' . $row['title'] . '</a></li>';
-    //             $i++;
-    //         }
-
-    //     }
-    //     $r .= '</ul></div>';
-    // }
     $article_subject_facets = $search_facets->getFacet('node_article_category');
     $facet_count = 0;
     foreach ($article_subject_facets as $value => $count) {
@@ -371,10 +338,10 @@ function _community_block_content() {
     if (isset($_GET['content']['article']) && is_array($_GET['content']['article']) && $_GET['content']['article'][0] == ABOUT_TID) {
         $link_class = "active-trail selected";
     }
-    $aboutLink = '<a class="' . $link_class . '" href="' . url( 'community', array('absolute' => true, 'alias' => false)) . '?content[article][0]=' . ABOUT_TID . '">ABOUT (' . $facet_count . ')</a>';
-    // if ($out) {
+    $aboutLink = '<a class="' . $link_class . '" href="' . url( 'community', array('absolute' => true, 'alias' => false)) . '?content[article][0]=' . ABOUT_TID . '">HELP (' . $facet_count . ')</a>';
     $items[] = $aboutLink;
-    // }
+
+    $items[] = '<a href="' . url("user/492") . '">ABOUT</a>';
 
     return theme('item_list', array(
         'items' => $items,

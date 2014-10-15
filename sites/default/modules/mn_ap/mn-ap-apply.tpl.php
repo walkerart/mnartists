@@ -269,7 +269,7 @@
                                     <?php endif; ?>
                                 </div>
                             </div>
-                            
+
                             <?php foreach ($rows['artworks'] as $artwork) : ?>
                                 <div class="row ap-row">
                                     <hr>
@@ -642,7 +642,7 @@
                             {{#steps.bio-resume}}
                             <h3 class="clearPadding clearMargin">{{titles.bio-resume}}</h3>
                             {{#bio}}Bio: {{&bio}}<br>{{/bio}}
-                            {{#resume}} {{&resume}} {{/resume}}
+                            {{#resume}}<div id="ap-resume"> {{&resume}} </div>{{/resume}}
                             {{/steps.bio-resume}}
                         </script>
                         <?php if (in_array('work', $rows['opportunity']['steps'])) : ?>
