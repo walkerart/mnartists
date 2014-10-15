@@ -402,6 +402,13 @@ function mnartist_profiles_resume_download($uid) {
 
                 // get field metadata
                 $field_info = field_info_field($field_name);
+
+                // hide the field if it is marked private
+                $privacy = (bool) _profile2_field_privacy_value($field_info['id'], $context_profile->pid);
+                if ($privacy === TRUE) {
+                    continue;
+                }
+
                 $field_info_instances = field_info_instances('profile2', 'resume');
                 $label = (isset($field_info_instances[$field_name])) ? $field_info_instances[$field_name]['label'] : '';
 
