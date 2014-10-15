@@ -550,7 +550,7 @@ function mnartist_profiles_form_user_register_form_alter(&$form, &$form_state, $
     );
 
     // customizing registration form field help text
-    $form['account']['name']['#description'] = t('Create a username that you&rsquo;ll use to log into your account.');
+    $form['account']['name']['#description'] = t('Create a username that you\'ll use to log into your account and will display as your personalized url, i.e., http://mnartists.org/username. Don’t worry, it doesn’t have to match your username or email for your old profile.');
     $form['account']['mail']['#description'] = t('Use your most current email address. Don&rsquo;t worry, it doesn&rsquo;t have to match your old account. You&rsquo;ll be able to migrate later.');
     $form['mailchimp_lists']['mailchimp_mnartists_org']['subscribe']['#description'] = t('Check this option to receive twice-monthly updates from mnartists.org, featuring the newest articles, opportunities and events.');
     $form['account_type']['#description'] = t('Basic Account: Customize the site to your artistic interests without creating a public profile<br>Artist Profile: All of the above, plus create a public profile with your artwork, information, and resume<br>Organization Profile: Create a public profile containing information about your organization<br>Only one account type per email.');
