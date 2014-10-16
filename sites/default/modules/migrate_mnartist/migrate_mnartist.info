@@ -1,0 +1,12 @@
+name = "Migrate MNArtists"
+description = "MNArtists content migration."
+package = "MNArtists"
+core = 7.x
+dependencies[] = taxonomy
+dependencies[] = image
+dependencies[] = migrate
+
+files[] = redirect.migrate.inc
+files[] = articles.inc
+files[] = opportunities.inc
+
