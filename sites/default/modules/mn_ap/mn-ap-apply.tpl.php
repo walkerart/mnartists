@@ -237,6 +237,7 @@
                             <?php endif; ?>
                             <?php if (in_array('resume', $rows['opportunity']['areas'])) : ?>
                             <a class="ap-button" href="<?php echo url('user/' . $rows['uid'] . '/edit/resume', array()); ?>" target="_blank">Edit Resume</a>
+                            <input type="hidden" name="resumeMarkup" value="">
                             <div id="resumeContent">
                                 <?php echo $rows['resume']['content']['#markup']; ?>
                             </div>

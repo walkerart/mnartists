@@ -47,6 +47,8 @@ $(document).ready(function(){
     //function used in Ajax to checkif field exists
     jQuery.fn.exists = function(){return this.length>0;};
 
+
+
     function updateAjax() {
         locpath = window.location.pathname;
         if (locpath.slice(-1) != '/') locpath = locpath + '/';
@@ -461,6 +463,10 @@ $(document).ready(function(){
         });
     }
 
+    function htmlEntities(str) {
+        return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+
     function updateConfirmationView(works) {
         steps = [];
         $.each(Drupal.settings.steps, function(index, value) {
@@ -479,6 +485,7 @@ $(document).ready(function(){
             });
         }
 
+        var resume = $( "#resumeContent" ).html();
         var view = {
             first_name: $('#first_name').val(),
             last_name: $('#last_name').val(),
@@ -495,7 +502,7 @@ $(document).ready(function(){
             country: $('#country').exists() ? $('#country').val() : false,
             statement: $('#statementEditor').exists() ? CKEDITOR.instances['statementEditor'].getData() : false,
             bio: $('#bioEditor').exists() ? CKEDITOR.instances['bioEditor'].getData() : false,
-            resume: $( "#resumeContent" ).html(),
+            resume: resume,
             proposal: $('#proposalEditor').exists() ? CKEDITOR.instances['proposalEditor'].getData() : false,
             field1: $('#field1Editor').exists() ? CKEDITOR.instances['field1Editor'].getData() : false,
             field2: $('#field2Editor').exists() ? CKEDITOR.instances['field2Editor'].getData() : false,
@@ -505,9 +512,12 @@ $(document).ready(function(){
             titles : Drupal.settings.titles
         };
 
+
         var confirmTemplate = $('#confirmTpl').html();
         var confirmHtml = Mustache.to_html(confirmTemplate, view);
         $('#profileAjax').html(confirmHtml);
+
+        $('input[name=resumeMarkup]').val(resume);
 
         var additionalTemplate = $('#additionalTpl').html();
         var additionalHtml = Mustache.to_html(additionalTemplate, view);

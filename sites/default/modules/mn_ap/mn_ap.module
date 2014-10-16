@@ -160,6 +160,14 @@ function ap_submit_form() {
     //mkdir($user_folder_path , 0777, true);
   }
 
+  if (!empty($_POST['resumeMarkup'])) {
+    if (file_prepare_directory($ap_folder_path, $options = FILE_MODIFY_PERMISSIONS) && file_prepare_directory($user_folder_path, $options = FILE_MODIFY_PERMISSIONS)) {
+      //$filepath = str_replace($GLOBALS['base_url'], "", file_create_url('resume'));
+
+      $file = "resume.html";
+      file_unmanaged_save_data($_POST['resumeMarkup'], "$user_folder_path/$file", $replace = FILE_EXISTS_REPLACE);
+    }
+  }
   //check for artwork
   if (!empty($_POST['artwork'])) {
     $artwork_data = mn_ap_artworks_data($uid);
@@ -944,4 +952,21 @@ function mn_ap_update_reopen_setting($nid, $reopen) {
       ->fields(array('reopen' => $reopen))
       ->execute();
   }
+}
+
+/**
+* Fetch Data from Profile2 Module fields for the user
+* http://drupalcontrib.org/api/drupal/contributions%21profile2%21contrib%21profile2_page.module/function/profile2_by_uid_load/7
+*/
+function _profile2_by_uid_load($uid, $type_name) {
+  if ($uid && is_numeric($uid) && ($account = user_load($uid))) {
+    $profile = profile2_load_by_user($account, $type_name);
+    if (!$profile) {
+      $profile = profile2_create(array('type' => $type_name));
+      $profile->setUser($account);
+      $profile->is_new = TRUE;
+    }
+    return $profile;
+  }
+  return FALSE;
 }
