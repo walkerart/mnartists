@@ -320,7 +320,6 @@ $(document).ready(function(){
                         state = state.trim().replace(/&nbsp;/g, '');
                         state = state.trim().replace(wordCountRegex, ' ');
                         wordCount = state.split(' ').length;
-                        console.log(state);
                         if(wordCount > stateLength) {
                             $('<label class="error">Your Statement Word Count: ' + wordCount + '. Maximum Word Count: ' + stateLength + '</label>').insertBefore("textarea#statementEditor");
                             $('html, body').animate({ scrollTop: 0 }, 0);
