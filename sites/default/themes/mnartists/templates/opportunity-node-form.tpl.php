@@ -146,6 +146,9 @@
                     </tr>
                     <tr class="hidden" id="statement">
                         <td colspan="4">
+                            <div class="form-group">
+                                <?php print drupal_render($form['field_op_statement_length']); ?>
+                            </div>
                             <div class="form-group"><?php print drupal_render($form['field_op_statement_desc']); ?></div>
                         </td>
                     </tr>

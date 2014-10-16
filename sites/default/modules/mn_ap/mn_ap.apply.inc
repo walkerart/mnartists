@@ -149,6 +149,7 @@ function mn_ap_opportunity_data($nid) {
 				'required' => $required_list, //isset($row['field_op_required']['und']) ? $row['field_op_required']['und'] : '',
 				'optional' => isset($row['field_op_optional']['und']) ? $row['field_op_optional']['und'] : '',
 				'proposal_desc' => isset($row['field_op_proposal_desc']['und']['0']['safe_value']) ? $row['field_op_proposal_desc']['und']['0']['safe_value'] : '',
+				'statement_length' => isset($row['field_op_statement_length']['und']['0']['value']) ? $row['field_op_statement_length']['und']['0']['value'] : '',
 				'statement_desc' => isset($row['field_op_statement_desc']['und']['0']['safe_value']) ? $row['field_op_statement_desc']['und']['0']['safe_value'] : '',
 				'bio_desc' => isset($row['field_op_bio_desc']['und']['0']['safe_value']) ? $row['field_op_bio_desc']['und']['0']['safe_value'] : '',
 				'resume_desc' => isset($row['field_op_resume_desc']['und']['0']['safe_value']) ? $row['field_op_resume_desc']['und']['0']['safe_value'] : '',

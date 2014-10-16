@@ -258,15 +258,34 @@ $(document).ready(function(){
     }
 
     var errorMessage = '<label class="error">Required.</label>';
+    var wordCountRegex = /\s+/gi;
+
 
     function checkStepValidation(stepIndex) {
         if (Drupal.settings.steps[stepIndex] == 'statement-proposal') {
+            stateLength = Drupal.settings.statement_length;
             if  (jQuery.inArray('proposal', Drupal.settings.required) !== -1 && jQuery.inArray('statement', Drupal.settings.required) !== -1) {
+                $( "label.error" ).remove();
                 prop = CKEDITOR.instances['proposalEditor'].getData();
                 state = CKEDITOR.instances['statementEditor'].getData();
+
                 if (prop && state) {
-                    $.History.go('#/step' + (stepIndex + 3));
-                    $( "label.error" ).remove();
+                    if(stateLength != '') {
+                        state = state.trim().replace(/(<p>|<\/p>)/g, '');
+                        state = state.trim().replace(/&nbsp;/g, '');
+                        state = state.trim().replace(wordCountRegex, ' ');
+                        wordCount = state.split(' ').length;
+                        if(wordCount > stateLength) {
+                            $('<label class="error">Your Statement Word Count: ' + wordCount + '. Maximum Word Count: ' + stateLength + '</label>').insertBefore("textarea#statementEditor");
+                            $('html, body').animate({ scrollTop: 0 }, 0);
+                        } else {
+                            $.History.go('#/step' + (stepIndex + 3));
+                            $( "label.error" ).remove();
+                        }
+                    } else {
+                        $.History.go('#/step' + (stepIndex + 3));
+                        $( "label.error" ).remove();
+                    }
                 } else if (!prop && !state) {
                     $(errorMessage).insertBefore("textarea#proposalEditor");
                     $(errorMessage).insertBefore("textarea#statementEditor");
@@ -282,6 +301,7 @@ $(document).ready(function(){
                 }
             }
             else if (jQuery.inArray('proposal', Drupal.settings.required) !== -1) {
+                $( "label.error" ).remove();
                 prop = CKEDITOR.instances['proposalEditor'].getData();
                 if (prop) {
                     $.History.go('#/step' + (stepIndex + 3));
@@ -292,22 +312,35 @@ $(document).ready(function(){
                 }
             }
             else if (jQuery.inArray('statement', Drupal.settings.required) !== -1) {
+                $( "label.error" ).remove();
                 state = CKEDITOR.instances['statementEditor'].getData();
                 if (state) {
-                    $.History.go('#/step' + (stepIndex + 3));
-                    $( "label.error" ).remove();
+                    if(stateLength != '') {
+                        state = state.trim().replace(/(<p>|<\/p>)/g, '');
+                        state = state.trim().replace(/&nbsp;/g, '');
+                        state = state.trim().replace(wordCountRegex, ' ');
+                        wordCount = state.split(' ').length;
+                        console.log(state);
+                        if(wordCount > stateLength) {
+                            $('<label class="error">Your Statement Word Count: ' + wordCount + '. Maximum Word Count: ' + stateLength + '</label>').insertBefore("textarea#statementEditor");
+                            $('html, body').animate({ scrollTop: 0 }, 0);
+                        } else {
+                            $.History.go('#/step' + (stepIndex + 3));
+                            $( "label.error" ).remove();
+                        }
+                    } else {
+                        $.History.go('#/step' + (stepIndex + 3));
+                        $( "label.error" ).remove();
+                    }
                 } else {
                     $(errorMessage).insertBefore("textarea#statementEditor");
                     $('html, body').animate({ scrollTop: 0 }, 0);
                 }
             }
-            else if (jQuery.inArray('proposal', Drupal.settings.required) == -1 && jQuery.inArray('statement', Drupal.settings.required) == -1) {
-                $.History.go('#/step' + (stepIndex + 3));
-                $( "label.error" ).remove();
-            }
         }
         else if (Drupal.settings.steps[stepIndex] == 'bio-resume') {
             if (jQuery.inArray('bio', Drupal.settings.required) !== -1 && jQuery.inArray('resume', Drupal.settings.required) !== -1){
+                $( "label.error" ).remove();
                 bio = CKEDITOR.instances['bioEditor'].getData();
                 resume = $( "#resumeContent" ).html();
                 resume = $.trim(resume);
@@ -364,6 +397,7 @@ $(document).ready(function(){
                 $('html, body').animate({ scrollTop: 0 }, 0);
             }
         } else if (Drupal.settings.steps[stepIndex] == 'fields-uploads') {
+            $( "label.error" ).remove();
             var customFields = $('textarea.custom-field');
             var i = 0;
             var customFieldErrors = [];

@@ -945,6 +945,7 @@ if (in_array('field4', $rows['opportunity']['areas'])) {
   }); })(jQuery);', 'inline' );
 }
 drupal_add_js(array('areas' => $rows['opportunity']['areas']), 'setting');
+drupal_add_js(array('statement_length' => $rows['opportunity']['statement_length']), 'setting');
 drupal_add_js(array('required' => $rows['opportunity']['required']), 'setting');
 drupal_add_js(array('steps' =>  $rows['opportunity']['steps']), 'setting');
 drupal_add_js(array('titles' =>  $rows['opportunity']['step_titles']), 'setting');
