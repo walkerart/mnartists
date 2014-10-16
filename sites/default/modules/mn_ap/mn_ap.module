@@ -32,6 +32,13 @@ function mn_ap_menu() {
     'page arguments' => array(1,3),
     'file' => 'mn_ap.review.inc',
   );
+  $items['opportunity/%/submission/%/resume'] = array(
+    'title' => 'Applicant Resume',
+    'page callback' => 'mn_ap_resume',
+    'access callback' => 'user_is_logged_in',
+    'page arguments' => array(1,3),
+    'file' => 'mn_ap.resume.inc',
+  );
   $items['opportunity/%/submission/%/admin'] = array(
     'title' => 'Admin Applicant View',
     'page callback' => 'mn_ap_admin',
@@ -78,6 +85,10 @@ function mn_ap_theme() {
     'mn_ap_review' => array(
       'variables' => array('rows' => array()),
       'template' => 'mn-ap-review',
+    ),
+    'mn_ap_resume' => array(
+      'variables' => array('rows' => array()),
+      'template' => 'mn-ap-resume',
     )
   );
 }
