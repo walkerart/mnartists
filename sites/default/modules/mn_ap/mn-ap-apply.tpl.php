@@ -180,7 +180,12 @@
                             </div>
                             <?php if (in_array('statement', $rows['opportunity']['areas'])) : ?>
                             <div class="form-group">
-                                <label for="statement">Statement <?php if(is_array($rows['opportunity']['required']) && in_array('statement', $rows['opportunity']['required'])) echo '*'; ?> <div class="small"><?php echo $rows['opportunity']['statement_desc']; ?></div></label>
+                                <label for="statement">Statement <?php if(is_array($rows['opportunity']['required']) && in_array('statement', $rows['opportunity']['required'])) echo '*'; ?> 
+                                    <?php if ($rows['opportunity']['statement_length'] != '') : ?>
+                                        <div class="small">Maximum <?php echo $rows['opportunity']['statement_length']; ?> Words.</div>
+                                    <?php endif; ?>
+                                    <div class="small"><?php echo $rows['opportunity']['statement_desc']; ?></div>
+                                </label>
                                 <div class="form-textarea-wrapper">
                                     <textarea class="form-control ap-textarea" id="statementEditor" name="statementEditor"><?php echo $rows['resume_statement']; ?></textarea>
                                 </div>
@@ -189,7 +194,9 @@
 
                             <?php if (in_array('proposal', $rows['opportunity']['areas'])) : ?>
                             <div class="form-group">
-                                <label for="proposal">Proposal<?php if(is_array($rows['opportunity']['required']) && in_array('proposal', $rows['opportunity']['required'])) echo '*'; ?><div class="small"><?php echo $rows['opportunity']['proposal_desc']; ?></div></label>
+                                <label for="proposal">Proposal<?php if(is_array($rows['opportunity']['required']) && in_array('proposal', $rows['opportunity']['required'])) echo '*'; ?>
+                                    <div class="small"><?php echo $rows['opportunity']['proposal_desc']; ?></div>
+                                </label>
                                 <input class="hidden" id="proposalHide" name="proposalHide" value="">
                                 <div class="form-textarea-wrapper">
                                     <textarea class="form-control ap-textarea" id="proposalEditor" name="proposalEditor"><?php echo $rows['proposal']; ?></textarea>
