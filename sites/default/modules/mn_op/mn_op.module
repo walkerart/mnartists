@@ -44,6 +44,15 @@ function mn_op_menu() {
     'file' => 'mn_op.application.inc',
   );
 
+  //path for user to view personal resume from specific opportunities
+  $items['application/%/resume'] = array(
+    'title' => 'Application Resume',
+    'page callback' => 'mn_op_resume',
+    'access callback' => 'user_is_logged_in',
+    'page arguments' => array(1),
+    'file' => 'mn_op.resume.inc',
+  );
+
   $items['opportunity/%/jury-settings'] = array(
     'title' => 'Jury Settings',
     'page callback' => 'mn_op_settings',
@@ -81,6 +90,10 @@ function mn_op_theme() {
     'mn_op_application' => array(
       'variables' => array('rows' => array()),
       'template' => 'mn-op-application',
+    ),
+    'mn_op_resume' => array(
+      'variables' => array('rows' => array()),
+      'template' => 'mn-op-resume',
     ),
     'mn_op_settings' => array(
       'variables' => array('rows' => array()),
@@ -182,6 +195,16 @@ function mn_op_check_existing_settings($nid) {
       ->fields(array('nid' => $nid, 'note' => ''))
       ->execute();
   }
+  return $result;
+}
+
+function mn_op_get_user_ap($uid, $nid) {
+  $result = db_select('op_applications', 'op')
+          ->fields('op')
+          ->condition('nid', $nid, '=')
+          ->condition('uid', $uid, '=')
+          ->execute()
+          ->fetchAssoc();
   return $result;
 }
 
