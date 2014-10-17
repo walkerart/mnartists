@@ -6,6 +6,11 @@
 function prefinery_boot() {
   global $user;
 
+  // Skip if called from drush
+  if (function_exists('drush_main')) {
+    return;
+  }
+
   // Did the user send credentials
   if (isset($_POST['form_id']) && $_POST['form_id'] == 'prefinery_user_login_form') {
 
