@@ -33,9 +33,6 @@
   <?php print $scripts; ?>
 </head>
 <body>
-  <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home" id="logo">
-    <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
-  </a>
   <?php print $messages ?>
   <?php print $content ?>
   <div id="backstretch"></div>
