@@ -89,7 +89,10 @@ class MNArticleMigration extends MNArtistsMigration {
          ->defaultValue(1);
 
     // simple mapping or these are mapped in prepareRow
-    $this->addSimpleMappings(array('title', 'created', 'field_article_category', 'field_community_user_select', 'field_article_subheader'));
+    $this->addSimpleMappings(array('title', 'created', 'field_article_category', 'field_article_subheader'));
+
+    $this->addFieldMapping('field_community_user_select', 'community_cat')
+         ->separator(',');
 
     $this->addFieldMapping('field_body', 'bodytext');
     $this->addFieldMapping('field_body:format')
@@ -209,17 +212,24 @@ class MNArticleMigration extends MNArtistsMigration {
         }
       }
 
-      // topic in the form of {'Feature', 'Reviews'}
+      // topic in the form of {"Feature", "Reviews"}
       $row->topic = str_replace(array('{', '}'), '', $row->topic);
       $topics = explode(',', $row->topic);
+
+      $communities_cat = array();
+
       foreach($topics as $key => $value) {
-        $topic = trim($value);
-        if (isset($category[$topic])) {
+        $topic = trim(str_replace('"', '', $value));
+        // will only take the first mapped article_category
+        if (isset($category[$topic]) && empty($row->field_article_category)) {
           $row->field_article_category = $category[$topic];
         }
         if (isset($community[$topic])) {
-          $row->field_community_user_select = $communities[$community[$topic]];
+          $communities_cat[] = $communities[$community[$topic]];
         }
+      }
+      if (!empty($communities_cat)) {
+        $row->community_cat = implode(',', $communities_cat);
       }
     }
 
