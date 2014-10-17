@@ -28,7 +28,7 @@ function template_preprocess_prefinery_user_login_form(&$variables) {
  */
 function template_preprocess_prefinery_page(&$variables) {
   // Add relevant default variables, taken from template_preprocess_page()
-  $variables['messages']   = $variables['show_messages'] ? theme('status_messages') : '';
+  $variables['messages']   = isset($variables['show_messages']) ? theme('status_messages') : '';
   $variables['base_path']  = base_path();
   $variables['logo']       = theme_get_setting('logo');
   $variables['front_page'] = url();
