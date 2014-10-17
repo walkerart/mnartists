@@ -203,6 +203,7 @@ function mn_op_get_user_ap($uid, $nid) {
           ->fields('op')
           ->condition('nid', $nid, '=')
           ->condition('uid', $uid, '=')
+          ->condition('complete', 1, '=')
           ->execute()
           ->fetchAssoc();
   return $result;

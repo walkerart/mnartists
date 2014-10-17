@@ -133,7 +133,7 @@
                 <p><?php echo $rows['reviews']['bio']; ?></p>
             <?php endif; ?>
             <?php if (in_array("resume", $rows['areas'])) : ?>
-                <a href="<?php echo url('user/' . $rows['reviews']['uid'] . '/resume/download'); ?>" class="btn ap-btn" target="_blank">View Resume</a>
+                <a href="<?php echo url('opportunity/' . $rows['reviews']['nid'] . '/submission/' . $rows['reviews']['uid'] .'/resume'); ?>" class="btn ap-btn" target="_blank">View Resume</a>
             <?php endif; ?>
         </div>
     </div>
