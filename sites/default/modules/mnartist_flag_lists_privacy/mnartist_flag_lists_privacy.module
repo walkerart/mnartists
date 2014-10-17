@@ -9,8 +9,8 @@
 
 // I guess we'll have to alter the form to get the public/private
 // switch into it?
-function mnartist_flag_lists_privacy_form_alter(&$form, &$form_state) {
-    if ($form['#form_id'] === 'flag_lists_form') {
+function mnartist_flag_lists_privacy_form_alter(&$form, &$form_state, $form_id) {
+    if ($form_id === 'flag_lists_form') {
 
         // @TODO better way to get fid?
         $fid = arg(3);
