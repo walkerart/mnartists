@@ -33,6 +33,18 @@ function template_preprocess_prefinery_page(&$variables) {
   $variables['logo']       = theme_get_setting('logo');
   $variables['front_page'] = url();
 
+  // Check if logo exists before output it in a template file
+  // First get relative path from logo theme setting
+  $logo_parts = parse_url($variables['logo']);
+  $logo_path = $logo_parts['path'];
+  if (strpos($logo_path, $variables['base_path']) === 0) {
+    $logo_path = substr($logo_path, strlen($variables['base_path']));
+  }
+  // If file does not exist clear it
+  if (!file_exists($logo_path)) {
+    $variables['logo'] = NULL;
+  }
+
   // Clear out existing CSS
   $css = &drupal_static('drupal_add_css', array());
   $css = array();
@@ -44,6 +56,9 @@ function template_preprocess_prefinery_page(&$variables) {
   // By default we should not need any JS.
   $js = &drupal_static('drupal_add_js', array());
   $js = array();
+
+  // Required by Core template_process_html()
+  $variables['page']['#children'] = NULL;
 
   // Call Drupal core default html page preprocess function
   template_preprocess_html($variables);
