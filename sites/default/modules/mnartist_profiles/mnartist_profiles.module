@@ -402,6 +402,13 @@ function mnartist_profiles_resume_download($uid) {
 
                 // get field metadata
                 $field_info = field_info_field($field_name);
+
+                // hide the field if it is marked private
+                $privacy = (bool) _profile2_field_privacy_value($field_info['id'], $context_profile->pid);
+                if ($privacy === TRUE) {
+                    continue;
+                }
+
                 $field_info_instances = field_info_instances('profile2', 'resume');
                 $label = (isset($field_info_instances[$field_name])) ? $field_info_instances[$field_name]['label'] : '';
 
@@ -428,10 +435,25 @@ function mnartist_profiles_resume_download($uid) {
 
                             $context_data = array();
                             foreach ($instances as $instance_field_name => $instance_field) {
-                                $context_data[$instance_field_name] = array(
-                                    'label' => $instances[$instance_field_name]['label'],
-                                    'item' => (isset($entity->{$instance_field_name}['und'])) ? $entity->{$instance_field_name}['und'] : null
-                                );
+                                if(substr($instance_field_name, -3) == 'url') {
+                                    // check for url starting with http:// or https://
+                                    if (isset($entity->{$instance_field_name}['und'][0]['value'])) {
+                                        if (preg_match('#https?://#', $entity->{$instance_field_name}['und'][0]['value']) === 0) {
+                                            $entity->{$instance_field_name}['und'][0]['value'] = 'http://' . $entity->{$instance_field_name}['und'][0]['value'];
+                                        }
+                                        $context_url = $entity->{$instance_field_name}['und'];
+
+                                        $context_data[$instance_field_name] = array(
+                                            'label' => $instances[$instance_field_name]['label'],
+                                            'item' => isset($context_url) ? $context_url : null
+                                        );
+                                    }
+                                } else {
+                                    $context_data[$instance_field_name] = array(
+                                        'label' => $instances[$instance_field_name]['label'],
+                                        'item' => (isset($entity->{$instance_field_name}['und'])) ? $entity->{$instance_field_name}['und'] : null
+                                    );
+                                }
                             }
                             $template_data[$field_name]['item'][] = $context_data;
                         }
@@ -535,7 +557,7 @@ function mnartist_profiles_form_user_register_form_alter(&$form, &$form_state, $
     );
 
     // customizing registration form field help text
-    $form['account']['name']['#description'] = t('Create a username that you&rsquo;ll use to log into your account.');
+    $form['account']['name']['#description'] = t('Create a username that you\'ll use to log into your account and will display as your personalized url, i.e., http://mnartists.org/username. Don’t worry, it doesn’t have to match your username or email for your old profile.');
     $form['account']['mail']['#description'] = t('Use your most current email address. Don&rsquo;t worry, it doesn&rsquo;t have to match your old account. You&rsquo;ll be able to migrate later.');
     $form['mailchimp_lists']['mailchimp_mnartists_org']['subscribe']['#description'] = t('Check this option to receive twice-monthly updates from mnartists.org, featuring the newest articles, opportunities and events.');
     $form['account_type']['#description'] = t('Basic Account: Customize the site to your artistic interests without creating a public profile<br>Artist Profile: All of the above, plus create a public profile with your artwork, information, and resume<br>Organization Profile: Create a public profile containing information about your organization<br>Only one account type per email.');

@@ -95,7 +95,7 @@ function _article_block_other_articles_by_this_author () {
             $other_articles_filter->condition('type', 'article');
             $other_articles_filter->condition('nid', $node_id, '<>');
             $other_articles_filters[] = $other_articles_filter;
-            $other_articles_result = artist_community_execute_query(NODE_INDEX, $other_articles_filters, array(array('changed', 'ASC')));
+            $other_articles_result = artist_community_execute_query(NODE_INDEX, $other_articles_filters, array(array('changed', 'DESC')));
 
             $limit_iterator = 1;
             foreach($other_articles_result as $result) {

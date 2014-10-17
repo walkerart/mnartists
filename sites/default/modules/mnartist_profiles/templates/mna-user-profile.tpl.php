@@ -94,7 +94,11 @@
                         $websites_display = array();
 
                         foreach ($fieldset['field_websites'] as $website) {
+                            if (preg_match('#https?://#', $website['value']['#href']) === 0) {
+                                $website['value']['#href'] = 'http://' . $website['value']['#href'];
+                            }
                             $websites_display[] = '<a href="'.$website['value']['#href'].'" target="_blank">'.$website['value']['#title'].'</a>';
+
                         }
                     ?>
                     <?= implode(', ', $websites_display) ?>

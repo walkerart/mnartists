@@ -33,9 +33,9 @@
 						<a href ="<?php echo url('node/' . $row['nid'], array()); ?>"><?php echo $row['title']; ?></a>
 					</td>
 					<td>
-						Announce:&nbsp<?php echo $row['announce_date']; ?> <br>
-						Start:&nbsp<?php echo $row['start_date']; ?> <br>
-						End:&nbsp<?php echo $row['end_date']; ?> <br>
+						Announce:&nbsp<?php echo  str_replace(' ', '&nbsp', $row['announce_date']); ?> <br>
+						Start:&nbsp<?php echo str_replace(' ', '&nbsp', $row['start_date']); ?> <br>
+						End:&nbsp<?php echo str_replace(' ', '&nbsp', $row['end_date']) ?> <br>
 					</td>
 					<td><?php echo ($row['submissions'] != '0/0' && $row['apply_on_site'] == 1) ? '<a href ="' . url('opportunity/' . $row['nid'] . '/submissions', array()) . '"><span class="badge">' . $row['submissions'] . '</span></a>' : 'N/A'; ?></td>
 					<td><?php echo ($row['apply_on_site'] == 1) ? '<a href ="' . url('opportunity/' . $row['nid'] . '/apply/', array()) . '">MnArtists</a>' : 'External'; ?></td>
