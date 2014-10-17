@@ -51,28 +51,39 @@ class MNOpportunityMigration extends MNArtistsMigration {
     $this->source = new MigrateSourceSQL($query, array(), NULL, array('map_joinable' => FALSE));
     $this->destination = new MigrateDestinationNode('opportunity');
 
-    // hardcode author to user 1 and published
+    // hardcode author to user info@mnartists.org (uid: 492) and published
     $this->addFieldMapping('uid')
-         ->defaultValue(1);
+         ->defaultValue(492);
     $this->addFieldMapping('status')
          ->defaultValue(1);
 
     // simple mapping or these are mapped in prepareRow
-    $this->addSimpleMappings(array('title', 'created', 'field_op_type', 'op_short_description'));
+    $this->addSimpleMappings(array('created', 'field_op_type'));
 
-    $this->addFieldMapping('field_body', 'bodytext');
-    $this->addFieldMapping('field_body:format')
+    $this->addFieldMapping('title', 'subhead');
+
+    $this->addFieldMapping('body', 'bodytext');
+    $this->addFieldMapping('body:format')
          ->defaultValue($this->inputFormat->format);
+
+    $this->addFieldMapping('og_group_ref', 'community_cat')
+         ->separator(',');
+
+    // $this->addFieldMapping('op_dates', 'op_dates');
+    $this->addFieldMapping('op_dates', 'startdate');
+    $this->addFieldMapping('op_dates:to', 'enddate');
+    $this->addFieldMapping('op_dates:timezone')
+      ->defaultValue('America/Chicago');
 
     $this->addFieldMapping('migrate_redirects', 'old_url');
 
     // unmigrated sources
-    $this->addUnmigratedSources(array('priorityranking', 'enddate', 'concurrencycol'));
+    $this->addUnmigratedSources(array('topic', 'priorityranking', 'concurrencycol'));
 
     // Unmapped destination fields
     $this->addUnmigratedDestinations(array('is_new', 'changed',
       'promote', 'revision', 'language', 'revision_uid', 'log', 'tnid',
-      'comment', 'field_images', 'field_tags', 'og_group_ref', 'field_medium'));
+      'comment', 'field_images', 'field_tags', 'op_short_description', 'field_medium'));
     if (module_exists('statistics')) {
       $this->addUnmigratedDestinations(array('totalcount', 'daycount', 'timestamp'));
     }
@@ -94,30 +105,114 @@ class MNOpportunityMigration extends MNArtistsMigration {
 
     if (isset($row->startdate)) {
       $row->created = strtotime($row->startdate);
+      $row->startdate = date('Y-m-d H:i:s', $row->created);
+    }
+    if (isset($row->enddate)) {
+      $row->enddate = date('Y-m-d H:i:s', strtotime($row->enddate));
+    }
+
+    // dpm("$row->resourceid: $row->startdate - $row->enddate");
+    if (isset($row->subhead)) {
+      $row->subhead = trim(strip_tags($row->subhead));
+    }
+    if (isset($row->bodytext)) {
+      $row->bodytext = str_replace(array('<b>', '</b>', '<i>', '</i>'), array('<strong>', '</strong>', '<em>', '</em>'), $row->bodytext);
     }
     if (isset($row->title)) {
-      $row->title = trim(strip_tags($row->title));
-    }
-    if (isset($row->subhead)) {
-      $row->op_short_description = trim(strip_tags($row->subhead));
-    }
-    if (isset($row->topic)) {
-      $category = array(
-        'Call for Artists' => 'Call for Artists',
-        'Grant/Fellowship' => 'Grant/Fellowship',
-        'Job' => 'Job',
-        'Participate' => 'Participate',
-        'Space' => 'Space',
+      // row NOT to import
+      $exclusion = array('How to submit News & Events');
+
+      if (in_array($row->title, $exclusion)) {
+        return FALSE;
+      }
+
+      // prepare communities og mapping
+      $communities = &drupal_static(__FUNCTION__);
+
+      if (!isset($communities)) {
+        $query = new EntityFieldQuery();
+        $query->entityCondition('entity_type', 'node')
+          ->entityCondition('bundle', 'community')
+          ->propertyCondition('status', 1);
+        $result = $query->execute();
+        if (isset($result['node'])) {
+          $community_nids = array_keys($result['node']);
+          $communities_nodes = entity_load('node', $community_nids);
+        }
+        $communities = array();
+        foreach ($communities_nodes as $nid => $node) {
+          $communities[$node->title] = $nid;
+        }
+      }
+
+      // for match by keywords
+      $keywords = array(
+        'volunteer' => 'Participate',
+        'call' => 'Call for Artists',
+        'casting' => 'Call for Artists',
+        'performance' => 'Call for Artists',
+        'job' => 'Job',
+        'grant' => 'Grant/Fellowship',
+        'fellowship' => 'Grant/Fellowship',
+        'space' => 'Space',
+        'beta' => 'Participate',
+      );
+      $keywords_og = array(
+        'casting' => 'Performing Arts',
+        'performance' => 'Performing Arts',
       );
 
-      // topic in the form of {'Feature', 'Reviews'}
-      $row->topic = str_replace(array('{', '}'), '', $row->topic);
-      $topics = explode(',', $row->topic);
-      foreach($topics as $key => $value) {
-        $topic = trim($value);
-        if (isset($category[$topic])) {
-          $row->field_op_type = $category[$topic];
+      $category = array(
+        'Audition Opportunity' => 'Call for Artists',
+        'Board Opportunity' => 'Jobs',
+        'Film Festival Opportunity' => 'Call for Artists',
+        'Internship Opportunity' => 'Job',
+        'Join the The Liberty Parade!' => 'Participate',
+        'Professional Development Opportunity' => 'Job',
+        'Residency Opportunity' => 'Call for Artists',
+        'Survey Opportunity' => 'Participate',
+        'Teaching Opportunity' => 'Job',
+        'Training Opportunity' => 'Job',
+        'Youth Program Opportunity' => 'Participate',
+      );
+      $category_og = array(
+        'Audition Opportunity' => 'Performing Arts',
+        'Film Festival Opportunity' => 'Media Arts',
+      );
+
+      // topic in the form of {"Feature", "Reviews"}
+      $op_type = str_replace(array('{', '}'), '', $row->title);
+      $op_types = explode(',', $op_type);
+
+      $communities_cat = array();
+
+      foreach($op_types as $key => $value) {
+        $op = trim(str_replace('"', '', $value));
+
+        // keyword case insensitive match
+        foreach ($keywords as $key => $value) {
+          if (stristr($op, $key)) {
+            $row->field_op_type = $value;
+
+            // keyword OG match
+            if (isset($keywords_og[$key])) {
+              $communities_cat[] = $communities[$keywords_og[$key]];
+            }
+          }
         }
+
+        // hardcoded category match
+        if (isset($category[$op]) && empty($row->field_article_category)) {
+          $row->field_article_category = $category[$op];
+        }
+
+        // community OG match
+        if (isset($category_og[$op])) {
+          $communities_cat[] = $communities[$category_og[$op]];
+        }
+      }
+      if (!empty($communities_cat)) {
+        $row->community_cat = implode(',', $communities_cat);
       }
     }
 
