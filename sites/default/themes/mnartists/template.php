@@ -178,3 +178,10 @@ function mnartists_preprocess_flag(&$vars) {
     $content_id = $vars['content_id'];
     $vars['link_count'] = flag_get_counts($vars['flag']->content_type, $content_id, true);
 }
+
+function mnartists_preprocess_prefinery_user_login_form(&$variables) {
+  $variables['header_title'] = t('Mn Artists Beta Invite');
+
+  $url = variable_get('prefinery_url', '');
+  $variables['title'] = t('Lucky you! You received a beta invite. Enter your email and 10 digit code here. Want early access? <a href="@url" target="_blank">Request an invite</a>.', array('@url' => $url));
+}
