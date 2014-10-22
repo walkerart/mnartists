@@ -91,7 +91,10 @@ class MNArticleMigration extends MNArtistsMigration {
     // simple mapping or these are mapped in prepareRow
     $this->addSimpleMappings(array('title', 'created', 'field_article_category', 'field_article_subheader'));
 
+    // map to both Community and Group Audience fields
     $this->addFieldMapping('field_community_user_select', 'community_cat')
+         ->separator(',');
+    $this->addFieldMapping('og_group_ref', 'community_cat')
          ->separator(',');
 
     $this->addFieldMapping('field_body', 'bodytext');
@@ -106,7 +109,7 @@ class MNArticleMigration extends MNArtistsMigration {
     // Unmapped destination fields
     $this->addUnmigratedDestinations(array('is_new', 'changed',
       'promote', 'revision', 'language', 'revision_uid', 'log', 'tnid',
-      'comment', 'field_images', 'field_tags', 'og_group_ref', 'field_medium'));
+      'comment', 'field_images', 'field_tags', 'field_medium'));
     if (module_exists('statistics')) {
       $this->addUnmigratedDestinations(array('totalcount', 'daycount', 'timestamp'));
     }
