@@ -23,6 +23,29 @@ class MNOpportunityMigration extends MNArtistsMigration {
       'migration'
     );
 
+    // select
+    // array_agg(tr.title) as topic,
+    // (array_agg(ar.title))[1] as title,
+    // a.*
+    // from t_article a
+    // join t_resource ar on ar.id=a.resourceid
+    // join t_resource_child rc on rc.childid=ar.id
+    // join t_resource tr on tr.id=rc.parentid
+    // where
+    // tr.title IN ('Current News | Opportunities ')
+    // AND
+    // ((extract(year from a.enddate) = 2014 AND extract(month from a.enddate) >= 10) OR (extract(year from a.enddate) = 2015))
+    // AND
+    // rc.parentid in (
+    // select childid from t_resource_child where parentid in (
+    // select r.id from t_resource r
+    // join t_resourcetype ty on ty.id = r.resourcetype
+    // where (ty.name = 'Resource Genre')
+    // and (r.title = 'News | Opportunities' or r.title = 'Opportunities and Deadlines')
+    // )
+    // )
+    // group by a.resourceid;
+
     $subquery1 = Database::getConnection('default', 'migration')
       ->select('t_resource', 'r');
     $subquery1->fields('r', array('id'));
@@ -41,12 +64,12 @@ class MNOpportunityMigration extends MNArtistsMigration {
     $query->join('t_resource_child', 'rc', 'rc.childid = ar.id');
     $query->join('t_resource', 'tr', 'tr.id = rc.parentid');
     $query->fields('a');
-    $query->condition('tr.title', array('Old News', 'Old Opportunities and Deadlines'), 'NOT IN');
+    $query->condition('tr.title', 'Current News | Opportunities ', '=');
+    $query->where('((extract(year from a.enddate) = 2014 AND extract(month from a.enddate) >= 10) OR (extract(year from a.enddate) = 2015))');
     $query->condition('rc.parentid', $subquery2, 'IN');
     $query->groupBy('a.resourceid');
     $query->addExpression('array_agg(tr.title)', 'topic');
     $query->addExpression('(array_agg(ar.title))[1]', 'title');
-    // $query->range(0,50);
 
     $this->source = new MigrateSourceSQL($query, array(), NULL, array('map_joinable' => FALSE));
     $this->destination = new MigrateDestinationNode('opportunity');
@@ -70,6 +93,7 @@ class MNOpportunityMigration extends MNArtistsMigration {
          ->separator(',');
 
     // $this->addFieldMapping('op_dates', 'op_dates');
+    $this->addFieldMapping('field_announce_date', 'startdate');
     $this->addFieldMapping('op_dates', 'startdate');
     $this->addFieldMapping('op_dates:to', 'enddate');
     $this->addFieldMapping('op_dates:timezone')
@@ -83,7 +107,7 @@ class MNOpportunityMigration extends MNArtistsMigration {
     // Unmapped destination fields
     $this->addUnmigratedDestinations(array('is_new', 'changed',
       'promote', 'revision', 'language', 'revision_uid', 'log', 'tnid',
-      'comment', 'field_images', 'field_tags', 'op_short_description', 'field_medium'));
+      'comment', 'op_cover_image', 'field_tags', 'op_short_description', 'field_medium'));
     if (module_exists('statistics')) {
       $this->addUnmigratedDestinations(array('totalcount', 'daycount', 'timestamp'));
     }
