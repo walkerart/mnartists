@@ -103,13 +103,31 @@ class MNArticleMigration extends MNArtistsMigration {
 
     $this->addFieldMapping('migrate_redirects', 'old_url');
 
+    // images
+    $this->addFieldMapping('field_images', 'images_uri');
+    $this->addFieldMapping('field_images:alt', 'images_alt');
+    $this->addFieldMapping('field_images:title', 'images_title');
+
+    $this->addFieldMapping('field_images:type')
+         ->defaultValue('form');
+    $this->addFieldMapping('field_images:file_class')
+         ->defaultValue('MigrateFileUri');
+    // We only want the filename and not retaining the old directory structure,
+    // so don't set the 'destination_file'
+    $this->addFieldMapping('field_images:destination_dir')
+         ->defaultValue(variable_get('file_default_scheme', 'public') . '://article/images');
+    $this->addFieldMapping('field_images:file_replace')
+         ->defaultValue(MigrateFile::FILE_EXISTS_REUSE);
+    $this->addFieldMapping('field_images:preserve_files')
+         ->defaultValue(FALSE);
+
     // unmigrated sources
     $this->addUnmigratedSources(array('priorityranking', 'enddate', 'concurrencycol'));
 
     // Unmapped destination fields
     $this->addUnmigratedDestinations(array('is_new', 'changed',
       'promote', 'revision', 'language', 'revision_uid', 'log', 'tnid',
-      'comment', 'field_images', 'field_tags', 'field_medium'));
+      'comment', 'field_tags', 'field_medium'));
     if (module_exists('statistics')) {
       $this->addUnmigratedDestinations(array('totalcount', 'daycount', 'timestamp'));
     }
@@ -124,6 +142,9 @@ class MNArticleMigration extends MNArtistsMigration {
 
     if (isset($row->resourceid)) {
       $row->old_url = 'article.do?rid=' . $row->resourceid;
+
+      // load media
+      $this->get_resource_files($row);
     }
     else {
       return FALSE;
@@ -237,5 +258,76 @@ class MNArticleMigration extends MNArtistsMigration {
     }
 
     return TRUE;
+  }
+
+  public function complete($entity, stdClass $row) {
+    // Save image caption
+    if (isset($row->images_caption)) {
+      $input_format = filter_format_load('filtered_html');
+      $table_name = 'field_image_field_caption';
+      $revision_name = 'field_image_field_caption_revision';
+
+      foreach ($row->images_caption as $delta => $caption) {
+        if (!empty($caption)) {
+          $record = array(
+            'field_name' => 'field_images',
+            'entity_type' => 'node',
+            'bundle' => 'article',
+            'entity_id' => $entity->nid,
+            'revision_id' => $entity->vid,
+            'language' => LANGUAGE_NONE,
+            'delta' => $delta,
+            'caption' => $caption,
+            'caption_format' => $input_format->format,
+          );
+          // dpm($caption);
+          // dpm($record);
+
+          // @TODO: all versions not working, all columns work fine except
+          // the caption and caption_format are inserted as NULL
+          drupal_write_record($table_name, $record);
+          drupal_write_record($revision_name, $record);
+
+          // db_insert($table_name)->fields($record)->execute();
+          // db_insert($revision_name)->fields($record)->execute();
+
+          // db_query("INSERT INTO {$table_name} (field_name, entity_type, bundle, entity_id, revision_id, language, delta, caption, caption_format) VALUES (%s, %s, %s, %d, %d, %s, %d, %s, %s)", 'field_images', 'node', 'article', $entity->nid, $entity->vid, LANGUAGE_NONE, $delta, $caption, $input_format->format);
+          // db_query("INSERT INTO {$revision_name} (field_name, entity_type, bundle, entity_id, revision_id, language, delta, caption, caption_format) VALUES (%s, %s, %s, %d, %d, %s, %d, %s, %s)", 'field_images', 'node', 'article', $entity->nid, $entity->vid, LANGUAGE_NONE, $delta, $caption, $input_format->format);
+        }
+      }
+    }
+  }
+
+  protected function get_resource_files(&$row) {
+    $query = Database::getConnection('default', 'migration')
+      ->select('t_resource_file', 'rf');
+    $query->innerJoin('t_mediafile', 'f', 'rf.fileid = f.id');
+    $query->fields('f');
+    $query->condition('rf.resourceid', $row->resourceid, '=');
+    $files = $query->execute()->fetchAll();
+
+    $row->images_uri = array();
+    $row->images_caption = array();
+    $row->images_alt = array();
+    $row->images_title = array();
+    // $row->images_preserve_files = array();
+    // $row->images_file_replace = array();
+
+    $allowed = array('jpg', 'jpeg', 'png', 'gif');
+
+    if (!empty($files)) {
+      foreach ($files as $key => $value) {
+        $ext = substr(strrchr($value->filename, '.'), 1);
+        if (in_array($ext, $allowed)) {
+          $path = (strrpos($value->filepath, '/') === strlen($value->filepath) - 1) ? $value->filepath : $value->filepath . '/';
+          $row->images_uri[] = 'http://mnartists.org' . $path . $value->filename;
+          $row->images_caption[] = trim(strip_tags($value->description));
+          $row->images_alt[] = trim(strip_tags($value->title));
+          $row->images_title[] = trim(strip_tags($value->title));
+          // $row->images_preserve_files[] = FALSE;
+          // $row->images_file_replace[] = MigrateFile::FILE_EXISTS_REUSE;
+        }
+      }
+    }
   }
 }
