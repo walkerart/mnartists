@@ -26,14 +26,14 @@ class activity_views_handler_argument_activity_user extends views_handler_argume
     );
   }
 
-  function options_validate($form, &$form_state) {
+  function options_validate(&$form, &$form_state) {
     $form_state['values']['realms'] = array_filter($form_state['values']['realms']);
   }
 
   /**
    * Extract the value and enforce the realms restrictions.
    */
-  function query() {
+  function query($group_by = false) {
     $table = $this->ensure_my_table();
     if (!empty($this->options['break_phrase'])) {
       views_break_phrase($this->argument, $this);
