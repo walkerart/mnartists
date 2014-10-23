@@ -280,19 +280,33 @@ class MNArticleMigration extends MNArtistsMigration {
             'caption' => $caption,
             'caption_format' => $input_format->format,
           );
-          // dpm($caption);
-          // dpm($record);
+          $primary_keys = array(
+            'field_name' => 'field_images',
+            'entity_type' => 'node',
+            'entity_id' => $entity->nid,
+            'language' => LANGUAGE_NONE,
+            'delta' => $delta,
+          );
 
-          // @TODO: all versions not working, all columns work fine except
-          // the caption and caption_format are inserted as NULL
+          // Delete and insert, rather than update, existing value exist with NULL.
+          db_delete($table_name)
+            ->condition('field_name', 'field_images')
+            ->condition('entity_type', 'node')
+            ->condition('entity_id', $entity->nid)
+            ->condition('delta', $delta)
+            ->condition('language', LANGUAGE_NONE, '=')
+            ->execute();
+          db_delete($revision_name)
+            ->condition('field_name', 'field_images')
+            ->condition('entity_type', 'node')
+            ->condition('entity_id', $entity->nid)
+            ->condition('revision_id', $entity->vid)
+            ->condition('delta', $delta)
+            ->condition('language', LANGUAGE_NONE, '=')
+            ->execute();
+
           drupal_write_record($table_name, $record);
           drupal_write_record($revision_name, $record);
-
-          // db_insert($table_name)->fields($record)->execute();
-          // db_insert($revision_name)->fields($record)->execute();
-
-          // db_query("INSERT INTO {$table_name} (field_name, entity_type, bundle, entity_id, revision_id, language, delta, caption, caption_format) VALUES (%s, %s, %s, %d, %d, %s, %d, %s, %s)", 'field_images', 'node', 'article', $entity->nid, $entity->vid, LANGUAGE_NONE, $delta, $caption, $input_format->format);
-          // db_query("INSERT INTO {$revision_name} (field_name, entity_type, bundle, entity_id, revision_id, language, delta, caption, caption_format) VALUES (%s, %s, %s, %d, %d, %s, %d, %s, %s)", 'field_images', 'node', 'article', $entity->nid, $entity->vid, LANGUAGE_NONE, $delta, $caption, $input_format->format);
         }
       }
     }
