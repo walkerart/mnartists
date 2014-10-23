@@ -92,12 +92,8 @@ class MNOpportunityMigration extends MNArtistsMigration {
     $this->addFieldMapping('og_group_ref', 'community_cat')
          ->separator(',');
 
-    // $this->addFieldMapping('op_dates', 'op_dates');
     $this->addFieldMapping('field_announce_date', 'startdate');
-    $this->addFieldMapping('op_dates', 'startdate');
-    $this->addFieldMapping('op_dates:to', 'enddate');
-    $this->addFieldMapping('op_dates:timezone')
-      ->defaultValue('America/Chicago');
+    $this->addFieldMapping('op_dates', 'op_dates');
 
     $this->addFieldMapping('migrate_redirects', 'old_url');
 
@@ -129,13 +125,21 @@ class MNOpportunityMigration extends MNArtistsMigration {
 
     if (isset($row->startdate)) {
       $row->created = strtotime($row->startdate);
-      $row->startdate = date('Y-m-d H:i:s', $row->created);
     }
     if (isset($row->enddate)) {
-      $row->enddate = date('Y-m-d H:i:s', strtotime($row->enddate));
+      $date_data = array(
+        'from' => $row->startdate,
+        'to' => $row->enddate,
+        // 'from' => date('Y-m-d H:i', strtotime($row->startdate)),
+        // 'to' => date('Y-m-d H:i', strtotime($row->enddate)),
+      );
+      $row->op_dates = drupal_json_encode($date_data);
+    }
+    else {
+      // can't import item without enddate
+      return FALSE;
     }
 
-    // dpm("$row->resourceid: $row->startdate - $row->enddate");
     if (isset($row->subhead)) {
       $row->subhead = trim(strip_tags($row->subhead));
     }
@@ -226,8 +230,8 @@ class MNOpportunityMigration extends MNArtistsMigration {
         }
 
         // hardcoded category match
-        if (isset($category[$op]) && empty($row->field_article_category)) {
-          $row->field_article_category = $category[$op];
+        if (isset($category[$op]) && empty($row->field_op_type)) {
+          $row->field_op_type = $category[$op];
         }
 
         // community OG match
