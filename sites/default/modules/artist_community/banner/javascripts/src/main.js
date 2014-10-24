@@ -37,7 +37,10 @@
 
     var showTagline = function(currentTagline) {
         if (index < currentTagline.length) {
-            $(taglinesContainer).append(currentTagline[index++]);
+            index++;
+            var type = currentTagline.substring(0, index);
+            $(taglinesContainer).text(type);
+
             setTimeout(function() {
                 showTagline(currentTagline);
             }, 20);
