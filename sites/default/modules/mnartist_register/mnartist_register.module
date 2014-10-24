@@ -530,7 +530,7 @@ function _mnartist_register_get_user_data($email, $password) {
 function _mnartist_register_getChildResources($parentId) {
     $dbh = ConnectionFactory::getFactory()->getConnection();
 
-    $stmt = $dbh->prepare("SELECT r.* FROM t_resource INNER JOIN t_resource_child rc ON r.id = rc.childid WHERE rc.parentid = :resourceId");
+    $stmt = $dbh->prepare("SELECT r.* FROM t_resource r INNER JOIN t_resource_child rc ON r.id = rc.childid WHERE rc.parentid = :resourceId");
     $stmt->bindParam(":resourceId", $parentId);
     $stmt->execute();
 
@@ -597,7 +597,7 @@ function _mnartist_register_import_work($work) {
         }
     }
 
-    // node_save($node);
+    node_save($node);
 }
 
 function _mnartist_register_get_legacy_account($email) {
