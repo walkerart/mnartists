@@ -1,0 +1,188 @@
+<?php
+
+/**
+ * Implements hook_boot().
+ */
+function prefinery_boot() {
+  global $user;
+
+  // Skip if called from drush
+  if (function_exists('drush_main')) {
+    return;
+  }
+
+  // Did the user send credentials
+  if (isset($_POST['form_id']) && $_POST['form_id'] == 'prefinery_user_login_form') {
+
+    drupal_bootstrap(DRUPAL_BOOTSTRAP_FULL);
+    $edit = array('mail' => $_POST['mail'], 'code' => $_POST['code']);
+
+	  // Are credentials different from current user?
+	  if (!isset($user->mail) || $edit['mail'] !== $user->mail) {
+	    _prefinery_auth($edit);
+	  }
+  }
+  // If credentials are missing and user is not logged in, request new credentials.
+  elseif (empty($user->uid) && !isset($_SESSION['prefinery_login'])) {
+    drupal_bootstrap(DRUPAL_BOOTSTRAP_FULL);
+    _prefinery_dialog();
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function prefinery_theme() {
+  return array(
+    'prefinery_page' => array(
+      'template' => 'prefinery-page',
+      'variables' => array(
+        'content' => NULL,
+      ),
+      'file' => 'prefinery.theme.inc',
+      'path' => drupal_get_path('module', 'prefinery') . '/theme',
+    ),
+    'prefinery_user_login_form' => array(
+      'template' => 'prefinery-user-login',
+      'render element' => 'form',
+      'file' => 'prefinery.theme.inc',
+      'path' => drupal_get_path('module', 'prefinery') . '/theme',
+    ),
+  );
+}
+
+/**
+ * Perform Prefinery beta code checking.
+ */
+function prefinery_check_code($code, $mail) {
+  $decode_key = variable_get('prefinery_decode_key', '');
+  // email must be all lowercase
+  $full_string = $decode_key . drupal_strtolower($mail);
+
+  $validation = sha1($full_string);
+
+  if (variable_get('prefinery_short_codes', FALSE)) {
+    $validation = substr($validation, 0, 10);
+  }
+  if ($code === $validation) {
+    return TRUE;
+  }
+
+	return FALSE;
+}
+
+/**
+ * Perform authentication.
+ */
+function _prefinery_auth($edit) {
+  // Beta code is correct, let user in.
+  if (prefinery_check_code($edit['code'], $edit['mail'])) {
+    $users = user_load_multiple(array(), array('mail' => $edit['mail'], 'status' => 1));
+    $account = reset($users);
+
+    if (empty($account->uid)) {
+      // Not a registered user.
+      // Mark the session so Prefinery will be triggered on log-out.
+      $_SESSION['prefinery_login'] = TRUE;
+      drupal_goto('user/register');
+    }
+    else {
+      _prefinery_user_login($edit, $account);
+    }
+  }
+  else {
+    // Request credentials.
+    watchdog('prefinery', 'Wrong beta code for %user (code: %code).', array('%user' => $edit['mail'], '%code' => $edit['code']));
+    drupal_set_message(t('Unrecognized email and/or beta invite code.'), 'error');
+    _prefinery_dialog();
+  }
+}
+
+/**
+ * Log in authenticated user.
+ */
+function _prefinery_user_login($edit, $account) {
+  global $user;
+  $user = $account;
+  user_login_finalize($edit);
+
+  // Mark the session so Prefinery will be triggered on log-out.
+  $_SESSION['prefinery_login'] = TRUE;
+
+  // Unset messages from previous log-in attempts.
+  unset($_SESSION['messages']);
+
+  // Prevent a log-in/log-out loop by redirecting off the log-out page.
+  if ($_GET['q'] == 'user/logout') {
+    drupal_goto();
+  }
+}
+
+
+/**
+ * Display authentication dialog and send password reset mails.
+ *
+ * @param $type
+ *   The type of authentication dialog to display.
+ */
+function _prefinery_dialog() {
+  global $base_path, $language;
+
+  drupal_add_http_header('Status', '200 OK');
+
+  // Form authentication doesn't work for cron, so allow cron.php to run
+  // without authenticating when no other authentication type is enabled.
+  if (request_uri() != $base_path . 'cron.php') {
+    drupal_set_title(t('Beta invite code required'));
+    $content = _prefinery_dialog_page();
+  }
+
+  if (isset($content)) {
+    // Theme and display output
+    print theme('prefinery_page', array('content' => $content));
+
+    // Exit page
+    module_invoke_all('exit');
+    exit();
+  }
+}
+
+/**
+ * Display HTTP authentication page.
+ */
+function _prefinery_dialog_page() {
+  $user_login = drupal_get_form('prefinery_user_login_form');
+  $output = render($user_login);
+
+  return $output;
+}
+
+/**
+ * We use our own version of the log-in form for theming.
+ *
+ * @see user_login()
+ */
+function prefinery_user_login_form($form, &$form_state) {
+  $form['mail'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Email'),
+    '#maxlength' => EMAIL_MAX_LENGTH,
+    '#size' => 40,
+  );
+  $form['code'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Invite code'),
+    '#maxlength' => 60,
+    '#size' => 40,
+  );
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Log in'),
+    '#weight' => 2,
+  );
+
+  // drupal_alter takes this variable by reference so can't be a literal.
+  $form_id = 'user_login';
+  drupal_alter('form', $form, $form_state, $form_id);
+  return $form;
+}
