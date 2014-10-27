@@ -1,16 +1,16 @@
 <?php
-      drupal_add_css(drupal_get_path('module', 'mn_ap') . '/css/bootstrap.min.css');
-      drupal_add_css(drupal_get_path('module', 'mn_ap') . '/css/star-rating.css');
-      drupal_add_css(drupal_get_path('module', 'mn_ap') . '/css/ekko-lightbox.min.css');
-      drupal_add_css(drupal_get_path('module', 'mn_ap') . '/css/dark.css');
-      drupal_add_css(drupal_get_path('module', 'mn_ap') . '/css/styles.css');
+    drupal_add_css(drupal_get_path('module', 'mn_ap') . '/css/bootstrap.min.css');
+    drupal_add_css(drupal_get_path('module', 'mn_ap') . '/css/star-rating.css');
+    drupal_add_css(drupal_get_path('module', 'mn_ap') . '/css/ekko-lightbox.min.css');
+    drupal_add_css(drupal_get_path('module', 'mn_ap') . '/css/dark.css');
+    drupal_add_css(drupal_get_path('module', 'mn_ap') . '/css/styles.css');
 
-      drupal_add_js(drupal_get_path('module', 'mn_ap') . '/js/bootstrap.min.js');
-      drupal_add_js(drupal_get_path('module', 'mn_ap') . '/js/star-rating.js');
-      drupal_add_js(drupal_get_path('module', 'mn_ap') . '/js/ekko-lightbox.min.js');
-      drupal_add_js(drupal_get_path('module', 'mn_ap') . '/js/reviewScript.js');
-
-//dpm($rows); ?>
+    drupal_add_js(drupal_get_path('module', 'mn_ap') . '/js/bootstrap.min.js');
+    drupal_add_js(drupal_get_path('module', 'mn_ap') . '/js/star-rating.js');
+    drupal_add_js(drupal_get_path('module', 'mn_ap') . '/js/ekko-lightbox.min.js');
+    drupal_add_js(drupal_get_path('module', 'mn_ap') . '/js/reviewScript.js');
+    //dpm($rows);
+?>
 
 <div class="container">
     <div class="row">
@@ -82,12 +82,14 @@
                     <hr>
                     <h1 class="clearPadding">Previous Reviews</h1>
                     <?php foreach ($rows['previous_reviews'] as $previous_reviews) : ?>
-                        <hr>
-                        <h3 class="clearPadding clearMargin">Round <?php echo $previous_reviews['round']; ?></h3>
-                        <p>Average Rating: <?php echo $previous_reviews['avgRating']; ?></p>
-                        <?php foreach($previous_reviews['reviews'] as $review) : ?>
-                            <p><?php echo 'Juror: ' . $review->r_uid . '<br>Rating: ' . $review->rating . '<br>Comment: ' . $review->comment; ?></p>
-                        <?php endforeach; ?>
+                        <?php if(isset($previous_reviews['reviews'])) : ?>
+                            <hr>
+                            <h3 class="clearPadding clearMargin">Round <?php echo $previous_reviews['round']; ?></h3>
+                            <p>Average Rating: <?php echo $previous_reviews['avgRating']; ?></p>
+                            <?php foreach($previous_reviews['reviews'] as $review) : ?>
+                                <p><?php echo 'Juror: ' . $review->r_uid . '<br>Rating: ' . $review->rating . '<br>Comment: ' . $review->comment; ?></p>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
                     <?php endforeach; ?>
                 <?php endif; ?>
             </div>
@@ -133,7 +135,7 @@
                 <p><?php echo $rows['reviews']['bio']; ?></p>
             <?php endif; ?>
             <?php if (in_array("resume", $rows['areas'])) : ?>
-                <a href="<?php echo url('user/' . $rows['reviews']['uid'] . '/resume/download'); ?>" class="btn ap-btn" target="_blank">View Resume</a>
+                <a href="<?php echo url('opportunity/' . $rows['reviews']['nid'] . '/submission/' . $rows['reviews']['uid'] .'/resume'); ?>" class="btn ap-btn" target="_blank">View Resume</a>
             <?php endif; ?>
         </div>
     </div>

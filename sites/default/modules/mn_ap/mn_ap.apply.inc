@@ -149,6 +149,7 @@ function mn_ap_opportunity_data($nid) {
 				'required' => $required_list, //isset($row['field_op_required']['und']) ? $row['field_op_required']['und'] : '',
 				'optional' => isset($row['field_op_optional']['und']) ? $row['field_op_optional']['und'] : '',
 				'proposal_desc' => isset($row['field_op_proposal_desc']['und']['0']['safe_value']) ? $row['field_op_proposal_desc']['und']['0']['safe_value'] : '',
+				'statement_length' => isset($row['field_op_statement_length']['und']['0']['value']) ? $row['field_op_statement_length']['und']['0']['value'] : '',
 				'statement_desc' => isset($row['field_op_statement_desc']['und']['0']['safe_value']) ? $row['field_op_statement_desc']['und']['0']['safe_value'] : '',
 				'bio_desc' => isset($row['field_op_bio_desc']['und']['0']['safe_value']) ? $row['field_op_bio_desc']['und']['0']['safe_value'] : '',
 				'resume_desc' => isset($row['field_op_resume_desc']['und']['0']['safe_value']) ? $row['field_op_resume_desc']['und']['0']['safe_value'] : '',
@@ -362,19 +363,3 @@ function mn_ap_get_fullname($fullname_id) {
     return $name;
 }
 
-/**
-* Fetch Data from Profile2 Module fields for the user
-* http://drupalcontrib.org/api/drupal/contributions%21profile2%21contrib%21profile2_page.module/function/profile2_by_uid_load/7
-*/
-function _profile2_by_uid_load($uid, $type_name) {
-  if ($uid && is_numeric($uid) && ($account = user_load($uid))) {
-    $profile = profile2_load_by_user($account, $type_name);
-    if (!$profile) {
-      $profile = profile2_create(array('type' => $type_name));
-      $profile->setUser($account);
-      $profile->is_new = TRUE;
-    }
-    return $profile;
-  }
-  return FALSE;
-}

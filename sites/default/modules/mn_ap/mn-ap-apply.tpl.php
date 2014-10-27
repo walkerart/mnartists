@@ -13,7 +13,7 @@
             window.CKEDITOR_BASEPATH = "/sites/all/libraries/ckeditor";
             }); })(jQuery);', 'inline' );
         drupal_add_js(drupal_get_path('module', 'mn_ap') . '/js/scripts2.js');
-        dpm($rows); ?>
+        //dpm($rows); ?>
 <div class="container" id="content">
     <div class="row">
         <div class="col-md-12">
@@ -180,7 +180,12 @@
                             </div>
                             <?php if (in_array('statement', $rows['opportunity']['areas'])) : ?>
                             <div class="form-group">
-                                <label for="statement">Statement <?php if(is_array($rows['opportunity']['required']) && in_array('statement', $rows['opportunity']['required'])) echo '*'; ?> <div class="small"><?php echo $rows['opportunity']['statement_desc']; ?></div></label>
+                                <label for="statement">Statement <?php if(is_array($rows['opportunity']['required']) && in_array('statement', $rows['opportunity']['required'])) echo '*'; ?> 
+                                    <?php if ($rows['opportunity']['statement_length'] != '') : ?>
+                                        <div class="small">Maximum <?php echo $rows['opportunity']['statement_length']; ?> Words.</div>
+                                    <?php endif; ?>
+                                    <div class="small"><?php echo $rows['opportunity']['statement_desc']; ?></div>
+                                </label>
                                 <div class="form-textarea-wrapper">
                                     <textarea class="form-control ap-textarea" id="statementEditor" name="statementEditor"><?php echo $rows['resume_statement']; ?></textarea>
                                 </div>
@@ -189,7 +194,9 @@
 
                             <?php if (in_array('proposal', $rows['opportunity']['areas'])) : ?>
                             <div class="form-group">
-                                <label for="proposal">Proposal<?php if(is_array($rows['opportunity']['required']) && in_array('proposal', $rows['opportunity']['required'])) echo '*'; ?><div class="small"><?php echo $rows['opportunity']['proposal_desc']; ?></div></label>
+                                <label for="proposal">Proposal<?php if(is_array($rows['opportunity']['required']) && in_array('proposal', $rows['opportunity']['required'])) echo '*'; ?>
+                                    <div class="small"><?php echo $rows['opportunity']['proposal_desc']; ?></div>
+                                </label>
                                 <input class="hidden" id="proposalHide" name="proposalHide" value="">
                                 <div class="form-textarea-wrapper">
                                     <textarea class="form-control ap-textarea" id="proposalEditor" name="proposalEditor"><?php echo $rows['proposal']; ?></textarea>
@@ -230,6 +237,7 @@
                             <?php endif; ?>
                             <?php if (in_array('resume', $rows['opportunity']['areas'])) : ?>
                             <a class="ap-button" href="<?php echo url('user/' . $rows['uid'] . '/edit/resume', array()); ?>" target="_blank">Edit Resume</a>
+                            <input type="hidden" name="resumeMarkup" value="">
                             <div id="resumeContent">
                                 <?php echo $rows['resume']['content']['#markup']; ?>
                             </div>
@@ -945,6 +953,7 @@ if (in_array('field4', $rows['opportunity']['areas'])) {
   }); })(jQuery);', 'inline' );
 }
 drupal_add_js(array('areas' => $rows['opportunity']['areas']), 'setting');
+drupal_add_js(array('statement_length' => $rows['opportunity']['statement_length']), 'setting');
 drupal_add_js(array('required' => $rows['opportunity']['required']), 'setting');
 drupal_add_js(array('steps' =>  $rows['opportunity']['steps']), 'setting');
 drupal_add_js(array('titles' =>  $rows['opportunity']['step_titles']), 'setting');
