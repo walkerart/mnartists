@@ -62,7 +62,7 @@
                                         }
                                     ?>
 
-                                    (<?= $start_date_string ?> &ndash; <?= $end_date_string ?>)
+                                    (<?= $start_date_string ?> - <?= $end_date_string ?>)
                                 <?php }
                             }
                         ?>
@@ -125,7 +125,7 @@
                                     $end_date_string = implode('/', $end_date_string_arr);
                                 }
                             ?>
-                                (<?= $start_date_string ?> &ndash; <?= $end_date_string ?>)
+                                (<?= $start_date_string ?> - <?= $end_date_string ?>)
                         <?php } ?>
                         <?php if (!empty($resume_data['field_position']['item'])) { ?>
                             <br /><?=$field['field_position']['item'][0]['value']?>
@@ -183,7 +183,7 @@
                                             $end_date_string = implode('/', $end_date_string_arr);
                                         }
                                     ?>
-                                        (<?= $start_date_string ?> &ndash; <?= $end_date_string ?>)
+                                        (<?= $start_date_string ?> - <?= $end_date_string ?>)
                                 <?php } ?>
                         <?php } ?>
                         <?php if(!empty($field['field_position']['item'])) { ?>
@@ -418,7 +418,7 @@
                                                 $end_date_string = implode('/', $end_date_string_arr);
                                             }
                                         ?>
-                                            (<?= $start_date_string ?> &ndash; <?= $end_date_string ?>)
+                                            (<?= $start_date_string ?> - <?= $end_date_string ?>)
                                     <?php } ?>
                             <?php } ?>
                         </div>

@@ -54,7 +54,7 @@
                 <p><?php echo $rows['application']['bio']; ?></p>
             <?php endif; ?>
             <?php if (in_array("resume", $rows['areas'])) : ?>
-                <a href="<?php echo url('user/' . $rows['application']['uid'] . '/resume/download'); ?>" class="btn btn-default ap-btn" target="_blank">View Resume</a>
+                <a href="<?php echo url('application/' . $rows['application']['nid'] . '/resume'); ?>" class="btn btn-default ap-btn" target="_blank">View Resume</a>
             <?php endif; ?>
         </div>
     </div>
