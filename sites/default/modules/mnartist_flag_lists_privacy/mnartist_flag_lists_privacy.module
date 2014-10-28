@@ -10,8 +10,7 @@
 // I guess we'll have to alter the form to get the public/private
 // switch into it?
 function mnartist_flag_lists_privacy_form_alter(&$form, &$form_state, $form_id) {
-    if ($form_id === 'flag_lists_form') {
-
+    if ($form_id == 'flag_lists_form') {
         // @TODO better way to get fid?
         $fid = arg(3);
 
@@ -35,18 +34,15 @@ function mnartist_flag_lists_privacy_form_alter(&$form, &$form_state, $form_id) 
 }
 
 function mnartist_flag_lists_privacy_form_submit(&$form, &$form_state) {
-    if ($form['#form_id'] === 'flag_lists_form') {
-
-        // @TODO check for completion? try/catch?
-        if (!empty($form_state['values']['edit'])) {
-            // Editing the title.
-            $flag = flag_lists_get_flag($form_state['values']['name']);
-            $fid = $flag->fid;
-            $query = db_merge('mnartist_flag_lists_privacy')
-                        ->key(array('fid' => $fid))
-                        ->fields(array('private' => $form_state['values']['collection_privacy']))
-                        ->execute();
-        }
+    // @TODO check for completion? try/catch?
+    if (!empty($form_state['values']['edit'])) {
+        // Editing the title.
+        $flag = flag_lists_get_flag($form_state['values']['name']);
+        $fid = $flag->fid;
+        $query = db_merge('mnartist_flag_lists_privacy')
+                    ->key(array('fid' => $fid))
+                    ->fields(array('private' => $form_state['values']['collection_privacy']))
+                    ->execute();
     }
 }
 
