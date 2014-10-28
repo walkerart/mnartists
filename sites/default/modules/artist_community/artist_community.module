@@ -355,7 +355,7 @@ function _community_block_content() {
 function artist_community_form_user_profile_form_alter(&$form, &$form_state) {
     // Hide featured artists from non admins
     if (!user_access('administer users')) {
-        unset($form['field_featured_artist']);
+        $form['field_featured_artist']['#access'] = FALSE;
     }
 }
 
