@@ -15,14 +15,13 @@ function events_calendar_form_alter(&$form, $form_state, $form_id) {
 
         //hide the community og group field since it gets populated by the user select community field
         if (isset($form['og_group_ref'])) {
-            $form['og_group_ref']['#type'] = 'hidden';
+            $form['og_group_ref']['#access'] = FALSE;
         }
     }
 }
 
 function events_calendar_node_presave($node) {
     global $user;
-    $user = user_load($user->uid);
     $values = array('entity' => $user);
 
     // if incoming node is an event...
