@@ -363,32 +363,32 @@ function artist_community_form_user_profile_form_alter(&$form, &$form_state) {
  * Implements hook_form_FORM_alter()
  */
 function artist_community_form_alter(&$form, &$form_state, $form_id) {
+    switch($form_id) {
+        case 'artwork_node_form':
+        case 'article_node_form':
+            // Find the communities associated with each term
+            $query = db_select('node', 'n');
+            $query->leftJoin('field_data_field_medium', 'm', 'n.nid = m.entity_id');
+            $result = $query->fields('n', array('nid', 'title'))
+                ->fields('m')
+                ->condition('type', 'community')
+                ->orderBy('title')
+                ->execute();
 
-    if (in_array($form_id, array('artwork-node-form', 'article-node-form'))) {
-
-        // Find the communities associated with each term
-        $query = db_select('node', 'n');
-        $query->leftJoin('field_data_field_medium', 'm', 'n.nid = m.entity_id');
-        $result = $query->fields('n', array('nid', 'title'))
-            ->fields('m')
-            ->condition('type', 'community')
-            ->orderBy('title')
-            ->execute();
-
-        // Build a nested array to provide grouped select options
-        while ($row = $result->fetchAssoc()) {
-           $rows[$row['title']][$row['field_medium_tid']] = $form['field_medium'][LANGUAGE_NONE]['#options'][$row['field_medium_tid']];
-        }
-        $form['field_medium'][LANGUAGE_NONE]['#options'] = $rows;
-        unset($form['og_group_ref']);
-        $form['#submit'][] = 'artist_community_artwork_or_article_form_submit';
+            // Build a nested array to provide grouped select options
+            while ($row = $result->fetchAssoc()) {
+               $rows[$row['title']][$row['field_medium_tid']] = $form['field_medium'][LANGUAGE_NONE]['#options'][$row['field_medium_tid']];
+            }
+            $form['field_medium'][LANGUAGE_NONE]['#options'] = $rows;
+            $form['og_group_ref']['#access'] = FALSE;
+            $form['#submit'][] = 'artist_community_artwork_or_article_form_submit';
+            break;
     }
 
 }
 
 function artist_community_artwork_or_article_form_submit(&$form, &$form_state) {
     global $user;
-    $user = user_load($user->uid);
     $values = array('entity' => $user);
 
     foreach($form_state['values']['field_medium']['und'] as $field) {
