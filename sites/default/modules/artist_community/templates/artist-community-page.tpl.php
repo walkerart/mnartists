@@ -162,7 +162,7 @@
                         <a href="/node/add/event">Create an event</a>
                     </div>
                 </div>
-
+                <?php if ($highlighted_event !== null) : ?>
                 <div class="widget-standard widget highlighted-event-thing">
                     <h3><?php $highlighted_event->date->format('F'); ?> Highlight</h3>
                     <div class="widget-content">
@@ -177,6 +177,7 @@
                         <div class="event-excerpt"><?= $highlighted_event->body ?></div>
                     </div>
                 </div>
+                <?php endif; ?>
             <?php endif; ?>
 
             <?php if (!empty($event_widget_items)) { ?>
