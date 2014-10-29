@@ -29,13 +29,13 @@ function mnartist_register_menu() {
         'type' => MENU_NORMAL_ITEM,
     );
 
-    $items['admin/settings/mnartist_migrate'] = array(
-        'title' => 'MNArtist Migration',
-        'description' => 'Manage migration',
-        'page callback' => 'mnartist_register_migrate_content',
-        'access arguments' => array('administer settings'),
-        'type' => MENU_NORMAL_ITEM,
-    );
+    // $items['admin/settings/mnartist_migrate'] = array(
+    //     'title' => 'MNArtist Migration',
+    //     'description' => 'Manage migration',
+    //     'page callback' => 'mnartist_register_migrate_content',
+    //     'access arguments' => array('administer settings'),
+    //     'type' => MENU_NORMAL_ITEM,
+    // );
 
     return $items;
 
@@ -182,6 +182,7 @@ function mnartist_register_user_form_submit($form, &$form_state) {
             array('_mnartist_register_batch_handler', array('loadMainProfile', array())),
             array('_mnartist_register_batch_handler', array('loadResume', array())),
             array('_mnartist_register_batch_handler', array('loadWorks', array())),
+            array('_mnartist_register_batch_handler', array('linkArticle', array())),
         ),
         'finished' => '_mnartist_register_batch_finished',
         'title' => t('MNArtists Account Import'),
@@ -227,6 +228,10 @@ function _mnartist_register_batch_handler($action, $data, &$context) {
                 $context['sandbox']['progress']++;
                 $context['finished'] = $context['sandbox']['progress'] / $context['sandbox']['max'];
             }
+            break;
+        case 'linkArticle':
+            _mnartist_register_link_article($context['results']['legacyData']);
+            $context['finished'] = 1;
             break;
     }
 }
@@ -632,6 +637,71 @@ function _mnartist_register_check_for_legacy_account($email) {
     return false;
 }
 
+function _mnartist_register_link_article($legacyData) {
+    global $user;
+
+    // migrated user fullname to use for matching article author
+    $fullname = $legacyData['firstname'] . ' ' . $legacyData['lastname'];
+
+    // this can ONLY run after articles are migrated
+    $subquery1 = Database::getConnection('default', 'migration')
+      ->select('t_resource', 'r');
+    $subquery1->fields('r', array('id'));
+    $subquery1->join('t_resourcetype', 'ty', 'ty.id = r.resourcetype');
+    $subquery1->condition('ty.name', 'Resource Genre', '=');
+    $subquery1->condition('r.title', array('Articles', 'Articles by Discipline'), 'IN');
+
+    $subquery2 = Database::getConnection('default', 'migration')
+      ->select('t_resource_child', 'rc');
+    $subquery2->fields('rc', array('childid'));
+    $subquery2->condition('rc.parentid', $subquery1, 'IN');
+
+    $query = Database::getConnection('default', 'migration')
+      ->select('t_article', 'a');
+    $query->join('t_resource', 'ar', 'ar.id = a.resourceid');
+    $query->join('t_resource_child', 'rc', 'rc.childid = ar.id');
+    $query->join('t_resource', 'tr', 'tr.id = rc.parentid');
+    $query->join('t_author', 'ta', 'ta.owner = a.resourceid');
+    $query->fields('a');
+    $query->fields('ta', array('authorname'));
+    $query->condition('rc.parentid', $subquery2, 'IN');
+    $query->condition('ta.authorname', $fullname, '=');
+    $query->groupBy('a.resourceid');
+    $query->groupBy('ta.authorname');
+    $query->addExpression('(array_agg(ar.title))[1]', 'title');
+
+    $result = $query->execute();
+    $src_ids = array();
+
+    while ($record = $result->fetchAssoc()) {
+        $src_ids[] = $record['resourceid'];
+    }
+
+    // getting the migrated node mapping
+    $query = Database::getConnection('default', 'migration')
+      ->select('migrate_map_mnarticle', 'm');
+    $query->fields('m', array('destid1'));
+    $query->condition('m.sourceid1', $src_ids, 'IN');
+    $result = $query->execute();
+
+    $nids = array();
+    while ($record = $result->fetchAssoc()) {
+        $nids[] = $record['destid1'];
+    }
+
+    // update article node author to migrated user
+    $mn_uid = '492';
+    $links = array();
+    $nodes = node_load_multiple($nids);
+
+    foreach($nodes as $node) {
+        if ($node->uid == $mn_uid) {
+            $node->uid = $user->uid;
+            node_save($node);
+        }
+    }
+}
+
 class ConnectionFactory
 {
     private static $factory;
@@ -652,12 +722,15 @@ class ConnectionFactory
             $dbName = variable_get('mnartist_postgres_db', 'mna_prod');
 
             $this->db = new PDO('pgsql:user=' . $username . ' dbname=' . $dbName . ' password=' . $password);
+            // O8
+            // $this->db = new PDO('pgsql:user=' . $username . ' dbname=' . $dbName . ' password=' . $password . ' host=127.0.0.1');
             $this->db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
         }
         return $this->db;
     }
 }
 
+/*
 function mnartist_register_migrate_content() {
     _mnartist_register_get_article_data();
 
@@ -771,5 +844,4 @@ function _mnartist_register_get_article_data() {
 
     // return $userData;
 }
-
-?>
+*/
