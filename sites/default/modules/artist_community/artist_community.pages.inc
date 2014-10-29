@@ -142,11 +142,13 @@ function artist_community_search_page() {
         }
 
         // as above, but with events
-        $start_date = new DateTime();
+        $start_date = date('Y-m-d\TH:i:s\Z', time());
         $end_date = date('Y-m-d\TH:i:s\Z', strtotime("+7 days"));
         $event_filters = array();
         $event_filter = new SearchApiQueryFilter;
         $event_filter->condition('type', 'event');
+        $event_filter->condition("field_date:value", $start_date, ">");
+        $event_filter->condition("field_date:value2", $end_date, "<");
         $event_filters[] = $event_filter;
         if ($local_og !== null) {
             $event_filters = array_merge($event_filters, $filters);
@@ -159,7 +161,7 @@ function artist_community_search_page() {
         if (!is_null($local_og)) {
             $from_the_network_filters = array_merge($from_the_network_filters, $filters);
         }
-        $from_the_network_result = artist_community_execute_query(NODE_INDEX, $from_the_network_filters, array(array('promote', 'ASC'), array('changed', 'ASC')));
+        $from_the_network_result = artist_community_execute_query(NODE_INDEX, $from_the_network_filters, array(array('promote', 'DESC'), array('changed', 'DESC')));
         $from_the_network_i = 0;
         foreach ($from_the_network_result as $index => $post) {
             if ($from_the_network_i >= $from_the_network_limit) {
@@ -178,7 +180,7 @@ function artist_community_search_page() {
             $from_the_network_i++;
         }
 
-        $events = artist_community_execute_query(NODE_INDEX, $event_filters, array(array('promote', 'ASC'), array('field_date:value', 'DESC')), 3);
+        $events = artist_community_execute_query(NODE_INDEX, $event_filters, array(array('promote', 'DESC'), array('field_date:value', 'ASC')), 3);
         if (!empty($events)) {
             $events_data['others'] = array();
             foreach ($events as $index => $event) {
@@ -238,6 +240,9 @@ function artist_community_search_page() {
         isset($_GET['content']['event'])) {
 
         $filtered_by_events_only = true;
+        $highlighted_event_node_id = null;
+        $highlighted_event_node_date = null;
+        $now = new DateTime();
         foreach ($all_community_results['results'] as $index => $row) {
             // date should always be set as it's a required field,
             // but putting this here to prevent a breakdown if that
@@ -251,19 +256,26 @@ function artist_community_search_page() {
                 } else {
                     $all_event_results[$date_key_string] = array($row);
                 }
+
+                if ($row['item']->promote && $now < $date_key && ($date_key < $highlighted_event_node_date || $highlighted_event_node_date == null)) {
+                    $highlighted_event_node_id = $row['item']->nid;
+                    $highlighted_event_node_date = $date_key;
+                }
             }
         }
 
-        $highlighted_event_node = node_load(6726);// @TODO get real node based on criteria specified by mn
-        $highlighted_event_node_venue = node_load($highlighted_event_node->field_venue['und'][0]['target_id']);
-        $highlighted_event = new StdClass;
-        $highlighted_event->nid = $highlighted_event_node->nid;
-        $highlighted_event->title = $highlighted_event_node->title;
-        $highlighted_event->body = (isset($highlighted_event_node->body['und'])) ? text_summary($highlighted_event_node->body['und'][0]['value'], NULL, 800) : null;
-        $highlighted_event->uri = "/node/{$highlighted_event_node->nid}";
-        $highlighted_event->venue_name = $highlighted_event_node_venue->title;
-        $highlighted_event->date = (isset($highlighted_event_node->field_date['und'])) ? new DateTime($highlighted_event_node->field_date['und'][0]['value']) : null;
-        $highlighted_event->image_uri = (isset($highlighted_event_node->field_images['und'])) ? image_style_url('medium', $highlighted_event_node->field_images['und'][0]['uri']) : null;
+        if ($highlighted_event_node_id !== null) {
+            $highlighted_event_node = node_load($highlighted_event_node_id);// @TODO get real node based on criteria specified by mn
+            $highlighted_event_node_venue = node_load($highlighted_event_node->field_venue['und'][0]['target_id']);
+            $highlighted_event = new StdClass;
+            $highlighted_event->nid = $highlighted_event_node->nid;
+            $highlighted_event->title = $highlighted_event_node->title;
+            $highlighted_event->body = (isset($highlighted_event_node->body['und'])) ? text_summary($highlighted_event_node->body['und'][0]['value'], NULL, 800) : null;
+            $highlighted_event->uri = "/node/{$highlighted_event_node->nid}";
+            $highlighted_event->venue_name = $highlighted_event_node_venue->title;
+            $highlighted_event->date = (isset($highlighted_event_node->field_date['und'])) ? new DateTime($highlighted_event_node->field_date['und'][0]['value']) : null;
+            $highlighted_event->image_uri = (isset($highlighted_event_node->field_images['und'])) ? image_style_url('medium', $highlighted_event_node->field_images['und'][0]['uri']) : null;
+        }
     }
 
     return theme('artist_community_page', array('content' => $all_community_results['results'],

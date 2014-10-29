@@ -255,10 +255,18 @@ function _mnartist_profiles_get_feed_data($row_offset = null, $row_limit = null)
             INNER JOIN node ON node.nid = activity.eid
             LEFT JOIN field_data_field_public ON field_data_field_public.entity_id = activity.eid
             WHERE node.status = 1
-            AND (field_data_field_public.field_public_value = 1 OR field_data_field_public.field_public_value IS NULL)
-            AND (activity.uid in (:flagged_users) OR activity.nid in (:flagged_nodes))
-            ORDER BY activity.created DESC";
-            //            AND ((activity.uid = :my_uid and activity_targets.uid = :my_uid) OR (activity.uid != :my_uid AND activity_targets.uid = 0))
+            AND (field_data_field_public.field_public_value = 1 OR field_data_field_public.field_public_value IS NULL)";
+
+    if (!empty($flagged_users) && !empty($flagged_nodes)) {
+        $sql .= " AND (activity.uid in (:flagged_users) OR activity.nid in (:flagged_nodes))";
+    } else if (!empty($flagged_users)) {
+        $sql .= " AND (activity.uid in (:flagged_users))";
+    } else if (!empty($flagged_nodes)) {
+        $sql .= " AND (activity.nid in (:flagged_nodes))";
+    }
+
+    $sql .= " ORDER BY activity.created DESC";
+    // AND ((activity.uid = :my_uid and activity_targets.uid = :my_uid) OR (activity.uid != :my_uid AND activity_targets.uid = 0))
     if ($row_limit !== null) {
         $sql .= " LIMIT $row_limit";
     }

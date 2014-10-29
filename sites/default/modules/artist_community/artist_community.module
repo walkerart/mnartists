@@ -1018,6 +1018,11 @@ function _artist_community_get_items_query ($local_og = null,
                         $contextQueryString = "($typeQuery)";
                     }
                     $contentFilters['node'][] = $contextQueryString;
+
+                    if ($type === "article" && $value[0] !== ABOUT_TID) {
+                        $contentFilters['node'][] = "-" . AC_ARTICLE_CATEGORY_FIELD . ":" . ABOUT_TID;
+                    }
+
                     break;
                 case 'event':
                     $contextQueryBuilder = array();
