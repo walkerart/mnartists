@@ -142,11 +142,13 @@ function artist_community_search_page() {
         }
 
         // as above, but with events
-        $start_date = new DateTime();
+        $start_date = date('Y-m-d\TH:i:s\Z', time());
         $end_date = date('Y-m-d\TH:i:s\Z', strtotime("+7 days"));
         $event_filters = array();
         $event_filter = new SearchApiQueryFilter;
         $event_filter->condition('type', 'event');
+        $event_filter->condition("field_date:value", $start_date, ">");
+        $event_filter->condition("field_date:value2", $end_date, "<");
         $event_filters[] = $event_filter;
         if ($local_og !== null) {
             $event_filters = array_merge($event_filters, $filters);
@@ -159,7 +161,7 @@ function artist_community_search_page() {
         if (!is_null($local_og)) {
             $from_the_network_filters = array_merge($from_the_network_filters, $filters);
         }
-        $from_the_network_result = artist_community_execute_query(NODE_INDEX, $from_the_network_filters, array(array('promote', 'ASC'), array('changed', 'ASC')));
+        $from_the_network_result = artist_community_execute_query(NODE_INDEX, $from_the_network_filters, array(array('promote', 'DESC'), array('changed', 'DESC')));
         $from_the_network_i = 0;
         foreach ($from_the_network_result as $index => $post) {
             if ($from_the_network_i >= $from_the_network_limit) {
@@ -178,7 +180,7 @@ function artist_community_search_page() {
             $from_the_network_i++;
         }
 
-        $events = artist_community_execute_query(NODE_INDEX, $event_filters, array(array('promote', 'ASC'), array('field_date:value', 'DESC')), 3);
+        $events = artist_community_execute_query(NODE_INDEX, $event_filters, array(array('promote', 'DESC'), array('field_date:value', 'ASC')), 3);
         if (!empty($events)) {
             $events_data['others'] = array();
             foreach ($events as $index => $event) {
