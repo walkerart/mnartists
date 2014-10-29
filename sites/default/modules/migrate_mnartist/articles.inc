@@ -55,6 +55,28 @@ class MNArticleMigration extends MNArtistsMigration {
       'migration'
     );
 
+    // Based on this pgsql query:
+    // --------------------------
+    // select
+    // ta.authorname,
+    // array_agg(tr.title) as topic,
+    // (array_agg(ar.title))[1] as title,
+    // a.*
+    // from t_article a
+    // join t_resource ar on ar.id = a.resourceid
+    // join t_resource_child rc on rc.childid = ar.id
+    // join t_resource tr on tr.id = rc.parentid
+    // join t_author ta on ta.owner = a.resourceid
+    // where rc.parentid in (
+    //   select childid from t_resource_child where parentid in (
+    //     select r.id from t_resource r
+    //     join t_resourcetype ty on ty.id = r.resourcetype
+    //     where ty.name = 'Resource Genre'
+    //     and (r.title = 'Articles' or r.title = 'Articles by Discipline')
+    //   )
+    // )
+    // group by a.resourceid, ta.id
+
     $subquery1 = Database::getConnection('default', 'migration')
       ->select('t_resource', 'r');
     $subquery1->fields('r', array('id'));
@@ -72,12 +94,14 @@ class MNArticleMigration extends MNArtistsMigration {
     $query->join('t_resource', 'ar', 'ar.id = a.resourceid');
     $query->join('t_resource_child', 'rc', 'rc.childid = ar.id');
     $query->join('t_resource', 'tr', 'tr.id = rc.parentid');
+    $query->join('t_author', 'ta', 'ta.owner = a.resourceid');
     $query->fields('a');
+    $query->fields('ta', array('authorname'));
     $query->condition('rc.parentid', $subquery2, 'IN');
     $query->groupBy('a.resourceid');
+    $query->groupBy('ta.id');
     $query->addExpression('array_agg(tr.title)', 'topic');
     $query->addExpression('(array_agg(ar.title))[1]', 'title');
-    // $query->range(0,50);
 
     $this->source = new MigrateSourceSQL($query, array(), NULL, array('map_joinable' => FALSE));
     $this->destination = new MigrateDestinationNode('article');
@@ -120,6 +144,9 @@ class MNArticleMigration extends MNArtistsMigration {
          ->defaultValue(MigrateFile::FILE_EXISTS_REUSE);
     $this->addFieldMapping('field_images:preserve_files')
          ->defaultValue(FALSE);
+
+    // byline
+    $this->addFieldMapping('field_byline', 'authorname');
 
     // unmigrated sources
     $this->addUnmigratedSources(array('priorityranking', 'enddate', 'concurrencycol'));
@@ -254,6 +281,15 @@ class MNArticleMigration extends MNArtistsMigration {
       }
       if (!empty($communities_cat)) {
         $row->community_cat = implode(',', $communities_cat);
+      }
+    }
+
+    // byline
+    if (isset($row->authorname)) {
+      $row->byline = trim($row->authorname);
+
+      if (empty($row->byline)) {
+        unset($row->byline);
       }
     }
 

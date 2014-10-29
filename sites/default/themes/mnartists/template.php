@@ -145,9 +145,23 @@ function mnartists_process_page(&$vars) {
 /**
  * Override or insert variables into the node templates.
  */
-/* -- Delete this line if you want to use these functions
 function mnartists_preprocess_node(&$vars) {
+  if ($vars['type'] == 'article') {
+    // MN Artist user
+    $mn_uid = '492';
+    // display byline if not linked to author
+    if ($vars['node']->uid == $mn_uid && !empty($vars['node']->field_byline)) {
+      $byline = $vars['node']->field_byline[LANGUAGE_NONE][0]['safe_value'];
+    }
+    else {
+      $name = mnartist_profiles_collective_or_fullname_or_username($vars['node']->uid);
+      $byline = l($name, 'user/' . $vars['node']->uid, array('attributes' => array('class' => 'username', 'title' => t('View user profile.'))));
+    }
+
+    $vars['byline'] = $byline;
+  }
 }
+/* -- Delete this line if you want to use these functions
 function mnartists_process_node(&$vars) {
 }
 // */
