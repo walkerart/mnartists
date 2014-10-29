@@ -437,11 +437,13 @@ function _mnartist_register_get_user_data($email, $password) {
     $dbh = ConnectionFactory::getFactory()->getConnection();
 
     $userData = array();
+    $email = trim($email);
+    $password = trim($password);
 
     //get base user info
     $stmt = $dbh->prepare("SELECT * FROM t_user WHERE username = :username AND password = :password LIMIT 1");
-    $stmt->bindParam(":username", trim($email));
-    $stmt->bindParam(":password", trim($password));
+    $stmt->bindParam(":username", $email);
+    $stmt->bindParam(":password", $password);
     $stmt->execute();
 
     $result = $stmt->fetch();
