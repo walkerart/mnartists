@@ -31,7 +31,13 @@ if ($teaser) {
           <a href="<?= $node_url ?>" class="item-image"><img src="<?= $image_uri ?>" width="<?= $known_width ?>" height="<?=$computed_height ?>"></a>
       <?php } ?>
       <div class="item-info-container">
-        <p class="item-info-author"><?php print $byline; ?></p>
+        <p class="item-info-author">
+          <?php if(isset($byline)): ?>
+            <?php print $byline; ?>
+          <?php else: ?>
+            <a href="/user/<?= $node->uid ?>"><?php print mnartist_profiles_collective_or_fullname_or_username($node->uid); ?></a>
+          <?php endif; ?>
+        </p>
         <p class="item-info-title"><a href="<?= $node_url ?>"><?php print $node->title; ?></a></p>
         <div<?php print $content_attributes; ?>>
           <?= $text_excerpt ?> <a href="<?= $node_url ?>" class="item-more-button-link-indicator">&gt;</a>
