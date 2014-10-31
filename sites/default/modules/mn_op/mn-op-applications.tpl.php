@@ -104,5 +104,25 @@
 			</tbody>
 		</table>
 		<?php endif; ?>
+
+		<?php if($rows['incomplete']) : ?>
+		<h3>Incomplete Applications</h3>
+		<table class="table op-table">
+			<thead>
+				<tr>
+					<th class="half-width">Opportunity Name</th>
+					<th class="half-width">Deadeline</th>
+				</tr>
+			</thead>
+			<tbody>
+				<?php foreach($rows['incomplete'] as $incomplete): ?>
+				<tr>
+					<td><?php echo $incomplete->title; ?></td>
+					<td><?php echo date("F d, Y h:i a", strtotime($incomplete->op_dates_value2)); ?></td>
+				</tr>
+				<?php endforeach; ?>
+			</tbody>
+		</table>
+		<?php endif; ?>
 	</div>
 </div>
