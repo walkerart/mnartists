@@ -1,0 +1,17 @@
+MN Artists Migration
+====================
+- create local.settings.php if not exist
+- add the following to local.settings.php
+$databases['migration']['default'] = array (
+  'database' => 'mnartists',
+  'username' => 'mnartists',
+  'password' => 'mypguserpass',
+  'host' => 'localhost',
+  'port' => '',
+  'driver' => 'pgsql',
+  'prefix' => '',
+);
+
+$conf['prefinery_decode_key'] = 'yxsLcyYCx8hPbPBWpDSa';
+$conf['prefinery_url'] = 'http://mnartists.teasersites.com';
+$conf['prefinery_short_codes'] = TRUE;
