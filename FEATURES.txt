@@ -1,11 +1,23 @@
 MN Artists Migration
 ====================
-- create local.settings.php if not exist
-- add the following to local.settings.php
+- add the following to local.settings.php or settings.php
+
+On mnartists-dev.dripdrophost.net:
 $databases['migration']['default'] = array (
   'database' => 'mnartists',
   'username' => 'mnartists',
   'password' => 'mypguserpass',
+  'host' => 'localhost',
+  'port' => '',
+  'driver' => 'pgsql',
+  'prefix' => '',
+);
+
+On beta.mnartists.org:
+$databases['migration']['default'] = array (
+  'database' => 'mnartists',
+  'username' => 'kyle',
+  'password' => 'hS0AbTouKrkc',
   'host' => 'localhost',
   'port' => '',
   'driver' => 'pgsql',
