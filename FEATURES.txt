@@ -5,8 +5,8 @@ MN Artists Migration
 On mnartists-dev.dripdrophost.net:
 $databases['migration']['default'] = array (
   'database' => 'mnartists',
-  'username' => 'mnartists',
-  'password' => 'mypguserpass',
+  'username' => 'USERNAME',
+  'password' => 'PASSWORD',
   'host' => 'localhost',
   'port' => '',
   'driver' => 'pgsql',
@@ -16,18 +16,22 @@ $databases['migration']['default'] = array (
 On beta.mnartists.org:
 $databases['migration']['default'] = array (
   'database' => 'mnartists',
-  'username' => 'kyle',
-  'password' => 'hS0AbTouKrkc',
+  'username' => 'USERNAME',
+  'password' => 'PASSWORD',
   'host' => 'localhost',
   'port' => '',
   'driver' => 'pgsql',
   'prefix' => '',
 );
 
+Enable mnartists_panelizer
+$ drush en mnartists_panelizer -y
+$ drush fr mnartists_panelizer -y
+
+Prefinery
+=========
 $conf['prefinery_decode_key'] = 'yxsLcyYCx8hPbPBWpDSa';
 $conf['prefinery_url'] = 'http://mnartists.teasersites.com';
 $conf['prefinery_short_codes'] = TRUE;
 
-Enable mnartists_panelizer
-$ drush en mnartists_panelizer -y
-$ drush fr mnartists_panelizer -y
+$ drush en prefinery -y
