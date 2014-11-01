@@ -79,47 +79,53 @@ function mnartist_article_filter_process_format($element) {
  * context author
  */
 function _article_block_other_articles_by_this_author () {
-    $node_id = arg(1);
+    // $node_id = arg(1);
     $other_articles = array();
+    $output = '';
+    // user "MN Artists"
+    $default_uid = '492';
 
-    if (!is_null($node_id)) {
-        $article_node = node_load($node_id);
-        if ($article_node) {
-            // @TODO check with jehra on whether this should
-            // also surface promoted articles
-            // @TODO doublecheck result directly against SOLR, why is only 1 coming back? is that possibly all there is? doesn't seem so
-            $other_articles_filters = array();
-            $other_articles_filter = new SearchApiQueryFilter;
-            $other_articles_filter->condition('status', '1');
-            $other_articles_filter->condition('author', $article_node->uid);
-            $other_articles_filter->condition('type', 'article');
-            $other_articles_filter->condition('nid', $node_id, '<>');
-            $other_articles_filters[] = $other_articles_filter;
-            $other_articles_result = artist_community_execute_query(NODE_INDEX, $other_articles_filters, array(array('changed', 'DESC')));
+    $article_node = menu_get_object();
 
-            $limit_iterator = 1;
-            foreach($other_articles_result as $result) {
-                $context_node = node_load($result->nid);
+    if ($article_node->type == 'article') {
+        // @TODO check with jehra on whether this should
+        // also surface promoted articles
+        $other_articles_filters = array();
 
-                // build an object for the template with
-                // just what we need
-                $context_article = new StdClass;
-                $context_article->title = $context_node->title;
-                $context_article->created = $context_node->created;
-                $context_article->node_uri = "/node/$context_node->nid";
-                if (isset($context_node->field_images['und'])) {
-                    $context_article->image_uri = image_style_url('medium', $context_node->field_images['und'][0]['uri']);
-                }
-                $other_articles[] = $context_article;
-                if ($limit_iterator >= 3) {
-                    break;
-                }
-                $limit_iterator++;
-            }
+        $other_articles_filter = new SearchApiQueryFilter();
+        $other_articles_filter->condition('status', '1', '=');
+
+        // if MN Artists, check we should find articles by byline
+        if ($article_node->uid == $default_uid && !empty($article_node->field_byline)) {
+            $other_articles_filter->condition('field_byline', $article_node->field_byline[LANGUAGE_NONE][0]['safe_value'], '=');
         }
+        else {
+            $other_articles_filter->condition('author', $article_node->uid, '=');
+        }
+        $other_articles_filter->condition('type', 'article', '=');
+        $other_articles_filter->condition('nid', $node_id, '<>');
+        $other_articles_filters[] = $other_articles_filter;
+
+        $other_articles_result = artist_community_execute_query(NODE_INDEX, $other_articles_filters, array(array('changed', 'DESC')), 3);
+
+        foreach($other_articles_result as $context_node) {
+            // build an object for the template with
+            // just what we need
+            $context_article = array();
+            $context_article['title'] = $context_node->title;
+            $context_article['created'] = $context_node->created;
+            $context_article['node_uri'] = url('node/' . $context_node->nid);
+
+            if (isset($context_node->field_images['und'])) {
+                $context_article['image_uri'] = image_style_url('medium', $context_node->field_images['und'][0]['uri']);
+            }
+            $other_articles[] = $context_article;
+        }
+
+        $output = theme('artist_community_other_articles_by_this_author', array('other_articles' => $other_articles, 'max_articles' => 3));
     }
-    return theme('artist_community_other_articles_by_this_author', array('other_articles' => $other_articles,
-                                                                            'max_articles' => 3));
+
+    return $output;
 }
 
 
@@ -130,51 +136,45 @@ function _article_block_other_articles_by_this_author () {
  * as the context article
  */
 function _article_block_other_articles_in_this_category () {
-    $node_id = arg(1);
     $other_articles = array();
     $community_title = '';
-    if (!is_null($node_id)) {
-        $article_node = node_load($node_id);
-        if ($article_node) {
-            if (isset($article_node->og_group_ref['und'])) {
-                $tid = $article_node->og_group_ref['und'][0]['target_id'];
-                $community_node = node_load($tid);
-                $community_title = $community_node->title;
+    $output = '';
 
-                $other_articles_cat_filters = array();
-                $other_articles_cat_filter = new SearchApiQueryFilter;
-                $other_articles_cat_filter->condition('status', '1');
-                $other_articles_cat_filter->condition('og_group_ref', $tid);
-                $other_articles_cat_filter->condition('type', 'article');
-                $other_articles_cat_filter->condition('nid', $node_id, '<>');
-                $other_articles_cat_filters[] = $other_articles_cat_filter;
-                $other_articles_cat_result = artist_community_execute_query(NODE_INDEX, $other_articles_cat_filters, array(array('promote', 'ASC'), array('changed', 'ASC')));
+    $article_node = menu_get_object();
+    if ($article_node) {
+        if (isset($article_node->og_group_ref['und'])) {
+            $tid = $article_node->og_group_ref['und'][0]['target_id'];
+            $community_node = node_load($tid);
+            $community_title = $community_node->title;
 
-                $limit_iterator = 1;
-                foreach($other_articles_cat_result as $key => $result) {
-                    $context_node = node_load($result->nid);
+            $other_articles_cat_filters = array();
+            $other_articles_cat_filter = new SearchApiQueryFilter();
+            $other_articles_cat_filter->condition('status', '1', '=');
+            $other_articles_cat_filter->condition('og_group_ref', $tid, '=');
+            $other_articles_cat_filter->condition('type', 'article', '=');
+            $other_articles_cat_filter->condition('nid', $node_id, '<>', '=');
+            $other_articles_cat_filters[] = $other_articles_cat_filter;
+            $other_articles_cat_result = artist_community_execute_query(NODE_INDEX, $other_articles_cat_filters, array(array('promote', 'ASC'), array('changed', 'ASC')), 3);
 
-                    // build an object for the template with
-                    // just what we need
-                    $context_article = new StdClass;
-                    $context_article->title = $context_node->title;
-                    $context_article->created = $context_node->created;
-                    $context_article->node_uri = "/node/$context_node->nid";
-                    if (isset($context_node->field_images['und'])) {
-                        $context_article->image_uri = image_style_url('medium', $context_node->field_images['und'][0]['uri']);
-                    }
-                    $other_articles[] = $context_article;
-                    if ($limit_iterator >= 3) {
-                        break;
-                    }
-                    $limit_iterator++;
+            foreach($other_articles_cat_result as $context_node) {
+                // build an object for the template with
+                // just what we need
+                $context_article = array();
+                $context_article['title'] = $context_node->title;
+                $context_article['created'] = $context_node->created;
+                $context_article['node_uri'] = url('node/' . $context_node->nid);
+
+                if (isset($context_node->field_images['und'])) {
+                    $context_article['image_uri'] = image_style_url('medium', $context_node->field_images['und'][0]['uri']);
                 }
+                $other_articles[] = $context_article;
             }
         }
+
+        $output = theme('artist_community_other_articles_in_this_category', array('community_title' => $community_title, 'other_articles' => $other_articles, 'max_articles' => 3));
     }
-    return theme('artist_community_other_articles_in_this_category', array('community_title' => $community_title,
-                                                                            'other_articles' => $other_articles,
-                                                                            'max_articles' => 3));
+
+    return $output;
 }
 
 function mnartist_article_wysiwyg_plugin($editor, $version) {
