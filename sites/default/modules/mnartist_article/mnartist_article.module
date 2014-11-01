@@ -79,7 +79,6 @@ function mnartist_article_filter_process_format($element) {
  * context author
  */
 function _article_block_other_articles_by_this_author () {
-    // $node_id = arg(1);
     $other_articles = array();
     $output = '';
     // user "MN Artists"
@@ -103,7 +102,7 @@ function _article_block_other_articles_by_this_author () {
             $other_articles_filter->condition('author', $article_node->uid, '=');
         }
         $other_articles_filter->condition('type', 'article', '=');
-        $other_articles_filter->condition('nid', $node_id, '<>');
+        $other_articles_filter->condition('nid', $article_node->nid, '<>');
         $other_articles_filters[] = $other_articles_filter;
 
         $other_articles_result = artist_community_execute_query(NODE_INDEX, $other_articles_filters, array(array('changed', 'DESC')), 3);
@@ -152,7 +151,7 @@ function _article_block_other_articles_in_this_category () {
             $other_articles_cat_filter->condition('status', '1', '=');
             $other_articles_cat_filter->condition('og_group_ref', $tid, '=');
             $other_articles_cat_filter->condition('type', 'article', '=');
-            $other_articles_cat_filter->condition('nid', $node_id, '<>', '=');
+            $other_articles_cat_filter->condition('nid', $article_node->nid, '<>', '=');
             $other_articles_cat_filters[] = $other_articles_cat_filter;
             $other_articles_cat_result = artist_community_execute_query(NODE_INDEX, $other_articles_cat_filters, array(array('promote', 'ASC'), array('changed', 'ASC')), 3);
 
