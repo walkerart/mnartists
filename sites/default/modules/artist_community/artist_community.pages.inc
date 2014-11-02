@@ -24,6 +24,9 @@ function artist_community_search_page() {
     $all_results    = array();
     $kill_content   = false;
     $filtered_by_events_only = false;
+    // user "MN Artists"
+    $default_uid = '492';
+
 
     // how many articles to include in featured
     // articles section
@@ -97,16 +100,23 @@ function artist_community_search_page() {
             }
         }
     } else {
+        // @TODO:
+        // - remove $articleCounter
+        // - field_article_category exlusion should go into query,
+        //   reason for number_of_featured_articles + 5
+
         // get articles for 'top stories' block. if there's a community filter, merge
         // it with the article type filter. package the data up for the template
         $article_filters = array();
         $article_filter = new SearchApiQueryFilter;
-        $article_filter->condition('type', 'article');
+        $article_filter->condition('type', 'article', '=');
+        $article_filter->condition('status', '1', '=');
         $article_filters[] = $article_filter;
         if ($local_og !== null) {
             $article_filters = array_merge($article_filters, $filters);
         }
-        $articles = artist_community_execute_query(NODE_INDEX, $article_filters, array(array('promote', 'ASC'), array('changed', 'DESC')));
+        $articles = artist_community_execute_query(NODE_INDEX, $article_filters, array(array('promote', 'ASC'), array('changed', 'DESC')), $number_of_featured_articles + 5);
+
         $articleCounter = 0;
         foreach($articles as $index => $article) {
             if ($articleCounter >= $number_of_featured_articles) {
@@ -119,14 +129,21 @@ function artist_community_search_page() {
             }
             $context_article_data = new StdClass();
             $author_full_name = '';
-            $context_user_main_profile = profile2_load_by_user($article->uid, 'main');
-            if (isset($context_user_main_profile->field_full_name['und'])) {
-                $entity = field_collection_item_load($context_user_main_profile->field_full_name['und'][0]['value']);
-                $first_name = $entity->field_first_name['und'][0]['value'];
-                $last_name = $entity->field_last_name['und'][0]['value'];
-                $author_full_name = "$first_name $last_name";
-            } else {
-                $author_full_name = $article->name;
+
+            // if MN Artists, check we should print articlea author by byline
+            if ($article->uid == $default_uid && !empty($article->field_byline)) {
+                $author_full_name = $article->field_byline[LANGUAGE_NONE][0]['safe_value'];
+            }
+            else {
+                $context_user_main_profile = profile2_load_by_user($article->uid, 'main');
+                if (isset($context_user_main_profile->field_full_name['und'])) {
+                    $entity = field_collection_item_load($context_user_main_profile->field_full_name['und'][0]['value']);
+                    $first_name = $entity->field_first_name['und'][0]['value'];
+                    $last_name = $entity->field_last_name['und'][0]['value'];
+                    $author_full_name = "$first_name $last_name";
+                } else {
+                    $author_full_name = $article->name;
+                }
             }
             $context_article_data->author = $author_full_name;
             $context_article_data->title = $article->title;
@@ -161,13 +178,8 @@ function artist_community_search_page() {
         if (!is_null($local_og)) {
             $from_the_network_filters = array_merge($from_the_network_filters, $filters);
         }
-        $from_the_network_result = artist_community_execute_query(NODE_INDEX, $from_the_network_filters, array(array('promote', 'DESC'), array('changed', 'DESC')));
-        $from_the_network_i = 0;
+        $from_the_network_result = artist_community_execute_query(NODE_INDEX, $from_the_network_filters, array(array('promote', 'DESC'), array('changed', 'DESC')), $from_the_network_limit);
         foreach ($from_the_network_result as $index => $post) {
-            if ($from_the_network_i >= $from_the_network_limit) {
-                break;
-            }
-            $post_data = new StdClass();
             $post_data->nid = $post->nid;
             $post_data->title = $post->title;
             if (isset($post->field_images['und'])) {
@@ -177,7 +189,6 @@ function artist_community_search_page() {
             $post_data->url = (isset($post->field_url['und'])) ? $post->field_url['und'][0]['value'] : '';
             $post_data->source = (isset($post->field_url['und'])) ? $post->field_url['und'][0]['title'] : '';
             $from_the_network_posts[] = $post_data;
-            $from_the_network_i++;
         }
 
         $events = artist_community_execute_query(NODE_INDEX, $event_filters, array(array('promote', 'DESC'), array('field_date:value', 'ASC')), 3);
@@ -207,11 +218,9 @@ function artist_community_search_page() {
         if ($local_og !== null) {
             $latest_user_filters = array_merge($latest_user_filters, $user_filters);
         }
-        $latest_users = artist_community_execute_query(USER_INDEX, $latest_user_filters, array(array('created', 'DESC')));
+        $latest_users = artist_community_execute_query(USER_INDEX, $latest_user_filters, array(array('created', 'DESC')), 3);
         $user_keys = array_keys($latest_users);
-        $user_counter = 0;
         foreach($user_keys as $index => $value) {
-            if ($user_counter >= 3) { break; }
             $user = $latest_users[$value];
             if (is_null($user->picture)) { continue; }
             $context_latest_user_data = new StdClass();
@@ -225,7 +234,6 @@ function artist_community_search_page() {
             $context_latest_user_data->full_name = $full_name;
             $context_latest_user_data->image_uri = $image_uri;
             $latest_users_data[] = $context_latest_user_data;
-            $user_counter++;
         }
     }
 
