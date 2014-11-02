@@ -22,7 +22,7 @@ function artist_community_node_info() {
       'description' => t('Use <em>articles</em> for time-sensitive content like news, press releases or blog posts.'),
       'has_title' => '1',
       'title_label' => t('Title'),
-      'help' => t('Placeholder instructions for articles.'),
+      'help' => '',
     ),
     'artwork' => array(
       'name' => t('Artwork'),

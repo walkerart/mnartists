@@ -196,39 +196,6 @@ function artist_community_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_byline'
-  $field_bases['field_byline'] = array(
-    'active' => 1,
-    'cardinality' => 1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_byline',
-    'field_permissions' => array(
-      'type' => 0,
-    ),
-    'foreign keys' => array(
-      'format' => array(
-        'columns' => array(
-          'format' => 'format',
-        ),
-        'table' => 'filter_format',
-      ),
-    ),
-    'indexes' => array(
-      'format' => array(
-        0 => 'format',
-      ),
-    ),
-    'locked' => 0,
-    'module' => 'text',
-    'settings' => array(
-      'max_length' => 255,
-      'profile2_private' => FALSE,
-    ),
-    'translatable' => 0,
-    'type' => 'text',
-  );
-
   // Exported field_base: 'field_category'
   $field_bases['field_category'] = array(
     'active' => 1,
@@ -342,37 +309,6 @@ function artist_community_field_default_field_bases() {
     ),
     'translatable' => 0,
     'type' => 'entityreference',
-  );
-
-  // Exported field_base: 'field_created'
-  $field_bases['field_created'] = array(
-    'active' => 1,
-    'cardinality' => 1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_created',
-    'foreign keys' => array(),
-    'indexes' => array(),
-    'locked' => 0,
-    'module' => 'date',
-    'settings' => array(
-      'cache_count' => 4,
-      'cache_enabled' => 1,
-      'granularity' => array(
-        'day' => 'day',
-        'hour' => 0,
-        'minute' => 0,
-        'month' => 'month',
-        'second' => 0,
-        'year' => 'year',
-      ),
-      'profile2_private' => FALSE,
-      'timezone_db' => '',
-      'todate' => '',
-      'tz_handling' => 'none',
-    ),
-    'translatable' => 0,
-    'type' => 'datetime',
   );
 
   // Exported field_base: 'field_created_date'
@@ -568,7 +504,7 @@ function artist_community_field_default_field_bases() {
   // Exported field_base: 'field_images'
   $field_bases['field_images'] = array(
     'active' => 1,
-    'cardinality' => -1,
+    'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_images',
@@ -599,41 +535,10 @@ function artist_community_field_default_field_bases() {
     'type' => 'image',
   );
 
-  // Exported field_base: 'field_license'
-  $field_bases['field_license'] = array(
-    'active' => 1,
-    'cardinality' => 1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_license',
-    'foreign keys' => array(),
-    'indexes' => array(
-      'value' => array(
-        0 => 'value',
-      ),
-    ),
-    'locked' => 0,
-    'module' => 'list',
-    'settings' => array(
-      'allowed_values' => array(
-        'copyright' => 'All rights reserved',
-        'CC BY' => 'CC BY - Attribution',
-        'CC BY-SA' => 'CC BY-SA - Attribution-ShareAlike',
-        'CC BY-ND' => 'CC BY-ND - Attribution-NoDerivs',
-        'CC BY-NC' => 'CC BY-NC - Attribution-NonCommercial',
-        'CC BY-NC-SA' => 'CC BY-NC-SA - Attribution-NonCommercial-ShareAlike',
-        'CC BY-NC-ND' => 'CC BY-NC-ND - Attribution-NonCommercial-NoDerivs',
-      ),
-      'allowed_values_function' => '',
-    ),
-    'translatable' => 0,
-    'type' => 'list_text',
-  );
-
   // Exported field_base: 'field_media'
   $field_bases['field_media'] = array(
     'active' => 1,
-    'cardinality' => 1,
+    'cardinality' => -1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_media',
@@ -668,7 +573,7 @@ function artist_community_field_default_field_bases() {
   // Exported field_base: 'field_medium'
   $field_bases['field_medium'] = array(
     'active' => 1,
-    'cardinality' => 1,
+    'cardinality' => -1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_medium',
@@ -693,7 +598,7 @@ function artist_community_field_default_field_bases() {
     'settings' => array(
       'allowed_values' => array(
         0 => array(
-          'vocabulary' => 'event_categories',
+          'vocabulary' => 'medium',
           'parent' => 0,
         ),
       ),
@@ -807,33 +712,6 @@ function artist_community_field_default_field_bases() {
     ),
     'translatable' => 0,
     'type' => 'list_boolean',
-  );
-
-  // Exported field_base: 'field_role'
-  $field_bases['field_role'] = array(
-    'active' => 1,
-    'cardinality' => 1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_role',
-    'foreign keys' => array(
-      'format' => array(
-        'columns' => array(
-          'format' => 'format',
-        ),
-        'table' => 'filter_format',
-      ),
-    ),
-    'indexes' => array(
-      'format' => array(
-        0 => 'format',
-      ),
-    ),
-    'locked' => 0,
-    'module' => 'text',
-    'settings' => array(),
-    'translatable' => 0,
-    'type' => 'text_long',
   );
 
   // Exported field_base: 'field_roles'
@@ -1008,10 +886,16 @@ function artist_community_field_default_field_bases() {
           'og_behavior' => array(
             'status' => TRUE,
           ),
+          'views-select-list' => array(
+            'status' => 0,
+          ),
         ),
         'membership_type' => 'og_membership_type_default',
+        'sort' => array(
+          'type' => 'none',
+        ),
         'target_bundles' => array(
-          0 => 'community',
+          'community' => 'community',
         ),
       ),
       'handler_submit' => 'Change handler',
@@ -1055,8 +939,14 @@ function artist_community_field_default_field_bases() {
           'og_behavior' => array(
             'status' => TRUE,
           ),
+          'views-select-list' => array(
+            'status' => 0,
+          ),
         ),
         'membership_type' => 'og_membership_type_default',
+        'sort' => array(
+          'type' => 'none',
+        ),
         'target_bundles' => array(),
       ),
       'handler_submit' => 'Change handler',

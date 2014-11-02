@@ -10,51 +10,6 @@
 function artist_community_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'node-article-body'
-  $field_instances['node-article-body'] = array(
-    'bundle' => 'article',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'hidden',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 0,
-      ),
-      'teaser' => array(
-        'label' => 'hidden',
-        'module' => 'text',
-        'settings' => array(
-          'trim_length' => 600,
-        ),
-        'type' => 'text_summary_or_trimmed',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'body',
-    'label' => 'Body',
-    'required' => FALSE,
-    'settings' => array(
-      'display_summary' => TRUE,
-      'profile2_field_privacy' => FALSE,
-      'text_processing' => 1,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'module' => 'text',
-      'settings' => array(
-        'rows' => 20,
-        'summary_rows' => 5,
-      ),
-      'type' => 'text_textarea_with_summary',
-      'weight' => 1,
-    ),
-  );
-
   // Exported field_instance: 'node-article-field_article_category'
   $field_instances['node-article-field_article_category'] = array(
     'bundle' => 'article',
@@ -87,11 +42,10 @@ function artist_community_field_default_field_instances() {
       'active' => 1,
       'module' => 'options',
       'settings' => array(
-        'apply_chosen' => '',
         'label_help_description' => '',
       ),
       'type' => 'options_select',
-      'weight' => 6,
+      'weight' => 5,
     ),
   );
 
@@ -173,87 +127,7 @@ function artist_community_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 5,
-    ),
-  );
-
-  // Exported field_instance: 'node-article-field_byline'
-  $field_instances['node-article-field_byline'] = array(
-    'bundle' => 'article',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 8,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_byline',
-    'label' => 'Byline',
-    'required' => 0,
-    'settings' => array(
-      'profile2_field_privacy' => FALSE,
-      'text_processing' => 0,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'text',
-      'settings' => array(
-        'label_help_description' => '',
-        'size' => 60,
-      ),
-      'type' => 'text_textfield',
-      'weight' => 2,
-    ),
-  );
-
-  // Exported field_instance: 'node-article-field_category'
-  $field_instances['node-article-field_category'] = array(
-    'bundle' => 'article',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'taxonomy',
-        'settings' => array(),
-        'type' => 'taxonomy_term_reference_link',
-        'weight' => 13,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_category',
-    'label' => 'Category',
-    'required' => 0,
-    'settings' => array(
-      'profile2_field_privacy' => FALSE,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'options',
-      'settings' => array(),
-      'type' => 'options_select',
-      'weight' => 3,
+      'weight' => 4,
     ),
   );
 
@@ -268,7 +142,7 @@ function artist_community_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 6,
+        'weight' => 8,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -282,7 +156,7 @@ function artist_community_field_default_field_instances() {
     'entityconnect_unload_edit' => 1,
     'field_name' => 'field_community_user_select',
     'label' => 'Community',
-    'required' => 0,
+    'required' => 1,
     'settings' => array(
       'profile2_field_privacy' => FALSE,
       'user_register_form' => FALSE,
@@ -294,7 +168,7 @@ function artist_community_field_default_field_instances() {
         'label_help_description' => '',
       ),
       'type' => 'options_buttons',
-      'weight' => 3,
+      'weight' => 2,
     ),
   );
 
@@ -306,13 +180,9 @@ function artist_community_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'image',
-        'settings' => array(
-          'image_link' => '',
-          'image_style' => '',
-        ),
-        'type' => 'image',
-        'weight' => 12,
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -324,13 +194,13 @@ function artist_community_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'field_images',
     'label' => 'Images',
-    'required' => 0,
+    'required' => 1,
     'settings' => array(
       'alt_field' => 0,
       'default_image' => 0,
       'file_directory' => 'article/images',
       'file_extensions' => 'png gif jpg jpeg',
-      'image_field_caption' => 0,
+      'image_field_caption' => 1,
       'max_filesize' => '',
       'max_resolution' => '',
       'min_resolution' => '',
@@ -342,16 +212,95 @@ function artist_community_field_default_field_instances() {
       'active' => 1,
       'module' => 'image',
       'settings' => array(
+        'label_help_description' => '',
         'preview_image_style' => 'thumbnail',
         'progress_indicator' => 'throbber',
       ),
       'type' => 'image_image',
-      'weight' => 2,
+      'weight' => 6,
     ),
   );
 
   // Exported field_instance: 'node-article-field_medium'
   $field_instances['node-article-field_medium'] = array(
+    'bundle' => 'article',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 7,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_medium',
+    'label' => 'Category',
+    'required' => 0,
+    'settings' => array(
+      'profile2_field_privacy' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'label_help_description' => '',
+      ),
+      'type' => 'options_select',
+      'weight' => 3,
+    ),
+  );
+
+  // Exported field_instance: 'node-article-field_tags'
+  $field_instances['node-article-field_tags'] = array(
+    'bundle' => 'article',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'Enter a comma-separated list of words to describe your content.',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 6,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 10,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_tags',
+    'label' => 'Tags',
+    'required' => FALSE,
+    'settings' => array(
+      'profile2_field_privacy' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'taxonomy',
+      'settings' => array(
+        'autocomplete_path' => 'taxonomy/autocomplete',
+        'size' => 60,
+      ),
+      'type' => 'taxonomy_autocomplete',
+      'weight' => 7,
+    ),
+  );
+
+  // Exported field_instance: 'node-article-og_group_ref'
+  $field_instances['node-article-og_group_ref'] = array(
     'bundle' => 'article',
     'default_value' => NULL,
     'deleted' => 0,
@@ -371,94 +320,15 @@ function artist_community_field_default_field_instances() {
       ),
     ),
     'entity_type' => 'node',
-    'field_name' => 'field_medium',
-    'label' => 'Category',
-    'required' => 1,
-    'settings' => array(
-      'profile2_field_privacy' => FALSE,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'options',
-      'settings' => array(
-        'apply_chosen' => '',
-        'label_help_description' => '',
-      ),
-      'type' => 'options_select',
-      'weight' => 4,
-    ),
-  );
-
-  // Exported field_instance: 'node-article-field_tags'
-  $field_instances['node-article-field_tags'] = array(
-    'bundle' => 'article',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => 'Enter a comma-separated list of words to describe your content.',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'taxonomy',
-        'settings' => array(),
-        'type' => 'taxonomy_term_reference_link',
-        'weight' => 10,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'module' => 'taxonomy',
-        'settings' => array(),
-        'type' => 'taxonomy_term_reference_link',
-        'weight' => 10,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_tags',
-    'label' => 'Tags',
-    'required' => FALSE,
-    'settings' => array(
-      'profile2_field_privacy' => FALSE,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'module' => 'taxonomy',
-      'settings' => array(
-        'autocomplete_path' => 'taxonomy/autocomplete',
-        'size' => 60,
-      ),
-      'type' => 'taxonomy_autocomplete',
-      'weight' => 4,
-    ),
-  );
-
-  // Exported field_instance: 'node-article-og_group_ref'
-  $field_instances['node-article-og_group_ref'] = array(
-    'bundle' => 'article',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'og_ui',
-        'settings' => array(),
-        'type' => 'og_list_default',
-        'weight' => 11,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
+    'entityconnect_unload_add' => 0,
+    'entityconnect_unload_edit' => 0,
     'field_name' => 'og_group_ref',
-    'label' => 'Groups audience',
-    'required' => FALSE,
+    'label' => 'Group audience',
+    'required' => 0,
     'settings' => array(
       'behaviors' => array(
         'og_widget' => array(
+          'access_override' => 0,
           'admin' => array(
             'widget_type' => 'entityreference_autocomplete',
           ),
@@ -484,10 +354,13 @@ function artist_community_field_default_field_instances() {
       ),
     ),
     'widget' => array(
+      'active' => 0,
       'module' => 'og',
-      'settings' => array(),
+      'settings' => array(
+        'label_help_description' => '',
+      ),
       'type' => 'og_complex',
-      'weight' => 5,
+      'weight' => 8,
     ),
   );
 
@@ -496,7 +369,9 @@ function artist_community_field_default_field_instances() {
     'bundle' => 'artwork',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'This field is visible on your profile. 
+<p>
+For opportunity applicants: please check the specific opportunity for requirements for this field.',
     'display' => array(
       'default' => array(
         'label' => 'hidden',
@@ -507,12 +382,9 @@ function artist_community_field_default_field_instances() {
       ),
       'teaser' => array(
         'label' => 'hidden',
-        'module' => 'text',
-        'settings' => array(
-          'trim_length' => 600,
-        ),
-        'type' => 'text_summary_or_trimmed',
-        'weight' => 0,
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 11,
       ),
     ),
     'entity_type' => 'node',
@@ -529,11 +401,12 @@ function artist_community_field_default_field_instances() {
       'active' => 1,
       'module' => 'text',
       'settings' => array(
+        'label_help_description' => '',
         'rows' => 20,
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
-      'weight' => 1,
+      'weight' => 12,
     ),
   );
 
@@ -558,7 +431,7 @@ function artist_community_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 7,
       ),
     ),
     'entity_type' => 'node',
@@ -578,7 +451,7 @@ function artist_community_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'url_external',
-      'weight' => 7,
+      'weight' => 15,
     ),
   );
 
@@ -587,8 +460,12 @@ function artist_community_field_default_field_instances() {
     'bundle' => 'artwork',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '<p>Are you using this work sample to apply for an opportunity on MnArtists?</p>
-<p>If so, what is the portion of this work sample you wish for jurors to view? Include any additional viewing instructions here.</p>',
+    'description' => 'Are you using this work sample to apply for an opportunity on MnArtists?
+<p>
+If so, what is the portion of this work sample you wish for jurors to view? Include any additional viewing instructions here.
+<p>
+• Does your media require a password to view?
+',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -606,7 +483,7 @@ function artist_community_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_artwork_excerpt',
-    'label' => 'Excerpt',
+    'label' => 'Applicant info',
     'required' => 0,
     'settings' => array(
       'profile2_field_privacy' => FALSE,
@@ -621,61 +498,6 @@ function artist_community_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 8,
-    ),
-  );
-
-  // Exported field_instance: 'node-artwork-field_created'
-  $field_instances['node-artwork-field_created'] = array(
-    'bundle' => 'artwork',
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'date',
-        'settings' => array(
-          'format_type' => 'long',
-          'fromto' => 'both',
-          'multiple_from' => '',
-          'multiple_number' => '',
-          'multiple_to' => '',
-        ),
-        'type' => 'date_default',
-        'weight' => 7,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_created',
-    'label' => 'Created',
-    'required' => 0,
-    'settings' => array(
-      'default_value' => 'blank',
-      'default_value2' => 'same',
-      'default_value_code' => '',
-      'default_value_code2' => '',
-      'profile2_field_privacy' => FALSE,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'date',
-      'settings' => array(
-        'display_all_day' => 0,
-        'increment' => 15,
-        'input_format' => 'm/d/Y - H:i:s',
-        'input_format_custom' => '',
-        'label_position' => 'above',
-        'text_parts' => array(),
-        'year_range' => '-10:+1',
-      ),
-      'type' => 'date_popup',
       'weight' => 8,
     ),
   );
@@ -785,12 +607,12 @@ function artist_community_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 3,
       ),
     ),
     'entity_type' => 'node',
     'field_name' => 'field_dimensions',
-    'label' => 'Dimensions',
+    'label' => 'Dimensions/Duration',
     'required' => 0,
     'settings' => array(
       'profile2_field_privacy' => FALSE,
@@ -801,10 +623,11 @@ function artist_community_field_default_field_instances() {
       'active' => 1,
       'module' => 'text',
       'settings' => array(
+        'label_help_description' => '',
         'rows' => 3,
       ),
       'type' => 'text_textarea',
-      'weight' => 11,
+      'weight' => 7,
     ),
   );
 
@@ -830,7 +653,7 @@ function artist_community_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 4,
       ),
     ),
     'entity_type' => 'node',
@@ -848,97 +671,7 @@ function artist_community_field_default_field_instances() {
         'display_label' => 1,
       ),
       'type' => 'options_onoff',
-      'weight' => 12,
-    ),
-  );
-
-  // Exported field_instance: 'node-artwork-field_images'
-  $field_instances['node-artwork-field_images'] = array(
-    'bundle' => 'artwork',
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'image',
-        'settings' => array(
-          'image_link' => '',
-          'image_style' => '',
-        ),
-        'type' => 'image',
-        'weight' => 2,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_images',
-    'label' => 'Images',
-    'required' => 0,
-    'settings' => array(
-      'alt_field' => 0,
-      'default_image' => 0,
-      'file_directory' => 'artwork/images',
-      'file_extensions' => 'png gif jpg jpeg',
-      'image_field_caption' => 0,
-      'max_filesize' => '',
-      'max_resolution' => '',
-      'min_resolution' => '',
-      'profile2_field_privacy' => FALSE,
-      'title_field' => 0,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'image',
-      'settings' => array(
-        'preview_image_style' => 'thumbnail',
-        'progress_indicator' => 'throbber',
-      ),
-      'type' => 'image_image',
-      'weight' => 2,
-    ),
-  );
-
-  // Exported field_instance: 'node-artwork-field_license'
-  $field_instances['node-artwork-field_license'] = array(
-    'bundle' => 'artwork',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => 'For information about creative commons license, <a href="http://creativecommons.org/licenses/" target="_blank">click here</a>',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'list',
-        'settings' => array(),
-        'type' => 'list_default',
-        'weight' => 5,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_license',
-    'label' => 'License',
-    'required' => 1,
-    'settings' => array(
-      'profile2_field_privacy' => FALSE,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'options',
-      'settings' => array(),
-      'type' => 'options_select',
-      'weight' => 6,
+      'weight' => 13,
     ),
   );
 
@@ -946,30 +679,37 @@ function artist_community_field_default_field_instances() {
   $field_instances['node-artwork-field_media'] = array(
     'bundle' => 'artwork',
     'deleted' => 0,
-    'description' => '',
+    'description' => '<p>Click the \'plus\' (+) button to add a new file to your artwork. </p>
+<p>Then, for image or text files, please select a txt jpg png pdf gif jpeg  to Upload. </p>
+<p>Or for sound and video files, select the \'Web\' tab and copy and paste the URL to your work from an external site. </p>',
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'file',
-        'settings' => array(),
-        'type' => 'file_default',
+        'module' => 'file_entity',
+        'settings' => array(
+          'file_view_mode' => 'full',
+        ),
+        'type' => 'file_rendered',
         'weight' => 4,
       ),
       'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
+        'label' => 'hidden',
+        'module' => 'file_entity',
+        'settings' => array(
+          'file_view_mode' => 'teaser',
+        ),
+        'type' => 'file_rendered',
         'weight' => 0,
       ),
     ),
     'entity_type' => 'node',
     'field_name' => 'field_media',
-    'label' => 'Media',
-    'required' => 0,
+    'label' => 'Artwork',
+    'required' => 1,
     'settings' => array(
       'description_field' => 0,
       'file_directory' => 'artwork/media',
-      'file_extensions' => 'txt jpg png pdf gif mov mp4 ogg',
+      'file_extensions' => 'txt jpg png pdf gif jpeg',
       'max_filesize' => '',
       'profile2_field_privacy' => FALSE,
       'user_register_form' => FALSE,
@@ -979,20 +719,30 @@ function artist_community_field_default_field_instances() {
       'module' => 'media',
       'settings' => array(
         'allowed_schemes' => array(
+          'flickr' => 'flickr',
           'public' => 'public',
+          'soundcloud' => 'soundcloud',
+          'vimeo' => 'vimeo',
+          'youtube' => 'youtube',
         ),
         'allowed_types' => array(
+          'audio' => 'audio',
+          'document' => 0,
           'image' => 'image',
+          'video' => 'video',
         ),
         'browser_plugins' => array(
           'media_default--media_browser_1' => 0,
           'media_default--media_browser_my_files' => 0,
+          'media_internet' => 'media_internet',
           'upload' => 'upload',
+          'youtube' => 0,
         ),
+        'label_help_description' => '',
         'progress_indicator' => 'throbber',
       ),
       'type' => 'media_generic',
-      'weight' => 5,
+      'weight' => 1,
     ),
   );
 
@@ -1001,14 +751,14 @@ function artist_community_field_default_field_instances() {
     'bundle' => 'artwork',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'The categories you choose determine where the artwork appears in search results. You may select multiple categories.',
     'display' => array(
       'default' => array(
         'label' => 'above',
         'module' => 'taxonomy',
         'settings' => array(),
-        'type' => 'taxonomy_term_reference_link',
-        'weight' => 8,
+        'type' => 'taxonomy_term_reference_plain',
+        'weight' => 15,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1019,18 +769,33 @@ function artist_community_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_medium',
-    'label' => 'Medium',
-    'required' => 0,
+    'label' => 'Category',
+    'required' => 1,
     'settings' => array(
+      'jquery_ui_multiselect' => array(
+        'dividerLocation' => 0.5,
+        'doubleClickable' => 0,
+        'dragToAdd' => 0,
+        'enabled' => 0,
+        'height' => 0,
+        'includeAddAll' => 1,
+        'includeRemoveAll' => 1,
+        'searchable' => 0,
+        'selectedContainerOnLeft' => 1,
+        'sortable' => 0,
+        'width' => 0,
+      ),
       'profile2_field_privacy' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
       'active' => 1,
       'module' => 'options',
-      'settings' => array(),
+      'settings' => array(
+        'label_help_description' => '',
+      ),
       'type' => 'options_select',
-      'weight' => 9,
+      'weight' => 4,
     ),
   );
 
@@ -1123,7 +888,7 @@ function artist_community_field_default_field_instances() {
     'bundle' => 'artwork',
     'default_value' => array(
       0 => array(
-        'value' => 0,
+        'value' => 1,
       ),
     ),
     'deleted' => 0,
@@ -1140,7 +905,7 @@ function artist_community_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 9,
       ),
     ),
     'entity_type' => 'node',
@@ -1156,50 +921,10 @@ function artist_community_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(
         'display_label' => 1,
+        'label_help_description' => '',
       ),
       'type' => 'options_onoff',
-      'weight' => 3,
-    ),
-  );
-
-  // Exported field_instance: 'node-artwork-field_role'
-  $field_instances['node-artwork-field_role'] = array(
-    'bundle' => 'artwork',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 9,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_role',
-    'label' => 'Role(s)',
-    'required' => 0,
-    'settings' => array(
-      'profile2_field_privacy' => FALSE,
-      'text_processing' => 0,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'text',
-      'settings' => array(
-        'rows' => 5,
-      ),
-      'type' => 'text_textarea',
-      'weight' => 10,
+      'weight' => 14,
     ),
   );
 
@@ -1208,8 +933,10 @@ function artist_community_field_default_field_instances() {
     'bundle' => 'artwork',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '<p>What is your role in this work sample? Examples might be: Dancer, Curator, Composer, Painter, Writer, etc.</p>
-<p>The roles in this field will appear under your name and picture in search results.</p>',
+    'description' => 'What is your role in this work sample? Examples might be: Dancer, Curator, Composer, Painter, Writer, etc.
+<p>
+<p>
+Roles you include here will appear under your name and picture in search results.</p>',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -1251,7 +978,10 @@ function artist_community_field_default_field_instances() {
     'bundle' => 'artwork',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'Select descriptors from this list to connect your work to similar artists, artworks, and projects.',
+    'description' => 'Select descriptors from this list to connect your work to similar artists, artworks, and projects. 
+<p>
+<p>
+Don\'t see a descriptor related to your work? Feel free to include additional subjects/concepts in the tags below!',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -1291,7 +1021,7 @@ function artist_community_field_default_field_instances() {
     'bundle' => 'artwork',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Comma separated keywords that describe your work.',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -1304,7 +1034,7 @@ function artist_community_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 5,
       ),
     ),
     'entity_type' => 'node',
@@ -1320,10 +1050,11 @@ function artist_community_field_default_field_instances() {
       'module' => 'taxonomy',
       'settings' => array(
         'autocomplete_path' => 'taxonomy/autocomplete',
+        'label_help_description' => '',
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 13,
+      'weight' => 16,
     ),
   );
 
@@ -1392,7 +1123,7 @@ function artist_community_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 8,
       ),
     ),
     'entity_type' => 'node',
@@ -1430,7 +1161,7 @@ function artist_community_field_default_field_instances() {
       'module' => 'og',
       'settings' => array(),
       'type' => 'og_complex',
-      'weight' => 4,
+      'weight' => 3,
     ),
   );
 
@@ -1511,7 +1242,9 @@ function artist_community_field_default_field_instances() {
     'widget' => array(
       'active' => 1,
       'module' => 'options',
-      'settings' => array(),
+      'settings' => array(
+        'apply_chosen' => 0,
+      ),
       'type' => 'options_select',
       'weight' => 4,
     ),
@@ -1712,7 +1445,7 @@ function artist_community_field_default_field_instances() {
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
-      'weight' => -4,
+      'weight' => 1,
     ),
   );
 
@@ -1810,7 +1543,7 @@ function artist_community_field_default_field_instances() {
     'description' => 'Determine if this is an OG group.',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'og_ui',
         'settings' => array(
           'field_name' => FALSE,
@@ -1853,7 +1586,7 @@ function artist_community_field_default_field_instances() {
         'og_hide' => TRUE,
       ),
       'type' => 'options_onoff',
-      'weight' => 0,
+      'weight' => 3,
     ),
   );
 
@@ -1903,16 +1636,17 @@ function artist_community_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'og_ui',
         'settings' => array(),
-        'type' => 'og_list_default',
-        'weight' => 0,
+        'type' => 'hidden',
+        'weight' => 8,
       ),
     ),
     'entity_type' => 'user',
+    'entityconnect_unload_add' => 0,
+    'entityconnect_unload_edit' => 0,
     'field_name' => 'og_user_node',
-    'label' => 'Group membership',
-    'required' => FALSE,
+    'label' => 'Communities',
+    'required' => 0,
     'settings' => array(
       'behaviors' => array(
         'og_widget' => array(
@@ -1926,7 +1660,7 @@ function artist_community_field_default_field_instances() {
         ),
       ),
       'profile2_field_privacy' => FALSE,
-      'user_register_form' => FALSE,
+      'user_register_form' => 0,
     ),
     'view modes' => array(
       'full' => array(
@@ -1941,55 +1675,72 @@ function artist_community_field_default_field_instances() {
       ),
     ),
     'widget' => array(
+      'active' => 0,
       'module' => 'og',
-      'settings' => array(),
+      'settings' => array(
+        'label_help_description' => '',
+      ),
       'type' => 'og_complex',
-      'weight' => 7,
+      'weight' => 5,
     ),
   );
 
   // Translatables
   // Included for use with string extractors like potx.
   t(' Materials or forms that this artwork is composed of, or the genre of this work.');
-  t('<p>Are you using this work sample to apply for an opportunity on MnArtists?</p>
-<p>If so, what is the portion of this work sample you wish for jurors to view? Include any additional viewing instructions here.</p>');
-  t('<p>What is your role in this work sample? Examples might be: Dancer, Curator, Composer, Painter, Writer, etc.</p>
-<p>The roles in this field will appear under your name and picture in search results.</p>');
+  t('<p>Click the \'plus\' (+) button to add a new file to your artwork. </p>
+<p>Then, for image or text files, please select a txt jpg png pdf gif jpeg  to Upload. </p>
+<p>Or for sound and video files, select the \'Web\' tab and copy and paste the URL to your work from an external site. </p>');
   t('Additional Links');
+  t('Applicant info');
+  t('Are you using this work sample to apply for an opportunity on MnArtists?
+<p>
+If so, what is the portion of this work sample you wish for jurors to view? Include any additional viewing instructions here.
+<p>
+• Does your media require a password to view?
+');
   t('Article Type');
+  t('Artwork');
   t('Body');
-  t('Byline');
   t('Category');
+  t('Comma separated keywords that describe your work.');
+  t('Communities');
   t('Community');
-  t('Created');
   t('Created Date');
   t('Description');
   t('Determine if this is an OG group.');
-  t('Dimensions');
+  t('Dimensions/Duration');
   t('Do not include the # mark, we\'ll handle that.');
   t('Enter a comma-separated list of words to describe your content.');
-  t('Excerpt');
   t('External URL');
   t('Featured Artist');
   t('For Sale');
-  t('For information about creative commons license, <a href="http://creativecommons.org/licenses/" target="_blank">click here</a>');
   t('Group');
-  t('Group membership');
+  t('Group audience');
   t('Groups audience');
   t('Images');
-  t('License');
-  t('Media');
   t('Medium');
   t('Medium or Genre');
   t('Other Artists Involved');
   t('Public');
   t('Role(s)');
-  t('Select descriptors from this list to connect your work to similar artists, artworks, and projects.');
+  t('Select descriptors from this list to connect your work to similar artists, artworks, and projects. 
+<p>
+<p>
+Don\'t see a descriptor related to your work? Feel free to include additional subjects/concepts in the tags below!');
   t('Subheader');
   t('Subject/Concept');
   t('Tags');
+  t('The categories you choose determine where the artwork appears in search results. You may select multiple categories.');
+  t('This field is visible on your profile. 
+<p>
+For opportunity applicants: please check the specific opportunity for requirements for this field.');
   t('Twitter Hashtag');
   t('Venue');
+  t('What is your role in this work sample? Examples might be: Dancer, Curator, Composer, Painter, Writer, etc.
+<p>
+<p>
+Roles you include here will appear under your name and picture in search results.</p>');
 
   return $field_instances;
 }
