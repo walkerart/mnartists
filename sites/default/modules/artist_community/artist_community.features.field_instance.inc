@@ -131,6 +131,48 @@ function artist_community_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-article-field_byline'
+  $field_instances['node-article-field_byline'] = array(
+    'bundle' => 'article',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 8,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_byline',
+    'label' => 'Byline',
+    'required' => 0,
+    'settings' => array(
+      'profile2_field_privacy' => FALSE,
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'label_help_description' => '',
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 2,
+    ),
+  );
+
   // Exported field_instance: 'node-article-field_community_user_select'
   $field_instances['node-article-field_community_user_select'] = array(
     'bundle' => 'article',
@@ -1702,6 +1744,7 @@ If so, what is the portion of this work sample you wish for jurors to view? Incl
   t('Article Type');
   t('Artwork');
   t('Body');
+  t('Byline');
   t('Category');
   t('Comma separated keywords that describe your work.');
   t('Communities');
