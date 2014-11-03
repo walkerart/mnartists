@@ -212,6 +212,7 @@ function mnartists_search_default_search_api_index() {
         "created" : { "type" : "date" },
         "roles" : { "type" : "list\\u003Cinteger\\u003E" },
         "status" : { "type" : "integer" },
+        "picture_url" : { "type" : "uri" },
         "profile_main" : { "type" : "integer", "entity_type" : "profile2" },
         "profile_resume" : { "type" : "integer", "entity_type" : "profile2" },
         "profile_organization" : { "type" : "integer", "entity_type" : "profile2" },
