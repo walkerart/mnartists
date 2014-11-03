@@ -111,21 +111,18 @@ function artist_community_search_page() {
         $article_filter = new SearchApiQueryFilter;
         $article_filter->condition('type', 'article', '=');
         $article_filter->condition('status', '1', '=');
+        //skip the about articles
+        $article_filter->condition('field_article_category', ABOUT_TID, '<>');
         $article_filters[] = $article_filter;
         if ($local_og !== null) {
             $article_filters = array_merge($article_filters, $filters);
         }
-        $articles = artist_community_execute_query(NODE_INDEX, $article_filters, array(array('promote', 'ASC'), array('changed', 'DESC')), $number_of_featured_articles + 5);
+        $articles = artist_community_execute_query(NODE_INDEX, $article_filters, array(array('promote', 'ASC'), array('changed', 'DESC')), $number_of_featured_articles);
 
         $articleCounter = 0;
         foreach($articles as $index => $article) {
             if ($articleCounter >= $number_of_featured_articles) {
                 break;
-            }
-            //skip the about articles
-            $category_tid = (isset($article->field_article_category['und'])) ? $article->field_article_category['und'][0]['tid'] : null;
-            if ($category_tid == ABOUT_TID) {
-                continue;
             }
             $context_article_data = new StdClass();
             $author_full_name = '';
@@ -164,8 +161,9 @@ function artist_community_search_page() {
         $event_filters = array();
         $event_filter = new SearchApiQueryFilter;
         $event_filter->condition('type', 'event');
-        $event_filter->condition("field_date:value", $start_date, ">");
-        $event_filter->condition("field_date:value2", $end_date, "<");
+        $event_filter->condition("field_date:value", $start_date, ">=");
+        $event_filter->condition("field_date:value", $end_date, "<");
+        $event_filter->condition('status', '1', '=');
         $event_filters[] = $event_filter;
         if ($local_og !== null) {
             $event_filters = array_merge($event_filters, $filters);
@@ -174,12 +172,14 @@ function artist_community_search_page() {
         $from_the_network_filters = array();
         $from_the_network_filter = new SearchApiQueryFilter;
         $from_the_network_filter->condition('type', 'from_the_network_item');
+        $from_the_network_filter->condition('status', '1', '=');
         $from_the_network_filters[] = $from_the_network_filter;
         if (!is_null($local_og)) {
             $from_the_network_filters = array_merge($from_the_network_filters, $filters);
         }
         $from_the_network_result = artist_community_execute_query(NODE_INDEX, $from_the_network_filters, array(array('promote', 'DESC'), array('changed', 'DESC')), $from_the_network_limit);
         foreach ($from_the_network_result as $index => $post) {
+            $post_data = new StdClass();
             $post_data->nid = $post->nid;
             $post_data->title = $post->title;
             if (isset($post->field_images['und'])) {
@@ -212,8 +212,10 @@ function artist_community_search_page() {
 
         // get latest users data, format data for template
         $latest_user_filters = array();
-        $latest_user_filter = new SearchApiQueryFilter;
+        $latest_user_filter = new SearchApiQueryFilter();
         $latest_user_filter->condition('roles', ARTIST_ROLE);
+        $latest_user_filter->condition('picture_url', NULL, '<>');
+        $latest_user_filter->condition('status', '1', '=');
         $latest_user_filters[] = $latest_user_filter;
         if ($local_og !== null) {
             $latest_user_filters = array_merge($latest_user_filters, $user_filters);
@@ -222,7 +224,7 @@ function artist_community_search_page() {
         $user_keys = array_keys($latest_users);
         foreach($user_keys as $index => $value) {
             $user = $latest_users[$value];
-            if (is_null($user->picture)) { continue; }
+            // if (is_null($user->picture)) { continue; }
             $context_latest_user_data = new StdClass();
 
             $full_name = mnartist_profiles_collective_or_fullname_or_username($user->uid);
