@@ -286,7 +286,7 @@ function artist_community_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'field_medium',
     'label' => 'Category',
-    'required' => 0,
+    'required' => 1,
     'settings' => array(
       'profile2_field_privacy' => FALSE,
       'user_register_form' => FALSE,
