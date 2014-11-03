@@ -1363,6 +1363,14 @@ function mnartist_profiles_entity_property_info_alter(&$info) {
         'sanitized' => TRUE,
         'getter callback' => 'mnartist_profiles_flags_count_callback',
     );
+
+    $info['user']['properties']['picture_url'] = array(
+        'label' => t('User picture url'),
+        'type' => 'uri',
+        'description' => t('The user profie picture url'),
+        'getter callback' => 'mnartist_profiles_get_user_picture',
+    );
+
 }
 
 function mnartist_profiles_full_name_actual_callback($item) {
@@ -1565,4 +1573,14 @@ function mnartist_profiles_search_api_index_items_alter(array &$items, SearchApi
         }
     }
 
+}
+
+function mnartist_profiles_get_user_picture($user){
+    $user_picture_url = NULL;
+
+    if (isset($user->picture->uri)) {
+        $user_picture_url = file_create_url($user->picture->uri);
+    }
+
+    return $user_picture_url;
 }
