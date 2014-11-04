@@ -100,11 +100,6 @@ function artist_community_search_page() {
             }
         }
     } else {
-        // @TODO:
-        // - remove $articleCounter
-        // - field_article_category exlusion should go into query,
-        //   reason for number_of_featured_articles + 5
-
         // get articles for 'top stories' block. if there's a community filter, merge
         // it with the article type filter. package the data up for the template
         $article_filters = array();
