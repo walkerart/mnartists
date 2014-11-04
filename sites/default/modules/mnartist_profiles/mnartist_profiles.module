@@ -1567,6 +1567,7 @@ function mnartist_profiles_search_api_index_items_alter(array &$items, SearchApi
         foreach($items as $id => $item){
             $node_author = user_load($item->uid);
             if(isset($node_author->field_user_global_privacy_flag) &&
+                !empty($node_author->field_user_global_privacy_flag) &&
                 $node_author->field_user_global_privacy_flag[LANGUAGE_NONE][0]['value'] === '1') {
                 unset($items[$id]);
             }
