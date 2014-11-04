@@ -1019,6 +1019,9 @@ function _artist_community_get_items_query ($local_og = null,
                     }
                     $contentFilters['node'][] = $contextQueryString;
 
+                    if ($type == 'artwork') {
+                        $contentFilters['node'][] = AC_ARTWORK_PUBLIC_FIELD . ':true';
+                    }
                     if ($type === "article" && $value[0] !== ABOUT_TID) {
                         $contentFilters['node'][] = "-" . AC_ARTICLE_CATEGORY_FIELD . ":" . ABOUT_TID;
                     }
