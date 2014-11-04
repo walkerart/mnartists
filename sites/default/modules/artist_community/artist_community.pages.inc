@@ -111,19 +111,16 @@ function artist_community_search_page() {
         $article_filter = new SearchApiQueryFilter;
         $article_filter->condition('type', 'article', '=');
         $article_filter->condition('status', '1', '=');
+
         //skip the about articles
         $article_filter->condition('field_article_category', ABOUT_TID, '<>');
         $article_filters[] = $article_filter;
         if ($local_og !== null) {
             $article_filters = array_merge($article_filters, $filters);
         }
-        $articles = artist_community_execute_query(NODE_INDEX, $article_filters, array(array('promote', 'ASC'), array('changed', 'DESC')), $number_of_featured_articles);
+        $articles = artist_community_execute_query(NODE_INDEX, $article_filters, array(array('promote', 'DESC'), array('changed', 'DESC')), $number_of_featured_articles);
 
-        $articleCounter = 0;
         foreach($articles as $index => $article) {
-            if ($articleCounter >= $number_of_featured_articles) {
-                break;
-            }
             $context_article_data = new StdClass();
             $author_full_name = '';
 
@@ -152,7 +149,6 @@ function artist_community_search_page() {
             $category_term = (isset($article->field_article_category['und'])) ? taxonomy_term_load($article->field_article_category['und'][0]['tid']) : '';
             $context_article_data->category = (isset($category_term->name)) ? $category_term->name : '';
             $articles_data[] = $context_article_data;
-            $articleCounter++;
         }
 
         // as above, but with events
