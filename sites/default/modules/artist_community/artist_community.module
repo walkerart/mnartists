@@ -928,16 +928,28 @@ function _artist_community_get_items_query ($local_og = null,
 
     // Handle Organic groups and taxonomies
     if (!empty($local_og)) {
+        // to hide private artwork
+        $content_fiter = '';
+
+        if (empty($local_content)) {
+            if ($filtered_by_event_include_past) {
+                $content_fiter = ' AND ('.AC_TYPE_FIELD.':article OR ('.AC_TYPE_FIELD.':artwork AND '.AC_ARTWORK_PUBLIC_FIELD
+                    .':true) OR '.AC_TYPE_FIELD.':event OR ('.AC_TYPE_FIELD.':opportunity AND '.AC_OPP_ANNOUNCE_DATE_FIELD.':[* TO NOW]))';
+            } else {
+                $content_fiter = ' AND ('.AC_TYPE_FIELD.':article OR ('.AC_TYPE_FIELD.':artwork AND '.AC_ARTWORK_PUBLIC_FIELD
+                    .':true) OR ('.AC_TYPE_FIELD.':opportunity AND '.AC_OPP_ANNOUNCE_DATE_FIELD.':[* TO NOW]) OR ('.AC_TYPE_FIELD.":event AND ds_field_date\:value:[NOW TO *]))";
+            }
+        }
         foreach($local_og as $og_id => $terms) {
 
             // Add taxonomy filters for a specific taxonomy
             if (is_array($terms)) {
                 foreach($terms as $term) {
-                    $nodeQueryBuilder[] = AC_MEDIUM_FIELD.":$term";
+                    $nodeQueryBuilder[] = AC_MEDIUM_FIELD.":$term" . $content_fiter;
                 }
             }
             elseif (is_numeric($og_id)) {
-                $nodeQueryBuilder[] = AC_OG_GROUP_REF_FIELD.":$og_id";
+                $nodeQueryBuilder[] = AC_OG_GROUP_REF_FIELD.":$og_id" . $content_fiter;
             }
             if (is_numeric($og_id)) {
                 $userQueryBuilder[] = AC_USER_NODE_FIELD.":$og_id";
