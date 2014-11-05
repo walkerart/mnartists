@@ -202,6 +202,9 @@ function _mnartist_register_batch_handler($action, $data, &$context) {
                 $data['username'],
                 $data['password']
             );
+            // create redirect for artist home
+            _mnartist_register_create_redirect($legacyData);
+
             $context['results']['legacyData'] = $legacyData;
             $context['finished'] = 1;
             break;
@@ -679,27 +682,69 @@ function _mnartist_register_link_article($legacyData) {
         $src_ids[] = $record['resourceid'];
     }
 
-    // getting the migrated node mapping
-    $query = Database::getConnection('default', 'migration')
-      ->select('migrate_map_mnarticle', 'm');
-    $query->fields('m', array('destid1'));
-    $query->condition('m.sourceid1', $src_ids, 'IN');
-    $result = $query->execute();
+    if (!empty($src_ids)) {
+        // getting the migrated node mapping
+        $query = Database::getConnection('default', 'migration')
+          ->select('migrate_map_mnarticle', 'm');
+        $query->fields('m', array('destid1'));
+        $query->condition('m.sourceid1', $src_ids, 'IN');
+        $result = $query->execute();
 
-    $nids = array();
-    while ($record = $result->fetchAssoc()) {
-        $nids[] = $record['destid1'];
+        $nids = array();
+        while ($record = $result->fetchAssoc()) {
+            $nids[] = $record['destid1'];
+        }
+
+        // update article node author to migrated user
+        $mn_uid = '492';
+        $links = array();
+        $nodes = node_load_multiple($nids);
+
+        foreach($nodes as $node) {
+            if ($node->uid == $mn_uid) {
+                $node->uid = $user->uid;
+                node_save($node);
+            }
+        }
     }
+}
 
-    // update article node author to migrated user
-    $mn_uid = '492';
-    $links = array();
-    $nodes = node_load_multiple($nids);
+function _mnartist_register_create_redirect($legacyData) {
+    global $user;
 
-    foreach($nodes as $node) {
-        if ($node->uid == $mn_uid) {
-            $node->uid = $user->uid;
-            node_save($node);
+    $redirect_defaults = array(
+      'status_code' => 301,
+      'language' => LANGUAGE_NONE,
+    );
+
+    foreach ($legacyData as $key => $resource) {
+        if ($key == 'artist') {
+            if (isset($resource['resourceid'])) {
+                if (isset($user->uid)) {
+                    $redirect_defaults['uid'] = $user->uid;
+                }
+                $old_id = $resource['resourceid'];
+                $old_path = 'artistHome.do?rid=' . $old_id;
+
+                $redirect_destination = entity_uri('user', $user);
+
+                $redirect = new stdClass();
+                redirect_object_prepare($redirect, $redirect_defaults);
+                $redirect->redirect = 'user/' . $user->uid;
+                $redirect->source = $old_path;
+
+                // check not exist
+                if (redirect_load_by_source($old_path) === FALSE) {
+                  redirect_save($redirect);
+
+                  watchdog('mnartist_register', 'Added redirect for @user: !old_path -> !new_path',
+                    array(
+                        '@user' => $user->name,
+                        '!old_path' => $old_path,
+                        '!new_path' => $redirect_destination['path'],
+                    ), WATCHDOG_DEBUG);
+                }
+            }
         }
     }
 }
@@ -723,9 +768,9 @@ class ConnectionFactory
             $password = variable_get('mnartist_postgres_pass', 'mna_prod');
             $dbName = variable_get('mnartist_postgres_db', 'mna_prod');
 
-            $this->db = new PDO('pgsql:user=' . $username . ' dbname=' . $dbName . ' password=' . $password);
+            // $this->db = new PDO('pgsql:user=' . $username . ' dbname=' . $dbName . ' password=' . $password);
             // O8
-            // $this->db = new PDO('pgsql:user=' . $username . ' dbname=' . $dbName . ' password=' . $password . ' host=127.0.0.1');
+            $this->db = new PDO('pgsql:user=' . $username . ' dbname=' . $dbName . ' password=' . $password . ' host=127.0.0.1');
             $this->db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
         }
         return $this->db;
