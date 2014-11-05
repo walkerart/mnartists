@@ -927,7 +927,7 @@ function _artist_community_get_items_query ($local_og = null,
 
 
     // Handle Organic groups and taxonomies
-    if ($local_og !== null) {
+    if (!empty($local_og)) {
         foreach($local_og as $og_id => $terms) {
 
             // Add taxonomy filters for a specific taxonomy
@@ -935,10 +935,13 @@ function _artist_community_get_items_query ($local_og = null,
                 foreach($terms as $term) {
                     $nodeQueryBuilder[] = AC_MEDIUM_FIELD.":$term";
                 }
-            } else {
+            }
+            elseif (is_numeric($og_id)) {
                 $nodeQueryBuilder[] = AC_OG_GROUP_REF_FIELD.":$og_id";
             }
-            $userQueryBuilder[] = AC_USER_NODE_FIELD.":$og_id";
+            if (is_numeric($og_id)) {
+                $userQueryBuilder[] = AC_USER_NODE_FIELD.":$og_id";
+            }
         }
     } else {
         if ($filtered_by_event_include_past) {
@@ -1103,9 +1106,13 @@ function _artist_community_get_items_query ($local_og = null,
         }
         $contentFilterQueryString = implode(' OR ', $contentFilterQueryStrings);
         $solarium_query->createFilterQuery($type)->setQuery($contentFilterQueryString);
+
+// dpm($contentFilterQueryString);
     }
 
     $communityQueryString = "(index_id:".NODE_INDEX."$nodeQueryBuilderString AND is_status:1) OR (index_id:".USER_INDEX." AND ".AC_SORT_BY_NAME_FIELD.":['' TO *]$userQueryBuilderString)";
+
+// dpm($communityQueryString, '$communityQueryString');
 
     $solarium_query->createFilterQuery('the_thing')->setQuery($communityQueryString);
     if ($offset !== null && is_int($offset)) {
@@ -1174,6 +1181,8 @@ function _artist_community_get_items_query ($local_og = null,
         unset($search_facets);
     }
     _set_community_query_facets($facet_query_string);
+
+// dpm($facet_query_string, '$facet_query_string');
 
     // enable debug
     // $debug = $solarium_query->getDebug();

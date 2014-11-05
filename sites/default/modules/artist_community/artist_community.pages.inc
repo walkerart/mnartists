@@ -55,26 +55,29 @@ function artist_community_search_page() {
     $local_sort_direction = (isset($_GET['sort_direction'])) ? $_GET['sort_direction'] : null;
 
     // Handle Organic groups and taxonomies
-    if ($local_og !== null) {
+    if (!empty($local_og)) {
         $filter = new SearchApiQueryFilter;
         $filter->setConjunction('OR');
 
         $user_filter = new SearchApiQueryFilter;
         $user_filter->setConjunction('OR');
-
+// dpm($local_og);
+        // @CK: fixed per the logic of similar query in _artist_community_get_items_query()
         foreach($local_og as $og_id => $terms) {
-            $filter->condition('og_group_ref', $og_id);
-            $user_filter->condition('og_user_node', $og_id);
-
+            if (is_numeric($og_id)) {
+                $user_filter->condition('og_user_node', $og_id);
+            }
             // Add taxonomy filters for a specific taxonomy
             if (is_array($terms)) {
-                $sub_filter = new SearchApiQueryFilter;
+                // $sub_filter = new SearchApiQueryFilter; // @CK
                 $user_sub_filter = new SearchApiQueryFilter;
                 foreach($terms as $term) {
-                    $sub_filter->condition('field_medium', $term);
+                    $filter->condition('field_medium', $term);
                 }
-                $filter->filter($sub_filter);
-            } else {
+                // $filter->filter($sub_filter);   // @CK
+            }
+            elseif (is_numeric($og_id)) {
+                $filter->condition('og_group_ref', $og_id);
             }
         }
         $filters[] = $filter;
@@ -83,6 +86,7 @@ function artist_community_search_page() {
 
     // Handle content and users
     if ($local_content !== null) {
+        // @CK: This part never used?
         $filter = new SearchApiQueryFilter;
         $filter->setConjunction('OR');
 
