@@ -724,14 +724,14 @@ function _mnartist_register_create_redirect($legacyData) {
                     $redirect_defaults['uid'] = $user->uid;
                 }
                 $old_id = $resource['resourceid'];
-                $old_path = 'artistHome.do?rid=' . $old_id;
 
                 $redirect_destination = entity_uri('user', $user);
 
                 $redirect = new stdClass();
                 redirect_object_prepare($redirect, $redirect_defaults);
                 $redirect->redirect = 'user/' . $user->uid;
-                $redirect->source = $old_path;
+                $redirect->source = 'artistHome.do';
+                $redirect->source_options['query'] = array('rid' => $old_id);
 
                 // check not exist
                 if (redirect_load_by_source($old_path) === FALSE) {
