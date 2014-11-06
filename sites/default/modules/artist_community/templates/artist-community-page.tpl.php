@@ -182,7 +182,7 @@
 
             <?php if (!empty($event_widget_items)) { ?>
                 <div class="event-thing widget-standard widget">
-                    <h3>This Week</h3>
+                    <h3>Upcoming Events</h3>
                     <div class="widget-content">
                         <div class="event-thing-event-block event-thing-event-block-hero">
                             <a href="<?= url( 'node/'. $event_widget_items['hero']->nid, array('absolute' => true, 'alias' => false )) ?>">
