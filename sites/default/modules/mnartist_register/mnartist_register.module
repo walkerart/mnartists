@@ -179,9 +179,9 @@ function mnartist_register_user_form_submit($form, &$form_state) {
             array('_mnartist_register_batch_handler', array('getUserData', array(
                 'username' => trim($form_state['values']['username']),
                 'password' => trim($form_state['values']['password'])))),
-            array('_mnartist_register_batch_handler', array('loadMainProfile', array())),
-            array('_mnartist_register_batch_handler', array('loadResume', array())),
-            array('_mnartist_register_batch_handler', array('loadWorks', array())),
+            // array('_mnartist_register_batch_handler', array('loadMainProfile', array())),
+            // array('_mnartist_register_batch_handler', array('loadResume', array())),
+            // array('_mnartist_register_batch_handler', array('loadWorks', array())),
             array('_mnartist_register_batch_handler', array('linkArticle', array())),
         ),
         'finished' => '_mnartist_register_batch_finished',
@@ -203,7 +203,7 @@ function _mnartist_register_batch_handler($action, $data, &$context) {
                 $data['password']
             );
             // create redirect for artist home
-            _mnartist_register_create_redirect($legacyData);
+            // _mnartist_register_create_redirect($legacyData);
 
             $context['results']['legacyData'] = $legacyData;
             $context['finished'] = 1;
@@ -644,6 +644,10 @@ function _mnartist_register_check_for_legacy_account($email) {
 
 function _mnartist_register_link_article($legacyData) {
     global $user;
+    $default_uid = '492';
+
+    $path = drupal_get_path('module', 'mnartist_register');
+    include_once $path . '/article_redirect_data.inc';
 
     // migrated user fullname to use for matching article author
     $fullname = $legacyData['firstname'] . ' ' . $legacyData['lastname'];
@@ -682,30 +686,41 @@ function _mnartist_register_link_article($legacyData) {
         $src_ids[] = $record['resourceid'];
     }
 
+    // $sourceid_nid_mapping is from article_redirect_data.inc
     if (!empty($src_ids)) {
-        // getting the migrated node mapping
-        $query = Database::getConnection('default', 'migration')
-          ->select('migrate_map_mnarticle', 'm');
-        $query->fields('m', array('destid1'));
-        $query->condition('m.sourceid1', $src_ids, 'IN');
-        $result = $query->execute();
+        foreach ($src_ids as $src_id) {
+            if (isset($sourceid_nid_mapping[$src_id])) {
+                $nid = $sourceid_nid_mapping[$src_id];
+                $node = node_load($nid);
 
-        $nids = array();
-        while ($record = $result->fetchAssoc()) {
-            $nids[] = $record['destid1'];
-        }
-
-        // update article node author to migrated user
-        $mn_uid = '492';
-        $links = array();
-        $nodes = node_load_multiple($nids);
-
-        foreach($nodes as $node) {
-            if ($node->uid == $mn_uid) {
-                $node->uid = $user->uid;
-                node_save($node);
+                if ($node) {
+                    $node->uid = $user->uid;
+                    node_save($node);
+                }
             }
         }
+        // getting the migrated node mapping
+        // $query = Database::getConnection('default', 'migration')
+        //   ->select('migrate_map_mnarticle', 'm');
+        // $query->fields('m', array('destid1'));
+        // $query->condition('m.sourceid1', $src_ids, 'IN');
+        // $result = $query->execute();
+
+        // $nids = array();
+        // while ($record = $result->fetchAssoc()) {
+        //     $nids[] = $record['destid1'];
+        // }
+
+        // // update article node author to migrated user
+        // $links = array();
+        // $nodes = node_load_multiple($nids);
+
+        // foreach($nodes as $node) {
+        //     if ($node->uid == $default_uid) {
+        //         $node->uid = $user->uid;
+        //         node_save($node);
+        //     }
+        // }
     }
 }
 
