@@ -562,7 +562,7 @@ function _mnartist_register_getResourceFiles($resourceId) {
     $files = $stmt->fetchAll();
     foreach($files as $k => $v) {
         $path = (strrpos($v['filepath'], '/') === strlen($v['filepath']) - 1) ? $v['filepath'] : $v['filepath'] . '/';
-        $files[$k]['uri'] = 'http://mnartists.org' . $path . $v['filename'];
+        $files[$k]['uri'] = variable_get('mnartist_register_domain', 'http://archive.mnartists.org:8080') . $path . $v['filename'];
     }
 
     return $files;
