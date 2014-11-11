@@ -10780,14 +10780,17 @@ div.ctools-modal-content .form-item label {
     padding: 40px 50px 160px 50px !important;
 }
 
-.media-youtube-video {
-    width: 100%;
-    height: 400px;
-    position: relative;
-
-    iframe.media-youtube-player {
-        position: absolute;
+.pane-user-mnartist-profiles-artworks {
+    .media-youtube-video {
         width: 100%;
-        height: 100%;
+        height: 400px;
+        position: relative;
+
+        iframe.media-youtube-player {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
     }
 }
+
