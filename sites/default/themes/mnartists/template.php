@@ -199,3 +199,15 @@ function mnartists_preprocess_prefinery_user_login_form(&$variables) {
   $url = variable_get('prefinery_url', '');
   $variables['title'] = t('Lucky you! You received a beta invite. Enter your email and 10 digit code here. Want early access? <a href="@url" target="_blank">Request an invite</a>.', array('@url' => $url));
 }
+
+function mnartists_preprocess_field_slideshow(&$variables) {
+  foreach ($variables['items'] as $key => $value) {
+    if (isset($value['image_field_caption'])) {
+      $caption = '<strong>' . $value['image_field_caption']['value'] . '</strong>';
+      if (isset($value['alt'])) {
+        $caption .= '<p>' . $value['alt'] . '</p>';
+      }
+      $variables['items'][$key]['caption'] = $caption;
+    }
+  }
+}

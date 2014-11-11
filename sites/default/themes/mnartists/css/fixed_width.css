@@ -2968,11 +2968,6 @@ body { text-align: center; }
 .article-page .pane-node-author a { text-decoration: none !important; }
 .article-page .pane-node-field-tags a { text-decoration: none !important; white-space: nowrap; }
 .article-page .field-name-field-body a { text-decoration: underline; }
-.article-page .field-type-image { margin-bottom: 1.5em; }
-.article-page .field-type-image .field-item { text-align: center; }
-.article-page .field-type-image .field-item img { margin: 0; display: block; max-width: 100%; width: auto; height: auto; max-height: 600px; margin-bottom: 10px; }
-.article-page .field-type-image .field-item blockquote { text-align: left; }
-.article-page .field-type-image .field-item blockquote p { margin: 0; }
 .article-page .panel-pane .block-inner .block-content { background: none; }
 .article-page .pane-node-title { font-size: 36px; line-height: 1.2em; padding-right: 40px; margin-bottom: 15px; }
 @media screen and (max-width: 480px) { .article-page .pane-node-title { font-size: 24px; } }
@@ -3089,6 +3084,28 @@ width:100%;*/ margin-bottom: 2em; }
 
 @media screen and (max-width: 480px) { .node-type-article .layout-b .main-content .inside .pane-custom.pane-1 { width: 100% !important; float: none !important; }
   .node-type-article .layout-b .main-content .inside .pane-node-updated { width: 100% !important; float: none !important; text-align: left !important; } }
+/* article slidehow */
+.field-slideshow-wrapper { background-color: #f2f2f2; position: relative; }
+
+.field-slideshow { border-bottom: 4px solid #fff; margin: 0 auto 10px; text-align: center; width: 100% !important; }
+
+.field-slideshow-caption { display: block; min-height: 2em; padding: 5px 20px; text-align: left; }
+.field-slideshow-caption strong { margin: 0; display: block; }
+.field-slideshow-caption p { display: block; font-size: smaller; }
+
+.field-slideshow-controls a { background: url(../images/icon-sprite-slider-arrows.png) no-repeat 0 0; bottom: auto; height: 30px; position: absolute; text-indent: -9999px; top: 180px; width: 30px; z-index: 100; opacity: .2; }
+.field-slideshow-controls a:hover { opacity: 1; }
+.field-slideshow-controls a.prev { background-position: 0 0; left: -20px; }
+.field-slideshow-controls a.next { background-position: -50px 0; right: -30px; }
+
+.field-slideshow-slide { width: 100% !important; }
+.field-slideshow-slide img { margin: 0 auto; }
+
+.field-slideshow-carousel-wrapper { position: relative; }
+.field-slideshow-carousel-wrapper .carousel-prev { font-size: 21px; left: 0; position: absolute; top: 40px; z-index: 100; }
+.field-slideshow-carousel-wrapper .carousel-next { position: absolute; top: 40px; right: 0; font-size: 21px; }
+.field-slideshow-carousel-wrapper .field-slideshow-pager { height: 100px; }
+
 /* artist stuff */
 .page-user .pane-mnartist-profiles-mna-user-profile h2.pane-title { background: #f2f2f2; }
 
