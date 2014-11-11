@@ -59,6 +59,13 @@ define('DEFAULT_DOCUMENT_IMAGE', 'icon-media-document.png');
 
 
 function artist_community_init() {
+    // include solarium library (and symfonyeventdispatcher, on which it depends)
+    require_once DRUPAL_ROOT.'/sites/all/libraries/SymfonyEventDispatcher/EventDispatcherInterface.php';
+    require_once DRUPAL_ROOT.'/sites/all/libraries/SymfonyEventDispatcher/EventDispatcher.php';
+    require_once DRUPAL_ROOT.'/sites/all/libraries/SymfonyEventDispatcher/Event.php';
+    require_once DRUPAL_ROOT.'/sites/all/libraries/Solarium/Autoloader.php';
+    Solarium\Autoloader::register();
+
     if (module_exists('search_api') && function_exists("search_api_server_load")) {
         $mna_search_api_server = search_api_server_load("localhost");
 
