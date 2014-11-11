@@ -30,7 +30,7 @@ function artist_community_search_page() {
 
     // how many articles to include in featured
     // articles section
-    $number_of_featured_articles = 5;
+    $number_of_featured_articles = 7;
 
     // pull in solarium config
     global $solarium_config;
