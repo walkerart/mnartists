@@ -25,4 +25,20 @@ function media_soundcloud_uninstall() {
   return array(array('success' => TRUE, 'query' => "Deleted all variables in the Media: SoundCloud namespace."));
 }
 
-
+/**
+ * Update Media Soundcloud files to the new audio file_entity type.
+ */
+function media_soundcloud_update_7200() {
+  // Removed previously added update because we don't want to update all undefined to be audio. 
+  // They could be documents etc too.
+  // But leaving stub as some users maybe already have run this update...
+  
+  //// update mimetype
+  //module_load_include('inc', 'file_entity', 'file_api');
+  //$audio_type = file_type_load('audio');
+  //$audio_type->mimetypes[] = 'audio/soundcloud';
+  //file_type_save($audio_type);
+  //
+  //// Update existing files
+  //db_query("UPDATE {file_managed} SET type = 'audio' WHERE type = 'undefined' AND filemime = 'audio/soundcloud'");
+}

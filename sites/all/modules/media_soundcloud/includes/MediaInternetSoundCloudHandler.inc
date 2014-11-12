@@ -25,10 +25,25 @@ class MediaInternetSoundCloudHandler extends MediaInternetBaseHandler {
           }        
       }
       if( isset($matches[3])){
-          if($matches[2] == 'sets'){
-            return file_stream_wrapper_uri_normalize('soundcloud://u/' . $matches[1] . '/s/' . $matches[3]);  
+//          if($matches[2] == 'sets'){
+//            return file_stream_wrapper_uri_normalize('soundcloud://u/' . $matches[1] . '/s/' . $matches[3]);  
+//          }
+         if ($matches[2] == 'sets') {
+           $uri = 'soundcloud://u/' . $matches[1] . '/s/' . $matches[3];
+          if (isset($matches[4])) {
+            $uri = 'soundcloud://u/' . $matches[1] . '/s/' . $matches[3] . '/p/' . $matches[4];
           }
-      }
+          else {
+            $uri = 'soundcloud://u/' . $matches[1] . '/s/' . $matches[3];
+          }
+        }
+
+        else {
+          $uri = 'soundcloud://u/' . $matches[1] . '/a/' . $matches[2] . '/p/' . $matches[3];
+         }
+
+		return file_stream_wrapper_uri_normalize($uri);
+      } //end matches 3 if
     }
   }
 
