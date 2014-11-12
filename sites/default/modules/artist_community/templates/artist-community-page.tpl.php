@@ -187,13 +187,13 @@
                         <div class="event-thing-event-block event-thing-event-block-hero">
                             <a href="<?= url( 'node/'. $event_widget_items['hero']->nid, array('absolute' => true, 'alias' => false )) ?>">
                                 <img src="<?= $event_widget_items['hero']->image_uri ?>">
-                                <div class="event-thing-event-title"><?= date("M d", $event_widget_items['hero']->date) ?>: <?= $event_widget_items['hero']->title ?></div>
+                                <div class="event-thing-event-title"><?= $event_widget_items['hero']->date; ?>: <?= $event_widget_items['hero']->title ?></div>
                             </a>
                         </div>
                         <?php foreach ($event_widget_items['others'] as $event) : ?>
                             <div class="event-thing-event-block">
                                 <a href="<?= url( 'node/'. $event->nid, array('absolute' => true, 'alias' => false )) ?>">
-                                    <div class="event-thing-event-title"><?= date("M d", $event->date) ?>: <?= $event->title ?></div>
+                                    <div class="event-thing-event-title"><?= $event->date; ?>: <?= $event->title ?></div>
                                 </a>
                             </div>
                         <?php endforeach; ?>
