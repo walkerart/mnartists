@@ -722,7 +722,7 @@
                                     <span class="ap-artwork hidden" id="f<?php echo $image['fid']; ?>">
                                         <div class="ap-image col-sm-6">
                                             <label for="artwork['<?php echo $image['fid']; ?>']"></label>
-                                            <iframe class="img-responsive" scrolling="no" frameborder="no" width="" height="150" src="//w.soundcloud.com/player/?url=<?php echo $image['file']; ?>&amp;show_user=false&amp;show_artwork=false"></iframe>
+                                            <?php print theme('media_soundcloud_audio', array('uri' => $image['uri'])); ?>
                                         </div>
                                     </span>
 

@@ -195,7 +195,10 @@
                     <iframe class="img-responsive" src="<?php echo $artwork->file; ?>&amp;showinfo=0&amp;badge=0" id="ytplayer" frameborder="0"></iframe>
                 <?php endif; ?>
                 <?php if($artwork->file_type == 'soundcloud') : ?>
-                    <iframe class="img-responsive" scrolling="no" frameborder="no" width="" height="150" src="//w.soundcloud.com/player/?url=<?php echo $artwork->file; ?>&amp;show_user=false&amp;show_artwork=false"></iframe>
+                  <?php $scfile = file_load($artwork->fid); //load file to get uri for sound cloud theme function 
+                  //dpm($scfile);
+                  ?>
+                  <?php print theme('media_soundcloud_audio', array('uri' => $scfile->uri)); ?>
                 <?php endif; ?>
                 <?php if ($artwork->file_type == 'document') : ?>
                     <a href="<?php  print file_create_url(file_build_uri('opportunity/' . $artwork->nid . '/' . $artwork->uid . '/' . $artwork->file)); ?>" target="_blank">

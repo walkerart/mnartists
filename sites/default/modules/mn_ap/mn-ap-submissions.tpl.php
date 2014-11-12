@@ -93,7 +93,14 @@
 								<?php endif; ?>
 								<?php if($artwork->file_type == 'soundcloud') : ?>
 									<span class="thumb-list sound">
-										<a href="<?php echo $artwork->file; ?>" data-toggle="lightbox" data-gallery="mixedgallery" data-title="<?php echo $artwork->title; ?>" data-parent=".lightbox-parent-<?php echo $artwork->uid; ?>">
+                    <?php $scfile = file_load($artwork->fid); //load file to get uri for sound cloud theme function ?>
+                  <?php $sciframe = theme('media_soundcloud_audio', array('uri' => $scfile->uri));
+                    preg_match('/src="([^"]+)"/', $sciframe, $match);  //strip all but iframe
+                    $url = $match[1];
+                    preg_match("/(url=)(.*?)$/i", $url, $matches); //remove url from iframe
+                    $scurl = $matches[2];
+                  ?>
+										<a href="<?php echo $scurl; ?>"   data-toggle="lightbox" data-gallery="mixedgallery" data-title="<?php echo $artwork->title; ?>" data-parent=".lightbox-parent-<?php echo $artwork->uid; ?>">
 											<img src="<?php  print file_create_url(drupal_get_path('module', 'mn_ap') . '/images/soundcloud.jpg'); ?>" data-soundcloud-id="<?php echo $artwork->file; ?>">
 										</a>
 									</span>
@@ -239,8 +246,15 @@
 									</span>
 									<?php endif; ?>
 									<?php if($artwork->file_type == 'soundcloud') : ?>
+                          <?php $scfile = file_load($artwork->fid); //load file to get uri for sound cloud theme function ?>
+                  <?php $sciframe = theme('media_soundcloud_audio', array('uri' => $scfile->uri));
+                    preg_match('/src="([^"]+)"/', $sciframe, $match);  //strip all but iframe
+                    $url = $match[1];
+                    preg_match("/(url=)(.*?)$/i", $url, $matches); //remove url from iframe
+                    $scurl = $matches[2];
+                  ?>
 										<span class="thumb-list sound">
-											<a href="<?php echo $artwork->file; ?>" data-toggle="lightbox" data-gallery="mixedgallery" data-title="<?php echo $artwork->title; ?>" data-parent=".jury-parent-<?php echo $artwork->uid; ?>">
+											<a href="<?php echo $scurl; ?>" data-toggle="lightbox" data-gallery="mixedgallery" data-title="<?php echo $artwork->title; ?>" data-parent=".jury-parent-<?php echo $artwork->uid; ?>">
 												<img src="<?php  print file_create_url(file_build_uri('soundcloud.jpg')); ?>" data-soundcloud-id="<?php echo $artwork->file; ?>">
 											</a>
 										</span>
