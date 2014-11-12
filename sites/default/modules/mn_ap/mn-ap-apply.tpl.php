@@ -286,11 +286,15 @@
                                         <div><em><?php echo $artwork['title']; ?></em></div>
                                         <div><?php echo $artwork['date']; ?></div>
                                         <div>
-                                            <?php $mediums = $artwork['medium'];
-                                                foreach ($artwork['medium'] as $medium) {
-                                                echo $medium;
-                                                if (next($mediums)) echo ', ';
-                                            } ?>
+                                            <?php
+                                                if (isset($artwork['medium']) && !empty($artwork['medium'])) {
+                                                    $mediums = $artwork['medium'];
+                                                    foreach ($artwork['medium'] as $medium) {
+                                                        echo $medium;
+                                                        if (next($mediums)) echo ', ';
+                                                    }
+                                                }
+                                            ?>
                                         </div>
                                         <div><?php echo $artwork['dimensions']; ?></div>
                                         <div class="ap-body">
@@ -666,11 +670,15 @@
                                     <div><em><?php echo $artwork['title']; ?></em></div>
                                     <div><?php echo $artwork['date']; ?></div>
                                     <div>
-                                        <?php $mediums = $artwork['medium'];
-                                            foreach ($artwork['medium'] as $medium) {
-                                            echo $medium;
-                                            if (next($mediums)) echo ', ';
-                                        } ?>
+                                        <?php
+                                            if (isset($artwork['medium']) && !empty($artwork['medium'])) {
+                                                $mediums = $artwork['medium'];
+                                                foreach ($artwork['medium'] as $medium) {
+                                                    echo $medium;
+                                                    if (next($mediums)) echo ', ';
+                                                }
+                                            }
+                                        ?>
                                     </div>
                                     <div><?php echo $artwork['dimensions']; ?></div>
                                     <div class="ap-body">
