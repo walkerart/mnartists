@@ -133,7 +133,7 @@
                                                         <option value="Trans" <?php if ($rows[$field] == 'Trans') echo 'selected'; ?>>Trans</option>
                                                         <option value="Non-Binary" <?php if ($rows[$field] == 'Non-Binary') echo 'selected'; ?>>Non-Binary</option>
                                                     </select>
-                                                <?php elseif($field == 'ethnicity') : ?>   
+                                                <?php elseif($field == 'ethnicity') : ?>
                                                     <select class="form-control form-select" name="<?php echo $field; ?>" id="<?php echo $field; ?>" <?php if(is_array($rows['opportunity']['required']) && in_array($field, $rows['opportunity']['required'])) echo 'required'; ?>>
                                                         <option disabled <?php if ($rows[$field] == '') echo 'selected'; ?> value="">Select Ethnicity</option>
                                                         <option value="African-American/African/Black" <?php if ($rows[$field] == 'African-American/African/Black') echo 'selected'; ?>>African-American/African/Black</option>
@@ -180,7 +180,7 @@
                             </div>
                             <?php if (in_array('statement', $rows['opportunity']['areas'])) : ?>
                             <div class="form-group">
-                                <label for="statement">Statement <?php if(is_array($rows['opportunity']['required']) && in_array('statement', $rows['opportunity']['required'])) echo '*'; ?> 
+                                <label for="statement">Statement <?php if(is_array($rows['opportunity']['required']) && in_array('statement', $rows['opportunity']['required'])) echo '*'; ?>
                                     <?php if ($rows['opportunity']['statement_length'] != '') : ?>
                                         <div class="small">Maximum <?php echo $rows['opportunity']['statement_length']; ?> Words.</div>
                                     <?php endif; ?>
@@ -343,7 +343,9 @@
                                         <?php $noneOfTypes = 'false'; ?>
                                         <div class="ap-image col-sm-4">
                                             <div class="thumbnail ap-artwork-thumbnail">
-                                                <iframe class="img-responsive" scrolling="no" frameborder="no" width="" height="150" src="//w.soundcloud.com/player/?url=<?php echo $image['file']; ?>&amp;show_user=false&amp;show_artwork=false"></iframe>
+                                                <div class="img-responsive">
+                                                    <?php print theme('media_soundcloud_audio', array('uri' => $image['uri'])); ?>
+                                                </div>
                                                 <div class="caption">
                                                     <div>
                                                         <input type="checkbox" class="ap-check" data-id="f<?php echo $image['fid']; ?>" name="artwork['<?php echo $image['fid']; ?>']" value="<?php echo $image['fid']; ?>" data-vid="v<?php echo $artwork['vid']; ?>" <?php echo isset($rows['ap_artworks']) && $rows['ap_artworks'] != '' && in_array($image['fid'], $rows['ap_artworks']) ? 'checked' : ''; ?>>
@@ -759,7 +761,7 @@
                                         <div class="row">
                                             <div class="col-sm-12">
                                                 <label class="clearPadding clearMargin"><?php echo $rows['opportunity']['custom_1_title']; ?>:</label>
-                                                {{&field1}} 
+                                                {{&field1}}
                                             </div>
                                         </div>
                                     {{/field1}}
@@ -767,7 +769,7 @@
                                         <div class="row">
                                             <div class="col-sm-12">
                                                 <label class="clearPadding clearMargin"><?php echo $rows['opportunity']['custom_2_title']; ?>:</label>
-                                                {{&field2}} 
+                                                {{&field2}}
                                             </div>
                                         </div>
                                     {{/field2}}
@@ -775,7 +777,7 @@
                                         <div class="row">
                                             <div class="col-sm-12">
                                                 <label class="clearPadding clearMargin"><?php echo $rows['opportunity']['custom_3_title']; ?>:</label>
-                                                {{&field3}} 
+                                                {{&field3}}
                                             </div>
                                         </div>
                                     {{/field3}}
@@ -783,7 +785,7 @@
                                         <div class="row">
                                             <div class="col-sm-12">
                                                 <label class="clearPadding clearMargin"><?php echo $rows['opportunity']['custom_4_title']; ?>:</label>
-                                                {{&field4}} 
+                                                {{&field4}}
                                             </div>
                                         </div>
                                     {{/field4}}

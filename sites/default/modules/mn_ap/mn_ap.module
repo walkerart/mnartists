@@ -570,6 +570,7 @@ function mn_ap_artwork_image_data($artworks) {
       } elseif (substr($artwork['uri'], 0, 1) == 's') {
         $url = explode("/", substr($artwork['uri'], 15));
         $art[] = array(
+          'uri' => $artwork['uri'],
           'fid' => $artwork['fid'],
           'type' => 'soundcloud',
           'file' => isset($url[2]) ? "http://soundcloud.com/$url[0]/$url[2]" : "http://soundcloud.com/$url[0]",
