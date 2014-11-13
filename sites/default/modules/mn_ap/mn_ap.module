@@ -123,7 +123,7 @@ function ap_submit_form() {
   $name = $user->name;
   $ap_folder = $nid;
   $user_folder = '/' . $uid;
-  $ap_folder_path = variable_get('file_public_path', conf_path() . '/files/opportunity/' . $ap_folder);
+  $ap_folder_path = variable_get('file_public_path', conf_path() . '/files') . '/opportunity/' . $ap_folder;
   $user_folder_path = $ap_folder_path . $user_folder;
 
   $reopen = isset($_POST['reopen']) ? $_POST['reopen'] : 0;
