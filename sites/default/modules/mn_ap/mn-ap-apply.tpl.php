@@ -797,6 +797,38 @@
                                             </div>
                                         </div>
                                     {{/field4}}
+                                    {{#upload1}}
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <label class="clearPadding clearMargin"><?php echo $rows['opportunity']['custom_up_1_title']; ?>:</label>
+                                                {{&upload1}}
+                                            </div>
+                                        </div>
+                                    {{/upload1}}
+                                    {{#upload2}}
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <label class="clearPadding clearMargin"><?php echo $rows['opportunity']['custom_up_2_title']; ?>:</label>
+                                                {{&upload2}}
+                                            </div>
+                                        </div>
+                                    {{/upload2}}
+                                    {{#upload3}}
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <label class="clearPadding clearMargin"><?php echo $rows['opportunity']['custom_up_3_title']; ?>:</label>
+                                                {{&upload3}}
+                                            </div>
+                                        </div>
+                                    {{/upload3}}
+                                    {{#upload4}}
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <label class="clearPadding clearMargin"><?php echo $rows['opportunity']['custom_up_4_title']; ?>:</label>
+                                                {{&upload4}}
+                                            </div>
+                                        </div>
+                                    {{/upload4}}
                                 </script>
                                 <div id="addUploadsView">
                                 <div class="row">
