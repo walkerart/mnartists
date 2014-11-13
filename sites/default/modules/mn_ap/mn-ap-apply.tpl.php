@@ -493,7 +493,7 @@
                                 <?php if (in_array('upload1', $rows['opportunity']['areas'])) : ?>
                                 <div class="row">
                                     <div class="form-group">
-                                        <label class="col-sm-3" for="upload1"><?php echo $rows['opportunity']['custom_up_1_title']; ?><?php if(in_array('upload1', $rows['opportunity']['required'])) echo '*'; ?> <div class="small"><?php echo $rows['opportunity']['custom_up_1_desc']; ?></div></label>
+                                        <label class="col-sm-3" for="upload1"><?php echo $rows['opportunity']['custom_up_1_title']; ?><?php if(is_array($rows['opportunity']['required']) && in_array('upload1', $rows['opportunity']['required'])) echo '*'; ?> <div class="small"><?php echo $rows['opportunity']['custom_up_1_desc']; ?></div></label>
                                         <div class="col-sm-9">
                                         <?php if ($rows['upload1'] == '' || ! in_array('upload1', $rows['opportunity']['required'])) : ?>
                                             <div class="col-sm-6">
@@ -521,7 +521,7 @@
                                 <?php if (in_array('upload2', $rows['opportunity']['areas'])) : ?>
                                 <div class="row">
                                     <div class="form-group">
-                                        <label class="col-sm-3" for="upload2"><?php echo $rows['opportunity']['custom_up_2_title']; ?><?php if(in_array('upload2', $rows['opportunity']['required'])) echo '*'; ?> <div class="small"><?php echo $rows['opportunity']['custom_up_2_desc']; ?></div></label>
+                                        <label class="col-sm-3" for="upload2"><?php echo $rows['opportunity']['custom_up_2_title']; ?><?php if(is_array($rows['opportunity']['required']) && in_array('upload2', $rows['opportunity']['required'])) echo '*'; ?> <div class="small"><?php echo $rows['opportunity']['custom_up_2_desc']; ?></div></label>
                                         <div class="col-sm-9">
                                         <?php if ($rows['upload2'] == '' || ! in_array('upload2', $rows['opportunity']['required'])) : ?>
                                             <div class="col-sm-6">
@@ -549,7 +549,7 @@
                                 <?php if (in_array('upload3', $rows['opportunity']['areas'])) : ?>
                                 <div class="row">
                                     <div class="form-group">
-                                        <label class="col-sm-3" for="upload3"><?php echo $rows['opportunity']['custom_up_3_title']; ?><?php if(in_array('upload3', $rows['opportunity']['required'])) echo '*'; ?> <div class="small"><?php echo $rows['opportunity']['custom_up_3_desc']; ?></div></label>
+                                        <label class="col-sm-3" for="upload3"><?php echo $rows['opportunity']['custom_up_3_title']; ?><?php if(is_array($rows['opportunity']['required']) && in_array('upload3', $rows['opportunity']['required'])) echo '*'; ?> <div class="small"><?php echo $rows['opportunity']['custom_up_3_desc']; ?></div></label>
                                         <div class="col-sm-9">
                                         <?php if ($rows['upload3'] == '' || ! in_array('upload3', $rows['opportunity']['required'])) : ?>
                                             <div class="col-sm-6">
@@ -577,7 +577,7 @@
                                 <?php if (in_array('upload4', $rows['opportunity']['areas'])) : ?>
                                 <div class="row">
                                     <div class="form-group">
-                                        <label class="col-sm-3" for="upload4"><?php echo $rows['opportunity']['custom_up_4_title']; ?><?php if(in_array('upload4', $rows['opportunity']['required'])) echo '*'; ?> <div class="small"><?php echo $rows['opportunity']['custom_up_4_desc']; ?></div></label>
+                                        <label class="col-sm-3" for="upload4"><?php echo $rows['opportunity']['custom_up_4_title']; ?><?php if(is_array($rows['opportunity']['required']) && in_array('upload4', $rows['opportunity']['required'])) echo '*'; ?> <div class="small"><?php echo $rows['opportunity']['custom_up_4_desc']; ?></div></label>
                                         <div class="col-sm-9">
                                         <?php if ($rows['upload4'] == '' || ! in_array('upload4', $rows['opportunity']['required'])) : ?>
                                             <div class="col-sm-6">
