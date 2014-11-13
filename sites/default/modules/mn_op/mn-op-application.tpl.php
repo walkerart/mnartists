@@ -102,25 +102,25 @@
                 <?php endif; ?>
             </div>
             <div class="col-sm-6">
-                <?php if($artwork->file_type == 'image') : ?>
-                    <a href="<?php  print file_create_url(file_build_uri('opportunity/' . $artwork->nid . '/' . $artwork->uid . '/' . $artwork->file)); ?>" data-toggle="lightbox" data-gallery="multiimages" data-title="<?php echo $artwork->title; ?>" data-parent=".lightbox-parent">
-                    <img class="img-responsive" src="<?php  print file_create_url(file_build_uri('opportunity/' . $artwork->nid . '/' . $artwork->uid . '/' . urlencode($artwork->file))); ?>">
-                    </a>
-                <?php endif; ?>
-                <?php if($artwork->file_type == 'vimeo') : ?>
-                    <iframe class="img-responsive" src="<?php echo $artwork->file; ?>" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-                <?php endif; ?>
-                <?php if($artwork->file_type == 'youtube') : ?>
-                    <iframe class="img-responsive" src="<?php echo $artwork->file; ?>&amp;showinfo=0&amp;badge=0" id="ytplayer" frameborder="0"></iframe>
-                <?php endif; ?>
-                <?php if($artwork->file_type == 'soundcloud') : ?>
-                    <?php $scfile = file_load($artwork->fid); //load file to get uri for sound cloud theme function ?>
-                  <?php print theme('media_soundcloud_audio', array('uri' => $scfile->uri)); ?>
-                <?php endif; ?>
-                <?php if ($artwork->file_type == 'document') : ?>
-                    <a href="<?php  print file_create_url(file_build_uri('opportunity/' . $artwork->nid . '/' . $artwork->uid . '/' . $artwork->file)); ?>" target="_blank">
-                        <div class="img-responsive doc-icon"></div><?php echo urldecode($artwork->file); ?>
-                    </a>
+                <?php
+                    $entities = entity_load('file', array($artwork->fid));
+                ?>
+                 <?php if($artwork->file_type == 'image') : ?>
+                    <?php
+                        foreach ($entities as $entity) {
+                            $path = file_create_url($entity->uri);
+                            print '<a href="' . $path . '" data-toggle="lightbox" data-gallery="multiimages" data-title="' . $artwork->title . '" data-parent=".lightbox-parent">';
+                            print '<img class="img-responsive" src="' . $path . '" /></a>';
+                        }
+                    ?>
+                <?php else: ?>
+                <?php
+                    foreach ($entities as $entity) {
+                        print '<div class="img-responsive">';
+                        print drupal_render(entity_view('file', array($entity)));
+                        print '</div>';
+                    }
+                ?>
                 <?php endif; ?>
             </div>
         </div>
