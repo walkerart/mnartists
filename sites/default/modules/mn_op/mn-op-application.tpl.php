@@ -103,25 +103,34 @@
             </div>
             <div class="col-sm-6">
                 <?php
-                    $entities = entity_load('file', array($artwork->fid));
-                ?>
-                 <?php if($artwork->file_type == 'image') : ?>
-                    <?php
-                        foreach ($entities as $entity) {
-                            $path = file_create_url($entity->uri);
-                            print '<a href="' . $path . '" data-toggle="lightbox" data-gallery="multiimages" data-title="' . $artwork->title . '" data-parent=".lightbox-parent">';
-                            print '<img class="img-responsive" src="' . $path . '" /></a>';
-                        }
-                    ?>
-                <?php else: ?>
-                <?php
-                    foreach ($entities as $entity) {
+                    $entity = reset(entity_load('file', array($artwork->fid)));
+
+                    if ($artwork->file_type == 'image') {
+                        $path = file_create_url($entity->uri);
+                        print '<a href="' . $path . '" data-toggle="lightbox" data-gallery="multiimages" data-title="' . $artwork->title . '" data-parent=".lightbox-parent">';
+                        print '<img class="img-responsive" src="' . $path . '" /></a>';
+                    }
+                    elseif ($artwork->file_type == 'soundcloud') {
+                        print '<div class="img-responsive">';
+                        print theme('media_soundcloud_audio', array('uri' => $entity->uri, 'height' => 81, 'extra_params' => 'visual:false, show_user:false, show_artwork:false, show_playcount:false, show_comments:false, show_bpm:false, buying:false, sharing:false, download:false, liking:false'));
+                        print '</div>';
+                    }
+                    elseif ($artwork->file_type == 'youtube') {
+                        print '<div class="img-responsive">';
+                        print theme('media_youtube_video', array('uri' => $entity->uri, 'showinfo' => '0', 'badge' => 0));
+                        print '</div>';
+                    }
+                    elseif ($artwork->file_type == 'vimeo') {
+                        print '<div class="img-responsive">';
+                        print theme('media_vimeo_video', array('uri' => $entity->uri, 'options' => array('byline' => '0', 'protocol' => '//')));
+                        print '</div>';
+                    }
+                    else {
                         print '<div class="img-responsive">';
                         print drupal_render(entity_view('file', array($entity)));
                         print '</div>';
                     }
                 ?>
-                <?php endif; ?>
             </div>
         </div>
         <?php endforeach; ?>

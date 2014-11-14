@@ -200,6 +200,9 @@ function mnartists_preprocess_prefinery_user_login_form(&$variables) {
   $variables['title'] = t('Lucky you! You received a beta invite. Enter your email and 10 digit code here. Want early access? <a href="@url" target="_blank">Request an invite</a>.', array('@url' => $url));
 }
 
+/**
+ * Implements template_preprocess_field_slideshow().
+ */
 function mnartists_preprocess_field_slideshow(&$variables) {
   foreach ($variables['items'] as $key => $value) {
     if (isset($value['image_field_caption'])) {
@@ -209,5 +212,19 @@ function mnartists_preprocess_field_slideshow(&$variables) {
       }
       $variables['items'][$key]['caption'] = $caption;
     }
+  }
+}
+
+/**
+ * Implements template_preprocess_media_soundcloud_audio().
+ */
+function mnartists_preprocess_media_soundcloud_audio(&$variables) {
+  // oembed always return visual=true, we want to control that
+  if (isset($variables['extra_params_expanded']['visual']) && $variables['extra_params_expanded']['visual'] == 'false') {
+    $variables['output'] = str_replace('/player/?visual=true', '/player/?', $variables['output']);
+  }
+  // adjust height if it is specified
+  if (isset($variables['height'])) {
+    $variables['output'] = str_replace('height="400"', 'height="' . $variables['height'] . '"', $variables['output']);
   }
 }

@@ -348,7 +348,7 @@
                                         <div class="ap-image col-sm-4">
                                             <div class="thumbnail ap-artwork-thumbnail">
                                                 <div class="img-responsive">
-                                                    <?php print theme('media_soundcloud_audio', array('uri' => $image['uri'])); ?>
+                                                    <?php print theme('media_soundcloud_audio', array('uri' => $image['uri'], 'height' => 81, 'extra_params' => 'visual:false, show_user:false, show_artwork:false, show_playcount:false, show_comments:false, show_bpm:false, buying:false, sharing:false, download:false, liking:false')); ?>
                                                 </div>
                                                 <div class="caption">
                                                     <div>
@@ -722,7 +722,7 @@
                                     <span class="ap-artwork hidden" id="f<?php echo $image['fid']; ?>">
                                         <div class="ap-image col-sm-6">
                                             <label for="artwork['<?php echo $image['fid']; ?>']"></label>
-                                            <?php print theme('media_soundcloud_audio', array('uri' => $image['uri'])); ?>
+                                            <?php print theme('media_soundcloud_audio', array('uri' => $image['uri'], 'height' => 81, 'extra_params' => 'visual:false, show_user:false, show_artwork:false, show_playcount:false, show_comments:false, show_bpm:false, buying:false, sharing:false, download:false, liking:false')); ?>
                                         </div>
                                     </span>
 
