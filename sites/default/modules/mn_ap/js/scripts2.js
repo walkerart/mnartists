@@ -508,10 +508,10 @@ $(document).ready(function(){
             field2: $('#field2Editor').exists() ? CKEDITOR.instances['field2Editor'].getData() : false,
             field3: $('#field3Editor').exists() ? CKEDITOR.instances['field3Editor'].getData() : false,
             field4: $('#field4Editor').exists() ? CKEDITOR.instances['field4Editor'].getData() : false,
-            upload1: $('#upload1').length ? $('#upload1').val() : false,
-            upload2: $('#upload2').length ? $('#upload2').val() : false,
-            upload3: $('#upload3').length ? $('#upload3').val() : false,
-            upload4: $('#upload4').length ? $('#upload4').val() : false,
+            upload1: $('#upload1').length ? $('#upload1').val().split('\\').pop() : false,
+            upload2: $('#upload2').length ? $('#upload2').val().split('\\').pop() : false,
+            upload3: $('#upload3').length ? $('#upload3').val().split('\\').pop() : false,
+            upload4: $('#upload4').length ? $('#upload4').val().split('\\').pop() : false,
             steps: steps,
             titles : Drupal.settings.titles
         };

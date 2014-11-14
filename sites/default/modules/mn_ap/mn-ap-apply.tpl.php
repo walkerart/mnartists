@@ -761,6 +761,7 @@
                         <?php  if (in_array('fields-uploads', $rows['opportunity']['steps'])) : ?>
                                 <hr>
                                 <h3 class="clearPadding clearMargin">Additional Materials</h3>
+                                <p>Your file(s) are attached to your application, but they cannot be opened until submitted.</p>
                                 <div class="addFieldsView">
                                     <div id="additionalAjax"></div>
                                 </div>
