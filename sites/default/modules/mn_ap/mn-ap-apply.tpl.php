@@ -348,12 +348,13 @@
                                         <div class="ap-image col-sm-4">
                                             <div class="thumbnail ap-artwork-thumbnail">
                                                 <div class="img-responsive">
-                                                    <?php print theme('media_soundcloud_audio', array('uri' => $image['uri'], 'height' => 81, 'extra_params' => 'visual:false, show_user:false, show_artwork:false, show_playcount:false, show_comments:false, show_bpm:false, buying:false, sharing:false, download:false, liking:false')); ?>
+                                                    <?php print theme('media_soundcloud_audio', array('uri' => $image['uri'])); ?>
                                                 </div>
                                                 <div class="caption">
-                                                    <div>
+                                                    <div  style="margin-bottom:1.5em">
                                                         <input type="checkbox" class="ap-check" data-id="f<?php echo $image['fid']; ?>" name="artwork['<?php echo $image['fid']; ?>']" value="<?php echo $image['fid']; ?>" data-vid="v<?php echo $artwork['vid']; ?>" <?php echo isset($rows['ap_artworks']) && $rows['ap_artworks'] != '' && in_array($image['fid'], $rows['ap_artworks']) ? 'checked' : ''; ?>>
-                                                        <?php echo $image['filename']; ?>
+                                                        <span></span>
+                                                          <?php //echo $image['filename']; ?>
                                                     </div>
                                                 </div>
                                             </div>
@@ -493,7 +494,7 @@
                                 <?php if (in_array('upload1', $rows['opportunity']['areas'])) : ?>
                                 <div class="row">
                                     <div class="form-group">
-                                        <label class="col-sm-3" for="upload1"><?php echo $rows['opportunity']['custom_up_1_title']; ?><?php if(is_array($rows['opportunity']['required']) && in_array('upload1', $rows['opportunity']['required'])) echo '*'; ?> <div class="small"><?php echo $rows['opportunity']['custom_up_1_desc']; ?></div></label>
+                                        <label class="col-sm-3" for="upload1"><?php echo $rows['opportunity']['custom_up_1_title']; ?><?php if(in_array('upload1', $rows['opportunity']['required'])) echo '*'; ?> <div class="small"><?php echo $rows['opportunity']['custom_up_1_desc']; ?></div></label>
                                         <div class="col-sm-9">
                                         <?php if ($rows['upload1'] == '' || ! in_array('upload1', $rows['opportunity']['required'])) : ?>
                                             <div class="col-sm-6">
@@ -521,7 +522,7 @@
                                 <?php if (in_array('upload2', $rows['opportunity']['areas'])) : ?>
                                 <div class="row">
                                     <div class="form-group">
-                                        <label class="col-sm-3" for="upload2"><?php echo $rows['opportunity']['custom_up_2_title']; ?><?php if(is_array($rows['opportunity']['required']) && in_array('upload2', $rows['opportunity']['required'])) echo '*'; ?> <div class="small"><?php echo $rows['opportunity']['custom_up_2_desc']; ?></div></label>
+                                        <label class="col-sm-3" for="upload2"><?php echo $rows['opportunity']['custom_up_2_title']; ?><?php if(in_array('upload2', $rows['opportunity']['required'])) echo '*'; ?> <div class="small"><?php echo $rows['opportunity']['custom_up_2_desc']; ?></div></label>
                                         <div class="col-sm-9">
                                         <?php if ($rows['upload2'] == '' || ! in_array('upload2', $rows['opportunity']['required'])) : ?>
                                             <div class="col-sm-6">
@@ -549,7 +550,7 @@
                                 <?php if (in_array('upload3', $rows['opportunity']['areas'])) : ?>
                                 <div class="row">
                                     <div class="form-group">
-                                        <label class="col-sm-3" for="upload3"><?php echo $rows['opportunity']['custom_up_3_title']; ?><?php if(is_array($rows['opportunity']['required']) && in_array('upload3', $rows['opportunity']['required'])) echo '*'; ?> <div class="small"><?php echo $rows['opportunity']['custom_up_3_desc']; ?></div></label>
+                                        <label class="col-sm-3" for="upload3"><?php echo $rows['opportunity']['custom_up_3_title']; ?><?php if(in_array('upload3', $rows['opportunity']['required'])) echo '*'; ?> <div class="small"><?php echo $rows['opportunity']['custom_up_3_desc']; ?></div></label>
                                         <div class="col-sm-9">
                                         <?php if ($rows['upload3'] == '' || ! in_array('upload3', $rows['opportunity']['required'])) : ?>
                                             <div class="col-sm-6">
@@ -577,7 +578,7 @@
                                 <?php if (in_array('upload4', $rows['opportunity']['areas'])) : ?>
                                 <div class="row">
                                     <div class="form-group">
-                                        <label class="col-sm-3" for="upload4"><?php echo $rows['opportunity']['custom_up_4_title']; ?><?php if(is_array($rows['opportunity']['required']) && in_array('upload4', $rows['opportunity']['required'])) echo '*'; ?> <div class="small"><?php echo $rows['opportunity']['custom_up_4_desc']; ?></div></label>
+                                        <label class="col-sm-3" for="upload4"><?php echo $rows['opportunity']['custom_up_4_title']; ?><?php if(in_array('upload4', $rows['opportunity']['required'])) echo '*'; ?> <div class="small"><?php echo $rows['opportunity']['custom_up_4_desc']; ?></div></label>
                                         <div class="col-sm-9">
                                         <?php if ($rows['upload4'] == '' || ! in_array('upload4', $rows['opportunity']['required'])) : ?>
                                             <div class="col-sm-6">
@@ -722,7 +723,7 @@
                                     <span class="ap-artwork hidden" id="f<?php echo $image['fid']; ?>">
                                         <div class="ap-image col-sm-6">
                                             <label for="artwork['<?php echo $image['fid']; ?>']"></label>
-                                            <?php print theme('media_soundcloud_audio', array('uri' => $image['uri'], 'height' => 81, 'extra_params' => 'visual:false, show_user:false, show_artwork:false, show_playcount:false, show_comments:false, show_bpm:false, buying:false, sharing:false, download:false, liking:false')); ?>
+                                            <?php print theme('media_soundcloud_audio', array('uri' => $image['uri'])); ?>
                                         </div>
                                     </span>
 
@@ -761,7 +762,6 @@
                         <?php  if (in_array('fields-uploads', $rows['opportunity']['steps'])) : ?>
                                 <hr>
                                 <h3 class="clearPadding clearMargin">Additional Materials</h3>
-                                <p>Your file(s) are attached to your application, but they cannot be opened until submitted.</p>
                                 <div class="addFieldsView">
                                     <div id="additionalAjax"></div>
                                 </div>
@@ -798,38 +798,6 @@
                                             </div>
                                         </div>
                                     {{/field4}}
-                                    {{#upload1}}
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <label class="clearPadding clearMargin"><?php echo $rows['opportunity']['custom_up_1_title']; ?>:</label>
-                                                {{&upload1}}
-                                            </div>
-                                        </div>
-                                    {{/upload1}}
-                                    {{#upload2}}
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <label class="clearPadding clearMargin"><?php echo $rows['opportunity']['custom_up_2_title']; ?>:</label>
-                                                {{&upload2}}
-                                            </div>
-                                        </div>
-                                    {{/upload2}}
-                                    {{#upload3}}
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <label class="clearPadding clearMargin"><?php echo $rows['opportunity']['custom_up_3_title']; ?>:</label>
-                                                {{&upload3}}
-                                            </div>
-                                        </div>
-                                    {{/upload3}}
-                                    {{#upload4}}
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <label class="clearPadding clearMargin"><?php echo $rows['opportunity']['custom_up_4_title']; ?>:</label>
-                                                {{&upload4}}
-                                            </div>
-                                        </div>
-                                    {{/upload4}}
                                 </script>
                                 <div id="addUploadsView">
                                 <div class="row">
