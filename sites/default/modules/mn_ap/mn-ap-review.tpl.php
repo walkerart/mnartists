@@ -181,7 +181,7 @@
                 <?php endif; ?>
                 <?php if($artwork->file_type == 'soundcloud') : ?>
                     <?php $scfile = file_load($artwork->fid); //load file to get uri for sound cloud theme function ?>
-                    <?php print theme('media_soundcloud_audio', array('uri' => $entity->uri, 'height' => 81, 'extra_params' => 'visual:false, show_user:false, show_artwork:false, show_playcount:false, show_comments:false, show_bpm:false, buying:false, sharing:false, download:false, liking:false')); ?>
+                    <?php print theme('media_soundcloud_audio', array('uri' => $scfile->uri, 'height' => 81, 'extra_params' => 'visual:false, show_user:false, show_artwork:false, show_playcount:false, show_comments:false, show_bpm:false, buying:false, sharing:false, download:false, liking:false')); ?>
                 <?php endif; ?>
                 <?php if ($artwork->file_type == 'document') : ?>
                     <a href="<?php  print file_create_url(file_build_uri('opportunity/' . $artwork->nid . '/' . $artwork->uid . '/' . $artwork->file)); ?>" target="_blank">
