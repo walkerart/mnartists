@@ -353,7 +353,7 @@
                                                 <div class="caption">
                                                     <div>
                                                         <input type="checkbox" class="ap-check" data-id="f<?php echo $image['fid']; ?>" name="artwork['<?php echo $image['fid']; ?>']" value="<?php echo $image['fid']; ?>" data-vid="v<?php echo $artwork['vid']; ?>" <?php echo isset($rows['ap_artworks']) && $rows['ap_artworks'] != '' && in_array($image['fid'], $rows['ap_artworks']) ? 'checked' : ''; ?>>
-                                                        <?php echo $image['filename']; ?>
+                                                        <?php // echo $image['filename']; ?>
                                                     </div>
                                                 </div>
                                             </div>
