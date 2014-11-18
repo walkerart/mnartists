@@ -672,8 +672,6 @@ background-size:cover;*/ }
 .welcome-list li.welcome-events { margin-right: 0; background: url("../images/icon-welcome-calendar.png") no-repeat left top transparent; }
 @media screen and (max-width: 480px) { .welcome-list li { float: left; overflow: hidden; width: 48.099%; margin-right: 2.409%; } }
 
-.firefox .panel-2col .panel-col-last { width: 23%; }
-
 /* @file global.styles  Styles you add here will load for all device sizes, they are "global", as opposed to "responsive" styles, which only load for a given breakpoint (media query) that you set in theme settings. See the README for more details.   How to use this file: --------------------  There are many empty selectors and some basic styles to act as a guide. Nothing is set in stone and you can change anything - even delete all of it and start with your own clean slate.  To FORCE PRINT all selectors you can search and replace a single { (opening curly brace) and insert an empty comment. This is very useful in conjuction with FireSass: https://addons.mozilla.org/en-US/firefox/addon/firesass-for-firebug/  See global.base also which includes normalize.css and some additional helper classes and base styles. */
 /* ============================================================================= Base ========================================================================== */
 /* To preserve theme settings never apply font properties to the HTML element. This is critically important if you are using the Responsive JavaScript feature as this relies on being able to set a pseudo font family on the HTML element. If you need to set default f0nt properties of any kind use the BODY element as these can be overridden using font theme settings. */
