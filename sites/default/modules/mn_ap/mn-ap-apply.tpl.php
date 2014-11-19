@@ -351,7 +351,7 @@
                                                     <?php print theme('media_soundcloud_audio', array('uri' => $image['uri'], 'height' => 81, 'extra_params' => 'visual:false, show_user:false, show_artwork:false, show_playcount:false, show_comments:false, show_bpm:false, buying:false, sharing:false, download:false, liking:false')); ?>
                                                 </div>
                                                 <div class="caption">
-                                                    <div>
+                                                    <div style="margin-bottom:1.5em">
                                                         <input type="checkbox" class="ap-check" data-id="f<?php echo $image['fid']; ?>" name="artwork['<?php echo $image['fid']; ?>']" value="<?php echo $image['fid']; ?>" data-vid="v<?php echo $artwork['vid']; ?>" <?php echo isset($rows['ap_artworks']) && $rows['ap_artworks'] != '' && in_array($image['fid'], $rows['ap_artworks']) ? 'checked' : ''; ?>>
                                                         <?php // echo $image['filename']; ?>
                                                     </div>
