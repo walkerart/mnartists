@@ -179,9 +179,9 @@ function mnartist_register_user_form_submit($form, &$form_state) {
             array('_mnartist_register_batch_handler', array('getUserData', array(
                 'username' => trim($form_state['values']['username']),
                 'password' => trim($form_state['values']['password'])))),
-            // array('_mnartist_register_batch_handler', array('loadMainProfile', array())),
-            // array('_mnartist_register_batch_handler', array('loadResume', array())),
-            // array('_mnartist_register_batch_handler', array('loadWorks', array())),
+            array('_mnartist_register_batch_handler', array('loadMainProfile', array())),
+            array('_mnartist_register_batch_handler', array('loadResume', array())),
+            array('_mnartist_register_batch_handler', array('loadWorks', array())),
             array('_mnartist_register_batch_handler', array('linkArticle', array())),
         ),
         'finished' => '_mnartist_register_batch_finished',
