@@ -24,7 +24,7 @@ define('OPPORTUNITY_TYPE_VID', '14');
 define('ABOUT_TID', '702'); //for O8 server
 
 // default limits for search
-define('SEARCH_DEFAULT_ROWS', '20');
+define('SEARCH_DEFAULT_ROWS', '10'); //IMA set to 20, I will set to 10 and this will allow events to work.  It will also allow for better performance since it is slow to begin with.
 define('NEAR_ME_RADIUS', '50');
 
 include_once 'artist_community.features.inc';
@@ -1137,6 +1137,7 @@ function _artist_community_get_items_query ($local_og = null,
     if ($offset !== null && is_int($offset)) {
         $solarium_query->setStart($offset);
     }
+    //$limit = 24;
     if ($limit !== null && is_int($limit)) {
         $solarium_query->setRows($limit);
     }
@@ -1153,7 +1154,7 @@ function _artist_community_get_items_query ($local_og = null,
 
         $solarium_query->setStart(null);
         $solarium_query->setRows(null);
-
+          
         if ($filtered_by_event_date === true) {
 
             // validate date param
@@ -1258,8 +1259,9 @@ function _artist_community_get_items_query ($local_og = null,
                 'rows' => (isset($_GET['rows'])) ? $_GET['rows'] : SEARCH_DEFAULT_ROWS,
                 'start' => $new_start,
             );
-            $all_results[] = '<div class="item item-more"><a href="/communitygetitems?'.http_build_query($new_get).'">Show me more!</a></div>';
+            $all_results[] = '<div class="item item-more"><a href="/communitygetitems?'.http_build_query($new_get).'">Show me more!</a></div>'; //@todo - mike
         } else {
+
             $all_results[] = '<li class="feed-item infinify-terminator"></li>';
         }
 
