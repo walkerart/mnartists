@@ -108,7 +108,7 @@ function mn_op_theme() {
  */
 function mn_op_cron() {
   // $interval = variable_get('cron_example_interval', 60 * 60);
-  $type = "opportunity"; 
+  $type = "opportunity";
   $now = new DateTime();
   $result = NULL;
   $query = new EntityFieldQuery();
@@ -116,7 +116,7 @@ function mn_op_cron() {
     ->entityCondition('bundle', $type)
     ->propertyCondition('status', 0);
   $result = $query->execute();
-  
+
   if ($result != NULL) {
     $nodes = node_load_multiple(array_keys($result['node']));
     foreach($nodes as $opportunity) {
@@ -131,23 +131,29 @@ function mn_op_cron() {
   }
 }
 
-function mn_op_node_view($node, $view_mode, $langcode) {
+/**
+ * Implements hook_node_access().
+ */
+function mn_op_node_access($node, $op, $account) {
+  $type = is_string($node) ? $node : $node->type;
+
   // if context user does not own opportunity, or is
   // not an admin, then deny access to node view if
   // current date is prior to announce date
-  global $user;
-  if ($node->type === 'opportunity') {
-    if ($node->uid !== $user->uid && !in_array('administrator', $user->roles)) {
+  if ($type == 'opportunity' && $op == 'view') {
+    if ($node->uid !== $account->uid && !in_array('administrator', $account->roles)) {
       if (isset($node->field_announce_date[LANGUAGE_NONE])) {
         $now = new DateTime();
         $announce_date = new DateTime($node->field_announce_date[LANGUAGE_NONE][0]['value']);
         if ($now < $announce_date) {
-          drupal_access_denied();
-          drupal_exit();
+          return NODE_ACCESS_DENY;
         }
       }
     }
   }
+
+  // Returning nothing from this function would have the same effect.
+  return NODE_ACCESS_IGNORE;
 }
 
 function mn_op_get_jurors($nid) {
