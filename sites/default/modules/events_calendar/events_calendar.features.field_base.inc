@@ -47,6 +47,9 @@ function events_calendar_field_default_field_bases() {
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_city',
+    'field_permissions' => array(
+      'type' => 0,
+    ),
     'foreign keys' => array(
       'format' => array(
         'columns' => array(
@@ -107,13 +110,16 @@ function events_calendar_field_default_field_bases() {
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_date',
+    'field_permissions' => array(
+      'type' => 0,
+    ),
     'foreign keys' => array(),
     'indexes' => array(),
     'locked' => 0,
     'module' => 'date',
     'settings' => array(
-      'cache_count' => 0,
-      'cache_enabled' => 1,
+      'cache_count' => 4,
+      'cache_enabled' => 0,
       'granularity' => array(
         'day' => 'day',
         'hour' => 'hour',
@@ -124,7 +130,7 @@ function events_calendar_field_default_field_bases() {
       ),
       'profile2_private' => FALSE,
       'timezone_db' => 'UTC',
-      'todate' => '',
+      'todate' => 'optional',
       'tz_handling' => 'site',
     ),
     'translatable' => 0,
@@ -142,7 +148,9 @@ function events_calendar_field_default_field_bases() {
     'indexes' => array(),
     'locked' => 0,
     'module' => 'email',
-    'settings' => array(),
+    'settings' => array(
+      'profile2_private' => 0,
+    ),
     'translatable' => 0,
     'type' => 'email',
   );
@@ -159,92 +167,11 @@ function events_calendar_field_default_field_bases() {
     'locked' => 0,
     'module' => 'phone',
     'settings' => array(
-      'comment_allowed_values' => array(
-        'home' => 'Home',
-      ),
-      'comment_allowed_values_function' => '',
-      'comment_allowed_values_type' => 'custom',
-      'extension_size' => 6,
-      'number_size' => 15,
-      'profile2_private' => 1,
+      'country' => 'ca',
+      'profile2_private' => 0,
     ),
     'translatable' => 0,
     'type' => 'phone',
-  );
-
-  // Exported field_base: 'field_programs'
-  $field_bases['field_programs'] = array(
-    'active' => 1,
-    'cardinality' => -1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_programs',
-    'foreign keys' => array(
-      'node' => array(
-        'columns' => array(
-          'target_id' => 'nid',
-        ),
-        'table' => 'node',
-      ),
-    ),
-    'indexes' => array(
-      'target_id' => array(
-        0 => 'target_id',
-      ),
-    ),
-    'locked' => 0,
-    'module' => 'entityreference',
-    'settings' => array(
-      'handler' => 'base',
-      'handler_settings' => array(
-        'behaviors' => array(
-          'views-select-list' => array(
-            'status' => 0,
-          ),
-        ),
-        'sort' => array(
-          'direction' => 'DESC',
-          'property' => 'created',
-          'type' => 'property',
-        ),
-        'target_bundles' => array(
-          'program' => 'program',
-        ),
-      ),
-      'profile2_private' => FALSE,
-      'target_type' => 'node',
-    ),
-    'translatable' => 0,
-    'type' => 'entityreference',
-  );
-
-  // Exported field_base: 'field_sponsor'
-  $field_bases['field_sponsor'] = array(
-    'active' => 1,
-    'cardinality' => 1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_sponsor',
-    'foreign keys' => array(
-      'format' => array(
-        'columns' => array(
-          'format' => 'format',
-        ),
-        'table' => 'filter_format',
-      ),
-    ),
-    'indexes' => array(
-      'format' => array(
-        0 => 'format',
-      ),
-    ),
-    'locked' => 0,
-    'module' => 'text',
-    'settings' => array(
-      'max_length' => 255,
-    ),
-    'translatable' => 0,
-    'type' => 'text',
   );
 
   // Exported field_base: 'field_state'
@@ -254,6 +181,9 @@ function events_calendar_field_default_field_bases() {
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_state',
+    'field_permissions' => array(
+      'type' => 0,
+    ),
     'foreign keys' => array(),
     'indexes' => array(
       'value' => array(
@@ -264,6 +194,7 @@ function events_calendar_field_default_field_bases() {
     'module' => 'list',
     'settings' => array(
       'allowed_values' => array(
+        'MN' => 'Minnesota',
         'AL' => 'Alabama',
         'AK' => 'Alaska',
         'AZ' => 'Arizona',
@@ -287,7 +218,6 @@ function events_calendar_field_default_field_bases() {
         'MD' => 'Maryland',
         'MA' => 'Massachusetts',
         'MI' => 'Michigan',
-        'MN' => 'Minnesota',
         'MS' => 'Mississippi',
         'MO' => 'Missouri',
         'MT' => 'Montana',
@@ -323,40 +253,6 @@ function events_calendar_field_default_field_bases() {
     'type' => 'list_text',
   );
 
-  // Exported field_base: 'field_type'
-  $field_bases['field_type'] = array(
-    'active' => 1,
-    'cardinality' => 1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_type',
-    'foreign keys' => array(
-      'tid' => array(
-        'columns' => array(
-          'tid' => 'tid',
-        ),
-        'table' => 'taxonomy_term_data',
-      ),
-    ),
-    'indexes' => array(
-      'tid' => array(
-        0 => 'tid',
-      ),
-    ),
-    'locked' => 0,
-    'module' => 'taxonomy',
-    'settings' => array(
-      'allowed_values' => array(
-        0 => array(
-          'vocabulary' => 'venue_type',
-          'parent' => 0,
-        ),
-      ),
-    ),
-    'translatable' => 0,
-    'type' => 'taxonomy_term_reference',
-  );
-
   // Exported field_base: 'field_url'
   $field_bases['field_url'] = array(
     'active' => 1,
@@ -364,12 +260,15 @@ function events_calendar_field_default_field_bases() {
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_url',
+    'field_permissions' => array(
+      'type' => 0,
+    ),
     'foreign keys' => array(),
     'indexes' => array(),
     'locked' => 0,
     'module' => 'url',
     'settings' => array(
-      'profile2_private' => 0,
+      'profile2_private' => FALSE,
     ),
     'translatable' => 0,
     'type' => 'url',
@@ -382,6 +281,9 @@ function events_calendar_field_default_field_bases() {
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_venue',
+    'field_permissions' => array(
+      'type' => 0,
+    ),
     'foreign keys' => array(
       'node' => array(
         'columns' => array(
