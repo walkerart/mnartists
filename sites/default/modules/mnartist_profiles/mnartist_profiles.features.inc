@@ -5,6 +5,16 @@
  */
 
 /**
+ * Implements hook_ctools_plugin_api().
+ */
+function mnartist_profiles_ctools_plugin_api() {
+  list($module, $api) = func_get_args();
+  if ($module == "field_group" && $api == "field_group") {
+    return array("version" => "1");
+  }
+}
+
+/**
  * Implements hook_views_api().
  */
 function mnartist_profiles_views_api() {
@@ -38,7 +48,7 @@ function mnartist_profiles_default_profile2_type() {
     "userCategory" : true,
     "userView" : true,
     "type" : "resume",
-    "label" : "Resume",
+    "label" : "R\\u00e9sum\\u00e9",
     "weight" : "0",
     "data" : { "registration" : 0 },
     "rdf_mapping" : []
