@@ -32,6 +32,7 @@
 
         // infinite scrolling dealings-with
         $('.content-all').infinify({
+            window_offset: 400,
             more_link_container_selector: '.item-more',
             loading_indicator_selector: '.item-loading-indicator',
             endpoint_stem: '/communitygetitems',
