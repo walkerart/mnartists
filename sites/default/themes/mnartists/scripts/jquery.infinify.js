@@ -48,7 +48,10 @@
                 $(window).scroll(function (evt) {
 
                     // @TODO think about doing a pushState here?
-                    if($(window).scrollTop() === $(document).height() - ($(window).height() - windowOffset) &&
+                    console.log('scrollTop', $(window).scrollTop());
+                    console.log('pos', $(document).height() - $(window).height() - windowOffset);
+
+                    if($(window).scrollTop() >=  $(document).height() - $(window).height() - windowOffset &&
                         moreContentContainer.attr('data-infinify-load-in-progress') === 'false') {
 
                         // set 'update in progress' flag to true to avoid multiples
