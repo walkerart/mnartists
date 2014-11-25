@@ -872,7 +872,7 @@ function artist_community_get_items () {
     $local_og = (isset($_GET['og'])) ? $_GET['og'] : null;
     $local_content = (isset($_GET['content'])) ? $_GET['content'] : null;
     $offset = (isset($_GET['start']) && is_numeric($_GET['start'])) ? intval($_GET['start']) : null;
-    $limit = (isset($_GET['rows']) && is_numeric($_GET['rows'])) ? intval($_GET['rows']) : null;
+    $limit = (isset($_GET['rows']) && is_numeric($_GET['rows'])) ? intval($_GET['rows']) : intval(SEARCH_DEFAULT_ROWS);
     $local_sort = (isset($_GET['sort'])) ? $_GET['sort'] : null;
     $local_sort_direction = (isset($_GET['sort_direction'])) ? $_GET['sort_direction'] : null;
     $rendernodes = true;
@@ -1151,8 +1151,8 @@ function _artist_community_get_items_query ($local_og = null,
             $solarium_query->addSort(AC_SORT_BY_DATE_FIELD, $solarium_query::SORT_ASC);
         }
 
-        $solarium_query->setStart(null);
-        $solarium_query->setRows(null);
+        // $solarium_query->setStart(null);
+        // $solarium_query->setRows(null);
 
         if ($filtered_by_event_date === true) {
 
