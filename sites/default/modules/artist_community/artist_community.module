@@ -930,6 +930,7 @@ function _artist_community_get_items_query ($local_og = null,
     if (isset($local_content['event_include_past']) &&
         $local_content['event_include_past'] === '1') {
         $filtered_by_event_include_past = true;
+        unset($local_content['event_include_past']);
     }
 
 
@@ -977,21 +978,18 @@ function _artist_community_get_items_query ($local_og = null,
 
     if ($local_content !== null) {
 
-        if (isset($_GET['content']) &&
-            count($_GET['content']) === 1 &&
+        if (count($local_content) == 1 &&
             !(isset($_GET['og'])) &&
-            isset($_GET['content']['event'])) {
-
-            $filtered_by_events_only = true;
+            isset($local_content['event'])) {
+            $filtered_by_events_only = TRUE;
         }
 
-        if (isset($_GET['content']) &&
-            count($_GET['content']) === 1 &&
+        if (count($local_content) == 1 &&
             !(isset($_GET['og'])) &&
-            isset($_GET['content']['event']) &&
+            isset($local_content['event']) &&
             isset($_GET['event_date'])) {
 
-            $filtered_by_event_date = true;
+            $filtered_by_event_date = TRUE;
         }
 
         $contentFilters = array(
@@ -1058,8 +1056,9 @@ function _artist_community_get_items_query ($local_og = null,
                         is_array($local_content[$type])) {
                         $subQuery = implode(' OR ', $local_content[$type]);
                     }
-                    if (!isset($_GET['content']['event_include_past']) ||
-                        (isset($_GET['content']['event_include_past']) && isset($_GET['content']['event_include_past']) != '1')) {
+                    if ((!isset($_GET['content']['event_include_past'])
+                        || (isset($_GET['content']['event_include_past']) && isset($_GET['content']['event_include_past']) != '1'))
+                        && !$filtered_by_event_date) {
                         $typeQuery .= " AND ds_field_date\:value:[NOW TO *]";
                     }
                     if (isset($_GET['event_location_search'])) {
