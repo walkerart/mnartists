@@ -245,6 +245,12 @@ function artist_community_search_page() {
     $all_community_results = _artist_community_get_items_query($local_og, $local_content, $start_row, $num_rows, null, $local_sort, $local_sort_direction);
 
     $highlighted_event = null;
+
+    // Making event_date overrules event_include_past, i.e. event_include_past has no effect when event_date exists
+    if (isset($_GET['event_date']) && isset($_GET['content']) && !empty($_GET['content']) && isset($_GET['content']['event_include_past'])) {
+        unset($_GET['content']['event_include_past']);
+    }
+
     if (isset($_GET['content']) &&
         count($_GET['content']) === 1 &&
         !(isset($_GET['og'])) &&

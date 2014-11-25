@@ -927,6 +927,13 @@ function _artist_community_get_items_query ($local_og = null,
         $solarium_query->setQuery($globalQs);
     }
 
+    // Making event_date overrules event_include_past, i.e. event_include_past has no effect when event_date exists
+    if (isset($_GET['event_date'])) {
+        $filtered_by_event_date = TRUE;
+        $filtered_by_event_include_past = FALSE;
+        unset($local_content['event_include_past']);
+        unset($_GET['event_include_past']);
+    }
     if (isset($local_content['event_include_past']) &&
         $local_content['event_include_past'] === '1') {
         $filtered_by_event_include_past = true;
@@ -964,7 +971,22 @@ function _artist_community_get_items_query ($local_og = null,
             }
         }
     } else {
-        if ($filtered_by_event_include_past) {
+        if (isset($_GET['event_date'])) {
+            // validate date param
+            $incoming_date = date_parse_from_format('Y-m-d', $_GET['event_date']);
+
+            // if it's good, go ahead with the filter,
+            // creating a time range to span the whole day
+            if ($incoming_date !== false) {
+                $the_date = new DateTime($_GET['event_date']);
+                $start = $the_date->format('Y-m-d\T00:00:00\Z');
+                $end = $the_date->format('Y-m-d\T23:59:59\Z');
+
+                $nodeQueryBuilder[] = '('.AC_TYPE_FIELD.':article OR ('.AC_TYPE_FIELD.':artwork AND '.AC_ARTWORK_PUBLIC_FIELD
+                    .':true) OR ('.AC_TYPE_FIELD.':opportunity AND '.AC_OPP_ANNOUNCE_DATE_FIELD.':[* TO NOW]) OR ('.AC_TYPE_FIELD.":event AND ds_field_date\:value:[$start TO $end]))";
+            }
+        }
+        elseif ($filtered_by_event_include_past) {
             $nodeQueryBuilder[] = '('.AC_TYPE_FIELD.':article OR ('.AC_TYPE_FIELD.':artwork AND '.AC_ARTWORK_PUBLIC_FIELD
                 .':true) OR '.AC_TYPE_FIELD.':event OR ('.AC_TYPE_FIELD.':opportunity AND '.AC_OPP_ANNOUNCE_DATE_FIELD.':[* TO NOW]))';
         } else {
@@ -1066,6 +1088,19 @@ function _artist_community_get_items_query ($local_og = null,
                         $eventLocationSearchString = '{!geofilt sfield='.AC_USER_LATLNG_FIELD." pt=$event_coords d=".NEAR_ME_RADIUS.'}';
                         $solarium_query->createFilterQuery('event_location')->setQuery($eventLocationSearchString);
                     }
+                    if ($filtered_by_event_date === TRUE) {
+                        // validate date param
+                        $incoming_date = date_parse_from_format('Y-m-d', $_GET['event_date']);
+
+                        // if it's good, go ahead with the filter,
+                        // creating a time range to span the whole day
+                        if ($incoming_date !== false) {
+                            $the_date = new DateTime($_GET['event_date']);
+                            $start = $the_date->format('Y-m-d\T00:00:00\Z');
+                            $end = $the_date->format('Y-m-d\T23:59:59\Z');
+                            $typeQuery .= " AND ds_field_date\:value:[$start TO $end]";
+                        }
+                    }
 
                     if (!is_null($subQuery) && is_null($forSaleQuery)) {
                         $contextQueryString = "($typeQuery AND ($subQueryTargetField:($subQuery)))";
@@ -1125,7 +1160,7 @@ function _artist_community_get_items_query ($local_og = null,
         $contentFilterQueryString = implode(' OR ', $contentFilterQueryStrings);
         $solarium_query->createFilterQuery($type)->setQuery($contentFilterQueryString);
 
-// dpm($contentFilterQueryString);
+// dpm($contentFilterQueryString, '$contentFilterQueryString');
     }
 
     $communityQueryString = "(index_id:".NODE_INDEX."$nodeQueryBuilderString AND is_status:1) OR (index_id:".USER_INDEX." AND ".AC_SORT_BY_NAME_FIELD.":['' TO *]$userQueryBuilderString)";
@@ -1150,23 +1185,6 @@ function _artist_community_get_items_query ($local_og = null,
             $solarium_query->addSort(AC_SORT_BY_DATE_FIELD, $solarium_query::SORT_ASC);
         }
 
-        // $solarium_query->setStart(null);
-        // $solarium_query->setRows(null);
-
-        if ($filtered_by_event_date === true) {
-
-            // validate date param
-            $incoming_date = date_parse_from_format('Y-m-d', $_GET['event_date']);
-
-            // if it's good, go ahead with the filter,
-            // creating a time range to span the whole day
-            if ($incoming_date !== false) {
-                $the_date = new DateTime($_GET['event_date']);
-                $start = $the_date->format('Y-m-d\T00:00:00\Z');
-                $end = $the_date->format('Y-m-d\T23:59:59\Z');
-                $solarium_query->createFilterQuery('event_date_filter')->setQuery("ds_field_date\:value:[$start TO $end]");
-            }
-        }
     } else {
         // ss_full_name
         $sort_key = AC_CREATED_FIELD;
