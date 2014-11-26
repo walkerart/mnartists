@@ -26,11 +26,11 @@ if ($teaser) {
     $end_date = null;
     $date_string = '';
     if (isset($node->field_date[LANGUAGE_NONE])) {
-        $start_date = new DateTime($node->field_date[LANGUAGE_NONE][0]['value']);
-        $date_string .= $start_date->format('D, M jS Y');
-        if (isset($node->field_date[LANGUAGE_NONE][1])) {
-            $end_date = new DateTime($node->field_date[LANGUAGE_NONE][1]['value']);
-            $date_string .= ' &ndash; '.$end_date->format('D, M jS Y');
+        $start_date = format_date(strtotime($node->field_date[LANGUAGE_NONE][0]['value']), 'custom', 'Y-m-d\TH:i:s\Z');
+        $date_string .= format_date(strtotime($start_date), 'custom', 'D, M jS Y');
+        if (isset($node->field_date[LANGUAGE_NONE][0]['value2']) && ($node->field_date[LANGUAGE_NONE][0]['value'] != $node->field_date[LANGUAGE_NONE][0]['value2'])) {
+            $end_date = format_date(strtotime($node->field_date[LANGUAGE_NONE][0]['value2']), 'custom', 'Y-m-d\TH:i:s\Z');
+            $date_string .= ' &ndash; ' . format_date(strtotime($end_date), 'custom', 'D, M jS Y');
         }
     }
     ?>
