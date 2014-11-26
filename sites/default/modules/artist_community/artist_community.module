@@ -929,7 +929,7 @@ function _artist_community_get_items_query ($local_og = null,
 
     // DB & Solr timezone is UTC, site timezone is America/Chicago
     // trying to correct Solr query for NOW
-    $solr_now = format_date(time(), 'custom', 'Y-m-d\TH:m:s\Z', 'UTC');
+    $solr_now = format_date(time(), 'custom', 'Y-m-d\TH:i:s\Z', 'UTC');
 
     $event_date_valid = FALSE;
 
@@ -950,8 +950,8 @@ function _artist_community_get_items_query ($local_og = null,
             $start_date = $_GET['event_date'] . 'T00:00:00';
             $end_date = $_GET['event_date'] . 'T23:59:59';
             // convert to UTC to match DB
-            $start_date = format_date(strtotime($start_date), 'custom', 'Y-m-d\TH:m:s\Z', 'UTC');
-            $end_date = format_date(strtotime($end_date), 'custom', 'Y-m-d\TH:m:s\Z', 'UTC');
+            $start_date = format_date(strtotime($start_date), 'custom', 'Y-m-d\TH:i:s\Z', 'UTC');
+            $end_date = format_date(strtotime($end_date), 'custom', 'Y-m-d\TH:i:s\Z', 'UTC');
         }
         else {
             drupal_set_message(t('Invalid date format @date', array('@date' => $_GET['event_date'])), 'error', FALSE);
