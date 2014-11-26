@@ -87,8 +87,11 @@ function mnartists_preprocess_html(&$vars) {
           (user_is_logged_in() && (arg(0) == "flags" && flag_lists_is_owner('edit', arg(2))))) ||
           (user_is_logged_in() && (arg(0) == "batch"))
       ) {
-        $vars['classes_array'][] = drupal_html_class("my-stuff");
-      }
+    $vars['classes_array'][] = drupal_html_class("my-stuff");
+  }
+
+  // Change page title from "|"" to "-".
+  $vars['head_title'] = implode(' - ', $vars['head_title_array']);
 }
 
 
