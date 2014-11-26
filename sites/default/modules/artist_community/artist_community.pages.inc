@@ -186,6 +186,7 @@ function artist_community_search_page() {
             $from_the_network_posts[] = $post_data;
         }
 
+        // Upcoming Event on front page
         $events = artist_community_execute_query(NODE_INDEX, $event_filters, array(array('promote', 'DESC'), array('field_date:value', 'ASC')), 3);
         if (!empty($events)) {
             $events_data['others'] = array();
@@ -194,11 +195,8 @@ function artist_community_search_page() {
                 $context_event_data->nid = $event->nid;
                 $context_event_data->title = $event->title;
 
-                $timezone = !empty($event->field_date['und'][0]['timezone']) ? $event->field_date['und'][0]['timezone'] : 'UTC';
-                $timezone = new DateTimeZone($timezone);
-                $dateTime = new DateTime($event->field_date['und'][0]['value'], $timezone);
-                $offset = $dateTime->getOffset();
-                $context_event_data->date = date('M d', ($dateTime->format('U') + $offset));
+                $date_utc = format_date(strtotime($event->field_date['und'][0]['value']), 'custom', 'Y-m-d\T00:00:00\Z');
+                $context_event_data->date = format_date(strtotime($date_utc), 'custom', 'M d');
 
                 $context_event_data->text = isset($event->body['und']) ? text_summary($event->body['und'][0]['value'], 'html', 300) : '';
                 $context_event_data->image_uri = image_style_url('medium', $event->field_images['und'][0]['uri']);
@@ -251,6 +249,9 @@ function artist_community_search_page() {
         unset($_GET['content']['event_include_past']);
     }
 
+    // Event filter, e.g.
+    // - /community?content[event]=1
+    // - /?content[event]=1&event_date=2014-11-26
     if (isset($_GET['content']) &&
         count($_GET['content']) === 1 &&
         !(isset($_GET['og'])) &&
@@ -259,24 +260,24 @@ function artist_community_search_page() {
         $filtered_by_events_only = true;
         $highlighted_event_node_id = null;
         $highlighted_event_node_date = null;
-        $now = new DateTime();
         foreach ($all_community_results['results'] as $index => $row) {
             // date should always be set as it's a required field,
             // but putting this here to prevent a breakdown if that
             // somehow ever happens
             if (isset($row['item']->field_date['und'])) {
-                $date_key = date_create($row['item']->field_date['und'][0]['value']);
-                $date_key->setTime(0,0,0);
-                $date_key_string = $date_key->format('Y-m-d');
-                if (isset($all_event_results[$date_key_string])) {
-                    $all_event_results[$date_key_string][] = $row;
+                $date = strtotime($row['item']->field_date['und'][0]['value']);
+                $date_utc = format_date($date, 'custom', 'Y-m-d\T00:00:00\Z');
+                $date_string = format_date(strtotime($date_utc), 'custom', 'Y-m-d');
+
+                if (isset($all_event_results[$date_string])) {
+                    $all_event_results[$date_string][] = $row;
                 } else {
-                    $all_event_results[$date_key_string] = array($row);
+                    $all_event_results[$date_string] = array($row);
                 }
 
-                if ($row['item']->promote && $now < $date_key && ($date_key < $highlighted_event_node_date || $highlighted_event_node_date == null)) {
+                if ($row['item']->promote && REQUEST_TIME < $date && ($date < $highlighted_event_node_date || $highlighted_event_node_date == null)) {
                     $highlighted_event_node_id = $row['item']->nid;
-                    $highlighted_event_node_date = $date_key;
+                    $highlighted_event_node_date = $date_string;
                 }
             }
         }
