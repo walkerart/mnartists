@@ -929,7 +929,7 @@ function _mnartist_profile_all_artworks_link() {
     if($context_user) {
         $link_fragment_arr = array();
         $link_fragment_arr[] = '<div class="all-artworks">';
-        $link_fragment_arr[] = "<a href='/community?content[artwork]=1&global_search=".check_plain(mnartist_profiles_collective_or_fullname_or_username($context_user->uid))."'>All Artworks</a>";
+        $link_fragment_arr[] = "<a href='/community?content[artwork]=1&artist=".check_plain(mnartist_profiles_collective_or_fullname_or_username($context_user->uid))."'>All Artworks</a>";
         $link_fragment_arr[] = '</div>';
         return implode('', $link_fragment_arr);
     }

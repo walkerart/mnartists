@@ -916,9 +916,15 @@ function _artist_community_get_items_query ($local_og = null,
     $client = new Solarium\Client($solarium_config);
     $solarium_query = $client->createSelect();
 
+    // All content - Artists only
     if (!empty($local_content) && count($local_content) == 1 && !(isset($_GET['og'])) && isset($local_content['artists']) && isset($_GET['global_search'])) {
         $filtered_by_user_only = TRUE;
         $username_filter = $_GET['global_search'];
+    }
+    // Content by Artist name (user profile All Artworks)
+    if (isset($_GET['artist']) && !empty($local_content)) {
+        $filtered_by_user_only = TRUE;
+        $username_filter = $_GET['artist'];
     }
 
     // add the search term if a user entered one
@@ -1087,6 +1093,10 @@ function _artist_community_get_items_query ($local_og = null,
                     }
                     if ($type === "article" && $value[0] !== ABOUT_TID) {
                         $contentFilters['node'][] = "-" . AC_ARTICLE_CATEGORY_FIELD . ":" . ABOUT_TID;
+                    }
+
+                    if ($filtered_by_user_only) {
+                        $contentFilters['node'][] = 'ss_full_name_actual:"' . $username_filter . '"';
                     }
 
                     break;
