@@ -2044,8 +2044,8 @@ if ($context_node->uid === $user->uid || in_array(\'administrator\', $user->role
       'title' => '',
       'body' => '<?php
 $this_node = node_load(%node:nid);
-$start_date = new DateTime($this_node->op_dates[LANGUAGE_NONE][0][\'value\']);
-$date_string = $start_date->format(\'l, M jS Y\');
+$date_utc = format_date(strtotime($this_node->op_dates[LANGUAGE_NONE][0][\'value\']), \'custom\', \'Y-m-d\\TH:i:s\\Z\');
+$date_string = format_date(strtotime($date_utc), \'custom\', \'l, M jS Y\');
 ?>
 <section class="field">
     <h2 class="field-label">Opportunity Opens</h2>
@@ -2076,8 +2076,8 @@ $date_string = $start_date->format(\'l, M jS Y\');
       'title' => '',
       'body' => '<?php
 $this_node = node_load(%node:nid);
-$end_date = new DateTime($this_node->op_dates[LANGUAGE_NONE][0][\'value2\']);
-$date_string = $end_date->format(\'l, M jS Y, g:ha\');
+$date_utc = format_date(strtotime($this_node->op_dates[LANGUAGE_NONE][0][\'value2\']), \'custom\', \'Y-m-d\\TH:i:s\\Z\');
+$date_string = format_date(strtotime($date_utc), \'custom\', \'l, M jS Y, g:ia\');
 ?>
 <section class="field">
     <h2 class="field-label">Opportunity Closes</h2>
