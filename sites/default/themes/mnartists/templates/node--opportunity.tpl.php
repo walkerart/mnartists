@@ -25,8 +25,8 @@ if ($teaser) {
   $end_date = null;
   $date_string = '';
   if (isset($node->op_dates[LANGUAGE_NONE]) && isset($node->op_dates[LANGUAGE_NONE][0]['value2'])) {
-    $end_date = new DateTime($node->op_dates[LANGUAGE_NONE][0]['value2']);
-    $date_string = $end_date->format('l, M jS Y, g:ha');
+    $date_utc = format_date(strtotime($node->op_dates[LANGUAGE_NONE][0]['value2']), 'custom', 'Y-m-d\TH:i:s\Z');
+    $date_string = format_date(strtotime($date_utc), 'custom', 'l, M jS Y, g:ia');
   }
   ?>
   <div class="item-inside">

@@ -1008,19 +1008,20 @@ function _artist_community_get_items_query ($local_og = null,
                 $userQueryBuilder[] = AC_USER_NODE_FIELD.":$og_id";
             }
         }
-    } else {
-        if ($filtered_by_event_date && $event_date_valid) {
-            $nodeQueryBuilder[] = '('.AC_TYPE_FIELD.':article OR ('.AC_TYPE_FIELD.':artwork AND '.AC_ARTWORK_PUBLIC_FIELD
-                .':true) OR ('.AC_TYPE_FIELD.':opportunity AND '.AC_OPP_ANNOUNCE_DATE_FIELD.":[* TO $solr_now]) OR (".AC_TYPE_FIELD.":event AND ds_field_date\:value:[$start_date TO $end_date]))";
-        }
-        elseif ($filtered_by_event_include_past) {
-            $nodeQueryBuilder[] = '('.AC_TYPE_FIELD.':article OR ('.AC_TYPE_FIELD.':artwork AND '.AC_ARTWORK_PUBLIC_FIELD
-                .':true) OR '.AC_TYPE_FIELD.':event OR ('.AC_TYPE_FIELD.':opportunity AND '.AC_OPP_ANNOUNCE_DATE_FIELD.":[* TO $solr_now]))";
-        } else {
-            $nodeQueryBuilder[] = '('.AC_TYPE_FIELD.':article OR ('.AC_TYPE_FIELD.':artwork AND '.AC_ARTWORK_PUBLIC_FIELD
-                .':true) OR ('.AC_TYPE_FIELD.':opportunity AND '.AC_OPP_ANNOUNCE_DATE_FIELD."[* TO $solr_now]) OR (".AC_TYPE_FIELD.":event AND ds_field_date\:value:[$solr_now TO *]))";
-        }
     }
+    // else {
+    //     if ($filtered_by_event_date && $event_date_valid) {
+    //         $nodeQueryBuilder[] = '('.AC_TYPE_FIELD.':article OR ('.AC_TYPE_FIELD.':artwork AND '.AC_ARTWORK_PUBLIC_FIELD
+    //             .':true) OR ('.AC_TYPE_FIELD.':opportunity AND '.AC_OPP_ANNOUNCE_DATE_FIELD.":[* TO $solr_now]) OR (".AC_TYPE_FIELD.":event AND ds_field_date\:value:[$start_date TO $end_date]))";
+    //     }
+    //     elseif ($filtered_by_event_include_past) {
+    //         $nodeQueryBuilder[] = '('.AC_TYPE_FIELD.':article OR ('.AC_TYPE_FIELD.':artwork AND '.AC_ARTWORK_PUBLIC_FIELD
+    //             .':true) OR '.AC_TYPE_FIELD.':event OR ('.AC_TYPE_FIELD.':opportunity AND '.AC_OPP_ANNOUNCE_DATE_FIELD.":[* TO $solr_now]))";
+    //     } else {
+    //         $nodeQueryBuilder[] = '('.AC_TYPE_FIELD.':article OR ('.AC_TYPE_FIELD.':artwork AND '.AC_ARTWORK_PUBLIC_FIELD
+    //             .':true) OR ('.AC_TYPE_FIELD.':opportunity AND '.AC_OPP_ANNOUNCE_DATE_FIELD."[* TO $solr_now]) OR (".AC_TYPE_FIELD.":event AND ds_field_date\:value:[$solr_now TO *]))";
+    //     }
+    // }
 
     $nodeQueryBuilderString = (count($nodeQueryBuilder) !== 0) ? ' AND ('.implode(' OR ', $nodeQueryBuilder).')' : '';
     $userQueryBuilderString = (count($userQueryBuilder) !== 0) ? ' AND ('.implode(' OR ', $userQueryBuilder).')' : '';
@@ -1176,7 +1177,7 @@ function _artist_community_get_items_query ($local_og = null,
         }
         $contentFilterQueryStrings = array();
         if (!empty($contentFilters['node'])) {
-            $contentFilterQueryStrings[] = '(index_id:'.NODE_INDEX.' AND '.implode(' AND ', $contentFilters['node']).')';
+            $contentFilterQueryStrings[] = '(index_id:'.NODE_INDEX.' AND is_status:1 AND '.implode(' AND ', $contentFilters['node']).')';
         }
         if (!empty($contentFilters['user'])) {
             $contentFilterQueryStrings[] = '(index_id:'.USER_INDEX.' AND '.AC_SORT_BY_NAME_FIELD.':[\'\' TO *] AND '.implode(' AND ', $contentFilters['user']).')';
@@ -1254,7 +1255,7 @@ function _artist_community_get_items_query ($local_og = null,
 
     // set the select
     $resultset = $client->select($solarium_query);
-// var_export($resultset, TRUE);
+// var_export($resultset);
     // $request = $client->createRequest($solarium_query);
     // dpm((string)$request);
 
