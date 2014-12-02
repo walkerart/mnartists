@@ -151,8 +151,9 @@ function artist_community_search_page() {
         }
 
         // as above, but with events
-        $start_date = date('Y-m-d\TH:i:s\Z', time());
-        $end_date = date('Y-m-d\TH:i:s\Z', strtotime("+7 days"));
+        $start_date = format_date(time(), 'custom', 'Y-m-d\TH:i:s\Z', 'UTC');
+        $end_date = format_date(strtotime("+7 days"), 'custom', 'Y-m-d\TH:i:s\Z', 'UTC');
+
         $event_filters = array();
         $event_filter = new SearchApiQueryFilter;
         $event_filter->condition('type', 'event');
@@ -195,7 +196,7 @@ function artist_community_search_page() {
                 $context_event_data->nid = $event->nid;
                 $context_event_data->title = $event->title;
 
-                $date_utc = format_date(strtotime($event->field_date['und'][0]['value']), 'custom', 'Y-m-d\T00:00:00\Z');
+                $date_utc = format_date(strtotime($event->field_date['und'][0]['value']), 'custom', 'Y-m-d\TH:i:s\Z');
                 $context_event_data->date = format_date(strtotime($date_utc), 'custom', 'M d');
 
                 $context_event_data->text = isset($event->body['und']) ? text_summary($event->body['und'][0]['value'], 'html', 300) : '';
