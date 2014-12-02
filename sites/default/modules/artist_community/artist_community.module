@@ -908,15 +908,21 @@ function _artist_community_get_items_query ($local_og = null,
     $filtered_by_event_date = false;
     $filtered_by_event_include_past = false;
 
-    // $filtered_by_user_only = false;
+    $filtered_by_user_only = false;
     $filtered_by_user_location = false;
+    $username_filter = '';
 
     // instantiate our client and query object
     $client = new Solarium\Client($solarium_config);
     $solarium_query = $client->createSelect();
 
+    if (!empty($local_content) && count($local_content) == 1 && !(isset($_GET['og'])) && isset($local_content['artists']) && isset($_GET['global_search'])) {
+        $filtered_by_user_only = TRUE;
+        $username_filter = $_GET['global_search'];
+    }
+
     // add the search term if a user entered one
-    if (isset($_GET['global_search']) && !empty($_GET['global_search'])) {
+    if (isset($_GET['global_search']) && !empty($_GET['global_search']) && !$filtered_by_user_only) {
         // @ddamico: there is surely a better way to do this,
         // but I couldn't get exact term searches to work unless
         // I included the search term both with and without
@@ -925,6 +931,7 @@ function _artist_community_get_items_query ($local_og = null,
         $globalQs = AC_GLOBAL_SEARCH_FIELD.":{$_GET['global_search']}* OR ".AC_GLOBAL_SEARCH_FIELD.":{$_GET['global_search']} OR ";
         $globalQs .= AC_PROFILE_SEARCH_FIELD.":{$_GET['global_search']}* OR ".AC_PROFILE_SEARCH_FIELD.":{$_GET['global_search']}";
         $solarium_query->setQuery($globalQs);
+        // dpm($globalQs, '$globalQs');
     }
 
     // DB & Solr timezone is UTC, site timezone is America/Chicago
@@ -1134,6 +1141,9 @@ function _artist_community_get_items_query ($local_og = null,
                         $userLocationSearchString = '{!geofilt sfield='.AC_USER_LATLNG_FIELD." pt=$artist_coords d=".NEAR_ME_RADIUS.'}';
                         $solarium_query->createFilterQuery('artist_location')->setQuery($userLocationSearchString);
                     }
+                    if ($filtered_by_user_only) {
+                        $subQuery[] = 'tm_search_api_aggregation_2:"' . $username_filter . '"';
+                    }
                     $contextQueryString = (!empty($subQuery)) ? "(($roleQuery) AND (".implode(' AND ', $subQuery)."))" : "($roleQuery)";
                     $contentFilters['user'][] = $contextQueryString;
                     break;
@@ -1160,6 +1170,11 @@ function _artist_community_get_items_query ($local_og = null,
         }
         if (!empty($contentFilters['user'])) {
             $contentFilterQueryStrings[] = '(index_id:'.USER_INDEX.' AND '.AC_SORT_BY_NAME_FIELD.':[\'\' TO *] AND '.implode(' AND ', $contentFilters['user']).')';
+            // $userFilter = '(index_id:'.USER_INDEX. ' AND '.implode(' AND ', $contentFilters['user']).')';
+            // if (!$filtered_by_user_only) {
+            //     $userFilter .= ' AND '.AC_SORT_BY_NAME_FIELD.':[\'\' TO *]';
+            // }
+            // $contentFilterQueryStrings[] = $userFilter;
         }
         $contentFilterQueryString = implode(' OR ', $contentFilterQueryStrings);
         $solarium_query->createFilterQuery($type)->setQuery($contentFilterQueryString);
@@ -1189,7 +1204,7 @@ function _artist_community_get_items_query ($local_og = null,
             $solarium_query->addSort(AC_SORT_BY_DATE_FIELD, $solarium_query::SORT_ASC);
         }
 
-    } else {
+    } elseif (!$filtered_by_user_only) {
         // ss_full_name
         $sort_key = AC_CREATED_FIELD;
         $sort_direction = $solarium_query::SORT_DESC;
@@ -1229,7 +1244,7 @@ function _artist_community_get_items_query ($local_og = null,
 
     // set the select
     $resultset = $client->select($solarium_query);
-
+// var_export($resultset, TRUE);
     // $request = $client->createRequest($solarium_query);
     // dpm((string)$request);
 
