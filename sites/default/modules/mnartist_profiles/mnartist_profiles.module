@@ -1079,9 +1079,17 @@ function _mnartist_profile_user_profile() {
                     {
                         foreach($data['#items'] as $key => $value)
                         {
+							$value = '';
+                            if ($data['#field_type'] == 'field_collection') {
+                                // We must extract the contents of the field collection here
+                                $value .= render($data);
+                            } else {
+                                $value .= $data[$key];
+                            }
                             $fieldset[$data['#field_name']][] = array(
                                 'name' => $data['#field_name'],
-                                'value' => $data[$key]
+
+                                'value' => $value
                             );
                         }
                     }
