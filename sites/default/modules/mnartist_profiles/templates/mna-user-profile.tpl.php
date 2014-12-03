@@ -194,8 +194,8 @@
                     <h5 class='profile-title'>Biography</h5>
                     <?php if(isset($fieldset['field_bio'])) { ?>
                         <p><?= $fieldset['field_bio'][0]['value']['#markup'] ?></p>
-                    <?php }
-                    if(isset($fieldset['field_country'])) { ?>
+                    <?php } ?>
+                    <?php if(isset($fieldset['field_country'])) { ?>
                         <div class='field_country'>
                             <div class='profile-label'>Country</div>
                             <p><?= $fieldset['field_country'][0]['value']['#markup'] ?></p>
@@ -207,6 +207,15 @@
                             <p><?= $fieldset['field_birthplace'][0]['value']['#markup'] ?></p>
                         </div>
                     <?php } ?>
+                    <h5 class='profile-title'>RESUME</h5>
+                    <div class='field_resume'>
+                        <p><?= $fieldset['field_work_experience'][0]['value'] ?></p>
+                        <p><?= $fieldset['field_teaching_experience'][0]['value'] ?></p>
+                        <p><?= $fieldset['field_exhibition_and_performance'][0]['value'] ?></p>
+                        <p><?= $fieldset['field_publications'][0]['value'] ?></p>
+                        <p><?= $fieldset['field_collections'][0]['value'] ?></p>
+                        <p><?= $fieldset['field_related_organizations'][0]['value'] ?></p>
+                    </div>
                 </div>
             <?php } ?>
         </div>
