@@ -238,10 +238,12 @@ function mnartists_search_default_search_api_index() {
         "near_me_latlng" : { "type" : "string", "real_type" : "location" },
         "mnartist_profile2_search" : { "type" : "list\\u003Ctext\\u003E" },
         "sort_by_name" : { "type" : "string" },
+        "full_name_actual" : { "type" : "string", "boost" : "5.0" },
         "sort_by_date" : { "type" : "date" },
         "search_api_language" : { "type" : "string" },
         "search_api_url" : { "type" : "uri" },
         "search_api_aggregation_1" : { "type" : "text" },
+        "search_api_aggregation_2" : { "type" : "text" },
         "profile_main:type" : { "type" : "string", "entity_type" : "profile2_type" },
         "profile_main:label" : { "type" : "text" },
         "profile_main:url" : { "type" : "uri" },
@@ -372,7 +374,8 @@ function mnartists_search_default_search_api_index() {
         "search_api_alter_add_aggregation" : {
           "status" : 1,
           "weight" : "0",
-          "settings" : { "fields" : { "search_api_aggregation_1" : {
+          "settings" : { "fields" : {
+              "search_api_aggregation_1" : {
                 "name" : "All Content",
                 "type" : "fulltext",
                 "fields" : [
@@ -380,11 +383,15 @@ function mnartists_search_default_search_api_index() {
                   "profile_main",
                   "profile_resume",
                   "profile_organization",
-                  "og_membership",
-                  "practices",
-                  "experiences"
+                  "og_membership"
                 ],
-                "description" : "A Fulltext aggregation of the following fields: Name, Main profile profile, Resume profile, Organization profile, OG memberships, Practices references, Experiences references."
+                "description" : "A Fulltext aggregation of the following fields: Name, Main profile profile, R\\u00e9sum\\u00e9 profile, Organization profile, OG memberships."
+              },
+              "search_api_aggregation_2" : {
+                "name" : "Full name FULLTEXT",
+                "type" : "fulltext",
+                "fields" : [ "name", "full_name_actual" ],
+                "description" : "A Fulltext aggregation of the following fields: Name, Full Name Actual."
               }
             }
           }
