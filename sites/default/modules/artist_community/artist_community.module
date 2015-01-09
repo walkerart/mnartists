@@ -929,13 +929,35 @@ function _artist_community_get_items_query ($local_og = null,
 
     // add the search term if a user entered one
     if (isset($_GET['global_search']) && !empty($_GET['global_search']) && !$filtered_by_user_only) {
-        // @ddamico: there is surely a better way to do this,
-        // but I couldn't get exact term searches to work unless
-        // I included the search term both with and without
-        // the wildcard (it's as if the * is behaving as 1 or more
-        // instead of 0 or more)
-        $globalQs = AC_GLOBAL_SEARCH_FIELD.":{$_GET['global_search']}* OR ".AC_GLOBAL_SEARCH_FIELD.":{$_GET['global_search']} OR ";
-        $globalQs .= AC_PROFILE_SEARCH_FIELD.":{$_GET['global_search']}* OR ".AC_PROFILE_SEARCH_FIELD.":{$_GET['global_search']}";
+        // node search
+        // exact match + boost 5
+        $globalQs = sprintf('%s:"%s"^5', AC_GLOBAL_SEARCH_FIELD, $_GET['global_search']);
+
+        // wildcard partial match + boost 2
+        $globalQs .= ' OR ';
+        $globalQs .= sprintf('%s:"%s*"^2', AC_GLOBAL_SEARCH_FIELD, $_GET['global_search']);
+        // tokenized word match
+        $globalQs .= ' OR ';
+        $globalQs .= sprintf('%s:%s', AC_GLOBAL_SEARCH_FIELD, $_GET['global_search']);
+
+        // user profile search
+        // $globalQs .= ' OR ';
+        // $globalQs .= sprintf('%s:"%s"^10', 'tm_search_api_aggregation_2', $_GET['global_search']);
+        // $globalQs .= ' OR ';
+        // $globalQs .= sprintf('%s:"%s*"^2', 'tm_search_api_aggregation_2', $_GET['global_search']);
+        // $globalQs .= ' OR ';
+        // $globalQs .= sprintf('%s:%s', 'tm_search_api_aggregation_2', $_GET['global_search']);
+
+        // exact match + boost 10
+        $globalQs .= ' OR ';
+        $globalQs .= sprintf('%s:"%s"^10', AC_PROFILE_SEARCH_FIELD, $_GET['global_search']);
+        // wildcard partial match + boost 2
+        $globalQs .= ' OR ';
+        $globalQs .= sprintf('%s:"%s*"^2', AC_PROFILE_SEARCH_FIELD, $_GET['global_search']);
+        // tokenized word match
+        $globalQs .= ' OR ';
+        $globalQs .= sprintf('%s:%s', AC_PROFILE_SEARCH_FIELD, $_GET['global_search']);
+
         $solarium_query->setQuery($globalQs);
         // dpm($globalQs, '$globalQs');
     }
@@ -1215,21 +1237,21 @@ function _artist_community_get_items_query ($local_og = null,
             $solarium_query->addSort(AC_SORT_BY_DATE_FIELD, $solarium_query::SORT_ASC);
         }
 
-    } elseif (!$filtered_by_user_only) {
+    } elseif (!is_null($local_sort)) {
         // ss_full_name
         $sort_key = AC_CREATED_FIELD;
         $sort_direction = $solarium_query::SORT_DESC;
-        if (!is_null($local_sort)) {
-            if ($local_sort === 'alpha') {
-                $sort_key = AC_SORT_BY_NAME_FIELD;
-            } else if ($local_sort === 'date') {
-                $sort_key = AC_SORT_BY_DATE_FIELD;
-            } else if ($local_sort === 'recent') {
-                $sort_key = AC_SORT_BY_RECENT_FIELD;
-            } else if ($local_sort === 'collected') {
-                $sort_key = 'is_flags_count';
-            }
+
+        if ($local_sort === 'alpha') {
+            $sort_key = AC_SORT_BY_NAME_FIELD;
+        } else if ($local_sort === 'date') {
+            $sort_key = AC_SORT_BY_DATE_FIELD;
+        } else if ($local_sort === 'recent') {
+            $sort_key = AC_SORT_BY_RECENT_FIELD;
+        } else if ($local_sort === 'collected') {
+            $sort_key = 'is_flags_count';
         }
+
         if (!is_null($local_sort_direction) && $local_sort_direction === 'ASC') {
             $sort_direction = $solarium_query::SORT_ASC;
         }
