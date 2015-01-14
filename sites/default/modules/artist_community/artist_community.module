@@ -935,28 +935,25 @@ function _artist_community_get_items_query ($local_og = null,
 
         // wildcard partial match + boost 2
         $globalQs .= ' OR ';
-        $globalQs .= sprintf('%s:"%s*"^2', AC_GLOBAL_SEARCH_FIELD, $_GET['global_search']);
+        $globalQs .= sprintf('%s:"%s*"', AC_GLOBAL_SEARCH_FIELD, $_GET['global_search']);
         // tokenized word match
-        $globalQs .= ' OR ';
-        $globalQs .= sprintf('%s:%s', AC_GLOBAL_SEARCH_FIELD, $_GET['global_search']);
+        if (strpos($_GET['global_search'], ' ') > 0) {
+            $globalQs .= ' OR ';
+            $globalQs .= sprintf('%s:"%s"~10', AC_GLOBAL_SEARCH_FIELD, $_GET['global_search']);
+        }
 
         // user profile search
-        // $globalQs .= ' OR ';
-        // $globalQs .= sprintf('%s:"%s"^10', 'tm_search_api_aggregation_2', $_GET['global_search']);
-        // $globalQs .= ' OR ';
-        // $globalQs .= sprintf('%s:"%s*"^2', 'tm_search_api_aggregation_2', $_GET['global_search']);
-        // $globalQs .= ' OR ';
-        // $globalQs .= sprintf('%s:%s', 'tm_search_api_aggregation_2', $_GET['global_search']);
-
         // exact match + boost 10
         $globalQs .= ' OR ';
         $globalQs .= sprintf('%s:"%s"^10', AC_PROFILE_SEARCH_FIELD, $_GET['global_search']);
         // wildcard partial match + boost 2
         $globalQs .= ' OR ';
-        $globalQs .= sprintf('%s:"%s*"^2', AC_PROFILE_SEARCH_FIELD, $_GET['global_search']);
+        $globalQs .= sprintf('%s:"%s*"', AC_PROFILE_SEARCH_FIELD, $_GET['global_search']);
         // tokenized word match
-        $globalQs .= ' OR ';
-        $globalQs .= sprintf('%s:%s', AC_PROFILE_SEARCH_FIELD, $_GET['global_search']);
+        if (strpos($_GET['global_search'], ' ') > 0) {
+            $globalQs .= ' OR ';
+            $globalQs .= sprintf('%s:"%s"~10', AC_PROFILE_SEARCH_FIELD, $_GET['global_search']);
+        }
 
         $solarium_query->setQuery($globalQs);
         // dpm($globalQs, '$globalQs');
