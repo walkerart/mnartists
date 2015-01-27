@@ -197,7 +197,7 @@ function ap_submit_form() {
               $work['uid'] = $uid;
               $work['nid'] = $nid;
               $work['title'] = isset($data['title']) ? $data['title'] : '';
-              $work['medium'] = isset($data['medium']) ? json_encode($data['medium']) : '';
+              $work['medium'] = isset($data['medium']) ? json_encode($data['medium']) : ''; //This is not medium it is categories
               $work['date'] = isset($data['date']) ? $data['date'] : '';
               $work['dimensions'] = isset($data['dimensions']) ? $data['dimensions'] : '';
               $work['excerpt'] = isset($data['excerpt']) ? $data['excerpt'] : '';
@@ -206,6 +206,8 @@ function ap_submit_form() {
               $work['description'] = isset($data['body']) ? $data['body'] : '';
               $work['file_type'] = isset($image['type']) ? $image['type'] : '';
               $work['file'] = isset($image['file']) ? $image['file'] : '';
+              $work['medium3'] = isset($data['medium3']) ? json_encode($data['medium3']) : '';  //readl medium 
+              $work['roles'] = isset($data['roles']) ? json_encode($data['roles']) : '';
               if ($image['type'] == 'image') {
                 $url = image_style_url('large', $image['file']);
                 $data = drupal_http_request($url);
@@ -389,7 +391,6 @@ function mn_ap_artworks_data($uid, $vid = NULL) {
   foreach ($out['nodes'] as $row) {
     //getting object and converting to array
     $object = (array)$row['field_media']['#object'];
-    //dpm($object);
     //get medium from tid
     $medium = isset($object['field_medium']['und']) ? mn_ap_medium_data($object['field_medium']['und']) : '';
     //clean up artwork
@@ -402,6 +403,9 @@ function mn_ap_artworks_data($uid, $vid = NULL) {
     $date = get_artwork_date($month, $day, $year);
     $other_artists = isset($object['field_other_artists_involved']['und']) ? mn_ap_get_other_artists($object['field_other_artists_involved']['und']) : '';
     $venue = isset($object['field_venue']['und']) ? mn_ap_get_venues($object['field_venue']['und']) : '';
+    //New fields medium3 and roles
+    $medium3 = isset($object['field_medium3']['und']) ? mn_ap_medium_data($object['field_medium3']['und']) : ''; 
+    $roles = isset($object['field_roles']['und']) ? mn_ap_medium_data($object['field_roles']['und']) : ''; //mn_ap_medium_data handles taxonomy data
 
     $rows[] = array(
       'vid' => isset($object['vid']) ? $object['vid'] : '',
@@ -414,6 +418,8 @@ function mn_ap_artworks_data($uid, $vid = NULL) {
       'images' => $images,
       'other_artists' => $other_artists,
       'venue' => $venue,
+      'medium3' => $medium3,
+      'roles' => $roles,
       //'field_media' => isset($object['field_media']) ? $object['field_media'] : '',
       //'row' => $row
     );
@@ -543,7 +549,7 @@ function mn_ap_medium_data($media) {
 */
 function get_artwork_date($month, $day, $year){
   if ($month != '' && $day != '' && $year != '') {
-    $date = date('F j, Y', strtotime("$month/$day/$year"));
+    $date = date('F j, Y', strtotime("$month/$day/$year")); //@todo - O8 not good to use to digits 00 - 37 = 2000's breaks if date is above 37 reverts to 1969
   } elseif ($month != '' && $year != '') {
     $month = date('F', strtotime($month));
     $date = "$month, $year";
@@ -557,7 +563,6 @@ function get_artwork_date($month, $day, $year){
  * get only required information out of field_media for use in template
  */
 function mn_ap_artwork_image_data($artworks) {
-  //dpm($artworks);
   foreach($artworks['und'] as $artwork) {
     if (isset($artwork['uri'])) {
       if (substr($artwork['filemime'], 0, 1) == 'i') {

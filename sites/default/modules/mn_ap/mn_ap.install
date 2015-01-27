@@ -183,3 +183,28 @@ function mn_ap_schema() {
     );
 	return $schema;
 }
+
+/* 
+ * Updating new fields for artwork on opportunity submissions
+ */
+function mn_ap_update_7001() {
+    $ret = array();
+    $field = array(
+        'description' => 'Medium Field for Artwork.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+    );
+    $field2 = array(
+        'description' => 'Roles for Artwork.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+    );
+    db_add_field('op_artworks', 'medium3', $field);
+    db_add_field('op_artworks', 'roles', $field2);
+    return $ret;
+    
+}

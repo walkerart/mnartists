@@ -287,11 +287,33 @@
                                         <div><?php echo $artwork['date']; ?></div>
                                         <div>
                                             <?php
-                                                if (isset($artwork['medium']) && !empty($artwork['medium'])) {
+                                                if (isset($artwork['medium3']) && !empty($artwork['medium3'])) {  //this is the medium field
+                                                    $mediums3 = $artwork['medium3'];
+                                                    foreach ($artwork['medium3'] as $medium3) {
+                                                        echo $medium3;
+                                                        if (next($mediums3)) echo ', ';
+                                                    }
+                                                }
+                                            ?>
+                                        </div>
+                                        <div>
+                                            <?php
+                                                if (isset($artwork['medium']) && !empty($artwork['medium'])) { //this is the category field
                                                     $mediums = $artwork['medium'];
                                                     foreach ($artwork['medium'] as $medium) {
                                                         echo $medium;
                                                         if (next($mediums)) echo ', ';
+                                                    }
+                                                }
+                                            ?>
+                                        </div>
+                                        <div>
+                                            <?php
+                                                if (isset($artwork['roles']) && !empty($artwork['roles'])) {  //this is the role field
+                                                    $roles = $artwork['roles'];
+                                                    foreach ($artwork['roles'] as $role) {
+                                                        echo $role;
+                                                        if (next($roles)) echo ', ';
                                                     }
                                                 }
                                             ?>
@@ -671,11 +693,33 @@
                                     <div><?php echo $artwork['date']; ?></div>
                                     <div>
                                         <?php
-                                            if (isset($artwork['medium']) && !empty($artwork['medium'])) {
+                                            if (isset($artwork['medium3']) && !empty($artwork['medium3'])) {  //this is the meduim field
+                                                $mediums3 = $artwork['medium3'];
+                                                foreach ($artwork['medium3'] as $medium3) {
+                                                    echo $medium3;
+                                                    if (next($mediums3)) echo ', ';
+                                                }
+                                            }
+                                        ?>
+                                    </div>
+                                    <div>
+                                        <?php
+                                            if (isset($artwork['medium']) && !empty($artwork['medium'])) {  //this is the category field
                                                 $mediums = $artwork['medium'];
                                                 foreach ($artwork['medium'] as $medium) {
                                                     echo $medium;
                                                     if (next($mediums)) echo ', ';
+                                                }
+                                            }
+                                        ?>
+                                    </div>
+                                    <div>
+                                        <?php
+                                            if (isset($artwork['roles']) && !empty($artwork['roles'])) {  //this is the role field
+                                                $roles = $artwork['roles'];
+                                                foreach ($artwork['roles'] as $role) {
+                                                    echo $role;
+                                                    if (next($roles)) echo ', ';
                                                 }
                                             }
                                         ?>

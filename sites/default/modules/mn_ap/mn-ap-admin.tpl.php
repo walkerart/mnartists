@@ -148,10 +148,24 @@
                 <div><em><?php echo $artwork->title; ?></em></div>
                 <div><?php echo $artwork->date; ?></div>
                 <div>
-                    <?php $mediums = json_decode($artwork->medium);
+                    <?php $mediums3 = json_decode($artwork->medium3);  //this is the medium field
+                        foreach (json_decode($artwork->medium3) as $medium3) {
+                        echo $medium3;
+                        if (next($mediums3)) echo ', ';
+                    } ?>
+                </div>
+                <div>
+                    <?php $mediums = json_decode($artwork->medium);  //this is the category field
                         foreach (json_decode($artwork->medium) as $medium) {
                         echo $medium;
                         if (next($mediums)) echo ', ';
+                    } ?>
+                </div>
+                <div>
+                    <?php $roles = json_decode($artwork->roles);  //this is the role field
+                        foreach (json_decode($artwork->roles) as $role) {
+                        echo $role;
+                        if (next($roles)) echo ', ';
                     } ?>
                 </div>
                 <div><?php echo $artwork->dimensions; ?></div>
