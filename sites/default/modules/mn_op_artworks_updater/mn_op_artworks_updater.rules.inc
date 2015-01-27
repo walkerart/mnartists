@@ -40,8 +40,11 @@ function mn_op_artworks_updater($node) {
 
   $is_in_table = mn_op_artworks_updater_table_check($vid); // check if artwork is in the op_table before proceeding
   if($is_in_table) {
-    $nid = $is_in_table[0]->nid; //nid, this is the nid for the opportunity NOT the artowrk content and is returned from checking the op_table
-    $file_name_in_table = $is_in_table[0]->file;
+    foreach($is_in_table as $key => $value) {
+    $nid = $value->nid;
+    //$nid = $is_in_table[0]->nid; //nid, this is the nid for the opportunity NOT the artowrk content and is returned from checking the op_table
+    //$file_name_in_table = $is_in_table[0]->file;
+    $file_name_in_table = $value->file;
     $uid = $node->uid;
     $title = $node->title;
 
@@ -105,6 +108,7 @@ function mn_op_artworks_updater($node) {
       ->condition('vid', $vid, '=') 
       ->execute();
 
+    }
    }
 }
 
@@ -221,8 +225,10 @@ function mn_op_artworks_updater_process_files($file_obj, $nid, $uid) {
       $save_path_ap_tiny = "$user_folder_path/thumb_$file"; 
       file_unmanaged_save_data($thumb_data->data, $save_path_ap_tiny, FILE_EXISTS_REPLACE);
       
+      $filename = explode("/",$file_obj->uri); //using uri instead of filename just incase there are multiple files with the same name e.g. _0 is appended and will show the wrong file
+      
       $file_attributes['file_type'] = (isset($file_obj->type) ? $file_obj->type : '');  //need file type
-      $file_attributes['file'] = (isset($file_obj->filename) ? $file_obj->filename : '');  //need file name, will make '' if not there to not break db
+      $file_attributes['file'] = (isset($filename[4]) ? $filename[4] : '');  //need file name, will make '' if not there to not break db
     }
   }
   if ($file_obj->type == 'document') {
