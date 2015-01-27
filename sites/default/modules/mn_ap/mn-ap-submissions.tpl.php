@@ -15,18 +15,22 @@
 //dpm($rows); ?>
 <script>
 (function ($) {
-  $(document).ready(function() {
-    $('.soundcloudurl').click(function(e) {
-      e.preventDefault();
-      var soundCloudDiv = $(this);
-      var fid = soundCloudDiv.data('fid');
 
-      $.get('/opportunity/soundcloud/' + fid , function(data) {
-        soundCloudDiv.attr('href', data);
-        soundCloudDiv.ekkoLightbox();
+  Drupal.behaviors.soundCloudWidget = {
+    attach: function (context, settings) {
+      $('.soundcloudurl').click(function(e) {
+        e.preventDefault();
+        var soundCloudDiv = $(this);
+        var fid = soundCloudDiv.data('fid');
+
+        $.get('/opportunity/soundcloud/' + fid , function(data) {
+          soundCloudDiv.attr('href', data);
+          soundCloudDiv.ekkoLightbox();
+        });
       });
-    });
-  });
+    }
+  };
+
 }(jQuery));
 
 </script>
