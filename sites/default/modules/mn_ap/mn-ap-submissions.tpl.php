@@ -13,6 +13,23 @@
 	drupal_add_js(drupal_get_path('module', 'mn_ap') . '/js/jquery.selectBoxIt.js');
 	drupal_add_js(drupal_get_path('module', 'mn_ap') . '/js/subScript.js');
 //dpm($rows); ?>
+<script>
+(function ($) {
+  $(document).ready(function() {
+    $('.soundcloudurl').click(function(e) {
+      e.preventDefault();
+      var soundCloudDiv = $(this);
+      var fid = soundCloudDiv.data('fid');
+
+      $.get('/opportunity/soundcloud/' + fid , function(data) {
+        soundCloudDiv.attr('href', data);
+        soundCloudDiv.ekkoLightbox();
+      });
+    });
+  });
+}(jQuery));
+
+</script>
 <div class="container">
 	<?php //admin table ?>
 	<?php if(in_array('administrator', $user->roles) || $rows['owner']) : ?>
@@ -92,16 +109,16 @@
 								</span>
 								<?php endif; ?>
 								<?php if($artwork->file_type == 'soundcloud') : ?>
-									<span class="thumb-list sound">
                     <?php
-                    	$scfile = file_load($artwork->fid); //load file to get uri for sound cloud theme function
-                  	  $sciframe = theme('media_soundcloud_audio', array('uri' => $scfile->uri, 'height' => 81, 'extra_params' => 'visual:false, show_user:false, show_artwork:false, show_playcount:false, show_comments:false, show_bpm:false, buying:false, sharing:false, download:false, liking:false'));
-	                    preg_match('/src="([^"]+)"/', $sciframe, $match);  //strip all but iframe
-	                    $url = $match[1];
-	                    preg_match("/(url=)(.*?)$/i", $url, $matches); //remove url from iframe
-	                    $scurl = $matches[2];
-	                  ?>
-										<a href="<?php echo $scurl; ?>"   data-toggle="lightbox" data-gallery="mixedgallery" data-title="<?php echo $artwork->title; ?>" data-parent=".lightbox-parent-<?php echo $artwork->uid; ?>">
+                    	// $scfile = file_load($artwork->fid); //load file to get uri for sound cloud theme function
+                  	  // $sciframe = theme('media_soundcloud_audio', array('uri' => $scfile->uri, 'height' => 81, 'extra_params' => 'visual:false, show_user:false, show_artwork:false, show_playcount:false, show_comments:false, show_bpm:false, buying:false, sharing:false, download:false, liking:false'));
+	                    // preg_match('/src="([^"]+)"/', $sciframe, $match);  //strip all but iframe
+	                    // $url = $match[1];
+	                    // preg_match("/(url=)(.*?)$/i", $url, $matches); //remove url from iframe
+	                    // $scurl = $matches[2];
+                  	?>
+									<span class="thumb-list sound">
+                    <a class="soundcloudurl" href="" data-title="<?php echo $artwork->title; ?>" data-parent=".lightbox-parent-<?php echo $artwork->uid; ?>" data-fid="<?php echo $artwork->fid ?>">
                       <img src="<?php  print '/'.drupal_get_path('module', 'mn_ap') . '/images/soundcloud.jpg'; ?>" data-soundcloud-id="<?php echo $artwork->file; ?>">
 										</a>
 									</span>
@@ -248,17 +265,17 @@
 									<?php endif; ?>
 									<?php if($artwork->file_type == 'soundcloud') : ?>
                     <?php
-                    	$scfile = file_load($artwork->fid); //load file to get uri for sound cloud theme function
-                  	  $sciframe = theme('media_soundcloud_audio', array('uri' => $scfile->uri, 'height' => 81, 'extra_params' => 'visual:false, show_user:false, show_artwork:false, show_playcount:false, show_comments:false, show_bpm:false, buying:false, sharing:false, download:false, liking:false'));
-	                    preg_match('/src="([^"]+)"/', $sciframe, $match);  //strip all but iframe
-	                    $url = $match[1];
-	                    preg_match("/(url=)(.*?)$/i", $url, $matches); //remove url from iframe
-	                    $scurl = $matches[2];
+                    	// $scfile = file_load($artwork->fid); //load file to get uri for sound cloud theme function
+                  	  // $sciframe = theme('media_soundcloud_audio', array('uri' => $scfile->uri, 'height' => 81, 'extra_params' => 'visual:false, show_user:false, show_artwork:false, show_playcount:false, show_comments:false, show_bpm:false, buying:false, sharing:false, download:false, liking:false'));
+	                    // preg_match('/src="([^"]+)"/', $sciframe, $match);  //strip all but iframe
+	                    // $url = $match[1];
+	                    // preg_match("/(url=)(.*?)$/i", $url, $matches); //remove url from iframe
+	                    // $scurl = $matches[2];
                   	?>
 										<span class="thumb-list sound">
-											<a href="<?php echo $scurl; ?>" data-toggle="lightbox" data-gallery="mixedgallery" data-title="<?php echo $artwork->title; ?>" data-parent=".jury-parent-<?php echo $artwork->uid; ?>">
-                        <img src="<?php  print '/'.drupal_get_path('module', 'mn_ap') . '/images/soundcloud.jpg'; ?>" data-soundcloud-id="<?php echo $artwork->file; ?>">
-											</a>
+										<a class="soundcloudurl" href="" data-title="<?php echo $artwork->title; ?>" data-parent=".lightbox-parent-<?php echo $artwork->uid; ?>" data-fid="<?php echo $artwork->fid ?>">
+                      <img src="<?php  print '/'.drupal_get_path('module', 'mn_ap') . '/images/soundcloud.jpg'; ?>" data-soundcloud-id="<?php echo $artwork->file; ?>">
+										</a>
 										</span>
 									<?php endif; ?>
 									<?php if ($artwork->file_type == 'document') : ?>

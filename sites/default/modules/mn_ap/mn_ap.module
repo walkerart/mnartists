@@ -61,6 +61,13 @@ function mn_ap_menu() {
     'access callback' => 'user_is_logged_in',
     'access arguments' => array('access content'),
   );
+  $items['opportunity/soundcloud/%'] = array(
+    'type' => MENU_CALLBACK,
+    'page callback' => 'ap_soundcloud_ajax',
+    'page arguments' => array(2),
+    'access callback' => 'user_is_logged_in',
+    'access arguments' => array('access content'),
+  );
 
   return $items;
 }
@@ -206,7 +213,7 @@ function ap_submit_form() {
               $work['description'] = isset($data['body']) ? $data['body'] : '';
               $work['file_type'] = isset($image['type']) ? $image['type'] : '';
               $work['file'] = isset($image['file']) ? $image['file'] : '';
-              $work['medium3'] = isset($data['medium3']) ? json_encode($data['medium3']) : '';  //readl medium 
+              $work['medium3'] = isset($data['medium3']) ? json_encode($data['medium3']) : '';  //readl medium
               $work['roles'] = isset($data['roles']) ? json_encode($data['roles']) : '';
               if ($image['type'] == 'image') {
                 $url = image_style_url('large', $image['file']);
@@ -404,7 +411,7 @@ function mn_ap_artworks_data($uid, $vid = NULL) {
     $other_artists = isset($object['field_other_artists_involved']['und']) ? mn_ap_get_other_artists($object['field_other_artists_involved']['und']) : '';
     $venue = isset($object['field_venue']['und']) ? mn_ap_get_venues($object['field_venue']['und']) : '';
     //New fields medium3 and roles
-    $medium3 = isset($object['field_medium3']['und']) ? mn_ap_medium_data($object['field_medium3']['und']) : ''; 
+    $medium3 = isset($object['field_medium3']['und']) ? mn_ap_medium_data($object['field_medium3']['und']) : '';
     $roles = isset($object['field_roles']['und']) ? mn_ap_medium_data($object['field_roles']['und']) : ''; //mn_ap_medium_data handles taxonomy data
 
     $rows[] = array(
@@ -986,4 +993,17 @@ function _profile2_by_uid_load($uid, $type_name) {
     return $profile;
   }
   return FALSE;
+}
+
+function ap_soundcloud_ajax($fid) {
+  // load file to get uri for sound cloud theme function
+  $scfile = file_load($fid);
+  $sciframe = theme('media_soundcloud_audio', array('uri' => $scfile->uri));
+  preg_match('/src="([^"]+)"/', $sciframe, $match);  //strip all but iframe
+  $url = $match[1];
+  preg_match("/(url=)(.*?)$/i", $url, $matches); //remove url from iframe
+  $scurl = $matches[2];
+
+  print urldecode($scurl);
+  exit();
 }
