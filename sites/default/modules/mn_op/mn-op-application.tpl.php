@@ -67,10 +67,24 @@
                 <div><em><?php echo $artwork->title; ?></em></div>
                 <div><?php echo $artwork->date; ?></div>
                 <div>
-                    <?php $mediums = json_decode($artwork->medium);
+                    <?php $mediums3 = json_decode($artwork->medium3); //this is the meduim field
+                        foreach (json_decode($artwork->medium3) as $medium3) {
+                        echo $medium3;
+                        if (next($mediums3)) echo ', ';
+                    } ?>
+                </div>
+                <div>
+                    <?php $mediums = json_decode($artwork->medium);  //this is the category field
                         foreach (json_decode($artwork->medium) as $medium) {
                         echo $medium;
                         if (next($mediums)) echo ', ';
+                    } ?>
+                </div>
+                <div>
+                    <?php $roles = json_decode($artwork->roles);  //the is the role field
+                        foreach (json_decode($artwork->roles) as $role) {
+                        echo $role;
+                        if (next($roles)) echo ', ';
                     } ?>
                 </div>
                 <div><?php echo $artwork->dimensions; ?></div>
@@ -102,35 +116,26 @@
                 <?php endif; ?>
             </div>
             <div class="col-sm-6">
-                <?php
-                    $entity = reset(entity_load('file', array($artwork->fid)));
-
-                    if ($artwork->file_type == 'image') {
-                        $path = file_create_url($entity->uri);
-                        print '<a href="' . $path . '" data-toggle="lightbox" data-gallery="multiimages" data-title="' . $artwork->title . '" data-parent=".lightbox-parent">';
-                        print '<img class="img-responsive" src="' . $path . '" /></a>';
-                    }
-                    elseif ($artwork->file_type == 'soundcloud') {
-                        print '<div class="img-responsive">';
-                        print theme('media_soundcloud_audio', array('uri' => $entity->uri, 'height' => 81, 'extra_params' => 'visual:false, show_user:false, show_artwork:false, show_playcount:false, show_comments:false, show_bpm:false, buying:false, sharing:false, download:false, liking:false'));
-                        print '</div>';
-                    }
-                    elseif ($artwork->file_type == 'youtube') {
-                        print '<div class="img-responsive">';
-                        print theme('media_youtube_video', array('uri' => $entity->uri, 'showinfo' => '0', 'badge' => 0));
-                        print '</div>';
-                    }
-                    elseif ($artwork->file_type == 'vimeo') {
-                        print '<div class="img-responsive">';
-                        print theme('media_vimeo_video', array('uri' => $entity->uri, 'options' => array('byline' => '0', 'protocol' => '//')));
-                        print '</div>';
-                    }
-                    else {
-                        print '<div class="img-responsive">';
-                        print drupal_render(entity_view('file', array($entity)));
-                        print '</div>';
-                    }
-                ?>
+                <?php if($artwork->file_type == 'image') : ?>
+                    <a href="<?php  print file_create_url(file_build_uri('opportunity/' . $artwork->nid . '/' . $artwork->uid . '/' . $artwork->file)); ?>" data-toggle="lightbox" data-gallery="multiimages" data-title="<?php echo $artwork->title; ?>" data-parent=".lightbox-parent">
+                    <img class="img-responsive" src="<?php  print file_create_url(file_build_uri('opportunity/' . $artwork->nid . '/' . $artwork->uid . '/' . urlencode($artwork->file))); ?>">
+                    </a>
+                <?php endif; ?>
+                <?php if($artwork->file_type == 'vimeo') : ?>
+                    <iframe class="img-responsive" src="<?php echo $artwork->file; ?>" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                <?php endif; ?>
+                <?php if($artwork->file_type == 'youtube') : ?>
+                    <iframe class="img-responsive" src="<?php echo $artwork->file; ?>&amp;showinfo=0&amp;badge=0" id="ytplayer" frameborder="0"></iframe>
+                <?php endif; ?>
+                <?php if($artwork->file_type == 'soundcloud') : ?>
+                    <?php $scfile = file_load($artwork->fid); //load file to get uri for sound cloud theme function ?>
+                  <?php print theme('media_soundcloud_audio', array('uri' => $scfile->uri)); ?>
+                <?php endif; ?>
+                <?php if ($artwork->file_type == 'document') : ?>
+                    <a href="<?php  print file_create_url(file_build_uri('opportunity/' . $artwork->nid . '/' . $artwork->uid . '/' . $artwork->file)); ?>" target="_blank">
+                        <div class="img-responsive doc-icon"></div><?php echo urldecode($artwork->file); ?>
+                    </a>
+                <?php endif; ?>
             </div>
         </div>
         <?php endforeach; ?>
