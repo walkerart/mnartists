@@ -995,10 +995,15 @@ function _profile2_by_uid_load($uid, $type_name) {
   return FALSE;
 }
 
+/**
+ * Ajax callback to load soundcloud lazily.
+ * @param  int $fid  soundcloud fid
+ * @return string    soundcloud widget url
+ */
 function ap_soundcloud_ajax($fid) {
   // load file to get uri for sound cloud theme function
   $scfile = file_load($fid);
-  $sciframe = theme('media_soundcloud_audio', array('uri' => $scfile->uri));
+  $sciframe = theme('media_soundcloud_audio', array('uri' => $scfile->uri, 'height' => 81, 'extra_params' => 'visual:false, show_user:false, show_artwork:false, show_playcount:false, show_comments:false, show_bpm:false, buying:false, sharing:false, download:false, liking:false'));
   preg_match('/src="([^"]+)"/', $sciframe, $match);  //strip all but iframe
   $url = $match[1];
   preg_match("/(url=)(.*?)$/i", $url, $matches); //remove url from iframe
