@@ -1319,16 +1319,12 @@ function _artist_community_get_items_query ($local_og = null,
             $new_start = (!is_null($current_start) && !is_null($current_rows)) ? $current_start + $current_rows : 0;
 
             $new_get = array(
-                'query' => array(
-                    'og' => (isset($_GET['og'])) ? $_GET['og'] : null,
-                    'content' => (isset($_GET['content'])) ? $_GET['content'] : null,
-                    'global_search' => (isset($_GET['global_search'])) ? $_GET['global_search'] : null,
-                    'rows' => (isset($_GET['rows'])) ? $_GET['rows'] : SEARCH_DEFAULT_ROWS,
-                    'start' => $new_start,
-                ),
+                'og' => (isset($_GET['og'])) ? $_GET['og'] : null,
+                'content' => (isset($_GET['content'])) ? $_GET['content'] : null,
+                'rows' => (isset($_GET['rows'])) ? $_GET['rows'] : SEARCH_DEFAULT_ROWS,
+                'start' => $new_start,
             );
-
-            $all_results[] = '<div class="item item-more">'. l(t('Show me more!'), 'communitygetitems', $new_get) . '</div>';
+            $all_results[] = '<div class="item item-more"><a href="/communitygetitems?'.http_build_query($new_get).'">Show me more!</a></div>';
         } else {
             $all_results[] = '<li class="feed-item infinify-terminator"></li>';
         }

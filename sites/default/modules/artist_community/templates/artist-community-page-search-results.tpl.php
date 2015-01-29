@@ -87,18 +87,15 @@
             $new_start = (!is_null($current_start) && !is_null($current_rows)) ? $current_start + $current_rows : 0;
 
             $new_get = array(
-                'query' => array(
-                    'og' => (isset($_GET['og'])) ? $_GET['og'] : null,
-                    'content' => (isset($_GET['content'])) ? $_GET['content'] : null,
-                    'global_search' => (isset($_GET['global_search'])) ? $_GET['global_search'] : null,
-                    'rows' => (isset($_GET['rows'])) ? $_GET['rows'] : SEARCH_DEFAULT_ROWS,
-                    'start' => $new_start,
-                ),
+                'og' => (isset($_GET['og'])) ? $_GET['og'] : null,
+                'content' => (isset($_GET['content'])) ? $_GET['content'] : null,
+                'rows' => (isset($_GET['rows'])) ? $_GET['rows'] : SEARCH_DEFAULT_ROWS,
+                'start' => $new_start,
             );
 
             ?>
             <?php if (!(count($content) < $current_rows)) { ?>
-              <div class="item item-more"><?php print l(t('Show me more!'), 'community', $new_get); ?></div>
+              <div class="item item-more"><a href="/community?<?= http_build_query($new_get) ?>">Show me more!</a></div>
             <?php } ?>
         <?php } else { ?>
             <li class="feed-item infinify-terminator"></li>
