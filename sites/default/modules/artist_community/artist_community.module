@@ -1224,6 +1224,15 @@ function _artist_community_get_items_query ($local_og = null,
         $solarium_query->setRows($limit);
     }
 
+    // if no keyword search (by search score), should default sort by created date
+    if (!isset($_GET['global_search'])) {
+        $local_sort = 'recent';
+
+        if (is_null($local_sort_direction)) {
+            $local_sort_direction = 'DESC';
+        }
+    }
+
     // if we're filtered by events, sort by event start date
     // instead of date created
     if ($filtered_by_events_only) {
