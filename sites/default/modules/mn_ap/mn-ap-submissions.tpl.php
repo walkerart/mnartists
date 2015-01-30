@@ -9,7 +9,6 @@
 	drupal_add_js(drupal_get_path('module', 'mn_ap') . '/js/bootstrap.min.js');
 	drupal_add_js(drupal_get_path('module', 'mn_ap') . '/js/jquery-vimeothumb.min.js');
 	drupal_add_js(drupal_get_path('module', 'mn_ap') . '/js/jquery.dataTables.min.js');
-	drupal_add_js(drupal_get_path('module', 'mn_ap') . '/js/dataTables.htmltags.js');
 	drupal_add_js(drupal_get_path('module', 'mn_ap') . '/js/ekko-lightbox.min.js');
 	drupal_add_js(drupal_get_path('module', 'mn_ap') . '/js/jquery.selectBoxIt.js');
 	drupal_add_js(drupal_get_path('module', 'mn_ap') . '/js/subScript.js');

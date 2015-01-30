@@ -5,10 +5,15 @@ $(document).ready(function(){
 		"lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
 		"columns": [
       { "type": "numeric" },
-      { "type": "html" },
-      { "type": "html" },
       { "type": "numeric" },
-      { "type": null, "searchable": false }
+      { "type": "html" },
+      { "type": "html" },
+      { "type": "html" },
+      { "type": "string" },
+      { "type": "string" },
+      { "type": "string" },
+      { "type": "string" },
+      { "type": "string" }
     ]
 	});
 
@@ -18,8 +23,8 @@ $(document).ready(function(){
       { "type": "html-num" },
       { "type": "html" },
       { "type": "html" },
-      { "type": "numeric" },
-      { "type": null, "searchable": false }
+      { "type": "html-num" },
+      { "type": "string" }
     ]
 	});
 
