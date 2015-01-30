@@ -2,31 +2,24 @@
 $(document).ready(function(){
 
 	$('#subTable').dataTable( {
-		"oLanguage": {
-			"sLengthMenu":  '<select class="dt-select">'+
-				'<option value="10">Show 10 Rows</option>'+
-				'<option value="25">Show 25 Rows</option>'+
-				'<option value="50">Show 50 Rows</option>'+
-				'<option value="100">Show 100 Rows</option>'+
-				'<option value="-1">Show All Rows</option>'+
-				'</select>',
-			"sSearch": ""
-		}
+		"lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+		"columns": [
+      { "type": "numeric" },
+      { "type": "html" },
+      { "type": "html" },
+      { "type": "numeric" },
+      { "type": null, "searchable": false }
+    ]
 	});
 
 	$('#juryTable').dataTable( {
-		"oLanguage": {
-		"sLengthMenu":  '<select class="dt-select">'+
-			'<option value="10">Show 10 Rows</option>'+
-			'<option value="25">Show 25 Rows</option>'+
-			'<option value="50">Show 50 Rows</option>'+
-			'<option value="100">Show 100 Rows</option>'+
-			'<option value="-1">Show All Rows</option>'+
-			'</select>',
-			"sSearch": ""
-		},
-		"columnDefs": [
-      { "type": "natural", targets: 0 }
+		"lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+		"columns": [
+      { "type": "html-num" },
+      { "type": "html" },
+      { "type": "html" },
+      { "type": "numeric" },
+      { "type": null, "searchable": false }
     ]
 	});
 
