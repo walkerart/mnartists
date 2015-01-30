@@ -734,7 +734,7 @@ function get_juror_reviews($nid, $uid, $round) {
   if ($round > 1) {
     $results = mn_ap_get_submissions($nid, 1, 1);
   } else {
-    $results = mn_ap_get_submissions($nid, 0, 1);
+    $results = mn_ap_get_submissions($nid, 1, 1);
   }
 
   $query = db_select('op_rating', 'r');
