@@ -24,7 +24,10 @@ $(document).ready(function(){
 			'<option value="-1">Show All Rows</option>'+
 			'</select>',
 			"sSearch": ""
-		}
+		},
+		"columnDefs": [
+      { "type": "natural", targets: 0 }
+    ]
 	});
 
 	$('.dataTables_filter input').attr("placeholder", " Search");
