@@ -11,9 +11,9 @@ $(document).ready(function(){
       { "type": "html" },
       { "type": "string" },
       { "type": "string" },
-      { "type": "string" },
-      { "type": "string" },
-      { "type": "string" }
+      { "type": "string", "orderable": false },
+      { "type": "string", "orderable": false },
+      { "type": "string", "orderable": false }
     ]
 	});
 
@@ -24,7 +24,7 @@ $(document).ready(function(){
       { "type": "html" },
       { "type": "html" },
       { "type": "html-num" },
-      { "type": "string" }
+      { "type": "string", "orderable": false }
     ]
 	});
 
