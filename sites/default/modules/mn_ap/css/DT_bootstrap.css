@@ -1,6 +1,7 @@
 .dataTables_length label {
         float: left;
         text-align: left;
+        line-height: 21px;
 }
 
 .dataTables_length select {
@@ -8,7 +9,10 @@
 }
 
 .dataTables_filter {
-        float: right;
+  float: right;
+}
+.dataTables_filter label {
+  display: none;
 }
 
 .dataTables_info {
@@ -204,7 +208,7 @@ tr.odd {
   border-bottom: none;
 }
 
-.dataTables_filter input[type=text] {
+.dataTables_filter input[type=search] {
   border-radius: 0;
   border: none;
   height: 24px;
