@@ -4,7 +4,7 @@
 	drupal_add_css(drupal_get_path('module', 'mn_op') . '/css/mn-op.css');
 	drupal_add_css(drupal_get_path('module', 'mn_ap') . '/css/DT_bootstrap.css');
 
-	drupal_add_js(drupal_get_path('module', 'mn_ap') . '/js/jquery.dataTables.js');
+	drupal_add_js(drupal_get_path('module', 'mn_ap') . '/js/jquery.dataTables.min.js');
 	drupal_add_js(drupal_get_path('module', 'mn_ap') . '/js/jquery.selectBoxIt.js');
 	drupal_add_js(drupal_get_path('module', 'mn_op') . '/js/mn-op.js');
 	//dpm($rows); ?>
@@ -75,7 +75,7 @@
 									<input type="hidden" id="reopen" name="reopen" value="1">
 									<button class="btn ap-btn table-btn" value="Close All">
 										Close All
-									</button>								
+									</button>
 								</form>
 							<?php endif; ?>
 						<?php else : ?>

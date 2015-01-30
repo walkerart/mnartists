@@ -2,31 +2,24 @@
 $(document).ready(function(){
 
 	$("#opList").dataTable({
-		"aaSorting": [[ 1, "desc" ]],
-		'aoColumns': [
-			null,
-			{ 'sSortDataType': 'dom-text', 'sType': 'date' },
-			null,
-			null,
-			null
-		],
-		"oLanguage": {
-			"sLengthMenu":  '<select class="dt-select">'+
-				'<option value="10">Show 10 Rows</option>'+
-				'<option value="25">Show 25 Rows</option>'+
-				'<option value="50">Show 50 Rows</option>'+
-				'<option value="100">Show 100 Rows</option>'+
-				'<option value="-1">Show All Rows</option>'+
-				'</select>',
-			"sSearch": "<span></span>"
-		},
-		"aoColumnDefs": [
-			{ "bSortable": false, "aTargets": [5,6,7,8] }
-	    ]
+		"lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+		"columns": [
+      { "type": "html-num" },
+      { "type": "date" },
+      { "type": "string" },
+      { "type": "html" },
+      { "type": "html" },
+      { "type": "string", "orderable": false },
+      { "type": "string", "orderable": false },
+      { "type": "string", "orderable": false },
+      { "type": "string", "orderable": false }
+    ],
+    "order": [ 1, 'desc' ]
 	});
 
 	$('.dataTables_filter input').attr("placeholder", " Search");
 	$('.dataTables_filter input').addClass("search-container");
+	$('.dataTables_filter').find('input').appendTo('.dataTables_filter');
 
 	$("select").selectBoxIt({
 		downArrowIcon: "icon-down"
