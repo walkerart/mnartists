@@ -102,3 +102,21 @@ input[type=button] {
 	max-width: 300px;
 	max-height: 200px;
 }
+
+.previous, .next { background-color:#333; font-family: "Apercu Regular", Arial, Helvetica, sans-serif; border: 1px solid #333; padding:5px 10px; color:#fff; text-decoration:none; border-radius: 1px; margin-bottom: 10px;}
+.previous:hover, .next:hover {   background: #222; color: #f9f9f9; text-decoration:none; cursor: pointer; }
+.previous { float:left; margin-right: 2px;}
+.next { float:right;}
+.submitNext {
+	padding:5px 10px;
+	margin-bottom: 10px;
+	float: right;
+}
+.dataTables_paginate > span {
+	display: none;
+}
+.paginate_button.disabled {
+	background-color: #ccc;
+	border-color: #ccc;
+	cursor: auto;
+}
