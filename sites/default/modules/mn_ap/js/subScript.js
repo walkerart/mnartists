@@ -4,8 +4,8 @@ $(document).ready(function(){
 	$('#subTable').dataTable( {
 		"lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
 		"columns": [
-      { "type": "numeric" },
-      { "type": "numeric" },
+      { "type": "html-num" },
+      { "type": "html-num" },
       { "type": "html" },
       { "type": "html" },
       { "type": "html" },
