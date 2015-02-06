@@ -10,7 +10,8 @@
       drupal_add_js(drupal_get_path('module', 'mn_ap') . '/js/ekko-lightbox.min.js');
       drupal_add_js(drupal_get_path('module', 'mn_ap') . '/js/reviewScript.js');
 
-//dpm($rows); ?>
+// dpm($rows);
+?>
 
 <div class="container">
     <div class="row">

@@ -11,8 +11,8 @@ function mn_ap_review($nid, $uid) {
 	$settings = _get_jury_settings($nid);
 	$steps = get_form_steps($node->field_op_required, $node->field_op_optional, $node->op_work_types);
 	$round = isset($settings['round']) ? $settings['round'] : 1;
-	$review = _get_ap_review($nid, $user->uid, $uid, $round);
-	$paging = _get_submission_paging($nid, $round);
+  $review = _get_ap_review($nid, $user->uid, $uid, $round);
+  $paging = _get_submission_paging($nid, $round);
 
 	//look for a POST request
 	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -119,9 +119,11 @@ function _get_submission_paging($nid, $round) {
       ->condition('nid', $nid, '=')
       ->condition('complete', 1, '=')
       ->orderBy('uid', 'asc');
-    if ($round > 1 ) $query->condition('op.accept', '1', '=');
-    $results = $query->execute()->fetchAll();
+
+  $query->condition('op.accept', '1', '=');
+  $results = $query->execute()->fetchAll();
   $resultArray = array();
+
   foreach ($results as $result) {
     $resultArray[] = $result->uid;
   }
