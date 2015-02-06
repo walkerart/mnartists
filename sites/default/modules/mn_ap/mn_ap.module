@@ -803,6 +803,7 @@ function mn_ap_get_all_for_xls($nid, $round) {
   foreach ($submissions as $submission) {
     $reviewFields = array();
     $formFields = array();
+    $formFields['application_id'] = $submission['pid'];
     $formFields['uid'] = $submission['uid'];
     $formFields['first_name'] = $submission['first_name'];
     $formFields['last_name'] = $submission['last_name'];
