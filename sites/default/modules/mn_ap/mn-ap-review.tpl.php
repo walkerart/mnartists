@@ -93,7 +93,7 @@
 
         <div class="col-lg-7 col-lg-pull-5 col-md-12">
         <h1 class="clearPadding">
-            <?php echo ($rows['settings']['name'] == '1' || $rows['settings'] == 0) ? $rows['application']['first_name'] . ' ' . $rows['application']['last_name'] : 'Application ' . (array_search($rows['application']['uid'], $rows['paging']) + 1); ?>
+            <?php echo ($rows['settings']['name'] == '1' || $rows['settings'] == 0) ? $rows['application']['first_name'] . ' ' . $rows['application']['last_name'] . '(Application ID ' . $rows['apps'][$rows['application']['uid']] . ')' : '#' . (array_search($rows['application']['uid'], $rows['paging']) + 1) . ' - Application ID ' . $rows['apps'][$rows['application']['uid']]; ?>
         </h1>
         <?php if ($rows['settings']['address'] == '1' || $rows['settings'] == 0) : ?>
             <p><?php echo $rows['application']['address']; ?></br>

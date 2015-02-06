@@ -12,7 +12,8 @@ function mn_ap_review($nid, $uid) {
 	$steps = get_form_steps($node->field_op_required, $node->field_op_optional, $node->op_work_types);
 	$round = isset($settings['round']) ? $settings['round'] : 1;
   $review = _get_ap_review($nid, $user->uid, $uid, $round);
-  $paging = _get_submission_paging($nid, $round);
+  $apps = _get_submission_paging($nid, $round);
+  $paging = array_keys($apps);
 
 	//look for a POST request
 	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -27,7 +28,8 @@ function mn_ap_review($nid, $uid) {
 		'opportunity' => (array)$node,
 		'juror' => $juror,
 		'review' => $review,
-		'paging' => $paging,
+    'paging' => $paging,
+		'apps' => $apps,
 		'settings' => $settings,
 		'application' => $application,
 		'areas' => $areas,
@@ -115,7 +117,7 @@ function _update_ap_review($nid, $uid, $aid, $data) {
 
 function _get_submission_paging($nid, $round) {
   $query = db_select('op_applications', 'op')
-      ->fields('op', array('uid'))
+      ->fields('op', array('uid', 'pid'))
       ->condition('nid', $nid, '=')
       ->condition('complete', 1, '=')
       ->orderBy('uid', 'asc');
@@ -125,7 +127,7 @@ function _get_submission_paging($nid, $round) {
   $resultArray = array();
 
   foreach ($results as $result) {
-    $resultArray[] = $result->uid;
+    $resultArray[$result->uid] = $result->pid;
   }
   return $resultArray;
 }
