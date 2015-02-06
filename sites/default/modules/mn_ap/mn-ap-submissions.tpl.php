@@ -228,7 +228,6 @@
                 <th>Last Name</th>
               <?php else : ?>
                 <th>Applicant</th>
-                <th>User ID</th>
               <?php endif; ?>
               <?php if(isset($rows['settings']['artwork']) && $rows['settings']['artwork'] == 1) : ?>
               <th>Work</th>
@@ -249,7 +248,6 @@
                 <td><?php echo $review['last_name']; ?></td>
               <?php else : ?>
                 <td>Application <?php echo $i; ?></td>
-                <td><?php echo $review['uid']; ?></td>
               <?php endif; ?>
               <?php if(isset($rows['settings']['artwork']) && $rows['settings']['artwork'] == 1) : ?>
               <td>
