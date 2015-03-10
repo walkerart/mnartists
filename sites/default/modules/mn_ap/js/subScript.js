@@ -18,17 +18,6 @@ $(document).ready(function(){
     ]
 	});
 
-	$('#juryTable').dataTable( {
-		"lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
-    "columnDefs": [
-      { "targets": "id", "type": "html-num" },
-      { "targets": "app-id", "type": "html-num" },
-      { "targets": "work", "type": "html" },
-      { "targets": "comment", "type": "html" },
-      { "targets": "rating", "type": "html-num" },
-    ]
-	});
-
 	$('.dataTables_filter input').attr("placeholder", " Search");
 	$('.dataTables_filter input').addClass("search-container");
 	$('.dataTables_filter').find('input').appendTo('.dataTables_filter');

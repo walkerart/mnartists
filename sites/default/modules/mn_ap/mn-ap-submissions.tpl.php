@@ -221,7 +221,7 @@
     </div>
     <div class="row">
       <div class="col-md-12">
-        <table id="juryTable" class="table op-table">
+        <table id="subTable" class="table op-table">
           <thead>
             <tr>
               <?php if(isset($rows['settings']['name']) && $rows['settings']['name'] == 1) : ?>
