@@ -71,17 +71,17 @@
         <table id="subTable" class="table op-table">
           <thead>
             <tr>
-              <th>#</th>
-              <th>App ID</th>
-              <th>User ID</th>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>Work</th>
-              <th>Num. Ratings</th>
-              <th>Avg. Rating</th>
-              <th class="work"></th>
-              <th>Status</th>
-              <th>Unsubmit</th>
+              <th class="id">#</th>
+              <th class="app-id">App ID</th>
+              <th class="user-id">User ID</th>
+              <th class="firstname">First Name</th>
+              <th class="lastname">Last Name</th>
+              <th class="work">Work</th>
+              <th class="num-rating">Num. Ratings</th>
+              <th class="avg-rating">Avg. Rating</th>
+              <th class="admin"></th>
+              <th class="status">Status</th>
+              <th class="unsubmit">Unsubmit</th>
             </tr>
           </thead>
           <tbody>
@@ -225,20 +225,20 @@
           <thead>
             <tr>
               <?php if(isset($rows['settings']['name']) && $rows['settings']['name'] == 1) : ?>
-                <th>#</th>
-                <th>Application ID</th>
-                <th>User ID</th>
-                <th>First Name</th>
-                <th>Last Name</th>
+                <th class="id">#</th>
+                <th class="app-id">App ID</th>
+                <th class="user-id">User ID</th>
+                <th class="firstname">First Name</th>
+                <th class="lastname">Last Name</th>
               <?php else : ?>
-                <th>#</th>
-                <th>Application ID</th>
+                <th class="id">#</th>
+                <th class="app-id">App ID</th>
               <?php endif; ?>
               <?php if(isset($rows['settings']['artwork']) && $rows['settings']['artwork'] == 1) : ?>
-              <th>Work</th>
+              <th class="work">Work</th>
               <?php endif; ?>
-              <th>Comment</th>
-              <th>Rating</th>
+              <th class="comment">Comment</th>
+              <th class="rating">Rating</th>
               <th></th>
             </tr>
           </thead>

@@ -15,15 +15,15 @@
 		<table class="table op-table" id="opList">
 			<thead>
 				<tr>
-					<th>Title</th>
-					<th>Opportuntiy&nbspDates&nbsp</th>
-					<th>Submissions</th>
-					<th>Apply</th>
-					<th>Created By</th>
-					<th>Status</th>
-					<th>Unsubmit</th>
-					<th>Jury</th>
-					<th></th>
+					<th class="title">Title</th>
+					<th class="date">Opportuntiy&nbspDates&nbsp</th>
+					<th class="submissions">Submissions</th>
+					<th class="apply">Apply</th>
+					<th class="created">Created By</th>
+					<th class="status">Status</th>
+					<th class="unsubmit">Unsubmit</th>
+					<th class="jury">Jury</th>
+					<th class="ops"></th>
 				</tr>
 			</thead>
 			<tbody>
