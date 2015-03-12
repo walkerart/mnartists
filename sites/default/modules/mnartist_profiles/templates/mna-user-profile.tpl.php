@@ -92,7 +92,6 @@
                     <span class='profile-title'>Websites:</span>
                     <?php
                         $websites_display = array();
-
                         foreach ($fieldset['field_websites'] as $website) {
                             if (preg_match('#https?://#', $website['value']['#href']) === 0) {
                                 $website['value']['#href'] = 'http://' . $website['value']['#href'];

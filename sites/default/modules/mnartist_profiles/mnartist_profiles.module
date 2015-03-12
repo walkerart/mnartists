@@ -1077,10 +1077,15 @@ function _mnartist_profile_user_profile() {
                     $privacy = (bool) _profile2_field_privacy_value($field_data['id'], $res_pid);
                     if($privacy != '1')
                     {
+                      //dpm($data['#items']);
                         foreach($data['#items'] as $key => $value)
                         {
-							$value = '';
-                            if ($data['#field_type'] == 'field_collection') {
+                            $value = '';
+                            if($data['#field_name'] == 'field_websites') {
+                              $value['#href'] = $data['#items'][$key]['value'];
+                              $value['#title'] = $data['#items'][$key]['title'];
+                            }
+                            elseif ($data['#field_type'] == 'field_collection') {
                                 // We must extract the contents of the field collection here
                                 $value .= render($data);
                             } else {
@@ -1091,6 +1096,7 @@ function _mnartist_profile_user_profile() {
 
                                 'value' => $value
                             );
+                            
                         }
                     }
                 }
