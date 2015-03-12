@@ -1084,6 +1084,9 @@ function _mnartist_profile_user_profile() {
                               $value['#href'] = $data['#items'][$key]['value'];
                               $value['#title'] = $data['#items'][$key]['title'];
                             }
+                            if($data['#field_name'] == 'field_general_statement') {
+                              $value['#markup'] = $data['#items'][$key]['value'];
+                            }
                             elseif ($data['#field_type'] == 'field_collection') {
                                 // We must extract the contents of the field collection here
                                 $value .= render($data);
