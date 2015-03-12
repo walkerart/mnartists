@@ -1077,7 +1077,6 @@ function _mnartist_profile_user_profile() {
                     $privacy = (bool) _profile2_field_privacy_value($field_data['id'], $res_pid);
                     if($privacy != '1')
                     {
-                      //dpm($data['#items']);
                         foreach($data['#items'] as $key => $value)
                         {
                             $value = '';
