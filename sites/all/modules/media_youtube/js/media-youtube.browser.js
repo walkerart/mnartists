@@ -25,14 +25,14 @@
         // Set the current item to active
         $(this).addClass('selected');
         // Add this FID to the array of selected files
-        var uri = $(this).parent('a[data-uri]').attr('data-uri');
+        var uri = $(this).parent('li.media-youtube-wrapper[data-uri]').attr('data-uri');
         // Get the file from the settings which was stored in
         // template_preprocess_media_views_view_media_browser()
         var file = Drupal.settings.media.files[uri];
         var files = new Array();
         files.push(file);
         Drupal.media.browser.selectMedia(files);
-        $("input[name='sumitted-video']").val(uri);
+        $("input[name='submitted-video']").val(uri);
       });
 
 //      $('.')
