@@ -12,7 +12,8 @@
   drupal_add_js(drupal_get_path('module', 'mn_ap') . '/js/ekko-lightbox.min.js');
   drupal_add_js(drupal_get_path('module', 'mn_ap') . '/js/jquery.selectBoxIt.js');
   drupal_add_js(drupal_get_path('module', 'mn_ap') . '/js/subScript.js');
-//dpm($rows); ?>
+// dpm($rows);
+?>
 <script>
 (function ($) {
 
@@ -70,16 +71,17 @@
         <table id="subTable" class="table op-table">
           <thead>
             <tr>
-              <th>#</th>
-              <th>User ID</th>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>Work</th>
-              <th>Num. Ratings</th>
-              <th>Avg. Rating</th>
-              <th class="work"></th>
-              <th>Status</th>
-              <th>Unsubmit</th>
+              <th class="id">#</th>
+              <th class="app-id">App ID</th>
+              <th class="user-id">User ID</th>
+              <th class="firstname">First Name</th>
+              <th class="lastname">Last Name</th>
+              <th class="work">Work</th>
+              <th class="num-rating">Num. Ratings</th>
+              <th class="avg-rating">Avg. Rating</th>
+              <th class="admin"></th>
+              <th class="status">Status</th>
+              <th class="unsubmit">Unsubmit</th>
             </tr>
           </thead>
           <tbody>
@@ -87,6 +89,7 @@
             <?php foreach ($rows['reviews'] as $review) : ?>
             <tr>
               <td><?php echo $i; ?></td>
+              <td><?php echo $review['pid']; ?></td>
               <td><?php echo $review['uid']; ?></td>
               <td><?php echo $review['first_name']; ?></td>
               <td><?php echo $review['last_name']; ?></td>
@@ -218,23 +221,24 @@
     </div>
     <div class="row">
       <div class="col-md-12">
-        <table id="juryTable" class="table op-table">
+        <table id="subTable" class="table op-table">
           <thead>
             <tr>
               <?php if(isset($rows['settings']['name']) && $rows['settings']['name'] == 1) : ?>
-                <th>#</th>
-                <th>User ID</th>
-                <th>First Name</th>
-                <th>Last Name</th>
+                <th class="id">#</th>
+                <th class="app-id">App ID</th>
+                <th class="user-id">User ID</th>
+                <th class="firstname">First Name</th>
+                <th class="lastname">Last Name</th>
               <?php else : ?>
-                <th>Applicant</th>
-                <th>User ID</th>
+                <th class="id">#</th>
+                <th class="app-id">App ID</th>
               <?php endif; ?>
               <?php if(isset($rows['settings']['artwork']) && $rows['settings']['artwork'] == 1) : ?>
-              <th>Work</th>
+              <th class="work">Work</th>
               <?php endif; ?>
-              <th>Comment</th>
-              <th>Rating</th>
+              <th class="comment">Comment</th>
+              <th class="rating">Rating</th>
               <th></th>
             </tr>
           </thead>
@@ -244,12 +248,13 @@
             <tr>
               <?php if(isset($rows['settings']['name']) && $rows['settings']['name'] == 1) : ?>
                 <td><?php echo $i; ?></td>
+                <td><?php echo $review['pid']; ?></td>
                 <td><?php echo $review['uid']; ?></td>
                 <td><?php echo $review['first_name']; ?></td>
                 <td><?php echo $review['last_name']; ?></td>
               <?php else : ?>
-                <td>Application <?php echo $i; ?></td>
-                <td><?php echo $review['uid']; ?></td>
+                <td><?php echo $i; ?></td>
+                <td><?php echo $review['pid']; ?></td>
               <?php endif; ?>
               <?php if(isset($rows['settings']['artwork']) && $rows['settings']['artwork'] == 1) : ?>
               <td>

@@ -27,7 +27,18 @@
 				<?php foreach($rows['juries'] as $jury): ?>
 				<tr>
 					<td><?php echo $jury->title; ?></td>
-					<td><?php echo date("F d, Y h:i a", strtotime($jury->op_dates_value2)); ?></td>
+					<td>
+            <?php 
+             $datevalue2 =  $jury->op_dates_value2; //get the value for the date
+            $drupalsystime = date_default_timezone(FALSE);  //system time zone, in this case America/Chicago
+            $systemtime = new DateTimeZone($drupalsystime);  //get the system time
+            $updateddate = new DateTime($datevalue2, $systemtime); //new datetime object with system type
+            $offset = $systemtime->getOffset($updateddate);  //time offset
+
+            echo date("F d, Y h:i a", $updateddate->format('U') + $offset); //output new time
+           // echo date("F d, Y h:i a", strtotime($jury->op_dates_value2)); 
+          
+            ?></td>
 					<td><a class="btn ap-btn pull-right" href="<?php echo url('opportunity/' . $jury->nid . '/submissions'); ?>">Review</a></td>
 				</tr>
 				<?php endforeach; ?>
@@ -75,7 +86,17 @@
 				<?php foreach($rows['started'] as $start): ?>
 				<tr>
 					<td><?php echo $start->title; ?></td>
-					<td><?php echo date("F d, Y h:i a", strtotime($start->op_dates_value2)); ?></td>
+					<td>
+          <?php 
+            $datevalue2 =  $start->op_dates_value2; //get the value for the date
+            $drupalsystime = date_default_timezone(FALSE);  //system time zone, in this case America/Chicago
+            $systemtime = new DateTimeZone($drupalsystime);  //get the system time
+            $updateddate = new DateTime($datevalue2, $systemtime); //new datetime object with system type
+            $offset = $systemtime->getOffset($updateddate);  //time offset
+
+            echo date("F d, Y h:i a", $updateddate->format('U') + $offset); //output new time
+          ?>
+          </td>
 					<td><a class="btn ap-btn pull-right" href="<?php echo url('opportunity/' . $start->nid . '/apply'); ?>">Resume</a></td>
 				</tr>
 				<?php endforeach; ?>
@@ -97,7 +118,8 @@
 				<?php foreach($rows['completed'] as $complete): ?>
 				<tr>
 					<td><?php echo $complete->title; ?></td>
-					<td><?php echo date("F d, Y h:i a", strtotime($complete->updated_at)); ?></td>
+					<td>  
+            <?php echo date("F d, Y h:i a", strtotime($complete->updated_at)); ?></td>
 					<td><a class="btn ap-btn pull-right" href="<?php echo url('application/' . $complete->nid); ?>">View</a></td>
 				</tr>
 				<?php endforeach; ?>

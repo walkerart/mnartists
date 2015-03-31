@@ -92,7 +92,6 @@
                     <span class='profile-title'>Websites:</span>
                     <?php
                         $websites_display = array();
-
                         foreach ($fieldset['field_websites'] as $website) {
                             if (preg_match('#https?://#', $website['value']['#href']) === 0) {
                                 $website['value']['#href'] = 'http://' . $website['value']['#href'];
@@ -152,7 +151,7 @@
             <?php } ?>
         </ul>
         <div id="tabs-1">
-        <?php if(isset($fieldset['field_general_statement'])) { ?>
+        <?php if(isset($fieldset['field_general_statement'])) {  ?>
             <div class='wrap artist-statement'>
                 <h5 class='profile-title'>Artist Statement</h5>
                 <p><?= $fieldset['field_general_statement'][0]['value']['#markup'] ?></p></div>

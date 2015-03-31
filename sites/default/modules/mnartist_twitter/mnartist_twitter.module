@@ -40,6 +40,7 @@ function twitterCache($endpointUrl, array $urlParams, $reset = FALSE)
         // NB dependency on php OAuth library here
         $oauth = new OAuth(TWITTER_CONSUMER_KEY, TWITTER_CONSUMER_SECRET, OAUTH_SIG_METHOD_HMACSHA1, OAUTH_AUTH_TYPE_URI);
         $oauth->setToken(TWITTER_ACCESS_TOKEN, TWITTER_TOKEN_SECRET);
+        $oauth->disableSSLChecks();
 
         // do the request
         try {

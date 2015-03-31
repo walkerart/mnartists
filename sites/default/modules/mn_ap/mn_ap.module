@@ -403,9 +403,9 @@ function mn_ap_artworks_data($uid, $vid = NULL) {
     //clean up artwork
     $images = isset($object['field_media']) ? mn_ap_artwork_image_data($object['field_media']) : '';
     //get date fields and make readable date
-    $day = isset($object['field_created_date']['und']['0']['from']['day']) ? (int)$object['field_created_date']['und']['0']['from']['day'] : '';
-    $month = isset($object['field_created_date']['und']['0']['from']['month']) ? (int)$object['field_created_date']['und']['0']['from']['month'] : '';
-    $year = isset($object['field_created_date']['und']['0']['from']['year']) ? (int)$object['field_created_date']['und']['0']['from']['year'] : '';
+    $day = isset($object['field_created_date']['und']['0']['from']['day']) ? $object['field_created_date']['und']['0']['from']['day'] : '';
+    $month = isset($object['field_created_date']['und']['0']['from']['month']) ? $object['field_created_date']['und']['0']['from']['month'] : '';
+    $year = isset($object['field_created_date']['und']['0']['from']['year']) ? $object['field_created_date']['und']['0']['from']['year'] : '';
     $excerpt = isset($object['field_artwork_excerpt']['und']['0']['safe_value']) ? $object['field_artwork_excerpt']['und']['0']['safe_value'] : '';
     $date = get_artwork_date($month, $day, $year);
     $other_artists = isset($object['field_other_artists_involved']['und']) ? mn_ap_get_other_artists($object['field_other_artists_involved']['und']) : '';
@@ -556,10 +556,9 @@ function mn_ap_medium_data($media) {
 */
 function get_artwork_date($month, $day, $year){
   if ($month != '' && $day != '' && $year != '') {
-    $date = date('F j, Y', strtotime("$month/$day/$year")); //@todo - O8 not good to use to digits 00 - 37 = 2000's breaks if date is above 37 reverts to 1969
+    $date = date('F j, Y', strtotime("$month/$day/$year"));
   } elseif ($month != '' && $year != '') {
-    $month = date('F', strtotime($month));
-    $date = "$month, $year";
+    $date = date('F, Y', strtotime("$month/1/$year"));
   } else {
     $date = $year;
   }
@@ -803,6 +802,7 @@ function mn_ap_get_all_for_xls($nid, $round) {
   foreach ($submissions as $submission) {
     $reviewFields = array();
     $formFields = array();
+    $formFields['application_id'] = $submission['pid'];
     $formFields['uid'] = $submission['uid'];
     $formFields['first_name'] = $submission['first_name'];
     $formFields['last_name'] = $submission['last_name'];

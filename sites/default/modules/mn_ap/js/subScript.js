@@ -3,29 +3,18 @@ $(document).ready(function(){
 
 	$('#subTable').dataTable( {
 		"lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
-		"columns": [
-      { "type": "html-num" },
-      { "type": "html-num" },
-      { "type": "html" },
-      { "type": "html" },
-      { "type": "html" },
-      { "type": "string" },
-      { "type": "string" },
-      { "type": "string", "orderable": false },
-      { "type": "string", "orderable": false },
-      { "type": "string", "orderable": false }
-    ]
-	});
-
-	$('#juryTable').dataTable( {
-		"lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
-		"columns": [
-      { "type": "html-num" },
-      { "type": "html-num" },
-      { "type": "html" },
-      { "type": "html" },
-      { "type": "html-num" },
-      { "type": "string", "orderable": false }
+    "columnDefs": [
+      { "targets": "id", "type": "html-num" },
+      { "targets": "app-id", "type": "html-num" },
+      { "targets": "user-id", "type": "html-num" },
+      { "targets": "firstname", "type": "html" },
+      { "targets": "lastname", "type": "html" },
+      { "targets": "work", "type": "html" },
+      { "targets": "num-rating", "type": "html-num" },
+      { "targets": "avg-rating", "type": "html-num" },
+      { "targets": "admin", "orderable": false },
+      { "targets": "status", "type": "string" },
+      { "targets": "unsubmit", "type": "string" }
     ]
 	});
 

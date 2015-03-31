@@ -7,40 +7,40 @@
  **/
 
 function mn_ap_schema() {
-	// $schema['op_applications'] = array(
-	// 	'descritpion' => 'Store application data of opportunities.',
-	// 	'fields' => array(
-	// 		    'pid'  => array(
- //        		'type' => 'serial',
- //        		'not null' => TRUE,
- //        		'description' => 'Primary Key: Unique application ID.',
- //      		),
+  // $schema['op_applications'] = array(
+  //  'descritpion' => 'Store application data of opportunities.',
+  //  'fields' => array(
+  //        'pid'  => array(
+ //           'type' => 'serial',
+ //           'not null' => TRUE,
+ //           'description' => 'Primary Key: Unique application ID.',
+ //         ),
  //          'nid' => array(
  //            'type' => 'int',
  //            'not null' => TRUE,
  //            'default' => 0,
  //            'description' => "Node id of the opportunity.",
  //          ),
- //      		'uid' => array(
- //        		'type' => 'int',
- //        		'not null' => TRUE,
- //        		'default' => 0,
- //        		'description' => "Creator user's {users}.uid",
- //      		),
- //      		'first_name' => array(
- //        		'type' => 'varchar',
- //        		'length' => 255,
- //        		'not null' => TRUE,
- //        		'default' => '',
- //        		'description' => 'First name of the person.',
- //      		),
- //      		'last_name' => array(
- //        		'type' => 'varchar',
- //        		'length' => 255,
- //        		'not null' => TRUE,
- //        		'default' => '',
- //        		'description' => 'Last name of the person.',
- //      		),
+ //         'uid' => array(
+ //           'type' => 'int',
+ //           'not null' => TRUE,
+ //           'default' => 0,
+ //           'description' => "Creator user's {users}.uid",
+ //         ),
+ //         'first_name' => array(
+ //           'type' => 'varchar',
+ //           'length' => 255,
+ //           'not null' => TRUE,
+ //           'default' => '',
+ //           'description' => 'First name of the person.',
+ //         ),
+ //         'last_name' => array(
+ //           'type' => 'varchar',
+ //           'length' => 255,
+ //           'not null' => TRUE,
+ //           'default' => '',
+ //           'description' => 'Last name of the person.',
+ //         ),
  //          'address' => array(
  //            'type' => 'varchar',
  //            'length' => 255,
@@ -104,11 +104,11 @@ function mn_ap_schema() {
  //            'default' => '',
  //            'description' => 'Artist Statement of the person.',
  //          ),
-	// 	),
-	// 	'primary key' => array('pid'),
-	// 	'indexes' => array(
- //      		'first_name'    => array('first_name'),
- //      		'last_name' => array('last_name'),
+  //  ),
+  //  'primary key' => array('pid'),
+  //  'indexes' => array(
+ //         'first_name'    => array('first_name'),
+ //         'last_name' => array('last_name'),
  //          'address' => array('address'),
  //          'city' => array('city'),
  //          'state' => array('state'),
@@ -118,22 +118,39 @@ function mn_ap_schema() {
  //          'resume' => array('resume'),
  //          'bio' => array('bio'),
  //          'statement' => array('statement'),
- //    	),
-	// );
+ //     ),
+  // );
 
   $schema['op_artworks'] = array(
     'descritpion' => 'Store application data of opportunities.',
     'fields' => array(
       'vid'  => array(
-          'type' => 'serial',
-          'not null' => TRUE,
-          'description' => 'Primary Key: Unique field id for artwork.',
-        ),
+        'type' => 'serial',
+        'not null' => TRUE,
+        'description' => 'Primary Key: Unique field id for artwork.',
+      ),
       'pid' => array(
-          'type' => 'int',
-          'not null' => TRUE,
-          'default' => 0,
-          'description' => "Related {op_application}.pid",
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => "Related {op_application}.pid",
+      ),
+      'fid'  => array(
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'uid'  => array(
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'nid'  => array(
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'description' => "Related {op_application}.pid",
       ),
       'title' => array(
         'type' => 'varchar',
@@ -170,6 +187,26 @@ function mn_ap_schema() {
         'default' => '',
         'description' => 'Description for artwork.',
       ),
+      'excerpt' => array(
+        'type' => 'text',
+        'size' => 'big',
+        'not null' => FALSE,
+      ),
+      'venue' => array(
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => FALSE,
+      ),
+      'other_artists' => array(
+        'type' => 'text',
+        'size' => 'big',
+        'not null' => FALSE,
+      ),
+      'file_type' => array(
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => FALSE,
+      ),
       'file' => array(
         'type' => 'varchar',
         'length' => 255,
@@ -177,17 +214,30 @@ function mn_ap_schema() {
         'default' => '',
         'description' => 'File for artwork.',
       ),
-
+      'medium3' => array(
+        'description' => 'Medium Field for Artwork.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'roles' => array(
+        'description' => 'Roles for Artwork.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      )
     ),
     'primary key' => array('vid'),
-    );
-	return $schema;
+  );
+  return $schema;
 }
 
-/* 
+/**
  * Updating new fields for artwork on opportunity submissions
  */
-function mn_ap_update_7001() {
+function mn_ap_update_7001(&$sandbox) {
     $ret = array();
     $field = array(
         'description' => 'Medium Field for Artwork.',
@@ -206,5 +256,19 @@ function mn_ap_update_7001() {
     db_add_field('op_artworks', 'medium3', $field);
     db_add_field('op_artworks', 'roles', $field2);
     return $ret;
-    
+
+}
+
+
+/**
+ * Updating excerpt data type to long text
+ */
+function mn_ap_update_7002(&$sandbox) {
+  $excerpt = array(
+    'type' => 'text',
+    'size' => 'big',
+    'not null' => FALSE,
+  );
+
+  db_change_field('op_artworks', 'excerpt', 'excerpt', $excerpt);
 }
