@@ -1114,6 +1114,12 @@ function _artist_community_get_items_query ($local_og = null,
                     if ($type === "article" && $value[0] !== ABOUT_TID) {
                         $contentFilters['node'][] = "-" . AC_ARTICLE_CATEGORY_FIELD . ":" . ABOUT_TID;
                     }
+                    if ($type == 'opportunity') {
+                        // Has been announced
+                        $contentFilters['node'][] = AC_OPP_ANNOUNCE_DATE_FIELD . ":[* TO $solr_now]";
+                        // Not yet closed
+                        $contentFilters['node'][] = "ds_op_dates\:value2:[$solr_now TO *]";
+                    }
 
                     if ($filtered_by_user_only) {
                         $contentFilters['node'][] = 'ss_full_name_actual:"' . $username_filter . '"';
@@ -1383,6 +1389,10 @@ function _set_community_query_facets ($filter_query_string = null) {
         $solarium_query = $client->createSelect();
         $solarium_query->createFilterQuery('published_filter')->setQuery('is_status:1');
 
+        // DB & Solr timezone is UTC, site timezone is America/Chicago
+        // trying to correct Solr query for NOW
+        $solr_now = format_date(time(), 'custom', 'Y-m-d\TH:i:s\Z', 'UTC');
+
         // put together the base query string, taking past events
         // into account if needed
         if (isset($_GET['global_search']) && !empty($_GET['global_search'])) {
@@ -1390,10 +1400,10 @@ function _set_community_query_facets ($filter_query_string = null) {
         } else {
             if (isset($_GET['content']['event_include_past']) && $_GET['content']['event_include_past'] == '1') {
                 $base_query_string = "(index_id:".NODE_INDEX." AND ((".AC_TYPE_FIELD.":article OR (".AC_TYPE_FIELD.":artwork AND ".AC_ARTWORK_PUBLIC_FIELD
-                .":true) OR (".AC_TYPE_FIELD.":opportunity AND ".AC_OPP_ANNOUNCE_DATE_FIELD.":[* TO NOW]) OR ".AC_TYPE_FIELD.":event))) OR (index_id:".USER_INDEX." AND ".AC_SORT_BY_NAME_FIELD.":['' TO *])";
+                .":true) OR (".AC_TYPE_FIELD.":opportunity AND ".AC_OPP_ANNOUNCE_DATE_FIELD.":[* TO $solr_now]) OR ".AC_TYPE_FIELD.":event))) OR (index_id:".USER_INDEX." AND ".AC_SORT_BY_NAME_FIELD.":['' TO *])";
             } else {
                 $base_query_string = "(index_id:".NODE_INDEX." AND ((".AC_TYPE_FIELD.":article OR (".AC_TYPE_FIELD.":artwork AND ".AC_ARTWORK_PUBLIC_FIELD
-                .":true) OR (".AC_TYPE_FIELD.":opportunity AND ".AC_OPP_ANNOUNCE_DATE_FIELD.":[* TO NOW]) OR (".AC_TYPE_FIELD.":event AND ds_field_date\:value:[NOW TO *])))) OR (index_id:".USER_INDEX." AND ".AC_SORT_BY_NAME_FIELD.":['' TO *])";
+                .":true) OR (".AC_TYPE_FIELD.":opportunity AND ".AC_OPP_ANNOUNCE_DATE_FIELD.":[* TO $solr_now]) OR (".AC_TYPE_FIELD.":event AND ds_field_date\:value:[$solr_now TO *])))) OR (index_id:".USER_INDEX." AND ".AC_SORT_BY_NAME_FIELD.":['' TO *])";
             }
             $finished_query_string = (!is_null($filter_query_string)) ? "($base_query_string) AND $filter_query_string" : $base_query_string;
         }
@@ -1420,7 +1430,7 @@ function _set_community_query_facets ($filter_query_string = null) {
         if (isset($_GET['content']['event_include_past']) && $_GET['content']['event_include_past'] == '1') {
             $facetSet->createFacetQuery('events')->setQuery('index_id:'.NODE_INDEX.' AND '.AC_TYPE_FIELD.':event');
         } else {
-            $facetSet->createFacetQuery('events')->setQuery('index_id:'.NODE_INDEX.' AND '.AC_TYPE_FIELD.':event  AND ds_field_date\:value:[NOW TO *]');
+            $facetSet->createFacetQuery('events')->setQuery('index_id:'.NODE_INDEX.' AND '.AC_TYPE_FIELD.":event  AND ds_field_date\:value:[$solr_now TO *]");
         }
         $facetSet->createFacetQuery('articles')->setQuery('index_id:'.NODE_INDEX.' AND '.AC_TYPE_FIELD.':article');
         $facetSet->createFacetQuery('artworks')->setQuery('index_id:'.NODE_INDEX.' AND '.AC_TYPE_FIELD.':artwork AND '.AC_ARTWORK_PUBLIC_FIELD.':true');
