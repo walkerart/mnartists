@@ -5622,12 +5622,33 @@ only screen and (min-device-pixel-ratio: 1.5) {
         }
     }
 }
-.event-date {
+.panel-panel .event-date {
     padding-top:30px;
-    .pane-node-field-date {
+    .date-only {
         display:block;
         text-align:center;
         margin-bottom:40px!important;
+    }
+    .time-only {
+        .field-name-field-date {
+        }
+    }
+    .field-label,
+    .pane-title {
+        color: #888;
+        font-weight: normal;
+        font-size: 13px;
+        font-family: $sans_regular_font;
+        text-transform: capitalize;
+        padding-bottom: 0px;
+        letter-spacing: normal;
+    }
+    .pane-node-field-venue .node-venue .node-header h1,
+    .field-items {
+        color: $main_color;
+        font-family: $serif_font;
+        font-size: 14px;
+        line-height: 22px;
     }
     .panel-pane {
         article {
@@ -5715,7 +5736,7 @@ only screen and (min-device-pixel-ratio: 1.5) {
     }
 }
 /* single day event date */
-.event-date .date-display-single {
+.event-date .date-only .date-display-single {
     font-size:50px;
     font-family:$sans_bold_font;
     line-height:50px;
