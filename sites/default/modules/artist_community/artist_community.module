@@ -869,8 +869,8 @@ function artist_community_entity_view($entity, $type, $view_mode, $langcode) {
 // endpoint for getting community results
 function artist_community_get_items () {
     // get url params, then pass them on
-    $local_og = (isset($_GET['og'])) ? $_GET['og'] : null;
-    $local_content = (isset($_GET['content'])) ? $_GET['content'] : null;
+    $local_og = (isset($_GET['og']) && !empty($_GET['og'])) ? $_GET['og'] : null;
+    $local_content = (isset($_GET['content']) && !empty($_GET['content'])) ? $_GET['content'] : null;
     $offset = (isset($_GET['start']) && is_numeric($_GET['start'])) ? intval($_GET['start']) : null;
     $limit = (isset($_GET['rows']) && is_numeric($_GET['rows'])) ? intval($_GET['rows']) : intval(SEARCH_DEFAULT_ROWS);
     $local_sort = (isset($_GET['sort'])) ? $_GET['sort'] : null;
@@ -1045,7 +1045,7 @@ function _artist_community_get_items_query ($local_og = null,
     $nodeQueryBuilderString = (count($nodeQueryBuilder) !== 0) ? ' AND ('.implode(' OR ', $nodeQueryBuilder).')' : '';
     $userQueryBuilderString = (count($userQueryBuilder) !== 0) ? ' AND ('.implode(' OR ', $userQueryBuilder).')' : '';
 
-    if ($local_content !== null) {
+    if (!empty($local_content)) {
 
         if (count($local_content) == 1 &&
             !(isset($_GET['og'])) &&
@@ -1067,9 +1067,9 @@ function _artist_community_get_items_query ($local_og = null,
         );
 
 
-        foreach($local_content as $type => $value) {
+        foreach ($local_content as $type => $value) {
             $forSaleQuery = null;
-            switch($type) {
+            switch ($type) {
                 case 'artwork':
                 case 'artwork_for_sale':
                 case 'article':
@@ -1201,6 +1201,7 @@ function _artist_community_get_items_query ($local_og = null,
 
         }
         $contentFilterQueryStrings = array();
+
         if (!empty($contentFilters['node'])) {
             $contentFilterQueryStrings[] = '(index_id:'.NODE_INDEX.' AND is_status:1 AND '.implode(' AND ', $contentFilters['node']).')';
         }
@@ -1276,7 +1277,8 @@ function _artist_community_get_items_query ($local_og = null,
     if (isset($_GET['og'])) {
         $facet_query_string = implode(' OR ', array_merge($nodeQueryBuilder, $userQueryBuilder));
         unset($search_facets);
-    } else if (isset($_GET['global_search']) && !empty($_GET['global_search'])) {
+    }
+    elseif (isset($_GET['global_search']) && !empty($_GET['global_search'])) {
         $facet_query_string = $globalQs;
         unset($search_facets);
     }
@@ -1301,7 +1303,6 @@ function _artist_community_get_items_query ($local_og = null,
     // dpm($debugResult->getQueryParser());
     // dpm($debugResult->getOtherQuery());
     // dvm($debugResult->getExplain());
-
 
     // if we actually want markup back, get it ready
     if ($rendernodes === true) {
@@ -1379,7 +1380,7 @@ function _get_location_coords_from_search_string ($search_string) {
     return false;
 }
 
-function _set_community_query_facets ($filter_query_string = null) {
+function _set_community_query_facets($filter_query_string = null) {
 
     global $solarium_config;
     global $search_facets;
@@ -1405,7 +1406,7 @@ function _set_community_query_facets ($filter_query_string = null) {
                 $base_query_string = "(index_id:".NODE_INDEX." AND ((".AC_TYPE_FIELD.":article OR (".AC_TYPE_FIELD.":artwork AND ".AC_ARTWORK_PUBLIC_FIELD
                 .":true) OR (".AC_TYPE_FIELD.":opportunity AND ".AC_OPP_ANNOUNCE_DATE_FIELD.":[* TO $solr_now]) OR (".AC_TYPE_FIELD.":event AND ds_field_date\:value:[$solr_now TO *])))) OR (index_id:".USER_INDEX." AND ".AC_SORT_BY_NAME_FIELD.":['' TO *])";
             }
-            $finished_query_string = (!is_null($filter_query_string)) ? "($base_query_string) AND $filter_query_string" : $base_query_string;
+            $finished_query_string = (!empty($filter_query_string)) ? "($base_query_string) AND $filter_query_string" : $base_query_string;
         }
         $solarium_query->createFilterQuery('community')->setQuery($finished_query_string);
 
