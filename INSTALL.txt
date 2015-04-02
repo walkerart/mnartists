@@ -1,4 +1,4 @@
-TEST
+
 CONTENTS OF THIS FILE
 ---------------------
 
