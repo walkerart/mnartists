@@ -127,7 +127,7 @@
                 <?php if($artwork->file_type == 'youtube') : ?>
                     <iframe class="img-responsive" src="<?php echo $artwork->file; ?>&amp;showinfo=0&amp;badge=0" id="ytplayer" frameborder="0"></iframe>
                 <?php endif; ?>
-                <?php if($artwork->file_type == 'soundcloud') : ?>
+                <?php if($artwork->file_type == 'soundcloud' && $artwork->fid > 0) : ?>
                     <?php $scfile = file_load($artwork->fid); //load file to get uri for sound cloud theme function ?>
                   <?php print theme('media_soundcloud_audio', array('uri' => $scfile->uri)); ?>
                 <?php endif; ?>
