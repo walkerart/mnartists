@@ -408,7 +408,7 @@ function mn_ap_artworks_data($uid, $vid = NULL) {
     $month = isset($object['field_created_date']['und']['0']['from']['month']) ? $object['field_created_date']['und']['0']['from']['month'] : '';
     $year = isset($object['field_created_date']['und']['0']['from']['year']) ? $object['field_created_date']['und']['0']['from']['year'] : '';
     $excerpt = isset($object['field_artwork_excerpt']['und']['0']['safe_value']) ? $object['field_artwork_excerpt']['und']['0']['safe_value'] : '';
-    $date = get_artwork_date($month, $day, $year);
+    $date = mn_ap_get_artwork_date($month, $day, $year);
     $other_artists = isset($object['field_other_artists_involved']['und']) ? mn_ap_get_other_artists($object['field_other_artists_involved']['und']) : '';
     $venue = isset($object['field_venue']['und']) ? mn_ap_get_venues($object['field_venue']['und']) : '';
     //New fields medium3 and roles
@@ -555,7 +555,7 @@ function mn_ap_medium_data($media) {
 /**
 * Getting the date for display
 */
-function get_artwork_date($month, $day, $year){
+function mn_ap_get_artwork_date($month, $day, $year){
   if ($month != '' && $day != '' && $year != '') {
     $date = date('F j, Y', strtotime("$month/$day/$year"));
   } elseif ($month != '' && $year != '') {
