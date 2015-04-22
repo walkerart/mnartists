@@ -167,6 +167,17 @@ function ap_submit_form() {
       'reopen' => 0
   );
 
+  // remove all works from op_artworks
+  if(isset($previous_artworks)) {
+    foreach ($previous_artworks as $previous) {
+      db_delete('op_artworks')
+        ->condition('fid', $previous, '=')
+        ->condition('uid', $uid, '=')
+        ->condition('nid', $nid, '=')
+        ->execute();
+    }
+  }
+
   //create application folder if doesn't exist
   if (!file_exists($ap_folder_path)) {
     file_prepare_directory($ap_folder_path, $options = FILE_CREATE_DIRECTORY);
@@ -178,6 +189,8 @@ function ap_submit_form() {
     //mkdir($user_folder_path , 0777, true);
   }
 
+  // @FIXME @CRITICAL
+  // Critical security hole, no checking/validation, access restriction
   if (!empty($_POST['resumeMarkup'])) {
     if (file_prepare_directory($ap_folder_path, $options = FILE_MODIFY_PERMISSIONS) && file_prepare_directory($user_folder_path, $options = FILE_MODIFY_PERMISSIONS)) {
       //$filepath = str_replace($GLOBALS['base_url'], "", file_create_url('resume'));
@@ -192,79 +205,64 @@ function ap_submit_form() {
     array_pop($artwork_data);
     //loop through the checked artwork fids from the form
     foreach($_POST['artwork'] as $fid) {
-      //if the artwork doesn't already exist then save it
-      if (! isset($previous_artworks) || !in_array($fid, $previous_artworks)) {
-        //loop thourgh all artwork data
-        foreach($artwork_data as $data) {
-          //find correct data for upload
-          foreach($data['images'] as $image) {
-            if ($image['fid'] == $fid) {
-              $work['fid'] = $fid;
-              $work['vid'] = $data['vid'];
-              $work['uid'] = $uid;
-              $work['nid'] = $nid;
-              $work['title'] = isset($data['title']) ? $data['title'] : '';
-              $work['medium'] = isset($data['medium']) ? json_encode($data['medium']) : ''; //This is not medium it is categories
-              $work['date'] = isset($data['date']) ? $data['date'] : '';
-              $work['dimensions'] = isset($data['dimensions']) ? $data['dimensions'] : '';
-              $work['excerpt'] = isset($data['excerpt']) ? $data['excerpt'] : '';
-              $work['other_artists'] = $data['other_artists'] != '' ? json_encode($data['other_artists']) : '';
-              $work['venue'] = isset($data['venue']) ? $data['venue'] : '';
-              $work['description'] = isset($data['body']) ? $data['body'] : '';
-              $work['file_type'] = isset($image['type']) ? $image['type'] : '';
-              $work['file'] = isset($image['file']) ? $image['file'] : '';
-              $work['medium3'] = isset($data['medium3']) ? json_encode($data['medium3']) : '';  //readl medium
-              $work['roles'] = isset($data['roles']) ? json_encode($data['roles']) : '';
-              if ($image['type'] == 'image') {
-                $url = image_style_url('large', $image['file']);
-                $data = drupal_http_request($url);
-                $thumb = image_style_url('ap_tiny', $image['file']);
-                $thumb_data = drupal_http_request($thumb);
-                if (file_prepare_directory($ap_folder_path, $options = FILE_MODIFY_PERMISSIONS) && file_prepare_directory($user_folder_path, $options = FILE_MODIFY_PERMISSIONS)) {
-                  //get filepath of existing image
-                  $filepath = str_replace($GLOBALS['base_url'], "", file_create_url($image['file']));
-                  $file = drupal_basename($filepath);
-                  $work['file'] = $file;
-                  //move the the image to new location
-                  file_unmanaged_save_data($data->data, "$user_folder_path/$file", $replace = FILE_EXISTS_RENAME);
-                  file_unmanaged_save_data($thumb_data->data, "$user_folder_path/thumb_$file", $replace = FILE_EXISTS_RENAME);
-                }
+      //loop thourgh all artwork data
+      foreach($artwork_data as $data) {
+        //find correct data for upload
+        foreach($data['images'] as $image) {
+          if ($image['fid'] == $fid) {
+            $work['fid'] = $fid;
+            $work['vid'] = $data['vid'];
+            $work['uid'] = $uid;
+            $work['nid'] = $nid;
+            $work['title'] = isset($data['title']) ? $data['title'] : '';
+            $work['medium'] = isset($data['medium']) ? json_encode($data['medium']) : ''; //This is not medium it is categories
+            $work['date'] = isset($data['date']) ? $data['date'] : '';
+            $work['dimensions'] = isset($data['dimensions']) ? $data['dimensions'] : '';
+            $work['excerpt'] = isset($data['excerpt']) ? $data['excerpt'] : '';
+            $work['other_artists'] = $data['other_artists'] != '' ? json_encode($data['other_artists']) : '';
+            $work['venue'] = isset($data['venue']) ? $data['venue'] : '';
+            $work['description'] = isset($data['body']) ? $data['body'] : '';
+            $work['file_type'] = isset($image['type']) ? $image['type'] : '';
+            $work['file'] = isset($image['file']) ? $image['file'] : '';
+            $work['medium3'] = isset($data['medium3']) ? json_encode($data['medium3']) : '';  //readl medium
+            $work['roles'] = isset($data['roles']) ? json_encode($data['roles']) : '';
+            if ($image['type'] == 'image') {
+              $url = image_style_url('large', $image['file']);
+              $data = drupal_http_request($url);
+              $thumb = image_style_url('ap_tiny', $image['file']);
+              $thumb_data = drupal_http_request($thumb);
+              if (file_prepare_directory($ap_folder_path, $options = FILE_MODIFY_PERMISSIONS) && file_prepare_directory($user_folder_path, $options = FILE_MODIFY_PERMISSIONS)) {
+                //get filepath of existing image
+                $filepath = str_replace($GLOBALS['base_url'], "", file_create_url($image['file']));
+                $file = drupal_basename($filepath);
+                $work['file'] = $file;
+                //move the the image to new location
+                file_unmanaged_save_data($data->data, "$user_folder_path/$file", $replace = FILE_EXISTS_RENAME);
+                file_unmanaged_save_data($thumb_data->data, "$user_folder_path/thumb_$file", $replace = FILE_EXISTS_RENAME);
               }
-              if ($image['type'] == 'document') {
-                $url = file_create_url($image['file']);
-                $data = drupal_http_request($url);
-                if (file_prepare_directory($ap_folder_path, $options = FILE_MODIFY_PERMISSIONS) && file_prepare_directory($user_folder_path, $options = FILE_MODIFY_PERMISSIONS)) {
-                  $filepath = str_replace($GLOBALS['base_url'], "", file_create_url($image['file']));
-                  $file = drupal_basename($filepath);
-                  $work['file'] = $file;
-                  file_unmanaged_save_data($data->data, "$user_folder_path/$file", $replace = FILE_EXISTS_RENAME);
-                }
-              }
-              // write data to op_artwork table
-              db_insert('op_artworks')
-                ->fields($work)
-                ->execute();
             }
+            if ($image['type'] == 'document') {
+              $url = file_create_url($image['file']);
+              $data = drupal_http_request($url);
+              if (file_prepare_directory($ap_folder_path, $options = FILE_MODIFY_PERMISSIONS) && file_prepare_directory($user_folder_path, $options = FILE_MODIFY_PERMISSIONS)) {
+                $filepath = str_replace($GLOBALS['base_url'], "", file_create_url($image['file']));
+                $file = drupal_basename($filepath);
+                $work['file'] = $file;
+                file_unmanaged_save_data($data->data, "$user_folder_path/$file", $replace = FILE_EXISTS_RENAME);
+              }
+            }
+            // write data to op_artwork table
+            db_insert('op_artworks')
+              ->fields($work)
+              ->execute();
           }
         }
       }
     }
   }
 
-  //remove unselected works from op_artworks
-  if(isset($previous_artworks)) {
-    foreach ($previous_artworks as $previous) {
-      if (!in_array($previous, $_POST['artwork'])) {
-        //delete
-        db_delete('op_artworks')
-          ->condition('fid', $previous, '=')
-          ->condition('uid', $uid, '=')
-          ->condition('nid', $nid, '=')
-          ->execute();
-      }
-    }
-  }
-
+  // @FIXME @CRITICAL
+  // Critical security hole, no checking/validation, access restriction
   if(!empty($_FILES["upload1"])) {
     $name = do_file_upload($_FILES["upload1"], $user_folder_path);
     if (!empty($name)) {
@@ -310,8 +308,11 @@ function ap_submit_form() {
   return drupal_goto('application/' . $nid);
 }
 
+// @FIXME @CRITICAL
+// Critical security hole, no checking/validation, access restriction
 /*
 * function to handle file upload
+*
 */
 function do_file_upload($file, $user_folder_path){
   foreach ($file["error"] as $key => $error) {
