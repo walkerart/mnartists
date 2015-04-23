@@ -156,14 +156,12 @@
                 <h5 class='profile-title'>Artist Statement</h5>
                 <p><?= $fieldset['field_general_statement'][0]['value']['#markup'] ?></p></div>
         <?php }
-	    if(isset($fieldset['field_education'])) {
-                foreach($fieldset['field_education'] as $edu) {
-                    if (isset($edu['value'])) {
-                        print render($edu['value']);
-                    }   
-                    break;
-                }
-            }
+	    if(isset($fieldset['field_education'])) { ?>
+                <div class='wrap education'>
+                    <h5 class='profile-title'>Education</h5>
+                    <p><?= $fieldset['field_education'][0]['value'] ?></p>
+                </div>
+        <?php }
             if(isset($fieldset['field_bio']) || isset($fieldset['field_country'])) { ?>
                 <div class='wrap biography'>
                     <h5 class='profile-title'>Biography</h5>
