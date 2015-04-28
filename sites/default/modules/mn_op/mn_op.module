@@ -143,8 +143,12 @@ function mn_op_node_access($node, $op, $account) {
   if ($type == 'opportunity' && $op == 'view') {
     if ($node->uid !== $account->uid && !in_array('administrator', $account->roles)) {
       if (isset($node->field_announce_date[LANGUAGE_NONE])) {
+        $field_announce_date = $node->field_announce_date[LANGUAGE_NONE][0];
         $now = new DateTime();
-        $announce_date = new DateTime($node->field_announce_date[LANGUAGE_NONE][0]['value']);
+        $timezone_db = new DateTimeZone($field_announce_date['timezone_db']);
+        $announce_date = new DateTime($field_announce_date['value'], $timezone_db);
+        $announce_date->setTimezone(new DateTimeZone(date_default_timezone(FALSE)));
+
         if ($now < $announce_date) {
           return NODE_ACCESS_DENY;
         }
