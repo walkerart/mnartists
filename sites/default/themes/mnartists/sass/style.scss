@@ -10715,25 +10715,36 @@ div.ctools-modal-content .form-item label {
 
 /* article slidehow */
 .field-slideshow-wrapper {
-    background-color: #f2f2f2;
+    background-color: #fff;
     position: relative;
 }
 .field-slideshow {
     border-bottom: 4px solid #fff;
     margin: 0 auto 10px;
     text-align: center;
-    height: 482px !important;
-    width: 100% !important;
+    height: 530px !important;
+    width: 708px !important;
+}
+.field-slideshow-slide {
+    height: 530px !important;
+    width: 708px !important;
+    position: relative;
+
+    img {
+        margin: 0 auto;
+    }
 }
 
 .field-slideshow-caption {
     display: block;
     min-height: 2em;
-    padding: 5px 20px;
+    padding: 0;
     text-align: left;
     position: absolute;
     bottom: 0;
     left: 0;
+    color: gray;
+    font-family: "Apercu Regular",Arial,Helvetica,sans-serif;
 
     strong {
         margin: 0;
@@ -10742,6 +10753,7 @@ div.ctools-modal-content .form-item label {
     p {
         display: block;
         font-size: smaller;
+        margin: 0;
     }
 }
 
@@ -10768,15 +10780,8 @@ div.ctools-modal-content .form-item label {
         right: -30px;
     }
 }
-.field-slideshow-slide {
-    height: 482px !important;
-    width: 100% !important;
-
-    img {
-        margin: 0 auto;
-    }
-}
 .field-slideshow-carousel-wrapper {
+    margin-bottom: 10px;
     position: relative;
 
     .carousel-prev {
@@ -10794,6 +10799,14 @@ div.ctools-modal-content .form-item label {
     }
     .field-slideshow-pager {
         height: 100px;
+
+        li {
+            margin: 0 1.5em 0.25em 0;
+        }
+        img {
+            height: 100px;
+            width: 100px;
+        }
     }
 }
 
