@@ -156,38 +156,12 @@
                 <h5 class='profile-title'>Artist Statement</h5>
                 <p><?= $fieldset['field_general_statement'][0]['value']['#markup'] ?></p></div>
         <?php }
-        if(isset($fieldset['field_education'])) {
-            $education_data = array();
-            foreach($fieldset['field_education'] as $edu) {
-                $fevalue = array_values($edu['value']['entity']['field_collection_item']);
-                $fe = array_shift($fevalue);
-                if(isset($fe['field_education_date_range']) && isset($fe['field_degree']) && isset($fe['field_school']) && isset($fe['field_areas_of_study'])) {
-                    $education_data[] = $fe;
-                }
-            }
-            if (!empty($education_data)) { ?>
+	    if(isset($fieldset['field_education'])) { ?>
                 <div class='wrap education'>
                     <h5 class='profile-title'>Education</h5>
-                    <?php foreach($education_data as $edu) {
-                        if (!empty($fe['field_education_date_range']['#items'])) {
-                            $entity = field_collection_item_load($edu['field_education_date_range']['#items'][0]['value']);
-                            $instances = field_info_instances('field_collection_item', 'field_education_date_range');
-                            $context_data = array();
-                            foreach ($instances as $instance_field_name => $instance_field) {
-                                $context_data[$instance_field_name] = array(
-                                    'label' => $instances[$instance_field_name]['label'],
-                                    'item' => (isset($entity->{$instance_field_name}['und'])) ? $entity->{$instance_field_name}['und'] : null
-                                );
-                            }
-                            $start_year = $context_data['field_work_start_date']['item'][0]['from']['year'];
-                            $end_year = $context_data['field_work_end_date']['item'][0]['from']['year'];
-                            ?>
-                            <p><?= $start_year ?><?php if(!empty($end_year)) { ?> to <?= $end_year ?><?php } ?>  <?= $edu['field_degree'][0]['#markup'] ?> in <?= $edu['field_areas_of_study'][0]['#markup'] ?>, <?= $edu['field_school'][0]['#markup'] ?></p>
-                    <?php }
-                    } ?>
+                    <p><?= $fieldset['field_education'][0]['value'] ?></p>
                 </div>
-            <?php }
-            }
+        <?php }
             if(isset($fieldset['field_bio']) || isset($fieldset['field_country'])) { ?>
                 <div class='wrap biography'>
                     <h5 class='profile-title'>Biography</h5>
@@ -221,15 +195,12 @@
 
         <?php if(isset($fieldset['field_awards'])) { ?>
             <div id='tabs-<?= $ia ?>'>
-                <?php foreach($fieldset['field_awards'] as $award1) {
-                    $awardkey = array_values($award1['value']['entity']['field_collection_item']);
-                    $award = array_shift($awardkey);
-                    ?>
-                    <?= (isset($award['field_award_year'])) ? $award['field_award_year']['#items'][0]['from']['year'] . ' ' : '' ?>
-                    <?= (isset($award['field_award_name'])) ? $award['field_award_name'][0]['#markup'] : '' ?>
-                    <?= (isset($award['field_award_organization'])) ? ' ' . $award['field_award_organization'][0]['#markup'] : '' ?>
-                    <p><?= (isset($award['field_description'])) ? ' ' . $award['field_description'][0]['#markup'] : '' ?></p>
-                <?php } ?><br />
+                <?php 
+		  foreach($fieldset['field_awards'] as $award) {
+		    print '<p>' . render($award['value']) . '</p>';
+                  } 
+		?>
+		<br />
             </div>
         <?php }
         if(isset($fieldset['field_galleries'])) { ?>
