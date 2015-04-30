@@ -171,8 +171,12 @@ $(document).ready(function(){
     });
 
     $('div#gotoStep4, li#gotoStep4').on('click', function () {
-        stepIndex = 1;
-        checkStepValidation(stepIndex);
+        // Need to check file extension of files uploaded
+        if (checkallfileuploads()) {
+            // All OK, move on to next step
+            stepIndex = 1;
+            checkStepValidation(stepIndex);
+        }
     });
 
     // Bind a handler for state: step4
@@ -187,10 +191,69 @@ $(document).ready(function(){
     });
 
     $('div#gotoStep5, li#gotoStep5').on('click', function () {
-        stepIndex = 2;
-        checkStepValidation(stepIndex);
+        // Need to check file extension of files uploaded
+        if (checkallfileuploads()) {
+            // All OK, move on to next step
+            stepIndex = 2;
+            checkStepValidation(stepIndex);
+        }
     });
-        // Bind a handler for state: step5
+    
+    function checkallfileuploads() {
+        var passed = true;
+        var thisval1 = $(".NFI-wrapper.custom-upload input#upload1.valid").val();
+        if (!checkuploadfile(thisval1)) {
+            // Failure, display error message and stop user
+            // moving on to next step
+            $("#upload1_error").show();
+            passed = false;
+        }
+        var thisval2 = $(".NFI-wrapper.custom-upload input#upload2.valid").val();
+        if (!checkuploadfile(thisval2)) {
+            // Failure, display error message and stop user
+            // moving on to next step
+            $("#upload2_error").show();
+            passed = false;
+        }
+        var thisval3 = $(".NFI-wrapper.custom-upload input#upload3.valid").val();
+        if (!checkuploadfile(thisval3)) {
+            // Failure, display error message and stop user
+            // moving on to next step
+            $("#upload3_error").show();
+            passed = false;
+        }
+        var thisval4 = $(".NFI-wrapper.custom-upload input#upload4.valid").val();
+        if (!checkuploadfile(thisval4)) {
+            // Failure, display error message and stop user
+            // moving on to next step
+            $("#upload4_error").show();
+            passed = false;
+        }
+        return passed;
+    }
+    
+    function checkuploadfile(val) {
+        if (typeof val !== 'undefined') {
+            if (val.length > 0) {
+                var res = val.split(".");
+                var thisext = res[1].toLowerCase();
+                console.log("ext is " + thisext);
+                var error = true;
+                if ($.inArray(thisext, ['jpg','jpeg','gif','png','txt','doc','docx','xls','xlsx','pdf','ppt','pptx','pps','ppsx','odt','ods','odp','mp3','mov','mp4','m4a','m4v','mpeg','avi','ogg','oga','ogv','weba','webp','webm']) >= 0) {
+                    return true;
+                } else {
+                    // Failure, display error message and stop user
+                    // moving on to next step
+                    $("#upload1_error").show();
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+    
+    
+    // Bind a handler for state: step5
     $.History.bind('/step5',function(state){
         // Update Menu
         updateMenu(state);
@@ -202,8 +265,12 @@ $(document).ready(function(){
     });
 
     $('div#gotoStep6, li#gotoStep6').on('click', function () {
-        stepIndex = 3;
-        checkStepValidation(stepIndex);
+        // Need to check file extension of files uploaded
+        if (checkallfileuploads()) {
+            // All OK, move on to next step
+            stepIndex = 3;
+            checkStepValidation(stepIndex);
+        }
     });
 
     // Bind a handler for state: step6
@@ -537,3 +604,4 @@ $(document).ready(function(){
 
 });
 })(jQuery);
+
