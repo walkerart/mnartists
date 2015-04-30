@@ -520,6 +520,9 @@
                                         <?php if ($rows['upload1'] == '' || ! in_array('upload1', $rows['opportunity']['required'])) : ?>
                                             <div class="col-sm-6">
                                                 <input class="custom-upload" type="file" id="upload1" name="upload1[]">
+                                                <p class="pull-right error" id="upload1_error" style="display:none">
+                                                    You may only upload files of type .jpg .jpeg .gif .png .txt .doc .docx .xls .xlsx .pdf .ppt .pptx .pps .ppsx .odt .ods .odp .mp3 .mov .mp4 .m4a .m4v .mpeg .avi .ogg .oga .ogv .weba .webp .webm
+                                                </p>
                                                 <?php if ($rows['upload1'] != '') : ?>
                                                     <p class="pull-right">
                                                         You previously uploaded: <a href="<?php  print file_create_url(file_build_uri('opportunity/' . $rows['nid'] . '/' . $rows['uid'] . '/' . $rows['upload1'])); ?>" target="_blank"><?php echo $rows['upload1'];  ?></a>
@@ -548,6 +551,9 @@
                                         <?php if ($rows['upload2'] == '' || ! in_array('upload2', $rows['opportunity']['required'])) : ?>
                                             <div class="col-sm-6">
                                                 <input class="custom-upload" type="file" id="upload2" name="upload2[]">
+                                                    <p class="pull-right error" id="upload2_error" style="display:none">
+                                                    You may only upload files of type .jpg .jpeg .gif .png .txt .doc .docx .xls .xlsx .pdf .ppt .pptx .pps .ppsx .odt .ods .odp .mp3 .mov .mp4 .m4a .m4v .mpeg .avi .ogg .oga .ogv .weba .webp .webm
+                                                </p>
                                                 <?php if ($rows['upload2'] != '') : ?>
                                                     <p class="pull-right">
                                                         You previously uploaded: <a href="<?php  print file_create_url(file_build_uri('opportunity/' . $rows['nid'] . '/' . $rows['uid'] . '/' . $rows['upload2'])); ?>" target="_blank"><?php echo $rows['upload2'];  ?></a>
@@ -576,6 +582,9 @@
                                         <?php if ($rows['upload3'] == '' || ! in_array('upload3', $rows['opportunity']['required'])) : ?>
                                             <div class="col-sm-6">
                                                 <input class="custom-upload" type="file" id="upload3" name="upload3[]">
+                                                <p class="pull-right error" id="upload3_error" style="display:none">
+                                                    You may only upload files of type .jpg .jpeg .gif .png .txt .doc .docx .xls .xlsx .pdf .ppt .pptx .pps .ppsx .odt .ods .odp .mp3 .mov .mp4 .m4a .m4v .mpeg .avi .ogg .oga .ogv .weba .webp .webm
+                                                </p>
                                                 <?php if ($rows['upload3'] != '') : ?>
                                                     <p class="pull-right">
                                                         You previously uploaded: <a href="<?php  print file_create_url(file_build_uri('opportunity/' . $rows['nid'] . '/' . $rows['uid'] . '/' . $rows['upload3'])); ?>" target="_blank"><?php echo $rows['upload3'];  ?></a>
@@ -604,6 +613,9 @@
                                         <?php if ($rows['upload4'] == '' || ! in_array('upload4', $rows['opportunity']['required'])) : ?>
                                             <div class="col-sm-6">
                                                 <input class="custom-upload" type="file" id="upload4" name="upload4[]">
+                                                <p class="pull-right error" id="upload4_error" style="display:none">
+                                                    You may only upload files of type .jpg .jpeg .gif .png .txt .doc .docx .xls .xlsx .pdf .ppt .pptx .pps .ppsx .odt .ods .odp .mp3 .mov .mp4 .m4a .m4v .mpeg .avi .ogg .oga .ogv .weba .webp .webm
+                                                </p>
                                                 <?php if ($rows['upload4'] != '') : ?>
                                                     <p class="pull-right">
                                                         You previously uploaded: <a href="<?php  print file_create_url(file_build_uri('opportunity/' . $rows['nid'] . '/' . $rows['uid'] . '/' . $rows['upload4'])); ?>" target="_blank"><?php echo $rows['upload4'];  ?></a>
@@ -1049,3 +1061,4 @@ if (isset($rows['ap_artworks'])) {
     drupal_add_js(array('ap_artworks' => $rows['ap_artworks']), 'setting');
 }
 ?>
+
