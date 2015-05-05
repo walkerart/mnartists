@@ -189,14 +189,12 @@ function ap_submit_form() {
     //mkdir($user_folder_path , 0777, true);
   }
 
-  // @FIXME @CRITICAL
-  // Critical security hole, no checking/validation, access restriction
   if (!empty($_POST['resumeMarkup'])) {
     if (file_prepare_directory($ap_folder_path, $options = FILE_MODIFY_PERMISSIONS) && file_prepare_directory($user_folder_path, $options = FILE_MODIFY_PERMISSIONS)) {
       //$filepath = str_replace($GLOBALS['base_url'], "", file_create_url('resume'));
 
       $file = "resume.html";
-      file_unmanaged_save_data($_POST['resumeMarkup'], "$user_folder_path/$file", $replace = FILE_EXISTS_REPLACE);
+      file_unmanaged_save_data(filter_xss($_POST['resumeMarkup']), "$user_folder_path/$file", $replace = FILE_EXISTS_REPLACE);
     }
   }
   //check for artwork
@@ -261,8 +259,6 @@ function ap_submit_form() {
     }
   }
 
-  // @FIXME @CRITICAL
-  // Critical security hole, no checking/validation, access restriction
   if(!empty($_FILES["upload1"])) {
     $name = do_file_upload($_FILES["upload1"], $user_folder_path);
     if (!empty($name)) {
@@ -315,6 +311,17 @@ function ap_submit_form() {
 *
 */
 function do_file_upload($file, $user_folder_path){
+  if (isset($file['name']) && isset($file['name'][0])) {
+    // Validate file extension (already done in js, but belt and braces)
+    $valid_extensions = array('jpg','jpeg','gif','png','txt','doc','docx','xls','xlsx','pdf','ppt','pptx','pps','ppsx','odt','ods','odp','mp3','mov','mp4','m4a','m4v','mpeg','avi','ogg','oga','ogv','weba','webp','webm');
+    $parts = explode('.',$file['name'][0]);
+    if (count($parts) > 1) {
+      if (!in_array($parts[1], $valid_extensions)) {
+        drupal_set_message('Illegal file type uploaded','error');
+        return "";
+      }
+    }
+  }
   foreach ($file["error"] as $key => $error) {
     if ($error == UPLOAD_ERR_OK) {
       $tmp_name = $file["tmp_name"][$key];
@@ -1013,3 +1020,4 @@ function ap_soundcloud_ajax($fid) {
   print urldecode($scurl);
   exit();
 }
+
