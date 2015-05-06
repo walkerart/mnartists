@@ -340,6 +340,10 @@ function mnartist_profiles_collective_or_fullname_or_username($uid, $prefer_full
 
 function mnartist_profiles_get_sort_by_name($uid) {
     $context_user = user_load($uid);
+
+    if (empty($context_user->roles)) {
+        return '';
+    }
     if (array_intersect(array('Organization'), array_values($context_user->roles))) {
         $context_org = profile2_load_by_user($uid, 'organization');
         if (isset($context_org->field_organization_name[LANGUAGE_NONE]) &&
@@ -1062,7 +1066,7 @@ function _mnartist_profile_user_profile() {
         $main = NULL;
     }
 
-    if(isset($user->content['profile_resume'])) 
+    if(isset($user->content['profile_resume']))
     {
         $res_array = array_values($user->content['profile_resume']['view']['profile2']);
         $res_pid = array_keys($user->content['profile_resume']['view']['profile2']);
@@ -1098,7 +1102,7 @@ function _mnartist_profile_user_profile() {
 
                                 'value' => $value
                             );
-                            
+
                         }
                     }
                 }
