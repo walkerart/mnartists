@@ -523,6 +523,9 @@
                                                 <p class="pull-right error" id="upload1_error" style="display:none">
                                                     You may only upload files of type .jpg .jpeg .gif .png .txt .doc .docx .xls .xlsx .pdf .ppt .pptx .pps .ppsx .odt .ods .odp .mp3 .mov .mp4 .m4a .m4v .mpeg .avi .ogg .oga .ogv .weba .webp .webm
                                                 </p>
+						<p class="pull-right error" id="upload1_size_error" style="display:none">
+                                                    You may only upload files up to 2MB in size
+                                                </p>
                                                 <?php if ($rows['upload1'] != '') : ?>
                                                     <p class="pull-right">
                                                         You previously uploaded: <a href="<?php  print file_create_url(file_build_uri('opportunity/' . $rows['nid'] . '/' . $rows['uid'] . '/' . $rows['upload1'])); ?>" target="_blank"><?php echo $rows['upload1'];  ?></a>
@@ -553,6 +556,9 @@
                                                 <input class="custom-upload" type="file" id="upload2" name="upload2[]">
                                                     <p class="pull-right error" id="upload2_error" style="display:none">
                                                     You may only upload files of type .jpg .jpeg .gif .png .txt .doc .docx .xls .xlsx .pdf .ppt .pptx .pps .ppsx .odt .ods .odp .mp3 .mov .mp4 .m4a .m4v .mpeg .avi .ogg .oga .ogv .weba .webp .webm
+                                                </p>
+						<p class="pull-right error" id="upload2_size_error" style="display:none">
+                                                    You may only upload files up to 2MB in size
                                                 </p>
                                                 <?php if ($rows['upload2'] != '') : ?>
                                                     <p class="pull-right">
@@ -585,6 +591,9 @@
                                                 <p class="pull-right error" id="upload3_error" style="display:none">
                                                     You may only upload files of type .jpg .jpeg .gif .png .txt .doc .docx .xls .xlsx .pdf .ppt .pptx .pps .ppsx .odt .ods .odp .mp3 .mov .mp4 .m4a .m4v .mpeg .avi .ogg .oga .ogv .weba .webp .webm
                                                 </p>
+						<p class="pull-right error" id="upload3_size_error" style="display:none">
+                                                    You may only upload files up to 2MB in size
+                                                </p>
                                                 <?php if ($rows['upload3'] != '') : ?>
                                                     <p class="pull-right">
                                                         You previously uploaded: <a href="<?php  print file_create_url(file_build_uri('opportunity/' . $rows['nid'] . '/' . $rows['uid'] . '/' . $rows['upload3'])); ?>" target="_blank"><?php echo $rows['upload3'];  ?></a>
@@ -615,6 +624,9 @@
                                                 <input class="custom-upload" type="file" id="upload4" name="upload4[]">
                                                 <p class="pull-right error" id="upload4_error" style="display:none">
                                                     You may only upload files of type .jpg .jpeg .gif .png .txt .doc .docx .xls .xlsx .pdf .ppt .pptx .pps .ppsx .odt .ods .odp .mp3 .mov .mp4 .m4a .m4v .mpeg .avi .ogg .oga .ogv .weba .webp .webm
+                                                </p>
+						<p class="pull-right error" id="upload4_size_error" style="display:none">
+                                                    You may only upload files up to 2MB in size
                                                 </p>
                                                 <?php if ($rows['upload4'] != '') : ?>
                                                     <p class="pull-right">

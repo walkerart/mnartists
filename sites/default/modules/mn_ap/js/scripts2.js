@@ -172,7 +172,7 @@ $(document).ready(function(){
 
     $('div#gotoStep4, li#gotoStep4').on('click', function () {
         // Need to check file extension of files uploaded
-        if (checkallfileuploads()) {
+        if (checkallfileuploads() && !sizeerror) {
             // All OK, move on to next step
             stepIndex = 1;
             checkStepValidation(stepIndex);
@@ -192,7 +192,7 @@ $(document).ready(function(){
 
     $('div#gotoStep5, li#gotoStep5').on('click', function () {
         // Need to check file extension of files uploaded
-        if (checkallfileuploads()) {
+        if (checkallfileuploads() && !sizeerror) {
             // All OK, move on to next step
             stepIndex = 2;
             checkStepValidation(stepIndex);
@@ -296,6 +296,8 @@ $(document).ready(function(){
 
     var uploadFieldsChanged = [];
     var uploadFiles = [];
+    var sizelimit = 2048000; //2MB
+    var sizeerror = false;
     var u = 0;
     $('input.custom-upload').change(function (){
         var uploadId = this.id;
@@ -307,11 +309,18 @@ $(document).ready(function(){
             var fileConfirmArea = document.getElementById(uploadId + 'View');
             var file = fileInput.files[0];
             uploadFiles[u] = file;
-            var imageType = /image.*/;
-            if (file.type.match(imageType)) {
-                display_image(file, fileDisplayArea);
-                display_image(file, fileConfirmArea);
-            }
+	    if ((file.size +0) > sizelimit) {
+                $("#" + uploadId + "_size_error").show();
+                sizeerror = true;
+            } else {
+                $("#" + uploadId + "_size_error").hide();
+                sizeerror = false;
+                var imageType = /image.*/;
+                if (file.type.match(imageType)) {
+                    display_image(file, fileDisplayArea);
+                    display_image(file, fileConfirmArea);
+                }
+	    }
         }
      });
 
