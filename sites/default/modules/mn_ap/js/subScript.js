@@ -10,8 +10,8 @@ $(document).ready(function(){
       { "targets": "firstname", "type": "html" },
       { "targets": "lastname", "type": "html" },
       { "targets": "work", "type": "html" },
-      { "targets": "num-rating", "type": "html-num" },
-      { "targets": "avg-rating", "type": "html-num" },
+      { "targets": "num-rating", "type": "html" },
+      { "targets": "avg-rating", "type": "html" },
       { "targets": "admin", "orderable": false },
       { "targets": "status", "type": "string" },
       { "targets": "unsubmit", "type": "string" }
