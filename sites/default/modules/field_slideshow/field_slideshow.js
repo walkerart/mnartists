@@ -1,6 +1,59 @@
 (function($) {
   Drupal.behaviors.field_slideshow = {
     attach: function(context) {
+      // Resize video (iframe, object, embed)
+      var resize_videos = function(context, max_width) {
+        $("iframe, object, embed").each(function() {
+          var $this = $(this);
+          // Save original object size in the slide div since object and embed don't support data
+          var $slide = $this.closest(".field-slideshow-slide");
+          if (!$slide.data("ratio")) {
+            $slide.data("ratio", parseInt($this.attr("width"), 10) / parseInt($this.attr("height"), 10));
+            $slide.data("width", parseInt($this.attr("width"), 10));
+            $this.removeAttr("width").removeAttr("height");
+          }
+          // calculate the slide dimension
+          var slide_width = Math.min(max_width, $slide.data("width"));
+          var slide_height = max_width / $slide.data("ratio")
+          // Resize the iframe / object / embed
+          $this.css({
+            width: slide_width,
+            height: slide_height
+          });
+          // By default there are outer-wrappers elements with the size defined too.
+          // So we find all elements in the slide with a class ending with -outer-wrapper
+          // and we set their size. Setting this to "auto" or "100%" cause the youtube video
+          // to scale down but never scale up.
+          $slide.find("[class$='-outer-wrapper']").css({
+            width: slide_width,
+            height: slide_height
+          });
+          // Resize the frame containing the video
+          $slide.height($this.height());
+        });
+      };
+
+      // Recalculate height for responsive layouts
+      var rebuild_max_height = function(context) {
+        resize_videos(context, $(context).width());
+        if (options.settings.containerResize) {
+          var max_height = 0;
+
+          var heights = $('.field-slideshow-slide',context).map(function ()
+          {
+            //return $(this).outerHeight(true);
+            return $(this).height();
+          }).get(),
+          max_height = Math.max.apply(Math, heights);
+          if (max_height > 0) {
+            context.css("height", max_height);
+          }
+        }
+        else {
+          var slideHeight = $('.field-slideshow-slide:first-child',context).height();
+          slideshow.animate({height: slideHeight});
+        }
+      };
 
       for (i in Drupal.settings.field_slideshow) {
         var settings = Drupal.settings.field_slideshow[i],
@@ -11,29 +64,6 @@
         if (!slideshow.hasClass('field-slideshow-processed')) {
           slideshow.addClass('field-slideshow-processed');
 
-          // Add padding if needed
-          var max_outerWidth = 0;
-          var max_outerHeight = 0;
-          $('.field-slideshow-slide img', slideshow).each(function() {
-            $this = $(this);
-            max_outerWidth = Math.max(max_outerWidth, $this.outerWidth(true));
-            max_outerHeight = Math.max(max_outerHeight, $this.outerHeight(true));
-          });
-          $('.field-slideshow-slide a', slideshow).each(function() {
-            $this = $(this);
-            max_outerWidth = Math.max(max_outerWidth, $this.outerWidth(true));
-            max_outerHeight = Math.max(max_outerHeight, $this.outerHeight(true));
-          });
-          $('.field-slideshow-slide', slideshow).each(function() {
-            $this = $(this);
-            max_outerWidth = Math.max(max_outerWidth, $this.outerWidth(true));
-            max_outerHeight = Math.max(max_outerHeight, $this.outerHeight(true));
-          });
-          slideshow.css({
-            'padding-right': (max_outerWidth - parseInt(slideshow.css('width'))) + 'px',
-            'padding-bottom': (max_outerHeight - parseInt(slideshow.css('height'))) + 'px'
-          });
-
           // Add options
           var options = {
             resizing: 0,
@@ -41,6 +71,8 @@
             speed: settings.speed,
             timeout: parseInt(settings.timeout),
             index: i,
+            // containerResize does not work here as the slide are not direct
+            // children of slide container.
             settings: settings
           }
 
@@ -116,10 +148,14 @@
               var carousel = $("#" + options.index + "-carousel").data("jcarousel");
               carousel.scroll(nextIndex, true);
             }
+
+            if (!options.settings.containerResize) {
+              var slideHeight = $(nextSlideElement).height();
+              slideshow.animate({height: slideHeight});
+            }
           }
 
           if (num_slides > 1) {
-
             if (settings.start_on_hover) {
               //If start_on_hover is set, stop cycling onload, and only activate
               //on hover
@@ -162,26 +198,13 @@
           }
 
         }
-
       }
-
-      // Recalculate height for responsive layouts
-      var rebuild_max_height = function(context) {
-        var max_height = 0;
-        var heights = $('.field-slideshow-slide',context).map(function ()
-        {
-          return $(this).height();
-        }).get(),
-        max_height = Math.max.apply(Math, heights);
-        if (max_height > 0) {
-          context.css("height", max_height);
-        }
-      };
 
       if (jQuery.isFunction($.fn.imagesLoaded)) {
         $('.field-slideshow').each(function() {
-          $('img',this).imagesLoaded(function($images) {
-            rebuild_max_height($images.parents('.field-slideshow'));
+          var field = this;
+          $(field).imagesLoaded(function() {
+            rebuild_max_height($(field));
           });
         });
       }
@@ -191,7 +214,6 @@
             rebuild_max_height($(this))
           })
         });
-
       }
       $(window).resize(function(){
         $('.field-slideshow').each(function(){
