@@ -875,7 +875,7 @@ function _mnartist_profile_my_stuff() {
 
 
         if (_get_role($user) == 'artist' || in_array('administrator', array_values($user->roles))) {
-            $editItems[] = l("Add Artwork", "node/add/artwork") . l("Manage", "manage-artworks", array("attributes" => array("class" => array("user-view"))));
+            $editItems[] = l("Add Artwork", "node/add/artwork") . l("Manage", "manage-artworks-sort", array("attributes" => array("class" => array("user-view"))));
         }
         if (count(array_intersect(array('administrator', 'Artist', 'Organization'), array_values($user->roles)))) {
             $editItems[] = l("Add Event", "node/add/event") . l("Manage", "manage-events", array("attributes" => array("class" => array("user-view"))));
