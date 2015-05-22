@@ -203,7 +203,7 @@ function _mnartist_register_batch_handler($action, $data, &$context) {
                 $data['password']
             );
             // create redirect for artist home
-            // _mnartist_register_create_redirect($legacyData);
+            _mnartist_register_create_redirect($legacyData);
 
             $context['results']['legacyData'] = $legacyData;
             $context['finished'] = 1;
