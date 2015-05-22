@@ -354,7 +354,7 @@ function mn_op_views_query_alter(&$view, &$query) {
     $join->field = 'entity_id';
     $join->left_table = 'node';
     $join->left_field = 'nid';
-    $join->type = 'inner';
+    $join->type = 'left';
     $query->add_relationship('draggableviews_structure', $join, 'node');
   
     $query->orderby[1]['field'] = "draggableviews_structure.weight";
