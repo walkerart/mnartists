@@ -760,7 +760,8 @@ function url_query_master($text, $path, $key, $val, $attributes = array()) {
             // filter, but not directly, so we're going to go directly
             // against $_GET here to build the on/off querystrings we
             // want.
-            if (!isset($query['content']['event_include_past'])) {
+      
+            if (!isset($query['content']['event_include_past']) ) {
                 $new_arr = array('content' => array('event_include_past' => TRUE, 'event' => TRUE));
                 $no_q = $_GET;
                 unset($no_q['q']);
@@ -770,16 +771,19 @@ function url_query_master($text, $path, $key, $val, $attributes = array()) {
                 } else {
                     $no_q['content'] = $new_arr['content'];
                 }
+
                 $new_arr = $no_q;
             } else {
                 $no_q = $_GET;
                 unset($no_q['q']);
                 unset($no_q['content']['event_include_past']);
+
                 if (isset($no_q['content']['event']) && !is_array($no_q['content']['event'])) {
                     unset($no_q['content']['event']);
                 }
                 $new_arr = $no_q;
             }
+                        
             $event_sub_items[] = "<span class='community-content-menu-separator'></span>";
             $event_sub_items[] = l("Include Past Events", 'community', array(
                 'query' => $new_arr,
@@ -801,6 +805,43 @@ function url_query_master($text, $path, $key, $val, $attributes = array()) {
             }
             $opportunity_category_vocab_tree = taxonomy_get_tree(OPPORTUNITY_TYPE_VID);
             $opportunity_sub_items = _artist_community_build_subitems_for_item($val, $opportunity_category_vocab_tree, $opportunity_category_facets_rec, $query);
+            
+             // past opportunity
+            $past_opportunity_attributes = array();
+            if (isset($_GET['content']['opportunity_include_past']) && $_GET['content']['opportunity_include_past'] == '1') {
+                $past_opportunity_attributes['class'] = array('active-trail','selected');
+            }
+            
+            //reusing what was already used for events
+            if (!isset($query['content']['opportunity_include_past'])) {
+                $new_arr = array('content' => array('opportunity_include_past' => TRUE, 'opportunity' => TRUE));
+                $no_q = $_GET;
+                unset($no_q['q']);
+                if (isset($no_q['content'])) {
+                    $merged_content = array_merge($new_arr['content'], $no_q['content']);
+                    $no_q['content'] = $merged_content;
+                } else {
+                    $no_q['content'] = $new_arr['content'];
+                }
+
+                $new_arr = $no_q;
+            } else {
+                $no_q = $_GET;
+                unset($no_q['q']);
+                unset($no_q['content']['opportunity_include_past']);
+                if (isset($no_q['content']['opportunity']) && !is_array($no_q['content']['opportunity'])) {
+                    unset($no_q['content']['opportunity']);
+                }
+
+                $new_arr = $no_q;
+            }
+
+            $opportunity_sub_items[] = "<span class='community-content-menu-separator'></span>";
+            $opportunity_sub_items[] = l("Include Past Opportunities", 'community', array(
+                'query' => $new_arr,
+                'attributes' => $past_opportunity_attributes,
+            ));
+            
             if (isset($opportunity_sub_items)) {
                 $output .= theme('item_list', array('items' => $opportunity_sub_items));
             }
@@ -845,6 +886,14 @@ function _artist_community_build_subitems_for_item ($val, $taxonomy_terms, $face
             count($query['content']) == 2) {
             $query['content']['event'] = 1;
         }
+        
+        if (isset($query['content']['opportunity_include_past']) &&
+            $query['content']['opportunity_include_past'] == 1 &&
+            empty($query['content']['event']) &&
+            count($query['content']) == 2) {
+            $query['content']['opportunity'] = 1;
+        }
+        
 
 
         // Build a sub menu of taxonomy terms
@@ -997,6 +1046,7 @@ function _artist_community_get_items_query ($local_og = null,
 
             // Add taxonomy filters for a specific taxonomy
             if (is_array($terms)) {
+              
                 foreach($terms as $term) {
                     $nodeQueryBuilder[] = AC_MEDIUM_FIELD.":$term" . $content_fiter;
                 }
@@ -1086,6 +1136,9 @@ function _artist_community_get_items_query ($local_og = null,
                         $contextQueryString = "($typeQuery AND ($forSaleQuery))";
                     } else {
                         $contextQueryString = "($typeQuery)";
+                    }
+                    if (((!isset($_GET['content']['opportunity_include_past']) && isset($_GET['content']['opportunity_include_past']) != '1'))) {
+                      $contextQueryString .= " AND (ds_op_dates\:value2:[NOW TO *])"; //only show current events
                     }
                     $contentFilters['node'][] = $contextQueryString;
 
@@ -1356,12 +1409,15 @@ function _set_community_query_facets ($filter_query_string = null) {
         if (isset($_GET['global_search']) && !empty($_GET['global_search'])) {
             $finished_query_string = $filter_query_string;
         } else {
-            if (isset($_GET['content']['event_include_past']) && $_GET['content']['event_include_past'] == '1') {
+            if (isset($_GET['content']['event_include_past']) && $_GET['content']['event_include_past'] == '1' ) { //past events
+                 $base_query_string = "(index_id:".NODE_INDEX." AND ((".AC_TYPE_FIELD.":article OR (".AC_TYPE_FIELD.":artwork AND ".AC_ARTWORK_PUBLIC_FIELD
+                 .":true) OR (".AC_TYPE_FIELD.":opportunity AND ds_op_dates\:value2:[NOW TO *]) OR ".AC_TYPE_FIELD.":event))) OR (index_id:".USER_INDEX." AND ".AC_SORT_BY_NAME_FIELD.":['' TO *])";
+            } elseif ( isset($_GET['content']['opportunity_include_past']) && isset($_GET['content']['opportunity_include_past']) == '1') { //past opportunites
+                  $base_query_string = "(index_id:".NODE_INDEX." AND ((".AC_TYPE_FIELD.":article OR (".AC_TYPE_FIELD.":artwork AND ".AC_ARTWORK_PUBLIC_FIELD
+                  .":true) OR (".AC_TYPE_FIELD.":opportunity AND ".AC_OPP_ANNOUNCE_DATE_FIELD.":[* TO NOW]) OR (".AC_TYPE_FIELD.":event AND ds_field_date\:value:[NOW TO *])))) OR (index_id:".USER_INDEX." AND ".AC_SORT_BY_NAME_FIELD.":['' TO *])";
+            } else { //neither past events or opportunites has been set
                 $base_query_string = "(index_id:".NODE_INDEX." AND ((".AC_TYPE_FIELD.":article OR (".AC_TYPE_FIELD.":artwork AND ".AC_ARTWORK_PUBLIC_FIELD
-                .":true) OR (".AC_TYPE_FIELD.":opportunity AND ".AC_OPP_ANNOUNCE_DATE_FIELD.":[* TO NOW]) OR ".AC_TYPE_FIELD.":event))) OR (index_id:".USER_INDEX." AND ".AC_SORT_BY_NAME_FIELD.":['' TO *])";
-            } else {
-                $base_query_string = "(index_id:".NODE_INDEX." AND ((".AC_TYPE_FIELD.":article OR (".AC_TYPE_FIELD.":artwork AND ".AC_ARTWORK_PUBLIC_FIELD
-                .":true) OR (".AC_TYPE_FIELD.":opportunity AND ".AC_OPP_ANNOUNCE_DATE_FIELD.":[* TO NOW]) OR (".AC_TYPE_FIELD.":event AND ds_field_date\:value:[NOW TO *])))) OR (index_id:".USER_INDEX." AND ".AC_SORT_BY_NAME_FIELD.":['' TO *])";
+                .":true) OR (".AC_TYPE_FIELD.":opportunity AND ds_op_dates\:value2:[NOW TO *]) OR (".AC_TYPE_FIELD.":event AND ds_field_date\:value:[NOW TO *])))) OR (index_id:".USER_INDEX." AND ".AC_SORT_BY_NAME_FIELD.":['' TO *])";
             }
             $finished_query_string = (!is_null($filter_query_string)) ? "($base_query_string) AND $filter_query_string" : $base_query_string;
         }
