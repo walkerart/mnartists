@@ -68,6 +68,20 @@ function mn_ap_menu() {
     'access callback' => 'user_is_logged_in',
     'access arguments' => array('access content'),
   );
+  $items['opportunity/%/submission/%/delete'] = array(
+    'title' => 'Applicant Review',
+    'page callback' => 'mn_ap_delete',
+    'access callback' => 'user_is_logged_in', //make admin or op admin
+    'page arguments' => array(1,3),
+    'file' => 'mn_ap.delete.inc',
+  );
+  $items['opportunity/%/submission/%/edit'] = array(
+    'title' => 'Edit Application',
+    'page callback' => 'mn_ap_edit',
+    'access callback' => 'user_is_logged_in',
+    'page arguments' => array(1,3),
+    'file' => 'mn_ap.apply.inc',
+  );
 
   return $items;
 }
@@ -96,7 +110,7 @@ function mn_ap_theme() {
     'mn_ap_resume' => array(
       'variables' => array('rows' => array()),
       'template' => 'mn-ap-resume',
-    )
+    ),
   );
 }
 
@@ -123,17 +137,29 @@ function mn_ap_get_ap_artworks($nid, $uid) {
  * Uploads files from custom  upload fields
  */
 function ap_submit_form() {
-  global $user;
+  $admin_edit = isset($_POST['admin_edit']) ? $_POST['admin_edit'] : 0;
+  
+  if($admin_edit == '1') {
+    $uid = $_POST['uid'];
+    $name = $_POST['name'];
+  }  
+  else {
+    global $user;
+    $uid = $user->uid; 
+    $name = $user->name;
+  }
+  //@todo MM - update here
+  
   $title = $_POST['title'];
   $nid = $_POST['nid'];
-  $uid = $user->uid;
-  $name = $user->name;
   $ap_folder = $nid;
   $user_folder = '/' . $uid;
   $ap_folder_path = variable_get('file_public_path', conf_path() . '/files') . '/opportunity/' . $ap_folder;
   $user_folder_path = $ap_folder_path . $user_folder;
-
+  $path = isset($_POST['return-path']) ? $_POST['return-path'] : 0; 
   $reopen = isset($_POST['reopen']) ? $_POST['reopen'] : 0;
+  
+
   // if this is a reopen application get previous artwork data
   if ($reopen == 1) {
     $previous_artworks = mn_ap_get_ap_artworks($nid, $uid);
@@ -300,8 +326,14 @@ function ap_submit_form() {
         ->execute();
   }
 
-  drupal_set_message(t('Your application has been submitted.'), 'status');
-  return drupal_goto('application/' . $nid);
+  
+  if($admin_edit == '1') {
+    drupal_set_message(t('@name\s application has been updated.'), array('@name' => $_POST['first_name'] ), 'status');
+    return drupal_goto($path);
+  } else {
+    drupal_set_message(t('Your application has been submitted.'), 'status');
+    return drupal_goto('application/' . $nid);
+  }
 }
 
 // @FIXME @CRITICAL

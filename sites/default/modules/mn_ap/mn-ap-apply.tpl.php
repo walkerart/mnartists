@@ -13,7 +13,8 @@
             window.CKEDITOR_BASEPATH = "/sites/all/libraries/ckeditor";
             }); })(jQuery);', 'inline' );
         drupal_add_js(drupal_get_path('module', 'mn_ap') . '/js/scripts2.js');
-        //dpm($rows); ?>
+       // dpm($rows); 
+        ?>
 <div class="container" id="content">
     <div class="row">
         <div class="col-md-12">
@@ -55,6 +56,12 @@
                         <input type="hidden" id="title" name="title" value="<?php echo $rows['op_title']; ?>">
                         <?php if (isset($rows['reopen'])) : ?>
                         <input type="hidden" id="reopen" name="reopen" value="<?php echo $rows['reopen']; ?>">
+                        <?php endif; ?>
+                        <?php if (isset($rows['admin_edit'])) : ?>
+                        <input type="hidden" id="admin_edit" name="admin_edit" value="<?php echo $rows['admin_edit']; ?>">
+                        <input type="hidden" id="return-path" name="return-path" value="<?php echo $rows['return-path']; ?>">
+                        <input type="hidden" id="name" name="name" value="<?php echo $rows['name']; ?>">
+                        <input type="hidden" id="uid" name="uid" value="<?php echo $rows['uid']; ?>"> 
                         <?php endif; ?>
                         <fieldset>
                             <div class="row">
