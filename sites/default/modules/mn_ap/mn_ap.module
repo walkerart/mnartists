@@ -71,7 +71,7 @@ function mn_ap_menu() {
   $items['opportunity/%/submission/%/delete'] = array(
     'title' => 'Applicant Review',
     'page callback' => 'mn_ap_delete',
-    'access callback' => 'user_is_logged_in', //make admin or op admin
+    'access callback' => 'user_is_logged_in', //make admin or op admin 
     'page arguments' => array(1,3),
     'file' => 'mn_ap.delete.inc',
   );

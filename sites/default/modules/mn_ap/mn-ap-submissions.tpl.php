@@ -13,6 +13,7 @@
   drupal_add_js(drupal_get_path('module', 'mn_ap') . '/js/jquery.selectBoxIt.js');
   drupal_add_js(drupal_get_path('module', 'mn_ap') . '/js/subScript.js');
 // dpm($rows);
+
 ?>
 <script>
 (function ($) {
@@ -179,7 +180,7 @@
               </td>
               <td>
                 <div>
-                  <div>
+                  <div> 
                     <a class="aap-btn-margin" href="/opportunity/<?php echo $review['nid']?>/submission/<?php echo $review['uid']; ?>/edit?destination=<?php echo current_path();?>">Edit</a>
                   </div>
                   <div>
