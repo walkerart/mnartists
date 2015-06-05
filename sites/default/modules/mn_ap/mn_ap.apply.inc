@@ -77,52 +77,6 @@ function mn_ap_apply($nid) {
 	}
 }
 
-function mn_ap_edit($nid, $uid) {
-  //return path back to opportunity submission in query string
-  $path = check_plain($_GET['destination']); 
-  
-  //load user for the application that is begin submitted
-  $user = user_load($uid); 
-  $name = $user->name;
-  
-  //get information defined in the Opportunity Content Type
-	$op_data = mn_ap_opportunity_data($nid);
-	//check for exiting application
-	$ap_data = mn_ap_application_data($nid, $uid);
-  //Set to reopen
-  $ap_data['reopen'] = '1';
-  //custom reopen mode of admin_edit
-  $ap_data['admin_edit'] = '1';
-  //getting name of user for application
-  $ap_data['name'] = $name;
-  //passing along return path
-  $ap_data['return-path'] = $path;
-  
-  //reusing what is currently in place
-	$output = '';
-	//check id completed or still in progress
-	$user_artworks = mn_ap_artworks_data($uid);
-	$resume = mnartist_profiles_resume_download($uid);
-
-
-		//if non-existing do drupal queries
-		//if exists query op_applicaiton table and image table
-		if ($ap_data) {
-			$application_data = array(
-					'opportunity' => $op_data,
-					'artworks' => $user_artworks,
-					'application' => $ap_data,
-					'resume_view' => $resume
-			);
-
-    	$application_data['ap_artworks'] = mn_ap_get_ap_artworks($nid, $uid);
-      $rows = mn_ap_parse_data($application_data, $nid);
-		} 
-		//apply theme to node data
-		$output = theme('mn_ap_apply', array('rows' => $rows['0'])); //used without template
-		return $output;
-}
-
 /*
 * get data from the oppportunity content type
 */
