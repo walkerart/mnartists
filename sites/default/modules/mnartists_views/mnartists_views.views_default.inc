@@ -187,6 +187,7 @@ function mnartists_views_views_default_views() {
   $handler->display->display_options['access']['perm'] = 'create artwork content';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['query']['options']['disable_sql_rewrite'] = TRUE;
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['pager']['type'] = 'full';
   $handler->display->display_options['pager']['options']['items_per_page'] = '1000';
@@ -246,6 +247,15 @@ function mnartists_views_views_default_views() {
   $handler->display->display_options['sorts']['weight']['field'] = 'weight';
   $handler->display->display_options['sorts']['weight']['draggableviews_setting_view'] = 'manage_artworks_sort:page';
   $handler->display->display_options['sorts']['weight']['draggableviews_setting_new_items_bottom_list'] = 1;
+  /* Contextual filter: Content: Author uid */
+  $handler->display->display_options['arguments']['uid']['id'] = 'uid';
+  $handler->display->display_options['arguments']['uid']['table'] = 'node';
+  $handler->display->display_options['arguments']['uid']['field'] = 'uid';
+  $handler->display->display_options['arguments']['uid']['default_action'] = 'default';
+  $handler->display->display_options['arguments']['uid']['default_argument_type'] = 'current_user';
+  $handler->display->display_options['arguments']['uid']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['uid']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['uid']['summary_options']['items_per_page'] = '25';
   /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';
@@ -254,13 +264,6 @@ function mnartists_views_views_default_views() {
     'artwork' => 'artwork',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
-  /* Filter criterion: User: Current */
-  $handler->display->display_options['filters']['uid_current']['id'] = 'uid_current';
-  $handler->display->display_options['filters']['uid_current']['table'] = 'users';
-  $handler->display->display_options['filters']['uid_current']['field'] = 'uid_current';
-  $handler->display->display_options['filters']['uid_current']['relationship'] = 'uid';
-  $handler->display->display_options['filters']['uid_current']['value'] = '1';
-  $handler->display->display_options['filters']['uid_current']['group'] = 1;
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
