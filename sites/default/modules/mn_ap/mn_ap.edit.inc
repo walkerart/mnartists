@@ -4,8 +4,8 @@ function mn_ap_edit($nid, $uid) {
   //return path back to opportunity submission in query string
   //$path = check_plain($_GET['destination']); 
   $path = drupal_get_query_parameters();
-  $path = check_plain($path['destination']);
- 
+  $destination =  isset($path['destination']) ? $path['destination'] : '';
+  $path = check_plain($destination);
 
   //load mn_ap.apply.inc to reuse functions that are here
   module_load_include('inc', 'mn_ap', 'mn_ap.apply');
