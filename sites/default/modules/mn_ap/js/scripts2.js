@@ -463,7 +463,9 @@ $(document).ready(function(){
                 $( "label.error" ).remove();
             }
         } else if (Drupal.settings.steps[stepIndex] == 'work') {
-            works = $("input[class=ap-check]:checked").length;
+            /* works = $("input[class=ap-check]:checked").length; */
+	    works = $("div.row.ap-row").length;
+            works = works - 1;
             maxAllowed = Drupal.settings.works.max;
             minAllowed = Drupal.settings.works.min;
             if (works <= maxAllowed && works >= minAllowed){
