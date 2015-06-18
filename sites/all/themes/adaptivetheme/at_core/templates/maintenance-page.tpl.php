@@ -36,13 +36,20 @@
             <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
           </div>
         <?php endif; ?>
+<!--
         <?php if ($site_name): ?>
           <h1 id="site-name">
             <a href="<?php print $base_path ?>" title="<?php print t('Home page'); ?>" rel="home"><?php print $site_name; ?></a>
           </h1>
         <?php endif; ?>
+-->
+	<div class='organization-header'>
+          <div style='font-size: 45px; height: 52px; line-height: 48px; font-family: "LLCircularWeb-Medium";'>Mn Artists&nbsp;<span style='color: #888;'>is currently</span></div>
+          <span style='font-size: 45px; height: 52px; line-height: 48px;font-family: "LLCircularWeb-Medium"; color: #888;'>under maintenance</span>
+        </div>
       </div>
     </header>
+<!--
     <section id="main-content" role="main">
       <?php if ($title): ?>
         <h1 id="page-title"><?php print $title; ?></h1>
@@ -52,6 +59,7 @@
         <?php print $content; ?>
       </div>
     </section>
+-->
   </div>
   <?php print $page_bottom ?>
 </body>
