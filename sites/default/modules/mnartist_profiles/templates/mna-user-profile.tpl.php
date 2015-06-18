@@ -139,30 +139,25 @@
             <li><a href='#tabs-1'>About <?= $top_name ?></a></li>
             <?php
                 $i = 1;
-                if(isset($fieldset['field_awards'])) {
+                if(isset($fieldset['field_education']) || isset($fieldset['field_work_experience'])
+                 || isset($fieldset['field_teaching_experience']) || isset($fieldset['field_exhibition_and_performance']) ) {
                     $i++;
-                    $ia = $i; ?>
-                    <li><a href='#tabs-<?= $i ?>'>Awards &amp; Exhibitions</a></li>
+                    $iexperience = $i; ?>
+                    <li><a href='#tabs-<?= $i ?>'>Experience</a></li>
             <?php }
-            if(isset($fieldset['field_galleries'])) {
-                $i++;
-                $ig = $i; ?>
-                <li><a href='#tabs-<?= $i ?>'>Galleries Etc.</a></li>
+                if(isset($fieldset['field_galleries']) || isset($fieldset['field_collections']) || isset($fieldset['field_related_organizations'])) {
+                    $i++;
+                    $iassociation = $i; ?>
+                    <li><a href='#tabs-<?= $i ?>'>Associations</a></li>
+            <?php }
+                if(isset($fieldset['field_publications'])) {
+                    $i++;
+                    $ipresspub = $i; ?>
+                    <li><a href='#tabs-<?= $i ?>'>Press</a></li>
             <?php } ?>
         </ul>
         <div id="tabs-1">
-        <?php if(isset($fieldset['field_general_statement'])) {  ?>
-            <div class='wrap artist-statement'>
-                <h5 class='profile-title'>Artist Statement</h5>
-                <p><?= $fieldset['field_general_statement'][0]['value']['#markup'] ?></p></div>
-        <?php }
-	    if(isset($fieldset['field_education'])) { ?>
-                <div class='wrap education'>
-                    <h5 class='profile-title'>Education</h5>
-                    <p><?= $fieldset['field_education'][0]['value'] ?></p>
-                </div>
-        <?php }
-            if(isset($fieldset['field_bio']) || isset($fieldset['field_country'])) { ?>
+            <?php if(isset($fieldset['field_bio']) || isset($fieldset['field_country'])) { ?>
                 <div class='wrap biography'>
                     <h5 class='profile-title'>Biography</h5>
                     <?php if(isset($fieldset['field_bio'])) { ?>
@@ -180,36 +175,58 @@
                             <p><?= $fieldset['field_birthplace'][0]['value']['#markup'] ?></p>
                         </div>
                     <?php } ?>
-                    <h5 class='profile-title'>RESUME</h5>
-                    <div class='field_resume'>
-                        <p><?= $fieldset['field_work_experience'][0]['value'] ?></p>
-                        <p><?= $fieldset['field_teaching_experience'][0]['value'] ?></p>
-                        <p><?= $fieldset['field_exhibition_and_performance'][0]['value'] ?></p>
-                        <p><?= $fieldset['field_publications'][0]['value'] ?></p>
-                        <p><?= $fieldset['field_collections'][0]['value'] ?></p>
-                        <p><?= $fieldset['field_related_organizations'][0]['value'] ?></p>
-                    </div>
                 </div>
             <?php } ?>
+            <?php if(isset($fieldset['field_general_statement'])) {  ?>
+                <div class='wrap artist-statement'>
+                    <h5 class='profile-title'>Artist Statement</h5>
+                    <p><?= $fieldset['field_general_statement'][0]['value']['#markup'] ?></p>
+                </div>
+            <?php } ?>
+            <?php 
+                foreach($fieldset['field_awards'] as $award) {
+                    print '<p>' . render($award['value']) . '</p>';
+                } 
+            ?>
         </div>
-
-        <?php if(isset($fieldset['field_awards'])) { ?>
-            <div id='tabs-<?= $ia ?>'>
-                <?php 
-		  foreach($fieldset['field_awards'] as $award) {
-		    print '<p>' . render($award['value']) . '</p>';
-                  } 
-		?>
-		<br />
+        
+        <?php if(isset($fieldset['field_education']) || isset($fieldset['field_work_experience'])
+                 || isset($fieldset['field_teaching_experience']) || isset($fieldset['field_exhibition_and_performance']) ) {
+            // Experience Tab
+            ?>
+            <div id='tabs-<?= $iexperience ?>'>
+                <div class='wrap education'>
+                    <p><?= $fieldset['field_education'][0]['value'] ?></p>
+                </div>
+                <p><?= $fieldset['field_work_experience'][0]['value'] ?></p>
+                <p><?= $fieldset['field_teaching_experience'][0]['value'] ?></p>
+                <p><?= $fieldset['field_exhibition_and_performance'][0]['value'] ?></p>
             </div>
-        <?php }
-        if(isset($fieldset['field_galleries'])) { ?>
-            <div id='tabs-<?= $ig ?>'>
-                <?php foreach($fieldset['field_galleries'] as $gal) {
-                    $galkey = array_values($gal['value']['entity']['field_collection_item']);
-                    $gallery = array_shift($galkey); ?>
-                    <?= $gallery['field_gallery_name'][0]['#markup'] ?>, <?= $gallery['field_contact_name'][0]['#markup'] ?><br />
-                <?php } ?>
+        <?php } ?>
+
+        
+        <?php if(isset($fieldset['field_galleries']) || isset($fieldset['field_collections']) || isset($fieldset['field_related_organizations'])) {
+            // Associations Tab
+            // ** ToDo check two fields below before showing
+            ?>
+            <div id='tabs-<?= $iassociation ?>'>
+                <?php
+                    foreach($fieldset['field_galleries'] as $gal) {
+                        print '<p>' . render($gal['value']) . '</p>';
+                    }
+                ?>
+                <p><?= $fieldset['field_collections'][0]['value'] ?></p>
+                <p><?= $fieldset['field_related_organizations'][0]['value'] ?></p>
+            </div>
+        <?php } ?>
+        
+        <?php if(isset($fieldset['field_publications'])) {
+            // Press/Publications Tab
+            ?>
+            <div id='tabs-<?= $ipresspub ?>'>
+                <div class='field_resume'>
+                    <p><?= $fieldset['field_publications'][0]['value'] ?></p>
+                </div>
             </div>
         <?php } ?>
     </div>
@@ -234,3 +251,4 @@ jQuery(function() {
     jQuery("#tabs").tabs();
 });
 </script>
+
