@@ -163,18 +163,16 @@
                     <?php if(isset($fieldset['field_bio'])) { ?>
                         <p><?= $fieldset['field_bio'][0]['value']['#markup'] ?></p>
                     <?php } ?>
-                    <?php if(isset($fieldset['field_country'])) { ?>
-                        <div class='field_country'>
-                            <div class='profile-label'>Country</div>
-                            <p><?= $fieldset['field_country'][0]['value']['#markup'] ?></p>
-                        </div>
-                    <?php }
-                    if(isset($fieldset['field_birthplace'])) { ?>
-                        <div class='field_birthplace'>
-                            <div class='profile-label'>Birthplace</div>
-                            <p><?= $fieldset['field_birthplace'][0]['value']['#markup'] ?></p>
-                        </div>
-                    <?php } ?>
+                    <?php if(isset($fieldset['field_birthplace']) || isset($fieldset['field_country'])) { ?>
+                    <div>
+                        <?php if(isset($fieldset['field_country'])) {
+                            print '<p>' . render($fieldset['field_country']) . '</p>';
+                        }
+                        if(isset($fieldset['field_birthplace'])) {
+                            print '<p>' . render($fieldset['field_birthplace']) . '</p>';
+                        } ?>
+                    </div>
+            <?php } ?>
                 </div>
             <?php } ?>
             <?php if(isset($fieldset['field_general_statement'])) {  ?>
@@ -186,6 +184,7 @@
             <?php 
                 foreach($fieldset['field_awards'] as $award) {
                     print '<p>' . render($award['value']) . '</p>';
+                    break;
                 } 
             ?>
         </div>
@@ -207,16 +206,20 @@
         
         <?php if(isset($fieldset['field_galleries']) || isset($fieldset['field_collections']) || isset($fieldset['field_related_organizations'])) {
             // Associations Tab
-            // ** ToDo check two fields below before showing
             ?>
             <div id='tabs-<?= $iassociation ?>'>
                 <?php
                     foreach($fieldset['field_galleries'] as $gal) {
                         print '<p>' . render($gal['value']) . '</p>';
                     }
+                    foreach($fieldset['field_collections'] as $col) {
+                        print '<p>' . render($col['value']) . '</p>';
+                    }
+                    foreach($fieldset['field_related_organizations'] as $org) {
+                        print '<p>' . render($org['value']) . '</p>';
+                        break;
+                    }
                 ?>
-                <p><?= $fieldset['field_collections'][0]['value'] ?></p>
-                <p><?= $fieldset['field_related_organizations'][0]['value'] ?></p>
             </div>
         <?php } ?>
         
@@ -225,7 +228,11 @@
             ?>
             <div id='tabs-<?= $ipresspub ?>'>
                 <div class='field_resume'>
-                    <p><?= $fieldset['field_publications'][0]['value'] ?></p>
+                    <p><?php
+                        foreach($fieldset['field_publications'] as $pub) {
+                            print '<p>' . render($pub['value']) . '</p>';
+                        }
+                        ?></p>
                 </div>
             </div>
         <?php } ?>
@@ -251,4 +258,5 @@ jQuery(function() {
     jQuery("#tabs").tabs();
 });
 </script>
+
 
