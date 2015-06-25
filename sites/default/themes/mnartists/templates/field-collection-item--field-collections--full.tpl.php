@@ -31,7 +31,11 @@
 <div class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
   <div class="content"<?php print $content_attributes; ?>>
     <?php
-      print "<section><a href='" . $content['field_url'][0]['#href'] . "'>" . render($content['field_collection_name']) . "</a></section>";
+      $url = $content['field_url'][0]['#href'];
+      if (strpos($url,'http:') === FALSE) {
+        $url = 'http://' . $url;
+      }
+      print "<section><a href='" . $url . "'>" . render($content['field_collection_name']) . "</a></section>";
     ?>
   </div>
 </div>

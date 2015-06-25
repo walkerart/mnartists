@@ -31,7 +31,11 @@
 <div class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
   <div class="content"<?php print $content_attributes; ?>>
     <?php
-      print "<section><a href='" . $content['field_institution_url'][0]['#href'] . "'>" . render($content['field_school']) . "</a></section>";
+      $url = $content['field_institution_url'][0]['#href'];
+      if (strpos($url,'http:') === FALSE) {
+        $url = 'http://' . $url;
+      }
+      print "<section><a href='" . $url . "'>" . render($content['field_school']) . "</a></section>";
       print str_replace('CE','',render($content['field_education_date_range']));
       print render($content['field_areas_of_study']);
       print render($content['field_degree']);
