@@ -1414,7 +1414,7 @@ function _set_community_query_facets ($filter_query_string = null) {
                  .":true) OR (".AC_TYPE_FIELD.":opportunity AND ds_op_dates\:value2:[NOW TO *]) OR ".AC_TYPE_FIELD.":event))) OR (index_id:".USER_INDEX." AND ".AC_SORT_BY_NAME_FIELD.":['' TO *])";
             } elseif ( isset($_GET['content']['opportunity_include_past']) && isset($_GET['content']['opportunity_include_past']) == '1') { //past opportunites
                   $base_query_string = "(index_id:".NODE_INDEX." AND ((".AC_TYPE_FIELD.":article OR (".AC_TYPE_FIELD.":artwork AND ".AC_ARTWORK_PUBLIC_FIELD
-                  .":true) OR (".AC_TYPE_FIELD.":opportunity AND ".AC_OPP_ANNOUNCE_DATE_FIELD.":[* TO NOW]) OR (".AC_TYPE_FIELD.":event AND ds_field_date\:value:[NOW TO *])))) OR (index_id:".USER_INDEX." AND ".AC_SORT_BY_NAME_FIELD.":['' TO *])";
+                  .":true) OR (".AC_TYPE_FIELD.":opportunity AND  ds_op_dates\:value2:[* TO NOW]) OR (".AC_TYPE_FIELD.":event AND ds_field_date\:value:[NOW TO *])))) OR (index_id:".USER_INDEX." AND ".AC_SORT_BY_NAME_FIELD.":['' TO *])";
             } else { //neither past events or opportunites has been set
                 $base_query_string = "(index_id:".NODE_INDEX." AND ((".AC_TYPE_FIELD.":article OR (".AC_TYPE_FIELD.":artwork AND ".AC_ARTWORK_PUBLIC_FIELD
                 .":true) OR (".AC_TYPE_FIELD.":opportunity AND ds_op_dates\:value2:[NOW TO *]) OR (".AC_TYPE_FIELD.":event AND ds_field_date\:value:[NOW TO *])))) OR (index_id:".USER_INDEX." AND ".AC_SORT_BY_NAME_FIELD.":['' TO *])";
