@@ -230,7 +230,7 @@ By <?php print $byline; ?></a>
         'link_to_full' => 0,
         'link_to_full_style' => '0',
         'modal' => 'none',
-        'slideshow_image_style' => 'article_slide',
+        'slideshow_image_style' => '',
         'slideshow_link' => '',
         'slideshow_caption' => 'title',
         'slideshow_caption_link' => '',
