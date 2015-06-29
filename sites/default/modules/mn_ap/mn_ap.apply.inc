@@ -76,6 +76,7 @@ function mn_ap_apply($nid) {
 		return drupal_set_message(t('You have already completed an application for the ' .  $op_data['title'] . ' on ' . $ap_data['updated_at'] . '.'), 'warning');
 	}
 }
+
 /*
 * get data from the oppportunity content type
 */
@@ -345,7 +346,11 @@ function mn_ap_parse_data($profile, $nid) {
 		'artworks' => $artworks,
 		'profile' => $profile,
 		'resume' => $resume_view,
-		'ap_artworks'=> isset($ap_artworks) ? $ap_artworks : ''
+		'ap_artworks'=> isset($ap_artworks) ? $ap_artworks : '',
+    //these fields have been added by O8 to allow an admin to edit the form
+    'admin_edit' => isset($application['admin_edit']) ? $application['admin_edit']: '0', 
+    'name' => isset($application['name']) ? $application['name'] : '',
+    'return-path' => isset($application['return-path']) ? $application['return-path'] : '',   
 	);
 	return $rows;
 }

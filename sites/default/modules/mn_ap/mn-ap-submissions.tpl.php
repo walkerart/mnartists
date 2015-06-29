@@ -13,6 +13,7 @@
   drupal_add_js(drupal_get_path('module', 'mn_ap') . '/js/jquery.selectBoxIt.js');
   drupal_add_js(drupal_get_path('module', 'mn_ap') . '/js/subScript.js');
 // dpm($rows);
+
 ?>
 <script>
 (function ($) {
@@ -82,6 +83,7 @@
               <th class="admin"></th>
               <th class="status">Status</th>
               <th class="unsubmit">Unsubmit</th>
+              <th class="operations"></th>
             </tr>
           </thead>
           <tbody>
@@ -175,6 +177,16 @@
                     <input class="ap-btn-margin" type="submit" value="Close">
                   <?php endif; ?>
                 </form>
+              </td>
+              <td>
+                <div>
+                  <div> 
+                    <a class="aap-btn-margin" href="/opportunity/<?php echo $review['nid']?>/submission/<?php echo $review['uid']; ?>/edit?destination=<?php echo current_path();?>">Edit</a>
+                  </div>
+                  <div>
+                     <a class="aap-btn-margin" href="/opportunity/<?php echo $review['nid']?>/submission/<?php echo $review['uid']; ?>/delete?destination=<?php echo current_path();?>">Delete</a>
+                  </div>
+                </div>
               </td>
             </tr>
             <?php $i++; ?>
