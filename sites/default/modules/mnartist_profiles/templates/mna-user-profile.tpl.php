@@ -163,16 +163,28 @@
                     <?php if(isset($fieldset['field_bio'])) { ?>
                         <p><?= $fieldset['field_bio'][0]['value']['#markup'] ?></p>
                     <?php } ?>
-                    <?php if(isset($fieldset['field_birthplace']) || isset($fieldset['field_country'])) { ?>
-                    <div>
-                        <?php if(isset($fieldset['field_country'])) {
-                            print '<p>' . render($fieldset['field_country']) . '</p>';
-                        }
-                        if(isset($fieldset['field_birthplace'])) {
-                            print '<p>' . render($fieldset['field_birthplace']) . '</p>';
-                        } ?>
-                    </div>
-            <?php } ?>
+                    <h5 class='profile-title'>Info</h5>
+                    <?php if(isset($fieldset['field_county'])) { ?>
+                        <div>
+                            <?php if(isset($fieldset['field_county'])) {
+                                print '<p>' . render($fieldset['field_county']) . '</p>';
+                            } ?>
+                        </div>
+                    <?php } ?>
+                    <?php if(isset($fieldset['field_country'])) { ?>
+                        <div>
+                            <?php if(isset($fieldset['field_country'])) {
+                                print '<p>' . render($fieldset['field_country']) . '</p>';
+                            } ?>
+                        </div>
+                    <?php } ?>
+                    <?php if(isset($fieldset['field_birthplace'])) { ?>
+                        <div>
+                            <?php if(isset($fieldset['field_birthplace'])) {
+                                print '<p>' . render($fieldset['field_birthplace']) . '</p>';
+                            } ?>
+                        </div>
+                    <?php } ?>
                 </div>
             <?php } ?>
             <?php if(isset($fieldset['field_general_statement'])) {  ?>
@@ -194,12 +206,12 @@
             // Experience Tab
             ?>
             <div id='tabs-<?= $iexperience ?>'>
+                <p><?= $fieldset['field_exhibition_and_performance'][0]['value'] ?></p>
+                <p><?= $fieldset['field_work_experience'][0]['value'] ?></p>
+                <p><?= $fieldset['field_teaching_experience'][0]['value'] ?></p>
                 <div class='wrap education'>
                     <p><?= $fieldset['field_education'][0]['value'] ?></p>
                 </div>
-                <p><?= $fieldset['field_work_experience'][0]['value'] ?></p>
-                <p><?= $fieldset['field_teaching_experience'][0]['value'] ?></p>
-                <p><?= $fieldset['field_exhibition_and_performance'][0]['value'] ?></p>
             </div>
         <?php } ?>
 
@@ -258,5 +270,6 @@ jQuery(function() {
     jQuery("#tabs").tabs();
 });
 </script>
+
 
 
