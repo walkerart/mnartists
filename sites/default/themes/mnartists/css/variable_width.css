@@ -3098,10 +3098,12 @@ width:100%;*/ margin-bottom: 2em; }
 
 .field-slideshow-caption { color: gray; font-family: "Apercu Regular",Arial,Helvetica,sans-serif; padding-top: 15px; }
 
-.field-slideshow-carousel-wrapper { position: relative; }
+.field-slideshow-carousel-wrapper { margin-bottom: 10px; position: relative; }
 .field-slideshow-carousel-wrapper .carousel-prev { font-size: 21px; left: 0; position: absolute; top: 40px; z-index: 100; }
 .field-slideshow-carousel-wrapper .carousel-next { position: absolute; top: 40px; right: 0; font-size: 21px; }
 .field-slideshow-carousel-wrapper .field-slideshow-pager { height: 100px; }
+.field-slideshow-carousel-wrapper .field-slideshow-pager li { margin: 0 1.5em 0.25em 0; }
+.field-slideshow-carousel-wrapper .field-slideshow-pager img { height: 100px; width: 100px; }
 
 /* artist stuff */
 .page-user .pane-mnartist-profiles-mna-user-profile h2.pane-title { background: #f2f2f2; }
