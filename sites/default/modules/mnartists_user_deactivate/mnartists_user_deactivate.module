@@ -1,0 +1,47 @@
+<?php
+//Module per task: http://projects.origineight.net/tasks/4514593
+
+/**
+ * hook_user_cancel_methods_alter
+ * 
+ * @param type $methods
+ */
+function mnartists_user_deactivate_user_cancel_methods_alter(&$methods) {
+  //Custom cancel methods
+  $methods['mnartists_user_delete_reassign'] = array(
+    'title' => t('Disable the account and make its content belong to the MNArtist user.'),
+    'description' => t('All your content will be reassigned to MNArtists.'),
+    'access' => user_access('access account cancellation method'),  // access should be used for administrative methods only.
+  );
+}
+
+/**
+ * hook_user_cancel
+ * 
+ * @param type $edit
+ * @param type $account
+ * @param type $method
+ */
+function mnartists_user_deactivate_user_cancel($edit, $account, $method) {
+  switch ($method) {
+    case 'mnartists_user_delete_reassign':
+      // Update nodes (current revisions) to reference MN ARtists account, uid = 492.
+      module_load_include('inc', 'node', 'node.admin');
+      $nodes = db_select('node', 'n')
+        ->fields('n', array('nid'))
+        ->condition('uid', $account->uid)
+        ->execute()
+        ->fetchCol();
+      node_mass_update($nodes, array('uid' => 492));
+      // Update old revisions.
+      db_update('node_revision')
+        ->fields(array('uid' => 492))
+        ->condition('uid', $account->uid)
+        ->execute();
+      // Clean history.
+      db_delete('history')
+        ->condition('uid', $account->uid)
+       ->execute();
+      break;
+  }
+}
