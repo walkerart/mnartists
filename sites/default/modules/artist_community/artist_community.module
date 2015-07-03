@@ -1138,7 +1138,7 @@ function _artist_community_get_items_query ($local_og = null,
                         $contextQueryString = "($typeQuery)";
                     }
                     if (((!isset($_GET['content']['opportunity_include_past']) && isset($_GET['content']['opportunity_include_past']) != '1'))) {
-                      $contextQueryString .= " AND (ds_op_dates\:value2:[NOW TO *])"; //only show current events
+                      $contextQueryString .= " AND (ds_op_dates\:value2:[$solr_now TO *])"; //only show current events
                     }
                     $contentFilters['node'][] = $contextQueryString;
 
@@ -1398,6 +1398,11 @@ function _set_community_query_facets ($filter_query_string = null) {
 
     global $solarium_config;
     global $search_facets;
+    
+    // DB & Solr timezone is UTC, site timezone is America/Chicago
+    // trying to correct Solr query for NOW
+    //reusing what has been added
+    $solr_now = format_date(time(), 'custom', 'Y-m-d\TH:i:s\Z', 'UTC');
 
     if (!isset($search_facets)) {
         $client = new Solarium\Client($solarium_config);
@@ -1411,13 +1416,13 @@ function _set_community_query_facets ($filter_query_string = null) {
         } else {
             if (isset($_GET['content']['event_include_past']) && $_GET['content']['event_include_past'] == '1' ) { //past events
                  $base_query_string = "(index_id:".NODE_INDEX." AND ((".AC_TYPE_FIELD.":article OR (".AC_TYPE_FIELD.":artwork AND ".AC_ARTWORK_PUBLIC_FIELD
-                 .":true) OR (".AC_TYPE_FIELD.":opportunity AND ds_op_dates\:value2:[NOW TO *]) OR ".AC_TYPE_FIELD.":event))) OR (index_id:".USER_INDEX." AND ".AC_SORT_BY_NAME_FIELD.":['' TO *])";
+                 .":true) OR (".AC_TYPE_FIELD.":opportunity AND ds_op_dates\:value2:[$solr_now TO *]) OR ".AC_TYPE_FIELD.":event))) OR (index_id:".USER_INDEX." AND ".AC_SORT_BY_NAME_FIELD.":['' TO *])";
             } elseif ( isset($_GET['content']['opportunity_include_past']) && isset($_GET['content']['opportunity_include_past']) == '1') { //past opportunites
                   $base_query_string = "(index_id:".NODE_INDEX." AND ((".AC_TYPE_FIELD.":article OR (".AC_TYPE_FIELD.":artwork AND ".AC_ARTWORK_PUBLIC_FIELD
-                  .":true) OR (".AC_TYPE_FIELD.":opportunity AND  ds_op_dates\:value2:[* TO NOW]) OR (".AC_TYPE_FIELD.":event AND ds_field_date\:value:[NOW TO *])))) OR (index_id:".USER_INDEX." AND ".AC_SORT_BY_NAME_FIELD.":['' TO *])";
+                  .":true) OR (".AC_TYPE_FIELD.":opportunity AND  ds_op_dates\:value2:[* TO $solr_now]) OR (".AC_TYPE_FIELD.":event AND ds_field_date\:value:[NOW TO *])))) OR (index_id:".USER_INDEX." AND ".AC_SORT_BY_NAME_FIELD.":['' TO *])";
             } else { //neither past events or opportunites has been set
                 $base_query_string = "(index_id:".NODE_INDEX." AND ((".AC_TYPE_FIELD.":article OR (".AC_TYPE_FIELD.":artwork AND ".AC_ARTWORK_PUBLIC_FIELD
-                .":true) OR (".AC_TYPE_FIELD.":opportunity AND ds_op_dates\:value2:[NOW TO *]) OR (".AC_TYPE_FIELD.":event AND ds_field_date\:value:[NOW TO *])))) OR (index_id:".USER_INDEX." AND ".AC_SORT_BY_NAME_FIELD.":['' TO *])";
+                .":true) OR (".AC_TYPE_FIELD.":opportunity AND ds_op_dates\:value2:[$solr_now TO *]) OR (".AC_TYPE_FIELD.":event AND ds_field_date\:value:[NOW TO *])))) OR (index_id:".USER_INDEX." AND ".AC_SORT_BY_NAME_FIELD.":['' TO *])";
             }
             $finished_query_string = (!is_null($filter_query_string)) ? "($base_query_string) AND $filter_query_string" : $base_query_string;
         }
