@@ -1039,7 +1039,7 @@ function _artist_community_get_items_query ($local_og = null,
                     .':true) OR '.AC_TYPE_FIELD.':event OR ('.AC_TYPE_FIELD.':opportunity AND '.AC_OPP_ANNOUNCE_DATE_FIELD.":[* TO $solr_now]))";
             } else {
                 $content_fiter = ' AND ('.AC_TYPE_FIELD.':article OR ('.AC_TYPE_FIELD.':artwork AND '.AC_ARTWORK_PUBLIC_FIELD
-                    .':true) OR ('.AC_TYPE_FIELD.':opportunity AND '.AC_OPP_ANNOUNCE_DATE_FIELD.":[* TO $solr_now]) OR (".AC_TYPE_FIELD.":event AND ds_field_date\:value:[$solr_now TO *]))";
+                    .':true) OR ('.AC_TYPE_FIELD.':opportunity AND '.AC_OPP_ANNOUNCE_DATE_FIELD.":[$solr_now TO *]) OR (".AC_TYPE_FIELD.":event AND ds_field_date\:value:[$solr_now TO *]))";
             }
         }
         foreach($local_og as $og_id => $terms) {
