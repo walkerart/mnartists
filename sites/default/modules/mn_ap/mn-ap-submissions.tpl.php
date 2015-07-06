@@ -184,7 +184,7 @@
                     <a class="aap-btn-margin" href="/opportunity/<?php echo $review['nid']?>/submission/<?php echo $review['uid']; ?>/edit?destination=<?php echo current_path();?>">Edit</a>
                   </div>
                   <div>
-                     <a class="aap-btn-margin" href="/opportunity/<?php echo $review['nid']?>/submission/<?php echo $review['uid']; ?>/delete?destination=<?php echo current_path();?>">Delete</a>
+                     <a class="aap-btn-margin" onclick="return confirm('Are you sure you want to delete? This action can not be undone.')" href="/opportunity/<?php echo $review['nid']?>/submission/<?php echo $review['uid']; ?>/delete?destination=<?php echo current_path();?>">Delete</a>
                   </div>
                 </div>
               </td>
