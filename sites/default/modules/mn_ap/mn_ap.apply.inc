@@ -68,6 +68,31 @@ function mn_ap_apply($nid) {
 			);
 			$rows = mn_ap_profile2_data($profile2_data['0'], $nid);
 		}
+		// Code added to sort artworks based on draggable views sort order
+		$newlist = array();
+		$newlist2 = array();
+		foreach ($rows[0]['artworks'] as $thisart) {
+			$thisvid = $thisart['vid'];
+			// Find weight from draggableviews_structure table
+			$thisweight = 0;
+			$added = false;
+			$weightrows = db_query('SELECT weight FROM {draggableviews_structure} WHERE entity_id = (:thisentityid)', array(':thisentityid' => $thisvid))->fetchAll();
+      foreach ($weightrows as $weightrow) {
+					$thisweight = $weightrow->weight;
+					$newlist[$thisweight] = $thisart;
+					$added = true;
+					break;
+			}
+			if (!$added) {
+				$newlist2[] = $thisart;
+			}
+		}
+		if (count($newlist) > 0) {
+			ksort($newlist);
+			$combined = array_merge($newlist,$newlist2);
+			$rows[0]['artworks'] = $combined;
+		}
+		
 		//apply theme to node data
 		$output = theme('mn_ap_apply', array('rows' => $rows['0'])); //used without template
 		return $output;
@@ -367,4 +392,5 @@ function mn_ap_get_fullname($fullname_id) {
     );
     return $name;
 }
+
 
