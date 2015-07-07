@@ -163,28 +163,6 @@
                     <?php if(isset($fieldset['field_bio'])) { ?>
                         <p><?= $fieldset['field_bio'][0]['value']['#markup'] ?></p>
                     <?php } ?>
-                    <h5 class='profile-title'>Info</h5>
-                    <?php if(isset($fieldset['field_county'])) { ?>
-                        <div>
-                            <?php if(isset($fieldset['field_county'])) {
-                                print '<p>' . render($fieldset['field_county']) . '</p>';
-                            } ?>
-                        </div>
-                    <?php } ?>
-                    <?php if(isset($fieldset['field_country'])) { ?>
-                        <div>
-                            <?php if(isset($fieldset['field_country'])) {
-                                print '<p>' . render($fieldset['field_country']) . '</p>';
-                            } ?>
-                        </div>
-                    <?php } ?>
-                    <?php if(isset($fieldset['field_birthplace'])) { ?>
-                        <div>
-                            <?php if(isset($fieldset['field_birthplace'])) {
-                                print '<p>' . render($fieldset['field_birthplace']) . '</p>';
-                            } ?>
-                        </div>
-                    <?php } ?>
                 </div>
             <?php } ?>
             <?php if(isset($fieldset['field_general_statement'])) {  ?>
@@ -199,6 +177,47 @@
                     break;
                 } 
             ?>
+            <h5 class='profile-title'>Info</h5>
+            <div class='info_container'>
+                <?php if(isset($fieldset['field_country'])) { ?>
+                    <div class='info_block'>
+                        <div class='profile-label'>COUNTRY OF CITIZENSHIP</div>
+                        <?php if(isset($fieldset['field_country'])) {
+                            print '<p>' . render($fieldset['field_country']) . '</p>';
+                        } ?>
+                    </div>
+                <?php } ?>
+                <?php if(isset($fieldset['field_city']) || isset($fieldset['field_state'])) { ?>
+                    <div class='info_block'>
+                        <div class='profile-label'>ACTIVE PLACE</div>
+                        <?php
+                            if(isset($fieldset['field_city']) && isset($fieldset['field_state'])) {
+                                print '<p>' . render($fieldset['field_city']) . ', ' . render($fieldset['field_state']) . '</p>';
+                            } else if(isset($fieldset['field_city'])) {
+                                print '<p>' . render($fieldset['field_city']) . '</p>';
+                            } else {
+                                print '<p>' . render($fieldset['field_state']) . '</p>';
+                            }
+                        ?>
+                    </div>
+                <?php } ?>
+                <?php if(isset($fieldset['field_birthplace'])) { ?>
+                    <div class='info_block'>
+                        <div class='profile-label'>BIRTHPLACE</div>
+                        <?php if(isset($fieldset['field_birthplace'])) {
+                            print '<p>' . render($fieldset['field_birthplace']) . '</p>';
+                        } ?>
+                    </div>
+                <?php } ?>
+                <?php if(isset($fieldset['field_county'])) { ?>
+                    <div class='info_block'>
+                        <div class='profile-label'>COUNTY</div>
+                        <?php if(isset($fieldset['field_county'])) {
+                            print '<p>' . render($fieldset['field_county']) . '</p>';
+                        } ?>
+                    </div>
+                <?php } ?>
+            </div>
         </div>
         
         <?php if(isset($fieldset['field_education']) || isset($fieldset['field_work_experience'])
@@ -270,6 +289,7 @@ jQuery(function() {
     jQuery("#tabs").tabs();
 });
 </script>
+
 
 
 
