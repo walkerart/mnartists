@@ -35,7 +35,7 @@
       if (strpos($url,'http:') === FALSE) {
         $url = 'http://' . $url;
       }
-      print "<section><a href='" . $url . "'>" . render($content['field_title']) . "</a></section>";
+      print "<section><a href='" . $url . "'  target='_blank'>" . render($content['field_title']) . "</a></section>";
       print render($content['field_description']);
       print str_replace('CE','',render($content['field_exhibition_date']));
       print render($content['field_group_individual']);

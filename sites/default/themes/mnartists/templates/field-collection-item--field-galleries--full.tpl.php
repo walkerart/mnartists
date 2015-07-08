@@ -35,7 +35,7 @@
       if (strpos($url,'http:') === FALSE) {
         $url = 'http://' . $url;
       }
-      print "<section><a href='" . $url . "'>" . render($content['field_gallery_name']) . "</a></section>";
+      print "<section><a href='" . $url . "'  target='_blank'>" . render($content['field_gallery_name']) . "</a></section>";
       print render($content['field_contact_name']);
     ?>
   </div>
