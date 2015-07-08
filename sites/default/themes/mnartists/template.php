@@ -231,3 +231,14 @@ function mnartists_preprocess_media_soundcloud_audio(&$variables) {
     $variables['output'] = str_replace('height="400"', 'height="' . $variables['height'] . '"', $variables['output']);
   }
 }
+
+function mnartists_partial_date($variables) {
+  $item = $variables['item'];
+  $settings = $variables['settings'];
+  $settings['format'] = $variables['format'];
+  $settings['is_approximate'] = !empty($variables['is_approximate']);
+  $settings['components']['month']['weight'] = 0;
+  $settings['components']['day']['weight'] = 1;
+  $settings['components']['year']['weight'] = 2;
+  return partial_date_format($item, $settings);
+}
