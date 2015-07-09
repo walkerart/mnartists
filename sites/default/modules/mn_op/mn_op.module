@@ -361,3 +361,17 @@ function mn_op_views_query_alter(&$view, &$query) {
     $query->orderby[1]['direction'] = "ASC";
   }
 }
+
+/**
+ * Implements hook_form_alter().
+ *
+ */
+function mn_op_form_alter(&$form, &$form_state, $form_id) {
+  if ($form_id == 'views_form_manage_artworks_sort_page') {
+    $form['actions']['submit']['#submit'][] = 'mn_op_draggable_view_submit';
+  }
+}
+
+function mn_op_draggable_view_submit($form, &$form_state) {
+  drupal_set_message('Successfully updated');
+}
