@@ -14,8 +14,8 @@ $(document).ready(function(){
 		return this;
 	};
 
-	$('div.view-manage-artworks').exists(function() {
-		if( !$.trim( $('div.view-manage-artworks').html() ).length ) {
+	$('div.view-manage-artworks-sort').exists(function() {
+		if( !$.trim( $('div.view-manage-artworks-sort').html() ).length ) {
 			this.append('<p class="text-center">You have not yet added any artwork. Click Add Artwork to start adding your work.</p>');
 		}
 	});

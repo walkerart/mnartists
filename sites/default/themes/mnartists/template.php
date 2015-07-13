@@ -77,7 +77,7 @@ function mnartists_preprocess_html(&$vars) {
   $vars['classes_array'][] = css_browser_selector();
 
   if ((!user_is_logged_in() && arg(0) == "user" && (is_null(arg(1)) || in_array(arg(1), array('password', 'register')))) ||
-          (in_array(arg(0), array('opportunity', 'application', 'opportunities', 'applications', 'manage-artworks', 'manage-events'))) ||
+          (in_array(arg(0), array('opportunity', 'application', 'opportunities', 'applications', 'manage-artworks-sort', 'manage-events'))) ||
           (arg(0) == "user" && in_array(arg(2), array("edit", "mailchimp"))) ||
           (arg(0) == "node" && in_array(arg(1), array("edit", "add"))) ||
           (arg(0) == "node" && in_array(arg(2), array("edit"))) ||
@@ -112,7 +112,7 @@ function mnartists_preprocess_page(&$vars) {
     drupal_add_library('system', 'ui.dialog');
 }
 function mnartists_process_page(&$vars) {
-  if($_GET['q'] == 'manage-artworks' || $_GET['q'] == 'manage-events' )
+  if($_GET['q'] == 'manage-artworks-sort' || $_GET['q'] == 'manage-events' )
   {
     drupal_add_css(drupal_get_path('module', 'mn_ap') . '/css/bootstrap.min.css');
     drupal_add_css(drupal_get_path('module', 'mn_op') . '/css/mn-op.css');
@@ -230,4 +230,15 @@ function mnartists_preprocess_media_soundcloud_audio(&$variables) {
   if (isset($variables['height'])) {
     $variables['output'] = str_replace('height="400"', 'height="' . $variables['height'] . '"', $variables['output']);
   }
+}
+
+function mnartists_partial_date($variables) {
+  $item = $variables['item'];
+  $settings = $variables['settings'];
+  $settings['format'] = $variables['format'];
+  $settings['is_approximate'] = !empty($variables['is_approximate']);
+  $settings['components']['month']['weight'] = 0;
+  $settings['components']['day']['weight'] = 1;
+  $settings['components']['year']['weight'] = 2;
+  return partial_date_format($item, $settings);
 }

@@ -336,3 +336,42 @@ function _mn_op_external_apply_button() {
   return implode('', $button_fragment_arr);
 
 }
+
+/**
+ * Implementation of hook_views_query_alter
+ * @param type $view
+ * @param type $query 
+ */
+function mn_op_views_query_alter(&$view, &$query) {
+
+  if ($view->name == 'artist_artworks') {
+
+    // Add a join to the draggableviews_structure table which is maintained by the 'manage-artworks-sort' view
+    // and by the draggable_views contrib module
+    // We need to use the sort order from there to order this view
+    $join = new views_join();
+    $join->table = 'draggableviews_structure';
+    $join->field = 'entity_id';
+    $join->left_table = 'node';
+    $join->left_field = 'nid';
+    $join->type = 'left';
+    $query->add_relationship('draggableviews_structure', $join, 'node');
+  
+    $query->orderby[1]['field'] = "draggableviews_structure.weight";
+    $query->orderby[1]['direction'] = "ASC";
+  }
+}
+
+/**
+ * Implements hook_form_alter().
+ *
+ */
+function mn_op_form_alter(&$form, &$form_state, $form_id) {
+  if ($form_id == 'views_form_manage_artworks_sort_page') {
+    $form['actions']['submit']['#submit'][] = 'mn_op_draggable_view_submit';
+  }
+}
+
+function mn_op_draggable_view_submit($form, &$form_state) {
+  drupal_set_message('Successfully updated');
+}
