@@ -200,7 +200,9 @@ function mnartists_search_default_search_api_index() {
         "body:value" : { "type" : "text" },
         "field_date:value" : { "type" : "date" },
         "field_date:value2" : { "type" : "date" },
-        "field_date:duration" : { "type" : "duration" }
+        "field_date:duration" : { "type" : "duration" },
+        "op_dates:value" : { "type" : "date" },
+        "op_dates:value2" : { "type" : "date" }
       }
     },
     "enabled" : "1",
