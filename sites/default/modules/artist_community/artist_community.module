@@ -1137,12 +1137,14 @@ function _artist_community_get_items_query ($local_og = null,
                     } else {
                         $contextQueryString = "($typeQuery)";
                     }
-		    if ($type == 'opportunity') {
+                    
+                    if ($type == 'opportunity') {
                       if (((!isset($_GET['content']['opportunity_include_past']) && isset($_GET['content']['opportunity_include_past']) != '1'))) {
                         $contextQueryString .= " AND (ds_op_dates\:value2:[$solr_now TO *])"; //only show current events
                       } 
-                      $contentFilters['node'][] = $contextQueryString;
-		    }
+                    }
+                    
+                    $contentFilters['node'][] = $contextQueryString;
 
                     if ($type == 'artwork') {
                         $contentFilters['node'][] = AC_ARTWORK_PUBLIC_FIELD . ':true';
