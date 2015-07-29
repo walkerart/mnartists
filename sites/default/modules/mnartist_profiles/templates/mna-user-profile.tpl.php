@@ -23,19 +23,19 @@
         $is_flagged = TRUE;
     }
 ?>
-<h2 class="pane-title block-title"><?= $profile_type_display ?></h2>
-<h1><?= $top_name ?></h1>
+<h2 class="pane-title block-title"><?php print  $profile_type_display ?></h2>
+<h1><?php print  $top_name ?></h1>
 <?php if(user_is_logged_in()) { ?>
     <div class="pane-mnartist-collections-mna-collections-star">
-        <ul class="menu follow-menu<?php if ($is_flagged) { ?> collected<? } ?>">
+        <ul class="menu follow-menu<?php if ($is_flagged) { ?> collected<?php } ?>">
             <li class="first">
-                <a class='star-link'><img src='/<?= drupal_get_path('theme', 'mnartists') ?>/images/fav-star.svg' class='star-icon' alt="flag this" /></a>
+                <a class='star-link'><img src='/<?php print  drupal_get_path('theme', 'mnartists') ?>/images/fav-star.svg' class='star-icon' alt="flag this" /></a>
                 <ul>
-                    <li class='follow-this'><?= flag_create_link('usercollections', $context_user->uid) ?></li>
+                    <li class='follow-this'><?php print  flag_create_link('usercollections', $context_user->uid) ?></li>
                     <hr>
                     <li class='share-this collect-title'>SHARE VIA:</li>
-                    <li class='share-this'><a href='#' onclick='window.open("https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent("<?= "$base_url/".current_path() ?>"), "facebook-share-dialog", "width=626,height=436"); return false;'>FACEBOOK</a></li>
-                    <li class='share-this'><a href='#' onclick='window.open("https://twitter.com/share?url=" + encodeURIComponent("<?= "$base_url/".current_path() ?>"), "twitter-share-dialog", "width=626,height=436"); return false;'>TWITTER</a></li>
+                    <li class='share-this'><a href='#' onclick='window.open("https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent("<?php print  "$base_url/".current_path() ?>"), "facebook-share-dialog", "width=626,height=436"); return false;'>FACEBOOK</a></li>
+                    <li class='share-this'><a href='#' onclick='window.open("https://twitter.com/share?url=" + encodeURIComponent("<?php print  "$base_url/".current_path() ?>"), "twitter-share-dialog", "width=626,height=436"); return false;'>TWITTER</a></li>
                 </ul>
             </li>
         </ul>
@@ -45,48 +45,48 @@
 <div class='user-profile'>
     <div class='user-profile-data'>
         <div class='left'>
-            <div class='profile-image-wrapper'><img src='<?= $picture_uri ?>'></div>
+            <div class='profile-image-wrapper'><img src='<?php print  $picture_uri ?>'></div>
         </div>
         <div class='right'>
             <?php if($is_org && isset($fieldset['field_organization_type'])) { ?>
                 <div class='profile-org-type'>
-                    <?= $fieldset['field_organization_type'][0]['value']['#title'] ?>
+                    <?php print  $fieldset['field_organization_type'][0]['value']['#title'] ?>
                 </div>
             <?php } ?>
             <?php if(isset($fieldset['field_address'])) { ?>
                 <div class='profile-city-address'>
-                    <?= $fieldset['field_address'][0]['value']['#markup'] ?>
+                    <?php print  $fieldset['field_address'][0]['value']['#markup'] ?>
                 </div>
             <?php } ?>
             <?php if(isset($fieldset['field_city']) && isset($fieldset['field_state'])) { ?>
                 <div class='profile-city-state'>
-                    <?= $fieldset['field_city'][0]['value']['#markup'] ?>, <?= $fieldset['field_state'][0]['value']['#markup'] ?>
+                    <?php print  $fieldset['field_city'][0]['value']['#markup'] ?>, <?php print  $fieldset['field_state'][0]['value']['#markup'] ?>
                 </div>
             <?php } ?>
             <?php if(isset($fieldset['field_county'])) { ?>
                 <div class='profile-county'>
-                    <span class='profile-title'>County:</span> <?= $fieldset['field_county'][0]['value']['#markup'] ?>
+                    <span class='profile-title'>County:</span> <?php print  $fieldset['field_county'][0]['value']['#markup'] ?>
                 </div>
             <?php } ?>
             <?php if(isset($fieldset['field_full_name'])) { ?>
                 <div class='profile-full-name'>
-                    <span class='profile-title'>Contact Name:</span> <?= (isset($fs['field_first_name'])) ? $fs['field_first_name'][0]['#markup'] : '' ?> <?= ($fs['field_last_name']) ? $fs['field_last_name'][0]['#markup'] : '' ?>
+                    <span class='profile-title'>Contact Name:</span> <?php print  (isset($fs['field_first_name'])) ? $fs['field_first_name'][0]['#markup'] : '' ?> <?php print  ($fs['field_last_name']) ? $fs['field_last_name'][0]['#markup'] : '' ?>
                 </div>
-            <? } ?>
+            <?php } ?>
             <?php if(isset($fieldset['field_phone'])) { ?>
                 <div class='profile-phone'>
-                    <span class='profile-title'>Phone:</span> <?= $fieldset['field_phone'][0]['value']['#markup'] ?>
+                    <span class='profile-title'>Phone:</span> <?php print  $fieldset['field_phone'][0]['value']['#markup'] ?>
                 </div>
-            <? } ?>
+            <?php } ?>
             <?php if(isset($fieldset['field_public_email'])) { ?>
                 <div class='profile-email'>
-                    <span class='profile-title'>E-Mail:</span> <?= $fieldset['field_public_email'][0]['value']['#markup'] ?>
+                    <span class='profile-title'>E-Mail:</span> <?php print  $fieldset['field_public_email'][0]['value']['#markup'] ?>
                 </div>
-            <? } else if(isset($fieldset['field_email'])) { ?>
+            <?php } else if(isset($fieldset['field_email'])) { ?>
                 <div class='profile-email'>
-                    <span class='profile-title'>E-Mail:</span> <?= $fieldset['field_email'][0]['value']['#markup'] ?>
+                    <span class='profile-title'>E-Mail:</span> <?php print  $fieldset['field_email'][0]['value']['#markup'] ?>
                 </div>
-            <? } ?>
+            <?php } ?>
             <?php if(isset($fieldset['field_websites'])) { ?>
                 <div class='profile-websites'>
                     <span class='profile-title'>Websites:</span>
@@ -100,22 +100,22 @@
 
                         }
                     ?>
-                    <?= implode(', ', $websites_display) ?>
+                    <?php print  implode(', ', $websites_display) ?>
                 </div>
-            <? } ?>
+            <?php } ?>
             <?php if(isset($fieldset['field_twitter']) || isset($fieldset['field_facebook'])) { ?>
                 <div class='social-links'>
                     <?php if(isset($fieldset['field_twitter'])) { ?>
                         <div class='profile-twitter'>
-                            <a class='twitter' href='http://www.twitter.com/<?= $fieldset['field_twitter'][0]['value']['#markup'] ?>'>
-                                <?= $fieldset['field_twitter'][0]['value']['#markup'] ?>
+                            <a class='twitter' href='http://www.twitter.com/<?php print  $fieldset['field_twitter'][0]['value']['#markup'] ?>'>
+                                <?php print  $fieldset['field_twitter'][0]['value']['#markup'] ?>
                             </a>
                         </div>
                     <?php }
                     if(isset($fieldset['field_facebook'])) { ?>
                         <div class='profile-facebook'>
-                            <a class='facebook' href='http://www.facebook.com/<?= $fieldset['field_facebook'][0]['value']['#markup'] ?>'>
-                                <?= $fieldset['field_facebook'][0]['value']['#markup'] ?>
+                            <a class='facebook' href='http://www.facebook.com/<?php print  $fieldset['field_facebook'][0]['value']['#markup'] ?>'>
+                                <?php print  $fieldset['field_facebook'][0]['value']['#markup'] ?>
                             </a>
                         </div>
                     <?php } ?>
@@ -123,11 +123,11 @@
             <?php }
                 $all_roles = mnartist_profiles_get_artwork_roles_for_user($context_user->uid);
                 if (!empty($all_roles)) { ?>
-                <div class="roles"><?= implode(', ', $all_roles) ?></div>
-            <? } ?>
+                <div class="roles"><?php print  implode(', ', $all_roles) ?></div>
+            <?php } ?>
             <?php if ($user->uid === $context_user->uid || in_array('administrator', $user->roles)) { ?>
                 <div class="edit-button">
-                    <a href="/user/<?= $context_user->uid ?>/edit">Edit</a>
+                    <a href="/user/<?php print  $context_user->uid ?>/edit">Edit</a>
                 </div>
             <?php } ?>
         </div>
@@ -136,24 +136,24 @@
 <?php if (!$is_org) { ?>
     <div id='tabs'>
         <ul>
-            <li><a href='#tabs-1'>About <?= $top_name ?></a></li>
+            <li><a href='#tabs-1'>About <?php print  $top_name ?></a></li>
             <?php
                 $i = 1;
                 if(isset($fieldset['field_education']) || isset($fieldset['field_work_experience'])
                  || isset($fieldset['field_teaching_experience']) || isset($fieldset['field_exhibition_and_performance']) ) {
                     $i++;
                     $iexperience = $i; ?>
-                    <li><a href='#tabs-<?= $i ?>'>Experience</a></li>
+                    <li><a href='#tabs-<?php print  $i ?>'>Experience</a></li>
             <?php }
                 if(isset($fieldset['field_galleries']) || isset($fieldset['field_collections']) || isset($fieldset['field_related_organizations'])) {
                     $i++;
                     $iassociation = $i; ?>
-                    <li><a href='#tabs-<?= $i ?>'>Associations</a></li>
+                    <li><a href='#tabs-<?php print  $i ?>'>Associations</a></li>
             <?php }
                 if(isset($fieldset['field_publications'])) {
                     $i++;
                     $ipresspub = $i; ?>
-                    <li><a href='#tabs-<?= $i ?>'>Press</a></li>
+                    <li><a href='#tabs-<?php print  $i ?>'>Press</a></li>
             <?php } ?>
         </ul>
         <div id="tabs-1">
@@ -161,14 +161,14 @@
                 <div class='wrap biography'>
                     <h5 class='profile-title'>Biography</h5>
                     <?php if(isset($fieldset['field_bio'])) { ?>
-                        <p><?= $fieldset['field_bio'][0]['value']['#markup'] ?></p>
+                        <p><?php print  $fieldset['field_bio'][0]['value']['#markup'] ?></p>
                     <?php } ?>
                 </div>
             <?php } ?>
             <?php if(isset($fieldset['field_general_statement'])) {  ?>
                 <div class='wrap artist-statement'>
                     <h5 class='profile-title'>Artist Statement</h5>
-                    <p><?= $fieldset['field_general_statement'][0]['value']['#markup'] ?></p>
+                    <p><?php print  $fieldset['field_general_statement'][0]['value']['#markup'] ?></p>
                 </div>
             <?php } ?>
             <?php 
@@ -224,12 +224,12 @@
                  || isset($fieldset['field_teaching_experience']) || isset($fieldset['field_exhibition_and_performance']) ) {
             // Experience Tab
             ?>
-            <div id='tabs-<?= $iexperience ?>'>
-                <p><?= $fieldset['field_exhibition_and_performance'][0]['value'] ?></p>
-                <p><?= $fieldset['field_work_experience'][0]['value'] ?></p>
-                <p><?= $fieldset['field_teaching_experience'][0]['value'] ?></p>
+            <div id='tabs-<?php print  $iexperience ?>'>
+                <p><?php print  $fieldset['field_exhibition_and_performance'][0]['value'] ?></p>
+                <p><?php print  $fieldset['field_work_experience'][0]['value'] ?></p>
+                <p><?php print  $fieldset['field_teaching_experience'][0]['value'] ?></p>
                 <div class='wrap education'>
-                    <p><?= $fieldset['field_education'][0]['value'] ?></p>
+                    <p><?php print  $fieldset['field_education'][0]['value'] ?></p>
                 </div>
             </div>
         <?php } ?>
@@ -238,7 +238,7 @@
         <?php if(isset($fieldset['field_galleries']) || isset($fieldset['field_collections']) || isset($fieldset['field_related_organizations'])) {
             // Associations Tab
             ?>
-            <div id='tabs-<?= $iassociation ?>'>
+            <div id='tabs-<?php print  $iassociation ?>'>
                 <?php
                     foreach($fieldset['field_galleries'] as $gal) {
                         print '<p>' . render($gal['value']) . '</p>';
@@ -257,7 +257,7 @@
         <?php if(isset($fieldset['field_publications'])) {
             // Press/Publications Tab
             ?>
-            <div id='tabs-<?= $ipresspub ?>'>
+            <div id='tabs-<?php print  $ipresspub ?>'>
                 <div class='field_resume'>
                     <p><?php
                         foreach($fieldset['field_publications'] as $pub) {
@@ -271,13 +271,13 @@
 <?php } else { ?>
     <div id='tabs'>
         <ul>
-            <li><a href='#tabs-1'>About <?= $top_name ?></a></li>
+            <li><a href='#tabs-1'>About <?php print  $top_name ?></a></li>
         </ul>
         <div id="tabs-1">
             <?php if(isset($fieldset['field_description'])) { ?>
                 <div class='wrap org-statement'>
                     <h5 class='profile-title'>Organization Description/Mission</h5>
-                    <p><?= $fieldset['field_description'][0]['value']['#markup'] ?></p>
+                    <p><?php print  $fieldset['field_description'][0]['value']['#markup'] ?></p>
                 </div>
             <?php } ?>
         </div>
@@ -289,6 +289,10 @@ jQuery(function() {
     jQuery("#tabs").tabs();
 });
 </script>
+
+
+
+
 
 
 
