@@ -760,7 +760,7 @@ function url_query_master($text, $path, $key, $val, $attributes = array()) {
             // filter, but not directly, so we're going to go directly
             // against $_GET here to build the on/off querystrings we
             // want.
-      
+
             if (!isset($query['content']['event_include_past']) ) {
                 $new_arr = array('content' => array('event_include_past' => TRUE, 'event' => TRUE));
                 $no_q = $_GET;
@@ -783,7 +783,7 @@ function url_query_master($text, $path, $key, $val, $attributes = array()) {
                 }
                 $new_arr = $no_q;
             }
-                        
+
             $event_sub_items[] = "<span class='community-content-menu-separator'></span>";
             $event_sub_items[] = l("Include Past Events", 'community', array(
                 'query' => $new_arr,
@@ -805,13 +805,13 @@ function url_query_master($text, $path, $key, $val, $attributes = array()) {
             }
             $opportunity_category_vocab_tree = taxonomy_get_tree(OPPORTUNITY_TYPE_VID);
             $opportunity_sub_items = _artist_community_build_subitems_for_item($val, $opportunity_category_vocab_tree, $opportunity_category_facets_rec, $query);
-            
+
              // past opportunity
             $past_opportunity_attributes = array();
             if (isset($_GET['content']['opportunity_include_past']) && $_GET['content']['opportunity_include_past'] == '1') {
                 $past_opportunity_attributes['class'] = array('active-trail','selected');
             }
-            
+
             //reusing what was already used for events
             if (!isset($query['content']['opportunity_include_past'])) {
                 $new_arr = array('content' => array('opportunity_include_past' => TRUE, 'opportunity' => TRUE));
@@ -841,7 +841,7 @@ function url_query_master($text, $path, $key, $val, $attributes = array()) {
                 'query' => $new_arr,
                 'attributes' => $past_opportunity_attributes,
             ));
-            
+
             if (isset($opportunity_sub_items)) {
                 $output .= theme('item_list', array('items' => $opportunity_sub_items));
             }
@@ -886,14 +886,14 @@ function _artist_community_build_subitems_for_item ($val, $taxonomy_terms, $face
             count($query['content']) == 2) {
             $query['content']['event'] = 1;
         }
-        
+
         if (isset($query['content']['opportunity_include_past']) &&
             $query['content']['opportunity_include_past'] == 1 &&
             empty($query['content']['event']) &&
             count($query['content']) == 2) {
             $query['content']['opportunity'] = 1;
         }
-        
+
 
 
         // Build a sub menu of taxonomy terms
@@ -918,8 +918,8 @@ function artist_community_entity_view($entity, $type, $view_mode, $langcode) {
 // endpoint for getting community results
 function artist_community_get_items () {
     // get url params, then pass them on
-    $local_og = (isset($_GET['og'])) ? $_GET['og'] : null;
-    $local_content = (isset($_GET['content'])) ? $_GET['content'] : null;
+    $local_og = (isset($_GET['og']) && !empty($_GET['og'])) ? $_GET['og'] : null;
+    $local_content = (isset($_GET['content']) && !empty($_GET['content'])) ? $_GET['content'] : null;
     $offset = (isset($_GET['start']) && is_numeric($_GET['start'])) ? intval($_GET['start']) : null;
     $limit = (isset($_GET['rows']) && is_numeric($_GET['rows'])) ? intval($_GET['rows']) : intval(SEARCH_DEFAULT_ROWS);
     $local_sort = (isset($_GET['sort'])) ? $_GET['sort'] : null;
@@ -978,13 +978,32 @@ function _artist_community_get_items_query ($local_og = null,
 
     // add the search term if a user entered one
     if (isset($_GET['global_search']) && !empty($_GET['global_search']) && !$filtered_by_user_only) {
-        // @ddamico: there is surely a better way to do this,
-        // but I couldn't get exact term searches to work unless
-        // I included the search term both with and without
-        // the wildcard (it's as if the * is behaving as 1 or more
-        // instead of 0 or more)
-        $globalQs = AC_GLOBAL_SEARCH_FIELD.":{$_GET['global_search']}* OR ".AC_GLOBAL_SEARCH_FIELD.":{$_GET['global_search']} OR ";
-        $globalQs .= AC_PROFILE_SEARCH_FIELD.":{$_GET['global_search']}* OR ".AC_PROFILE_SEARCH_FIELD.":{$_GET['global_search']}";
+        // node search
+        // exact match + boost 5
+        $globalQs = sprintf('%s:"%s"^5', AC_GLOBAL_SEARCH_FIELD, $_GET['global_search']);
+
+        // wildcard partial match + boost 2
+        $globalQs .= ' OR ';
+        $globalQs .= sprintf('%s:"%s*"', AC_GLOBAL_SEARCH_FIELD, $_GET['global_search']);
+        // tokenized word match
+        if (strpos($_GET['global_search'], ' ') > 0) {
+            $globalQs .= ' OR ';
+            $globalQs .= sprintf('%s:"%s"~10', AC_GLOBAL_SEARCH_FIELD, $_GET['global_search']);
+        }
+
+        // user profile search
+        // exact match + boost 10
+        $globalQs .= ' OR ';
+        $globalQs .= sprintf('%s:"%s"^10', AC_PROFILE_SEARCH_FIELD, $_GET['global_search']);
+        // wildcard partial match + boost 2
+        $globalQs .= ' OR ';
+        $globalQs .= sprintf('%s:"%s*"', AC_PROFILE_SEARCH_FIELD, $_GET['global_search']);
+        // tokenized word match
+        if (strpos($_GET['global_search'], ' ') > 0) {
+            $globalQs .= ' OR ';
+            $globalQs .= sprintf('%s:"%s"~10', AC_PROFILE_SEARCH_FIELD, $_GET['global_search']);
+        }
+
         $solarium_query->setQuery($globalQs);
         // dpm($globalQs, '$globalQs');
     }
@@ -1046,7 +1065,7 @@ function _artist_community_get_items_query ($local_og = null,
 
             // Add taxonomy filters for a specific taxonomy
             if (is_array($terms)) {
-              
+
                 foreach($terms as $term) {
                     $nodeQueryBuilder[] = AC_MEDIUM_FIELD.":$term" . $content_fiter;
                 }
@@ -1076,7 +1095,7 @@ function _artist_community_get_items_query ($local_og = null,
     $nodeQueryBuilderString = (count($nodeQueryBuilder) !== 0) ? ' AND ('.implode(' OR ', $nodeQueryBuilder).')' : '';
     $userQueryBuilderString = (count($userQueryBuilder) !== 0) ? ' AND ('.implode(' OR ', $userQueryBuilder).')' : '';
 
-    if ($local_content !== null) {
+    if (!empty($local_content)) {
 
         if (count($local_content) == 1 &&
             !(isset($_GET['og'])) &&
@@ -1098,9 +1117,9 @@ function _artist_community_get_items_query ($local_og = null,
         );
 
 
-        foreach($local_content as $type => $value) {
+        foreach ($local_content as $type => $value) {
             $forSaleQuery = null;
-            switch($type) {
+            switch ($type) {
                 case 'artwork':
                 case 'artwork_for_sale':
                 case 'article':
@@ -1137,13 +1156,13 @@ function _artist_community_get_items_query ($local_og = null,
                     } else {
                         $contextQueryString = "($typeQuery)";
                     }
-                    
+
                     if ($type == 'opportunity') {
                       if (((!isset($_GET['content']['opportunity_include_past']) && isset($_GET['content']['opportunity_include_past']) != '1'))) {
                         $contextQueryString .= " AND (ds_op_dates\:value2:[$solr_now TO *])"; //only show current events
-                      } 
+                      }
                     }
-                    
+
                     $contentFilters['node'][] = $contextQueryString;
 
                     if ($type == 'artwork') {
@@ -1151,6 +1170,12 @@ function _artist_community_get_items_query ($local_og = null,
                     }
                     if ($type === "article" && $value[0] !== ABOUT_TID) {
                         $contentFilters['node'][] = "-" . AC_ARTICLE_CATEGORY_FIELD . ":" . ABOUT_TID;
+                    }
+                    if ($type == 'opportunity') {
+                        // Has been announced
+                        $contentFilters['node'][] = AC_OPP_ANNOUNCE_DATE_FIELD . ":[* TO $solr_now]";
+                        // Not yet closed
+                        $contentFilters['node'][] = "ds_op_dates\:value2:[$solr_now TO *]";
                     }
 
                     if ($filtered_by_user_only) {
@@ -1233,6 +1258,7 @@ function _artist_community_get_items_query ($local_og = null,
 
         }
         $contentFilterQueryStrings = array();
+
         if (!empty($contentFilters['node'])) {
             $contentFilterQueryStrings[] = '(index_id:'.NODE_INDEX.' AND is_status:1 AND '.implode(' AND ', $contentFilters['node']).')';
         }
@@ -1262,6 +1288,15 @@ function _artist_community_get_items_query ($local_og = null,
         $solarium_query->setRows($limit);
     }
 
+    // if no keyword search (by search score), should default sort by created date
+    if (!isset($_GET['global_search'])) {
+        $local_sort = 'recent';
+
+        if (is_null($local_sort_direction)) {
+            $local_sort_direction = 'DESC';
+        }
+    }
+
     // if we're filtered by events, sort by event start date
     // instead of date created
     if ($filtered_by_events_only) {
@@ -1272,21 +1307,21 @@ function _artist_community_get_items_query ($local_og = null,
             $solarium_query->addSort(AC_SORT_BY_DATE_FIELD, $solarium_query::SORT_ASC);
         }
 
-    } elseif (!$filtered_by_user_only) {
+    } elseif (!is_null($local_sort)) {
         // ss_full_name
         $sort_key = AC_CREATED_FIELD;
         $sort_direction = $solarium_query::SORT_DESC;
-        if (!is_null($local_sort)) {
-            if ($local_sort === 'alpha') {
-                $sort_key = AC_SORT_BY_NAME_FIELD;
-            } else if ($local_sort === 'date') {
-                $sort_key = AC_SORT_BY_DATE_FIELD;
-            } else if ($local_sort === 'recent') {
-                $sort_key = AC_SORT_BY_RECENT_FIELD;
-            } else if ($local_sort === 'collected') {
-                $sort_key = 'is_flags_count';
-            }
+
+        if ($local_sort === 'alpha') {
+            $sort_key = AC_SORT_BY_NAME_FIELD;
+        } else if ($local_sort === 'date') {
+            $sort_key = AC_SORT_BY_DATE_FIELD;
+        } else if ($local_sort === 'recent') {
+            $sort_key = AC_SORT_BY_RECENT_FIELD;
+        } else if ($local_sort === 'collected') {
+            $sort_key = 'is_flags_count';
         }
+
         if (!is_null($local_sort_direction) && $local_sort_direction === 'ASC') {
             $sort_direction = $solarium_query::SORT_ASC;
         }
@@ -1299,7 +1334,8 @@ function _artist_community_get_items_query ($local_og = null,
     if (isset($_GET['og'])) {
         $facet_query_string = implode(' OR ', array_merge($nodeQueryBuilder, $userQueryBuilder));
         unset($search_facets);
-    } else if (isset($_GET['global_search']) && !empty($_GET['global_search'])) {
+    }
+    elseif (isset($_GET['global_search']) && !empty($_GET['global_search'])) {
         $facet_query_string = $globalQs;
         unset($search_facets);
     }
@@ -1324,7 +1360,6 @@ function _artist_community_get_items_query ($local_og = null,
     // dpm($debugResult->getQueryParser());
     // dpm($debugResult->getOtherQuery());
     // dvm($debugResult->getExplain());
-
 
     // if we actually want markup back, get it ready
     if ($rendernodes === true) {
@@ -1357,12 +1392,16 @@ function _artist_community_get_items_query ($local_og = null,
             $new_start = (!is_null($current_start) && !is_null($current_rows)) ? $current_start + $current_rows : 0;
 
             $new_get = array(
-                'og' => (isset($_GET['og'])) ? $_GET['og'] : null,
-                'content' => (isset($_GET['content'])) ? $_GET['content'] : null,
-                'rows' => (isset($_GET['rows'])) ? $_GET['rows'] : SEARCH_DEFAULT_ROWS,
-                'start' => $new_start,
+                'query' => array(
+                    'og' => (isset($_GET['og'])) ? $_GET['og'] : null,
+                    'content' => (isset($_GET['content'])) ? $_GET['content'] : null,
+                    'global_search' => (isset($_GET['global_search'])) ? $_GET['global_search'] : null,
+                    'rows' => (isset($_GET['rows'])) ? $_GET['rows'] : SEARCH_DEFAULT_ROWS,
+                    'start' => $new_start,
+                ),
             );
-            $all_results[] = '<div class="item item-more"><a href="/communitygetitems?'.http_build_query($new_get).'">Show me more!</a></div>';
+
+            $all_results[] = '<div class="item item-more">'. l(t('Show me more!'), 'communitygetitems', $new_get) . '</div>';
         } else {
             $all_results[] = '<li class="feed-item infinify-terminator"></li>';
         }
@@ -1398,11 +1437,11 @@ function _get_location_coords_from_search_string ($search_string) {
     return false;
 }
 
-function _set_community_query_facets ($filter_query_string = null) {
+function _set_community_query_facets($filter_query_string = null) {
 
     global $solarium_config;
     global $search_facets;
-    
+
     // DB & Solr timezone is UTC, site timezone is America/Chicago
     // trying to correct Solr query for NOW
     //reusing what has been added
@@ -1412,6 +1451,10 @@ function _set_community_query_facets ($filter_query_string = null) {
         $client = new Solarium\Client($solarium_config);
         $solarium_query = $client->createSelect();
         $solarium_query->createFilterQuery('published_filter')->setQuery('is_status:1');
+
+        // DB & Solr timezone is UTC, site timezone is America/Chicago
+        // trying to correct Solr query for NOW
+        $solr_now = format_date(time(), 'custom', 'Y-m-d\TH:i:s\Z', 'UTC');
 
         // put together the base query string, taking past events
         // into account if needed
@@ -1428,7 +1471,7 @@ function _set_community_query_facets ($filter_query_string = null) {
                 $base_query_string = "(index_id:".NODE_INDEX." AND ((".AC_TYPE_FIELD.":article OR (".AC_TYPE_FIELD.":artwork AND ".AC_ARTWORK_PUBLIC_FIELD
                 .":true) OR (".AC_TYPE_FIELD.":opportunity AND ds_op_dates\:value2:[$solr_now TO *]) OR (".AC_TYPE_FIELD.":event AND ds_field_date\:value:[NOW TO *])))) OR (index_id:".USER_INDEX." AND ".AC_SORT_BY_NAME_FIELD.":['' TO *])";
             }
-            $finished_query_string = (!is_null($filter_query_string)) ? "($base_query_string) AND $filter_query_string" : $base_query_string;
+            $finished_query_string = (!empty($filter_query_string)) ? "($base_query_string) AND $filter_query_string" : $base_query_string;
         }
         $solarium_query->createFilterQuery('community')->setQuery($finished_query_string);
 
@@ -1453,7 +1496,7 @@ function _set_community_query_facets ($filter_query_string = null) {
         if (isset($_GET['content']['event_include_past']) && $_GET['content']['event_include_past'] == '1') {
             $facetSet->createFacetQuery('events')->setQuery('index_id:'.NODE_INDEX.' AND '.AC_TYPE_FIELD.':event');
         } else {
-            $facetSet->createFacetQuery('events')->setQuery('index_id:'.NODE_INDEX.' AND '.AC_TYPE_FIELD.':event  AND ds_field_date\:value:[NOW TO *]');
+            $facetSet->createFacetQuery('events')->setQuery('index_id:'.NODE_INDEX.' AND '.AC_TYPE_FIELD.":event  AND ds_field_date\:value:[$solr_now TO *]");
         }
         $facetSet->createFacetQuery('articles')->setQuery('index_id:'.NODE_INDEX.' AND '.AC_TYPE_FIELD.':article');
         $facetSet->createFacetQuery('artworks')->setQuery('index_id:'.NODE_INDEX.' AND '.AC_TYPE_FIELD.':artwork AND '.AC_ARTWORK_PUBLIC_FIELD.':true');
