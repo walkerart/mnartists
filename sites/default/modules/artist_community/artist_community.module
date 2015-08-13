@@ -1098,13 +1098,13 @@ function _artist_community_get_items_query ($local_og = null,
     if (!empty($local_content)) {
 
         if (count($local_content) == 1 &&
-            !(isset($_GET['og'])) &&
+            empty($local_og) &&
             isset($local_content['event'])) {
             $filtered_by_events_only = TRUE;
         }
 
         if (count($local_content) == 1 &&
-            !(isset($_GET['og'])) &&
+            empty($local_og) &&
             isset($local_content['event']) &&
             $event_date_valid) {
 
@@ -1301,13 +1301,14 @@ function _artist_community_get_items_query ($local_og = null,
     // instead of date created
     if ($filtered_by_events_only) {
 
-        if (!is_null($local_sort_direction) && $local_sort_direction === 'DESC') {
-            $solarium_query->addSort(AC_SORT_BY_DATE_FIELD, $solarium_query::SORT_DESC);
-        } else {
+        if (!empty($local_sort_direction) && $local_sort_direction === 'ASC') {
             $solarium_query->addSort(AC_SORT_BY_DATE_FIELD, $solarium_query::SORT_ASC);
         }
-
-    } elseif (!is_null($local_sort)) {
+        else {
+            $solarium_query->addSort(AC_SORT_BY_DATE_FIELD, $solarium_query::SORT_DESC);
+        }
+    }
+    elseif (!is_null($local_sort)) {
         // ss_full_name
         $sort_key = AC_CREATED_FIELD;
         $sort_direction = $solarium_query::SORT_DESC;
