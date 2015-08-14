@@ -1307,9 +1307,7 @@ function _artist_community_get_items_query ($local_og = null,
             $solarium_query->addSort(AC_SORT_BY_DATE_FIELD, $solarium_query::SORT_ASC);
         }
 
-    } 
-    elseif (!empty($_GET['sort'])) {
-        $local_sort = $_GET['sort'];
+    } elseif (!is_null($local_sort)) {
         // ss_full_name
         $sort_key = AC_CREATED_FIELD;
         $sort_direction = $solarium_query::SORT_DESC;
@@ -1421,7 +1419,6 @@ function _artist_community_get_items_query ($local_og = null,
             }
         }
     }
-    
     return array(
         'results' => $all_results,
         'total_num_results' => $resultset->getNumFound()
