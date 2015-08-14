@@ -1098,13 +1098,11 @@ function _artist_community_get_items_query ($local_og = null,
     if (!empty($local_content)) {
 
         if (count($local_content) == 1 &&
-            empty($local_og) &&
             isset($local_content['event'])) {
             $filtered_by_events_only = TRUE;
         }
 
         if (count($local_content) == 1 &&
-            empty($local_og) &&
             isset($local_content['event']) &&
             $event_date_valid) {
 
@@ -1288,19 +1286,15 @@ function _artist_community_get_items_query ($local_og = null,
         $solarium_query->setRows($limit);
     }
 
-    // if no keyword search (by search score), should default sort by created date
+    // if no keyword search (by search score), should default sort by created date if not set
     if (!isset($_GET['global_search'])) {
-        $local_sort = 'recent';
-
-        if (is_null($local_sort_direction)) {
-            $local_sort_direction = 'DESC';
-        }
+        $local_sort = (isset($_GET['sort'])) ? $_GET['sort'] : 'recent';
+        $local_sort_direction = (isset($_GET['sort_direction'])) ? $_GET['sort_direction'] : 'DESC';
     }
 
     // if we're filtered by events, sort by event start date
     // instead of date created
     if ($filtered_by_events_only) {
-
         if (!empty($local_sort_direction) && $local_sort_direction === 'ASC') {
             $solarium_query->addSort(AC_SORT_BY_DATE_FIELD, $solarium_query::SORT_ASC);
         }
@@ -1308,24 +1302,27 @@ function _artist_community_get_items_query ($local_og = null,
             $solarium_query->addSort(AC_SORT_BY_DATE_FIELD, $solarium_query::SORT_DESC);
         }
     }
-    elseif (!is_null($local_sort)) {
+    else {
         // ss_full_name
         $sort_key = AC_CREATED_FIELD;
         $sort_direction = $solarium_query::SORT_DESC;
 
-        if ($local_sort === 'alpha') {
-            $sort_key = AC_SORT_BY_NAME_FIELD;
-        } else if ($local_sort === 'date') {
-            $sort_key = AC_SORT_BY_DATE_FIELD;
-        } else if ($local_sort === 'recent') {
-            $sort_key = AC_SORT_BY_RECENT_FIELD;
-        } else if ($local_sort === 'collected') {
-            $sort_key = 'is_flags_count';
+        if (!empty($local_sort)) {
+            if ($local_sort === 'alpha') {
+                $sort_key = AC_SORT_BY_NAME_FIELD;
+            } else if ($local_sort === 'date') {
+                $sort_key = AC_SORT_BY_DATE_FIELD;
+            } else if ($local_sort === 'recent') {
+                $sort_key = AC_SORT_BY_RECENT_FIELD;
+            } else if ($local_sort === 'collected') {
+                $sort_key = 'is_flags_count';
+            }
         }
 
-        if (!is_null($local_sort_direction) && $local_sort_direction === 'ASC') {
+        if (!empty($local_sort_direction) && $local_sort_direction === 'ASC') {
             $sort_direction = $solarium_query::SORT_ASC;
         }
+
         $solarium_query->addSort($sort_key, $sort_direction);
     }
 
