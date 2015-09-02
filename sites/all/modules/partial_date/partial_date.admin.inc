@@ -1177,8 +1177,17 @@ function _partial_date_element_validate($element) {
 
   $day = empty($element['#value']['day']) ? 1 : $element['#value']['day'];
   $month = empty($element['#value']['month']) ? 1 : $element['#value']['month'];
-  $year = empty($element['#value']['year']) ? NULL : $element['#value']['year'];
-
+  
+  if (empty($element['#value']['year'])) {  //if date is empty set the year value to NULL
+    $year = NULL;
+  } 
+  elseif(!preg_match('(^[0-9]{2}$|^[0-9]{4}$)', $element['#value']['year'])) { //checks formatting on date, needs to be either a 2 or 4 digits and numeric
+    form_error($element, t('The %label field need to have a year format of XX or XXXX. Year ranges are not allow XX-YY or XXXX-YYYY', array('%label' => $element['#title'])));
+  }
+  else {
+    $year = $element['#value']['year'];
+  }
+  
   $months = partial_date_month_matrix($year);
   if (!isset($months[$month - 1])) {
     form_error($element, t('The specified month is invalid.'));
