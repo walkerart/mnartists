@@ -1178,11 +1178,13 @@ function _partial_date_element_validate($element) {
   $day = empty($element['#value']['day']) ? 1 : $element['#value']['day'];
   $month = empty($element['#value']['month']) ? 1 : $element['#value']['month'];
   
-  if (empty($element['#value']['year'])) {  //if date is empty set the year value to NULL
+  //if date is empty set the year value to NULL
+  if (empty($element['#value']['year'])) {  
     $year = NULL;
   } 
-  elseif(!preg_match('(^[0-9]{2}$|^[0-9]{4}$)', $element['#value']['year'])) { //checks formatting on date, needs to be either a 2 or 4 digits and numeric
-    form_error($element, t('The %label field need to have a year format of XX or XXXX. Year ranges are not allow XX-YY or XXXX-YYYY', array('%label' => $element['#title'])));
+  //checks formatting on date, needs to be either a 2 or 4 digits and numeric
+  elseif(!preg_match('(^[0-9]{2}$|^[0-9]{4}$)', $element['#value']['year'])) { 
+    form_error($element, t('The Date field requires a year format of YY or YYYY. Year ranges, YY-YY or YYYY-YYYY, are not allowed in this field. If your artwork is durational, please do include this in the Dimensions/Duration field.'));
   }
   else {
     $year = $element['#value']['year'];
