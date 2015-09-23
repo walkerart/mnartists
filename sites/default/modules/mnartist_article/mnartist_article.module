@@ -153,8 +153,8 @@ function _article_block_other_articles_in_this_category () {
             $other_articles_cat_filter->condition('type', 'article', '=');
             $other_articles_cat_filter->condition('nid', $article_node->nid, '<>', '=');
             $other_articles_cat_filters[] = $other_articles_cat_filter;
-            $other_articles_cat_result = artist_community_execute_query(NODE_INDEX, $other_articles_cat_filters, array(array('promote', 'ASC'), array('changed', 'ASC')), 3);
-
+            //$other_articles_cat_result = artist_community_execute_query(NODE_INDEX, $other_articles_cat_filters, array(array('promote', 'ASC'), array('changed', 'ASC')), 3);
+            $other_articles_cat_result = artist_community_execute_query(NODE_INDEX, $other_articles_cat_filters, array(array('changed', 'ASC')), 3);
             foreach($other_articles_cat_result as $context_node) {
                 // build an object for the template with
                 // just what we need
